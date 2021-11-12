@@ -51,13 +51,13 @@ pre[class*=language-] {
   color: #ccc;
   background: 0 0;
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  font-size: 1em;
+  font-size: 1rem;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
   word-wrap: normal;
-  line-height: 1.5;
+  line-height: 2.428rem;
   -moz-tab-size: 4;
     -o-tab-size: 4;
        tab-size: 4;
@@ -66,7 +66,7 @@ pre[class*=language-] {
           hyphens: none;
 }
 pre[class*=language-] {
-  padding: 1em;
+  padding: 1.6rem;
   margin: auto;
   overflow: auto;
 }
@@ -913,6 +913,12 @@ img {
           text-decoration-color: #2BC4A9;
   font-weight: 700;
   line-height: 1.6rem;
+}
+.postlist-link h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 1rem;
 }
 .postlist-link a {
   color: #FFFF9F;
@@ -1766,6 +1772,9 @@ ul {
 }
 .vh50 {
   min-height: 50vh;
+}
+.maxw-50 {
+  max-width: 50vw;
 }
 .dg {
   display: grid;

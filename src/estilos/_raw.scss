@@ -2,34 +2,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;700&display=swap');
 
 .nav-item {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .content {
-    // background-color: $primary-color;
-    padding-bottom: $size-4;
-    padding-left: $size-2;
-    padding-right: $size-2;
+  padding-bottom: $size-4;
+  padding-left: $size-2;
+  padding-right: $size-2;
 }
 
 .headerContent {
-    height: 100vh;
-    display: grid;
-    place-items: center;
-    align-content: center;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  align-content: center;
 }
 
 body {
-    margin: 0;
-    color: $bodytextcolor;
-    font-family: $mainff;
-    font-size: $size-1;
-    font-weight: $normal;
-    background-color: $grey-color-0;
+  margin: 0;
+  color: $bodytextcolor;
+  font-family: $mainff;
+  font-size: $size-1;
+  font-weight: $normal;
+  background-color: $grey-color-0;
 }
 
 ::selection {
-    background: $quaternary-color;
+  background: $quaternary-color;
 }
 
 .section-videogallery {
@@ -714,18 +713,25 @@ img {
 }
 
 .postlist-link {
-    padding-left: $size-1;
-    padding-right: $size-1;
-    text-underline-position: from-font;
-    text-underline-offset: 0;
-    text-decoration-thickness: 5px;
-    text-decoration-color: $secondary-color;
-    font-weight: $bold;
-    line-height: $size-2;
-}
+  padding-left: $size-1;
+  padding-right: $size-1;
+  text-underline-position: from-font;
+  text-underline-offset: 0;
+  text-decoration-thickness: 5px;
+  text-decoration-color: $secondary-color;
+  font-weight: $bold;
+  line-height: $size-2;
 
-.postlist-link a {
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: $size-1;
+  }
+
+  a {
     color: $quaternary-color;
+  }
 }
 
 .postlist-link:hover {

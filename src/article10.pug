@@ -1,15 +1,15 @@
 extends includes/baseblog
 
 block head
-    title #{sitename} - #{articles[9].title}
-    meta(name="description" content=articles[9].description)
+  title #{sitename} - #{articles[9].title}
+  meta(name="description" content=articles[9].description)
 
 block pageheader
-    header.headerContent
-        h1.titlePage
-            | #{articles[9].title}
-        p.subTitlePage
-            | #{articles[9].description}
+  header.headerContent
+    h1.titlePage.
+      #{articles[9].title}
+    p.subTitlePage.
+      #{articles[9].description}
 
 block blog
-    img(src="./img/blog/creatividad-universal.svg", alt="sostener el vacio existencial") 
+  img(src="./img/blog/creatividad-universal.svg", alt="sostener el vacio existencial") 

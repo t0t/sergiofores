@@ -1,14 +1,15 @@
 extends includes/base.pug
 
-block append head
-  title lab
+block head
+  title #{sitename} - Laboratorio
+  meta(name="description" content="Creando aplicaciones para traducir numeros y letras a frecuencias, para ver la lógica creativa de este momento")
 
 block content
   header.headerContent
-    h1.titlePage
-      | Laboratorio
-    p.subTitlePage
-      | Para ver la lógica creativa de este momento
+    h1.titlePage.
+      Laboratorio
+    p.subTitlePage.
+      Para ver la lógica creativa de este momento
 
   include includes/app.pug
 

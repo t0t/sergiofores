@@ -5,19 +5,19 @@ pre[class*=language-] {
     color: #ccc;
     background: 0 0;
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    font-size: 1em;
+    font-size: $size-1;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
     word-break: normal;
     word-wrap: normal;
-    line-height: 1.5;
+    line-height: $baselineheight;
     tab-size: 4;
     hyphens: none
 }
 
 pre[class*=language-] {
-    padding: 1em;
+    padding: $size-2;
     margin: auto;
     overflow: auto
 }

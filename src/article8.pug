@@ -1,76 +1,94 @@
 extends includes/baseblog
 
 block head
-	title #{sitename} - #{articles[7].title}
-	meta(name="description" content=articles[7].description)
+  title #{sitename} - #{articles[7].title}
+  meta(name="description" content=articles[7].description)
 
 block pageheader
-	header.headerContent
-		h1.titlePage
-			| #{articles[7].title}
-		p.subTitlePage
-			| #{articles[7].description}
+  header.headerContent
+    h1.titlePage.
+      #{articles[7].title}
+    p.subTitlePage.
+      #{articles[7].description}
 
 block blog
-	p 
-		img(src="./img/blog/tecnologia.svg", alt="Proceso tecnológico") 
 
-	hr
+  figure 
+    img.maxw-50(src="./img/blog/tecnologia.svg", alt="Proceso tecnológico") 
 
-	h2 Notas acerca de la jerarquía tecnológica como orden sagrado
+  p.
+    Hace tiempo que quería reflexionar a cerca de esto: <strong>todo es lo mismo pero parece diferente.</strong>
 
-	hr
+  p.
+    Un ejemplo rotundo es la analogía entre el mundo del desarrollo web y la vida real. Ambos mundos son muy extensos, así que acotaremos el desarrollo web a las esferas que conozco más: <code>HTML</code>, <code>CSS</code>, <code>Javascript</code>.
 
-	p Hace tiempo que quería reflexionar a cerca de esto: 
-		strong todo es lo mismo pero parece diferente.
+  p.
+    Un sitio web como éste en el que estás ahora es un sistema de códigos interrelacionados entre sí. Cada elemento vive anidado en un contexto mayor que lo contiene. Eso es el <abbr title="Document Object Model">DOM</abbr>.
 
-	p Un ejemplo rotundo es la analogía entre el mundo del desarrollo web y la vida real. Ambos mundos son muy extensos, así que acotaremos el desarrollo web a las esferas que conozco más: 
-		code HTML, 
-		code CSS y 
-		code Javascript básico.
+  p.
+    Todos los elementos del <abbr title="Document Object Model">DOM</abbr> vienen predefinidos por defecto, en el navegador, por una serie de propiedades o cualidades que son las que luego el programador usa / modifica para generar apariencias y comportamientos.
 
-	p Un sitio web como éste en el que estás ahora es un sistema de códigos interrelacionados entre sí. Cada elemento vive anidado en un contexto mayor que lo contiene. Eso es el DOM (Document Object Model).
+  blockquote.
+    Al igual que tú, cada elemento es una división de la existencia con unas cualidades.
 
-	p Todos los elementos del DOM vienen predefinidos por defecto, en el navegador, por una serie de propiedades o cualidades que son las que luego el programador usa/modifica para generar apariencias y comportamientos.
+  p.
+    El <em>programador</em> está tan presente como el programa. La vida y la programación son tan "parecidos" porque están hechos de la misma sustancia.
 
-	blockquote
-		p Al igual que tú, cada elemento es una división de la existencia con unas cualidades.
+  section 
+    
+    p.
+      <strong>CSS</strong> se encargará de dar visibilidad, sensibilidad, tocar, rozar... Aquí es la separación, el olvido... Aquí es cómo es que las cosas lucen, son vistas. Gracias a la separación tiene valor el encuentro. Tiene que ver con el arquetipo 2. Aquí la mediación es hacia dentro, una de las partes absorviendo otras partes.
+    
+    pre.language-scss
+      code.
+        // Define qué se ve cuando algo me toca, qué tamaño tengo,
+        // a cuanta distancia estoy del resto de elementos, etc
+        :root {
+        	--mi-color-de-piel: pink;
+        }
+        
+        div {
+        	background-color: var(--mi-color-de-piel);
+        }
+    hr
+    p.
+      <strong>Javascript</strong> se encargará de ejecutar acciones, desempeñar funciones, discernir comportamientos, hacer promesas, convocar los eventos... Aquí es la lógica, y tiene que ver con los arquetipos 3, 5, 9.
+    
+    pre.language-javascript
+      code.
+        // Escoge un elemento del DOM
+        let quiensoy = document.getelementById("yo")
+        
+        // Realiza una acción
+        function miAccion() {
+        	Alert("me han dado una identidad")
+        }
+        
+        // Muestra por consola
+        console.log('quien soy');
 
-	section 
-		p CSS
-		pre.language-scss
-			code
-				|// Define qué se ve cuando algo me toca, qué tamaño tengo,
-				|// a cuanta distancia estoy del resto de elementos, etc
-				|:root {
-				|	--mi-color-de-piel: pink;
-				|}
-				|
-				|div {
-				|	background-color: var(--mi-color-de-piel);
-				|}
+    hr
+    p. 
+      <strong>Html/Pug</strong> se encargará de estructurar, marcar, fijar, cristalizar, dar soporte a la realidad para que pueda darse. Y tendrá que ver con los arquetipos 4, 1.
 
-		p Javascript
-			pre.language-javascript
-				code 
-					|// Escoge un elemento del DOM
-					|let quiensoy = document.getelementById("yo")
-					|
-					|// Realiza una acción
-					|function miAccion() {
-					|	Alert("me han dado una identidad")
-					|}
-					|
-					|// Muestra por consola
-					|console.log('quien soy');
+    pre.language-pug
+      code.
+        head Este es el vacío inmanente. "No está, pero está"
+        body Este es el origen de la existencia de esta página.
+          header Identidad
+          main
+            div Lo que hay aquí es lo que soy yo
+            div Este eres tú
+          footer Esta es la realidad, el plano 1
+    
+    hr
+    p. 
+      <strong>Git/Servidor</strong> se encargará de generar nuevas versiones de Universos y multiversos, desplegarlos en red... y tendrá que ver con los arquetipos 6, 8.
 
-		p Html/Pug
-			pre.language-pug
-				code
-					|head Este es el vacío inmanente. "No está, pero está"
-					|body Este es el origen de la existencia de esta página.
-					|	header Identidad
-					|	main
-					|		div Lo que hay aquí es lo que soy yo
-					|		div Este eres tú
-					|	footer Esta es la realidad, el plano 1
+    pre.language-diff
+      code.
+        @@ -4,6 +4,5 @@
+        - let foo = bar.baz([1, 2, 3]);
+        - foo = foo + 1;
+        + const foo = bar.baz([1, 2, 3]) + 1;
+        console.log(`foo: ${foo}`);
