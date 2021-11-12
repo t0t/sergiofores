@@ -1,13 +1,28 @@
-# Sergio Forés Portfolio
-## La idea es generar un sitio web Estático usando el mínimo de dependencias y de configuración para las tareas de desarrollo.
+# +0+ 1234
+## En ocasiones hago webs
 
+La idea es generar un sitio web Estático usando el mínimo de dependencias, simple y basado en estándares web.
 
-- Css - preprocesado en Sass 
+---
+
+- **Css**
+  - Sass 
   - Autoprefixer
-- Javascript
-  - Moderno, con Módulos ES6
-- HTML 
-  - Preprocesado con Pug
-- Parcel
-  - Bundler
-  - Optimización de imágenes
+
+- **Javascript puro**
+  - Módulos ES6
+  - D3.js
+
+- **HTML** 
+  - Componentización y motor de templates con Pug
+
+- **Parcel**
+  - Bundler Zero config para todo.
+  - NPM
+
+- Deployment
+  - Github -> Vercel
+
+by Sergio Forés
+
+[Instagram](https://www.instagram.com/t.o.d.h/) [Linkedin](https://www.linkedin.com/in/sergiofores/) [Twitter](https://twitter.com/t0tinspire)
