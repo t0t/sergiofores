@@ -6,7 +6,7 @@
 🧜
 La idea es generar un sitio web Estático usando el mínimo de dependencias, simple y basado en estándares web.
 
----
+### Minimal Universal Config
 
 - **Css**
   - Sass 
@@ -26,7 +26,5 @@ La idea es generar un sitio web Estático usando el mínimo de dependencias, sim
 - Deployment
   - Github -> Vercel
 
-🙌
-by Sergio Forés
-
+🙌 by Sergio Forés 
 [Instagram](https://www.instagram.com/t.o.d.h/) [Linkedin](https://www.linkedin.com/in/sergiofores/) [Twitter](https://twitter.com/t0tinspire)
