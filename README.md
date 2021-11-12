@@ -1,6 +1,10 @@
 # +0+ 1234
 ## En ocasiones hago webs
 
+![Code is poetry main image](./src/img/img4.jpg "Code is poetry")
+
+
+
 La idea es generar un sitio web Estático usando el mínimo de dependencias, simple y basado en estándares web.
 
 ---
