@@ -1,10 +1,9 @@
 # +0+ 1234
 ## En ocasiones hago webs
 
-![Code is poetry main image](./src/img/img4.jpg "Code is poetry")
+![Code is poetry](https://github.com/t0t/sergiofores/blob/main/src/img/bg4.jpg?raw=true "Code is poetry")
 
-
-
+🧜
 La idea es generar un sitio web Estático usando el mínimo de dependencias, simple y basado en estándares web.
 
 ---
@@ -27,6 +26,7 @@ La idea es generar un sitio web Estático usando el mínimo de dependencias, sim
 - Deployment
   - Github -> Vercel
 
+🙌
 by Sergio Forés
 
 [Instagram](https://www.instagram.com/t.o.d.h/) [Linkedin](https://www.linkedin.com/in/sergiofores/) [Twitter](https://twitter.com/t0tinspire)
