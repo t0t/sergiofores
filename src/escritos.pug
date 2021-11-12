@@ -1,0 +1,19 @@
+extends includes/baseblog
+
+block head
+  title #{sitename} - Lavadora y procesadora de ideas
+  meta(name="description" content="En ocasiones escribo cosas sobre arte, visión holística, crisis creativa, desarrollo de procesos creativos, etc")
+
+block pageheader
+  header.headerContent
+    h1.titlePage.
+      Artículos
+    p.subTitlePage.
+      "En ocasiones escribo cosas"
+//- block content
+  //- ol.postlist.grid
+  //-   each article in articles
+  //-     li.grid__item.postlist-item
+  //-       a.postlist-link(href=`${article.url}`) 
+  //-         h3= article.title
+  //-         img(src=article.img, alt=article.title)

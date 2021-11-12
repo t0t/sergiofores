@@ -1,0 +1,76 @@
+extends includes/baseblog
+
+block head
+	title #{sitename} - #{articles[7].title}
+	meta(name="description" content=articles[7].description)
+
+block pageheader
+	header.headerContent
+		h1.titlePage
+			| #{articles[7].title}
+		p.subTitlePage
+			| #{articles[7].description}
+
+block blog
+	p 
+		img(src="./img/blog/tecnologia.svg", alt="Proceso tecnológico") 
+
+	hr
+
+	h2 Notas acerca de la jerarquía tecnológica como orden sagrado
+
+	hr
+
+	p Hace tiempo que quería reflexionar a cerca de esto: 
+		strong todo es lo mismo pero parece diferente.
+
+	p Un ejemplo rotundo es la analogía entre el mundo del desarrollo web y la vida real. Ambos mundos son muy extensos, así que acotaremos el desarrollo web a las esferas que conozco más: 
+		code HTML, 
+		code CSS y 
+		code Javascript básico.
+
+	p Un sitio web como éste en el que estás ahora es un sistema de códigos interrelacionados entre sí. Cada elemento vive anidado en un contexto mayor que lo contiene. Eso es el DOM (Document Object Model).
+
+	p Todos los elementos del DOM vienen predefinidos por defecto, en el navegador, por una serie de propiedades o cualidades que son las que luego el programador usa/modifica para generar apariencias y comportamientos.
+
+	blockquote
+		p Al igual que tú, cada elemento es una división de la existencia con unas cualidades.
+
+	section 
+		p CSS
+		pre.language-scss
+			code
+				|// Define qué se ve cuando algo me toca, qué tamaño tengo,
+				|// a cuanta distancia estoy del resto de elementos, etc
+				|:root {
+				|	--mi-color-de-piel: pink;
+				|}
+				|
+				|div {
+				|	background-color: var(--mi-color-de-piel);
+				|}
+
+		p Javascript
+			pre.language-javascript
+				code 
+					|// Escoge un elemento del DOM
+					|let quiensoy = document.getelementById("yo")
+					|
+					|// Realiza una acción
+					|function miAccion() {
+					|	Alert("me han dado una identidad")
+					|}
+					|
+					|// Muestra por consola
+					|console.log('quien soy');
+
+		p Html/Pug
+			pre.language-pug
+				code
+					|head Este es el vacío inmanente. "No está, pero está"
+					|body Este es el origen de la existencia de esta página.
+					|	header Identidad
+					|	main
+					|		div Lo que hay aquí es lo que soy yo
+					|		div Este eres tú
+					|	footer Esta es la realidad, el plano 1

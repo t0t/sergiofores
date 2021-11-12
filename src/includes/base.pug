@@ -1,0 +1,43 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    meta(name='author' content=`${name}`)
+    meta(name='keywords' content='Art, Holistic, Creacion, Design, 3D printing, Process, HTML, CSS, JavaScript, Crisis, Bloqueo, Creativo, Multidimensional, Arte, Analogia, Hermeneutica, Mapas, Tecnología')
+    link(rel="stylesheet", href="./estilos/main.scss")
+    
+    block head 
+      meta(name='description' content=`${pagedescription}`)
+
+
+  body(style="overflow: hidden")
+    #wrap-preloader(style='display: grid; place-items: center; width: 100vw; height: 100vh;')
+      svg#preloader.animintro(viewbox='-0 -0 110 110' xmlns='http://www.w3.org/2000/svg')
+        circle.grande(cx='50%' cy='50%' r='50' vector-effect='non-scaling-stroke')
+        circle.mediano(cx='27.5%' cy='50%' r='25' vector-effect='non-scaling-stroke')
+        circle.mediano(cx='72.5%' cy='50%' r='25' vector-effect='non-scaling-stroke')
+        circle.uno(cx='15.6%' cy='50%' r='12.5' vector-effect='non-scaling-stroke')
+        circle.tres(cx='61.5%' cy='50%' r='12.5' vector-effect='non-scaling-stroke')
+        circle.dos(cx='38.5%' cy='50%' r='12.5' vector-effect='non-scaling-stroke')
+        circle.cuatro(cx='84.4%' cy='50%' r='12.5' vector-effect='non-scaling-stroke')
+
+    #theSite.fade-page-off
+      .mainNav
+        include brand
+        include navbar
+        include sidenav
+        span#hambutton.hambutton(style="font-size:30px;cursor:pointer") &#9776;
+
+      main#maincontent.mainContent
+        block pageheader 
+        block content 
+
+      block foot
+        #footer 
+          include footer
+
+    block scripts
+      script(type="module", src="./scripts/prism.js")
+      script(type="module", src="./scripts/index.js")

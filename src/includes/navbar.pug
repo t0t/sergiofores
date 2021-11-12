@@ -1,0 +1,4 @@
+nav#navbar.nav
+    each link in sitenav
+        li(class='nav-item nav-item-active')
+            a(href=link.url)= link.name

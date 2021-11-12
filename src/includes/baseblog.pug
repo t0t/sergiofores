@@ -1,0 +1,26 @@
+extends base
+
+block content
+  main.blog
+    block blog
+
+block foot
+  ol.postlist.grid
+    each article in articles
+      li.grid__item.postlist-item
+        a.postlist-link(href=`${article.url}`) 
+          h3= article.title
+          img(src=article.img, alt=article.title)
+
+  footer.blockquote--pie(style="background-image: url('./img/bg2.jpg');")
+    span.overlay
+      blockquote
+        h3
+          | &ldquo;... y cuando el Todo hubo comenzado a ordenarse, todos los elementos recibieron de Dios sus figuras por acción de las ideas y de los números.&rdquo;
+          br
+          small &mdash; Platón
+  #footer 
+    include footer
+
+  block append scripts
+    //- script(src="./scripts/animintro.js", type="module")

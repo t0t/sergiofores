@@ -1,0 +1,110 @@
+extends includes/base
+
+block head
+  title obra
+
+block content
+  header.headerContent
+    h1.titlePage La poesía de la materia
+    p.subTitlePage
+      | Mis pinturas, al ser tridimensionales, son esculpidas por una luz que es de verdad.
+      
+  .grid.sectionResaltadaOscura
+    
+    .grid__item
+      video#video1(poster='./img/arte3d.jpeg')
+        source(src='./videos/desdelapoesiadelamateria.mp4' type='video/mp4')
+        source(src='./videos/desdelapoesiadelamateria.webm' type='video/webm')
+        | Your browser does not support the video tag.
+    
+    .grid__item
+      p.
+        Fluidos en un espacio etérico reaccionan a la vibración y la inercia generando vibraciones que fraguan para palpar el pálpito del tiempo detenido.
+      
+      button.btn--white(onclick='playPause()') Play/Stop Video presentación
+
+  .vh50(style="background-image: url('./img/bg3.jpg');")
+    img(src='./img/pieza.jpg' alt='')
+  
+  section
+    
+    h3 En exposición
+    
+    .gallery
+      each obra in obras
+        .gallery__item
+          img#openlightbox.hover-shadow.preview(src=obra.preview alt=obra.title onclick=`openLightbox(); toSlide(${obra.id})`)
+          small= obra.title
+
+  #Lightbox.modal
+    span.close.pointer(onclick=`closeLightbox()`) &times;
+
+    .modal-content
+      each obra in obras
+        .slide
+          img.image-slide(src=obra.imagen alt=obra.title)
+          small
+            strong= obra.title
+            | obra.description. REF: obra.ref
+
+      a.previous(onclick=`changeSlide(-1)`) &#x276E;
+      a.next(onclick=`changeSlide(1)`) &#x276F;
+      
+      .dots
+        each obra in obras
+          img.modal-preview.hover-shadow(src= obra.preview alt= obra.title onclick=`toSlide( ${obra.id })`)
+
+  section
+    
+    h3 Proceso
+    
+    .grid
+      .grid__item
+        video#video1(controls='' loop='')
+          source(src='./videos/pieza-123.webm' type='video/webm')
+          | Your browser does not support the video tag.
+        
+        p.
+          Las piezas parten de un entorno digital donde se generan mallas 3D que son transformadas por los efectos de determinadas físicas de vibración.
+
+      .grid__item
+        
+        video#video2(controls='' loop='')
+          source(src='./videos/anim.webm' type='video/webm')
+          | Your browser does not support the video tag.
+        
+        video#video3(controls='' loop='')
+          source(src='./videos/genesis1.webm' type='video/webm')
+          | Your browser does not support the video tag.
+        
+        p.
+          Luego se lleva a producción, se imprimen en gran formato y se le dan los acabados con resinas, arenas y pigmentos.
+
+      .grid__item
+        
+        video(controls='' loop='')
+          source(src='./videos/proceso1.webm' type='video/webm')
+          | Your browser does not support the video tag.
+        
+        video(controls='' loop='')
+          source(src='./videos/proceso2.webm' type='video/webm')
+          | Your browser does not support the video tag.
+        
+        video(controls='' loop='')
+          source(src='./videos/proceso3.webm' type='video/webm')
+          | Your browser does not support the video tag.
+      
+      .grid__item
+        
+        img(src='./img/bg4.jpg' alt='')
+        
+        p.
+          La luz y la perspectiva desde donde se observa generan la conexión con el instante.
+
+  footer.blockquote--pie(style="background-image: url('./img/bg3.jpg');")
+    
+    blockquote.
+      &ldquo;Las obras de arte también son formas simbólicas en sí mismas y, como tales, cumplen una función mediadora capaz de abrirle lo real a la conciencia.&rdquo; <br> &mdash; Gadamer
+
+  script( src="./scripts/lightbox.js")
+  script( src="./scripts/videoplayer.js")

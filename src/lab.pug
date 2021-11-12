@@ -1,0 +1,24 @@
+extends includes/base.pug
+
+block append head
+  title lab
+
+block content
+  header.headerContent
+    h1.titlePage
+      | Laboratorio
+    p.subTitlePage
+      | Para ver la lógica creativa de este momento
+
+  include includes/app.pug
+
+  footer.blockquote--pie(style="background-image: url('./img/img3.jpg');")
+    
+    blockquote
+      h3
+        | "Sólo cuando bajamos al abismo recuperamos los auténticos tesoros de la vida."
+        br
+        small &mdash; Joseph Campbell
+  
+  block append scripts
+    //- script(type="module", src="./scripts/app.js")

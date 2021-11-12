@@ -1,0 +1,89 @@
+/* ANIMACIONES */
+@keyframes parpadea {
+  50% {
+    color: blue
+  }
+}
+
+@keyframes dash {
+  50% {
+    stroke-dashoffset: 100px;
+    stroke-width: 1px;
+  }
+}
+
+@keyframes dash2 {
+  50% {
+    stroke-dashoffset: 540px;
+  }
+}
+
+@keyframes escalar {
+  50% {
+    transform: scale(3.5);
+    transform-origin: center;
+  }
+}
+
+@keyframes animcover {
+  0% {
+    transform: rotate(0deg);
+    transform-origin: 700% 200%;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    transform-origin: 100% 100%;
+  }
+}
+
+@keyframes animcover__infla {
+  50% {
+    transform: scale(14.7);
+    transform-origin: 50% 50%;
+  }
+}
+
+@keyframes parpadeo {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-amarillo {
+  50% {
+    transform: translateX(25px);
+  }
+}
+
+@keyframes spin-rojo {
+  50% {
+    transform: translateX(25px);
+  }
+}
+
+@keyframes spin-lila {
+  50% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes spin-verde {
+  50% {
+    transform: translateX(-25px);
+  }
+}
