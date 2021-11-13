@@ -174,7 +174,13 @@ h4 {
   text-align: center;
   margin-bottom: $size-0;
   z-index: 2;
-  // position: absolute;
+  
+  &--home {
+    position: absolute;
+    max-width: $size-8;
+    right: 0;
+    text-align: right;
+  }
   // top: 50%;
   // right: 1%;
 }
@@ -1529,13 +1535,19 @@ img.hover-shadow {
     font-size: $size-1;
   }
 }
-
+.my_dataviz {
+  // width: 50vw;
+  // height: 50vh;
+  // background-color: #00000050;
+  // padding: $size-3;
+}
 #animcover {
   border-radius: 50%;
   overflow: hidden;
   width: 450px;
   height: 450px;
-  background-color: $secondary-color;
+  border: 1px solid $secondary-color;
+  // background-color: $secondary-color;
 
   circle:hover {
     cursor: grab;

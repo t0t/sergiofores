@@ -470,6 +470,12 @@ h4 {
   margin-bottom: 0.61rem;
   z-index: 2;
 }
+.titlePage--home {
+  position: absolute;
+  max-width: 28rem;
+  right: 0;
+  text-align: right;
+}
 .subTitlePage {
   font-size: 1.6rem;
   text-align: center;
@@ -1635,7 +1641,7 @@ ul {
   overflow: hidden;
   width: 450px;
   height: 450px;
-  background-color: #2BC4A9;
+  border: 1px solid #2BC4A9;
 }
 #animcover circle:hover {
   cursor: -webkit-grab;
