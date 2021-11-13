@@ -446,7 +446,7 @@ if (btnGenerar) {
   // Muestra efecto navbar si no es mobil NI Safari
   if ( !isSafari && !isMobileDevice()) {
   
-    // console.log(`No es SAFARI porque da ${isSafari}`);
+    console.log(`SAFARI ${isSafari}`);
     var prevScrollpos = window.pageYOffset;
   
     window.onscroll = function () {
@@ -460,5 +460,12 @@ if (btnGenerar) {
   
       prevScrollpos = currentScrollPos;
     };
-  };
+  } else if (isMobileDevice) {
+    // console.log("es solo safari")
+    let quitaBgFixed = document.getElementsByTagName("header")[0];
+    quitaBgFixed.style.backgroundAttachment = "scroll";
+    quitaBgFixed.style.backgroundPosition = "bottom center";
+    quitaBgFixed.style.backgroundSize = "inherit";
+  }
+
   

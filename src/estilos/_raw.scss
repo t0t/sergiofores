@@ -850,8 +850,14 @@ img {
 }
 
 .blog {
+  padding-left: $size-2;
+  padding-right: $size-2;
   &:last-child {
     padding-bottom: $size-5;
+  }
+  @media screen and (min-width: $bp3) {
+    padding-left: inherit;
+    padding-right: inherit;
   }
 }
 

@@ -874,7 +874,7 @@ const isSafari = /constructor/i.test(window.HTMLElement) || function(p) {
 }(!window['safari'] || typeof safari !== 'undefined' && window['safari'].pushNotification);
 // Muestra efecto navbar si no es mobil NI Safari
 if (!isSafari && !isMobileDevice()) {
-    // console.log(`No es SAFARI porque da ${isSafari}`);
+    console.log(`SAFARI ${isSafari}`);
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
         var currentScrollPos = window.pageYOffset;
@@ -882,6 +882,12 @@ if (!isSafari && !isMobileDevice()) {
         else document.getElementById("navbar").style.top = "-100px";
         prevScrollpos = currentScrollPos;
     };
+} else if (isMobileDevice) {
+    // console.log("es solo safari")
+    let quitaBgFixed = document.getElementsByTagName("header")[0];
+    quitaBgFixed.style.backgroundAttachment = "scroll";
+    quitaBgFixed.style.backgroundPosition = "bottom center";
+    quitaBgFixed.style.backgroundSize = "inherit";
 }
 
 },{"../estilos/main.scss":"hGvuj","moment":"1RrsF","d3":"97vK6","./utils/utils":"csoad","./sidenav":"9MwHJ","./data/datablog.json":"3sIRw","../../node_modules/typewriter-effect/dist/core":"hXq0y","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hGvuj":[function() {},{}],"1RrsF":[function(require,module,exports) {
