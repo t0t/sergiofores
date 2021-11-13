@@ -18,6 +18,13 @@
   align-content: center;
 }
 
+.bgImg {
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 body {
   margin: 0;
   color: $bodytextcolor;
@@ -119,7 +126,9 @@ section {
 
 .sectionResaltadaOscura {
   color: $bodytextcolor;
-  background-color: $black-color;
+  background-color: $black-color-alpha-0;
+  border-top-left-radius: 100%;
+  border-bottom-right-radius: 100%;
 }
 
 h1 {

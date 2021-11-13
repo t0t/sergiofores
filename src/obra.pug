@@ -7,7 +7,7 @@ block append head
   - let current = "Obra";
 
 block content
-  header.headerContent
+  header.headerContent.bgImg(style="background-image: url('./img/bg4.jpg');")
     h1.titlePage La poesía de la materia
     p.subTitlePage
       | Mis pinturas, al ser tridimensionales, son esculpidas por una luz que es de verdad.
@@ -25,8 +25,6 @@ block content
         Fluidos en un espacio etérico reaccionan a dinámicas vibracionales e inercias sinérgicas que fraguan en un no-tiempo donde se palpa el pálpito del tiempo detenido y se vive el instante como símbolo.
       
       button.btn--white(onclick='playPause()') Play/Stop Video presentación
-
-  .vh50(style="background-image: url('./img/bg3.jpg');")
   
   figure.p-0
     img(src='./img/pieza.jpg' alt='')
