@@ -862,6 +862,14 @@ img {
   @media screen and (min-width: $bp3) {
     padding-left: inherit;
     padding-right: inherit;
+    figure img {
+      max-width: 75vw;
+    }
+  }
+  @media screen and (min-width: $bp4) {
+    figure img {
+      max-width: 50vw;
+    }
   }
 }
 

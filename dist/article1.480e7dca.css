@@ -1053,6 +1053,14 @@ img {
     padding-left: inherit;
     padding-right: inherit;
   }
+  .blog figure img {
+    max-width: 75vw;
+  }
+}
+@media screen and (min-width: 1022px) {
+  .blog figure img {
+    max-width: 50vw;
+  }
 }
 /* Tags */
 .post-tag {
