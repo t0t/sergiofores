@@ -1,7 +1,8 @@
 extends includes/base
 
-block head
-  title obra
+block append head
+  title #{sitename} - Obra Plástica
+  meta(name="description" content="Aporto una perspectiva multidimensional, transdisciplinar y holistica de la Creación para encontrarnos a nosotros mismos en el contexto desde el vacío.")
 
   - let current = "Obra";
 
@@ -19,13 +20,15 @@ block content
         source(src='./videos/desdelapoesiadelamateria.webm' type='video/webm')
         | Your browser does not support the video tag.
     
-    .grid__item
+    .grid__item.videoPanel
       p.
-        Fluidos en un espacio etérico reaccionan a la vibración y la inercia generando vibraciones que fraguan para palpar el pálpito del tiempo detenido.
+        Fluidos en un espacio etérico reaccionan a dinámicas vibracionales e inercias sinérgicas que fraguan en un no-tiempo donde se palpa el pálpito del tiempo detenido y se vive el instante como símbolo.
       
       button.btn--white(onclick='playPause()') Play/Stop Video presentación
 
   .vh50(style="background-image: url('./img/bg3.jpg');")
+  
+  figure.p-0
     img(src='./img/pieza.jpg' alt='')
   
   section

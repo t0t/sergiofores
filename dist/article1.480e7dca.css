@@ -307,11 +307,6 @@ pre[class*=language-] {
 .nav-item {
   text-decoration: none;
 }
-.content {
-  padding-bottom: 4.1rem;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
-}
 .headerContent {
   height: 100vh;
   display: grid;
@@ -368,8 +363,14 @@ figure {
   display: grid;
   place-items: center;
   gap: 1.6rem;
-  padding-top: 6.64rem;
-  padding-bottom: 6.64rem;
+  padding-top: 2.59rem;
+  padding-bottom: 2.59rem;
+}
+@media screen and (min-width: 766px) {
+  figure {
+    padding-top: 6.64rem;
+    padding-bottom: 6.64rem;
+  }
 }
 figure figcaption {
   font-size: 0.61rem;
@@ -413,6 +414,16 @@ h1 {
   text-align: center;
   margin: 0 2.59rem;
   letter-spacing: 1.5px;
+}
+@media screen and (min-width: 318px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+}
+@media screen and (min-width: 1438px) {
+  h1 {
+    font-size: 4.1rem;
+  }
 }
 h2,
 h3 {
@@ -476,6 +487,9 @@ li {
 ul,
 ol {
   list-style-position: inside;
+}
+dd {
+  margin-left: 0;
 }
 small {
   font-size: 0.61rem;
@@ -626,14 +640,44 @@ input[type=date i] {
   -webkit-padding-start: 1rem;
           padding-inline-start: 1rem;
   overflow: hidden;
-  /* padding: 0px; */
 }
 .form-group {
-  align-items: end;
+  display: grid;
+  place-items: center;
+  gap: 1.6rem;
+  padding-top: 2.59rem;
+  padding-left: 2.59rem;
+  padding-right: 2.59rem;
+}
+@media screen and (min-width: 766px) {
+  .form-group {
+    padding-top: inherit;
+    grid-template-columns: 1fr 1fr 0.5fr;
+    align-items: end;
+  }
+}
+@media screen and (min-width: 1022px) {
+  .form-group {
+    max-width: 50vw;
+    margin-left: auto;
+    margin-right: auto;
+    place-content: center;
+  }
 }
 .form-group input {
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
+  min-width: max-content;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
   margin-top: 0.61rem;
   width: 100%;
+}
+.form-group__item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 input[type=text]:active,
 input[type=text]:focus,
@@ -693,6 +737,16 @@ svg.grafica text {
   fill: black;
   font-size: 3px;
 }
+@media screen and (min-width: 373px) {
+  .overlay {
+    display: block;
+    position: absolute;
+    height: auto;
+    background-color: #0000009e;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+}
 .output {
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   opacity: 0;
@@ -720,6 +774,28 @@ svg.grafica text {
   margin-left: 1rem;
   font-size: 0.61rem;
   line-height: 1.5;
+}
+@media screen and (min-width: 373px) {
+  .codigos-ejemplo {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 766px) {
+  .codigos-ejemplo {
+    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 2.59rem 1.6rem;
+    text-align: inherit;
+  }
+  .codigos-ejemplo dt {
+    text-align: right;
+  }
+}
+@media screen and (min-width: 1438px) {
+  .codigos-ejemplo {
+    grid-template-columns: repeat(8, 1fr);
+  }
 }
 .menu3d {
   display: grid;
@@ -964,6 +1040,11 @@ img {
 }
 .postlist-item > .post-tag {
   align-self: center;
+}
+.videoPanel {
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  padding-bottom: 1.6rem;
 }
 /* Web components */
 model-viewer {
@@ -1315,12 +1396,10 @@ img.hover-shadow {
     transition: 0.2s;
     padding-top: 6.64rem;
   }
-
   .sidenav li {
     list-style: none;
     text-align: center;
   }
-
   .sidenav a {
     padding: 1.6rem 1rem;
     text-decoration: none;
@@ -1346,10 +1425,6 @@ img.hover-shadow {
   #main {
     transition: margin-left 0.3s;
     padding: 1.6rem;
-  }
-
-  h1 {
-    font-size: 1.6rem;
   }
 
   .tmpl-home,
@@ -1378,35 +1453,9 @@ img.hover-shadow {
     text-align: center;
   }
 }
-@media screen and (min-width: 373px) {
-  .footer-site {
-    padding-top: 2.59rem;
-  }
-
-  .overlay {
-    display: block;
-    position: absolute;
-    height: auto;
-    background-color: #0000009e;
-    padding-left: 1.6rem;
-    padding-right: 1.6rem;
-  }
-}
 @media screen and (min-width: 766px) {
-  .codigos-ejemplo {
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 0 2.59rem 1.6rem;
-    text-align: inherit;
-  }
-
-  .codigos-ejemplo dt {
-    text-align: right;
-  }
-
   .nav-item a {
-    color: black;
+    color: #e2777a;
   }
 
   .nav-item a:hover {
@@ -1470,6 +1519,7 @@ img.hover-shadow {
   }
 
   .nav-item-active a {
+    color: black;
     background-color: #2BC4A9;
   }
 
@@ -1494,11 +1544,6 @@ img.hover-shadow {
 .tmpl-page,
 .tmpl-post {
     padding-top: 8.11rem;
-  }
-}
-@media screen and (min-width: 1438px) {
-  h1 {
-    font-size: 4.1rem;
   }
 }
 @media screen and (min-width: 2558px) {
