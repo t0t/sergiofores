@@ -886,7 +886,7 @@ if (!isSafari && !isMobileDevice()) {
     // console.log("es solo safari")
     let quitaBgFixed = document.getElementsByTagName("header")[0];
     quitaBgFixed.style.backgroundAttachment = "scroll";
-    quitaBgFixed.style.backgroundPosition = "bottom center";
+    quitaBgFixed.style.backgroundPosition = "bottom left";
     quitaBgFixed.style.backgroundSize = "inherit";
 }
 

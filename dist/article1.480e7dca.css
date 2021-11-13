@@ -325,7 +325,7 @@ pre[class*=language-] {
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: cover;
-  -webkit-background-attachment: revert;
+  background-position: right;
   background-attachment: fixed;
 }
 body {
@@ -472,10 +472,16 @@ h4 {
   z-index: 2;
 }
 .subTitlePage {
+  font-size: 1.6rem;
   text-align: center;
   margin-top: 0;
   margin-bottom: 4.1rem;
-  color: #2BC4A9;
+}
+@media screen and (min-width: 766px) {
+  .subTitlePage {
+    font-size: inherit;
+    color: #2BC4A9;
+  }
 }
 p,
 ul,
@@ -1458,11 +1464,6 @@ img.hover-shadow {
 .tmpl-page,
 .tmpl-post {
     padding-top: 6.64rem;
-  }
-
-  .subTitlePage {
-    margin-bottom: 2.59rem;
-    color: #2BC4A9;
   }
 
   .footer-site__item {
