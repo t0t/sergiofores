@@ -59,14 +59,14 @@ pre[class*=language-] {
 .token.boolean,
 .token.function,
 .token.number {
-    color: #f08d49
+    color: $primary-color;
 }
 
 .token.class-name,
 .token.constant,
 .token.property,
 .token.symbol {
-    color: #f8c555
+    color: $tertiary-color;
 }
 
 .token.atrule,
@@ -82,7 +82,7 @@ pre[class*=language-] {
 .token.regex,
 .token.string,
 .token.variable {
-    color: #7ec699
+    color: $secondary-color;
 }
 
 .token.entity,
@@ -105,5 +105,5 @@ pre[class*=language-] {
 }
 
 .token.inserted {
-    color: green
+    color: $secondary-color;
 }

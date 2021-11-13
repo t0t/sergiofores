@@ -101,13 +101,13 @@ pre[class*=language-] {
 .token.boolean,
 .token.function,
 .token.number {
-  color: #f08d49;
+  color: #e2777a;
 }
 .token.class-name,
 .token.constant,
 .token.property,
 .token.symbol {
-  color: #f8c555;
+  color: #9F9FFF;
 }
 .token.atrule,
 .token.builtin,
@@ -121,7 +121,7 @@ pre[class*=language-] {
 .token.regex,
 .token.string,
 .token.variable {
-  color: #7ec699;
+  color: #2BC4A9;
 }
 .token.entity,
 .token.operator,
@@ -139,7 +139,7 @@ pre[class*=language-] {
   cursor: help;
 }
 .token.inserted {
-  color: green;
+  color: #2BC4A9;
 }
 /* ANIMACIONES */
 @-webkit-keyframes parpadea {
@@ -510,8 +510,8 @@ ul {
   text-underline-position: from-font;
   text-underline-offset: 0;
   text-decoration-thickness: 2px;
-  -webkit-text-decoration-color: #FF6874;
-          text-decoration-color: #FF6874;
+  -webkit-text-decoration-color: #e2777a;
+          text-decoration-color: #e2777a;
 }
 .blockquote--pie {
   display: grid;
@@ -607,7 +607,7 @@ button {
   background-color: transparent;
 }
 button:hover {
-  color: #FF6874;
+  color: #e2777a;
 }
 label {
   font-size: 0.61rem;
@@ -659,7 +659,7 @@ input[type=submit]:hover {
   background-color: #FFFF9F;
 }
 input:checked + .switch {
-  color: #FF6874;
+  color: #e2777a;
 }
 svg.grafica {
   width: 100%;
@@ -684,7 +684,7 @@ svg.grafica path {
           animation-duration: 4s;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
-  stroke: #FF6874;
+  stroke: #e2777a;
 }
 svg.grafica rect {
   fill: #2BC4A9;
@@ -697,7 +697,7 @@ svg.grafica text {
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   opacity: 0;
   position: absolute;
-  color: #FF6874;
+  color: #e2777a;
   transform: scale(3) rotate(-30deg);
   background-color: #FFFF9F;
 }
@@ -741,7 +741,7 @@ svg.grafica text {
   transition: transform 0.4s;
 }
 .indicador-icono path {
-  fill: #FF6874;
+  fill: #e2777a;
 }
 .switch {
   justify-self: start;
@@ -750,7 +750,7 @@ svg.grafica text {
 }
 .switch:hover {
   cursor: pointer;
-  color: #FF6874;
+  color: #e2777a;
 }
 .deshabilitar {
   touch-action: auto !important;
@@ -836,8 +836,8 @@ img {
   border-color: #9F9FFF;
 }
 .btn-telegram:hover {
-  background-color: #FF6874;
-  border-color: #FF6874;
+  background-color: #e2777a;
+  border-color: #e2777a;
 }
 .highlight-line {
   display: block;
@@ -924,7 +924,7 @@ img {
   color: #FFFF9F;
 }
 .postlist-link:hover {
-  color: #FF6874;
+  color: #e2777a;
   -webkit-text-decoration-color: #2BC4A9;
           text-decoration-color: #2BC4A9;
 }
@@ -1066,7 +1066,7 @@ img.hover-shadow {
   border: 1px solid #2BC4A9;
 }
 .close {
-  color: #FF6874;
+  color: #e2777a;
   position: fixed;
   top: 1rem;
   right: 1.6rem;
@@ -1138,7 +1138,7 @@ img.hover-shadow {
   background-color: #9F9FFF;
 }
 #Tokyo {
-  background-color: #FF6874;
+  background-color: #e2777a;
 }
 #Oslo {
   background-color: #2BC4A9;
@@ -1185,7 +1185,7 @@ img.hover-shadow {
 }
 .nav-posts {
   list-style: none;
-  background-color: #FF6874;
+  background-color: #e2777a;
   margin-top: 4.1rem;
   padding-right: 1rem;
   padding-bottom: 1rem;
@@ -1285,7 +1285,7 @@ img.hover-shadow {
     fill: #2BC4A9;
   }
   #metodosvg #dos {
-    fill: #FF6874;
+    fill: #e2777a;
   }
   #metodosvg #tres {
     fill: #9F9FFF;
@@ -1542,7 +1542,7 @@ ul {
   stroke: white;
 }
 #grafica g path {
-  fill: #FF6874;
+  fill: #e2777a;
   fill-opacity: 0.8;
   transform-box: fill-box;
 }
@@ -1567,7 +1567,7 @@ ul {
   cursor: grabbing;
 }
 #animcover circle:nth-child(1) {
-  fill: #FF6874;
+  fill: #e2777a;
   stroke: black;
 }
 #animcover circle:nth-child(2) {
@@ -1601,7 +1601,7 @@ ul {
   fill: black;
 }
 .chartContainer {
-  background-color: #FF6874;
+  background-color: #e2777a;
   width: 100%;
   height: 100%;
   display: flex;
@@ -1646,7 +1646,7 @@ ul {
           animation-delay: 1s;
 }
 #coversvg #dos {
-  fill: #FF6874;
+  fill: #e2777a;
 }
 #coversvg #tres {
   fill: #9F9FFF;
@@ -1783,7 +1783,7 @@ ul {
   place-items: center;
 }
 .color-primary {
-  color: #FF6874;
+  color: #e2777a;
 }
 .color-secondary {
   color: #2BC4A9;
@@ -1813,7 +1813,7 @@ ul {
   color: #6f6f6f;
 }
 .bgcolor-primary {
-  background-color: #FF6874;
+  background-color: #e2777a;
 }
 .bgcolor-secondary {
   background-color: #2BC4A9;

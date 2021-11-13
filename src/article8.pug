@@ -14,7 +14,7 @@ block pageheader
 block blog
 
   figure 
-    img.maxw-50(src="./img/blog/tecnologia.svg", alt="Proceso tecnológico") 
+    img.maxw-50(src="./img/mapa_tecnologia.svg", alt="Proceso tecnológico") 
 
   p.
     Hace tiempo que quería reflexionar a cerca de esto: <strong>todo es lo mismo pero parece diferente.</strong>
@@ -42,12 +42,12 @@ block blog
     pre.language-scss
       code.
         // Define qué se ve cuando algo me toca, qué tamaño tengo,
-        // a cuanta distancia estoy del resto de elementos, etc
+        // a cuanta distancia estoy del resto de elementos, la interfaz...
         :root {
         	--mi-color-de-piel: pink;
         }
         
-        div {
+        .miPiel {
         	background-color: var(--mi-color-de-piel);
         }
     hr
@@ -83,12 +83,12 @@ block blog
     
     hr
     p. 
-      <strong>Git/Servidor</strong> se encargará de generar nuevas versiones de Universos y multiversos, desplegarlos en red... y tendrá que ver con los arquetipos 6, 8.
+      <strong>Git/Servidor</strong> se encargará de generar nuevas versiones de Universos y multiversos, desplegarlos en red... y tendrá que ver con los arquetipos 6, 8. Si en 5 tenemos la matriz lógica de la realidad es aquí, en el 6 donde se fabrica esa matriz, es una dimensión previa, abstracta, fría, ilimitada repleta de ramificaciones donde no existe el tiempo.
 
     pre.language-diff
       code.
         @@ -4,6 +4,5 @@
-        - let foo = bar.baz([1, 2, 3]);
-        - foo = foo + 1;
-        + const foo = bar.baz([1, 2, 3]) + 1;
-        console.log(`foo: ${foo}`);
+        - let universo = universo.verdad([1, 2, 3]);
+        - version = version + 1;
+        + const nuevaVersion = universo.verdad([1, 2, 3]) + 1;
+        console.log(`universo: ${verdad}`);
