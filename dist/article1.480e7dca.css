@@ -303,6 +303,14 @@ pre[class*=language-] {
           animation: parpadeo 2s linear 1;
   opacity: 0;
 }
+.animintro {
+  width: 50vw;
+}
+.animintro circle {
+  stroke: white;
+  stroke-width: 10px;
+  fill: none;
+}
 /* Global stylesheet */
 .nav-item {
   text-decoration: none;

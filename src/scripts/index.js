@@ -149,6 +149,7 @@ let noOverflow = document.querySelector("body");
 window.addEventListener("load", () =>  {
   fundidoPagina();
   // oculta el loader
+  // loader.style.display = "grid"; //cambiar por linea debajo
   loader.style.display = "none"; //poner en none/grid
   // Muestra la pagina
   theSite.style.display = "inherit";

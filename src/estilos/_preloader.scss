@@ -12,5 +12,21 @@
   #preloader {
     padding: $size-2;
     animation: parpadeo 2s linear 1;
-    opacity: 0;
+    opacity: 0; //poner en 1 para debugear
   }
+
+// .wrap-preloader {
+//   background-color: black;
+// }
+
+// imagen animacion
+.animintro {
+  // display: grid;
+  // place-content: center;
+  width: 50vw;
+  circle {
+    stroke: white;
+    stroke-width: 10px;
+    fill: none;
+  }
+}
