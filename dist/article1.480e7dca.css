@@ -325,7 +325,6 @@ pre[class*=language-] {
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right;
   background-attachment: fixed;
 }
 body {
@@ -1764,6 +1763,9 @@ ul {
 }
 .nomargin {
   margin: 0px;
+}
+.aligselftop {
+  place-self: start;
 }
 .tar {
   text-align: right;

@@ -64,7 +64,7 @@ block content
     .grid
 
       .grid__item
-        video#video2(controls='' loop='')
+        video#video2(controls='false' loop='true' autoplay)
           source(src='./videos/proceso.webm' type='video/webm')
           source(src='./videos/proceso.mp4' type='video/mp4')
           | Your browser does not support the video tag.
@@ -72,9 +72,9 @@ block content
         p.
           Las piezas parten de un entorno digital donde se generan mallas 3D que son transformadas por los efectos de determinadas físicas de vibración. Luego se lleva a producción, se imprimen en gran formato y se le dan los acabados con resinas, arenas y pigmentos.
       
-      .grid__item
+      .grid__item.aligselftop
         
-        img(src='./img/bg4.jpg' alt='')
+        img(src='./img/bg4.jpg' alt='Imagen del proceso')
         
         p.
           La luz y la perspectiva desde donde se observa generan la conexión con el instante.
