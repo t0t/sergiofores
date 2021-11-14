@@ -473,8 +473,9 @@ h4 {
 .titlePage--home {
   position: absolute;
   max-width: 28rem;
-  right: 0;
-  text-align: right;
+  top: 10.7rem;
+  left: 0;
+  text-align: center;
 }
 .subTitlePage {
   font-size: 1.6rem;

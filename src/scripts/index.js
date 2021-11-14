@@ -567,55 +567,67 @@ canvas.size([window.innerWidth, window.innerHeight])
 
 // Mapa
 const canvas2 = canvas;
-canvas2.edgelayout('symmetric').edgelength(25).zoom(4.5)
+canvas2.duration(2).edgelayout('symmetric').edgelength(14).zoom(6.3)
 
-const nodes2 = [0,1,2,3,4,5,6,7,8,9,"diez"]
-canvas2.nodes(nodes2).add().size('0.4x')
-canvas2.node(nodes2[1]).color('#2BC4A9')
-canvas2.node(nodes2[2]).color('#e2777a').highlight()
-canvas2.node(nodes2[3]).color('#9F9FFF').highlight()
-canvas2.node(nodes2[4]).color('#FFFF9F').highlight().size('1x')
-canvas2.node(nodes2[10]).color('#2e2e2e').size('0.05x').add({
-  shape: 'rect',
-  size: [18, 5],
-  labels: { 0: { text: 'Diez' } }
+const nodes2 = [0,1,2,3,4,5,6,7,8,9]
+canvas2.nodes(nodes2).add().size('0.3x')
+canvas2.node(1).color('#2BC4A9')
+canvas2.node(2).color('#e2777a').highlight()
+canvas2.node(3).color('#9F9FFF').highlight()
+canvas2.node(4).color('#FFFF9F').add({
+  labels: { 0: { text: "4", color:"black" } }
 })
-canvas2.node(nodes2[0]).color('black').size('2x')
+canvas2.node("diez").color('#2e2e2e').add({
+  shape: 'rect',
+  size: [8, 4],
+  pos: [0,-200],
+  labels: { 0: { text: '10', color:"grey" } }
+})
+canvas2.node(0).color('black')
 
 const edges2 = [[1,3],[3,4],[4,5],[5,7],[7,9],[9,0]]
 const edges2a = [[0,8],[8,7],[7,6],[6,4],[4,2],[2,1]]
-const edges2b = [[2,5],[5,8],[3,6],[6,9]]
+const edges2b = [[2,5],[5,8]]
+const edges2e = [[3,6],[6,9]]
 const edges2c = [["diez",1]]
 const edges2d = [[1,4],[4,7],[7,0]]
-const edges2e = [[0,1]]
-canvas2.edges(edges2).add().traverse('#2BC4A9')
-canvas2.edges(edges2a).thickness(1).color('#9F9FFF')
+canvas2.edges(edges2).thickness(0.5).add().traverse("grey")
+canvas2.edges(edges2a).thickness(0.5).color("grey")
 canvas2.edges(edges2b).thickness(0.5).color('#e2777a')
-canvas2.edges(edges2c).thickness(1).color('#9F9FFF')
-canvas2.edges(edges2d).add().thickness(1.5).color('#FFFF9F')
-canvas2.edges(edges2e).add({ directed: true, path: [[-25, 25], [25, -25]] }).thickness(0.1).color('#6f6f6f')
-// canvas2.edge(edges2e).add({ path: [[-25, 5], [5, -25]] })
+canvas2.edges(edges2e).thickness(0.5).color('#9F9FFF')
+canvas2.edges(edges2c).add({ path: [[-1, 1], [1, -1]] }).thickness(0.1).color('grey')
+canvas2.pause(1.75)
+canvas2.edges(edges2d).duration(2).thickness(1).traverse('#FFFF9F').add()
 
-// canvas2.edgelength(45).zoom(0.5)
 
-canvas2.nodes(["a", "b", "c", "d", "e"]).add({
-  pos: (_, i) => [(i - 2) * 80, 0]
+const canvas1 = canvas;
+canvas1.nodes([1, 10]).add({
+  shape: 'rect',
+  size: [5, 5]
 })
+canvas1.edges([[1, 10], [1, 10, 'a'], [1, 10, 'b']]).add()
+canvas1.pause(4.5)
 
-canvas2.edge(["a", "b"]).add({ path: [[-5, 5], [5, -5]] }).thickness(0.4)
-canvas2.edge(["b", "c"]).add({ path: [[-2, 10], [2, -10]] }).thickness(0.5)
-
-canvas2.edge(["c", "d"]).add({
-  path: [[-5, -10], [5, 10], [-5, 10], [5, -10]]
+canvas1.attrs({
+  nodes: {
+      // 1: { color: 'blue' },
+      10: { color: 'grey' }
+  },
+  edges: {
+      '1-10': {
+          color: {
+              // value: 'blue',
+              animtype: 'traverse',
+              highlight: true,
+            },
+            svgattrs: {
+              'stroke-width': 0.1,
+              'stroke': '#2BC4A9',
+              'stroke-dasharray': '1 1',
+            },
+            thickness: 0.5
+      },
+      '1-10-a': { color: 'white', thickness: 0.5,  },
+      '1-10-b': { color: 'black', thickness: 0.5 }
+  }
 })
-
-canvas2.edge(["d", "e"]).add({
-  path: Array(10).fill(0).map((k, i) =>
-      [(i - 4.5) * 4, Math.pow(-1, i) * 4])
-})
-
-canvas2.pause(0.5)
-for (let i = 1; i < 5; i++) {
-  canvas2.edge([i, i + 1]).duration(1).traverse('blue')
-  canvas2.pause(0.75)
-}
