@@ -33,116 +33,116 @@ typewriter
   .start()
 
 // ANIMINTRO
-let width = 450
-let height = 450
+// let width = 450
+// let height = 450
 
-const animcover = d3
-  .select('#animcover')
-  .append('svg')
-  .attr('width', width)
-  .attr('height', height)
+// const animcover = d3
+//   .select('#animcover')
+//   .append('svg')
+//   .attr('width', width)
+//   .attr('height', height)
 
-// create dummy data -> just one element per circle
-const dataanimintro = [
-  { name: 'Uno', group: 1 },
-  { name: 'Dos', group: 2 },
-  { name: 'Tres', group: 3 },
-  { name: 'Cuatro', group: 4 },
-  { name: 'F', group: 5 },
-  { name: 'E', group: 5 },
-  { name: 'G', group: 5 },
-  { name: 'H', group: 5 },
-  { name: 'I', group: 5 },
-  { name: 'J', group: 5 }
-]
+// // create dummy data -> just one element per circle
+// const dataanimintro = [
+//   { name: 'Uno', group: 1 },
+//   { name: 'Dos', group: 2 },
+//   { name: 'Tres', group: 3 },
+//   { name: 'Cuatro', group: 4 },
+//   { name: 'F', group: 5 },
+//   { name: 'E', group: 5 },
+//   { name: 'G', group: 5 },
+//   { name: 'H', group: 5 },
+//   { name: 'I', group: 5 },
+//   { name: 'J', group: 5 }
+// ]
 
-// A scale that gives a X target position for each group
-const x = d3
-  .scaleOrdinal()
-  .domain([1, 2, 3, 4, 5])
-  .range([50, 50, 50, 50, 50])
+// // A scale that gives a X target position for each group
+// const x = d3
+//   .scaleOrdinal()
+//   .domain([1, 2, 3, 4, 5])
+//   .range([50, 50, 50, 50, 50])
 
-// A color scale
-const color = d3
-  .scaleOrdinal()
-  .domain([1, 2, 3, 4, 5])
-  .range(['#FF6874', '#2BC4A9', '#9F9FFF', '#FFFF9F', 'transparent'])
+// // A color scale
+// const color = d3
+//   .scaleOrdinal()
+//   .domain([1, 2, 3, 4, 5])
+//   .range(['#FF6874', '#2BC4A9', '#9F9FFF', '#FFFF9F', 'transparent'])
 
-const radiou = 48
+// const radiou = 48
 
-// Initialize the circle: all located at the center of the svg area
-let node = animcover
-  .append('g')
-  .selectAll('circle')
-  .data(dataanimintro)
-  .join('circle')
-  .attr('r', radiou)
-  .attr('cx', width / 2)
-  .attr('cy', height / 2)
-  .style('fill', d => color(d.group))
-  .call(
-    d3
-      .drag() // call specific function when circle is dragged
-      .on('start', dragstarted)
-      .on('drag', dragged)
-      .on('end', dragended)
-  )
+// // Initialize the circle: all located at the center of the svg area
+// let node = animcover
+//   .append('g')
+//   .selectAll('circle')
+//   .data(dataanimintro)
+//   .join('circle')
+//   .attr('r', radiou)
+//   .attr('cx', width / 2)
+//   .attr('cy', height / 2)
+//   .style('fill', d => color(d.group))
+//   .call(
+//     d3
+//       .drag() // call specific function when circle is dragged
+//       .on('start', dragstarted)
+//       .on('drag', dragged)
+//       .on('end', dragended)
+//   )
 
-// Features of the forces applied to the nodes:
-var simulation = d3
-  .forceSimulation()
-  .force(
-    'x',
-    d3
-      .forceX()
-      .strength(0.3)
-      .x(d => x(d.group))
-  )
-  .force(
-    'y',
-    d3
-      .forceY()
-      .strength(0.1)
-      .y(height / 2)
-  )
-  .force(
-    'center',
-    d3
-      .forceCenter()
-      .x(width / 2)
-      .y(height / 2)
-  ) // Attraction to the center of the svg area
-  .force('charge', d3.forceManyBody().strength(0.1)) // Nodes are attracted one each other of value is > 0
-  .force(
-    'collide',
-    d3
-      .forceCollide()
-      .strength(8)
-      .radius(radiou)
-      .iterations(3)
-  ) // Force that avoids circle overlapping
+// // Features of the forces applied to the nodes:
+// var simulation = d3
+//   .forceSimulation()
+//   .force(
+//     'x',
+//     d3
+//       .forceX()
+//       .strength(0.3)
+//       .x(d => x(d.group))
+//   )
+//   .force(
+//     'y',
+//     d3
+//       .forceY()
+//       .strength(0.1)
+//       .y(height / 2)
+//   )
+//   .force(
+//     'center',
+//     d3
+//       .forceCenter()
+//       .x(width / 2)
+//       .y(height / 2)
+//   ) // Attraction to the center of the svg area
+//   .force('charge', d3.forceManyBody().strength(0.1)) // Nodes are attracted one each other of value is > 0
+//   .force(
+//     'collide',
+//     d3
+//       .forceCollide()
+//       .strength(8)
+//       .radius(radiou)
+//       .iterations(3)
+//   ) // Force that avoids circle overlapping
 
-// Apply these forces to the nodes and update their positions.
-// Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
-simulation.nodes(dataanimintro).on('tick', d => {
-  node.attr('cx', d => d.x).attr('cy', d => d.y)
-})
+// // Apply these forces to the nodes and update their positions.
+// // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
+// simulation.nodes(dataanimintro).on('tick', d => {
+//   node.attr('cx', d => d.x).attr('cy', d => d.y)
+// })
 
-// What happens when a circle is dragged?
-function dragstarted (event, d) {
-  if (!event.active) simulation.alphaTarget(0.03).restart()
-  d.fx = d.x
-  d.fy = d.y
-}
-function dragged (event, d) {
-  d.fx = event.x
-  d.fy = event.y
-}
-function dragended (event, d) {
-  if (!event.active) simulation.alphaTarget(0.03)
-  d.fx = null
-  d.fy = null
-}
+// // What happens when a circle is dragged?
+// function dragstarted (event, d) {
+//   if (!event.active) simulation.alphaTarget(0.03).restart()
+//   d.fx = d.x
+//   d.fy = d.y
+// }
+// function dragged (event, d) {
+//   d.fx = event.x
+//   d.fy = event.y
+// }
+// function dragended (event, d) {
+//   if (!event.active) simulation.alphaTarget(0.03)
+//   d.fx = null
+//   d.fy = null
+// }
 
 // MOMENT
 // const now = moment().format("YYYY-MM-DD, h:mm:ss a")
@@ -531,6 +531,84 @@ if (btnGenerar) {
 // 1. Muestra efecto navbar-scroll si no es mobil NI Safari
 // 2. CSS Bug fix para Apple devices en bagground-attachment: fixed
 
+
+
+import {
+  select,
+  forceSimulation,
+  forceManyBody,
+  forceLink,
+  forceCenter,
+  drag,
+} from 'd3';
+
+import { nodes, links, MANY_BODY_STRENGTH } from './data/data.js';
+
+const contenedor = select('#container');
+const width = +contenedor.attr('width');
+const height = +contenedor.attr('height');
+const centerX = width / 2;
+const centerY = height / 2;
+
+const simulation = forceSimulation(nodes)
+  .force('charge', forceManyBody().strength(MANY_BODY_STRENGTH))
+  .force('link', forceLink(links).distance((link) => link.distance))
+  .force('center', forceCenter(centerX, centerY));
+
+const dragInteraction = drag().on('drag', (event, node) => {
+  node.fx = event.x;
+  node.fy = event.y;
+  simulation.alpha(1);
+  simulation.restart();
+});
+
+
+const lines = contenedor
+  .selectAll('line')
+  .data(links)
+  .enter()
+  .append('line')
+  .attr('stroke', (link) => link.color || 'black');
+
+
+const circles = contenedor
+  .selectAll('circle')
+  .data(nodes)
+  .enter()
+  .append('circle')
+  .attr('fill', (node) => node.color || 'gray')
+  .attr('r', (node) => node.size*2)
+  .call(dragInteraction);
+
+const text = contenedor
+  .selectAll('text')
+  .data(nodes)
+  .enter()
+  .append('text')
+  .attr('text-anchor', 'middle')
+  .attr('alignment-baseline', 'middle')
+  .style('pointer-events', 'none')
+  .text((node) => node.id);
+
+simulation.on('tick', () => {
+  circles.attr('cx', (node) => node.x).attr('cy', (node) => node.y);
+  text.attr('x', (node) => node.x).attr('y', (node) => node.y);
+
+  lines
+    .attr('x1', (link) => link.source.x)
+    .attr('y1', (link) => link.source.y)
+    .attr('x2', (link) => link.target.x)
+    .attr('y2', (link) => link.target.y);
+});
+
+
+
+
+
+
+
+
+
 import { isMobileDevice, isSafari } from './utils/device-detection'
 
 if (!isSafari && !isMobileDevice()) {
@@ -567,7 +645,7 @@ canvas.size([window.innerWidth, window.innerHeight])
 
 // Mapa
 const canvas2 = canvas;
-canvas2.duration(2).edgelayout('symmetric').edgelength(14).zoom(6.3)
+canvas2.duration(2).edgelayout('symmetric').edgelength(14).zoom(2.3)
 
 const nodes2 = [0,1,2,3,4,5,6,7,8,9]
 canvas2.nodes(nodes2).add().size('0.3x')
@@ -580,7 +658,7 @@ canvas2.node(4).color('#FFFF9F').add({
 canvas2.node("diez").color('#2e2e2e').add({
   shape: 'rect',
   size: [8, 4],
-  pos: [0,-200],
+  pos: [0,-20],
   labels: { 0: { text: '10', color:"grey" } }
 })
 canvas2.node(0).color('black')
@@ -605,27 +683,31 @@ canvas1.nodes([1, 10]).add({
   shape: 'rect',
   size: [5, 5]
 })
+canvas1.node(10).add({ fixed: true, pos: [-20, -50] })
 canvas1.edges([[1, 10], [1, 10, 'a'], [1, 10, 'b']]).add()
 canvas1.pause(4.5)
 
 canvas1.attrs({
   nodes: {
       // 1: { color: 'blue' },
-      10: { color: 'grey' }
+      10: { 
+        labels: { 0: { text: '+0+1234', color:"grey" } },
+        color: 'transparent', 
+        svgattrs: {"stroke-width": 0.2, 'stroke': '#2BC4A9'} }
   },
   edges: {
       '1-10': {
           color: {
-              // value: 'blue',
-              animtype: 'traverse',
-              highlight: true,
-            },
-            svgattrs: {
-              'stroke-width': 0.1,
-              'stroke': '#2BC4A9',
-              'stroke-dasharray': '1 1',
-            },
-            thickness: 0.5
+            // value: 'blue',
+            animtype: 'traverse',
+            highlight: true,
+          },
+          svgattrs: {
+            'stroke-width': 0.1,
+            'stroke': '#2BC4A9',
+            'stroke-dasharray': '1 1',
+          },
+          thickness: 0.5
       },
       '1-10-a': { color: 'white', thickness: 0.5,  },
       '1-10-b': { color: 'black', thickness: 0.5 }

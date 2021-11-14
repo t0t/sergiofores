@@ -475,6 +475,8 @@ var _coreDefault = parcelHelpers.interopDefault(_core);
 // let pPath = `M 0,0 C -${sz2},-${sz2}, -${sz2},-${sz3} 0,-${sz1} C ${sz2},-${sz3} ${sz2},-${sz2} 0,0`;
 // 1. Muestra efecto navbar-scroll si no es mobil NI Safari
 // 2. CSS Bug fix para Apple devices en bagground-attachment: fixed
+var _d3 = require("d3");
+var _dataJs = require("./data/data.js");
 var _deviceDetection = require("./utils/device-detection");
 // NETWORK
 var _algorithmx = require("algorithmx");
@@ -491,113 +493,107 @@ let typewriter = new _coreDefault.default(typeHeading, {
 });
 typewriter.pauseFor(1500).typeString('Descifrar toda la Vida').pauseFor(2000).deleteChars(13).typeString(' La Creación para encontrArte').typeString('<span style="color: #2BC4A9;"> desde Cero.</span>').pauseFor(4000).start();
 // ANIMINTRO
-let width = 450;
-let height = 450;
-const animcover = d3.select('#animcover').append('svg').attr('width', width).attr('height', height);
-// create dummy data -> just one element per circle
-const dataanimintro = [
-    {
-        name: 'Uno',
-        group: 1
-    },
-    {
-        name: 'Dos',
-        group: 2
-    },
-    {
-        name: 'Tres',
-        group: 3
-    },
-    {
-        name: 'Cuatro',
-        group: 4
-    },
-    {
-        name: 'F',
-        group: 5
-    },
-    {
-        name: 'E',
-        group: 5
-    },
-    {
-        name: 'G',
-        group: 5
-    },
-    {
-        name: 'H',
-        group: 5
-    },
-    {
-        name: 'I',
-        group: 5
-    },
-    {
-        name: 'J',
-        group: 5
-    }
-];
-// A scale that gives a X target position for each group
-const x = d3.scaleOrdinal().domain([
-    1,
-    2,
-    3,
-    4,
-    5
-]).range([
-    50,
-    50,
-    50,
-    50,
-    50
-]);
-// A color scale
-const color = d3.scaleOrdinal().domain([
-    1,
-    2,
-    3,
-    4,
-    5
-]).range([
-    '#FF6874',
-    '#2BC4A9',
-    '#9F9FFF',
-    '#FFFF9F',
-    'transparent'
-]);
-const radiou = 48;
-// Initialize the circle: all located at the center of the svg area
-let node = animcover.append('g').selectAll('circle').data(dataanimintro).join('circle').attr('r', radiou).attr('cx', width / 2).attr('cy', height / 2).style('fill', (d)=>color(d.group)
-).call(d3.drag() // call specific function when circle is dragged
-.on('start', dragstarted).on('drag', dragged).on('end', dragended));
-// Features of the forces applied to the nodes:
-var simulation = d3.forceSimulation().force('x', d3.forceX().strength(0.3).x((d)=>x(d.group)
-)).force('y', d3.forceY().strength(0.1).y(height / 2)).force('center', d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
-.force('charge', d3.forceManyBody().strength(0.1)) // Nodes are attracted one each other of value is > 0
-.force('collide', d3.forceCollide().strength(8).radius(radiou).iterations(3)) // Force that avoids circle overlapping
-;
-// Apply these forces to the nodes and update their positions.
-// Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
-simulation.nodes(dataanimintro).on('tick', (d1)=>{
-    node.attr('cx', (d)=>d.x
-    ).attr('cy', (d)=>d.y
-    );
-});
-// What happens when a circle is dragged?
-function dragstarted(event, d) {
-    if (!event.active) simulation.alphaTarget(0.03).restart();
-    d.fx = d.x;
-    d.fy = d.y;
-}
-function dragged(event, d) {
-    d.fx = event.x;
-    d.fy = event.y;
-}
-function dragended(event, d) {
-    if (!event.active) simulation.alphaTarget(0.03);
-    d.fx = null;
-    d.fy = null;
-}
+// let width = 450
+// let height = 450
+// const animcover = d3
+//   .select('#animcover')
+//   .append('svg')
+//   .attr('width', width)
+//   .attr('height', height)
+// // create dummy data -> just one element per circle
+// const dataanimintro = [
+//   { name: 'Uno', group: 1 },
+//   { name: 'Dos', group: 2 },
+//   { name: 'Tres', group: 3 },
+//   { name: 'Cuatro', group: 4 },
+//   { name: 'F', group: 5 },
+//   { name: 'E', group: 5 },
+//   { name: 'G', group: 5 },
+//   { name: 'H', group: 5 },
+//   { name: 'I', group: 5 },
+//   { name: 'J', group: 5 }
+// ]
+// // A scale that gives a X target position for each group
+// const x = d3
+//   .scaleOrdinal()
+//   .domain([1, 2, 3, 4, 5])
+//   .range([50, 50, 50, 50, 50])
+// // A color scale
+// const color = d3
+//   .scaleOrdinal()
+//   .domain([1, 2, 3, 4, 5])
+//   .range(['#FF6874', '#2BC4A9', '#9F9FFF', '#FFFF9F', 'transparent'])
+// const radiou = 48
+// // Initialize the circle: all located at the center of the svg area
+// let node = animcover
+//   .append('g')
+//   .selectAll('circle')
+//   .data(dataanimintro)
+//   .join('circle')
+//   .attr('r', radiou)
+//   .attr('cx', width / 2)
+//   .attr('cy', height / 2)
+//   .style('fill', d => color(d.group))
+//   .call(
+//     d3
+//       .drag() // call specific function when circle is dragged
+//       .on('start', dragstarted)
+//       .on('drag', dragged)
+//       .on('end', dragended)
+//   )
+// // Features of the forces applied to the nodes:
+// var simulation = d3
+//   .forceSimulation()
+//   .force(
+//     'x',
+//     d3
+//       .forceX()
+//       .strength(0.3)
+//       .x(d => x(d.group))
+//   )
+//   .force(
+//     'y',
+//     d3
+//       .forceY()
+//       .strength(0.1)
+//       .y(height / 2)
+//   )
+//   .force(
+//     'center',
+//     d3
+//       .forceCenter()
+//       .x(width / 2)
+//       .y(height / 2)
+//   ) // Attraction to the center of the svg area
+//   .force('charge', d3.forceManyBody().strength(0.1)) // Nodes are attracted one each other of value is > 0
+//   .force(
+//     'collide',
+//     d3
+//       .forceCollide()
+//       .strength(8)
+//       .radius(radiou)
+//       .iterations(3)
+//   ) // Force that avoids circle overlapping
+// // Apply these forces to the nodes and update their positions.
+// // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
+// simulation.nodes(dataanimintro).on('tick', d => {
+//   node.attr('cx', d => d.x).attr('cy', d => d.y)
+// })
+// // What happens when a circle is dragged?
+// function dragstarted (event, d) {
+//   if (!event.active) simulation.alphaTarget(0.03).restart()
+//   d.fx = d.x
+//   d.fy = d.y
+// }
+// function dragged (event, d) {
+//   d.fx = event.x
+//   d.fy = event.y
+// }
+// function dragended (event, d) {
+//   if (!event.active) simulation.alphaTarget(0.03)
+//   d.fx = null
+//   d.fy = null
+// }
 // MOMENT
 // const now = moment().format("YYYY-MM-DD, h:mm:ss a")
 // console.log(now)
@@ -856,6 +852,39 @@ if (btnGenerar) {
         return esAgnioBisiesto(agnio) ? 366 : 365;
     }
 } // fin App
+const contenedor = _d3.select('#container');
+const width = +contenedor.attr('width');
+const height = +contenedor.attr('height');
+const centerX = width / 2;
+const centerY = height / 2;
+const simulation = _d3.forceSimulation(_dataJs.nodes).force('charge', _d3.forceManyBody().strength(_dataJs.MANY_BODY_STRENGTH)).force('link', _d3.forceLink(_dataJs.links).distance((link)=>link.distance
+)).force('center', _d3.forceCenter(centerX, centerY));
+const dragInteraction = _d3.drag().on('drag', (event, node)=>{
+    node.fx = event.x;
+    node.fy = event.y;
+    simulation.alpha(1);
+    simulation.restart();
+});
+const lines = contenedor.selectAll('line').data(_dataJs.links).enter().append('line').attr('stroke', (link)=>link.color || 'black'
+);
+const circles = contenedor.selectAll('circle').data(_dataJs.nodes).enter().append('circle').attr('fill', (node)=>node.color || 'gray'
+).attr('r', (node)=>node.size * 2
+).call(dragInteraction);
+const text = contenedor.selectAll('text').data(_dataJs.nodes).enter().append('text').attr('text-anchor', 'middle').attr('alignment-baseline', 'middle').style('pointer-events', 'none').text((node)=>node.id
+);
+simulation.on('tick', ()=>{
+    circles.attr('cx', (node)=>node.x
+    ).attr('cy', (node)=>node.y
+    );
+    text.attr('x', (node)=>node.x
+    ).attr('y', (node)=>node.y
+    );
+    lines.attr('x1', (link)=>link.source.x
+    ).attr('y1', (link)=>link.source.y
+    ).attr('x2', (link)=>link.target.x
+    ).attr('y2', (link)=>link.target.y
+    );
+});
 if (!_deviceDetection.isSafari && !_deviceDetection.isMobileDevice()) {
     let prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
@@ -879,7 +908,7 @@ canvas.size([
 ]);
 // Mapa
 const canvas2 = canvas;
-canvas2.duration(2).edgelayout('symmetric').edgelength(14).zoom(6.3);
+canvas2.duration(2).edgelayout('symmetric').edgelength(14).zoom(2.3);
 const nodes2 = [
     0,
     1,
@@ -912,7 +941,7 @@ canvas2.node("diez").color('#2e2e2e').add({
     ],
     pos: [
         0,
-        -200
+        -20
     ],
     labels: {
         0: {
@@ -1043,6 +1072,13 @@ canvas1.nodes([
         5
     ]
 });
+canvas1.node(10).add({
+    fixed: true,
+    pos: [
+        -20,
+        -50
+    ]
+});
 canvas1.edges([
     [
         1,
@@ -1064,7 +1100,17 @@ canvas1.attrs({
     nodes: {
         // 1: { color: 'blue' },
         10: {
-            color: 'grey'
+            labels: {
+                0: {
+                    text: '+0+1234',
+                    color: "grey"
+                }
+            },
+            color: 'transparent',
+            svgattrs: {
+                "stroke-width": 0.2,
+                'stroke': '#2BC4A9'
+            }
         }
     },
     edges: {
@@ -1092,9 +1138,12 @@ canvas1.attrs({
     }
 });
 
-},{"../estilos/main.scss":"hGvuj","d3":"97vK6","./sidenav":"9MwHJ","../../node_modules/typewriter-effect/dist/core":"hXq0y","algorithmx":"eZlUk","./utils/device-detection":"g2DKJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hGvuj":[function() {},{}],"97vK6":[function(require,module,exports) {
+},{"../estilos/main.scss":"hGvuj","d3":"lm5gy","./sidenav":"9MwHJ","../../node_modules/typewriter-effect/dist/core":"hXq0y","./data/data.js":"4PhqF","./utils/device-detection":"g2DKJ","algorithmx":"eZlUk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hGvuj":[function() {},{}],"lm5gy":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "version", ()=>_packageJs.version
+);
+var _packageJs = require("./dist/package.js");
 var _d3Array = require("d3-array");
 parcelHelpers.exportAll(_d3Array, exports);
 var _d3Axis = require("d3-axis");
@@ -1156,7 +1205,149 @@ parcelHelpers.exportAll(_d3Transition, exports);
 var _d3Zoom = require("d3-zoom");
 parcelHelpers.exportAll(_d3Zoom, exports);
 
-},{"d3-array":"dclxS","d3-axis":"3HH3d","d3-brush":"j4mPt","d3-chord":"8oHeW","d3-color":"ap3Jg","d3-contour":"jmn9V","d3-delaunay":"eS5CH","d3-dispatch":"9d2te","d3-drag":"dKCUo","d3-dsv":"lK0ts","d3-ease":"elZFc","d3-fetch":"hPJXo","d3-force":"5HM4e","d3-format":"hzInr","d3-geo":"euFVP","d3-hierarchy":"1CTpH","d3-interpolate":"e7XwA","d3-path":"4S67G","d3-polygon":"6ide9","d3-quadtree":"1oyVd","d3-random":"dyiSs","d3-scale":"hrwOn","d3-scale-chromatic":"aFDOR","d3-selection":"hgWtk","d3-shape":"dTLqu","d3-time":"lTNsW","d3-time-format":"ioDBG","d3-timer":"82ygz","d3-transition":"cRYyR","d3-zoom":"7E00u","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dclxS":[function(require,module,exports) {
+},{"./dist/package.js":"c0Spb","d3-array":"dclxS","d3-axis":"3HH3d","d3-brush":"j4mPt","d3-chord":"8oHeW","d3-color":"ap3Jg","d3-contour":"jmn9V","d3-delaunay":"eS5CH","d3-dispatch":"9d2te","d3-drag":"dKCUo","d3-dsv":"lK0ts","d3-ease":"elZFc","d3-fetch":"hPJXo","d3-force":"5HM4e","d3-format":"hzInr","d3-geo":"euFVP","d3-hierarchy":"1CTpH","d3-interpolate":"e7XwA","d3-path":"4S67G","d3-polygon":"6ide9","d3-quadtree":"1oyVd","d3-random":"dyiSs","d3-scale":"hrwOn","d3-scale-chromatic":"aFDOR","d3-selection":"hgWtk","d3-shape":"dTLqu","d3-time":"lTNsW","d3-time-format":"ioDBG","d3-timer":"82ygz","d3-transition":"cRYyR","d3-zoom":"7E00u","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"c0Spb":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "name", ()=>name
+);
+parcelHelpers.export(exports, "version", ()=>version
+);
+parcelHelpers.export(exports, "description", ()=>description
+);
+parcelHelpers.export(exports, "keywords", ()=>keywords
+);
+parcelHelpers.export(exports, "homepage", ()=>homepage
+);
+parcelHelpers.export(exports, "license", ()=>license
+);
+parcelHelpers.export(exports, "author", ()=>author
+);
+parcelHelpers.export(exports, "main", ()=>main
+);
+parcelHelpers.export(exports, "unpkg", ()=>unpkg
+);
+parcelHelpers.export(exports, "jsdelivr", ()=>jsdelivr
+);
+parcelHelpers.export(exports, "module", ()=>module
+);
+parcelHelpers.export(exports, "repository", ()=>repository
+);
+parcelHelpers.export(exports, "files", ()=>files
+);
+parcelHelpers.export(exports, "scripts", ()=>scripts
+);
+parcelHelpers.export(exports, "devDependencies", ()=>devDependencies
+);
+parcelHelpers.export(exports, "dependencies", ()=>dependencies
+);
+var name = "d3";
+var version = "6.7.0";
+var description = "Data-Driven Documents";
+var keywords = [
+    "dom",
+    "visualization",
+    "svg",
+    "animation",
+    "canvas"
+];
+var homepage = "https://d3js.org";
+var license = "BSD-3-Clause";
+var author = {
+    "name": "Mike Bostock",
+    "url": "https://bost.ocks.org/mike"
+};
+var main = "dist/d3.node.js";
+var unpkg = "dist/d3.min.js";
+var jsdelivr = "dist/d3.min.js";
+var module = "index.js";
+var repository = {
+    "type": "git",
+    "url": "https://github.com/d3/d3.git"
+};
+var files = [
+    "dist/**/*.js",
+    "index.js"
+];
+var scripts = {
+    "pretest": "rimraf dist && mkdir dist && json2module package.json > dist/package.js && rollup -c",
+    "test": "tape 'test/**/*-test.js'",
+    "prepublishOnly": "yarn test",
+    "postpublish": "git push && git push --tags && cd ../d3.github.com && git pull && cp ../d3/dist/d3.js d3.v${npm_package_version%%.*}.js && cp ../d3/dist/d3.min.js d3.v${npm_package_version%%.*}.min.js && git add d3.v${npm_package_version%%.*}.js d3.v${npm_package_version%%.*}.min.js && git commit -m \"d3 ${npm_package_version}\" && git push && cd - && zip -j dist/d3.zip -- LICENSE README.md API.md CHANGES.md dist/d3.js dist/d3.min.js"
+};
+var devDependencies = {
+    "json2module": "0.0",
+    "rimraf": "3",
+    "rollup": "2",
+    "rollup-plugin-ascii": "0.0",
+    "rollup-plugin-node-resolve": "5",
+    "rollup-plugin-terser": "7",
+    "tape": "4",
+    "tape-await": "0.1"
+};
+var dependencies = {
+    "d3-array": "2",
+    "d3-axis": "2",
+    "d3-brush": "2",
+    "d3-chord": "2",
+    "d3-color": "2",
+    "d3-contour": "2",
+    "d3-delaunay": "5",
+    "d3-dispatch": "2",
+    "d3-drag": "2",
+    "d3-dsv": "2",
+    "d3-ease": "2",
+    "d3-fetch": "2",
+    "d3-force": "2",
+    "d3-format": "2",
+    "d3-geo": "2",
+    "d3-hierarchy": "2",
+    "d3-interpolate": "2",
+    "d3-path": "2",
+    "d3-polygon": "2",
+    "d3-quadtree": "2",
+    "d3-random": "2",
+    "d3-scale": "3",
+    "d3-scale-chromatic": "2",
+    "d3-selection": "2",
+    "d3-shape": "2",
+    "d3-time": "2",
+    "d3-time-format": "3",
+    "d3-timer": "2",
+    "d3-transition": "2",
+    "d3-zoom": "2"
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"dclxS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "bisect", ()=>_bisectJsDefault.default
@@ -1190,10 +1381,6 @@ parcelHelpers.export(exports, "fsum", ()=>_fsumJs.fsum
 parcelHelpers.export(exports, "fcumsum", ()=>_fsumJs.fcumsum
 );
 parcelHelpers.export(exports, "group", ()=>_groupJsDefault.default
-);
-parcelHelpers.export(exports, "flatGroup", ()=>_groupJs.flatGroup
-);
-parcelHelpers.export(exports, "flatRollup", ()=>_groupJs.flatRollup
 );
 parcelHelpers.export(exports, "groups", ()=>_groupJs.groups
 );
@@ -1232,8 +1419,6 @@ parcelHelpers.export(exports, "min", ()=>_minJsDefault.default
 );
 parcelHelpers.export(exports, "minIndex", ()=>_minIndexJsDefault.default
 );
-parcelHelpers.export(exports, "mode", ()=>_modeJsDefault.default
-);
 parcelHelpers.export(exports, "nice", ()=>_niceJsDefault.default
 );
 parcelHelpers.export(exports, "pairs", ()=>_pairsJsDefault.default
@@ -1247,8 +1432,6 @@ parcelHelpers.export(exports, "quantileSorted", ()=>_quantileJs.quantileSorted
 parcelHelpers.export(exports, "quickselect", ()=>_quickselectJsDefault.default
 );
 parcelHelpers.export(exports, "range", ()=>_rangeJsDefault.default
-);
-parcelHelpers.export(exports, "rank", ()=>_rankJsDefault.default
 );
 parcelHelpers.export(exports, "least", ()=>_leastJsDefault.default
 );
@@ -1354,8 +1537,6 @@ var _minJs = require("./min.js");
 var _minJsDefault = parcelHelpers.interopDefault(_minJs);
 var _minIndexJs = require("./minIndex.js");
 var _minIndexJsDefault = parcelHelpers.interopDefault(_minIndexJs);
-var _modeJs = require("./mode.js");
-var _modeJsDefault = parcelHelpers.interopDefault(_modeJs);
 var _niceJs = require("./nice.js");
 var _niceJsDefault = parcelHelpers.interopDefault(_niceJs);
 var _pairsJs = require("./pairs.js");
@@ -1368,8 +1549,6 @@ var _quickselectJs = require("./quickselect.js");
 var _quickselectJsDefault = parcelHelpers.interopDefault(_quickselectJs);
 var _rangeJs = require("./range.js");
 var _rangeJsDefault = parcelHelpers.interopDefault(_rangeJs);
-var _rankJs = require("./rank.js");
-var _rankJsDefault = parcelHelpers.interopDefault(_rankJs);
 var _leastJs = require("./least.js");
 var _leastJsDefault = parcelHelpers.interopDefault(_leastJs);
 var _leastIndexJs = require("./leastIndex.js");
@@ -1420,7 +1599,7 @@ var _unionJs = require("./union.js");
 var _unionJsDefault = parcelHelpers.interopDefault(_unionJs);
 var _internmap = require("internmap");
 
-},{"./bisect.js":"aBOzL","./ascending.js":"is3Cq","./bisector.js":"d0uRQ","./count.js":"3W7W6","./cross.js":"9wmuf","./cumsum.js":"gTBYA","./descending.js":"3aHVG","./deviation.js":"gC5d9","./extent.js":"i65AD","./fsum.js":"kNcPo","./group.js":"9hlDG","./groupSort.js":"9bi08","./bin.js":"e29mp","./threshold/freedmanDiaconis.js":"YcDJP","./threshold/scott.js":"h9Xie","./threshold/sturges.js":"iBhHB","./max.js":"aKI7F","./maxIndex.js":"cI4hF","./mean.js":"522BH","./median.js":"25KY1","./merge.js":"lLqaS","./min.js":"ah5VG","./minIndex.js":"cjolc","./mode.js":"atCGw","./nice.js":"8MlNU","./pairs.js":"f10CX","./permute.js":"lBJIA","./quantile.js":"g22bz","./quickselect.js":"fusOg","./range.js":"aFuRJ","./rank.js":"98L3a","./least.js":"ewg2M","./leastIndex.js":"hCcEV","./greatest.js":"jX3nM","./greatestIndex.js":"5lFsk","./scan.js":"ek53c","./shuffle.js":"hrDvf","./sum.js":"5x489","./ticks.js":"eP3r2","./transpose.js":"eTl2h","./variance.js":"fFwh7","./zip.js":"g6Swo","./every.js":"j8w8G","./some.js":"258kt","./filter.js":"kmzCm","./map.js":"g8C0v","./reduce.js":"kJqMu","./reverse.js":"c5OzD","./sort.js":"iPqde","./difference.js":"4yCN3","./disjoint.js":"i51B2","./intersection.js":"xQI0g","./subset.js":"bSPhW","./superset.js":"30CTh","./union.js":"byxPk","internmap":"jYc4q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aBOzL":[function(require,module,exports) {
+},{"./bisect.js":"aBOzL","./ascending.js":"is3Cq","./bisector.js":"d0uRQ","./count.js":"3W7W6","./cross.js":"9wmuf","./cumsum.js":"gTBYA","./descending.js":"3aHVG","./deviation.js":"gC5d9","./extent.js":"i65AD","./fsum.js":"kNcPo","./group.js":"9hlDG","./groupSort.js":"9bi08","./bin.js":"e29mp","./threshold/freedmanDiaconis.js":"YcDJP","./threshold/scott.js":"h9Xie","./threshold/sturges.js":"iBhHB","./max.js":"aKI7F","./maxIndex.js":"cI4hF","./mean.js":"522BH","./median.js":"25KY1","./merge.js":"lLqaS","./min.js":"ah5VG","./minIndex.js":"cjolc","./nice.js":"8MlNU","./pairs.js":"f10CX","./permute.js":"lBJIA","./quantile.js":"g22bz","./quickselect.js":"fusOg","./range.js":"aFuRJ","./least.js":"ewg2M","./leastIndex.js":"hCcEV","./greatest.js":"jX3nM","./greatestIndex.js":"5lFsk","./scan.js":"ek53c","./shuffle.js":"hrDvf","./sum.js":"5x489","./ticks.js":"eP3r2","./transpose.js":"eTl2h","./variance.js":"fFwh7","./zip.js":"g6Swo","./every.js":"j8w8G","./some.js":"258kt","./filter.js":"kmzCm","./map.js":"g8C0v","./reduce.js":"kJqMu","./reverse.js":"c5OzD","./sort.js":"iPqde","./difference.js":"4yCN3","./disjoint.js":"i51B2","./intersection.js":"xQI0g","./subset.js":"bSPhW","./superset.js":"30CTh","./union.js":"byxPk","internmap":"jYc4q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aBOzL":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "bisectRight", ()=>bisectRight
@@ -1444,80 +1623,46 @@ exports.default = bisectRight;
 },{"./ascending.js":"is3Cq","./bisector.js":"d0uRQ","./number.js":"bMc02","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"is3Cq":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-function ascending(a, b) {
-    return a == null || b == null ? NaN : a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
-}
-exports.default = ascending;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
+exports.default = function(a, b) {
+    return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
 };
 
-},{}],"d0uRQ":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"d0uRQ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _ascendingJs = require("./ascending.js");
 var _ascendingJsDefault = parcelHelpers.interopDefault(_ascendingJs);
-function bisector(f) {
+exports.default = function(f) {
     let delta = f;
-    let compare1 = f;
-    let compare2 = f;
-    if (f.length !== 2) {
+    let compare = f;
+    if (f.length === 1) {
         delta = (d, x)=>f(d) - x
         ;
-        compare1 = _ascendingJsDefault.default;
-        compare2 = (d, x)=>_ascendingJsDefault.default(f(d), x)
-        ;
+        compare = ascendingComparator(f);
     }
-    function left(a, x, lo = 0, hi = a.length) {
-        if (lo < hi) {
-            if (compare1(x, x) !== 0) return hi;
-            do {
-                const mid = lo + hi >>> 1;
-                if (compare2(a[mid], x) < 0) lo = mid + 1;
-                else hi = mid;
-            }while (lo < hi)
+    function left(a, x, lo, hi) {
+        if (lo == null) lo = 0;
+        if (hi == null) hi = a.length;
+        while(lo < hi){
+            const mid = lo + hi >>> 1;
+            if (compare(a[mid], x) < 0) lo = mid + 1;
+            else hi = mid;
         }
         return lo;
     }
-    function right(a, x, lo = 0, hi = a.length) {
-        if (lo < hi) {
-            if (compare1(x, x) !== 0) return hi;
-            do {
-                const mid = lo + hi >>> 1;
-                if (compare2(a[mid], x) <= 0) lo = mid + 1;
-                else hi = mid;
-            }while (lo < hi)
+    function right(a, x, lo, hi) {
+        if (lo == null) lo = 0;
+        if (hi == null) hi = a.length;
+        while(lo < hi){
+            const mid = lo + hi >>> 1;
+            if (compare(a[mid], x) > 0) hi = mid;
+            else lo = mid + 1;
         }
         return lo;
     }
-    function center(a, x, lo = 0, hi = a.length) {
+    function center(a, x, lo, hi) {
+        if (lo == null) lo = 0;
+        if (hi == null) hi = a.length;
         const i = left(a, x, lo, hi - 1);
         return i > lo && delta(a[i - 1], x) > -delta(a[i], x) ? i - 1 : i;
     }
@@ -1526,18 +1671,20 @@ function bisector(f) {
         center,
         right
     };
+};
+function ascendingComparator(f) {
+    return (d, x)=>_ascendingJsDefault.default(f(d), x)
+    ;
 }
-exports.default = bisector;
 
 },{"./ascending.js":"is3Cq","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bMc02":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "numbers", ()=>numbers
 );
-function number(x) {
+exports.default = function(x) {
     return x === null ? NaN : +x;
-}
-exports.default = number;
+};
 function* numbers(values, valueof) {
     if (valueof === undefined) {
         for (let value of values)if (value != null && (value = +value) >= value) yield value;
@@ -1612,10 +1759,9 @@ exports.default = cumsum;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3aHVG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-function descending(a, b) {
-    return a == null || b == null ? NaN : b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
-}
-exports.default = descending;
+exports.default = function(a, b) {
+    return b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
+};
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gC5d9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1657,7 +1803,7 @@ exports.default = variance;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i65AD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-function extent(values, valueof) {
+exports.default = function(values, valueof) {
     let min;
     let max;
     if (valueof === undefined) {
@@ -1684,8 +1830,7 @@ function extent(values, valueof) {
         min,
         max
     ];
-}
-exports.default = extent;
+};
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kNcPo":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1758,10 +1903,6 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "groups", ()=>groups1
 );
-parcelHelpers.export(exports, "flatGroup", ()=>flatGroup
-);
-parcelHelpers.export(exports, "flatRollup", ()=>flatRollup
-);
 parcelHelpers.export(exports, "rollup", ()=>rollup
 );
 parcelHelpers.export(exports, "rollups", ()=>rollups
@@ -1779,22 +1920,6 @@ function group1(values, ...keys) {
 exports.default = group1;
 function groups1(values, ...keys) {
     return nest(values, Array.from, _identityJsDefault.default, keys);
-}
-function flatten(groups, keys) {
-    for(let i = 1, n = keys.length; i < n; ++i)groups = groups.flatMap((g)=>g.pop().map(([key, value])=>[
-                ...g,
-                key,
-                value
-            ]
-        )
-    );
-    return groups;
-}
-function flatGroup(values, ...keys) {
-    return flatten(groups1(values, ...keys), keys);
-}
-function flatRollup(values, reduce, ...keys) {
-    return flatten(rollups(values, reduce, ...keys), keys);
 }
 function rollup(values, reduce, ...keys) {
     return nest(values, _identityJsDefault.default, reduce, keys);
@@ -1900,7 +2025,7 @@ function intern_set({ _intern , _key  }, value) {
 function intern_delete({ _intern , _key  }, value) {
     const key = _key(value);
     if (_intern.has(key)) {
-        value = _intern.get(key);
+        value = _intern.get(value);
         _intern.delete(key);
     }
     return value;
@@ -1912,10 +2037,9 @@ function keyof(value) {
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4zs3O":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-function identity(x) {
+exports.default = function(x) {
     return x;
-}
-exports.default = identity;
+};
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9bi08":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1927,7 +2051,7 @@ var _groupJsDefault = parcelHelpers.interopDefault(_groupJs);
 var _sortJs = require("./sort.js");
 var _sortJsDefault = parcelHelpers.interopDefault(_sortJs);
 function groupSort(values, reduce, key1) {
-    return (reduce.length !== 2 ? _sortJsDefault.default(_groupJs.rollup(values, reduce, key1), ([ak, av], [bk, bv])=>_ascendingJsDefault.default(av, bv) || _ascendingJsDefault.default(ak, bk)
+    return (reduce.length === 1 ? _sortJsDefault.default(_groupJs.rollup(values, reduce, key1), ([ak, av], [bk, bv])=>_ascendingJsDefault.default(av, bv) || _ascendingJsDefault.default(ak, bk)
     ) : _sortJsDefault.default(_groupJsDefault.default(values, key1), ([ak, av], [bk, bv])=>reduce(av, bv) || _ascendingJsDefault.default(ak, bk)
     )).map(([key])=>key
     );
@@ -1937,10 +2061,6 @@ exports.default = groupSort;
 },{"./ascending.js":"is3Cq","./group.js":"9hlDG","./sort.js":"iPqde","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iPqde":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "compareDefined", ()=>compareDefined
-);
-parcelHelpers.export(exports, "ascendingDefined", ()=>ascendingDefined
-);
 var _ascendingJs = require("./ascending.js");
 var _ascendingJsDefault = parcelHelpers.interopDefault(_ascendingJs);
 var _permuteJs = require("./permute.js");
@@ -1948,8 +2068,8 @@ var _permuteJsDefault = parcelHelpers.interopDefault(_permuteJs);
 function sort(values, ...F) {
     if (typeof values[Symbol.iterator] !== "function") throw new TypeError("values is not iterable");
     values = Array.from(values);
-    let [f1] = F;
-    if (f1 && f1.length !== 2 || F.length > 1) {
+    let [f1 = _ascendingJsDefault.default] = F;
+    if (f1.length === 1 || F.length > 1) {
         const index = Uint32Array.from(values, (d, i)=>i
         );
         if (F.length > 1) {
@@ -1957,41 +2077,28 @@ function sort(values, ...F) {
             );
             index.sort((i, j)=>{
                 for (const f of F){
-                    const c = ascendingDefined(f[i], f[j]);
+                    const c = _ascendingJsDefault.default(f[i], f[j]);
                     if (c) return c;
                 }
             });
         } else {
             f1 = values.map(f1);
-            index.sort((i, j)=>ascendingDefined(f1[i], f1[j])
+            index.sort((i, j)=>_ascendingJsDefault.default(f1[i], f1[j])
             );
         }
         return _permuteJsDefault.default(values, index);
     }
-    return values.sort(compareDefined(f1));
+    return values.sort(f1);
 }
 exports.default = sort;
-function compareDefined(compare = _ascendingJsDefault.default) {
-    if (compare === _ascendingJsDefault.default) return ascendingDefined;
-    if (typeof compare !== "function") throw new TypeError("compare is not a function");
-    return (a, b)=>{
-        const x = compare(a, b);
-        if (x || x === 0) return x;
-        return (compare(b, b) === 0) - (compare(a, a) === 0);
-    };
-}
-function ascendingDefined(a, b) {
-    return (a == null || !(a >= a)) - (b == null || !(b >= b)) || (a < b ? -1 : a > b ? 1 : 0);
-}
 
 },{"./ascending.js":"is3Cq","./permute.js":"lBJIA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lBJIA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-function permute(source, keys) {
+exports.default = function(source, keys) {
     return Array.from(keys, (key)=>source[key]
     );
-}
-exports.default = permute;
+};
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"e29mp":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2011,7 +2118,7 @@ var _ticksJs = require("./ticks.js");
 var _ticksJsDefault = parcelHelpers.interopDefault(_ticksJs);
 var _sturgesJs = require("./threshold/sturges.js");
 var _sturgesJsDefault = parcelHelpers.interopDefault(_sturgesJs);
-function bin1() {
+exports.default = function() {
     var value = _identityJsDefault.default, domain = _extentJsDefault.default, threshold = _sturgesJsDefault.default;
     function histogram(data) {
         if (!Array.isArray(data)) data = Array.from(data);
@@ -2055,7 +2162,7 @@ function bin1() {
         // Assign data to bins by value, ignoring any outside the domain.
         for(i = 0; i < n; ++i){
             x = values[i];
-            if (x != null && x0 <= x && x <= x1) bins[_bisectJsDefault.default(tz, x, 0, m)].push(data[i]);
+            if (x0 <= x && x <= x1) bins[_bisectJsDefault.default(tz, x, 0, m)].push(data[i]);
         }
         return bins;
     }
@@ -2072,8 +2179,7 @@ function bin1() {
         return arguments.length ? (threshold = typeof _ === "function" ? _ : Array.isArray(_) ? _constantJsDefault.default(_arrayJs.slice.call(_)) : _constantJsDefault.default(_), histogram) : threshold;
     };
     return histogram;
-}
-exports.default = bin1;
+};
 
 },{"./array.js":"iz59S","./bisect.js":"aBOzL","./constant.js":"gS2I2","./extent.js":"i65AD","./identity.js":"4zs3O","./nice.js":"8MlNU","./ticks.js":"eP3r2","./threshold/sturges.js":"iBhHB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iz59S":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2089,11 +2195,11 @@ var map = array.map;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gS2I2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-function constant(x) {
-    return ()=>x
-    ;
-}
-exports.default = constant;
+exports.default = function(x) {
+    return function() {
+        return x;
+    };
+};
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8MlNU":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2127,7 +2233,7 @@ parcelHelpers.export(exports, "tickIncrement", ()=>tickIncrement
 parcelHelpers.export(exports, "tickStep", ()=>tickStep
 );
 var e10 = Math.sqrt(50), e5 = Math.sqrt(10), e2 = Math.sqrt(2);
-function ticks1(start, stop, count) {
+exports.default = function(start, stop, count) {
     var reverse, i = -1, n, ticks, step;
     stop = +stop, start = +start, count = +count;
     if (start === stop && count > 0) return [
@@ -2151,8 +2257,7 @@ function ticks1(start, stop, count) {
     }
     if (reverse) ticks.reverse();
     return ticks;
-}
-exports.default = ticks1;
+};
 function tickIncrement(start, stop, count) {
     var step = (stop - start) / Math.max(0, count), power = Math.floor(Math.log(step) / Math.LN10), error = step / Math.pow(10, power);
     return power >= 0 ? (error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1) * Math.pow(10, power) : -Math.pow(10, -power) / (error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1);
@@ -2170,10 +2275,9 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _countJs = require("../count.js");
 var _countJsDefault = parcelHelpers.interopDefault(_countJs);
-function thresholdSturges(values) {
+exports.default = function(values) {
     return Math.ceil(Math.log(_countJsDefault.default(values)) / Math.LN2) + 1;
-}
-exports.default = thresholdSturges;
+};
 
 },{"../count.js":"3W7W6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"YcDJP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2182,10 +2286,9 @@ var _countJs = require("../count.js");
 var _countJsDefault = parcelHelpers.interopDefault(_countJs);
 var _quantileJs = require("../quantile.js");
 var _quantileJsDefault = parcelHelpers.interopDefault(_quantileJs);
-function thresholdFreedmanDiaconis(values, min, max) {
+exports.default = function(values, min, max) {
     return Math.ceil((max - min) / (2 * (_quantileJsDefault.default(values, 0.75) - _quantileJsDefault.default(values, 0.25)) * Math.pow(_countJsDefault.default(values), -1 / 3)));
-}
-exports.default = thresholdFreedmanDiaconis;
+};
 
 },{"../count.js":"3W7W6","../quantile.js":"g22bz","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"g22bz":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2250,9 +2353,9 @@ exports.default = min1;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fusOg":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _sortJs = require("./sort.js");
-function quickselect(array, k, left = 0, right = array.length - 1, compare) {
-    compare = compare === undefined ? _sortJs.ascendingDefined : _sortJs.compareDefined(compare);
+var _ascendingJs = require("./ascending.js");
+var _ascendingJsDefault = parcelHelpers.interopDefault(_ascendingJs);
+function quickselect(array, k, left = 0, right = array.length - 1, compare = _ascendingJsDefault.default) {
     while(right > left){
         if (right - left > 600) {
             const n = right - left + 1;
@@ -2288,17 +2391,16 @@ function swap(array, i, j) {
     array[j] = t;
 }
 
-},{"./sort.js":"iPqde","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"h9Xie":[function(require,module,exports) {
+},{"./ascending.js":"is3Cq","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"h9Xie":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _countJs = require("../count.js");
 var _countJsDefault = parcelHelpers.interopDefault(_countJs);
 var _deviationJs = require("../deviation.js");
 var _deviationJsDefault = parcelHelpers.interopDefault(_deviationJs);
-function thresholdScott(values, min, max) {
+exports.default = function(values, min, max) {
     return Math.ceil((max - min) / (3.5 * _deviationJsDefault.default(values) * Math.pow(_countJsDefault.default(values), -1 / 3)));
-}
-exports.default = thresholdScott;
+};
 
 },{"../count.js":"3W7W6","../deviation.js":"gC5d9","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cI4hF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2339,10 +2441,9 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _quantileJs = require("./quantile.js");
 var _quantileJsDefault = parcelHelpers.interopDefault(_quantileJs);
-function median(values, valueof) {
+exports.default = function(values, valueof) {
     return _quantileJsDefault.default(values, 0.5, valueof);
-}
-exports.default = median;
+};
 
 },{"./quantile.js":"g22bz","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lLqaS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2373,29 +2474,7 @@ function minIndex1(values, valueof) {
 }
 exports.default = minIndex1;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"atCGw":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _internmap = require("internmap");
-function mode(values, valueof) {
-    const counts = new _internmap.InternMap();
-    if (valueof === undefined) {
-        for (let value of values)if (value != null && value >= value) counts.set(value, (counts.get(value) || 0) + 1);
-    } else {
-        let index = -1;
-        for (let value of values)if ((value = valueof(value, ++index, values)) != null && value >= value) counts.set(value, (counts.get(value) || 0) + 1);
-    }
-    let modeValue;
-    let modeCount = 0;
-    for (const [value, count] of counts)if (count > modeCount) {
-        modeCount = count;
-        modeValue = value;
-    }
-    return modeValue;
-}
-exports.default = mode;
-
-},{"internmap":"jYc4q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"f10CX":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"f10CX":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "pair", ()=>pair
@@ -2422,42 +2501,14 @@ function pair(a, b) {
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aFuRJ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-function range1(start, stop, step) {
+exports.default = function(start, stop, step) {
     start = +start, stop = +stop, step = (n = arguments.length) < 2 ? (stop = start, start = 0, 1) : n < 3 ? 1 : +step;
     var i = -1, n = Math.max(0, Math.ceil((stop - start) / step)) | 0, range = new Array(n);
     while(++i < n)range[i] = start + i * step;
     return range;
-}
-exports.default = range1;
+};
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"98L3a":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _ascendingJs = require("./ascending.js");
-var _ascendingJsDefault = parcelHelpers.interopDefault(_ascendingJs);
-var _sortJs = require("./sort.js");
-function rank(values, valueof = _ascendingJsDefault.default) {
-    if (typeof values[Symbol.iterator] !== "function") throw new TypeError("values is not iterable");
-    let V = Array.from(values);
-    const R = new Float64Array(V.length);
-    if (valueof.length !== 2) V = V.map(valueof), valueof = _ascendingJsDefault.default;
-    const compareIndex = (i, j)=>valueof(V[i], V[j])
-    ;
-    let k, r;
-    Uint32Array.from(V, (_, i)=>i
-    ).sort(valueof === _ascendingJsDefault.default ? (i, j)=>_sortJs.ascendingDefined(V[i], V[j])
-     : _sortJs.compareDefined(compareIndex)).forEach((j, i)=>{
-        const c = compareIndex(j, k === undefined ? j : k);
-        if (c >= 0) {
-            if (k === undefined || c > 0) k = j, r = i;
-            R[j] = r;
-        } else R[j] = NaN;
-    });
-    return R;
-}
-exports.default = rank;
-
-},{"./ascending.js":"is3Cq","./sort.js":"iPqde","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ewg2M":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ewg2M":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _ascendingJs = require("./ascending.js");
@@ -2608,12 +2659,11 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _minJs = require("./min.js");
 var _minJsDefault = parcelHelpers.interopDefault(_minJs);
-function transpose1(matrix) {
+exports.default = function(matrix) {
     if (!(n = matrix.length)) return [];
     for(var i = -1, m = _minJsDefault.default(matrix, length), transpose = new Array(m); ++i < m;)for(var j = -1, n, row = transpose[i] = new Array(n); ++j < n;)row[j] = matrix[j][i];
     return transpose;
-}
-exports.default = transpose1;
+};
 function length(d) {
     return d.length;
 }
@@ -2623,10 +2673,9 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _transposeJs = require("./transpose.js");
 var _transposeJsDefault = parcelHelpers.interopDefault(_transposeJs);
-function zip() {
+exports.default = function() {
     return _transposeJsDefault.default(arguments);
-}
-exports.default = zip;
+};
 
 },{"./transpose.js":"eTl2h","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"j8w8G":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2706,20 +2755,18 @@ exports.default = reverse;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4yCN3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _internmap = require("internmap");
 function difference(values, ...others) {
-    values = new _internmap.InternSet(values);
+    values = new Set(values);
     for (const other of others)for (const value of other)values.delete(value);
     return values;
 }
 exports.default = difference;
 
-},{"internmap":"jYc4q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i51B2":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i51B2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _internmap = require("internmap");
 function disjoint(values, other) {
-    const iterator = other[Symbol.iterator](), set = new _internmap.InternSet();
+    const iterator = other[Symbol.iterator](), set = new Set();
     for (const v of values){
         if (set.has(v)) return false;
         let value, done;
@@ -2733,13 +2780,14 @@ function disjoint(values, other) {
 }
 exports.default = disjoint;
 
-},{"internmap":"jYc4q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"xQI0g":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"xQI0g":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _internmap = require("internmap");
+var _setJs = require("./set.js");
+var _setJsDefault = parcelHelpers.interopDefault(_setJs);
 function intersection(values, ...others) {
-    values = new _internmap.InternSet(values);
-    others = others.map(set);
+    values = new Set(values);
+    others = others.map(_setJsDefault.default);
     out: for (const value of values){
         for (const other of others)if (!other.has(value)) {
             values.delete(value);
@@ -2749,11 +2797,16 @@ function intersection(values, ...others) {
     return values;
 }
 exports.default = intersection;
-function set(values) {
-    return values instanceof _internmap.InternSet ? values : new _internmap.InternSet(values);
-}
 
-},{"internmap":"jYc4q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bSPhW":[function(require,module,exports) {
+},{"./set.js":"j3rvb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"j3rvb":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function set(values) {
+    return values instanceof Set ? values : new Set(values);
+}
+exports.default = set;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bSPhW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _supersetJs = require("./superset.js");
@@ -2769,35 +2822,29 @@ parcelHelpers.defineInteropFlag(exports);
 function superset(values, other) {
     const iterator = values[Symbol.iterator](), set = new Set();
     for (const o of other){
-        const io = intern(o);
-        if (set.has(io)) continue;
+        if (set.has(o)) continue;
         let value, done;
         while({ value , done  } = iterator.next()){
             if (done) return false;
-            const ivalue = intern(value);
-            set.add(ivalue);
-            if (Object.is(io, ivalue)) break;
+            set.add(value);
+            if (Object.is(o, value)) break;
         }
     }
     return true;
 }
 exports.default = superset;
-function intern(value) {
-    return value !== null && typeof value === "object" ? value.valueOf() : value;
-}
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"byxPk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _internmap = require("internmap");
 function union(...others) {
-    const set = new _internmap.InternSet();
+    const set = new Set();
     for (const other of others)for (const o of other)set.add(o);
     return set;
 }
 exports.default = union;
 
-},{"internmap":"jYc4q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3HH3d":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3HH3d":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "axisTop", ()=>_axisJs.axisTop
@@ -2821,6 +2868,7 @@ parcelHelpers.export(exports, "axisBottom", ()=>axisBottom
 );
 parcelHelpers.export(exports, "axisLeft", ()=>axisLeft
 );
+var _arrayJs = require("./array.js");
 var _identityJs = require("./identity.js");
 var _identityJsDefault = parcelHelpers.interopDefault(_identityJs);
 var top = 1, right = 2, bottom = 3, left = 4, epsilon = 0.000001;
@@ -2882,13 +2930,13 @@ function axis1(orient, scale) {
         return arguments.length ? (scale = _, axis) : scale;
     };
     axis.ticks = function() {
-        return tickArguments = Array.from(arguments), axis;
+        return tickArguments = _arrayJs.slice.call(arguments), axis;
     };
     axis.tickArguments = function(_) {
-        return arguments.length ? (tickArguments = _ == null ? [] : Array.from(_), axis) : tickArguments.slice();
+        return arguments.length ? (tickArguments = _ == null ? [] : _arrayJs.slice.call(_), axis) : tickArguments.slice();
     };
     axis.tickValues = function(_) {
-        return arguments.length ? (tickValues = _ == null ? null : Array.from(_), axis) : tickValues && tickValues.slice();
+        return arguments.length ? (tickValues = _ == null ? null : _arrayJs.slice.call(_), axis) : tickValues && tickValues.slice();
     };
     axis.tickFormat = function(_) {
         return arguments.length ? (tickFormat = _, axis) : tickFormat;
@@ -2923,7 +2971,14 @@ function axisLeft(scale) {
     return axis1(left, scale);
 }
 
-},{"./identity.js":"eB8bj","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eB8bj":[function(require,module,exports) {
+},{"./array.js":"jGeXs","./identity.js":"eB8bj","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jGeXs":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "slice", ()=>slice
+);
+var slice = Array.prototype.slice;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eB8bj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = function(x) {
@@ -3190,7 +3245,7 @@ function brush1(dim) {
         });
         group.each(redraw).attr("fill", "none").attr("pointer-events", "all").on("mousedown.brush", started).filter(touchable).on("touchstart.brush", started).on("touchmove.brush", touchmoved).on("touchend.brush touchcancel.brush", touchended).style("touch-action", "none").style("-webkit-tap-highlight-color", "rgba(0,0,0,0)");
     }
-    brush.move = function(group, selection, event1) {
+    brush.move = function(group, selection) {
         if (group.tween) group.on("start.brush", function(event) {
             emitter(this, arguments).beforestart().start(event);
         }).on("interrupt.brush end.brush", function(event) {
@@ -3209,11 +3264,11 @@ function brush1(dim) {
             _d3Transition.interrupt(that);
             state.selection = selection1 === null ? null : selection1;
             redraw.call(that);
-            emit.start(event1).brush(event1).end(event1);
+            emit.start().brush().end();
         });
     };
-    brush.clear = function(group, event) {
-        brush.move(group, null, event);
+    brush.clear = function(group) {
+        brush.move(group, null);
     };
     function redraw() {
         var group = _d3Selection.select(this), selection = local(this).selection;
@@ -3270,11 +3325,11 @@ function brush1(dim) {
             }), d);
         }
     };
-    function started(event2) {
-        if (touchending && !event2.touches) return;
+    function started(event1) {
+        if (touchending && !event1.touches) return;
         if (!filter.apply(this, arguments)) return;
-        var that = this, type = event2.target.__data__.type, mode = (keys && event2.metaKey ? type = "overlay" : type) === "selection" ? MODE_DRAG : keys && event2.altKey ? MODE_CENTER : MODE_HANDLE, signX = dim === Y ? null : signsX[type], signY = dim === X ? null : signsY[type], state = local(that), extent = state.extent, selection = state.selection, W = extent[0][0], w0, w1, N = extent[0][1], n0, n1, E = extent[1][0], e0, e1, S = extent[1][1], s0, s1, dx = 0, dy = 0, moving, shifting = signX && signY && keys && event2.shiftKey, lockX, lockY, points = Array.from(event2.touches || [
-            event2
+        var that = this, type = event1.target.__data__.type, mode = (keys && event1.metaKey ? type = "overlay" : type) === "selection" ? MODE_DRAG : keys && event1.altKey ? MODE_CENTER : MODE_HANDLE, signX = dim === Y ? null : signsX[type], signY = dim === X ? null : signsY[type], state = local(that), extent = state.extent, selection = state.selection, W = extent[0][0], w0, w1, N = extent[0][1], n0, n1, E = extent[1][0], e0, e1, S = extent[1][1], s0, s1, dx = 0, dy = 0, moving, shifting = signX && signY && keys && event1.shiftKey, lockX, lockY, points = Array.from(event1.touches || [
+            event1
         ], (t)=>{
             const i = t.identifier;
             t = _d3Selection.pointer(t, that);
@@ -3282,8 +3337,6 @@ function brush1(dim) {
             t.identifier = i;
             return t;
         });
-        _d3Transition.interrupt(that);
-        var emit = emitter(that, arguments, true).beforestart();
         if (type === "overlay") {
             if (selection) moving = true;
             const pts = [
@@ -3300,7 +3353,7 @@ function brush1(dim) {
                     s0 = dim === X ? S : max(pts[0][1], pts[1][1])
                 ]
             ];
-            if (points.length > 1) move(event2);
+            if (points.length > 1) move();
         } else {
             w0 = selection[0][0];
             n0 = selection[0][1];
@@ -3313,16 +3366,18 @@ function brush1(dim) {
         s1 = s0;
         var group = _d3Selection.select(that).attr("pointer-events", "none");
         var overlay = group.selectAll(".overlay").attr("cursor", cursors[type]);
-        if (event2.touches) {
+        _d3Transition.interrupt(that);
+        var emit = emitter(that, arguments, true).beforestart();
+        if (event1.touches) {
             emit.moved = moved;
             emit.ended = ended;
         } else {
-            var view = _d3Selection.select(event2.view).on("mousemove.brush", moved, true).on("mouseup.brush", ended, true);
+            var view = _d3Selection.select(event1.view).on("mousemove.brush", moved, true).on("mouseup.brush", ended, true);
             if (keys) view.on("keydown.brush", keydowned, true).on("keyup.brush", keyupped, true);
-            _d3Drag.dragDisable(event2.view);
+            _d3Drag.dragDisable(event1.view);
         }
         redraw.call(that);
-        emit.start(event2, mode.name);
+        emit.start(event1, mode.name);
         function moved(event) {
             for (const p of event.changedTouches || [
                 event
@@ -3424,7 +3479,7 @@ function brush1(dim) {
                         if (signX) e0 = e1 - dx * signX, w0 = w1 + dx * signX;
                         if (signY) s0 = s1 - dy * signY, n0 = n1 + dy * signY;
                         mode = MODE_CENTER;
-                        move(event);
+                        move();
                     }
                     break;
                 case 32:
@@ -3435,7 +3490,7 @@ function brush1(dim) {
                         else if (signY > 0) n0 = n1 - dy;
                         mode = MODE_SPACE;
                         overlay.attr("cursor", cursors.selection);
-                        move(event);
+                        move();
                     }
                     break;
                 default:
@@ -3448,7 +3503,7 @@ function brush1(dim) {
                 case 16:
                     if (shifting) {
                         lockX = lockY = shifting = false;
-                        move(event);
+                        move();
                     }
                     break;
                 case 18:
@@ -3458,7 +3513,7 @@ function brush1(dim) {
                         if (signY < 0) s0 = s1;
                         else if (signY > 0) n0 = n1;
                         mode = MODE_HANDLE;
-                        move(event);
+                        move();
                     }
                     break;
                 case 32:
@@ -3475,7 +3530,7 @@ function brush1(dim) {
                             mode = MODE_HANDLE;
                         }
                         overlay.attr("cursor", cursors[type]);
-                        move(event);
+                        move();
                     }
                     break;
                 default:
@@ -3656,13 +3711,13 @@ exports.default = function() {
     var filter = defaultFilter, container1 = defaultContainer, subject = defaultSubject, touchable = defaultTouchable, gestures = {
     }, listeners = _d3Dispatch.dispatch("start", "drag", "end"), active = 0, mousedownx, mousedowny, mousemoving, touchending, clickDistance2 = 0;
     function drag(selection) {
-        selection.on("mousedown.drag", mousedowned).filter(touchable).on("touchstart.drag", touchstarted).on("touchmove.drag", touchmoved, _noeventJs.nonpassive).on("touchend.drag touchcancel.drag", touchended).style("touch-action", "none").style("-webkit-tap-highlight-color", "rgba(0,0,0,0)");
+        selection.on("mousedown.drag", mousedowned).filter(touchable).on("touchstart.drag", touchstarted).on("touchmove.drag", touchmoved).on("touchend.drag touchcancel.drag", touchended).style("touch-action", "none").style("-webkit-tap-highlight-color", "rgba(0,0,0,0)");
     }
     function mousedowned(event, d) {
         if (touchending || !filter.call(this, event, d)) return;
         var gesture = beforestart(this, container1.call(this, event, d), event, d, "mouse");
         if (!gesture) return;
-        _d3Selection.select(event.view).on("mousemove.drag", mousemoved, _noeventJs.nonpassivecapture).on("mouseup.drag", mouseupped, _noeventJs.nonpassivecapture);
+        _d3Selection.select(event.view).on("mousemove.drag", mousemoved, true).on("mouseup.drag", mouseupped, true);
         _nodragJsDefault.default(event.view);
         _noeventJs.nopropagation(event);
         mousemoving = false;
@@ -3732,7 +3787,7 @@ exports.default = function() {
                     gestures[identifier] = gesture, n = active++;
                     break;
                 case "end":
-                    delete gestures[identifier], --active; // falls through
+                    delete gestures[identifier], --active; // nobreak
                 case "drag":
                     p = _d3Selection.pointer(touch || event, container), n = active;
                     break;
@@ -4085,7 +4140,8 @@ var _selectorAllJs = require("../selectorAll.js");
 var _selectorAllJsDefault = parcelHelpers.interopDefault(_selectorAllJs);
 function arrayAll(select) {
     return function() {
-        return _arrayJsDefault.default(select.apply(this, arguments));
+        var group = select.apply(this, arguments);
+        return group == null ? [] : _arrayJsDefault.default(group);
     };
 }
 exports.default = function(select) {
@@ -4103,10 +4159,10 @@ exports.default = function(select) {
 },{"./index.js":"f38xv","../array.js":"cirh5","../selectorAll.js":"6FR5I","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cirh5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-function array(x) {
-    return x == null ? [] : Array.isArray(x) ? x : Array.from(x);
-}
-exports.default = array;
+exports.default = function(x) {
+    return typeof x === "object" && "length" in x ? x // Array, TypedArray, NodeList, array-like
+     : Array.from(x); // Map, Set, iterable, string, or anything else
+};
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6FR5I":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -4159,7 +4215,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _matcherJs = require("../matcher.js");
 var filter = Array.prototype.filter;
 function children() {
-    return Array.from(this.children);
+    return this.children;
 }
 function childrenFilter(match) {
     return function() {
@@ -4189,6 +4245,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("./index.js");
 var _enterJs = require("./enter.js");
+var _arrayJs = require("../array.js");
+var _arrayJsDefault = parcelHelpers.interopDefault(_arrayJs);
 var _constantJs = require("../constant.js");
 var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
 function bindIndex(parent, group, enter, update, exit, data) {
@@ -4234,7 +4292,7 @@ exports.default = function(value, key) {
     var bind = key ? bindKey : bindIndex, parents = this._parents, groups = this._groups;
     if (typeof value !== "function") value = _constantJsDefault.default(value);
     for(var m = groups.length, update = new Array(m), enter = new Array(m), exit = new Array(m), j = 0; j < m; ++j){
-        var parent = parents[j], group = groups[j], groupLength = group.length, data = arraylike(value.call(parent, parent && parent.__data__, j, parents)), dataLength = data.length, enterGroup = enter[j] = new Array(dataLength), updateGroup = update[j] = new Array(dataLength), exitGroup = exit[j] = new Array(groupLength);
+        var parent = parents[j], group = groups[j], groupLength = group.length, data = _arrayJsDefault.default(value.call(parent, parent && parent.__data__, j, parents)), dataLength = data.length, enterGroup = enter[j] = new Array(dataLength), updateGroup = update[j] = new Array(dataLength), exitGroup = exit[j] = new Array(groupLength);
         bind(parent, group, enterGroup, updateGroup, exitGroup, data, key);
         // Now connect the enter nodes to their following update node, such that
         // appendChild can insert the materialized enter node before this node,
@@ -4250,18 +4308,8 @@ exports.default = function(value, key) {
     update._exit = exit;
     return update;
 };
-// Given some data, this returns an array-like view of it: an object that
-// exposes a length property and allows numeric indexing. Note that unlike
-// selectAll, this isn’t worried about “live” collections because the resulting
-// array will only be used briefly while data is being bound. (It is possible to
-// cause the data to change while iterating by using a key function, but please
-// don’t; we’d rather avoid a gratuitous copy.)
-function arraylike(data) {
-    return typeof data === "object" && "length" in data ? data // Array, TypedArray, NodeList, array-like
-     : Array.from(data); // Map, Set, iterable, string, or anything else
-}
 
-},{"./index.js":"f38xv","./enter.js":"iCNmI","../constant.js":"2yBTe","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iCNmI":[function(require,module,exports) {
+},{"./index.js":"f38xv","./enter.js":"iCNmI","../array.js":"cirh5","../constant.js":"2yBTe","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iCNmI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "EnterNode", ()=>EnterNode
@@ -4326,14 +4374,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = function(onenter, onupdate, onexit) {
     var enter = this.enter(), update = this, exit = this.exit();
-    if (typeof onenter === "function") {
-        enter = onenter(enter);
-        if (enter) enter = enter.selection();
-    } else enter = enter.append(onenter + "");
-    if (onupdate != null) {
-        update = onupdate(update);
-        if (update) update = update.selection();
-    }
+    enter = typeof onenter === "function" ? onenter(enter) : enter.append(onenter + "");
+    if (onupdate != null) update = onupdate(update);
     if (onexit == null) exit.remove();
     else onexit(exit);
     return enter && update ? enter.merge(update).order() : update;
@@ -4343,8 +4385,8 @@ exports.default = function(onenter, onupdate, onexit) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("./index.js");
-exports.default = function(context) {
-    var selection = context.selection ? context.selection() : context;
+exports.default = function(selection) {
+    if (!(selection instanceof _indexJs.Selection)) throw new Error("invalid merge");
     for(var groups0 = this._groups, groups1 = selection._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j){
         for(var group0 = groups0[j], group1 = groups1[j], n = group0.length, merge = merges[j] = new Array(n), node, i = 0; i < n; ++i)if (node = group0[i] || group1[i]) merge[i] = node;
     }
@@ -4944,7 +4986,7 @@ exports.default = function(selector) {
     ], [
         document.documentElement
     ]) : new _indexJs.Selection([
-        _arrayJsDefault.default(selector)
+        selector == null ? [] : _arrayJsDefault.default(selector)
     ], _indexJs.root);
 };
 
@@ -4957,8 +4999,8 @@ var _d3Selection = require("d3-selection");
 var _noeventJs = require("./noevent.js");
 var _noeventJsDefault = parcelHelpers.interopDefault(_noeventJs);
 exports.default = function(view) {
-    var root = view.document.documentElement, selection = _d3Selection.select(view).on("dragstart.drag", _noeventJsDefault.default, _noeventJs.nonpassivecapture);
-    if ("onselectstart" in root) selection.on("selectstart.drag", _noeventJsDefault.default, _noeventJs.nonpassivecapture);
+    var root = view.document.documentElement, selection = _d3Selection.select(view).on("dragstart.drag", _noeventJsDefault.default, true);
+    if ("onselectstart" in root) selection.on("selectstart.drag", _noeventJsDefault.default, true);
     else {
         root.__noselect = root.style.MozUserSelect;
         root.style.MozUserSelect = "none";
@@ -4967,7 +5009,7 @@ exports.default = function(view) {
 function yesdrag(view, noclick) {
     var root = view.document.documentElement, selection = _d3Selection.select(view).on("dragstart.drag", null);
     if (noclick) {
-        selection.on("click.drag", _noeventJsDefault.default, _noeventJs.nonpassivecapture);
+        selection.on("click.drag", _noeventJsDefault.default, true);
         setTimeout(function() {
             selection.on("click.drag", null);
         }, 0);
@@ -4982,19 +5024,8 @@ function yesdrag(view, noclick) {
 },{"d3-selection":"hgWtk","./noevent.js":"hhrgp","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hhrgp":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "nonpassive", ()=>nonpassive
-);
-parcelHelpers.export(exports, "nonpassivecapture", ()=>nonpassivecapture
-);
 parcelHelpers.export(exports, "nopropagation", ()=>nopropagation
 );
-const nonpassive = {
-    passive: false
-};
-const nonpassivecapture = {
-    capture: true,
-    passive: false
-};
 function nopropagation(event) {
     event.stopImmediatePropagation();
 }
@@ -6606,7 +6637,7 @@ function timerFlush() {
     ++frame; // Pretend we’ve set an alarm, if we haven’t already.
     var t = taskHead, e;
     while(t){
-        if ((e = clockNow - t._time) >= 0) t._call.call(undefined, e);
+        if ((e = clockNow - t._time) >= 0) t._call.call(null, e);
         t = t._next;
     }
     --frame;
@@ -6783,8 +6814,6 @@ Transition.prototype = transition.prototype = {
     constructor: Transition,
     select: _selectJsDefault.default,
     selectAll: _selectAllJsDefault.default,
-    selectChild: selection_prototype.selectChild,
-    selectChildren: selection_prototype.selectChildren,
     filter: _filterJsDefault.default,
     merge: _mergeJsDefault.default,
     selection: _selectionJsDefault.default,
@@ -8395,11 +8424,13 @@ exports.default = function() {
         var tz = threshold(values);
         // Convert number of thresholds into uniform thresholds.
         if (!Array.isArray(tz)) {
-            const e = _d3Array.extent(values), ts = _d3Array.tickStep(e[0], e[1], tz);
-            tz = _d3Array.ticks(Math.floor(e[0] / ts) * ts, Math.floor(e[1] / ts - 1) * ts, tz);
+            var domain = _d3Array.extent(values), start = domain[0], stop = domain[1];
+            tz = _d3Array.tickStep(start, stop, tz);
+            tz = _d3Array.range(Math.floor(start / tz) * tz, Math.floor(stop / tz) * tz, tz);
         } else tz = tz.slice().sort(_ascendingJsDefault.default);
-        return tz.map((value)=>contour(values, value)
-        );
+        return tz.map(function(value) {
+            return contour(values, value);
+        });
     }
     // Accumulate, smooth contour rings, assign holes to exterior rings.
     // Based on https://github.com/mbostock/shapefile/blob/v0.6.2/shp/polygon.js
@@ -8632,16 +8663,10 @@ function defaultWeight() {
 exports.default = function() {
     var x = defaultX, y = defaultY, weight = defaultWeight, dx = 960, dy = 500, r = 20, k = 2, o = r * 3, n = dx + o * 2 >> k, m = dy + o * 2 >> k, threshold = _constantJsDefault.default(20);
     function density(data1) {
-        var values0 = new Float32Array(n * m), values1 = new Float32Array(n * m), pow2k = Math.pow(2, -k);
+        var values0 = new Float32Array(n * m), values1 = new Float32Array(n * m);
         data1.forEach(function(d, i, data) {
-            var xi = (x(d, i, data) + o) * pow2k, yi = (y(d, i, data) + o) * pow2k, wi = +weight(d, i, data);
-            if (xi >= 0 && xi < n && yi >= 0 && yi < m) {
-                var x0 = Math.floor(xi), y0 = Math.floor(yi), xt = xi - x0 - 0.5, yt = yi - y0 - 0.5;
-                values0[x0 + y0 * n] += (1 - xt) * (1 - yt) * wi;
-                values0[x0 + 1 + y0 * n] += xt * (1 - yt) * wi;
-                values0[x0 + 1 + (y0 + 1) * n] += xt * yt * wi;
-                values0[x0 + (y0 + 1) * n] += (1 - xt) * yt * wi;
-            }
+            var xi = +x(d, i, data) + o >> k, yi = +y(d, i, data) + o >> k, wi = +weight(d, i, data);
+            if (xi >= 0 && xi < n && yi >= 0 && yi < m) values0[xi + yi * n] += wi;
         });
         // TODO Optimize.
         _blurJs.blurX({
@@ -8902,12 +8927,10 @@ class Delaunay {
             this.triangles = new Int32Array(3).fill(-1);
             this.halfedges = new Int32Array(3).fill(-1);
             this.triangles[0] = hull[0];
+            this.triangles[1] = hull[1];
+            this.triangles[2] = hull[1];
             inedges[hull[0]] = 1;
-            if (hull.length === 2) {
-                inedges[hull[1]] = 0;
-                this.triangles[1] = hull[1];
-                this.triangles[2] = hull[1];
-            }
+            if (hull.length === 2) inedges[hull[1]] = 0;
         }
     }
     voronoi(bounds) {
@@ -8982,9 +9005,7 @@ class Delaunay {
         this.renderHull(context);
         return buffer && buffer.value();
     }
-    renderPoints(context1, r) {
-        if (r === undefined && (!context1 || typeof context1.moveTo !== "function")) r = context1, context1 = null;
-        r = r == undefined ? 2 : +r;
+    renderPoints(context1, r = 2) {
         const buffer = context1 == null ? context1 = new _pathJsDefault.default : undefined;
         const { points  } = this;
         for(let i = 0, n = points.length; i < n; i += 2){
@@ -9056,7 +9077,6 @@ function* flatIterable(points, fx, fy, that) {
 },{"delaunator":"juMqj","./path.js":"kZ7BC","./polygon.js":"I8KG7","./voronoi.js":"lNO3t","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"juMqj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _robustPredicates = require("robust-predicates");
 const EPSILON = Math.pow(2, -52);
 const EDGE_STACK = new Uint32Array(512);
 class Delaunator {
@@ -9164,7 +9184,7 @@ class Delaunator {
             return;
         }
         // swap the order of the seed points for counter-clockwise orientation
-        if (_robustPredicates.orient2d(i0x, i0y, i1x, i1y, i2x, i2y) < 0) {
+        if (orient(i0x, i0y, i1x, i1y, i2x, i2y)) {
             const i = i1;
             const x = i1x;
             const y = i1y;
@@ -9214,7 +9234,7 @@ class Delaunator {
             }
             start = hullPrev[start];
             let e = start, q;
-            while(q = hullNext[e], _robustPredicates.orient2d(x, y, coords[2 * e], coords[2 * e + 1], coords[2 * q], coords[2 * q + 1]) >= 0){
+            while(q = hullNext[e], !orient(x, y, coords[2 * e], coords[2 * e + 1], coords[2 * q], coords[2 * q + 1])){
                 e = q;
                 if (e === start) {
                     e = -1;
@@ -9230,7 +9250,7 @@ class Delaunator {
             hullSize++;
             // walk forward through the hull, adding more triangles and flipping recursively
             let n = hullNext[e];
-            while(q = hullNext[n], _robustPredicates.orient2d(x, y, coords[2 * n], coords[2 * n + 1], coords[2 * q], coords[2 * q + 1]) < 0){
+            while(q = hullNext[n], orient(x, y, coords[2 * n], coords[2 * n + 1], coords[2 * q], coords[2 * q + 1])){
                 t = this._addTriangle(n, i, q, hullTri[i], -1, hullTri[n]);
                 hullTri[i] = this._legalize(t + 2);
                 hullNext[n] = n; // mark as removed
@@ -9238,7 +9258,7 @@ class Delaunator {
                 n = q;
             }
             // walk backward from the other side, adding more triangles and flipping
-            if (e === start) while(q = hullPrev[e], _robustPredicates.orient2d(x, y, coords[2 * q], coords[2 * q + 1], coords[2 * e], coords[2 * e + 1]) < 0){
+            if (e === start) while(q = hullPrev[e], orient(x, y, coords[2 * q], coords[2 * q + 1], coords[2 * e], coords[2 * e + 1])){
                 t = this._addTriangle(q, i, e, -1, hullTri[e], hullTri[q]);
                 this._legalize(t + 2);
                 hullTri[q] = t;
@@ -9358,6 +9378,17 @@ function dist(ax, ay, bx, by) {
     const dy = ay - by;
     return dx * dx + dy * dy;
 }
+// return 2d orientation sign if we're confident in it through J. Shewchuk's error bound check
+function orientIfSure(px, py, rx, ry, qx, qy) {
+    const l = (ry - py) * (qx - px);
+    const r = (rx - px) * (qy - py);
+    return Math.abs(l - r) >= 0.00000000000000033306690738754716 * Math.abs(l + r) ? l - r : 0;
+}
+// a more robust orientation test that's stable in a given triangle (to fix robustness issues)
+function orient(rx, ry, qx, qy, px, py) {
+    const sign = orientIfSure(px, py, rx, ry, qx, qy) || orientIfSure(rx, ry, qx, qy, px, py) || orientIfSure(qx, qy, px, py, rx, ry);
+    return sign < 0;
+}
 function inCircle(ax, ay, bx, by, cx, cy, px, py) {
     const dx = ax - px;
     const dy = ay - py;
@@ -9446,2083 +9477,7 @@ function defaultGetY(p) {
     return p[1];
 }
 
-},{"robust-predicates":"96Ezg","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"96Ezg":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "orient2d", ()=>_orient2DJs.orient2d
-);
-parcelHelpers.export(exports, "orient2dfast", ()=>_orient2DJs.orient2dfast
-);
-parcelHelpers.export(exports, "orient3d", ()=>_orient3DJs.orient3d
-);
-parcelHelpers.export(exports, "orient3dfast", ()=>_orient3DJs.orient3dfast
-);
-parcelHelpers.export(exports, "incircle", ()=>_incircleJs.incircle
-);
-parcelHelpers.export(exports, "incirclefast", ()=>_incircleJs.incirclefast
-);
-parcelHelpers.export(exports, "insphere", ()=>_insphereJs.insphere
-);
-parcelHelpers.export(exports, "inspherefast", ()=>_insphereJs.inspherefast
-);
-var _orient2DJs = require("./esm/orient2d.js");
-var _orient3DJs = require("./esm/orient3d.js");
-var _incircleJs = require("./esm/incircle.js");
-var _insphereJs = require("./esm/insphere.js");
-
-},{"./esm/orient2d.js":"3B1q4","./esm/orient3d.js":"ifJ7f","./esm/incircle.js":"bbOYc","./esm/insphere.js":"j22Cf","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3B1q4":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "orient2d", ()=>orient2d
-);
-parcelHelpers.export(exports, "orient2dfast", ()=>orient2dfast
-);
-var _utilJs = require("./util.js");
-const ccwerrboundA = (3 + 16 * _utilJs.epsilon) * _utilJs.epsilon;
-const ccwerrboundB = (2 + 12 * _utilJs.epsilon) * _utilJs.epsilon;
-const ccwerrboundC = (9 + 64 * _utilJs.epsilon) * _utilJs.epsilon * _utilJs.epsilon;
-const B = _utilJs.vec(4);
-const C1 = _utilJs.vec(8);
-const C2 = _utilJs.vec(12);
-const D = _utilJs.vec(16);
-const u = _utilJs.vec(4);
-function orient2dadapt(ax, ay, bx, by, cx, cy, detsum) {
-    let acxtail, acytail, bcxtail, bcytail;
-    let bvirt, c, ahi, alo, bhi, blo, _i, _j, _0, s1, s0, t1, t0, u3;
-    const acx = ax - cx;
-    const bcx = bx - cx;
-    const acy = ay - cy;
-    const bcy = by - cy;
-    s1 = acx * bcy;
-    c = _utilJs.splitter * acx;
-    ahi = c - (c - acx);
-    alo = acx - ahi;
-    c = _utilJs.splitter * bcy;
-    bhi = c - (c - bcy);
-    blo = bcy - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = acy * bcx;
-    c = _utilJs.splitter * acy;
-    ahi = c - (c - acy);
-    alo = acy - ahi;
-    c = _utilJs.splitter * bcx;
-    bhi = c - (c - bcx);
-    blo = bcx - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    B[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    B[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    B[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    B[3] = u3;
-    let det = _utilJs.estimate(4, B);
-    let errbound = ccwerrboundB * detsum;
-    if (det >= errbound || -det >= errbound) return det;
-    bvirt = ax - acx;
-    acxtail = ax - (acx + bvirt) + (bvirt - cx);
-    bvirt = bx - bcx;
-    bcxtail = bx - (bcx + bvirt) + (bvirt - cx);
-    bvirt = ay - acy;
-    acytail = ay - (acy + bvirt) + (bvirt - cy);
-    bvirt = by - bcy;
-    bcytail = by - (bcy + bvirt) + (bvirt - cy);
-    if (acxtail === 0 && acytail === 0 && bcxtail === 0 && bcytail === 0) return det;
-    errbound = ccwerrboundC * detsum + _utilJs.resulterrbound * Math.abs(det);
-    det += acx * bcytail + bcy * acxtail - (acy * bcxtail + bcx * acytail);
-    if (det >= errbound || -det >= errbound) return det;
-    s1 = acxtail * bcy;
-    c = _utilJs.splitter * acxtail;
-    ahi = c - (c - acxtail);
-    alo = acxtail - ahi;
-    c = _utilJs.splitter * bcy;
-    bhi = c - (c - bcy);
-    blo = bcy - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = acytail * bcx;
-    c = _utilJs.splitter * acytail;
-    ahi = c - (c - acytail);
-    alo = acytail - ahi;
-    c = _utilJs.splitter * bcx;
-    bhi = c - (c - bcx);
-    blo = bcx - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    u[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    u[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    u[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    u[3] = u3;
-    const C1len = _utilJs.sum(4, B, 4, u, C1);
-    s1 = acx * bcytail;
-    c = _utilJs.splitter * acx;
-    ahi = c - (c - acx);
-    alo = acx - ahi;
-    c = _utilJs.splitter * bcytail;
-    bhi = c - (c - bcytail);
-    blo = bcytail - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = acy * bcxtail;
-    c = _utilJs.splitter * acy;
-    ahi = c - (c - acy);
-    alo = acy - ahi;
-    c = _utilJs.splitter * bcxtail;
-    bhi = c - (c - bcxtail);
-    blo = bcxtail - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    u[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    u[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    u[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    u[3] = u3;
-    const C2len = _utilJs.sum(C1len, C1, 4, u, C2);
-    s1 = acxtail * bcytail;
-    c = _utilJs.splitter * acxtail;
-    ahi = c - (c - acxtail);
-    alo = acxtail - ahi;
-    c = _utilJs.splitter * bcytail;
-    bhi = c - (c - bcytail);
-    blo = bcytail - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = acytail * bcxtail;
-    c = _utilJs.splitter * acytail;
-    ahi = c - (c - acytail);
-    alo = acytail - ahi;
-    c = _utilJs.splitter * bcxtail;
-    bhi = c - (c - bcxtail);
-    blo = bcxtail - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    u[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    u[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    u[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    u[3] = u3;
-    const Dlen = _utilJs.sum(C2len, C2, 4, u, D);
-    return D[Dlen - 1];
-}
-function orient2d(ax, ay, bx, by, cx, cy) {
-    const detleft = (ay - cy) * (bx - cx);
-    const detright = (ax - cx) * (by - cy);
-    const det = detleft - detright;
-    if (detleft === 0 || detright === 0 || detleft > 0 !== detright > 0) return det;
-    const detsum = Math.abs(detleft + detright);
-    if (Math.abs(det) >= ccwerrboundA * detsum) return det;
-    return -orient2dadapt(ax, ay, bx, by, cx, cy, detsum);
-}
-function orient2dfast(ax, ay, bx, by, cx, cy) {
-    return (ay - cy) * (bx - cx) - (ax - cx) * (by - cy);
-}
-
-},{"./util.js":"kdlbG","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kdlbG":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "epsilon", ()=>epsilon
-);
-parcelHelpers.export(exports, "splitter", ()=>splitter
-);
-parcelHelpers.export(exports, "resulterrbound", ()=>resulterrbound
-);
-// fast_expansion_sum_zeroelim routine from oritinal code
-parcelHelpers.export(exports, "sum", ()=>sum1
-);
-parcelHelpers.export(exports, "sum_three", ()=>sum_three
-);
-// scale_expansion_zeroelim routine from oritinal code
-parcelHelpers.export(exports, "scale", ()=>scale
-);
-parcelHelpers.export(exports, "negate", ()=>negate
-);
-parcelHelpers.export(exports, "estimate", ()=>estimate
-);
-parcelHelpers.export(exports, "vec", ()=>vec
-);
-const epsilon = 0.00000000000000011102230246251565;
-const splitter = 134217729;
-const resulterrbound = (3 + 8 * epsilon) * epsilon;
-function sum1(elen, e, flen, f, h) {
-    let Q, Qnew, hh, bvirt;
-    let enow = e[0];
-    let fnow = f[0];
-    let eindex = 0;
-    let findex = 0;
-    if (fnow > enow === fnow > -enow) {
-        Q = enow;
-        enow = e[++eindex];
-    } else {
-        Q = fnow;
-        fnow = f[++findex];
-    }
-    let hindex = 0;
-    if (eindex < elen && findex < flen) {
-        if (fnow > enow === fnow > -enow) {
-            Qnew = enow + Q;
-            hh = Q - (Qnew - enow);
-            enow = e[++eindex];
-        } else {
-            Qnew = fnow + Q;
-            hh = Q - (Qnew - fnow);
-            fnow = f[++findex];
-        }
-        Q = Qnew;
-        if (hh !== 0) h[hindex++] = hh;
-        while(eindex < elen && findex < flen){
-            if (fnow > enow === fnow > -enow) {
-                Qnew = Q + enow;
-                bvirt = Qnew - Q;
-                hh = Q - (Qnew - bvirt) + (enow - bvirt);
-                enow = e[++eindex];
-            } else {
-                Qnew = Q + fnow;
-                bvirt = Qnew - Q;
-                hh = Q - (Qnew - bvirt) + (fnow - bvirt);
-                fnow = f[++findex];
-            }
-            Q = Qnew;
-            if (hh !== 0) h[hindex++] = hh;
-        }
-    }
-    while(eindex < elen){
-        Qnew = Q + enow;
-        bvirt = Qnew - Q;
-        hh = Q - (Qnew - bvirt) + (enow - bvirt);
-        enow = e[++eindex];
-        Q = Qnew;
-        if (hh !== 0) h[hindex++] = hh;
-    }
-    while(findex < flen){
-        Qnew = Q + fnow;
-        bvirt = Qnew - Q;
-        hh = Q - (Qnew - bvirt) + (fnow - bvirt);
-        fnow = f[++findex];
-        Q = Qnew;
-        if (hh !== 0) h[hindex++] = hh;
-    }
-    if (Q !== 0 || hindex === 0) h[hindex++] = Q;
-    return hindex;
-}
-function sum_three(alen, a, blen, b, clen, c, tmp, out) {
-    return sum1(sum1(alen, a, blen, b, tmp), tmp, clen, c, out);
-}
-function scale(elen, e, b, h) {
-    let Q, sum, hh, product1, product0;
-    let bvirt, c, ahi, alo, bhi, blo;
-    c = splitter * b;
-    bhi = c - (c - b);
-    blo = b - bhi;
-    let enow = e[0];
-    Q = enow * b;
-    c = splitter * enow;
-    ahi = c - (c - enow);
-    alo = enow - ahi;
-    hh = alo * blo - (Q - ahi * bhi - alo * bhi - ahi * blo);
-    let hindex = 0;
-    if (hh !== 0) h[hindex++] = hh;
-    for(let i = 1; i < elen; i++){
-        enow = e[i];
-        product1 = enow * b;
-        c = splitter * enow;
-        ahi = c - (c - enow);
-        alo = enow - ahi;
-        product0 = alo * blo - (product1 - ahi * bhi - alo * bhi - ahi * blo);
-        sum = Q + product0;
-        bvirt = sum - Q;
-        hh = Q - (sum - bvirt) + (product0 - bvirt);
-        if (hh !== 0) h[hindex++] = hh;
-        Q = product1 + sum;
-        hh = sum - (Q - product1);
-        if (hh !== 0) h[hindex++] = hh;
-    }
-    if (Q !== 0 || hindex === 0) h[hindex++] = Q;
-    return hindex;
-}
-function negate(elen, e) {
-    for(let i = 0; i < elen; i++)e[i] = -e[i];
-    return elen;
-}
-function estimate(elen, e) {
-    let Q = e[0];
-    for(let i = 1; i < elen; i++)Q += e[i];
-    return Q;
-}
-function vec(n) {
-    return new Float64Array(n);
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ifJ7f":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "orient3d", ()=>orient3d
-);
-parcelHelpers.export(exports, "orient3dfast", ()=>orient3dfast
-);
-var _utilJs = require("./util.js");
-const o3derrboundA = (7 + 56 * _utilJs.epsilon) * _utilJs.epsilon;
-const o3derrboundB = (3 + 28 * _utilJs.epsilon) * _utilJs.epsilon;
-const o3derrboundC = (26 + 288 * _utilJs.epsilon) * _utilJs.epsilon * _utilJs.epsilon;
-const bc = _utilJs.vec(4);
-const ca = _utilJs.vec(4);
-const ab = _utilJs.vec(4);
-const at_b = _utilJs.vec(4);
-const at_c = _utilJs.vec(4);
-const bt_c = _utilJs.vec(4);
-const bt_a = _utilJs.vec(4);
-const ct_a = _utilJs.vec(4);
-const ct_b = _utilJs.vec(4);
-const bct = _utilJs.vec(8);
-const cat = _utilJs.vec(8);
-const abt = _utilJs.vec(8);
-const u = _utilJs.vec(4);
-const _8 = _utilJs.vec(8);
-const _8b = _utilJs.vec(8);
-const _16 = _utilJs.vec(8);
-const _12 = _utilJs.vec(12);
-let fin = _utilJs.vec(192);
-let fin2 = _utilJs.vec(192);
-function finadd(finlen, alen, a) {
-    finlen = _utilJs.sum(finlen, fin, alen, a, fin2);
-    const tmp = fin;
-    fin = fin2;
-    fin2 = tmp;
-    return finlen;
-}
-function tailinit(xtail, ytail, ax, ay, bx, by, a, b) {
-    let bvirt, c, ahi, alo, bhi, blo, _i, _j, _k, _0, s1, s0, t1, t0, u3, negate;
-    if (xtail === 0) {
-        if (ytail === 0) {
-            a[0] = 0;
-            b[0] = 0;
-            return 1;
-        } else {
-            negate = -ytail;
-            s1 = negate * ax;
-            c = _utilJs.splitter * negate;
-            ahi = c - (c - negate);
-            alo = negate - ahi;
-            c = _utilJs.splitter * ax;
-            bhi = c - (c - ax);
-            blo = ax - bhi;
-            a[0] = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-            a[1] = s1;
-            s1 = ytail * bx;
-            c = _utilJs.splitter * ytail;
-            ahi = c - (c - ytail);
-            alo = ytail - ahi;
-            c = _utilJs.splitter * bx;
-            bhi = c - (c - bx);
-            blo = bx - bhi;
-            b[0] = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-            b[1] = s1;
-            return 2;
-        }
-    } else if (ytail === 0) {
-        s1 = xtail * ay;
-        c = _utilJs.splitter * xtail;
-        ahi = c - (c - xtail);
-        alo = xtail - ahi;
-        c = _utilJs.splitter * ay;
-        bhi = c - (c - ay);
-        blo = ay - bhi;
-        a[0] = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-        a[1] = s1;
-        negate = -xtail;
-        s1 = negate * by;
-        c = _utilJs.splitter * negate;
-        ahi = c - (c - negate);
-        alo = negate - ahi;
-        c = _utilJs.splitter * by;
-        bhi = c - (c - by);
-        blo = by - bhi;
-        b[0] = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-        b[1] = s1;
-        return 2;
-    } else {
-        s1 = xtail * ay;
-        c = _utilJs.splitter * xtail;
-        ahi = c - (c - xtail);
-        alo = xtail - ahi;
-        c = _utilJs.splitter * ay;
-        bhi = c - (c - ay);
-        blo = ay - bhi;
-        s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-        t1 = ytail * ax;
-        c = _utilJs.splitter * ytail;
-        ahi = c - (c - ytail);
-        alo = ytail - ahi;
-        c = _utilJs.splitter * ax;
-        bhi = c - (c - ax);
-        blo = ax - bhi;
-        t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-        _i = s0 - t0;
-        bvirt = s0 - _i;
-        a[0] = s0 - (_i + bvirt) + (bvirt - t0);
-        _j = s1 + _i;
-        bvirt = _j - s1;
-        _0 = s1 - (_j - bvirt) + (_i - bvirt);
-        _i = _0 - t1;
-        bvirt = _0 - _i;
-        a[1] = _0 - (_i + bvirt) + (bvirt - t1);
-        u3 = _j + _i;
-        bvirt = u3 - _j;
-        a[2] = _j - (u3 - bvirt) + (_i - bvirt);
-        a[3] = u3;
-        s1 = ytail * bx;
-        c = _utilJs.splitter * ytail;
-        ahi = c - (c - ytail);
-        alo = ytail - ahi;
-        c = _utilJs.splitter * bx;
-        bhi = c - (c - bx);
-        blo = bx - bhi;
-        s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-        t1 = xtail * by;
-        c = _utilJs.splitter * xtail;
-        ahi = c - (c - xtail);
-        alo = xtail - ahi;
-        c = _utilJs.splitter * by;
-        bhi = c - (c - by);
-        blo = by - bhi;
-        t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-        _i = s0 - t0;
-        bvirt = s0 - _i;
-        b[0] = s0 - (_i + bvirt) + (bvirt - t0);
-        _j = s1 + _i;
-        bvirt = _j - s1;
-        _0 = s1 - (_j - bvirt) + (_i - bvirt);
-        _i = _0 - t1;
-        bvirt = _0 - _i;
-        b[1] = _0 - (_i + bvirt) + (bvirt - t1);
-        u3 = _j + _i;
-        bvirt = u3 - _j;
-        b[2] = _j - (u3 - bvirt) + (_i - bvirt);
-        b[3] = u3;
-        return 4;
-    }
-}
-function tailadd(finlen, a, b, k, z) {
-    let bvirt, c, ahi, alo, bhi, blo, _i, _j, _k, _0, s1, s0, u3;
-    s1 = a * b;
-    c = _utilJs.splitter * a;
-    ahi = c - (c - a);
-    alo = a - ahi;
-    c = _utilJs.splitter * b;
-    bhi = c - (c - b);
-    blo = b - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    c = _utilJs.splitter * k;
-    bhi = c - (c - k);
-    blo = k - bhi;
-    _i = s0 * k;
-    c = _utilJs.splitter * s0;
-    ahi = c - (c - s0);
-    alo = s0 - ahi;
-    u[0] = alo * blo - (_i - ahi * bhi - alo * bhi - ahi * blo);
-    _j = s1 * k;
-    c = _utilJs.splitter * s1;
-    ahi = c - (c - s1);
-    alo = s1 - ahi;
-    _0 = alo * blo - (_j - ahi * bhi - alo * bhi - ahi * blo);
-    _k = _i + _0;
-    bvirt = _k - _i;
-    u[1] = _i - (_k - bvirt) + (_0 - bvirt);
-    u3 = _j + _k;
-    u[2] = _k - (u3 - _j);
-    u[3] = u3;
-    finlen = finadd(finlen, 4, u);
-    if (z !== 0) {
-        c = _utilJs.splitter * z;
-        bhi = c - (c - z);
-        blo = z - bhi;
-        _i = s0 * z;
-        c = _utilJs.splitter * s0;
-        ahi = c - (c - s0);
-        alo = s0 - ahi;
-        u[0] = alo * blo - (_i - ahi * bhi - alo * bhi - ahi * blo);
-        _j = s1 * z;
-        c = _utilJs.splitter * s1;
-        ahi = c - (c - s1);
-        alo = s1 - ahi;
-        _0 = alo * blo - (_j - ahi * bhi - alo * bhi - ahi * blo);
-        _k = _i + _0;
-        bvirt = _k - _i;
-        u[1] = _i - (_k - bvirt) + (_0 - bvirt);
-        u3 = _j + _k;
-        u[2] = _k - (u3 - _j);
-        u[3] = u3;
-        finlen = finadd(finlen, 4, u);
-    }
-    return finlen;
-}
-function orient3dadapt(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, permanent) {
-    let finlen;
-    let adxtail, bdxtail, cdxtail;
-    let adytail, bdytail, cdytail;
-    let adztail, bdztail, cdztail;
-    let bvirt, c, ahi, alo, bhi, blo, _i, _j, _k, _0, s1, s0, t1, t0, u3;
-    const adx = ax - dx;
-    const bdx = bx - dx;
-    const cdx = cx - dx;
-    const ady = ay - dy;
-    const bdy = by - dy;
-    const cdy = cy - dy;
-    const adz = az - dz;
-    const bdz = bz - dz;
-    const cdz = cz - dz;
-    s1 = bdx * cdy;
-    c = _utilJs.splitter * bdx;
-    ahi = c - (c - bdx);
-    alo = bdx - ahi;
-    c = _utilJs.splitter * cdy;
-    bhi = c - (c - cdy);
-    blo = cdy - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = cdx * bdy;
-    c = _utilJs.splitter * cdx;
-    ahi = c - (c - cdx);
-    alo = cdx - ahi;
-    c = _utilJs.splitter * bdy;
-    bhi = c - (c - bdy);
-    blo = bdy - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    bc[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    bc[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    bc[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    bc[3] = u3;
-    s1 = cdx * ady;
-    c = _utilJs.splitter * cdx;
-    ahi = c - (c - cdx);
-    alo = cdx - ahi;
-    c = _utilJs.splitter * ady;
-    bhi = c - (c - ady);
-    blo = ady - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = adx * cdy;
-    c = _utilJs.splitter * adx;
-    ahi = c - (c - adx);
-    alo = adx - ahi;
-    c = _utilJs.splitter * cdy;
-    bhi = c - (c - cdy);
-    blo = cdy - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    ca[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    ca[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    ca[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    ca[3] = u3;
-    s1 = adx * bdy;
-    c = _utilJs.splitter * adx;
-    ahi = c - (c - adx);
-    alo = adx - ahi;
-    c = _utilJs.splitter * bdy;
-    bhi = c - (c - bdy);
-    blo = bdy - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = bdx * ady;
-    c = _utilJs.splitter * bdx;
-    ahi = c - (c - bdx);
-    alo = bdx - ahi;
-    c = _utilJs.splitter * ady;
-    bhi = c - (c - ady);
-    blo = ady - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    ab[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    ab[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    ab[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    ab[3] = u3;
-    finlen = _utilJs.sum(_utilJs.sum(_utilJs.scale(4, bc, adz, _8), _8, _utilJs.scale(4, ca, bdz, _8b), _8b, _16), _16, _utilJs.scale(4, ab, cdz, _8), _8, fin);
-    let det = _utilJs.estimate(finlen, fin);
-    let errbound = o3derrboundB * permanent;
-    if (det >= errbound || -det >= errbound) return det;
-    bvirt = ax - adx;
-    adxtail = ax - (adx + bvirt) + (bvirt - dx);
-    bvirt = bx - bdx;
-    bdxtail = bx - (bdx + bvirt) + (bvirt - dx);
-    bvirt = cx - cdx;
-    cdxtail = cx - (cdx + bvirt) + (bvirt - dx);
-    bvirt = ay - ady;
-    adytail = ay - (ady + bvirt) + (bvirt - dy);
-    bvirt = by - bdy;
-    bdytail = by - (bdy + bvirt) + (bvirt - dy);
-    bvirt = cy - cdy;
-    cdytail = cy - (cdy + bvirt) + (bvirt - dy);
-    bvirt = az - adz;
-    adztail = az - (adz + bvirt) + (bvirt - dz);
-    bvirt = bz - bdz;
-    bdztail = bz - (bdz + bvirt) + (bvirt - dz);
-    bvirt = cz - cdz;
-    cdztail = cz - (cdz + bvirt) + (bvirt - dz);
-    if (adxtail === 0 && bdxtail === 0 && cdxtail === 0 && adytail === 0 && bdytail === 0 && cdytail === 0 && adztail === 0 && bdztail === 0 && cdztail === 0) return det;
-    errbound = o3derrboundC * permanent + _utilJs.resulterrbound * Math.abs(det);
-    det += adz * (bdx * cdytail + cdy * bdxtail - (bdy * cdxtail + cdx * bdytail)) + adztail * (bdx * cdy - bdy * cdx) + bdz * (cdx * adytail + ady * cdxtail - (cdy * adxtail + adx * cdytail)) + bdztail * (cdx * ady - cdy * adx) + cdz * (adx * bdytail + bdy * adxtail - (ady * bdxtail + bdx * adytail)) + cdztail * (adx * bdy - ady * bdx);
-    if (det >= errbound || -det >= errbound) return det;
-    const at_len = tailinit(adxtail, adytail, bdx, bdy, cdx, cdy, at_b, at_c);
-    const bt_len = tailinit(bdxtail, bdytail, cdx, cdy, adx, ady, bt_c, bt_a);
-    const ct_len = tailinit(cdxtail, cdytail, adx, ady, bdx, bdy, ct_a, ct_b);
-    const bctlen = _utilJs.sum(bt_len, bt_c, ct_len, ct_b, bct);
-    finlen = finadd(finlen, _utilJs.scale(bctlen, bct, adz, _16), _16);
-    const catlen = _utilJs.sum(ct_len, ct_a, at_len, at_c, cat);
-    finlen = finadd(finlen, _utilJs.scale(catlen, cat, bdz, _16), _16);
-    const abtlen = _utilJs.sum(at_len, at_b, bt_len, bt_a, abt);
-    finlen = finadd(finlen, _utilJs.scale(abtlen, abt, cdz, _16), _16);
-    if (adztail !== 0) {
-        finlen = finadd(finlen, _utilJs.scale(4, bc, adztail, _12), _12);
-        finlen = finadd(finlen, _utilJs.scale(bctlen, bct, adztail, _16), _16);
-    }
-    if (bdztail !== 0) {
-        finlen = finadd(finlen, _utilJs.scale(4, ca, bdztail, _12), _12);
-        finlen = finadd(finlen, _utilJs.scale(catlen, cat, bdztail, _16), _16);
-    }
-    if (cdztail !== 0) {
-        finlen = finadd(finlen, _utilJs.scale(4, ab, cdztail, _12), _12);
-        finlen = finadd(finlen, _utilJs.scale(abtlen, abt, cdztail, _16), _16);
-    }
-    if (adxtail !== 0) {
-        if (bdytail !== 0) finlen = tailadd(finlen, adxtail, bdytail, cdz, cdztail);
-        if (cdytail !== 0) finlen = tailadd(finlen, -adxtail, cdytail, bdz, bdztail);
-    }
-    if (bdxtail !== 0) {
-        if (cdytail !== 0) finlen = tailadd(finlen, bdxtail, cdytail, adz, adztail);
-        if (adytail !== 0) finlen = tailadd(finlen, -bdxtail, adytail, cdz, cdztail);
-    }
-    if (cdxtail !== 0) {
-        if (adytail !== 0) finlen = tailadd(finlen, cdxtail, adytail, bdz, bdztail);
-        if (bdytail !== 0) finlen = tailadd(finlen, -cdxtail, bdytail, adz, adztail);
-    }
-    return fin[finlen - 1];
-}
-function orient3d(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz) {
-    const adx = ax - dx;
-    const bdx = bx - dx;
-    const cdx = cx - dx;
-    const ady = ay - dy;
-    const bdy = by - dy;
-    const cdy = cy - dy;
-    const adz = az - dz;
-    const bdz = bz - dz;
-    const cdz = cz - dz;
-    const bdxcdy = bdx * cdy;
-    const cdxbdy = cdx * bdy;
-    const cdxady = cdx * ady;
-    const adxcdy = adx * cdy;
-    const adxbdy = adx * bdy;
-    const bdxady = bdx * ady;
-    const det = adz * (bdxcdy - cdxbdy) + bdz * (cdxady - adxcdy) + cdz * (adxbdy - bdxady);
-    const permanent = (Math.abs(bdxcdy) + Math.abs(cdxbdy)) * Math.abs(adz) + (Math.abs(cdxady) + Math.abs(adxcdy)) * Math.abs(bdz) + (Math.abs(adxbdy) + Math.abs(bdxady)) * Math.abs(cdz);
-    const errbound = o3derrboundA * permanent;
-    if (det > errbound || -det > errbound) return det;
-    return orient3dadapt(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, permanent);
-}
-function orient3dfast(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz) {
-    const adx = ax - dx;
-    const bdx = bx - dx;
-    const cdx = cx - dx;
-    const ady = ay - dy;
-    const bdy = by - dy;
-    const cdy = cy - dy;
-    const adz = az - dz;
-    const bdz = bz - dz;
-    const cdz = cz - dz;
-    return adx * (bdy * cdz - bdz * cdy) + bdx * (cdy * adz - cdz * ady) + cdx * (ady * bdz - adz * bdy);
-}
-
-},{"./util.js":"kdlbG","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bbOYc":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "incircle", ()=>incircle
-);
-parcelHelpers.export(exports, "incirclefast", ()=>incirclefast
-);
-var _utilJs = require("./util.js");
-const iccerrboundA = (10 + 96 * _utilJs.epsilon) * _utilJs.epsilon;
-const iccerrboundB = (4 + 48 * _utilJs.epsilon) * _utilJs.epsilon;
-const iccerrboundC = (44 + 576 * _utilJs.epsilon) * _utilJs.epsilon * _utilJs.epsilon;
-const bc = _utilJs.vec(4);
-const ca = _utilJs.vec(4);
-const ab = _utilJs.vec(4);
-const aa = _utilJs.vec(4);
-const bb = _utilJs.vec(4);
-const cc = _utilJs.vec(4);
-const u = _utilJs.vec(4);
-const v = _utilJs.vec(4);
-const axtbc = _utilJs.vec(8);
-const aytbc = _utilJs.vec(8);
-const bxtca = _utilJs.vec(8);
-const bytca = _utilJs.vec(8);
-const cxtab = _utilJs.vec(8);
-const cytab = _utilJs.vec(8);
-const abt = _utilJs.vec(8);
-const bct = _utilJs.vec(8);
-const cat = _utilJs.vec(8);
-const abtt = _utilJs.vec(4);
-const bctt = _utilJs.vec(4);
-const catt = _utilJs.vec(4);
-const _8 = _utilJs.vec(8);
-const _16 = _utilJs.vec(16);
-const _16b = _utilJs.vec(16);
-const _16c = _utilJs.vec(16);
-const _32 = _utilJs.vec(32);
-const _32b = _utilJs.vec(32);
-const _48 = _utilJs.vec(48);
-const _64 = _utilJs.vec(64);
-let fin = _utilJs.vec(1152);
-let fin2 = _utilJs.vec(1152);
-function finadd(finlen, a, alen) {
-    finlen = _utilJs.sum(finlen, fin, a, alen, fin2);
-    const tmp = fin;
-    fin = fin2;
-    fin2 = tmp;
-    return finlen;
-}
-function incircleadapt(ax, ay, bx, by, cx, cy, dx, dy, permanent) {
-    let finlen;
-    let adxtail, bdxtail, cdxtail, adytail, bdytail, cdytail;
-    let axtbclen, aytbclen, bxtcalen, bytcalen, cxtablen, cytablen;
-    let abtlen, bctlen, catlen;
-    let abttlen, bcttlen, cattlen;
-    let n1, n0;
-    let bvirt, c, ahi, alo, bhi, blo, _i, _j, _0, s1, s0, t1, t0, u3;
-    const adx = ax - dx;
-    const bdx = bx - dx;
-    const cdx = cx - dx;
-    const ady = ay - dy;
-    const bdy = by - dy;
-    const cdy = cy - dy;
-    s1 = bdx * cdy;
-    c = _utilJs.splitter * bdx;
-    ahi = c - (c - bdx);
-    alo = bdx - ahi;
-    c = _utilJs.splitter * cdy;
-    bhi = c - (c - cdy);
-    blo = cdy - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = cdx * bdy;
-    c = _utilJs.splitter * cdx;
-    ahi = c - (c - cdx);
-    alo = cdx - ahi;
-    c = _utilJs.splitter * bdy;
-    bhi = c - (c - bdy);
-    blo = bdy - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    bc[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    bc[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    bc[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    bc[3] = u3;
-    s1 = cdx * ady;
-    c = _utilJs.splitter * cdx;
-    ahi = c - (c - cdx);
-    alo = cdx - ahi;
-    c = _utilJs.splitter * ady;
-    bhi = c - (c - ady);
-    blo = ady - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = adx * cdy;
-    c = _utilJs.splitter * adx;
-    ahi = c - (c - adx);
-    alo = adx - ahi;
-    c = _utilJs.splitter * cdy;
-    bhi = c - (c - cdy);
-    blo = cdy - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    ca[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    ca[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    ca[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    ca[3] = u3;
-    s1 = adx * bdy;
-    c = _utilJs.splitter * adx;
-    ahi = c - (c - adx);
-    alo = adx - ahi;
-    c = _utilJs.splitter * bdy;
-    bhi = c - (c - bdy);
-    blo = bdy - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = bdx * ady;
-    c = _utilJs.splitter * bdx;
-    ahi = c - (c - bdx);
-    alo = bdx - ahi;
-    c = _utilJs.splitter * ady;
-    bhi = c - (c - ady);
-    blo = ady - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    ab[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    ab[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    ab[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    ab[3] = u3;
-    finlen = _utilJs.sum(_utilJs.sum(_utilJs.sum(_utilJs.scale(_utilJs.scale(4, bc, adx, _8), _8, adx, _16), _16, _utilJs.scale(_utilJs.scale(4, bc, ady, _8), _8, ady, _16b), _16b, _32), _32, _utilJs.sum(_utilJs.scale(_utilJs.scale(4, ca, bdx, _8), _8, bdx, _16), _16, _utilJs.scale(_utilJs.scale(4, ca, bdy, _8), _8, bdy, _16b), _16b, _32b), _32b, _64), _64, _utilJs.sum(_utilJs.scale(_utilJs.scale(4, ab, cdx, _8), _8, cdx, _16), _16, _utilJs.scale(_utilJs.scale(4, ab, cdy, _8), _8, cdy, _16b), _16b, _32), _32, fin);
-    let det = _utilJs.estimate(finlen, fin);
-    let errbound = iccerrboundB * permanent;
-    if (det >= errbound || -det >= errbound) return det;
-    bvirt = ax - adx;
-    adxtail = ax - (adx + bvirt) + (bvirt - dx);
-    bvirt = ay - ady;
-    adytail = ay - (ady + bvirt) + (bvirt - dy);
-    bvirt = bx - bdx;
-    bdxtail = bx - (bdx + bvirt) + (bvirt - dx);
-    bvirt = by - bdy;
-    bdytail = by - (bdy + bvirt) + (bvirt - dy);
-    bvirt = cx - cdx;
-    cdxtail = cx - (cdx + bvirt) + (bvirt - dx);
-    bvirt = cy - cdy;
-    cdytail = cy - (cdy + bvirt) + (bvirt - dy);
-    if (adxtail === 0 && bdxtail === 0 && cdxtail === 0 && adytail === 0 && bdytail === 0 && cdytail === 0) return det;
-    errbound = iccerrboundC * permanent + _utilJs.resulterrbound * Math.abs(det);
-    det += (adx * adx + ady * ady) * (bdx * cdytail + cdy * bdxtail - (bdy * cdxtail + cdx * bdytail)) + 2 * (adx * adxtail + ady * adytail) * (bdx * cdy - bdy * cdx) + ((bdx * bdx + bdy * bdy) * (cdx * adytail + ady * cdxtail - (cdy * adxtail + adx * cdytail)) + 2 * (bdx * bdxtail + bdy * bdytail) * (cdx * ady - cdy * adx)) + ((cdx * cdx + cdy * cdy) * (adx * bdytail + bdy * adxtail - (ady * bdxtail + bdx * adytail)) + 2 * (cdx * cdxtail + cdy * cdytail) * (adx * bdy - ady * bdx));
-    if (det >= errbound || -det >= errbound) return det;
-    if (bdxtail !== 0 || bdytail !== 0 || cdxtail !== 0 || cdytail !== 0) {
-        s1 = adx * adx;
-        c = _utilJs.splitter * adx;
-        ahi = c - (c - adx);
-        alo = adx - ahi;
-        s0 = alo * alo - (s1 - ahi * ahi - (ahi + ahi) * alo);
-        t1 = ady * ady;
-        c = _utilJs.splitter * ady;
-        ahi = c - (c - ady);
-        alo = ady - ahi;
-        t0 = alo * alo - (t1 - ahi * ahi - (ahi + ahi) * alo);
-        _i = s0 + t0;
-        bvirt = _i - s0;
-        aa[0] = s0 - (_i - bvirt) + (t0 - bvirt);
-        _j = s1 + _i;
-        bvirt = _j - s1;
-        _0 = s1 - (_j - bvirt) + (_i - bvirt);
-        _i = _0 + t1;
-        bvirt = _i - _0;
-        aa[1] = _0 - (_i - bvirt) + (t1 - bvirt);
-        u3 = _j + _i;
-        bvirt = u3 - _j;
-        aa[2] = _j - (u3 - bvirt) + (_i - bvirt);
-        aa[3] = u3;
-    }
-    if (cdxtail !== 0 || cdytail !== 0 || adxtail !== 0 || adytail !== 0) {
-        s1 = bdx * bdx;
-        c = _utilJs.splitter * bdx;
-        ahi = c - (c - bdx);
-        alo = bdx - ahi;
-        s0 = alo * alo - (s1 - ahi * ahi - (ahi + ahi) * alo);
-        t1 = bdy * bdy;
-        c = _utilJs.splitter * bdy;
-        ahi = c - (c - bdy);
-        alo = bdy - ahi;
-        t0 = alo * alo - (t1 - ahi * ahi - (ahi + ahi) * alo);
-        _i = s0 + t0;
-        bvirt = _i - s0;
-        bb[0] = s0 - (_i - bvirt) + (t0 - bvirt);
-        _j = s1 + _i;
-        bvirt = _j - s1;
-        _0 = s1 - (_j - bvirt) + (_i - bvirt);
-        _i = _0 + t1;
-        bvirt = _i - _0;
-        bb[1] = _0 - (_i - bvirt) + (t1 - bvirt);
-        u3 = _j + _i;
-        bvirt = u3 - _j;
-        bb[2] = _j - (u3 - bvirt) + (_i - bvirt);
-        bb[3] = u3;
-    }
-    if (adxtail !== 0 || adytail !== 0 || bdxtail !== 0 || bdytail !== 0) {
-        s1 = cdx * cdx;
-        c = _utilJs.splitter * cdx;
-        ahi = c - (c - cdx);
-        alo = cdx - ahi;
-        s0 = alo * alo - (s1 - ahi * ahi - (ahi + ahi) * alo);
-        t1 = cdy * cdy;
-        c = _utilJs.splitter * cdy;
-        ahi = c - (c - cdy);
-        alo = cdy - ahi;
-        t0 = alo * alo - (t1 - ahi * ahi - (ahi + ahi) * alo);
-        _i = s0 + t0;
-        bvirt = _i - s0;
-        cc[0] = s0 - (_i - bvirt) + (t0 - bvirt);
-        _j = s1 + _i;
-        bvirt = _j - s1;
-        _0 = s1 - (_j - bvirt) + (_i - bvirt);
-        _i = _0 + t1;
-        bvirt = _i - _0;
-        cc[1] = _0 - (_i - bvirt) + (t1 - bvirt);
-        u3 = _j + _i;
-        bvirt = u3 - _j;
-        cc[2] = _j - (u3 - bvirt) + (_i - bvirt);
-        cc[3] = u3;
-    }
-    if (adxtail !== 0) {
-        axtbclen = _utilJs.scale(4, bc, adxtail, axtbc);
-        finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(axtbclen, axtbc, 2 * adx, _16), _16, _utilJs.scale(_utilJs.scale(4, cc, adxtail, _8), _8, bdy, _16b), _16b, _utilJs.scale(_utilJs.scale(4, bb, adxtail, _8), _8, -cdy, _16c), _16c, _32, _48), _48);
-    }
-    if (adytail !== 0) {
-        aytbclen = _utilJs.scale(4, bc, adytail, aytbc);
-        finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(aytbclen, aytbc, 2 * ady, _16), _16, _utilJs.scale(_utilJs.scale(4, bb, adytail, _8), _8, cdx, _16b), _16b, _utilJs.scale(_utilJs.scale(4, cc, adytail, _8), _8, -bdx, _16c), _16c, _32, _48), _48);
-    }
-    if (bdxtail !== 0) {
-        bxtcalen = _utilJs.scale(4, ca, bdxtail, bxtca);
-        finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(bxtcalen, bxtca, 2 * bdx, _16), _16, _utilJs.scale(_utilJs.scale(4, aa, bdxtail, _8), _8, cdy, _16b), _16b, _utilJs.scale(_utilJs.scale(4, cc, bdxtail, _8), _8, -ady, _16c), _16c, _32, _48), _48);
-    }
-    if (bdytail !== 0) {
-        bytcalen = _utilJs.scale(4, ca, bdytail, bytca);
-        finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(bytcalen, bytca, 2 * bdy, _16), _16, _utilJs.scale(_utilJs.scale(4, cc, bdytail, _8), _8, adx, _16b), _16b, _utilJs.scale(_utilJs.scale(4, aa, bdytail, _8), _8, -cdx, _16c), _16c, _32, _48), _48);
-    }
-    if (cdxtail !== 0) {
-        cxtablen = _utilJs.scale(4, ab, cdxtail, cxtab);
-        finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(cxtablen, cxtab, 2 * cdx, _16), _16, _utilJs.scale(_utilJs.scale(4, bb, cdxtail, _8), _8, ady, _16b), _16b, _utilJs.scale(_utilJs.scale(4, aa, cdxtail, _8), _8, -bdy, _16c), _16c, _32, _48), _48);
-    }
-    if (cdytail !== 0) {
-        cytablen = _utilJs.scale(4, ab, cdytail, cytab);
-        finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(cytablen, cytab, 2 * cdy, _16), _16, _utilJs.scale(_utilJs.scale(4, aa, cdytail, _8), _8, bdx, _16b), _16b, _utilJs.scale(_utilJs.scale(4, bb, cdytail, _8), _8, -adx, _16c), _16c, _32, _48), _48);
-    }
-    if (adxtail !== 0 || adytail !== 0) {
-        if (bdxtail !== 0 || bdytail !== 0 || cdxtail !== 0 || cdytail !== 0) {
-            s1 = bdxtail * cdy;
-            c = _utilJs.splitter * bdxtail;
-            ahi = c - (c - bdxtail);
-            alo = bdxtail - ahi;
-            c = _utilJs.splitter * cdy;
-            bhi = c - (c - cdy);
-            blo = cdy - bhi;
-            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-            t1 = bdx * cdytail;
-            c = _utilJs.splitter * bdx;
-            ahi = c - (c - bdx);
-            alo = bdx - ahi;
-            c = _utilJs.splitter * cdytail;
-            bhi = c - (c - cdytail);
-            blo = cdytail - bhi;
-            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-            _i = s0 + t0;
-            bvirt = _i - s0;
-            u[0] = s0 - (_i - bvirt) + (t0 - bvirt);
-            _j = s1 + _i;
-            bvirt = _j - s1;
-            _0 = s1 - (_j - bvirt) + (_i - bvirt);
-            _i = _0 + t1;
-            bvirt = _i - _0;
-            u[1] = _0 - (_i - bvirt) + (t1 - bvirt);
-            u3 = _j + _i;
-            bvirt = u3 - _j;
-            u[2] = _j - (u3 - bvirt) + (_i - bvirt);
-            u[3] = u3;
-            s1 = cdxtail * -bdy;
-            c = _utilJs.splitter * cdxtail;
-            ahi = c - (c - cdxtail);
-            alo = cdxtail - ahi;
-            c = _utilJs.splitter * -bdy;
-            bhi = c - (c - -bdy);
-            blo = -bdy - bhi;
-            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-            t1 = cdx * -bdytail;
-            c = _utilJs.splitter * cdx;
-            ahi = c - (c - cdx);
-            alo = cdx - ahi;
-            c = _utilJs.splitter * -bdytail;
-            bhi = c - (c - -bdytail);
-            blo = -bdytail - bhi;
-            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-            _i = s0 + t0;
-            bvirt = _i - s0;
-            v[0] = s0 - (_i - bvirt) + (t0 - bvirt);
-            _j = s1 + _i;
-            bvirt = _j - s1;
-            _0 = s1 - (_j - bvirt) + (_i - bvirt);
-            _i = _0 + t1;
-            bvirt = _i - _0;
-            v[1] = _0 - (_i - bvirt) + (t1 - bvirt);
-            u3 = _j + _i;
-            bvirt = u3 - _j;
-            v[2] = _j - (u3 - bvirt) + (_i - bvirt);
-            v[3] = u3;
-            bctlen = _utilJs.sum(4, u, 4, v, bct);
-            s1 = bdxtail * cdytail;
-            c = _utilJs.splitter * bdxtail;
-            ahi = c - (c - bdxtail);
-            alo = bdxtail - ahi;
-            c = _utilJs.splitter * cdytail;
-            bhi = c - (c - cdytail);
-            blo = cdytail - bhi;
-            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-            t1 = cdxtail * bdytail;
-            c = _utilJs.splitter * cdxtail;
-            ahi = c - (c - cdxtail);
-            alo = cdxtail - ahi;
-            c = _utilJs.splitter * bdytail;
-            bhi = c - (c - bdytail);
-            blo = bdytail - bhi;
-            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-            _i = s0 - t0;
-            bvirt = s0 - _i;
-            bctt[0] = s0 - (_i + bvirt) + (bvirt - t0);
-            _j = s1 + _i;
-            bvirt = _j - s1;
-            _0 = s1 - (_j - bvirt) + (_i - bvirt);
-            _i = _0 - t1;
-            bvirt = _0 - _i;
-            bctt[1] = _0 - (_i + bvirt) + (bvirt - t1);
-            u3 = _j + _i;
-            bvirt = u3 - _j;
-            bctt[2] = _j - (u3 - bvirt) + (_i - bvirt);
-            bctt[3] = u3;
-            bcttlen = 4;
-        } else {
-            bct[0] = 0;
-            bctlen = 1;
-            bctt[0] = 0;
-            bcttlen = 1;
-        }
-        if (adxtail !== 0) {
-            const len = _utilJs.scale(bctlen, bct, adxtail, _16c);
-            finlen = finadd(finlen, _utilJs.sum(_utilJs.scale(axtbclen, axtbc, adxtail, _16), _16, _utilJs.scale(len, _16c, 2 * adx, _32), _32, _48), _48);
-            const len2 = _utilJs.scale(bcttlen, bctt, adxtail, _8);
-            finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(len2, _8, 2 * adx, _16), _16, _utilJs.scale(len2, _8, adxtail, _16b), _16b, _utilJs.scale(len, _16c, adxtail, _32), _32, _32b, _64), _64);
-            if (bdytail !== 0) finlen = finadd(finlen, _utilJs.scale(_utilJs.scale(4, cc, adxtail, _8), _8, bdytail, _16), _16);
-            if (cdytail !== 0) finlen = finadd(finlen, _utilJs.scale(_utilJs.scale(4, bb, -adxtail, _8), _8, cdytail, _16), _16);
-        }
-        if (adytail !== 0) {
-            const len = _utilJs.scale(bctlen, bct, adytail, _16c);
-            finlen = finadd(finlen, _utilJs.sum(_utilJs.scale(aytbclen, aytbc, adytail, _16), _16, _utilJs.scale(len, _16c, 2 * ady, _32), _32, _48), _48);
-            const len2 = _utilJs.scale(bcttlen, bctt, adytail, _8);
-            finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(len2, _8, 2 * ady, _16), _16, _utilJs.scale(len2, _8, adytail, _16b), _16b, _utilJs.scale(len, _16c, adytail, _32), _32, _32b, _64), _64);
-        }
-    }
-    if (bdxtail !== 0 || bdytail !== 0) {
-        if (cdxtail !== 0 || cdytail !== 0 || adxtail !== 0 || adytail !== 0) {
-            s1 = cdxtail * ady;
-            c = _utilJs.splitter * cdxtail;
-            ahi = c - (c - cdxtail);
-            alo = cdxtail - ahi;
-            c = _utilJs.splitter * ady;
-            bhi = c - (c - ady);
-            blo = ady - bhi;
-            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-            t1 = cdx * adytail;
-            c = _utilJs.splitter * cdx;
-            ahi = c - (c - cdx);
-            alo = cdx - ahi;
-            c = _utilJs.splitter * adytail;
-            bhi = c - (c - adytail);
-            blo = adytail - bhi;
-            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-            _i = s0 + t0;
-            bvirt = _i - s0;
-            u[0] = s0 - (_i - bvirt) + (t0 - bvirt);
-            _j = s1 + _i;
-            bvirt = _j - s1;
-            _0 = s1 - (_j - bvirt) + (_i - bvirt);
-            _i = _0 + t1;
-            bvirt = _i - _0;
-            u[1] = _0 - (_i - bvirt) + (t1 - bvirt);
-            u3 = _j + _i;
-            bvirt = u3 - _j;
-            u[2] = _j - (u3 - bvirt) + (_i - bvirt);
-            u[3] = u3;
-            n1 = -cdy;
-            n0 = -cdytail;
-            s1 = adxtail * n1;
-            c = _utilJs.splitter * adxtail;
-            ahi = c - (c - adxtail);
-            alo = adxtail - ahi;
-            c = _utilJs.splitter * n1;
-            bhi = c - (c - n1);
-            blo = n1 - bhi;
-            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-            t1 = adx * n0;
-            c = _utilJs.splitter * adx;
-            ahi = c - (c - adx);
-            alo = adx - ahi;
-            c = _utilJs.splitter * n0;
-            bhi = c - (c - n0);
-            blo = n0 - bhi;
-            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-            _i = s0 + t0;
-            bvirt = _i - s0;
-            v[0] = s0 - (_i - bvirt) + (t0 - bvirt);
-            _j = s1 + _i;
-            bvirt = _j - s1;
-            _0 = s1 - (_j - bvirt) + (_i - bvirt);
-            _i = _0 + t1;
-            bvirt = _i - _0;
-            v[1] = _0 - (_i - bvirt) + (t1 - bvirt);
-            u3 = _j + _i;
-            bvirt = u3 - _j;
-            v[2] = _j - (u3 - bvirt) + (_i - bvirt);
-            v[3] = u3;
-            catlen = _utilJs.sum(4, u, 4, v, cat);
-            s1 = cdxtail * adytail;
-            c = _utilJs.splitter * cdxtail;
-            ahi = c - (c - cdxtail);
-            alo = cdxtail - ahi;
-            c = _utilJs.splitter * adytail;
-            bhi = c - (c - adytail);
-            blo = adytail - bhi;
-            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-            t1 = adxtail * cdytail;
-            c = _utilJs.splitter * adxtail;
-            ahi = c - (c - adxtail);
-            alo = adxtail - ahi;
-            c = _utilJs.splitter * cdytail;
-            bhi = c - (c - cdytail);
-            blo = cdytail - bhi;
-            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-            _i = s0 - t0;
-            bvirt = s0 - _i;
-            catt[0] = s0 - (_i + bvirt) + (bvirt - t0);
-            _j = s1 + _i;
-            bvirt = _j - s1;
-            _0 = s1 - (_j - bvirt) + (_i - bvirt);
-            _i = _0 - t1;
-            bvirt = _0 - _i;
-            catt[1] = _0 - (_i + bvirt) + (bvirt - t1);
-            u3 = _j + _i;
-            bvirt = u3 - _j;
-            catt[2] = _j - (u3 - bvirt) + (_i - bvirt);
-            catt[3] = u3;
-            cattlen = 4;
-        } else {
-            cat[0] = 0;
-            catlen = 1;
-            catt[0] = 0;
-            cattlen = 1;
-        }
-        if (bdxtail !== 0) {
-            const len = _utilJs.scale(catlen, cat, bdxtail, _16c);
-            finlen = finadd(finlen, _utilJs.sum(_utilJs.scale(bxtcalen, bxtca, bdxtail, _16), _16, _utilJs.scale(len, _16c, 2 * bdx, _32), _32, _48), _48);
-            const len2 = _utilJs.scale(cattlen, catt, bdxtail, _8);
-            finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(len2, _8, 2 * bdx, _16), _16, _utilJs.scale(len2, _8, bdxtail, _16b), _16b, _utilJs.scale(len, _16c, bdxtail, _32), _32, _32b, _64), _64);
-            if (cdytail !== 0) finlen = finadd(finlen, _utilJs.scale(_utilJs.scale(4, aa, bdxtail, _8), _8, cdytail, _16), _16);
-            if (adytail !== 0) finlen = finadd(finlen, _utilJs.scale(_utilJs.scale(4, cc, -bdxtail, _8), _8, adytail, _16), _16);
-        }
-        if (bdytail !== 0) {
-            const len = _utilJs.scale(catlen, cat, bdytail, _16c);
-            finlen = finadd(finlen, _utilJs.sum(_utilJs.scale(bytcalen, bytca, bdytail, _16), _16, _utilJs.scale(len, _16c, 2 * bdy, _32), _32, _48), _48);
-            const len2 = _utilJs.scale(cattlen, catt, bdytail, _8);
-            finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(len2, _8, 2 * bdy, _16), _16, _utilJs.scale(len2, _8, bdytail, _16b), _16b, _utilJs.scale(len, _16c, bdytail, _32), _32, _32b, _64), _64);
-        }
-    }
-    if (cdxtail !== 0 || cdytail !== 0) {
-        if (adxtail !== 0 || adytail !== 0 || bdxtail !== 0 || bdytail !== 0) {
-            s1 = adxtail * bdy;
-            c = _utilJs.splitter * adxtail;
-            ahi = c - (c - adxtail);
-            alo = adxtail - ahi;
-            c = _utilJs.splitter * bdy;
-            bhi = c - (c - bdy);
-            blo = bdy - bhi;
-            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-            t1 = adx * bdytail;
-            c = _utilJs.splitter * adx;
-            ahi = c - (c - adx);
-            alo = adx - ahi;
-            c = _utilJs.splitter * bdytail;
-            bhi = c - (c - bdytail);
-            blo = bdytail - bhi;
-            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-            _i = s0 + t0;
-            bvirt = _i - s0;
-            u[0] = s0 - (_i - bvirt) + (t0 - bvirt);
-            _j = s1 + _i;
-            bvirt = _j - s1;
-            _0 = s1 - (_j - bvirt) + (_i - bvirt);
-            _i = _0 + t1;
-            bvirt = _i - _0;
-            u[1] = _0 - (_i - bvirt) + (t1 - bvirt);
-            u3 = _j + _i;
-            bvirt = u3 - _j;
-            u[2] = _j - (u3 - bvirt) + (_i - bvirt);
-            u[3] = u3;
-            n1 = -ady;
-            n0 = -adytail;
-            s1 = bdxtail * n1;
-            c = _utilJs.splitter * bdxtail;
-            ahi = c - (c - bdxtail);
-            alo = bdxtail - ahi;
-            c = _utilJs.splitter * n1;
-            bhi = c - (c - n1);
-            blo = n1 - bhi;
-            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-            t1 = bdx * n0;
-            c = _utilJs.splitter * bdx;
-            ahi = c - (c - bdx);
-            alo = bdx - ahi;
-            c = _utilJs.splitter * n0;
-            bhi = c - (c - n0);
-            blo = n0 - bhi;
-            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-            _i = s0 + t0;
-            bvirt = _i - s0;
-            v[0] = s0 - (_i - bvirt) + (t0 - bvirt);
-            _j = s1 + _i;
-            bvirt = _j - s1;
-            _0 = s1 - (_j - bvirt) + (_i - bvirt);
-            _i = _0 + t1;
-            bvirt = _i - _0;
-            v[1] = _0 - (_i - bvirt) + (t1 - bvirt);
-            u3 = _j + _i;
-            bvirt = u3 - _j;
-            v[2] = _j - (u3 - bvirt) + (_i - bvirt);
-            v[3] = u3;
-            abtlen = _utilJs.sum(4, u, 4, v, abt);
-            s1 = adxtail * bdytail;
-            c = _utilJs.splitter * adxtail;
-            ahi = c - (c - adxtail);
-            alo = adxtail - ahi;
-            c = _utilJs.splitter * bdytail;
-            bhi = c - (c - bdytail);
-            blo = bdytail - bhi;
-            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-            t1 = bdxtail * adytail;
-            c = _utilJs.splitter * bdxtail;
-            ahi = c - (c - bdxtail);
-            alo = bdxtail - ahi;
-            c = _utilJs.splitter * adytail;
-            bhi = c - (c - adytail);
-            blo = adytail - bhi;
-            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-            _i = s0 - t0;
-            bvirt = s0 - _i;
-            abtt[0] = s0 - (_i + bvirt) + (bvirt - t0);
-            _j = s1 + _i;
-            bvirt = _j - s1;
-            _0 = s1 - (_j - bvirt) + (_i - bvirt);
-            _i = _0 - t1;
-            bvirt = _0 - _i;
-            abtt[1] = _0 - (_i + bvirt) + (bvirt - t1);
-            u3 = _j + _i;
-            bvirt = u3 - _j;
-            abtt[2] = _j - (u3 - bvirt) + (_i - bvirt);
-            abtt[3] = u3;
-            abttlen = 4;
-        } else {
-            abt[0] = 0;
-            abtlen = 1;
-            abtt[0] = 0;
-            abttlen = 1;
-        }
-        if (cdxtail !== 0) {
-            const len = _utilJs.scale(abtlen, abt, cdxtail, _16c);
-            finlen = finadd(finlen, _utilJs.sum(_utilJs.scale(cxtablen, cxtab, cdxtail, _16), _16, _utilJs.scale(len, _16c, 2 * cdx, _32), _32, _48), _48);
-            const len2 = _utilJs.scale(abttlen, abtt, cdxtail, _8);
-            finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(len2, _8, 2 * cdx, _16), _16, _utilJs.scale(len2, _8, cdxtail, _16b), _16b, _utilJs.scale(len, _16c, cdxtail, _32), _32, _32b, _64), _64);
-            if (adytail !== 0) finlen = finadd(finlen, _utilJs.scale(_utilJs.scale(4, bb, cdxtail, _8), _8, adytail, _16), _16);
-            if (bdytail !== 0) finlen = finadd(finlen, _utilJs.scale(_utilJs.scale(4, aa, -cdxtail, _8), _8, bdytail, _16), _16);
-        }
-        if (cdytail !== 0) {
-            const len = _utilJs.scale(abtlen, abt, cdytail, _16c);
-            finlen = finadd(finlen, _utilJs.sum(_utilJs.scale(cytablen, cytab, cdytail, _16), _16, _utilJs.scale(len, _16c, 2 * cdy, _32), _32, _48), _48);
-            const len2 = _utilJs.scale(abttlen, abtt, cdytail, _8);
-            finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(len2, _8, 2 * cdy, _16), _16, _utilJs.scale(len2, _8, cdytail, _16b), _16b, _utilJs.scale(len, _16c, cdytail, _32), _32, _32b, _64), _64);
-        }
-    }
-    return fin[finlen - 1];
-}
-function incircle(ax, ay, bx, by, cx, cy, dx, dy) {
-    const adx = ax - dx;
-    const bdx = bx - dx;
-    const cdx = cx - dx;
-    const ady = ay - dy;
-    const bdy = by - dy;
-    const cdy = cy - dy;
-    const bdxcdy = bdx * cdy;
-    const cdxbdy = cdx * bdy;
-    const alift = adx * adx + ady * ady;
-    const cdxady = cdx * ady;
-    const adxcdy = adx * cdy;
-    const blift = bdx * bdx + bdy * bdy;
-    const adxbdy = adx * bdy;
-    const bdxady = bdx * ady;
-    const clift = cdx * cdx + cdy * cdy;
-    const det = alift * (bdxcdy - cdxbdy) + blift * (cdxady - adxcdy) + clift * (adxbdy - bdxady);
-    const permanent = (Math.abs(bdxcdy) + Math.abs(cdxbdy)) * alift + (Math.abs(cdxady) + Math.abs(adxcdy)) * blift + (Math.abs(adxbdy) + Math.abs(bdxady)) * clift;
-    const errbound = iccerrboundA * permanent;
-    if (det > errbound || -det > errbound) return det;
-    return incircleadapt(ax, ay, bx, by, cx, cy, dx, dy, permanent);
-}
-function incirclefast(ax, ay, bx, by, cx, cy, dx, dy) {
-    const adx = ax - dx;
-    const ady = ay - dy;
-    const bdx = bx - dx;
-    const bdy = by - dy;
-    const cdx = cx - dx;
-    const cdy = cy - dy;
-    const abdet = adx * bdy - bdx * ady;
-    const bcdet = bdx * cdy - cdx * bdy;
-    const cadet = cdx * ady - adx * cdy;
-    const alift = adx * adx + ady * ady;
-    const blift = bdx * bdx + bdy * bdy;
-    const clift = cdx * cdx + cdy * cdy;
-    return alift * bcdet + blift * cadet + clift * abdet;
-}
-
-},{"./util.js":"kdlbG","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"j22Cf":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "insphere", ()=>insphere
-);
-parcelHelpers.export(exports, "inspherefast", ()=>inspherefast
-);
-var _utilJs = require("./util.js");
-const isperrboundA = (16 + 224 * _utilJs.epsilon) * _utilJs.epsilon;
-const isperrboundB = (5 + 72 * _utilJs.epsilon) * _utilJs.epsilon;
-const isperrboundC = (71 + 1408 * _utilJs.epsilon) * _utilJs.epsilon * _utilJs.epsilon;
-const ab1 = _utilJs.vec(4);
-const bc1 = _utilJs.vec(4);
-const cd1 = _utilJs.vec(4);
-const de = _utilJs.vec(4);
-const ea = _utilJs.vec(4);
-const ac1 = _utilJs.vec(4);
-const bd1 = _utilJs.vec(4);
-const ce = _utilJs.vec(4);
-const da1 = _utilJs.vec(4);
-const eb = _utilJs.vec(4);
-const abc1 = _utilJs.vec(24);
-const bcd1 = _utilJs.vec(24);
-const cde = _utilJs.vec(24);
-const dea = _utilJs.vec(24);
-const eab = _utilJs.vec(24);
-const abd = _utilJs.vec(24);
-const bce = _utilJs.vec(24);
-const cda1 = _utilJs.vec(24);
-const deb = _utilJs.vec(24);
-const eac = _utilJs.vec(24);
-const adet = _utilJs.vec(1152);
-const bdet = _utilJs.vec(1152);
-const cdet = _utilJs.vec(1152);
-const ddet = _utilJs.vec(1152);
-const edet = _utilJs.vec(1152);
-const abdet = _utilJs.vec(2304);
-const cddet = _utilJs.vec(2304);
-const cdedet = _utilJs.vec(3456);
-const deter = _utilJs.vec(5760);
-const _8 = _utilJs.vec(8);
-const _8b = _utilJs.vec(8);
-const _8c = _utilJs.vec(8);
-const _16 = _utilJs.vec(16);
-const _24 = _utilJs.vec(24);
-const _48 = _utilJs.vec(48);
-const _48b = _utilJs.vec(48);
-const _96 = _utilJs.vec(96);
-const _192 = _utilJs.vec(192);
-const _384x = _utilJs.vec(384);
-const _384y = _utilJs.vec(384);
-const _384z = _utilJs.vec(384);
-const _768 = _utilJs.vec(768);
-function sum_three_scale(a, b, c, az, bz, cz, out) {
-    return _utilJs.sum_three(_utilJs.scale(4, a, az, _8), _8, _utilJs.scale(4, b, bz, _8b), _8b, _utilJs.scale(4, c, cz, _8c), _8c, _16, out);
-}
-function liftexact(alen, a, blen, b, clen, c, dlen, d, x, y, z, out) {
-    const len = _utilJs.sum(_utilJs.sum(alen, a, blen, b, _48), _48, _utilJs.negate(_utilJs.sum(clen, c, dlen, d, _48b), _48b), _48b, _96);
-    return _utilJs.sum_three(_utilJs.scale(_utilJs.scale(len, _96, x, _192), _192, x, _384x), _384x, _utilJs.scale(_utilJs.scale(len, _96, y, _192), _192, y, _384y), _384y, _utilJs.scale(_utilJs.scale(len, _96, z, _192), _192, z, _384z), _384z, _768, out);
-}
-function insphereexact(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez) {
-    let bvirt, c, ahi, alo, bhi, blo, _i, _j, _0, s1, s0, t1, t0, u3;
-    s1 = ax * by;
-    c = _utilJs.splitter * ax;
-    ahi = c - (c - ax);
-    alo = ax - ahi;
-    c = _utilJs.splitter * by;
-    bhi = c - (c - by);
-    blo = by - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = bx * ay;
-    c = _utilJs.splitter * bx;
-    ahi = c - (c - bx);
-    alo = bx - ahi;
-    c = _utilJs.splitter * ay;
-    bhi = c - (c - ay);
-    blo = ay - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    ab1[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    ab1[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    ab1[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    ab1[3] = u3;
-    s1 = bx * cy;
-    c = _utilJs.splitter * bx;
-    ahi = c - (c - bx);
-    alo = bx - ahi;
-    c = _utilJs.splitter * cy;
-    bhi = c - (c - cy);
-    blo = cy - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = cx * by;
-    c = _utilJs.splitter * cx;
-    ahi = c - (c - cx);
-    alo = cx - ahi;
-    c = _utilJs.splitter * by;
-    bhi = c - (c - by);
-    blo = by - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    bc1[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    bc1[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    bc1[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    bc1[3] = u3;
-    s1 = cx * dy;
-    c = _utilJs.splitter * cx;
-    ahi = c - (c - cx);
-    alo = cx - ahi;
-    c = _utilJs.splitter * dy;
-    bhi = c - (c - dy);
-    blo = dy - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = dx * cy;
-    c = _utilJs.splitter * dx;
-    ahi = c - (c - dx);
-    alo = dx - ahi;
-    c = _utilJs.splitter * cy;
-    bhi = c - (c - cy);
-    blo = cy - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    cd1[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    cd1[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    cd1[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    cd1[3] = u3;
-    s1 = dx * ey;
-    c = _utilJs.splitter * dx;
-    ahi = c - (c - dx);
-    alo = dx - ahi;
-    c = _utilJs.splitter * ey;
-    bhi = c - (c - ey);
-    blo = ey - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = ex * dy;
-    c = _utilJs.splitter * ex;
-    ahi = c - (c - ex);
-    alo = ex - ahi;
-    c = _utilJs.splitter * dy;
-    bhi = c - (c - dy);
-    blo = dy - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    de[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    de[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    de[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    de[3] = u3;
-    s1 = ex * ay;
-    c = _utilJs.splitter * ex;
-    ahi = c - (c - ex);
-    alo = ex - ahi;
-    c = _utilJs.splitter * ay;
-    bhi = c - (c - ay);
-    blo = ay - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = ax * ey;
-    c = _utilJs.splitter * ax;
-    ahi = c - (c - ax);
-    alo = ax - ahi;
-    c = _utilJs.splitter * ey;
-    bhi = c - (c - ey);
-    blo = ey - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    ea[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    ea[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    ea[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    ea[3] = u3;
-    s1 = ax * cy;
-    c = _utilJs.splitter * ax;
-    ahi = c - (c - ax);
-    alo = ax - ahi;
-    c = _utilJs.splitter * cy;
-    bhi = c - (c - cy);
-    blo = cy - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = cx * ay;
-    c = _utilJs.splitter * cx;
-    ahi = c - (c - cx);
-    alo = cx - ahi;
-    c = _utilJs.splitter * ay;
-    bhi = c - (c - ay);
-    blo = ay - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    ac1[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    ac1[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    ac1[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    ac1[3] = u3;
-    s1 = bx * dy;
-    c = _utilJs.splitter * bx;
-    ahi = c - (c - bx);
-    alo = bx - ahi;
-    c = _utilJs.splitter * dy;
-    bhi = c - (c - dy);
-    blo = dy - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = dx * by;
-    c = _utilJs.splitter * dx;
-    ahi = c - (c - dx);
-    alo = dx - ahi;
-    c = _utilJs.splitter * by;
-    bhi = c - (c - by);
-    blo = by - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    bd1[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    bd1[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    bd1[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    bd1[3] = u3;
-    s1 = cx * ey;
-    c = _utilJs.splitter * cx;
-    ahi = c - (c - cx);
-    alo = cx - ahi;
-    c = _utilJs.splitter * ey;
-    bhi = c - (c - ey);
-    blo = ey - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = ex * cy;
-    c = _utilJs.splitter * ex;
-    ahi = c - (c - ex);
-    alo = ex - ahi;
-    c = _utilJs.splitter * cy;
-    bhi = c - (c - cy);
-    blo = cy - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    ce[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    ce[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    ce[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    ce[3] = u3;
-    s1 = dx * ay;
-    c = _utilJs.splitter * dx;
-    ahi = c - (c - dx);
-    alo = dx - ahi;
-    c = _utilJs.splitter * ay;
-    bhi = c - (c - ay);
-    blo = ay - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = ax * dy;
-    c = _utilJs.splitter * ax;
-    ahi = c - (c - ax);
-    alo = ax - ahi;
-    c = _utilJs.splitter * dy;
-    bhi = c - (c - dy);
-    blo = dy - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    da1[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    da1[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    da1[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    da1[3] = u3;
-    s1 = ex * by;
-    c = _utilJs.splitter * ex;
-    ahi = c - (c - ex);
-    alo = ex - ahi;
-    c = _utilJs.splitter * by;
-    bhi = c - (c - by);
-    blo = by - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = bx * ey;
-    c = _utilJs.splitter * bx;
-    ahi = c - (c - bx);
-    alo = bx - ahi;
-    c = _utilJs.splitter * ey;
-    bhi = c - (c - ey);
-    blo = ey - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    eb[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    eb[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    u3 = _j + _i;
-    bvirt = u3 - _j;
-    eb[2] = _j - (u3 - bvirt) + (_i - bvirt);
-    eb[3] = u3;
-    const abclen = sum_three_scale(ab1, bc1, ac1, cz, az, -bz, abc1);
-    const bcdlen = sum_three_scale(bc1, cd1, bd1, dz, bz, -cz, bcd1);
-    const cdelen = sum_three_scale(cd1, de, ce, ez, cz, -dz, cde);
-    const dealen = sum_three_scale(de, ea, da1, az, dz, -ez, dea);
-    const eablen = sum_three_scale(ea, ab1, eb, bz, ez, -az, eab);
-    const abdlen = sum_three_scale(ab1, bd1, da1, dz, az, bz, abd);
-    const bcelen = sum_three_scale(bc1, ce, eb, ez, bz, cz, bce);
-    const cdalen = sum_three_scale(cd1, da1, ac1, az, cz, dz, cda1);
-    const deblen = sum_three_scale(de, eb, bd1, bz, dz, ez, deb);
-    const eaclen = sum_three_scale(ea, ac1, ce, cz, ez, az, eac);
-    const deterlen = _utilJs.sum_three(liftexact(cdelen, cde, bcelen, bce, deblen, deb, bcdlen, bcd1, ax, ay, az, adet), adet, liftexact(dealen, dea, cdalen, cda1, eaclen, eac, cdelen, cde, bx, by, bz, bdet), bdet, _utilJs.sum_three(liftexact(eablen, eab, deblen, deb, abdlen, abd, dealen, dea, cx, cy, cz, cdet), cdet, liftexact(abclen, abc1, eaclen, eac, bcelen, bce, eablen, eab, dx, dy, dz, ddet), ddet, liftexact(bcdlen, bcd1, abdlen, abd, cdalen, cda1, abclen, abc1, ex, ey, ez, edet), edet, cddet, cdedet), cdedet, abdet, deter);
-    return deter[deterlen - 1];
-}
-const xdet = _utilJs.vec(96);
-const ydet = _utilJs.vec(96);
-const zdet = _utilJs.vec(96);
-const fin = _utilJs.vec(1152);
-function liftadapt(a, b, c, az, bz, cz, x, y, z, out) {
-    const len = sum_three_scale(a, b, c, az, bz, cz, _24);
-    return _utilJs.sum_three(_utilJs.scale(_utilJs.scale(len, _24, x, _48), _48, x, xdet), xdet, _utilJs.scale(_utilJs.scale(len, _24, y, _48), _48, y, ydet), ydet, _utilJs.scale(_utilJs.scale(len, _24, z, _48), _48, z, zdet), zdet, _192, out);
-}
-function insphereadapt(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez, permanent) {
-    let ab3, bc3, cd3, da3, ac3, bd3;
-    let aextail, bextail, cextail, dextail;
-    let aeytail, beytail, ceytail, deytail;
-    let aeztail, beztail, ceztail, deztail;
-    let bvirt, c, ahi, alo, bhi, blo, _i, _j, _0, s1, s0, t1, t0;
-    const aex = ax - ex;
-    const bex = bx - ex;
-    const cex = cx - ex;
-    const dex = dx - ex;
-    const aey = ay - ey;
-    const bey = by - ey;
-    const cey = cy - ey;
-    const dey = dy - ey;
-    const aez = az - ez;
-    const bez = bz - ez;
-    const cez = cz - ez;
-    const dez = dz - ez;
-    s1 = aex * bey;
-    c = _utilJs.splitter * aex;
-    ahi = c - (c - aex);
-    alo = aex - ahi;
-    c = _utilJs.splitter * bey;
-    bhi = c - (c - bey);
-    blo = bey - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = bex * aey;
-    c = _utilJs.splitter * bex;
-    ahi = c - (c - bex);
-    alo = bex - ahi;
-    c = _utilJs.splitter * aey;
-    bhi = c - (c - aey);
-    blo = aey - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    ab1[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    ab1[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    ab3 = _j + _i;
-    bvirt = ab3 - _j;
-    ab1[2] = _j - (ab3 - bvirt) + (_i - bvirt);
-    ab1[3] = ab3;
-    s1 = bex * cey;
-    c = _utilJs.splitter * bex;
-    ahi = c - (c - bex);
-    alo = bex - ahi;
-    c = _utilJs.splitter * cey;
-    bhi = c - (c - cey);
-    blo = cey - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = cex * bey;
-    c = _utilJs.splitter * cex;
-    ahi = c - (c - cex);
-    alo = cex - ahi;
-    c = _utilJs.splitter * bey;
-    bhi = c - (c - bey);
-    blo = bey - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    bc1[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    bc1[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    bc3 = _j + _i;
-    bvirt = bc3 - _j;
-    bc1[2] = _j - (bc3 - bvirt) + (_i - bvirt);
-    bc1[3] = bc3;
-    s1 = cex * dey;
-    c = _utilJs.splitter * cex;
-    ahi = c - (c - cex);
-    alo = cex - ahi;
-    c = _utilJs.splitter * dey;
-    bhi = c - (c - dey);
-    blo = dey - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = dex * cey;
-    c = _utilJs.splitter * dex;
-    ahi = c - (c - dex);
-    alo = dex - ahi;
-    c = _utilJs.splitter * cey;
-    bhi = c - (c - cey);
-    blo = cey - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    cd1[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    cd1[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    cd3 = _j + _i;
-    bvirt = cd3 - _j;
-    cd1[2] = _j - (cd3 - bvirt) + (_i - bvirt);
-    cd1[3] = cd3;
-    s1 = dex * aey;
-    c = _utilJs.splitter * dex;
-    ahi = c - (c - dex);
-    alo = dex - ahi;
-    c = _utilJs.splitter * aey;
-    bhi = c - (c - aey);
-    blo = aey - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = aex * dey;
-    c = _utilJs.splitter * aex;
-    ahi = c - (c - aex);
-    alo = aex - ahi;
-    c = _utilJs.splitter * dey;
-    bhi = c - (c - dey);
-    blo = dey - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    da1[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    da1[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    da3 = _j + _i;
-    bvirt = da3 - _j;
-    da1[2] = _j - (da3 - bvirt) + (_i - bvirt);
-    da1[3] = da3;
-    s1 = aex * cey;
-    c = _utilJs.splitter * aex;
-    ahi = c - (c - aex);
-    alo = aex - ahi;
-    c = _utilJs.splitter * cey;
-    bhi = c - (c - cey);
-    blo = cey - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = cex * aey;
-    c = _utilJs.splitter * cex;
-    ahi = c - (c - cex);
-    alo = cex - ahi;
-    c = _utilJs.splitter * aey;
-    bhi = c - (c - aey);
-    blo = aey - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    ac1[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    ac1[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    ac3 = _j + _i;
-    bvirt = ac3 - _j;
-    ac1[2] = _j - (ac3 - bvirt) + (_i - bvirt);
-    ac1[3] = ac3;
-    s1 = bex * dey;
-    c = _utilJs.splitter * bex;
-    ahi = c - (c - bex);
-    alo = bex - ahi;
-    c = _utilJs.splitter * dey;
-    bhi = c - (c - dey);
-    blo = dey - bhi;
-    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
-    t1 = dex * bey;
-    c = _utilJs.splitter * dex;
-    ahi = c - (c - dex);
-    alo = dex - ahi;
-    c = _utilJs.splitter * bey;
-    bhi = c - (c - bey);
-    blo = bey - bhi;
-    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
-    _i = s0 - t0;
-    bvirt = s0 - _i;
-    bd1[0] = s0 - (_i + bvirt) + (bvirt - t0);
-    _j = s1 + _i;
-    bvirt = _j - s1;
-    _0 = s1 - (_j - bvirt) + (_i - bvirt);
-    _i = _0 - t1;
-    bvirt = _0 - _i;
-    bd1[1] = _0 - (_i + bvirt) + (bvirt - t1);
-    bd3 = _j + _i;
-    bvirt = bd3 - _j;
-    bd1[2] = _j - (bd3 - bvirt) + (_i - bvirt);
-    bd1[3] = bd3;
-    const finlen = _utilJs.sum(_utilJs.sum(_utilJs.negate(liftadapt(bc1, cd1, bd1, dez, bez, -cez, aex, aey, aez, adet), adet), adet, liftadapt(cd1, da1, ac1, aez, cez, dez, bex, bey, bez, bdet), bdet, abdet), abdet, _utilJs.sum(_utilJs.negate(liftadapt(da1, ab1, bd1, bez, dez, aez, cex, cey, cez, cdet), cdet), cdet, liftadapt(ab1, bc1, ac1, cez, aez, -bez, dex, dey, dez, ddet), ddet, cddet), cddet, fin);
-    let det = _utilJs.estimate(finlen, fin);
-    let errbound = isperrboundB * permanent;
-    if (det >= errbound || -det >= errbound) return det;
-    bvirt = ax - aex;
-    aextail = ax - (aex + bvirt) + (bvirt - ex);
-    bvirt = ay - aey;
-    aeytail = ay - (aey + bvirt) + (bvirt - ey);
-    bvirt = az - aez;
-    aeztail = az - (aez + bvirt) + (bvirt - ez);
-    bvirt = bx - bex;
-    bextail = bx - (bex + bvirt) + (bvirt - ex);
-    bvirt = by - bey;
-    beytail = by - (bey + bvirt) + (bvirt - ey);
-    bvirt = bz - bez;
-    beztail = bz - (bez + bvirt) + (bvirt - ez);
-    bvirt = cx - cex;
-    cextail = cx - (cex + bvirt) + (bvirt - ex);
-    bvirt = cy - cey;
-    ceytail = cy - (cey + bvirt) + (bvirt - ey);
-    bvirt = cz - cez;
-    ceztail = cz - (cez + bvirt) + (bvirt - ez);
-    bvirt = dx - dex;
-    dextail = dx - (dex + bvirt) + (bvirt - ex);
-    bvirt = dy - dey;
-    deytail = dy - (dey + bvirt) + (bvirt - ey);
-    bvirt = dz - dez;
-    deztail = dz - (dez + bvirt) + (bvirt - ez);
-    if (aextail === 0 && aeytail === 0 && aeztail === 0 && bextail === 0 && beytail === 0 && beztail === 0 && cextail === 0 && ceytail === 0 && ceztail === 0 && dextail === 0 && deytail === 0 && deztail === 0) return det;
-    errbound = isperrboundC * permanent + _utilJs.resulterrbound * Math.abs(det);
-    const abeps = aex * beytail + bey * aextail - (aey * bextail + bex * aeytail);
-    const bceps = bex * ceytail + cey * bextail - (bey * cextail + cex * beytail);
-    const cdeps = cex * deytail + dey * cextail - (cey * dextail + dex * ceytail);
-    const daeps = dex * aeytail + aey * dextail - (dey * aextail + aex * deytail);
-    const aceps = aex * ceytail + cey * aextail - (aey * cextail + cex * aeytail);
-    const bdeps = bex * deytail + dey * bextail - (bey * dextail + dex * beytail);
-    det += (bex * bex + bey * bey + bez * bez) * (cez * daeps + dez * aceps + aez * cdeps + (ceztail * da3 + deztail * ac3 + aeztail * cd3)) + (dex * dex + dey * dey + dez * dez) * (aez * bceps - bez * aceps + cez * abeps + (aeztail * bc3 - beztail * ac3 + ceztail * ab3)) - ((aex * aex + aey * aey + aez * aez) * (bez * cdeps - cez * bdeps + dez * bceps + (beztail * cd3 - ceztail * bd3 + deztail * bc3)) + (cex * cex + cey * cey + cez * cez) * (dez * abeps + aez * bdeps + bez * daeps + (deztail * ab3 + aeztail * bd3 + beztail * da3))) + 2 * ((bex * bextail + bey * beytail + bez * beztail) * (cez * da3 + dez * ac3 + aez * cd3) + (dex * dextail + dey * deytail + dez * deztail) * (aez * bc3 - bez * ac3 + cez * ab3) - ((aex * aextail + aey * aeytail + aez * aeztail) * (bez * cd3 - cez * bd3 + dez * bc3) + (cex * cextail + cey * ceytail + cez * ceztail) * (dez * ab3 + aez * bd3 + bez * da3)));
-    if (det >= errbound || -det >= errbound) return det;
-    return insphereexact(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez);
-}
-function insphere(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez) {
-    const aex = ax - ex;
-    const bex = bx - ex;
-    const cex = cx - ex;
-    const dex = dx - ex;
-    const aey = ay - ey;
-    const bey = by - ey;
-    const cey = cy - ey;
-    const dey = dy - ey;
-    const aez = az - ez;
-    const bez = bz - ez;
-    const cez = cz - ez;
-    const dez = dz - ez;
-    const aexbey = aex * bey;
-    const bexaey = bex * aey;
-    const ab = aexbey - bexaey;
-    const bexcey = bex * cey;
-    const cexbey = cex * bey;
-    const bc = bexcey - cexbey;
-    const cexdey = cex * dey;
-    const dexcey = dex * cey;
-    const cd = cexdey - dexcey;
-    const dexaey = dex * aey;
-    const aexdey = aex * dey;
-    const da = dexaey - aexdey;
-    const aexcey = aex * cey;
-    const cexaey = cex * aey;
-    const ac = aexcey - cexaey;
-    const bexdey = bex * dey;
-    const dexbey = dex * bey;
-    const bd = bexdey - dexbey;
-    const abc = aez * bc - bez * ac + cez * ab;
-    const bcd = bez * cd - cez * bd + dez * bc;
-    const cda = cez * da + dez * ac + aez * cd;
-    const dab = dez * ab + aez * bd + bez * da;
-    const alift = aex * aex + aey * aey + aez * aez;
-    const blift = bex * bex + bey * bey + bez * bez;
-    const clift = cex * cex + cey * cey + cez * cez;
-    const dlift = dex * dex + dey * dey + dez * dez;
-    const det = clift * dab - dlift * abc + (alift * bcd - blift * cda);
-    const aezplus = Math.abs(aez);
-    const bezplus = Math.abs(bez);
-    const cezplus = Math.abs(cez);
-    const dezplus = Math.abs(dez);
-    const aexbeyplus = Math.abs(aexbey);
-    const bexaeyplus = Math.abs(bexaey);
-    const bexceyplus = Math.abs(bexcey);
-    const cexbeyplus = Math.abs(cexbey);
-    const cexdeyplus = Math.abs(cexdey);
-    const dexceyplus = Math.abs(dexcey);
-    const dexaeyplus = Math.abs(dexaey);
-    const aexdeyplus = Math.abs(aexdey);
-    const aexceyplus = Math.abs(aexcey);
-    const cexaeyplus = Math.abs(cexaey);
-    const bexdeyplus = Math.abs(bexdey);
-    const dexbeyplus = Math.abs(dexbey);
-    const permanent = ((cexdeyplus + dexceyplus) * bezplus + (dexbeyplus + bexdeyplus) * cezplus + (bexceyplus + cexbeyplus) * dezplus) * alift + ((dexaeyplus + aexdeyplus) * cezplus + (aexceyplus + cexaeyplus) * dezplus + (cexdeyplus + dexceyplus) * aezplus) * blift + ((aexbeyplus + bexaeyplus) * dezplus + (bexdeyplus + dexbeyplus) * aezplus + (dexaeyplus + aexdeyplus) * bezplus) * clift + ((bexceyplus + cexbeyplus) * aezplus + (cexaeyplus + aexceyplus) * bezplus + (aexbeyplus + bexaeyplus) * cezplus) * dlift;
-    const errbound = isperrboundA * permanent;
-    if (det > errbound || -det > errbound) return det;
-    return -insphereadapt(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez, permanent);
-}
-function inspherefast(pax, pay, paz, pbx, pby, pbz, pcx, pcy, pcz, pdx, pdy, pdz, pex, pey, pez) {
-    const aex = pax - pex;
-    const bex = pbx - pex;
-    const cex = pcx - pex;
-    const dex = pdx - pex;
-    const aey = pay - pey;
-    const bey = pby - pey;
-    const cey = pcy - pey;
-    const dey = pdy - pey;
-    const aez = paz - pez;
-    const bez = pbz - pez;
-    const cez = pcz - pez;
-    const dez = pdz - pez;
-    const ab = aex * bey - bex * aey;
-    const bc = bex * cey - cex * bey;
-    const cd = cex * dey - dex * cey;
-    const da = dex * aey - aex * dey;
-    const ac = aex * cey - cex * aey;
-    const bd = bex * dey - dex * bey;
-    const abc = aez * bc - bez * ac + cez * ab;
-    const bcd = bez * cd - cez * bd + dez * bc;
-    const cda = cez * da + dez * ac + aez * cd;
-    const dab = dez * ab + aez * bd + bez * da;
-    const alift = aex * aex + aey * aey + aez * aez;
-    const blift = bex * bex + bey * bey + bez * bez;
-    const clift = cex * cex + cey * cey + cez * cez;
-    const dlift = dex * dex + dey * dey + dez * dez;
-    return clift * dab - dlift * abc + (alift * bcd - blift * cda);
-}
-
-},{"./util.js":"kdlbG","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kZ7BC":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kZ7BC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const epsilon = 0.000001;
@@ -11635,25 +9590,19 @@ class Voronoi {
             const dy = y2 - y1;
             const ex = x3 - x1;
             const ey = y3 - y1;
+            const bl = dx * dx + dy * dy;
+            const cl = ex * ex + ey * ey;
             const ab = (dx * ey - dy * ex) * 2;
-            if (Math.abs(ab) < 0.000000001) {
+            if (!ab) {
                 // degenerate case (collinear diagram)
+                x = (x1 + x3) / 2 - 100000000 * ey;
+                y = (y1 + y3) / 2 + 100000000 * ex;
+            } else if (Math.abs(ab) < 0.00000001) {
                 // almost equal points (degenerate triangle)
-                // the circumcenter is at the infinity, in a
-                // direction that is:
-                // 1. orthogonal to the halfedge.
-                let a = 1000000000;
-                // 2. points away from the center; since the list of triangles starts
-                // in the center, the first point of the first triangle
-                // will be our reference
-                const r = triangles[0] * 2;
-                a *= Math.sign((points[r] - x1) * ey - (points[r + 1] - y1) * ex);
-                x = (x1 + x3) / 2 - a * ey;
-                y = (y1 + y3) / 2 + a * ex;
+                x = (x1 + x3) / 2;
+                y = (y1 + y3) / 2;
             } else {
                 const d = 1 / ab;
-                const bl = dx * dx + dy * dy;
-                const cl = ex * ex + ey * ey;
                 x = x1 + (ey * bl - dy * cl) * d;
                 y = y1 + (dx * cl - ex * bl) * d;
             }
@@ -11796,7 +9745,7 @@ class Voronoi {
         let P = null;
         let x0, y0, x1 = points[n - 2], y1 = points[n - 1];
         let c0, c1 = this._regioncode(x1, y1);
-        let e0, e1 = 0;
+        let e0, e1;
         for(let j = 0; j < n; j += 2){
             x0 = x1, y0 = y1, x1 = points[j], y1 = points[j + 1];
             c0 = c1, c1 = this._regioncode(x1, y1);
@@ -11914,8 +9863,6 @@ class Voronoi {
                     e0 = 5, x = this.xmin, y = this.ymin;
                     break; // left
             }
-            // Note: this implicitly checks for out of bounds: if P[j] or P[j+1] are
-            // undefined, the conditional statement will be executed.
             if ((P[j] !== x || P[j + 1] !== y) && this.contains(i11, x, y)) P.splice(j, 0, x, y), j += 2;
         }
         if (P.length > 4) for(let i = 0; i < P.length; i += 2){
@@ -14925,7 +12872,8 @@ var _d3Array = require("d3-array");
 var _cartesianJs = require("./cartesian.js");
 var _mathJs = require("./math.js");
 function longitude(point) {
-    return _mathJs.abs(point[0]) <= _mathJs.pi ? point[0] : _mathJs.sign(point[0]) * ((_mathJs.abs(point[0]) + _mathJs.pi) % _mathJs.tau - _mathJs.pi);
+    if (_mathJs.abs(point[0]) <= _mathJs.pi) return point[0];
+    else return _mathJs.sign(point[0]) * ((_mathJs.abs(point[0]) + _mathJs.pi) % _mathJs.tau - _mathJs.pi);
 }
 exports.default = function(polygon, point) {
     var lambda = longitude(point), phi = point[1], sinPhi = _mathJs.sin(phi), normal = [
@@ -17160,8 +15108,6 @@ parcelHelpers.export(exports, "cluster", ()=>_clusterJsDefault.default
 );
 parcelHelpers.export(exports, "hierarchy", ()=>_indexJsDefault.default
 );
-parcelHelpers.export(exports, "Node", ()=>_indexJs.Node
-);
 parcelHelpers.export(exports, "pack", ()=>_indexJsDefault1.default
 );
 parcelHelpers.export(exports, "packSiblings", ()=>_siblingsJsDefault.default
@@ -19214,25 +17160,25 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "implicit", ()=>implicit
 );
-var _d3Array = require("d3-array");
 var _initJs = require("./init.js");
 const implicit = Symbol("implicit");
 function ordinal() {
-    var index = new _d3Array.InternMap(), domain = [], range = [], unknown = implicit;
+    var index = new Map(), domain = [], range = [], unknown = implicit;
     function scale(d) {
-        let i = index.get(d);
-        if (i === undefined) {
+        var key = d + "", i = index.get(key);
+        if (!i) {
             if (unknown !== implicit) return unknown;
-            index.set(d, i = domain.push(d) - 1);
+            index.set(key, i = domain.push(d));
         }
-        return range[i % range.length];
+        return range[(i - 1) % range.length];
     }
     scale.domain = function(_) {
         if (!arguments.length) return domain.slice();
-        domain = [], index = new _d3Array.InternMap();
+        domain = [], index = new Map();
         for (const value of _){
-            if (index.has(value)) continue;
-            index.set(value, domain.push(value) - 1);
+            const key = value + "";
+            if (index.has(key)) continue;
+            index.set(key, domain.push(value));
         }
         return scale;
     };
@@ -19250,7 +17196,7 @@ function ordinal() {
 }
 exports.default = ordinal;
 
-},{"d3-array":"dclxS","./init.js":"76hF6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7A0m5":[function(require,module,exports) {
+},{"./init.js":"76hF6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7A0m5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _linearJs = require("./linear.js");
@@ -19523,23 +17469,22 @@ function pow10(x) {
     return isFinite(x) ? +("1e" + x) : x < 0 ? 0 : x;
 }
 function powp(base) {
-    return base === 10 ? pow10 : base === Math.E ? Math.exp : (x)=>Math.pow(base, x)
-    ;
+    return base === 10 ? pow10 : base === Math.E ? Math.exp : function(x) {
+        return Math.pow(base, x);
+    };
 }
 function logp(base) {
-    return base === Math.E ? Math.log : base === 10 && Math.log10 || base === 2 && Math.log2 || (base = Math.log(base), (x)=>Math.log(x) / base
-    );
+    return base === Math.E ? Math.log : base === 10 && Math.log10 || base === 2 && Math.log2 || (base = Math.log(base), function(x) {
+        return Math.log(x) / base;
+    });
 }
 function reflect(f) {
-    return (x, k)=>-f(-x, k)
-    ;
+    return function(x) {
+        return -f(-x);
+    };
 }
 function loggish(transform) {
-    const scale = transform(transformLog, transformExp);
-    const domain = scale.domain;
-    let base = 10;
-    let logs;
-    let pows;
+    var scale = transform(transformLog, transformExp), domain = scale.domain, base = 10, logs, pows;
     function rescale() {
         logs = logp(base), pows = powp(base);
         if (domain()[0] < 0) {
@@ -19554,31 +17499,20 @@ function loggish(transform) {
     scale.domain = function(_) {
         return arguments.length ? (domain(_), rescale()) : domain();
     };
-    scale.ticks = (count)=>{
-        const d = domain();
-        let u = d[0];
-        let v = d[d.length - 1];
-        const r = v < u;
-        if (r) [u, v] = [
-            v,
-            u
-        ];
-        let i = logs(u);
-        let j = logs(v);
-        let k;
-        let t;
-        const n = count == null ? 10 : +count;
-        let z = [];
+    scale.ticks = function(count) {
+        var d = domain(), u = d[0], v = d[d.length - 1], r;
+        if (r = v < u) i = u, u = v, v = i;
+        var i = logs(u), j = logs(v), p, k, t, n = count == null ? 10 : +count, z = [];
         if (!(base % 1) && j - i < n) {
             i = Math.floor(i), j = Math.ceil(j);
-            if (u > 0) for(; i <= j; ++i)for(k = 1; k < base; ++k){
-                t = i < 0 ? k / pows(-i) : k * pows(i);
+            if (u > 0) for(; i <= j; ++i)for(k = 1, p = pows(i); k < base; ++k){
+                t = p * k;
                 if (t < u) continue;
                 if (t > v) break;
                 z.push(t);
             }
-            else for(; i <= j; ++i)for(k = base - 1; k >= 1; --k){
-                t = i > 0 ? k / pows(-i) : k * pows(i);
+            else for(; i <= j; ++i)for(k = base - 1, p = pows(i); k >= 1; --k){
+                t = p * k;
                 if (t < u) continue;
                 if (t > v) break;
                 z.push(t);
@@ -19587,37 +17521,38 @@ function loggish(transform) {
         } else z = _d3Array.ticks(i, j, Math.min(j - i, n)).map(pows);
         return r ? z.reverse() : z;
     };
-    scale.tickFormat = (count, specifier)=>{
-        if (count == null) count = 10;
-        if (specifier == null) specifier = base === 10 ? "s" : ",";
-        if (typeof specifier !== "function") {
-            if (!(base % 1) && (specifier = _d3Format.formatSpecifier(specifier)).precision == null) specifier.trim = true;
-            specifier = _d3Format.format(specifier);
-        }
+    scale.tickFormat = function(count, specifier) {
+        if (specifier == null) specifier = base === 10 ? ".0e" : ",";
+        if (typeof specifier !== "function") specifier = _d3Format.format(specifier);
         if (count === Infinity) return specifier;
-        const k = Math.max(1, base * count / scale.ticks().length); // TODO fast estimate?
-        return (d)=>{
-            let i = d / pows(Math.round(logs(d)));
+        if (count == null) count = 10;
+        var k = Math.max(1, base * count / scale.ticks().length); // TODO fast estimate?
+        return function(d) {
+            var i = d / pows(Math.round(logs(d)));
             if (i * base < base - 0.5) i *= base;
             return i <= k ? specifier(d) : "";
         };
     };
-    scale.nice = ()=>{
+    scale.nice = function() {
         return domain(_niceJsDefault.default(domain(), {
-            floor: (x)=>pows(Math.floor(logs(x)))
-            ,
-            ceil: (x)=>pows(Math.ceil(logs(x)))
+            floor: function(x) {
+                return pows(Math.floor(logs(x)));
+            },
+            ceil: function(x) {
+                return pows(Math.ceil(logs(x)));
+            }
         }));
     };
     return scale;
 }
 function log() {
-    const scale = loggish(_continuousJs.transformer()).domain([
+    var scale = loggish(_continuousJs.transformer()).domain([
         1,
         10
     ]);
-    scale.copy = ()=>_continuousJs.copy(scale, log()).base(scale.base())
-    ;
+    scale.copy = function() {
+        return _continuousJs.copy(scale, log()).base(scale.base());
+    };
     _initJs.initRange.apply(scale, arguments);
     return scale;
 }
@@ -22971,7 +20906,7 @@ Linear.prototype = {
                 this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y);
                 break;
             case 1:
-                this._point = 2; // falls through
+                this._point = 2; // proceed
             default:
                 this._context.lineTo(x, y);
                 break;
@@ -23547,7 +21482,7 @@ Basis.prototype = {
     lineEnd: function() {
         switch(this._point){
             case 3:
-                point(this, this._x1, this._y1); // falls through
+                point(this, this._x1, this._y1); // proceed
             case 2:
                 this._context.lineTo(this._x1, this._y1);
                 break;
@@ -23567,7 +21502,7 @@ Basis.prototype = {
                 break;
             case 2:
                 this._point = 3;
-                this._context.lineTo((5 * this._x0 + this._x1) / 6, (5 * this._y0 + this._y1) / 6); // falls through
+                this._context.lineTo((5 * this._x0 + this._x1) / 6, (5 * this._y0 + this._y1) / 6); // proceed
             default:
                 point(this, x, y);
                 break;
@@ -23617,7 +21552,7 @@ BasisOpen.prototype = {
                 this._line ? this._context.lineTo(x0, y0) : this._context.moveTo(x0, y0);
                 break;
             case 3:
-                this._point = 4; // falls through
+                this._point = 4; // proceed
             default:
                 _basisJs.point(this, x, y);
                 break;
@@ -23664,7 +21599,7 @@ class Bump {
                 else this._context.moveTo(x1, y);
                 break;
             case 1:
-                this._point = 2; // falls through
+                this._point = 2; // proceed
             default:
                 if (this._x) this._context.bezierCurveTo(this._x0 = (this._x0 + x1) / 2, this._y0, this._x0, y, x1, y);
                 else this._context.bezierCurveTo(this._x0, this._y0 = (this._y0 + y) / 2, x1, this._y0, x1, y);
@@ -23839,7 +21774,7 @@ Cardinal.prototype = {
                 this._x1 = x, this._y1 = y;
                 break;
             case 2:
-                this._point = 3; // falls through
+                this._point = 3; // proceed
             default:
                 point(this, x, y);
                 break;
@@ -23897,7 +21832,7 @@ CardinalOpen.prototype = {
                 this._line ? this._context.lineTo(this._x2, this._y2) : this._context.moveTo(this._x2, this._y2);
                 break;
             case 3:
-                this._point = 4; // falls through
+                this._point = 4; // proceed
             default:
                 _cardinalJs.point(this, x, y);
                 break;
@@ -24053,7 +21988,7 @@ CatmullRom.prototype = {
                 this._point = 2;
                 break;
             case 2:
-                this._point = 3; // falls through
+                this._point = 3; // proceed
             default:
                 point(this, x, y);
                 break;
@@ -24116,7 +22051,7 @@ CatmullRomOpen.prototype = {
                 this._line ? this._context.lineTo(this._x2, this._y2) : this._context.moveTo(this._x2, this._y2);
                 break;
             case 3:
-                this._point = 4; // falls through
+                this._point = 4; // proceed
             default:
                 _catmullRomJs.point(this, x, y);
                 break;
@@ -24366,7 +22301,7 @@ Step.prototype = {
                 this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y);
                 break;
             case 1:
-                this._point = 2; // falls through
+                this._point = 2; // proceed
             default:
                 if (this._t <= 0) {
                     this._context.lineTo(this._x, y);
@@ -24604,8 +22539,6 @@ parcelHelpers.export(exports, "zoomTransform", ()=>_transformJsDefault.default
 );
 parcelHelpers.export(exports, "zoomIdentity", ()=>_transformJs.identity
 );
-parcelHelpers.export(exports, "ZoomTransform", ()=>_transformJs.Transform
-);
 var _zoomJs = require("./zoom.js");
 var _zoomJsDefault = parcelHelpers.interopDefault(_zoomJs);
 var _transformJs = require("./transform.js");
@@ -24698,9 +22631,7 @@ exports.default = function() {
         ]
     ], duration = 250, interpolate = _d3Interpolate.interpolateZoom, listeners = _d3Dispatch.dispatch("start", "zoom", "end"), touchstarting, touchfirst, touchending, touchDelay = 500, wheelDelay = 150, clickDistance2 = 0, tapDistance = 10;
     function zoom(selection) {
-        selection.property("__zoom", defaultTransform).on("wheel.zoom", wheeled, {
-            passive: false
-        }).on("mousedown.zoom", mousedowned).on("dblclick.zoom", dblclicked).filter(touchable).on("touchstart.zoom", touchstarted).on("touchmove.zoom", touchmoved).on("touchend.zoom touchcancel.zoom", touchended).style("-webkit-tap-highlight-color", "rgba(0,0,0,0)");
+        selection.property("__zoom", defaultTransform).on("wheel.zoom", wheeled).on("mousedown.zoom", mousedowned).on("dblclick.zoom", dblclicked).filter(touchable).on("touchstart.zoom", touchstarted).on("touchmove.zoom", touchmoved).on("touchend.zoom touchcancel.zoom", touchended).style("-webkit-tap-highlight-color", "rgba(0,0,0,0)");
     }
     zoom.transform = function(collection, transform, point, event) {
         var selection = collection.selection ? collection.selection() : collection;
@@ -24840,7 +22771,7 @@ exports.default = function() {
     }
     function mousedowned(event1, ...args) {
         if (touchending || !filter.apply(this, arguments)) return;
-        var currentTarget = event1.currentTarget, g = gesture(this, args, true).event(event1), v = _d3Selection.select(event1.view).on("mousemove.zoom", mousemoved, true).on("mouseup.zoom", mouseupped, true), p = _d3Selection.pointer(event1, currentTarget), x0 = event1.clientX, y0 = event1.clientY;
+        var g = gesture(this, args, true).event(event1), v = _d3Selection.select(event1.view).on("mousemove.zoom", mousemoved, true).on("mouseup.zoom", mouseupped, true), p = _d3Selection.pointer(event1, currentTarget), currentTarget = event1.currentTarget, x0 = event1.clientX, y0 = event1.clientY;
         _d3Drag.dragDisable(event1.view);
         _noeventJs.nopropagation(event1);
         g.mouse = [
@@ -25741,7 +23672,155 @@ process.umask = function() {
     return 0;
 };
 
-},{}],"eZlUk":[function(require,module,exports) {
+},{}],"4PhqF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "nodes", ()=>nodes
+);
+parcelHelpers.export(exports, "links", ()=>links
+);
+parcelHelpers.export(exports, "MANY_BODY_STRENGTH", ()=>MANY_BODY_STRENGTH
+);
+var _colors = require("./colors");
+const nodes = [];
+const links = [];
+const MAIN_NODE_SIZE = 20;
+const CHILD_NODE_SIZE = 15;
+const LEAF_NODE_SIZE = 5;
+const DEFAULT_DISTANCE = 10;
+const MAIN_NODE_DISTANCE = 70;
+const LEAF_NODE_DISTANCE = 80;
+const MANY_BODY_STRENGTH = -20;
+let i1 = 0;
+const addMainNode = (node)=>{
+    node.size = MAIN_NODE_SIZE;
+    node.color = _colors.colors[i1++][1];
+    nodes.push(node);
+};
+const addChildNode = (parentNode, childNode, size = CHILD_NODE_SIZE, distance = DEFAULT_DISTANCE)=>{
+    childNode.size = size;
+    childNode.color = parentNode.color;
+    nodes.push(childNode);
+    links.push({
+        source: parentNode,
+        target: childNode,
+        distance,
+        color: parentNode.color
+    });
+};
+const assembleChildNode = (parentNode, id, numLeaves = 10)=>{
+    const childNode = {
+        id
+    };
+    addChildNode(parentNode, childNode);
+    for(let i = 0; i < numLeaves; i++)addChildNode(childNode, {
+        id: ''
+    }, LEAF_NODE_SIZE, LEAF_NODE_DISTANCE);
+};
+const connectMainNodes = (source, target)=>{
+    links.push({
+        source,
+        target,
+        distance: MAIN_NODE_DISTANCE,
+        color: source.color
+    });
+};
+const uno = {
+    id: '1'
+};
+addMainNode(uno);
+assembleChildNode(uno, 'Materia');
+assembleChildNode(uno, 'Existencia');
+const cuatro = {
+    id: '4'
+};
+addMainNode(cuatro);
+assembleChildNode(cuatro, 'Identidad');
+assembleChildNode(cuatro, 'Mundo');
+assembleChildNode(cuatro, 'Techo');
+assembleChildNode(cuatro, 'Fuego');
+const dos = {
+    id: '2'
+};
+addMainNode(dos);
+assembleChildNode(dos, 'Separacion');
+assembleChildNode(dos, 'Reshimo');
+assembleChildNode(dos, 'Sentir');
+assembleChildNode(dos, 'Emocion', 5);
+assembleChildNode(dos, 'Agua');
+const tres = {
+    id: '3'
+};
+addMainNode(tres);
+assembleChildNode(tres, 'Aire');
+assembleChildNode(tres, 'Analogía', 3);
+assembleChildNode(tres, 'Simbolo', 3);
+assembleChildNode(tres, 'Decir', 3);
+assembleChildNode(tres, 'Transmitir', 3);
+assembleChildNode(tres, 'Trascender', 3);
+connectMainNodes(uno, cuatro);
+connectMainNodes(uno, dos);
+connectMainNodes(cuatro, dos);
+connectMainNodes(tres, dos);
+connectMainNodes(tres, cuatro);
+connectMainNodes(tres, uno);
+
+},{"./colors":"fj2eq","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fj2eq":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "colors", ()=>colors
+);
+const colors = [
+    [
+        '#2BC4A9',
+        '#2BC4A9',
+        '#2BC4A9',
+        '#2BC4A9',
+        '#2BC4A9'
+    ],
+    [
+        '#FFFF9F',
+        '#FFFF9F',
+        '#FFFF9F',
+        '#FFFF9F',
+        '#FFFF9F'
+    ],
+    [
+        '#e2777a',
+        '#e2777a',
+        '#e2777a',
+        '#e2777a',
+        '#e2777a'
+    ],
+    [
+        '#9F9FFF',
+        '#9F9FFF',
+        '#9F9FFF',
+        '#9F9FFF',
+        '#9F9FFF'
+    ], 
+];
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"g2DKJ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+//  HIDE NAV ON SCROLL
+parcelHelpers.export(exports, "isMobileDevice", ()=>isMobileDevice
+);
+parcelHelpers.export(exports, "isSafari", ()=>isSafari
+);
+function isMobileDevice() {
+    let check = false;
+    (function(a) {
+        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od|ad)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(Browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+    })(navigator.userAgent || navigator.vendor || window.opera);
+    return check;
+}
+const isSafari = /constructor/i.test(window.HTMLElement) || function(p) {
+    return p.toString() === "[object SafariRemoteNotification]";
+}(!window['safari'] || typeof safari !== 'undefined' && window['safari'].pushNotification);
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eZlUk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Canvas", ()=>Canvas1
@@ -29961,7 +28040,7 @@ var dispatchQueueEvent = function(context, queueEvent) {
     return canvas;
 };
 
-},{"webcola":"2lsD1","d3-selection":"6hFAS","d3-transition":"96X82","d3-ease":"kFY3j","d3-dispatch":"8bLpz","d3-timer":"3j3SS","d3-drag":"jj2Dx","d3-shape":"9eU5U","d3-zoom":"kBLXT","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2lsD1":[function(require,module,exports) {
+},{"webcola":"2lsD1","d3-selection":"hgWtk","d3-transition":"cRYyR","d3-ease":"elZFc","d3-dispatch":"9d2te","d3-timer":"82ygz","d3-drag":"dKCUo","d3-shape":"dTLqu","d3-zoom":"7E00u","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2lsD1":[function(require,module,exports) {
 "use strict";
 function __export(m) {
     for(var p in m)if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -34558,6952 +32637,6 @@ function powerGraphGridLayout(graph, size, grouppadding) {
 }
 exports.powerGraphGridLayout = powerGraphGridLayout;
 
-},{"./layout":"3jcMK","./gridrouter":"8OixU"}],"6hFAS":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "create", ()=>_createJsDefault.default
-);
-parcelHelpers.export(exports, "creator", ()=>_creatorJsDefault.default
-);
-parcelHelpers.export(exports, "local", ()=>_localJsDefault.default
-);
-parcelHelpers.export(exports, "matcher", ()=>_matcherJsDefault.default
-);
-parcelHelpers.export(exports, "namespace", ()=>_namespaceJsDefault.default
-);
-parcelHelpers.export(exports, "namespaces", ()=>_namespacesJsDefault.default
-);
-parcelHelpers.export(exports, "pointer", ()=>_pointerJsDefault.default
-);
-parcelHelpers.export(exports, "pointers", ()=>_pointersJsDefault.default
-);
-parcelHelpers.export(exports, "select", ()=>_selectJsDefault.default
-);
-parcelHelpers.export(exports, "selectAll", ()=>_selectAllJsDefault.default
-);
-parcelHelpers.export(exports, "selection", ()=>_indexJsDefault.default
-);
-parcelHelpers.export(exports, "selector", ()=>_selectorJsDefault.default
-);
-parcelHelpers.export(exports, "selectorAll", ()=>_selectorAllJsDefault.default
-);
-parcelHelpers.export(exports, "style", ()=>_styleJs.styleValue
-);
-parcelHelpers.export(exports, "window", ()=>_windowJsDefault.default
-);
-var _createJs = require("./create.js");
-var _createJsDefault = parcelHelpers.interopDefault(_createJs);
-var _creatorJs = require("./creator.js");
-var _creatorJsDefault = parcelHelpers.interopDefault(_creatorJs);
-var _localJs = require("./local.js");
-var _localJsDefault = parcelHelpers.interopDefault(_localJs);
-var _matcherJs = require("./matcher.js");
-var _matcherJsDefault = parcelHelpers.interopDefault(_matcherJs);
-var _namespaceJs = require("./namespace.js");
-var _namespaceJsDefault = parcelHelpers.interopDefault(_namespaceJs);
-var _namespacesJs = require("./namespaces.js");
-var _namespacesJsDefault = parcelHelpers.interopDefault(_namespacesJs);
-var _pointerJs = require("./pointer.js");
-var _pointerJsDefault = parcelHelpers.interopDefault(_pointerJs);
-var _pointersJs = require("./pointers.js");
-var _pointersJsDefault = parcelHelpers.interopDefault(_pointersJs);
-var _selectJs = require("./select.js");
-var _selectJsDefault = parcelHelpers.interopDefault(_selectJs);
-var _selectAllJs = require("./selectAll.js");
-var _selectAllJsDefault = parcelHelpers.interopDefault(_selectAllJs);
-var _indexJs = require("./selection/index.js");
-var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _selectorJs = require("./selector.js");
-var _selectorJsDefault = parcelHelpers.interopDefault(_selectorJs);
-var _selectorAllJs = require("./selectorAll.js");
-var _selectorAllJsDefault = parcelHelpers.interopDefault(_selectorAllJs);
-var _styleJs = require("./selection/style.js");
-var _windowJs = require("./window.js");
-var _windowJsDefault = parcelHelpers.interopDefault(_windowJs);
-
-},{"./create.js":"epVSu","./creator.js":"htQJR","./local.js":"8yZxT","./matcher.js":"8pKGa","./namespace.js":"3HgE1","./namespaces.js":"DPFQr","./pointer.js":"8eTJH","./pointers.js":"eLkO0","./select.js":"cS7Uh","./selectAll.js":"9oP7Q","./selection/index.js":"i31Jd","./selector.js":"dbJGR","./selectorAll.js":"l8rpi","./selection/style.js":"i4YGD","./window.js":"7Rxst","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"epVSu":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _creatorJs = require("./creator.js");
-var _creatorJsDefault = parcelHelpers.interopDefault(_creatorJs);
-var _selectJs = require("./select.js");
-var _selectJsDefault = parcelHelpers.interopDefault(_selectJs);
-exports.default = function(name) {
-    return _selectJsDefault.default(_creatorJsDefault.default(name).call(document.documentElement));
-};
-
-},{"./creator.js":"htQJR","./select.js":"cS7Uh","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"htQJR":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _namespaceJs = require("./namespace.js");
-var _namespaceJsDefault = parcelHelpers.interopDefault(_namespaceJs);
-var _namespacesJs = require("./namespaces.js");
-function creatorInherit(name) {
-    return function() {
-        var document = this.ownerDocument, uri = this.namespaceURI;
-        return uri === _namespacesJs.xhtml && document.documentElement.namespaceURI === _namespacesJs.xhtml ? document.createElement(name) : document.createElementNS(uri, name);
-    };
-}
-function creatorFixed(fullname) {
-    return function() {
-        return this.ownerDocument.createElementNS(fullname.space, fullname.local);
-    };
-}
-exports.default = function(name) {
-    var fullname = _namespaceJsDefault.default(name);
-    return (fullname.local ? creatorFixed : creatorInherit)(fullname);
-};
-
-},{"./namespace.js":"3HgE1","./namespaces.js":"DPFQr","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3HgE1":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _namespacesJs = require("./namespaces.js");
-var _namespacesJsDefault = parcelHelpers.interopDefault(_namespacesJs);
-exports.default = function(name) {
-    var prefix = name += "", i = prefix.indexOf(":");
-    if (i >= 0 && (prefix = name.slice(0, i)) !== "xmlns") name = name.slice(i + 1);
-    return _namespacesJsDefault.default.hasOwnProperty(prefix) ? {
-        space: _namespacesJsDefault.default[prefix],
-        local: name
-    } : name; // eslint-disable-line no-prototype-builtins
-};
-
-},{"./namespaces.js":"DPFQr","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"DPFQr":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "xhtml", ()=>xhtml
-);
-var xhtml = "http://www.w3.org/1999/xhtml";
-exports.default = {
-    svg: "http://www.w3.org/2000/svg",
-    xhtml: xhtml,
-    xlink: "http://www.w3.org/1999/xlink",
-    xml: "http://www.w3.org/XML/1998/namespace",
-    xmlns: "http://www.w3.org/2000/xmlns/"
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cS7Uh":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("./selection/index.js");
-exports.default = function(selector) {
-    return typeof selector === "string" ? new _indexJs.Selection([
-        [
-            document.querySelector(selector)
-        ]
-    ], [
-        document.documentElement
-    ]) : new _indexJs.Selection([
-        [
-            selector
-        ]
-    ], _indexJs.root);
-};
-
-},{"./selection/index.js":"i31Jd","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i31Jd":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "root", ()=>root
-);
-parcelHelpers.export(exports, "Selection", ()=>Selection
-);
-var _selectJs = require("./select.js");
-var _selectJsDefault = parcelHelpers.interopDefault(_selectJs);
-var _selectAllJs = require("./selectAll.js");
-var _selectAllJsDefault = parcelHelpers.interopDefault(_selectAllJs);
-var _selectChildJs = require("./selectChild.js");
-var _selectChildJsDefault = parcelHelpers.interopDefault(_selectChildJs);
-var _selectChildrenJs = require("./selectChildren.js");
-var _selectChildrenJsDefault = parcelHelpers.interopDefault(_selectChildrenJs);
-var _filterJs = require("./filter.js");
-var _filterJsDefault = parcelHelpers.interopDefault(_filterJs);
-var _dataJs = require("./data.js");
-var _dataJsDefault = parcelHelpers.interopDefault(_dataJs);
-var _enterJs = require("./enter.js");
-var _enterJsDefault = parcelHelpers.interopDefault(_enterJs);
-var _exitJs = require("./exit.js");
-var _exitJsDefault = parcelHelpers.interopDefault(_exitJs);
-var _joinJs = require("./join.js");
-var _joinJsDefault = parcelHelpers.interopDefault(_joinJs);
-var _mergeJs = require("./merge.js");
-var _mergeJsDefault = parcelHelpers.interopDefault(_mergeJs);
-var _orderJs = require("./order.js");
-var _orderJsDefault = parcelHelpers.interopDefault(_orderJs);
-var _sortJs = require("./sort.js");
-var _sortJsDefault = parcelHelpers.interopDefault(_sortJs);
-var _callJs = require("./call.js");
-var _callJsDefault = parcelHelpers.interopDefault(_callJs);
-var _nodesJs = require("./nodes.js");
-var _nodesJsDefault = parcelHelpers.interopDefault(_nodesJs);
-var _nodeJs = require("./node.js");
-var _nodeJsDefault = parcelHelpers.interopDefault(_nodeJs);
-var _sizeJs = require("./size.js");
-var _sizeJsDefault = parcelHelpers.interopDefault(_sizeJs);
-var _emptyJs = require("./empty.js");
-var _emptyJsDefault = parcelHelpers.interopDefault(_emptyJs);
-var _eachJs = require("./each.js");
-var _eachJsDefault = parcelHelpers.interopDefault(_eachJs);
-var _attrJs = require("./attr.js");
-var _attrJsDefault = parcelHelpers.interopDefault(_attrJs);
-var _styleJs = require("./style.js");
-var _styleJsDefault = parcelHelpers.interopDefault(_styleJs);
-var _propertyJs = require("./property.js");
-var _propertyJsDefault = parcelHelpers.interopDefault(_propertyJs);
-var _classedJs = require("./classed.js");
-var _classedJsDefault = parcelHelpers.interopDefault(_classedJs);
-var _textJs = require("./text.js");
-var _textJsDefault = parcelHelpers.interopDefault(_textJs);
-var _htmlJs = require("./html.js");
-var _htmlJsDefault = parcelHelpers.interopDefault(_htmlJs);
-var _raiseJs = require("./raise.js");
-var _raiseJsDefault = parcelHelpers.interopDefault(_raiseJs);
-var _lowerJs = require("./lower.js");
-var _lowerJsDefault = parcelHelpers.interopDefault(_lowerJs);
-var _appendJs = require("./append.js");
-var _appendJsDefault = parcelHelpers.interopDefault(_appendJs);
-var _insertJs = require("./insert.js");
-var _insertJsDefault = parcelHelpers.interopDefault(_insertJs);
-var _removeJs = require("./remove.js");
-var _removeJsDefault = parcelHelpers.interopDefault(_removeJs);
-var _cloneJs = require("./clone.js");
-var _cloneJsDefault = parcelHelpers.interopDefault(_cloneJs);
-var _datumJs = require("./datum.js");
-var _datumJsDefault = parcelHelpers.interopDefault(_datumJs);
-var _onJs = require("./on.js");
-var _onJsDefault = parcelHelpers.interopDefault(_onJs);
-var _dispatchJs = require("./dispatch.js");
-var _dispatchJsDefault = parcelHelpers.interopDefault(_dispatchJs);
-var _iteratorJs = require("./iterator.js");
-var _iteratorJsDefault = parcelHelpers.interopDefault(_iteratorJs);
-var root = [
-    null
-];
-function Selection(groups, parents) {
-    this._groups = groups;
-    this._parents = parents;
-}
-function selection() {
-    return new Selection([
-        [
-            document.documentElement
-        ]
-    ], root);
-}
-function selection_selection() {
-    return this;
-}
-Selection.prototype = selection.prototype = {
-    constructor: Selection,
-    select: _selectJsDefault.default,
-    selectAll: _selectAllJsDefault.default,
-    selectChild: _selectChildJsDefault.default,
-    selectChildren: _selectChildrenJsDefault.default,
-    filter: _filterJsDefault.default,
-    data: _dataJsDefault.default,
-    enter: _enterJsDefault.default,
-    exit: _exitJsDefault.default,
-    join: _joinJsDefault.default,
-    merge: _mergeJsDefault.default,
-    selection: selection_selection,
-    order: _orderJsDefault.default,
-    sort: _sortJsDefault.default,
-    call: _callJsDefault.default,
-    nodes: _nodesJsDefault.default,
-    node: _nodeJsDefault.default,
-    size: _sizeJsDefault.default,
-    empty: _emptyJsDefault.default,
-    each: _eachJsDefault.default,
-    attr: _attrJsDefault.default,
-    style: _styleJsDefault.default,
-    property: _propertyJsDefault.default,
-    classed: _classedJsDefault.default,
-    text: _textJsDefault.default,
-    html: _htmlJsDefault.default,
-    raise: _raiseJsDefault.default,
-    lower: _lowerJsDefault.default,
-    append: _appendJsDefault.default,
-    insert: _insertJsDefault.default,
-    remove: _removeJsDefault.default,
-    clone: _cloneJsDefault.default,
-    datum: _datumJsDefault.default,
-    on: _onJsDefault.default,
-    dispatch: _dispatchJsDefault.default,
-    [Symbol.iterator]: _iteratorJsDefault.default
-};
-exports.default = selection;
-
-},{"./select.js":"ffqs0","./selectAll.js":"5uK2C","./selectChild.js":"l5JaL","./selectChildren.js":"1TdDv","./filter.js":"5Xwtk","./data.js":"fn9jQ","./enter.js":"kzKoD","./exit.js":"jfp8l","./join.js":"j1Snl","./merge.js":"hBija","./order.js":"2CFf3","./sort.js":"bCG8r","./call.js":"iwYkz","./nodes.js":"ckKIg","./node.js":"lbfRu","./size.js":"d4bkx","./empty.js":"5t47D","./each.js":"70oOc","./attr.js":"etato","./style.js":"i4YGD","./property.js":"duK12","./classed.js":"lfpPN","./text.js":"cEiSS","./html.js":"l8dXn","./raise.js":"3ZJIk","./lower.js":"i0Qgb","./append.js":"imSOW","./insert.js":"j3P26","./remove.js":"cPQdG","./clone.js":"kBvyh","./datum.js":"51ycm","./on.js":"7DYtd","./dispatch.js":"hIuIi","./iterator.js":"iTsnP","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ffqs0":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("./index.js");
-var _selectorJs = require("../selector.js");
-var _selectorJsDefault = parcelHelpers.interopDefault(_selectorJs);
-exports.default = function(select) {
-    if (typeof select !== "function") select = _selectorJsDefault.default(select);
-    for(var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j){
-        for(var group = groups[j], n = group.length, subgroup = subgroups[j] = new Array(n), node, subnode, i = 0; i < n; ++i)if ((node = group[i]) && (subnode = select.call(node, node.__data__, i, group))) {
-            if ("__data__" in node) subnode.__data__ = node.__data__;
-            subgroup[i] = subnode;
-        }
-    }
-    return new _indexJs.Selection(subgroups, this._parents);
-};
-
-},{"./index.js":"i31Jd","../selector.js":"dbJGR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dbJGR":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function none() {
-}
-exports.default = function(selector) {
-    return selector == null ? none : function() {
-        return this.querySelector(selector);
-    };
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5uK2C":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("./index.js");
-var _arrayJs = require("../array.js");
-var _arrayJsDefault = parcelHelpers.interopDefault(_arrayJs);
-var _selectorAllJs = require("../selectorAll.js");
-var _selectorAllJsDefault = parcelHelpers.interopDefault(_selectorAllJs);
-function arrayAll(select) {
-    return function() {
-        var group = select.apply(this, arguments);
-        return group == null ? [] : _arrayJsDefault.default(group);
-    };
-}
-exports.default = function(select) {
-    if (typeof select === "function") select = arrayAll(select);
-    else select = _selectorAllJsDefault.default(select);
-    for(var groups = this._groups, m = groups.length, subgroups = [], parents = [], j = 0; j < m; ++j){
-        for(var group = groups[j], n = group.length, node, i = 0; i < n; ++i)if (node = group[i]) {
-            subgroups.push(select.call(node, node.__data__, i, group));
-            parents.push(node);
-        }
-    }
-    return new _indexJs.Selection(subgroups, parents);
-};
-
-},{"./index.js":"i31Jd","../array.js":"hSBg9","../selectorAll.js":"l8rpi","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hSBg9":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(x) {
-    return typeof x === "object" && "length" in x ? x // Array, TypedArray, NodeList, array-like
-     : Array.from(x); // Map, Set, iterable, string, or anything else
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"l8rpi":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function empty() {
-    return [];
-}
-exports.default = function(selector) {
-    return selector == null ? empty : function() {
-        return this.querySelectorAll(selector);
-    };
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"l5JaL":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _matcherJs = require("../matcher.js");
-var find = Array.prototype.find;
-function childFind(match) {
-    return function() {
-        return find.call(this.children, match);
-    };
-}
-function childFirst() {
-    return this.firstElementChild;
-}
-exports.default = function(match) {
-    return this.select(match == null ? childFirst : childFind(typeof match === "function" ? match : _matcherJs.childMatcher(match)));
-};
-
-},{"../matcher.js":"8pKGa","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8pKGa":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "childMatcher", ()=>childMatcher
-);
-exports.default = function(selector) {
-    return function() {
-        return this.matches(selector);
-    };
-};
-function childMatcher(selector) {
-    return function(node) {
-        return node.matches(selector);
-    };
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1TdDv":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _matcherJs = require("../matcher.js");
-var filter = Array.prototype.filter;
-function children() {
-    return this.children;
-}
-function childrenFilter(match) {
-    return function() {
-        return filter.call(this.children, match);
-    };
-}
-exports.default = function(match) {
-    return this.selectAll(match == null ? children : childrenFilter(typeof match === "function" ? match : _matcherJs.childMatcher(match)));
-};
-
-},{"../matcher.js":"8pKGa","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5Xwtk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("./index.js");
-var _matcherJs = require("../matcher.js");
-var _matcherJsDefault = parcelHelpers.interopDefault(_matcherJs);
-exports.default = function(match) {
-    if (typeof match !== "function") match = _matcherJsDefault.default(match);
-    for(var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j){
-        for(var group = groups[j], n = group.length, subgroup = subgroups[j] = [], node, i = 0; i < n; ++i)if ((node = group[i]) && match.call(node, node.__data__, i, group)) subgroup.push(node);
-    }
-    return new _indexJs.Selection(subgroups, this._parents);
-};
-
-},{"./index.js":"i31Jd","../matcher.js":"8pKGa","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fn9jQ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("./index.js");
-var _enterJs = require("./enter.js");
-var _arrayJs = require("../array.js");
-var _arrayJsDefault = parcelHelpers.interopDefault(_arrayJs);
-var _constantJs = require("../constant.js");
-var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
-function bindIndex(parent, group, enter, update, exit, data) {
-    var i = 0, node, groupLength = group.length, dataLength = data.length;
-    // Put any non-null nodes that fit into update.
-    // Put any null nodes into enter.
-    // Put any remaining data into enter.
-    for(; i < dataLength; ++i)if (node = group[i]) {
-        node.__data__ = data[i];
-        update[i] = node;
-    } else enter[i] = new _enterJs.EnterNode(parent, data[i]);
-    // Put any non-null nodes that don’t fit into exit.
-    for(; i < groupLength; ++i)if (node = group[i]) exit[i] = node;
-}
-function bindKey(parent, group, enter, update, exit, data, key) {
-    var i, node, nodeByKeyValue = new Map, groupLength = group.length, dataLength = data.length, keyValues = new Array(groupLength), keyValue;
-    // Compute the key for each node.
-    // If multiple nodes have the same key, the duplicates are added to exit.
-    for(i = 0; i < groupLength; ++i)if (node = group[i]) {
-        keyValues[i] = keyValue = key.call(node, node.__data__, i, group) + "";
-        if (nodeByKeyValue.has(keyValue)) exit[i] = node;
-        else nodeByKeyValue.set(keyValue, node);
-    }
-    // Compute the key for each datum.
-    // If there a node associated with this key, join and add it to update.
-    // If there is not (or the key is a duplicate), add it to enter.
-    for(i = 0; i < dataLength; ++i){
-        keyValue = key.call(parent, data[i], i, data) + "";
-        if (node = nodeByKeyValue.get(keyValue)) {
-            update[i] = node;
-            node.__data__ = data[i];
-            nodeByKeyValue.delete(keyValue);
-        } else enter[i] = new _enterJs.EnterNode(parent, data[i]);
-    }
-    // Add any remaining nodes that were not bound to data to exit.
-    for(i = 0; i < groupLength; ++i)if ((node = group[i]) && nodeByKeyValue.get(keyValues[i]) === node) exit[i] = node;
-}
-function datum(node) {
-    return node.__data__;
-}
-exports.default = function(value, key) {
-    if (!arguments.length) return Array.from(this, datum);
-    var bind = key ? bindKey : bindIndex, parents = this._parents, groups = this._groups;
-    if (typeof value !== "function") value = _constantJsDefault.default(value);
-    for(var m = groups.length, update = new Array(m), enter = new Array(m), exit = new Array(m), j = 0; j < m; ++j){
-        var parent = parents[j], group = groups[j], groupLength = group.length, data = _arrayJsDefault.default(value.call(parent, parent && parent.__data__, j, parents)), dataLength = data.length, enterGroup = enter[j] = new Array(dataLength), updateGroup = update[j] = new Array(dataLength), exitGroup = exit[j] = new Array(groupLength);
-        bind(parent, group, enterGroup, updateGroup, exitGroup, data, key);
-        // Now connect the enter nodes to their following update node, such that
-        // appendChild can insert the materialized enter node before this node,
-        // rather than at the end of the parent node.
-        for(var i0 = 0, i1 = 0, previous, next; i0 < dataLength; ++i0)if (previous = enterGroup[i0]) {
-            if (i0 >= i1) i1 = i0 + 1;
-            while(!(next = updateGroup[i1]) && ++i1 < dataLength);
-            previous._next = next || null;
-        }
-    }
-    update = new _indexJs.Selection(update, parents);
-    update._enter = enter;
-    update._exit = exit;
-    return update;
-};
-
-},{"./index.js":"i31Jd","./enter.js":"kzKoD","../array.js":"hSBg9","../constant.js":"6gSOJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kzKoD":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "EnterNode", ()=>EnterNode
-);
-var _sparseJs = require("./sparse.js");
-var _sparseJsDefault = parcelHelpers.interopDefault(_sparseJs);
-var _indexJs = require("./index.js");
-exports.default = function() {
-    return new _indexJs.Selection(this._enter || this._groups.map(_sparseJsDefault.default), this._parents);
-};
-function EnterNode(parent, datum) {
-    this.ownerDocument = parent.ownerDocument;
-    this.namespaceURI = parent.namespaceURI;
-    this._next = null;
-    this._parent = parent;
-    this.__data__ = datum;
-}
-EnterNode.prototype = {
-    constructor: EnterNode,
-    appendChild: function(child) {
-        return this._parent.insertBefore(child, this._next);
-    },
-    insertBefore: function(child, next) {
-        return this._parent.insertBefore(child, next);
-    },
-    querySelector: function(selector) {
-        return this._parent.querySelector(selector);
-    },
-    querySelectorAll: function(selector) {
-        return this._parent.querySelectorAll(selector);
-    }
-};
-
-},{"./sparse.js":"79Mjk","./index.js":"i31Jd","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"79Mjk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(update) {
-    return new Array(update.length);
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6gSOJ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(x) {
-    return function() {
-        return x;
-    };
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jfp8l":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _sparseJs = require("./sparse.js");
-var _sparseJsDefault = parcelHelpers.interopDefault(_sparseJs);
-var _indexJs = require("./index.js");
-exports.default = function() {
-    return new _indexJs.Selection(this._exit || this._groups.map(_sparseJsDefault.default), this._parents);
-};
-
-},{"./sparse.js":"79Mjk","./index.js":"i31Jd","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"j1Snl":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(onenter, onupdate, onexit) {
-    var enter = this.enter(), update = this, exit = this.exit();
-    enter = typeof onenter === "function" ? onenter(enter) : enter.append(onenter + "");
-    if (onupdate != null) update = onupdate(update);
-    if (onexit == null) exit.remove();
-    else onexit(exit);
-    return enter && update ? enter.merge(update).order() : update;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hBija":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("./index.js");
-exports.default = function(selection) {
-    if (!(selection instanceof _indexJs.Selection)) throw new Error("invalid merge");
-    for(var groups0 = this._groups, groups1 = selection._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j){
-        for(var group0 = groups0[j], group1 = groups1[j], n = group0.length, merge = merges[j] = new Array(n), node, i = 0; i < n; ++i)if (node = group0[i] || group1[i]) merge[i] = node;
-    }
-    for(; j < m0; ++j)merges[j] = groups0[j];
-    return new _indexJs.Selection(merges, this._parents);
-};
-
-},{"./index.js":"i31Jd","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2CFf3":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function() {
-    for(var groups = this._groups, j = -1, m = groups.length; ++j < m;){
-        for(var group = groups[j], i = group.length - 1, next = group[i], node; --i >= 0;)if (node = group[i]) {
-            if (next && node.compareDocumentPosition(next) ^ 4) next.parentNode.insertBefore(node, next);
-            next = node;
-        }
-    }
-    return this;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bCG8r":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("./index.js");
-exports.default = function(compare) {
-    if (!compare) compare = ascending;
-    function compareNode(a, b) {
-        return a && b ? compare(a.__data__, b.__data__) : !a - !b;
-    }
-    for(var groups = this._groups, m = groups.length, sortgroups = new Array(m), j = 0; j < m; ++j){
-        for(var group = groups[j], n = group.length, sortgroup = sortgroups[j] = new Array(n), node, i = 0; i < n; ++i)if (node = group[i]) sortgroup[i] = node;
-        sortgroup.sort(compareNode);
-    }
-    return new _indexJs.Selection(sortgroups, this._parents).order();
-};
-function ascending(a, b) {
-    return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
-}
-
-},{"./index.js":"i31Jd","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iwYkz":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function() {
-    var callback = arguments[0];
-    arguments[0] = this;
-    callback.apply(null, arguments);
-    return this;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ckKIg":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function() {
-    return Array.from(this);
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lbfRu":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function() {
-    for(var groups = this._groups, j = 0, m = groups.length; j < m; ++j)for(var group = groups[j], i = 0, n = group.length; i < n; ++i){
-        var node = group[i];
-        if (node) return node;
-    }
-    return null;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"d4bkx":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function() {
-    let size = 0;
-    for (const node of this)++size; // eslint-disable-line no-unused-vars
-    return size;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5t47D":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function() {
-    return !this.node();
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"70oOc":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(callback) {
-    for(var groups = this._groups, j = 0, m = groups.length; j < m; ++j){
-        for(var group = groups[j], i = 0, n = group.length, node; i < n; ++i)if (node = group[i]) callback.call(node, node.__data__, i, group);
-    }
-    return this;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"etato":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _namespaceJs = require("../namespace.js");
-var _namespaceJsDefault = parcelHelpers.interopDefault(_namespaceJs);
-function attrRemove(name) {
-    return function() {
-        this.removeAttribute(name);
-    };
-}
-function attrRemoveNS(fullname) {
-    return function() {
-        this.removeAttributeNS(fullname.space, fullname.local);
-    };
-}
-function attrConstant(name, value) {
-    return function() {
-        this.setAttribute(name, value);
-    };
-}
-function attrConstantNS(fullname, value) {
-    return function() {
-        this.setAttributeNS(fullname.space, fullname.local, value);
-    };
-}
-function attrFunction(name, value) {
-    return function() {
-        var v = value.apply(this, arguments);
-        if (v == null) this.removeAttribute(name);
-        else this.setAttribute(name, v);
-    };
-}
-function attrFunctionNS(fullname, value) {
-    return function() {
-        var v = value.apply(this, arguments);
-        if (v == null) this.removeAttributeNS(fullname.space, fullname.local);
-        else this.setAttributeNS(fullname.space, fullname.local, v);
-    };
-}
-exports.default = function(name, value) {
-    var fullname = _namespaceJsDefault.default(name);
-    if (arguments.length < 2) {
-        var node = this.node();
-        return fullname.local ? node.getAttributeNS(fullname.space, fullname.local) : node.getAttribute(fullname);
-    }
-    return this.each((value == null ? fullname.local ? attrRemoveNS : attrRemove : typeof value === "function" ? fullname.local ? attrFunctionNS : attrFunction : fullname.local ? attrConstantNS : attrConstant)(fullname, value));
-};
-
-},{"../namespace.js":"3HgE1","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i4YGD":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "styleValue", ()=>styleValue
-);
-var _windowJs = require("../window.js");
-var _windowJsDefault = parcelHelpers.interopDefault(_windowJs);
-function styleRemove(name) {
-    return function() {
-        this.style.removeProperty(name);
-    };
-}
-function styleConstant(name, value, priority) {
-    return function() {
-        this.style.setProperty(name, value, priority);
-    };
-}
-function styleFunction(name, value, priority) {
-    return function() {
-        var v = value.apply(this, arguments);
-        if (v == null) this.style.removeProperty(name);
-        else this.style.setProperty(name, v, priority);
-    };
-}
-exports.default = function(name, value, priority) {
-    return arguments.length > 1 ? this.each((value == null ? styleRemove : typeof value === "function" ? styleFunction : styleConstant)(name, value, priority == null ? "" : priority)) : styleValue(this.node(), name);
-};
-function styleValue(node, name) {
-    return node.style.getPropertyValue(name) || _windowJsDefault.default(node).getComputedStyle(node, null).getPropertyValue(name);
-}
-
-},{"../window.js":"7Rxst","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7Rxst":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(node) {
-    return node.ownerDocument && node.ownerDocument.defaultView || node.document && node || node.defaultView; // node is a Document
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"duK12":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function propertyRemove(name) {
-    return function() {
-        delete this[name];
-    };
-}
-function propertyConstant(name, value) {
-    return function() {
-        this[name] = value;
-    };
-}
-function propertyFunction(name, value) {
-    return function() {
-        var v = value.apply(this, arguments);
-        if (v == null) delete this[name];
-        else this[name] = v;
-    };
-}
-exports.default = function(name, value) {
-    return arguments.length > 1 ? this.each((value == null ? propertyRemove : typeof value === "function" ? propertyFunction : propertyConstant)(name, value)) : this.node()[name];
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lfpPN":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function classArray(string) {
-    return string.trim().split(/^|\s+/);
-}
-function classList(node) {
-    return node.classList || new ClassList(node);
-}
-function ClassList(node) {
-    this._node = node;
-    this._names = classArray(node.getAttribute("class") || "");
-}
-ClassList.prototype = {
-    add: function(name) {
-        var i = this._names.indexOf(name);
-        if (i < 0) {
-            this._names.push(name);
-            this._node.setAttribute("class", this._names.join(" "));
-        }
-    },
-    remove: function(name) {
-        var i = this._names.indexOf(name);
-        if (i >= 0) {
-            this._names.splice(i, 1);
-            this._node.setAttribute("class", this._names.join(" "));
-        }
-    },
-    contains: function(name) {
-        return this._names.indexOf(name) >= 0;
-    }
-};
-function classedAdd(node, names) {
-    var list = classList(node), i = -1, n = names.length;
-    while(++i < n)list.add(names[i]);
-}
-function classedRemove(node, names) {
-    var list = classList(node), i = -1, n = names.length;
-    while(++i < n)list.remove(names[i]);
-}
-function classedTrue(names) {
-    return function() {
-        classedAdd(this, names);
-    };
-}
-function classedFalse(names) {
-    return function() {
-        classedRemove(this, names);
-    };
-}
-function classedFunction(names, value) {
-    return function() {
-        (value.apply(this, arguments) ? classedAdd : classedRemove)(this, names);
-    };
-}
-exports.default = function(name, value) {
-    var names = classArray(name + "");
-    if (arguments.length < 2) {
-        var list = classList(this.node()), i = -1, n = names.length;
-        while(++i < n)if (!list.contains(names[i])) return false;
-        return true;
-    }
-    return this.each((typeof value === "function" ? classedFunction : value ? classedTrue : classedFalse)(names, value));
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cEiSS":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function textRemove() {
-    this.textContent = "";
-}
-function textConstant(value) {
-    return function() {
-        this.textContent = value;
-    };
-}
-function textFunction(value) {
-    return function() {
-        var v = value.apply(this, arguments);
-        this.textContent = v == null ? "" : v;
-    };
-}
-exports.default = function(value) {
-    return arguments.length ? this.each(value == null ? textRemove : (typeof value === "function" ? textFunction : textConstant)(value)) : this.node().textContent;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"l8dXn":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function htmlRemove() {
-    this.innerHTML = "";
-}
-function htmlConstant(value) {
-    return function() {
-        this.innerHTML = value;
-    };
-}
-function htmlFunction(value) {
-    return function() {
-        var v = value.apply(this, arguments);
-        this.innerHTML = v == null ? "" : v;
-    };
-}
-exports.default = function(value) {
-    return arguments.length ? this.each(value == null ? htmlRemove : (typeof value === "function" ? htmlFunction : htmlConstant)(value)) : this.node().innerHTML;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3ZJIk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function raise() {
-    if (this.nextSibling) this.parentNode.appendChild(this);
-}
-exports.default = function() {
-    return this.each(raise);
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i0Qgb":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function lower() {
-    if (this.previousSibling) this.parentNode.insertBefore(this, this.parentNode.firstChild);
-}
-exports.default = function() {
-    return this.each(lower);
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"imSOW":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _creatorJs = require("../creator.js");
-var _creatorJsDefault = parcelHelpers.interopDefault(_creatorJs);
-exports.default = function(name) {
-    var create = typeof name === "function" ? name : _creatorJsDefault.default(name);
-    return this.select(function() {
-        return this.appendChild(create.apply(this, arguments));
-    });
-};
-
-},{"../creator.js":"htQJR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"j3P26":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _creatorJs = require("../creator.js");
-var _creatorJsDefault = parcelHelpers.interopDefault(_creatorJs);
-var _selectorJs = require("../selector.js");
-var _selectorJsDefault = parcelHelpers.interopDefault(_selectorJs);
-function constantNull() {
-    return null;
-}
-exports.default = function(name, before) {
-    var create = typeof name === "function" ? name : _creatorJsDefault.default(name), select = before == null ? constantNull : typeof before === "function" ? before : _selectorJsDefault.default(before);
-    return this.select(function() {
-        return this.insertBefore(create.apply(this, arguments), select.apply(this, arguments) || null);
-    });
-};
-
-},{"../creator.js":"htQJR","../selector.js":"dbJGR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cPQdG":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function remove() {
-    var parent = this.parentNode;
-    if (parent) parent.removeChild(this);
-}
-exports.default = function() {
-    return this.each(remove);
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kBvyh":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function selection_cloneShallow() {
-    var clone = this.cloneNode(false), parent = this.parentNode;
-    return parent ? parent.insertBefore(clone, this.nextSibling) : clone;
-}
-function selection_cloneDeep() {
-    var clone = this.cloneNode(true), parent = this.parentNode;
-    return parent ? parent.insertBefore(clone, this.nextSibling) : clone;
-}
-exports.default = function(deep) {
-    return this.select(deep ? selection_cloneDeep : selection_cloneShallow);
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"51ycm":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(value) {
-    return arguments.length ? this.property("__data__", value) : this.node().__data__;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7DYtd":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function contextListener(listener) {
-    return function(event) {
-        listener.call(this, event, this.__data__);
-    };
-}
-function parseTypenames(typenames) {
-    return typenames.trim().split(/^|\s+/).map(function(t) {
-        var name = "", i = t.indexOf(".");
-        if (i >= 0) name = t.slice(i + 1), t = t.slice(0, i);
-        return {
-            type: t,
-            name: name
-        };
-    });
-}
-function onRemove(typename) {
-    return function() {
-        var on = this.__on;
-        if (!on) return;
-        for(var j = 0, i = -1, m = on.length, o; j < m; ++j)if (o = on[j], (!typename.type || o.type === typename.type) && o.name === typename.name) this.removeEventListener(o.type, o.listener, o.options);
-        else on[++i] = o;
-        if (++i) on.length = i;
-        else delete this.__on;
-    };
-}
-function onAdd(typename, value, options) {
-    return function() {
-        var on = this.__on, o, listener = contextListener(value);
-        if (on) {
-            for(var j = 0, m = on.length; j < m; ++j)if ((o = on[j]).type === typename.type && o.name === typename.name) {
-                this.removeEventListener(o.type, o.listener, o.options);
-                this.addEventListener(o.type, o.listener = listener, o.options = options);
-                o.value = value;
-                return;
-            }
-        }
-        this.addEventListener(typename.type, listener, options);
-        o = {
-            type: typename.type,
-            name: typename.name,
-            value: value,
-            listener: listener,
-            options: options
-        };
-        if (!on) this.__on = [
-            o
-        ];
-        else on.push(o);
-    };
-}
-exports.default = function(typename, value, options) {
-    var typenames = parseTypenames(typename + ""), i, n = typenames.length, t;
-    if (arguments.length < 2) {
-        var on = this.node().__on;
-        if (on) for(var j = 0, m = on.length, o; j < m; ++j)for(i = 0, o = on[j]; i < n; ++i){
-            if ((t = typenames[i]).type === o.type && t.name === o.name) return o.value;
-        }
-        return;
-    }
-    on = value ? onAdd : onRemove;
-    for(i = 0; i < n; ++i)this.each(on(typenames[i], value, options));
-    return this;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hIuIi":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _windowJs = require("../window.js");
-var _windowJsDefault = parcelHelpers.interopDefault(_windowJs);
-function dispatchEvent(node, type, params) {
-    var window = _windowJsDefault.default(node), event = window.CustomEvent;
-    if (typeof event === "function") event = new event(type, params);
-    else {
-        event = window.document.createEvent("Event");
-        if (params) event.initEvent(type, params.bubbles, params.cancelable), event.detail = params.detail;
-        else event.initEvent(type, false, false);
-    }
-    node.dispatchEvent(event);
-}
-function dispatchConstant(type, params) {
-    return function() {
-        return dispatchEvent(this, type, params);
-    };
-}
-function dispatchFunction(type, params) {
-    return function() {
-        return dispatchEvent(this, type, params.apply(this, arguments));
-    };
-}
-exports.default = function(type, params) {
-    return this.each((typeof params === "function" ? dispatchFunction : dispatchConstant)(type, params));
-};
-
-},{"../window.js":"7Rxst","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iTsnP":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function*() {
-    for(var groups = this._groups, j = 0, m = groups.length; j < m; ++j){
-        for(var group = groups[j], i = 0, n = group.length, node; i < n; ++i)if (node = group[i]) yield node;
-    }
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8yZxT":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var nextId = 0;
-function local() {
-    return new Local;
-}
-exports.default = local;
-function Local() {
-    this._ = "@" + (++nextId).toString(36);
-}
-Local.prototype = local.prototype = {
-    constructor: Local,
-    get: function(node) {
-        var id = this._;
-        while(!(id in node))if (!(node = node.parentNode)) return;
-        return node[id];
-    },
-    set: function(node, value) {
-        return node[this._] = value;
-    },
-    remove: function(node) {
-        return this._ in node && delete node[this._];
-    },
-    toString: function() {
-        return this._;
-    }
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8eTJH":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _sourceEventJs = require("./sourceEvent.js");
-var _sourceEventJsDefault = parcelHelpers.interopDefault(_sourceEventJs);
-exports.default = function(event, node) {
-    event = _sourceEventJsDefault.default(event);
-    if (node === undefined) node = event.currentTarget;
-    if (node) {
-        var svg = node.ownerSVGElement || node;
-        if (svg.createSVGPoint) {
-            var point = svg.createSVGPoint();
-            point.x = event.clientX, point.y = event.clientY;
-            point = point.matrixTransform(node.getScreenCTM().inverse());
-            return [
-                point.x,
-                point.y
-            ];
-        }
-        if (node.getBoundingClientRect) {
-            var rect = node.getBoundingClientRect();
-            return [
-                event.clientX - rect.left - node.clientLeft,
-                event.clientY - rect.top - node.clientTop
-            ];
-        }
-    }
-    return [
-        event.pageX,
-        event.pageY
-    ];
-};
-
-},{"./sourceEvent.js":"dtv0K","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dtv0K":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(event) {
-    let sourceEvent;
-    while(sourceEvent = event.sourceEvent)event = sourceEvent;
-    return event;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eLkO0":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _pointerJs = require("./pointer.js");
-var _pointerJsDefault = parcelHelpers.interopDefault(_pointerJs);
-var _sourceEventJs = require("./sourceEvent.js");
-var _sourceEventJsDefault = parcelHelpers.interopDefault(_sourceEventJs);
-exports.default = function(events, node) {
-    if (events.target) {
-        events = _sourceEventJsDefault.default(events);
-        if (node === undefined) node = events.currentTarget;
-        events = events.touches || [
-            events
-        ];
-    }
-    return Array.from(events, (event)=>_pointerJsDefault.default(event, node)
-    );
-};
-
-},{"./pointer.js":"8eTJH","./sourceEvent.js":"dtv0K","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9oP7Q":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _arrayJs = require("./array.js");
-var _arrayJsDefault = parcelHelpers.interopDefault(_arrayJs);
-var _indexJs = require("./selection/index.js");
-exports.default = function(selector) {
-    return typeof selector === "string" ? new _indexJs.Selection([
-        document.querySelectorAll(selector)
-    ], [
-        document.documentElement
-    ]) : new _indexJs.Selection([
-        selector == null ? [] : _arrayJsDefault.default(selector)
-    ], _indexJs.root);
-};
-
-},{"./array.js":"hSBg9","./selection/index.js":"i31Jd","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"96X82":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "transition", ()=>_indexJsDefault.default
-);
-parcelHelpers.export(exports, "active", ()=>_activeJsDefault.default
-);
-parcelHelpers.export(exports, "interrupt", ()=>_interruptJsDefault.default
-);
-var _indexJs = require("./selection/index.js");
-var _indexJs1 = require("./transition/index.js");
-var _indexJsDefault = parcelHelpers.interopDefault(_indexJs1);
-var _activeJs = require("./active.js");
-var _activeJsDefault = parcelHelpers.interopDefault(_activeJs);
-var _interruptJs = require("./interrupt.js");
-var _interruptJsDefault = parcelHelpers.interopDefault(_interruptJs);
-
-},{"./selection/index.js":"7ZzFb","./transition/index.js":"eOnuG","./active.js":"AJlAo","./interrupt.js":"2tRSr","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7ZzFb":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _d3Selection = require("d3-selection");
-var _interruptJs = require("./interrupt.js");
-var _interruptJsDefault = parcelHelpers.interopDefault(_interruptJs);
-var _transitionJs = require("./transition.js");
-var _transitionJsDefault = parcelHelpers.interopDefault(_transitionJs);
-_d3Selection.selection.prototype.interrupt = _interruptJsDefault.default;
-_d3Selection.selection.prototype.transition = _transitionJsDefault.default;
-
-},{"d3-selection":"6hFAS","./interrupt.js":"5DZur","./transition.js":"eg6n3","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5DZur":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _interruptJs = require("../interrupt.js");
-var _interruptJsDefault = parcelHelpers.interopDefault(_interruptJs);
-exports.default = function(name) {
-    return this.each(function() {
-        _interruptJsDefault.default(this, name);
-    });
-};
-
-},{"../interrupt.js":"2tRSr","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2tRSr":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _scheduleJs = require("./transition/schedule.js");
-exports.default = function(node, name) {
-    var schedules = node.__transition, schedule, active, empty = true, i;
-    if (!schedules) return;
-    name = name == null ? null : name + "";
-    for(i in schedules){
-        if ((schedule = schedules[i]).name !== name) {
-            empty = false;
-            continue;
-        }
-        active = schedule.state > _scheduleJs.STARTING && schedule.state < _scheduleJs.ENDING;
-        schedule.state = _scheduleJs.ENDED;
-        schedule.timer.stop();
-        schedule.on.call(active ? "interrupt" : "cancel", node, node.__data__, schedule.index, schedule.group);
-        delete schedules[i];
-    }
-    if (empty) delete node.__transition;
-};
-
-},{"./transition/schedule.js":"g22zU","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"g22zU":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CREATED", ()=>CREATED
-);
-parcelHelpers.export(exports, "SCHEDULED", ()=>SCHEDULED
-);
-parcelHelpers.export(exports, "STARTING", ()=>STARTING
-);
-parcelHelpers.export(exports, "STARTED", ()=>STARTED
-);
-parcelHelpers.export(exports, "RUNNING", ()=>RUNNING
-);
-parcelHelpers.export(exports, "ENDING", ()=>ENDING
-);
-parcelHelpers.export(exports, "ENDED", ()=>ENDED
-);
-parcelHelpers.export(exports, "init", ()=>init
-);
-parcelHelpers.export(exports, "set", ()=>set
-);
-parcelHelpers.export(exports, "get", ()=>get
-);
-var _d3Dispatch = require("d3-dispatch");
-var _d3Timer = require("d3-timer");
-var emptyOn = _d3Dispatch.dispatch("start", "end", "cancel", "interrupt");
-var emptyTween = [];
-var CREATED = 0;
-var SCHEDULED = 1;
-var STARTING = 2;
-var STARTED = 3;
-var RUNNING = 4;
-var ENDING = 5;
-var ENDED = 6;
-exports.default = function(node, name, id, index, group, timing) {
-    var schedules = node.__transition;
-    if (!schedules) node.__transition = {
-    };
-    else if (id in schedules) return;
-    create(node, id, {
-        name: name,
-        index: index,
-        group: group,
-        on: emptyOn,
-        tween: emptyTween,
-        time: timing.time,
-        delay: timing.delay,
-        duration: timing.duration,
-        ease: timing.ease,
-        timer: null,
-        state: CREATED
-    });
-};
-function init(node, id) {
-    var schedule = get(node, id);
-    if (schedule.state > CREATED) throw new Error("too late; already scheduled");
-    return schedule;
-}
-function set(node, id) {
-    var schedule = get(node, id);
-    if (schedule.state > STARTED) throw new Error("too late; already running");
-    return schedule;
-}
-function get(node, id) {
-    var schedule = node.__transition;
-    if (!schedule || !(schedule = schedule[id])) throw new Error("transition not found");
-    return schedule;
-}
-function create(node, id, self) {
-    var schedules = node.__transition, tween;
-    // Initialize the self timer when the transition is created.
-    // Note the actual delay is not known until the first callback!
-    schedules[id] = self;
-    self.timer = _d3Timer.timer(schedule, 0, self.time);
-    function schedule(elapsed) {
-        self.state = SCHEDULED;
-        self.timer.restart(start, self.delay, self.time);
-        // If the elapsed delay is less than our first sleep, start immediately.
-        if (self.delay <= elapsed) start(elapsed - self.delay);
-    }
-    function start(elapsed) {
-        var i, j, n, o;
-        // If the state is not SCHEDULED, then we previously errored on start.
-        if (self.state !== SCHEDULED) return stop();
-        for(i in schedules){
-            o = schedules[i];
-            if (o.name !== self.name) continue;
-            // While this element already has a starting transition during this frame,
-            // defer starting an interrupting transition until that transition has a
-            // chance to tick (and possibly end); see d3/d3-transition#54!
-            if (o.state === STARTED) return _d3Timer.timeout(start);
-            // Interrupt the active transition, if any.
-            if (o.state === RUNNING) {
-                o.state = ENDED;
-                o.timer.stop();
-                o.on.call("interrupt", node, node.__data__, o.index, o.group);
-                delete schedules[i];
-            } else if (+i < id) {
-                o.state = ENDED;
-                o.timer.stop();
-                o.on.call("cancel", node, node.__data__, o.index, o.group);
-                delete schedules[i];
-            }
-        }
-        // Defer the first tick to end of the current frame; see d3/d3#1576.
-        // Note the transition may be canceled after start and before the first tick!
-        // Note this must be scheduled before the start event; see d3/d3-transition#16!
-        // Assuming this is successful, subsequent callbacks go straight to tick.
-        _d3Timer.timeout(function() {
-            if (self.state === STARTED) {
-                self.state = RUNNING;
-                self.timer.restart(tick, self.delay, self.time);
-                tick(elapsed);
-            }
-        });
-        // Dispatch the start event.
-        // Note this must be done before the tween are initialized.
-        self.state = STARTING;
-        self.on.call("start", node, node.__data__, self.index, self.group);
-        if (self.state !== STARTING) return; // interrupted
-        self.state = STARTED;
-        // Initialize the tween, deleting null tween.
-        tween = new Array(n = self.tween.length);
-        for(i = 0, j = -1; i < n; ++i)if (o = self.tween[i].value.call(node, node.__data__, self.index, self.group)) tween[++j] = o;
-        tween.length = j + 1;
-    }
-    function tick(elapsed) {
-        var t = elapsed < self.duration ? self.ease.call(null, elapsed / self.duration) : (self.timer.restart(stop), self.state = ENDING, 1), i = -1, n = tween.length;
-        while(++i < n)tween[i].call(node, t);
-        // Dispatch the end event.
-        if (self.state === ENDING) {
-            self.on.call("end", node, node.__data__, self.index, self.group);
-            stop();
-        }
-    }
-    function stop() {
-        self.state = ENDED;
-        self.timer.stop();
-        delete schedules[id];
-        for(var i in schedules)return; // eslint-disable-line no-unused-vars
-        delete node.__transition;
-    }
-}
-
-},{"d3-dispatch":"8bLpz","d3-timer":"3j3SS","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8bLpz":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "dispatch", ()=>_dispatchJsDefault.default
-);
-var _dispatchJs = require("./dispatch.js");
-var _dispatchJsDefault = parcelHelpers.interopDefault(_dispatchJs);
-
-},{"./dispatch.js":"cVx1z","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cVx1z":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var noop = {
-    value: ()=>{
-    }
-};
-function dispatch() {
-    for(var i = 0, n = arguments.length, _ = {
-    }, t; i < n; ++i){
-        if (!(t = arguments[i] + "") || t in _ || /[\s.]/.test(t)) throw new Error("illegal type: " + t);
-        _[t] = [];
-    }
-    return new Dispatch(_);
-}
-function Dispatch(_) {
-    this._ = _;
-}
-function parseTypenames(typenames, types) {
-    return typenames.trim().split(/^|\s+/).map(function(t) {
-        var name = "", i = t.indexOf(".");
-        if (i >= 0) name = t.slice(i + 1), t = t.slice(0, i);
-        if (t && !types.hasOwnProperty(t)) throw new Error("unknown type: " + t);
-        return {
-            type: t,
-            name: name
-        };
-    });
-}
-Dispatch.prototype = dispatch.prototype = {
-    constructor: Dispatch,
-    on: function(typename, callback) {
-        var _ = this._, T = parseTypenames(typename + "", _), t, i = -1, n = T.length;
-        // If no callback was specified, return the callback of the given type and name.
-        if (arguments.length < 2) {
-            while(++i < n)if ((t = (typename = T[i]).type) && (t = get(_[t], typename.name))) return t;
-            return;
-        }
-        // If a type was specified, set the callback for the given type and name.
-        // Otherwise, if a null callback was specified, remove callbacks of the given name.
-        if (callback != null && typeof callback !== "function") throw new Error("invalid callback: " + callback);
-        while(++i < n){
-            if (t = (typename = T[i]).type) _[t] = set(_[t], typename.name, callback);
-            else if (callback == null) for(t in _)_[t] = set(_[t], typename.name, null);
-        }
-        return this;
-    },
-    copy: function() {
-        var copy = {
-        }, _ = this._;
-        for(var t in _)copy[t] = _[t].slice();
-        return new Dispatch(copy);
-    },
-    call: function(type, that) {
-        if ((n = arguments.length - 2) > 0) for(var args = new Array(n), i = 0, n, t; i < n; ++i)args[i] = arguments[i + 2];
-        if (!this._.hasOwnProperty(type)) throw new Error("unknown type: " + type);
-        for(t = this._[type], i = 0, n = t.length; i < n; ++i)t[i].value.apply(that, args);
-    },
-    apply: function(type, that, args) {
-        if (!this._.hasOwnProperty(type)) throw new Error("unknown type: " + type);
-        for(var t = this._[type], i = 0, n = t.length; i < n; ++i)t[i].value.apply(that, args);
-    }
-};
-function get(type, name) {
-    for(var i = 0, n = type.length, c; i < n; ++i){
-        if ((c = type[i]).name === name) return c.value;
-    }
-}
-function set(type, name, callback) {
-    for(var i = 0, n = type.length; i < n; ++i)if (type[i].name === name) {
-        type[i] = noop, type = type.slice(0, i).concat(type.slice(i + 1));
-        break;
-    }
-    if (callback != null) type.push({
-        name: name,
-        value: callback
-    });
-    return type;
-}
-exports.default = dispatch;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3j3SS":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "now", ()=>_timerJs.now
-);
-parcelHelpers.export(exports, "timer", ()=>_timerJs.timer
-);
-parcelHelpers.export(exports, "timerFlush", ()=>_timerJs.timerFlush
-);
-parcelHelpers.export(exports, "timeout", ()=>_timeoutJsDefault.default
-);
-parcelHelpers.export(exports, "interval", ()=>_intervalJsDefault.default
-);
-var _timerJs = require("./timer.js");
-var _timeoutJs = require("./timeout.js");
-var _timeoutJsDefault = parcelHelpers.interopDefault(_timeoutJs);
-var _intervalJs = require("./interval.js");
-var _intervalJsDefault = parcelHelpers.interopDefault(_intervalJs);
-
-},{"./timer.js":"6yksc","./timeout.js":"a7blI","./interval.js":"7UB47","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6yksc":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "now", ()=>now1
-);
-parcelHelpers.export(exports, "Timer", ()=>Timer
-);
-parcelHelpers.export(exports, "timer", ()=>timer
-);
-parcelHelpers.export(exports, "timerFlush", ()=>timerFlush
-);
-var frame = 0, timeout = 0, interval = 0, pokeDelay = 1000, taskHead, taskTail, clockLast = 0, clockNow = 0, clockSkew = 0, clock = typeof performance === "object" && performance.now ? performance : Date, setFrame = typeof window === "object" && window.requestAnimationFrame ? window.requestAnimationFrame.bind(window) : function(f) {
-    setTimeout(f, 17);
-};
-function now1() {
-    return clockNow || (setFrame(clearNow), clockNow = clock.now() + clockSkew);
-}
-function clearNow() {
-    clockNow = 0;
-}
-function Timer() {
-    this._call = this._time = this._next = null;
-}
-Timer.prototype = timer.prototype = {
-    constructor: Timer,
-    restart: function(callback, delay, time) {
-        if (typeof callback !== "function") throw new TypeError("callback is not a function");
-        time = (time == null ? now1() : +time) + (delay == null ? 0 : +delay);
-        if (!this._next && taskTail !== this) {
-            if (taskTail) taskTail._next = this;
-            else taskHead = this;
-            taskTail = this;
-        }
-        this._call = callback;
-        this._time = time;
-        sleep();
-    },
-    stop: function() {
-        if (this._call) {
-            this._call = null;
-            this._time = Infinity;
-            sleep();
-        }
-    }
-};
-function timer(callback, delay, time) {
-    var t = new Timer;
-    t.restart(callback, delay, time);
-    return t;
-}
-function timerFlush() {
-    now1(); // Get the current time, if not already set.
-    ++frame; // Pretend we’ve set an alarm, if we haven’t already.
-    var t = taskHead, e;
-    while(t){
-        if ((e = clockNow - t._time) >= 0) t._call.call(null, e);
-        t = t._next;
-    }
-    --frame;
-}
-function wake() {
-    clockNow = (clockLast = clock.now()) + clockSkew;
-    frame = timeout = 0;
-    try {
-        timerFlush();
-    } finally{
-        frame = 0;
-        nap();
-        clockNow = 0;
-    }
-}
-function poke() {
-    var now = clock.now(), delay = now - clockLast;
-    if (delay > pokeDelay) clockSkew -= delay, clockLast = now;
-}
-function nap() {
-    var t0, t1 = taskHead, t2, time = Infinity;
-    while(t1)if (t1._call) {
-        if (time > t1._time) time = t1._time;
-        t0 = t1, t1 = t1._next;
-    } else {
-        t2 = t1._next, t1._next = null;
-        t1 = t0 ? t0._next = t2 : taskHead = t2;
-    }
-    taskTail = t0;
-    sleep(time);
-}
-function sleep(time) {
-    if (frame) return; // Soonest alarm already set, or will be.
-    if (timeout) timeout = clearTimeout(timeout);
-    var delay = time - clockNow; // Strictly less than if we recomputed clockNow.
-    if (delay > 24) {
-        if (time < Infinity) timeout = setTimeout(wake, time - clock.now() - clockSkew);
-        if (interval) interval = clearInterval(interval);
-    } else {
-        if (!interval) clockLast = clock.now(), interval = setInterval(poke, pokeDelay);
-        frame = 1, setFrame(wake);
-    }
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"a7blI":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _timerJs = require("./timer.js");
-exports.default = function(callback, delay, time) {
-    var t = new _timerJs.Timer;
-    delay = delay == null ? 0 : +delay;
-    t.restart((elapsed)=>{
-        t.stop();
-        callback(elapsed + delay);
-    }, delay, time);
-    return t;
-};
-
-},{"./timer.js":"6yksc","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7UB47":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _timerJs = require("./timer.js");
-exports.default = function(callback1, delay1, time1) {
-    var t = new _timerJs.Timer, total = delay1;
-    if (delay1 == null) return t.restart(callback1, delay1, time1), t;
-    t._restart = t.restart;
-    t.restart = function(callback, delay, time) {
-        delay = +delay, time = time == null ? _timerJs.now() : +time;
-        t._restart(function tick(elapsed) {
-            elapsed += total;
-            t._restart(tick, total += delay, time);
-            callback(elapsed);
-        }, delay, time);
-    };
-    t.restart(callback1, delay1, time1);
-    return t;
-};
-
-},{"./timer.js":"6yksc","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eg6n3":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../transition/index.js");
-var _scheduleJs = require("../transition/schedule.js");
-var _scheduleJsDefault = parcelHelpers.interopDefault(_scheduleJs);
-var _d3Ease = require("d3-ease");
-var _d3Timer = require("d3-timer");
-var defaultTiming = {
-    time: null,
-    delay: 0,
-    duration: 250,
-    ease: _d3Ease.easeCubicInOut
-};
-function inherit(node, id) {
-    var timing;
-    while(!(timing = node.__transition) || !(timing = timing[id])){
-        if (!(node = node.parentNode)) throw new Error(`transition ${id} not found`);
-    }
-    return timing;
-}
-exports.default = function(name) {
-    var id, timing;
-    if (name instanceof _indexJs.Transition) id = name._id, name = name._name;
-    else id = _indexJs.newId(), (timing = defaultTiming).time = _d3Timer.now(), name = name == null ? null : name + "";
-    for(var groups = this._groups, m = groups.length, j = 0; j < m; ++j){
-        for(var group = groups[j], n = group.length, node, i = 0; i < n; ++i)if (node = group[i]) _scheduleJsDefault.default(node, name, id, i, group, timing || inherit(node, id));
-    }
-    return new _indexJs.Transition(groups, this._parents, name, id);
-};
-
-},{"../transition/index.js":"eOnuG","../transition/schedule.js":"g22zU","d3-ease":"kFY3j","d3-timer":"3j3SS","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eOnuG":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Transition", ()=>Transition
-);
-parcelHelpers.export(exports, "newId", ()=>newId
-);
-var _d3Selection = require("d3-selection");
-var _attrJs = require("./attr.js");
-var _attrJsDefault = parcelHelpers.interopDefault(_attrJs);
-var _attrTweenJs = require("./attrTween.js");
-var _attrTweenJsDefault = parcelHelpers.interopDefault(_attrTweenJs);
-var _delayJs = require("./delay.js");
-var _delayJsDefault = parcelHelpers.interopDefault(_delayJs);
-var _durationJs = require("./duration.js");
-var _durationJsDefault = parcelHelpers.interopDefault(_durationJs);
-var _easeJs = require("./ease.js");
-var _easeJsDefault = parcelHelpers.interopDefault(_easeJs);
-var _easeVaryingJs = require("./easeVarying.js");
-var _easeVaryingJsDefault = parcelHelpers.interopDefault(_easeVaryingJs);
-var _filterJs = require("./filter.js");
-var _filterJsDefault = parcelHelpers.interopDefault(_filterJs);
-var _mergeJs = require("./merge.js");
-var _mergeJsDefault = parcelHelpers.interopDefault(_mergeJs);
-var _onJs = require("./on.js");
-var _onJsDefault = parcelHelpers.interopDefault(_onJs);
-var _removeJs = require("./remove.js");
-var _removeJsDefault = parcelHelpers.interopDefault(_removeJs);
-var _selectJs = require("./select.js");
-var _selectJsDefault = parcelHelpers.interopDefault(_selectJs);
-var _selectAllJs = require("./selectAll.js");
-var _selectAllJsDefault = parcelHelpers.interopDefault(_selectAllJs);
-var _selectionJs = require("./selection.js");
-var _selectionJsDefault = parcelHelpers.interopDefault(_selectionJs);
-var _styleJs = require("./style.js");
-var _styleJsDefault = parcelHelpers.interopDefault(_styleJs);
-var _styleTweenJs = require("./styleTween.js");
-var _styleTweenJsDefault = parcelHelpers.interopDefault(_styleTweenJs);
-var _textJs = require("./text.js");
-var _textJsDefault = parcelHelpers.interopDefault(_textJs);
-var _textTweenJs = require("./textTween.js");
-var _textTweenJsDefault = parcelHelpers.interopDefault(_textTweenJs);
-var _transitionJs = require("./transition.js");
-var _transitionJsDefault = parcelHelpers.interopDefault(_transitionJs);
-var _tweenJs = require("./tween.js");
-var _tweenJsDefault = parcelHelpers.interopDefault(_tweenJs);
-var _endJs = require("./end.js");
-var _endJsDefault = parcelHelpers.interopDefault(_endJs);
-var id1 = 0;
-function Transition(groups, parents, name, id) {
-    this._groups = groups;
-    this._parents = parents;
-    this._name = name;
-    this._id = id;
-}
-function transition(name) {
-    return _d3Selection.selection().transition(name);
-}
-exports.default = transition;
-function newId() {
-    return ++id1;
-}
-var selection_prototype = _d3Selection.selection.prototype;
-Transition.prototype = transition.prototype = {
-    constructor: Transition,
-    select: _selectJsDefault.default,
-    selectAll: _selectAllJsDefault.default,
-    filter: _filterJsDefault.default,
-    merge: _mergeJsDefault.default,
-    selection: _selectionJsDefault.default,
-    transition: _transitionJsDefault.default,
-    call: selection_prototype.call,
-    nodes: selection_prototype.nodes,
-    node: selection_prototype.node,
-    size: selection_prototype.size,
-    empty: selection_prototype.empty,
-    each: selection_prototype.each,
-    on: _onJsDefault.default,
-    attr: _attrJsDefault.default,
-    attrTween: _attrTweenJsDefault.default,
-    style: _styleJsDefault.default,
-    styleTween: _styleTweenJsDefault.default,
-    text: _textJsDefault.default,
-    textTween: _textTweenJsDefault.default,
-    remove: _removeJsDefault.default,
-    tween: _tweenJsDefault.default,
-    delay: _delayJsDefault.default,
-    duration: _durationJsDefault.default,
-    ease: _easeJsDefault.default,
-    easeVarying: _easeVaryingJsDefault.default,
-    end: _endJsDefault.default,
-    [Symbol.iterator]: selection_prototype[Symbol.iterator]
-};
-
-},{"d3-selection":"6hFAS","./attr.js":"eqM72","./attrTween.js":"7KceQ","./delay.js":"kXZ1j","./duration.js":"jkT0W","./ease.js":"ltuje","./easeVarying.js":"dVG4g","./filter.js":"1mmlL","./merge.js":"fATUw","./on.js":"3BmWL","./remove.js":"40ENw","./select.js":"4xBsB","./selectAll.js":"2dhQe","./selection.js":"6m9gQ","./style.js":"9ZiQf","./styleTween.js":"4lUN1","./text.js":"ccY9b","./textTween.js":"1l8Ei","./transition.js":"1mKEE","./tween.js":"erSem","./end.js":"aoEHu","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eqM72":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Interpolate = require("d3-interpolate");
-var _d3Selection = require("d3-selection");
-var _tweenJs = require("./tween.js");
-var _interpolateJs = require("./interpolate.js");
-var _interpolateJsDefault = parcelHelpers.interopDefault(_interpolateJs);
-function attrRemove(name) {
-    return function() {
-        this.removeAttribute(name);
-    };
-}
-function attrRemoveNS(fullname) {
-    return function() {
-        this.removeAttributeNS(fullname.space, fullname.local);
-    };
-}
-function attrConstant(name, interpolate, value1) {
-    var string00, string1 = value1 + "", interpolate0;
-    return function() {
-        var string0 = this.getAttribute(name);
-        return string0 === string1 ? null : string0 === string00 ? interpolate0 : interpolate0 = interpolate(string00 = string0, value1);
-    };
-}
-function attrConstantNS(fullname, interpolate, value1) {
-    var string00, string1 = value1 + "", interpolate0;
-    return function() {
-        var string0 = this.getAttributeNS(fullname.space, fullname.local);
-        return string0 === string1 ? null : string0 === string00 ? interpolate0 : interpolate0 = interpolate(string00 = string0, value1);
-    };
-}
-function attrFunction(name, interpolate, value) {
-    var string00, string10, interpolate0;
-    return function() {
-        var string0, value1 = value(this), string1;
-        if (value1 == null) return void this.removeAttribute(name);
-        string0 = this.getAttribute(name);
-        string1 = value1 + "";
-        return string0 === string1 ? null : string0 === string00 && string1 === string10 ? interpolate0 : (string10 = string1, interpolate0 = interpolate(string00 = string0, value1));
-    };
-}
-function attrFunctionNS(fullname, interpolate, value) {
-    var string00, string10, interpolate0;
-    return function() {
-        var string0, value1 = value(this), string1;
-        if (value1 == null) return void this.removeAttributeNS(fullname.space, fullname.local);
-        string0 = this.getAttributeNS(fullname.space, fullname.local);
-        string1 = value1 + "";
-        return string0 === string1 ? null : string0 === string00 && string1 === string10 ? interpolate0 : (string10 = string1, interpolate0 = interpolate(string00 = string0, value1));
-    };
-}
-exports.default = function(name, value) {
-    var fullname = _d3Selection.namespace(name), i = fullname === "transform" ? _d3Interpolate.interpolateTransformSvg : _interpolateJsDefault.default;
-    return this.attrTween(name, typeof value === "function" ? (fullname.local ? attrFunctionNS : attrFunction)(fullname, i, _tweenJs.tweenValue(this, "attr." + name, value)) : value == null ? (fullname.local ? attrRemoveNS : attrRemove)(fullname) : (fullname.local ? attrConstantNS : attrConstant)(fullname, i, value));
-};
-
-},{"d3-interpolate":"6apFp","d3-selection":"6hFAS","./tween.js":"erSem","./interpolate.js":"Hov8Q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6apFp":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "interpolate", ()=>_valueJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateArray", ()=>_arrayJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateBasis", ()=>_basisJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateBasisClosed", ()=>_basisClosedJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateDate", ()=>_dateJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateDiscrete", ()=>_discreteJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateHue", ()=>_hueJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateNumber", ()=>_numberJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateNumberArray", ()=>_numberArrayJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateObject", ()=>_objectJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateRound", ()=>_roundJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateString", ()=>_stringJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateTransformCss", ()=>_indexJs.interpolateTransformCss
-);
-parcelHelpers.export(exports, "interpolateTransformSvg", ()=>_indexJs.interpolateTransformSvg
-);
-parcelHelpers.export(exports, "interpolateZoom", ()=>_zoomJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateRgb", ()=>_rgbJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateRgbBasis", ()=>_rgbJs.rgbBasis
-);
-parcelHelpers.export(exports, "interpolateRgbBasisClosed", ()=>_rgbJs.rgbBasisClosed
-);
-parcelHelpers.export(exports, "interpolateHsl", ()=>_hslJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateHslLong", ()=>_hslJs.hslLong
-);
-parcelHelpers.export(exports, "interpolateLab", ()=>_labJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateHcl", ()=>_hclJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateHclLong", ()=>_hclJs.hclLong
-);
-parcelHelpers.export(exports, "interpolateCubehelix", ()=>_cubehelixJsDefault.default
-);
-parcelHelpers.export(exports, "interpolateCubehelixLong", ()=>_cubehelixJs.cubehelixLong
-);
-parcelHelpers.export(exports, "piecewise", ()=>_piecewiseJsDefault.default
-);
-parcelHelpers.export(exports, "quantize", ()=>_quantizeJsDefault.default
-);
-var _valueJs = require("./value.js");
-var _valueJsDefault = parcelHelpers.interopDefault(_valueJs);
-var _arrayJs = require("./array.js");
-var _arrayJsDefault = parcelHelpers.interopDefault(_arrayJs);
-var _basisJs = require("./basis.js");
-var _basisJsDefault = parcelHelpers.interopDefault(_basisJs);
-var _basisClosedJs = require("./basisClosed.js");
-var _basisClosedJsDefault = parcelHelpers.interopDefault(_basisClosedJs);
-var _dateJs = require("./date.js");
-var _dateJsDefault = parcelHelpers.interopDefault(_dateJs);
-var _discreteJs = require("./discrete.js");
-var _discreteJsDefault = parcelHelpers.interopDefault(_discreteJs);
-var _hueJs = require("./hue.js");
-var _hueJsDefault = parcelHelpers.interopDefault(_hueJs);
-var _numberJs = require("./number.js");
-var _numberJsDefault = parcelHelpers.interopDefault(_numberJs);
-var _numberArrayJs = require("./numberArray.js");
-var _numberArrayJsDefault = parcelHelpers.interopDefault(_numberArrayJs);
-var _objectJs = require("./object.js");
-var _objectJsDefault = parcelHelpers.interopDefault(_objectJs);
-var _roundJs = require("./round.js");
-var _roundJsDefault = parcelHelpers.interopDefault(_roundJs);
-var _stringJs = require("./string.js");
-var _stringJsDefault = parcelHelpers.interopDefault(_stringJs);
-var _indexJs = require("./transform/index.js");
-var _zoomJs = require("./zoom.js");
-var _zoomJsDefault = parcelHelpers.interopDefault(_zoomJs);
-var _rgbJs = require("./rgb.js");
-var _rgbJsDefault = parcelHelpers.interopDefault(_rgbJs);
-var _hslJs = require("./hsl.js");
-var _hslJsDefault = parcelHelpers.interopDefault(_hslJs);
-var _labJs = require("./lab.js");
-var _labJsDefault = parcelHelpers.interopDefault(_labJs);
-var _hclJs = require("./hcl.js");
-var _hclJsDefault = parcelHelpers.interopDefault(_hclJs);
-var _cubehelixJs = require("./cubehelix.js");
-var _cubehelixJsDefault = parcelHelpers.interopDefault(_cubehelixJs);
-var _piecewiseJs = require("./piecewise.js");
-var _piecewiseJsDefault = parcelHelpers.interopDefault(_piecewiseJs);
-var _quantizeJs = require("./quantize.js");
-var _quantizeJsDefault = parcelHelpers.interopDefault(_quantizeJs);
-
-},{"./value.js":"jX302","./array.js":"hTChb","./basis.js":"dcwLh","./basisClosed.js":"39psf","./date.js":"eiyQ4","./discrete.js":"GtyZR","./hue.js":"fIvWj","./number.js":"7ImWJ","./numberArray.js":"1TU5g","./object.js":"bTkdw","./round.js":"dzFDb","./string.js":"CBt6K","./transform/index.js":"f5Pau","./zoom.js":"iG4AV","./rgb.js":"8Y3lE","./hsl.js":"O1q9a","./lab.js":"9V97O","./hcl.js":"b85VN","./cubehelix.js":"kcqih","./piecewise.js":"bvakh","./quantize.js":"hsJzp","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jX302":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Color = require("d3-color");
-var _rgbJs = require("./rgb.js");
-var _rgbJsDefault = parcelHelpers.interopDefault(_rgbJs);
-var _arrayJs = require("./array.js");
-var _dateJs = require("./date.js");
-var _dateJsDefault = parcelHelpers.interopDefault(_dateJs);
-var _numberJs = require("./number.js");
-var _numberJsDefault = parcelHelpers.interopDefault(_numberJs);
-var _objectJs = require("./object.js");
-var _objectJsDefault = parcelHelpers.interopDefault(_objectJs);
-var _stringJs = require("./string.js");
-var _stringJsDefault = parcelHelpers.interopDefault(_stringJs);
-var _constantJs = require("./constant.js");
-var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
-var _numberArrayJs = require("./numberArray.js");
-var _numberArrayJsDefault = parcelHelpers.interopDefault(_numberArrayJs);
-exports.default = function(a, b) {
-    var t = typeof b, c;
-    return b == null || t === "boolean" ? _constantJsDefault.default(b) : (t === "number" ? _numberJsDefault.default : t === "string" ? (c = _d3Color.color(b)) ? (b = c, _rgbJsDefault.default) : _stringJsDefault.default : b instanceof _d3Color.color ? _rgbJsDefault.default : b instanceof Date ? _dateJsDefault.default : _numberArrayJs.isNumberArray(b) ? _numberArrayJsDefault.default : Array.isArray(b) ? _arrayJs.genericArray : typeof b.valueOf !== "function" && typeof b.toString !== "function" || isNaN(b) ? _objectJsDefault.default : _numberJsDefault.default)(a, b);
-};
-
-},{"d3-color":"jzBXH","./rgb.js":"8Y3lE","./array.js":"hTChb","./date.js":"eiyQ4","./number.js":"7ImWJ","./object.js":"bTkdw","./string.js":"CBt6K","./constant.js":"n8nDb","./numberArray.js":"1TU5g","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jzBXH":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "color", ()=>_colorJsDefault.default
-);
-parcelHelpers.export(exports, "rgb", ()=>_colorJs.rgb
-);
-parcelHelpers.export(exports, "hsl", ()=>_colorJs.hsl
-);
-parcelHelpers.export(exports, "lab", ()=>_labJsDefault.default
-);
-parcelHelpers.export(exports, "hcl", ()=>_labJs.hcl
-);
-parcelHelpers.export(exports, "lch", ()=>_labJs.lch
-);
-parcelHelpers.export(exports, "gray", ()=>_labJs.gray
-);
-parcelHelpers.export(exports, "cubehelix", ()=>_cubehelixJsDefault.default
-);
-var _colorJs = require("./color.js");
-var _colorJsDefault = parcelHelpers.interopDefault(_colorJs);
-var _labJs = require("./lab.js");
-var _labJsDefault = parcelHelpers.interopDefault(_labJs);
-var _cubehelixJs = require("./cubehelix.js");
-var _cubehelixJsDefault = parcelHelpers.interopDefault(_cubehelixJs);
-
-},{"./color.js":"9YmGl","./lab.js":"gTnTh","./cubehelix.js":"bzB01","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9YmGl":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Color", ()=>Color
-);
-parcelHelpers.export(exports, "darker", ()=>darker
-);
-parcelHelpers.export(exports, "brighter", ()=>brighter
-);
-parcelHelpers.export(exports, "rgbConvert", ()=>rgbConvert
-);
-parcelHelpers.export(exports, "rgb", ()=>rgb
-);
-parcelHelpers.export(exports, "Rgb", ()=>Rgb
-);
-parcelHelpers.export(exports, "hslConvert", ()=>hslConvert
-);
-parcelHelpers.export(exports, "hsl", ()=>hsl
-);
-var _defineJs = require("./define.js");
-var _defineJsDefault = parcelHelpers.interopDefault(_defineJs);
-function Color() {
-}
-var darker = 0.7;
-var brighter = 1 / darker;
-var reI = "\\s*([+-]?\\d+)\\s*", reN = "\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)\\s*", reP = "\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*", reHex = /^#([0-9a-f]{3,8})$/, reRgbInteger = new RegExp("^rgb\\(" + [
-    reI,
-    reI,
-    reI
-] + "\\)$"), reRgbPercent = new RegExp("^rgb\\(" + [
-    reP,
-    reP,
-    reP
-] + "\\)$"), reRgbaInteger = new RegExp("^rgba\\(" + [
-    reI,
-    reI,
-    reI,
-    reN
-] + "\\)$"), reRgbaPercent = new RegExp("^rgba\\(" + [
-    reP,
-    reP,
-    reP,
-    reN
-] + "\\)$"), reHslPercent = new RegExp("^hsl\\(" + [
-    reN,
-    reP,
-    reP
-] + "\\)$"), reHslaPercent = new RegExp("^hsla\\(" + [
-    reN,
-    reP,
-    reP,
-    reN
-] + "\\)$");
-var named = {
-    aliceblue: 15792383,
-    antiquewhite: 16444375,
-    aqua: 65535,
-    aquamarine: 8388564,
-    azure: 15794175,
-    beige: 16119260,
-    bisque: 16770244,
-    black: 0,
-    blanchedalmond: 16772045,
-    blue: 255,
-    blueviolet: 9055202,
-    brown: 10824234,
-    burlywood: 14596231,
-    cadetblue: 6266528,
-    chartreuse: 8388352,
-    chocolate: 13789470,
-    coral: 16744272,
-    cornflowerblue: 6591981,
-    cornsilk: 16775388,
-    crimson: 14423100,
-    cyan: 65535,
-    darkblue: 139,
-    darkcyan: 35723,
-    darkgoldenrod: 12092939,
-    darkgray: 11119017,
-    darkgreen: 25600,
-    darkgrey: 11119017,
-    darkkhaki: 12433259,
-    darkmagenta: 9109643,
-    darkolivegreen: 5597999,
-    darkorange: 16747520,
-    darkorchid: 10040012,
-    darkred: 9109504,
-    darksalmon: 15308410,
-    darkseagreen: 9419919,
-    darkslateblue: 4734347,
-    darkslategray: 3100495,
-    darkslategrey: 3100495,
-    darkturquoise: 52945,
-    darkviolet: 9699539,
-    deeppink: 16716947,
-    deepskyblue: 49151,
-    dimgray: 6908265,
-    dimgrey: 6908265,
-    dodgerblue: 2003199,
-    firebrick: 11674146,
-    floralwhite: 16775920,
-    forestgreen: 2263842,
-    fuchsia: 16711935,
-    gainsboro: 14474460,
-    ghostwhite: 16316671,
-    gold: 16766720,
-    goldenrod: 14329120,
-    gray: 8421504,
-    green: 32768,
-    greenyellow: 11403055,
-    grey: 8421504,
-    honeydew: 15794160,
-    hotpink: 16738740,
-    indianred: 13458524,
-    indigo: 4915330,
-    ivory: 16777200,
-    khaki: 15787660,
-    lavender: 15132410,
-    lavenderblush: 16773365,
-    lawngreen: 8190976,
-    lemonchiffon: 16775885,
-    lightblue: 11393254,
-    lightcoral: 15761536,
-    lightcyan: 14745599,
-    lightgoldenrodyellow: 16448210,
-    lightgray: 13882323,
-    lightgreen: 9498256,
-    lightgrey: 13882323,
-    lightpink: 16758465,
-    lightsalmon: 16752762,
-    lightseagreen: 2142890,
-    lightskyblue: 8900346,
-    lightslategray: 7833753,
-    lightslategrey: 7833753,
-    lightsteelblue: 11584734,
-    lightyellow: 16777184,
-    lime: 65280,
-    limegreen: 3329330,
-    linen: 16445670,
-    magenta: 16711935,
-    maroon: 8388608,
-    mediumaquamarine: 6737322,
-    mediumblue: 205,
-    mediumorchid: 12211667,
-    mediumpurple: 9662683,
-    mediumseagreen: 3978097,
-    mediumslateblue: 8087790,
-    mediumspringgreen: 64154,
-    mediumturquoise: 4772300,
-    mediumvioletred: 13047173,
-    midnightblue: 1644912,
-    mintcream: 16121850,
-    mistyrose: 16770273,
-    moccasin: 16770229,
-    navajowhite: 16768685,
-    navy: 128,
-    oldlace: 16643558,
-    olive: 8421376,
-    olivedrab: 7048739,
-    orange: 16753920,
-    orangered: 16729344,
-    orchid: 14315734,
-    palegoldenrod: 15657130,
-    palegreen: 10025880,
-    paleturquoise: 11529966,
-    palevioletred: 14381203,
-    papayawhip: 16773077,
-    peachpuff: 16767673,
-    peru: 13468991,
-    pink: 16761035,
-    plum: 14524637,
-    powderblue: 11591910,
-    purple: 8388736,
-    rebeccapurple: 6697881,
-    red: 16711680,
-    rosybrown: 12357519,
-    royalblue: 4286945,
-    saddlebrown: 9127187,
-    salmon: 16416882,
-    sandybrown: 16032864,
-    seagreen: 3050327,
-    seashell: 16774638,
-    sienna: 10506797,
-    silver: 12632256,
-    skyblue: 8900331,
-    slateblue: 6970061,
-    slategray: 7372944,
-    slategrey: 7372944,
-    snow: 16775930,
-    springgreen: 65407,
-    steelblue: 4620980,
-    tan: 13808780,
-    teal: 32896,
-    thistle: 14204888,
-    tomato: 16737095,
-    turquoise: 4251856,
-    violet: 15631086,
-    wheat: 16113331,
-    white: 16777215,
-    whitesmoke: 16119285,
-    yellow: 16776960,
-    yellowgreen: 10145074
-};
-_defineJsDefault.default(Color, color, {
-    copy: function(channels) {
-        return Object.assign(new this.constructor, this, channels);
-    },
-    displayable: function() {
-        return this.rgb().displayable();
-    },
-    hex: color_formatHex,
-    formatHex: color_formatHex,
-    formatHsl: color_formatHsl,
-    formatRgb: color_formatRgb,
-    toString: color_formatRgb
-});
-function color_formatHex() {
-    return this.rgb().formatHex();
-}
-function color_formatHsl() {
-    return hslConvert(this).formatHsl();
-}
-function color_formatRgb() {
-    return this.rgb().formatRgb();
-}
-function color(format) {
-    var m, l;
-    format = (format + "").trim().toLowerCase();
-    return (m = reHex.exec(format)) ? (l = m[1].length, m = parseInt(m[1], 16), l === 6 ? rgbn(m) // #ff0000
-     : l === 3 ? new Rgb(m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, (m & 15) << 4 | m & 15, 1) // #f00
-     : l === 8 ? rgba(m >> 24 & 255, m >> 16 & 255, m >> 8 & 255, (m & 255) / 255) // #ff000000
-     : l === 4 ? rgba(m >> 12 & 15 | m >> 8 & 240, m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, ((m & 15) << 4 | m & 15) / 255) // #f000
-     : null) : (m = reRgbInteger.exec(format)) ? new Rgb(m[1], m[2], m[3], 1) // rgb(255, 0, 0)
-     : (m = reRgbPercent.exec(format)) ? new Rgb(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, 1) // rgb(100%, 0%, 0%)
-     : (m = reRgbaInteger.exec(format)) ? rgba(m[1], m[2], m[3], m[4]) // rgba(255, 0, 0, 1)
-     : (m = reRgbaPercent.exec(format)) ? rgba(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, m[4]) // rgb(100%, 0%, 0%, 1)
-     : (m = reHslPercent.exec(format)) ? hsla(m[1], m[2] / 100, m[3] / 100, 1) // hsl(120, 50%, 50%)
-     : (m = reHslaPercent.exec(format)) ? hsla(m[1], m[2] / 100, m[3] / 100, m[4]) // hsla(120, 50%, 50%, 1)
-     : named.hasOwnProperty(format) ? rgbn(named[format]) // eslint-disable-line no-prototype-builtins
-     : format === "transparent" ? new Rgb(NaN, NaN, NaN, 0) : null;
-}
-exports.default = color;
-function rgbn(n) {
-    return new Rgb(n >> 16 & 255, n >> 8 & 255, n & 255, 1);
-}
-function rgba(r, g, b, a) {
-    if (a <= 0) r = g = b = NaN;
-    return new Rgb(r, g, b, a);
-}
-function rgbConvert(o) {
-    if (!(o instanceof Color)) o = color(o);
-    if (!o) return new Rgb;
-    o = o.rgb();
-    return new Rgb(o.r, o.g, o.b, o.opacity);
-}
-function rgb(r, g, b, opacity) {
-    return arguments.length === 1 ? rgbConvert(r) : new Rgb(r, g, b, opacity == null ? 1 : opacity);
-}
-function Rgb(r, g, b, opacity) {
-    this.r = +r;
-    this.g = +g;
-    this.b = +b;
-    this.opacity = +opacity;
-}
-_defineJsDefault.default(Rgb, rgb, _defineJs.extend(Color, {
-    brighter: function(k) {
-        k = k == null ? brighter : Math.pow(brighter, k);
-        return new Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
-    },
-    darker: function(k) {
-        k = k == null ? darker : Math.pow(darker, k);
-        return new Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
-    },
-    rgb: function() {
-        return this;
-    },
-    displayable: function() {
-        return -0.5 <= this.r && this.r < 255.5 && -0.5 <= this.g && this.g < 255.5 && -0.5 <= this.b && this.b < 255.5 && 0 <= this.opacity && this.opacity <= 1;
-    },
-    hex: rgb_formatHex,
-    formatHex: rgb_formatHex,
-    formatRgb: rgb_formatRgb,
-    toString: rgb_formatRgb
-}));
-function rgb_formatHex() {
-    return "#" + hex(this.r) + hex(this.g) + hex(this.b);
-}
-function rgb_formatRgb() {
-    var a = this.opacity;
-    a = isNaN(a) ? 1 : Math.max(0, Math.min(1, a));
-    return (a === 1 ? "rgb(" : "rgba(") + Math.max(0, Math.min(255, Math.round(this.r) || 0)) + ", " + Math.max(0, Math.min(255, Math.round(this.g) || 0)) + ", " + Math.max(0, Math.min(255, Math.round(this.b) || 0)) + (a === 1 ? ")" : ", " + a + ")");
-}
-function hex(value) {
-    value = Math.max(0, Math.min(255, Math.round(value) || 0));
-    return (value < 16 ? "0" : "") + value.toString(16);
-}
-function hsla(h, s, l, a) {
-    if (a <= 0) h = s = l = NaN;
-    else if (l <= 0 || l >= 1) h = s = NaN;
-    else if (s <= 0) h = NaN;
-    return new Hsl(h, s, l, a);
-}
-function hslConvert(o) {
-    if (o instanceof Hsl) return new Hsl(o.h, o.s, o.l, o.opacity);
-    if (!(o instanceof Color)) o = color(o);
-    if (!o) return new Hsl;
-    if (o instanceof Hsl) return o;
-    o = o.rgb();
-    var r = o.r / 255, g = o.g / 255, b = o.b / 255, min = Math.min(r, g, b), max = Math.max(r, g, b), h = NaN, s = max - min, l = (max + min) / 2;
-    if (s) {
-        if (r === max) h = (g - b) / s + (g < b) * 6;
-        else if (g === max) h = (b - r) / s + 2;
-        else h = (r - g) / s + 4;
-        s /= l < 0.5 ? max + min : 2 - max - min;
-        h *= 60;
-    } else s = l > 0 && l < 1 ? 0 : h;
-    return new Hsl(h, s, l, o.opacity);
-}
-function hsl(h, s, l, opacity) {
-    return arguments.length === 1 ? hslConvert(h) : new Hsl(h, s, l, opacity == null ? 1 : opacity);
-}
-function Hsl(h, s, l, opacity) {
-    this.h = +h;
-    this.s = +s;
-    this.l = +l;
-    this.opacity = +opacity;
-}
-_defineJsDefault.default(Hsl, hsl, _defineJs.extend(Color, {
-    brighter: function(k) {
-        k = k == null ? brighter : Math.pow(brighter, k);
-        return new Hsl(this.h, this.s, this.l * k, this.opacity);
-    },
-    darker: function(k) {
-        k = k == null ? darker : Math.pow(darker, k);
-        return new Hsl(this.h, this.s, this.l * k, this.opacity);
-    },
-    rgb: function() {
-        var h = this.h % 360 + (this.h < 0) * 360, s = isNaN(h) || isNaN(this.s) ? 0 : this.s, l = this.l, m2 = l + (l < 0.5 ? l : 1 - l) * s, m1 = 2 * l - m2;
-        return new Rgb(hsl2rgb(h >= 240 ? h - 240 : h + 120, m1, m2), hsl2rgb(h, m1, m2), hsl2rgb(h < 120 ? h + 240 : h - 120, m1, m2), this.opacity);
-    },
-    displayable: function() {
-        return (0 <= this.s && this.s <= 1 || isNaN(this.s)) && 0 <= this.l && this.l <= 1 && 0 <= this.opacity && this.opacity <= 1;
-    },
-    formatHsl: function() {
-        var a = this.opacity;
-        a = isNaN(a) ? 1 : Math.max(0, Math.min(1, a));
-        return (a === 1 ? "hsl(" : "hsla(") + (this.h || 0) + ", " + (this.s || 0) * 100 + "%, " + (this.l || 0) * 100 + "%" + (a === 1 ? ")" : ", " + a + ")");
-    }
-}));
-/* From FvD 13.37, CSS Color Module Level 3 */ function hsl2rgb(h, m1, m2) {
-    return (h < 60 ? m1 + (m2 - m1) * h / 60 : h < 180 ? m2 : h < 240 ? m1 + (m2 - m1) * (240 - h) / 60 : m1) * 255;
-}
-
-},{"./define.js":"7JWtO","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7JWtO":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "extend", ()=>extend
-);
-exports.default = function(constructor, factory, prototype) {
-    constructor.prototype = factory.prototype = prototype;
-    prototype.constructor = constructor;
-};
-function extend(parent, definition) {
-    var prototype = Object.create(parent.prototype);
-    for(var key in definition)prototype[key] = definition[key];
-    return prototype;
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gTnTh":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "gray", ()=>gray
-);
-parcelHelpers.export(exports, "Lab", ()=>Lab
-);
-parcelHelpers.export(exports, "lch", ()=>lch
-);
-parcelHelpers.export(exports, "hcl", ()=>hcl
-);
-parcelHelpers.export(exports, "Hcl", ()=>Hcl
-);
-var _defineJs = require("./define.js");
-var _defineJsDefault = parcelHelpers.interopDefault(_defineJs);
-var _colorJs = require("./color.js");
-var _mathJs = require("./math.js");
-// https://observablehq.com/@mbostock/lab-and-rgb
-const K = 18, Xn = 0.96422, Yn = 1, Zn = 0.82521, t0 = 4 / 29, t1 = 6 / 29, t2 = 3 * t1 * t1, t3 = t1 * t1 * t1;
-function labConvert(o) {
-    if (o instanceof Lab) return new Lab(o.l, o.a, o.b, o.opacity);
-    if (o instanceof Hcl) return hcl2lab(o);
-    if (!(o instanceof _colorJs.Rgb)) o = _colorJs.rgbConvert(o);
-    var r = rgb2lrgb(o.r), g = rgb2lrgb(o.g), b = rgb2lrgb(o.b), y = xyz2lab((0.2225045 * r + 0.7168786 * g + 0.0606169 * b) / Yn), x, z;
-    if (r === g && g === b) x = z = y;
-    else {
-        x = xyz2lab((0.4360747 * r + 0.3850649 * g + 0.1430804 * b) / Xn);
-        z = xyz2lab((0.0139322 * r + 0.0971045 * g + 0.7141733 * b) / Zn);
-    }
-    return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z), o.opacity);
-}
-function gray(l, opacity) {
-    return new Lab(l, 0, 0, opacity == null ? 1 : opacity);
-}
-function lab(l, a, b, opacity) {
-    return arguments.length === 1 ? labConvert(l) : new Lab(l, a, b, opacity == null ? 1 : opacity);
-}
-exports.default = lab;
-function Lab(l, a, b, opacity) {
-    this.l = +l;
-    this.a = +a;
-    this.b = +b;
-    this.opacity = +opacity;
-}
-_defineJsDefault.default(Lab, lab, _defineJs.extend(_colorJs.Color, {
-    brighter: function(k) {
-        return new Lab(this.l + K * (k == null ? 1 : k), this.a, this.b, this.opacity);
-    },
-    darker: function(k) {
-        return new Lab(this.l - K * (k == null ? 1 : k), this.a, this.b, this.opacity);
-    },
-    rgb: function() {
-        var y = (this.l + 16) / 116, x = isNaN(this.a) ? y : y + this.a / 500, z = isNaN(this.b) ? y : y - this.b / 200;
-        x = Xn * lab2xyz(x);
-        y = Yn * lab2xyz(y);
-        z = Zn * lab2xyz(z);
-        return new _colorJs.Rgb(lrgb2rgb(3.1338561 * x - 1.6168667 * y - 0.4906146 * z), lrgb2rgb(-0.9787684 * x + 1.9161415 * y + 0.033454 * z), lrgb2rgb(0.0719453 * x - 0.2289914 * y + 1.4052427 * z), this.opacity);
-    }
-}));
-function xyz2lab(t) {
-    return t > t3 ? Math.pow(t, 1 / 3) : t / t2 + t0;
-}
-function lab2xyz(t) {
-    return t > t1 ? t * t * t : t2 * (t - t0);
-}
-function lrgb2rgb(x) {
-    return 255 * (x <= 0.0031308 ? 12.92 * x : 1.055 * Math.pow(x, 1 / 2.4) - 0.055);
-}
-function rgb2lrgb(x) {
-    return (x /= 255) <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
-}
-function hclConvert(o) {
-    if (o instanceof Hcl) return new Hcl(o.h, o.c, o.l, o.opacity);
-    if (!(o instanceof Lab)) o = labConvert(o);
-    if (o.a === 0 && o.b === 0) return new Hcl(NaN, 0 < o.l && o.l < 100 ? 0 : NaN, o.l, o.opacity);
-    var h = Math.atan2(o.b, o.a) * _mathJs.degrees;
-    return new Hcl(h < 0 ? h + 360 : h, Math.sqrt(o.a * o.a + o.b * o.b), o.l, o.opacity);
-}
-function lch(l, c, h, opacity) {
-    return arguments.length === 1 ? hclConvert(l) : new Hcl(h, c, l, opacity == null ? 1 : opacity);
-}
-function hcl(h, c, l, opacity) {
-    return arguments.length === 1 ? hclConvert(h) : new Hcl(h, c, l, opacity == null ? 1 : opacity);
-}
-function Hcl(h, c, l, opacity) {
-    this.h = +h;
-    this.c = +c;
-    this.l = +l;
-    this.opacity = +opacity;
-}
-function hcl2lab(o) {
-    if (isNaN(o.h)) return new Lab(o.l, 0, 0, o.opacity);
-    var h = o.h * _mathJs.radians;
-    return new Lab(o.l, Math.cos(h) * o.c, Math.sin(h) * o.c, o.opacity);
-}
-_defineJsDefault.default(Hcl, hcl, _defineJs.extend(_colorJs.Color, {
-    brighter: function(k) {
-        return new Hcl(this.h, this.c, this.l + K * (k == null ? 1 : k), this.opacity);
-    },
-    darker: function(k) {
-        return new Hcl(this.h, this.c, this.l - K * (k == null ? 1 : k), this.opacity);
-    },
-    rgb: function() {
-        return hcl2lab(this).rgb();
-    }
-}));
-
-},{"./define.js":"7JWtO","./color.js":"9YmGl","./math.js":"bVTyx","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bVTyx":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "radians", ()=>radians
-);
-parcelHelpers.export(exports, "degrees", ()=>degrees
-);
-const radians = Math.PI / 180;
-const degrees = 180 / Math.PI;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bzB01":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Cubehelix", ()=>Cubehelix
-);
-var _defineJs = require("./define.js");
-var _defineJsDefault = parcelHelpers.interopDefault(_defineJs);
-var _colorJs = require("./color.js");
-var _mathJs = require("./math.js");
-var A = -0.14861, B = 1.78277, C = -0.29227, D = -0.90649, E = 1.97294, ED = E * D, EB = E * B, BC_DA = B * C - D * A;
-function cubehelixConvert(o) {
-    if (o instanceof Cubehelix) return new Cubehelix(o.h, o.s, o.l, o.opacity);
-    if (!(o instanceof _colorJs.Rgb)) o = _colorJs.rgbConvert(o);
-    var r = o.r / 255, g = o.g / 255, b = o.b / 255, l = (BC_DA * b + ED * r - EB * g) / (BC_DA + ED - EB), bl = b - l, k = (E * (g - l) - C * bl) / D, s = Math.sqrt(k * k + bl * bl) / (E * l * (1 - l)), h = s ? Math.atan2(k, bl) * _mathJs.degrees - 120 : NaN;
-    return new Cubehelix(h < 0 ? h + 360 : h, s, l, o.opacity);
-}
-function cubehelix(h, s, l, opacity) {
-    return arguments.length === 1 ? cubehelixConvert(h) : new Cubehelix(h, s, l, opacity == null ? 1 : opacity);
-}
-exports.default = cubehelix;
-function Cubehelix(h, s, l, opacity) {
-    this.h = +h;
-    this.s = +s;
-    this.l = +l;
-    this.opacity = +opacity;
-}
-_defineJsDefault.default(Cubehelix, cubehelix, _defineJs.extend(_colorJs.Color, {
-    brighter: function(k) {
-        k = k == null ? _colorJs.brighter : Math.pow(_colorJs.brighter, k);
-        return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
-    },
-    darker: function(k) {
-        k = k == null ? _colorJs.darker : Math.pow(_colorJs.darker, k);
-        return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
-    },
-    rgb: function() {
-        var h = isNaN(this.h) ? 0 : (this.h + 120) * _mathJs.radians, l = +this.l, a = isNaN(this.s) ? 0 : this.s * l * (1 - l), cosh = Math.cos(h), sinh = Math.sin(h);
-        return new _colorJs.Rgb(255 * (l + a * (A * cosh + B * sinh)), 255 * (l + a * (C * cosh + D * sinh)), 255 * (l + a * (E * cosh)), this.opacity);
-    }
-}));
-
-},{"./define.js":"7JWtO","./color.js":"9YmGl","./math.js":"bVTyx","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8Y3lE":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "rgbBasis", ()=>rgbBasis
-);
-parcelHelpers.export(exports, "rgbBasisClosed", ()=>rgbBasisClosed
-);
-var _d3Color = require("d3-color");
-var _basisJs = require("./basis.js");
-var _basisJsDefault = parcelHelpers.interopDefault(_basisJs);
-var _basisClosedJs = require("./basisClosed.js");
-var _basisClosedJsDefault = parcelHelpers.interopDefault(_basisClosedJs);
-var _colorJs = require("./color.js");
-var _colorJsDefault = parcelHelpers.interopDefault(_colorJs);
-exports.default = (function rgbGamma(y) {
-    var color = _colorJs.gamma(y);
-    function rgb(start, end) {
-        var r = color((start = _d3Color.rgb(start)).r, (end = _d3Color.rgb(end)).r), g = color(start.g, end.g), b = color(start.b, end.b), opacity = _colorJsDefault.default(start.opacity, end.opacity);
-        return function(t) {
-            start.r = r(t);
-            start.g = g(t);
-            start.b = b(t);
-            start.opacity = opacity(t);
-            return start + "";
-        };
-    }
-    rgb.gamma = rgbGamma;
-    return rgb;
-})(1);
-function rgbSpline(spline) {
-    return function(colors) {
-        var n = colors.length, r = new Array(n), g = new Array(n), b = new Array(n), i, color;
-        for(i = 0; i < n; ++i){
-            color = _d3Color.rgb(colors[i]);
-            r[i] = color.r || 0;
-            g[i] = color.g || 0;
-            b[i] = color.b || 0;
-        }
-        r = spline(r);
-        g = spline(g);
-        b = spline(b);
-        color.opacity = 1;
-        return function(t) {
-            color.r = r(t);
-            color.g = g(t);
-            color.b = b(t);
-            return color + "";
-        };
-    };
-}
-var rgbBasis = rgbSpline(_basisJsDefault.default);
-var rgbBasisClosed = rgbSpline(_basisClosedJsDefault.default);
-
-},{"d3-color":"jzBXH","./basis.js":"dcwLh","./basisClosed.js":"39psf","./color.js":"7QWFs","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dcwLh":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "basis", ()=>basis
-);
-function basis(t1, v0, v1, v2, v3) {
-    var t2 = t1 * t1, t3 = t2 * t1;
-    return ((1 - 3 * t1 + 3 * t2 - t3) * v0 + (4 - 6 * t2 + 3 * t3) * v1 + (1 + 3 * t1 + 3 * t2 - 3 * t3) * v2 + t3 * v3) / 6;
-}
-exports.default = function(values) {
-    var n = values.length - 1;
-    return function(t) {
-        var i = t <= 0 ? t = 0 : t >= 1 ? (t = 1, n - 1) : Math.floor(t * n), v1 = values[i], v2 = values[i + 1], v0 = i > 0 ? values[i - 1] : 2 * v1 - v2, v3 = i < n - 1 ? values[i + 2] : 2 * v2 - v1;
-        return basis((t - i / n) * n, v0, v1, v2, v3);
-    };
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"39psf":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _basisJs = require("./basis.js");
-exports.default = function(values) {
-    var n = values.length;
-    return function(t) {
-        var i = Math.floor(((t %= 1) < 0 ? ++t : t) * n), v0 = values[(i + n - 1) % n], v1 = values[i % n], v2 = values[(i + 1) % n], v3 = values[(i + 2) % n];
-        return _basisJs.basis((t - i / n) * n, v0, v1, v2, v3);
-    };
-};
-
-},{"./basis.js":"dcwLh","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7QWFs":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "hue", ()=>hue
-);
-parcelHelpers.export(exports, "gamma", ()=>gamma
-);
-var _constantJs = require("./constant.js");
-var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
-function linear(a, d) {
-    return function(t) {
-        return a + t * d;
-    };
-}
-function exponential(a, b, y) {
-    return a = Math.pow(a, y), b = Math.pow(b, y) - a, y = 1 / y, function(t) {
-        return Math.pow(a + t * b, y);
-    };
-}
-function hue(a, b) {
-    var d = b - a;
-    return d ? linear(a, d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d) : _constantJsDefault.default(isNaN(a) ? b : a);
-}
-function gamma(y) {
-    return (y = +y) === 1 ? nogamma : function(a, b) {
-        return b - a ? exponential(a, b, y) : _constantJsDefault.default(isNaN(a) ? b : a);
-    };
-}
-function nogamma(a, b) {
-    var d = b - a;
-    return d ? linear(a, d) : _constantJsDefault.default(isNaN(a) ? b : a);
-}
-exports.default = nogamma;
-
-},{"./constant.js":"n8nDb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"n8nDb":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = (x)=>()=>x
-;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hTChb":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "genericArray", ()=>genericArray
-);
-var _valueJs = require("./value.js");
-var _valueJsDefault = parcelHelpers.interopDefault(_valueJs);
-var _numberArrayJs = require("./numberArray.js");
-var _numberArrayJsDefault = parcelHelpers.interopDefault(_numberArrayJs);
-exports.default = function(a, b) {
-    return (_numberArrayJs.isNumberArray(b) ? _numberArrayJsDefault.default : genericArray)(a, b);
-};
-function genericArray(a, b) {
-    var nb = b ? b.length : 0, na = a ? Math.min(nb, a.length) : 0, x = new Array(na), c = new Array(nb), i;
-    for(i = 0; i < na; ++i)x[i] = _valueJsDefault.default(a[i], b[i]);
-    for(; i < nb; ++i)c[i] = b[i];
-    return function(t) {
-        for(i = 0; i < na; ++i)c[i] = x[i](t);
-        return c;
-    };
-}
-
-},{"./value.js":"jX302","./numberArray.js":"1TU5g","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1TU5g":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "isNumberArray", ()=>isNumberArray
-);
-exports.default = function(a, b) {
-    if (!b) b = [];
-    var n = a ? Math.min(b.length, a.length) : 0, c = b.slice(), i;
-    return function(t) {
-        for(i = 0; i < n; ++i)c[i] = a[i] * (1 - t) + b[i] * t;
-        return c;
-    };
-};
-function isNumberArray(x) {
-    return ArrayBuffer.isView(x) && !(x instanceof DataView);
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eiyQ4":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(a, b) {
-    var d = new Date;
-    return a = +a, b = +b, function(t) {
-        return d.setTime(a * (1 - t) + b * t), d;
-    };
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7ImWJ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(a, b) {
-    return a = +a, b = +b, function(t) {
-        return a * (1 - t) + b * t;
-    };
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bTkdw":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _valueJs = require("./value.js");
-var _valueJsDefault = parcelHelpers.interopDefault(_valueJs);
-exports.default = function(a, b) {
-    var i = {
-    }, c = {
-    }, k;
-    if (a === null || typeof a !== "object") a = {
-    };
-    if (b === null || typeof b !== "object") b = {
-    };
-    for(k in b)if (k in a) i[k] = _valueJsDefault.default(a[k], b[k]);
-    else c[k] = b[k];
-    return function(t) {
-        for(k in i)c[k] = i[k](t);
-        return c;
-    };
-};
-
-},{"./value.js":"jX302","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"CBt6K":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _numberJs = require("./number.js");
-var _numberJsDefault = parcelHelpers.interopDefault(_numberJs);
-var reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g, reB = new RegExp(reA.source, "g");
-function zero(b) {
-    return function() {
-        return b;
-    };
-}
-function one(b) {
-    return function(t) {
-        return b(t) + "";
-    };
-}
-exports.default = function(a, b) {
-    var bi = reA.lastIndex = reB.lastIndex = 0, am, bm, bs, i1 = -1, s = [], q = []; // number interpolators
-    // Coerce inputs to strings.
-    a = a + "", b = b + "";
-    // Interpolate pairs of numbers in a & b.
-    while((am = reA.exec(a)) && (bm = reB.exec(b))){
-        if ((bs = bm.index) > bi) {
-            bs = b.slice(bi, bs);
-            if (s[i1]) s[i1] += bs; // coalesce with previous string
-            else s[++i1] = bs;
-        }
-        if ((am = am[0]) === (bm = bm[0])) {
-            if (s[i1]) s[i1] += bm; // coalesce with previous string
-            else s[++i1] = bm;
-        } else {
-            s[++i1] = null;
-            q.push({
-                i: i1,
-                x: _numberJsDefault.default(am, bm)
-            });
-        }
-        bi = reB.lastIndex;
-    }
-    // Add remains of b.
-    if (bi < b.length) {
-        bs = b.slice(bi);
-        if (s[i1]) s[i1] += bs; // coalesce with previous string
-        else s[++i1] = bs;
-    }
-    // Special optimization for only a single match.
-    // Otherwise, interpolate each of the numbers and rejoin the string.
-    return s.length < 2 ? q[0] ? one(q[0].x) : zero(b) : (b = q.length, function(t) {
-        for(var i = 0, o; i < b; ++i)s[(o = q[i]).i] = o.x(t);
-        return s.join("");
-    });
-};
-
-},{"./number.js":"7ImWJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"GtyZR":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(range) {
-    var n = range.length;
-    return function(t) {
-        return range[Math.max(0, Math.min(n - 1, Math.floor(t * n)))];
-    };
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fIvWj":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _colorJs = require("./color.js");
-exports.default = function(a, b) {
-    var i = _colorJs.hue(+a, +b);
-    return function(t) {
-        var x = i(t);
-        return x - 360 * Math.floor(x / 360);
-    };
-};
-
-},{"./color.js":"7QWFs","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dzFDb":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(a, b) {
-    return a = +a, b = +b, function(t) {
-        return Math.round(a * (1 - t) + b * t);
-    };
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"f5Pau":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "interpolateTransformCss", ()=>interpolateTransformCss
-);
-parcelHelpers.export(exports, "interpolateTransformSvg", ()=>interpolateTransformSvg
-);
-var _numberJs = require("../number.js");
-var _numberJsDefault = parcelHelpers.interopDefault(_numberJs);
-var _parseJs = require("./parse.js");
-function interpolateTransform(parse, pxComma, pxParen, degParen) {
-    function pop(s) {
-        return s.length ? s.pop() + " " : "";
-    }
-    function translate(xa, ya, xb, yb, s, q) {
-        if (xa !== xb || ya !== yb) {
-            var i = s.push("translate(", null, pxComma, null, pxParen);
-            q.push({
-                i: i - 4,
-                x: _numberJsDefault.default(xa, xb)
-            }, {
-                i: i - 2,
-                x: _numberJsDefault.default(ya, yb)
-            });
-        } else if (xb || yb) s.push("translate(" + xb + pxComma + yb + pxParen);
-    }
-    function rotate(a, b, s, q) {
-        if (a !== b) {
-            if (a - b > 180) b += 360;
-            else if (b - a > 180) a += 360; // shortest path
-            q.push({
-                i: s.push(pop(s) + "rotate(", null, degParen) - 2,
-                x: _numberJsDefault.default(a, b)
-            });
-        } else if (b) s.push(pop(s) + "rotate(" + b + degParen);
-    }
-    function skewX(a, b, s, q) {
-        if (a !== b) q.push({
-            i: s.push(pop(s) + "skewX(", null, degParen) - 2,
-            x: _numberJsDefault.default(a, b)
-        });
-        else if (b) s.push(pop(s) + "skewX(" + b + degParen);
-    }
-    function scale(xa, ya, xb, yb, s, q) {
-        if (xa !== xb || ya !== yb) {
-            var i = s.push(pop(s) + "scale(", null, ",", null, ")");
-            q.push({
-                i: i - 4,
-                x: _numberJsDefault.default(xa, xb)
-            }, {
-                i: i - 2,
-                x: _numberJsDefault.default(ya, yb)
-            });
-        } else if (xb !== 1 || yb !== 1) s.push(pop(s) + "scale(" + xb + "," + yb + ")");
-    }
-    return function(a, b) {
-        var s = [], q = []; // number interpolators
-        a = parse(a), b = parse(b);
-        translate(a.translateX, a.translateY, b.translateX, b.translateY, s, q);
-        rotate(a.rotate, b.rotate, s, q);
-        skewX(a.skewX, b.skewX, s, q);
-        scale(a.scaleX, a.scaleY, b.scaleX, b.scaleY, s, q);
-        a = b = null; // gc
-        return function(t) {
-            var i = -1, n = q.length, o;
-            while(++i < n)s[(o = q[i]).i] = o.x(t);
-            return s.join("");
-        };
-    };
-}
-var interpolateTransformCss = interpolateTransform(_parseJs.parseCss, "px, ", "px)", "deg)");
-var interpolateTransformSvg = interpolateTransform(_parseJs.parseSvg, ", ", ")", ")");
-
-},{"../number.js":"7ImWJ","./parse.js":"5RWKT","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5RWKT":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/* eslint-disable no-undef */ parcelHelpers.export(exports, "parseCss", ()=>parseCss
-);
-parcelHelpers.export(exports, "parseSvg", ()=>parseSvg
-);
-var _decomposeJs = require("./decompose.js");
-var _decomposeJsDefault = parcelHelpers.interopDefault(_decomposeJs);
-var svgNode;
-function parseCss(value) {
-    const m = new (typeof DOMMatrix === "function" ? DOMMatrix : WebKitCSSMatrix)(value + "");
-    return m.isIdentity ? _decomposeJs.identity : _decomposeJsDefault.default(m.a, m.b, m.c, m.d, m.e, m.f);
-}
-function parseSvg(value) {
-    if (value == null) return _decomposeJs.identity;
-    if (!svgNode) svgNode = document.createElementNS("http://www.w3.org/2000/svg", "g");
-    svgNode.setAttribute("transform", value);
-    if (!(value = svgNode.transform.baseVal.consolidate())) return _decomposeJs.identity;
-    value = value.matrix;
-    return _decomposeJsDefault.default(value.a, value.b, value.c, value.d, value.e, value.f);
-}
-
-},{"./decompose.js":"lvqVU","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lvqVU":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "identity", ()=>identity
-);
-var degrees = 180 / Math.PI;
-var identity = {
-    translateX: 0,
-    translateY: 0,
-    rotate: 0,
-    skewX: 0,
-    scaleX: 1,
-    scaleY: 1
-};
-exports.default = function(a, b, c, d, e, f) {
-    var scaleX, scaleY, skewX;
-    if (scaleX = Math.sqrt(a * a + b * b)) a /= scaleX, b /= scaleX;
-    if (skewX = a * c + b * d) c -= a * skewX, d -= b * skewX;
-    if (scaleY = Math.sqrt(c * c + d * d)) c /= scaleY, d /= scaleY, skewX /= scaleY;
-    if (a * d < b * c) a = -a, b = -b, skewX = -skewX, scaleX = -scaleX;
-    return {
-        translateX: e,
-        translateY: f,
-        rotate: Math.atan2(b, a) * degrees,
-        skewX: Math.atan(skewX) * degrees,
-        scaleX: scaleX,
-        scaleY: scaleY
-    };
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iG4AV":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var epsilon2 = 0.000000000001;
-function cosh(x) {
-    return ((x = Math.exp(x)) + 1 / x) / 2;
-}
-function sinh(x) {
-    return ((x = Math.exp(x)) - 1 / x) / 2;
-}
-function tanh(x) {
-    return ((x = Math.exp(2 * x)) - 1) / (x + 1);
-}
-exports.default = (function zoomRho(rho, rho2, rho4) {
-    // p0 = [ux0, uy0, w0]
-    // p1 = [ux1, uy1, w1]
-    function zoom(p0, p1) {
-        var ux0 = p0[0], uy0 = p0[1], w0 = p0[2], ux1 = p1[0], uy1 = p1[1], w1 = p1[2], dx = ux1 - ux0, dy = uy1 - uy0, d2 = dx * dx + dy * dy, i, S;
-        // Special case for u0 ≅ u1.
-        if (d2 < epsilon2) {
-            S = Math.log(w1 / w0) / rho;
-            i = function(t) {
-                return [
-                    ux0 + t * dx,
-                    uy0 + t * dy,
-                    w0 * Math.exp(rho * t * S)
-                ];
-            };
-        } else {
-            var d1 = Math.sqrt(d2), b0 = (w1 * w1 - w0 * w0 + rho4 * d2) / (2 * w0 * rho2 * d1), b1 = (w1 * w1 - w0 * w0 - rho4 * d2) / (2 * w1 * rho2 * d1), r0 = Math.log(Math.sqrt(b0 * b0 + 1) - b0), r1 = Math.log(Math.sqrt(b1 * b1 + 1) - b1);
-            S = (r1 - r0) / rho;
-            i = function(t) {
-                var s = t * S, coshr0 = cosh(r0), u = w0 / (rho2 * d1) * (coshr0 * tanh(rho * s + r0) - sinh(r0));
-                return [
-                    ux0 + u * dx,
-                    uy0 + u * dy,
-                    w0 * coshr0 / cosh(rho * s + r0)
-                ];
-            };
-        }
-        i.duration = S * 1000 * rho / Math.SQRT2;
-        return i;
-    }
-    zoom.rho = function(_) {
-        var _1 = Math.max(0.001, +_), _2 = _1 * _1, _4 = _2 * _2;
-        return zoomRho(_1, _2, _4);
-    };
-    return zoom;
-})(Math.SQRT2, 2, 4);
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"O1q9a":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "hslLong", ()=>hslLong
-);
-var _d3Color = require("d3-color");
-var _colorJs = require("./color.js");
-var _colorJsDefault = parcelHelpers.interopDefault(_colorJs);
-function hsl(hue) {
-    return function(start, end) {
-        var h = hue((start = _d3Color.hsl(start)).h, (end = _d3Color.hsl(end)).h), s = _colorJsDefault.default(start.s, end.s), l = _colorJsDefault.default(start.l, end.l), opacity = _colorJsDefault.default(start.opacity, end.opacity);
-        return function(t) {
-            start.h = h(t);
-            start.s = s(t);
-            start.l = l(t);
-            start.opacity = opacity(t);
-            return start + "";
-        };
-    };
-}
-exports.default = hsl(_colorJs.hue);
-var hslLong = hsl(_colorJsDefault.default);
-
-},{"d3-color":"jzBXH","./color.js":"7QWFs","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9V97O":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Color = require("d3-color");
-var _colorJs = require("./color.js");
-var _colorJsDefault = parcelHelpers.interopDefault(_colorJs);
-function lab(start, end) {
-    var l = _colorJsDefault.default((start = _d3Color.lab(start)).l, (end = _d3Color.lab(end)).l), a = _colorJsDefault.default(start.a, end.a), b = _colorJsDefault.default(start.b, end.b), opacity = _colorJsDefault.default(start.opacity, end.opacity);
-    return function(t) {
-        start.l = l(t);
-        start.a = a(t);
-        start.b = b(t);
-        start.opacity = opacity(t);
-        return start + "";
-    };
-}
-exports.default = lab;
-
-},{"d3-color":"jzBXH","./color.js":"7QWFs","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"b85VN":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "hclLong", ()=>hclLong
-);
-var _d3Color = require("d3-color");
-var _colorJs = require("./color.js");
-var _colorJsDefault = parcelHelpers.interopDefault(_colorJs);
-function hcl(hue) {
-    return function(start, end) {
-        var h = hue((start = _d3Color.hcl(start)).h, (end = _d3Color.hcl(end)).h), c = _colorJsDefault.default(start.c, end.c), l = _colorJsDefault.default(start.l, end.l), opacity = _colorJsDefault.default(start.opacity, end.opacity);
-        return function(t) {
-            start.h = h(t);
-            start.c = c(t);
-            start.l = l(t);
-            start.opacity = opacity(t);
-            return start + "";
-        };
-    };
-}
-exports.default = hcl(_colorJs.hue);
-var hclLong = hcl(_colorJsDefault.default);
-
-},{"d3-color":"jzBXH","./color.js":"7QWFs","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kcqih":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "cubehelixLong", ()=>cubehelixLong
-);
-var _d3Color = require("d3-color");
-var _colorJs = require("./color.js");
-var _colorJsDefault = parcelHelpers.interopDefault(_colorJs);
-function cubehelix1(hue) {
-    return (function cubehelixGamma(y) {
-        y = +y;
-        function cubehelix(start, end) {
-            var h = hue((start = _d3Color.cubehelix(start)).h, (end = _d3Color.cubehelix(end)).h), s = _colorJsDefault.default(start.s, end.s), l = _colorJsDefault.default(start.l, end.l), opacity = _colorJsDefault.default(start.opacity, end.opacity);
-            return function(t) {
-                start.h = h(t);
-                start.s = s(t);
-                start.l = l(Math.pow(t, y));
-                start.opacity = opacity(t);
-                return start + "";
-            };
-        }
-        cubehelix.gamma = cubehelixGamma;
-        return cubehelix;
-    })(1);
-}
-exports.default = cubehelix1(_colorJs.hue);
-var cubehelixLong = cubehelix1(_colorJsDefault.default);
-
-},{"d3-color":"jzBXH","./color.js":"7QWFs","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bvakh":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _valueJs = require("./value.js");
-var _valueJsDefault = parcelHelpers.interopDefault(_valueJs);
-function piecewise(interpolate, values) {
-    if (values === undefined) values = interpolate, interpolate = _valueJsDefault.default;
-    var i1 = 0, n = values.length - 1, v = values[0], I = new Array(n < 0 ? 0 : n);
-    while(i1 < n)I[i1] = interpolate(v, v = values[++i1]);
-    return function(t) {
-        var i = Math.max(0, Math.min(n - 1, Math.floor(t *= n)));
-        return I[i](t - i);
-    };
-}
-exports.default = piecewise;
-
-},{"./value.js":"jX302","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hsJzp":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(interpolator, n) {
-    var samples = new Array(n);
-    for(var i = 0; i < n; ++i)samples[i] = interpolator(i / (n - 1));
-    return samples;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"erSem":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "tweenValue", ()=>tweenValue
-);
-var _scheduleJs = require("./schedule.js");
-function tweenRemove(id, name) {
-    var tween0, tween1;
-    return function() {
-        var schedule = _scheduleJs.set(this, id), tween = schedule.tween;
-        // If this node shared tween with the previous node,
-        // just assign the updated shared tween and we’re done!
-        // Otherwise, copy-on-write.
-        if (tween !== tween0) {
-            tween1 = tween0 = tween;
-            for(var i = 0, n = tween1.length; i < n; ++i)if (tween1[i].name === name) {
-                tween1 = tween1.slice();
-                tween1.splice(i, 1);
-                break;
-            }
-        }
-        schedule.tween = tween1;
-    };
-}
-function tweenFunction(id, name, value) {
-    var tween0, tween1;
-    if (typeof value !== "function") throw new Error;
-    return function() {
-        var schedule = _scheduleJs.set(this, id), tween = schedule.tween;
-        // If this node shared tween with the previous node,
-        // just assign the updated shared tween and we’re done!
-        // Otherwise, copy-on-write.
-        if (tween !== tween0) {
-            tween1 = (tween0 = tween).slice();
-            for(var t = {
-                name: name,
-                value: value
-            }, i = 0, n = tween1.length; i < n; ++i)if (tween1[i].name === name) {
-                tween1[i] = t;
-                break;
-            }
-            if (i === n) tween1.push(t);
-        }
-        schedule.tween = tween1;
-    };
-}
-exports.default = function(name, value) {
-    var id = this._id;
-    name += "";
-    if (arguments.length < 2) {
-        var tween = _scheduleJs.get(this.node(), id).tween;
-        for(var i = 0, n = tween.length, t; i < n; ++i){
-            if ((t = tween[i]).name === name) return t.value;
-        }
-        return null;
-    }
-    return this.each((value == null ? tweenRemove : tweenFunction)(id, name, value));
-};
-function tweenValue(transition, name, value) {
-    var id = transition._id;
-    transition.each(function() {
-        var schedule = _scheduleJs.set(this, id);
-        (schedule.value || (schedule.value = {
-        }))[name] = value.apply(this, arguments);
-    });
-    return function(node) {
-        return _scheduleJs.get(node, id).value[name];
-    };
-}
-
-},{"./schedule.js":"g22zU","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"Hov8Q":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Color = require("d3-color");
-var _d3Interpolate = require("d3-interpolate");
-exports.default = function(a, b) {
-    var c;
-    return (typeof b === "number" ? _d3Interpolate.interpolateNumber : b instanceof _d3Color.color ? _d3Interpolate.interpolateRgb : (c = _d3Color.color(b)) ? (b = c, _d3Interpolate.interpolateRgb) : _d3Interpolate.interpolateString)(a, b);
-};
-
-},{"d3-color":"jzBXH","d3-interpolate":"6apFp","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7KceQ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Selection = require("d3-selection");
-function attrInterpolate(name, i) {
-    return function(t) {
-        this.setAttribute(name, i.call(this, t));
-    };
-}
-function attrInterpolateNS(fullname, i) {
-    return function(t) {
-        this.setAttributeNS(fullname.space, fullname.local, i.call(this, t));
-    };
-}
-function attrTweenNS(fullname, value) {
-    var t0, i0;
-    function tween() {
-        var i = value.apply(this, arguments);
-        if (i !== i0) t0 = (i0 = i) && attrInterpolateNS(fullname, i);
-        return t0;
-    }
-    tween._value = value;
-    return tween;
-}
-function attrTween(name, value) {
-    var t0, i0;
-    function tween() {
-        var i = value.apply(this, arguments);
-        if (i !== i0) t0 = (i0 = i) && attrInterpolate(name, i);
-        return t0;
-    }
-    tween._value = value;
-    return tween;
-}
-exports.default = function(name, value) {
-    var key = "attr." + name;
-    if (arguments.length < 2) return (key = this.tween(key)) && key._value;
-    if (value == null) return this.tween(key, null);
-    if (typeof value !== "function") throw new Error;
-    var fullname = _d3Selection.namespace(name);
-    return this.tween(key, (fullname.local ? attrTweenNS : attrTween)(fullname, value));
-};
-
-},{"d3-selection":"6hFAS","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kXZ1j":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _scheduleJs = require("./schedule.js");
-function delayFunction(id, value) {
-    return function() {
-        _scheduleJs.init(this, id).delay = +value.apply(this, arguments);
-    };
-}
-function delayConstant(id, value) {
-    return value = +value, function() {
-        _scheduleJs.init(this, id).delay = value;
-    };
-}
-exports.default = function(value) {
-    var id = this._id;
-    return arguments.length ? this.each((typeof value === "function" ? delayFunction : delayConstant)(id, value)) : _scheduleJs.get(this.node(), id).delay;
-};
-
-},{"./schedule.js":"g22zU","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jkT0W":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _scheduleJs = require("./schedule.js");
-function durationFunction(id, value) {
-    return function() {
-        _scheduleJs.set(this, id).duration = +value.apply(this, arguments);
-    };
-}
-function durationConstant(id, value) {
-    return value = +value, function() {
-        _scheduleJs.set(this, id).duration = value;
-    };
-}
-exports.default = function(value) {
-    var id = this._id;
-    return arguments.length ? this.each((typeof value === "function" ? durationFunction : durationConstant)(id, value)) : _scheduleJs.get(this.node(), id).duration;
-};
-
-},{"./schedule.js":"g22zU","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ltuje":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _scheduleJs = require("./schedule.js");
-function easeConstant(id, value) {
-    if (typeof value !== "function") throw new Error;
-    return function() {
-        _scheduleJs.set(this, id).ease = value;
-    };
-}
-exports.default = function(value) {
-    var id = this._id;
-    return arguments.length ? this.each(easeConstant(id, value)) : _scheduleJs.get(this.node(), id).ease;
-};
-
-},{"./schedule.js":"g22zU","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dVG4g":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _scheduleJs = require("./schedule.js");
-function easeVarying(id, value) {
-    return function() {
-        var v = value.apply(this, arguments);
-        if (typeof v !== "function") throw new Error;
-        _scheduleJs.set(this, id).ease = v;
-    };
-}
-exports.default = function(value) {
-    if (typeof value !== "function") throw new Error;
-    return this.each(easeVarying(this._id, value));
-};
-
-},{"./schedule.js":"g22zU","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1mmlL":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Selection = require("d3-selection");
-var _indexJs = require("./index.js");
-exports.default = function(match) {
-    if (typeof match !== "function") match = _d3Selection.matcher(match);
-    for(var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j){
-        for(var group = groups[j], n = group.length, subgroup = subgroups[j] = [], node, i = 0; i < n; ++i)if ((node = group[i]) && match.call(node, node.__data__, i, group)) subgroup.push(node);
-    }
-    return new _indexJs.Transition(subgroups, this._parents, this._name, this._id);
-};
-
-},{"d3-selection":"6hFAS","./index.js":"eOnuG","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fATUw":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("./index.js");
-exports.default = function(transition) {
-    if (transition._id !== this._id) throw new Error;
-    for(var groups0 = this._groups, groups1 = transition._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j){
-        for(var group0 = groups0[j], group1 = groups1[j], n = group0.length, merge = merges[j] = new Array(n), node, i = 0; i < n; ++i)if (node = group0[i] || group1[i]) merge[i] = node;
-    }
-    for(; j < m0; ++j)merges[j] = groups0[j];
-    return new _indexJs.Transition(merges, this._parents, this._name, this._id);
-};
-
-},{"./index.js":"eOnuG","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3BmWL":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _scheduleJs = require("./schedule.js");
-function start(name) {
-    return (name + "").trim().split(/^|\s+/).every(function(t) {
-        var i = t.indexOf(".");
-        if (i >= 0) t = t.slice(0, i);
-        return !t || t === "start";
-    });
-}
-function onFunction(id, name, listener) {
-    var on0, on1, sit = start(name) ? _scheduleJs.init : _scheduleJs.set;
-    return function() {
-        var schedule = sit(this, id), on = schedule.on;
-        // If this node shared a dispatch with the previous node,
-        // just assign the updated shared dispatch and we’re done!
-        // Otherwise, copy-on-write.
-        if (on !== on0) (on1 = (on0 = on).copy()).on(name, listener);
-        schedule.on = on1;
-    };
-}
-exports.default = function(name, listener) {
-    var id = this._id;
-    return arguments.length < 2 ? _scheduleJs.get(this.node(), id).on.on(name) : this.each(onFunction(id, name, listener));
-};
-
-},{"./schedule.js":"g22zU","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"40ENw":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function removeFunction(id) {
-    return function() {
-        var parent = this.parentNode;
-        for(var i in this.__transition)if (+i !== id) return;
-        if (parent) parent.removeChild(this);
-    };
-}
-exports.default = function() {
-    return this.on("end.remove", removeFunction(this._id));
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4xBsB":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Selection = require("d3-selection");
-var _indexJs = require("./index.js");
-var _scheduleJs = require("./schedule.js");
-var _scheduleJsDefault = parcelHelpers.interopDefault(_scheduleJs);
-exports.default = function(select) {
-    var name = this._name, id = this._id;
-    if (typeof select !== "function") select = _d3Selection.selector(select);
-    for(var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j){
-        for(var group = groups[j], n = group.length, subgroup = subgroups[j] = new Array(n), node, subnode, i = 0; i < n; ++i)if ((node = group[i]) && (subnode = select.call(node, node.__data__, i, group))) {
-            if ("__data__" in node) subnode.__data__ = node.__data__;
-            subgroup[i] = subnode;
-            _scheduleJsDefault.default(subgroup[i], name, id, i, subgroup, _scheduleJs.get(node, id));
-        }
-    }
-    return new _indexJs.Transition(subgroups, this._parents, name, id);
-};
-
-},{"d3-selection":"6hFAS","./index.js":"eOnuG","./schedule.js":"g22zU","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2dhQe":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Selection = require("d3-selection");
-var _indexJs = require("./index.js");
-var _scheduleJs = require("./schedule.js");
-var _scheduleJsDefault = parcelHelpers.interopDefault(_scheduleJs);
-exports.default = function(select) {
-    var name = this._name, id = this._id;
-    if (typeof select !== "function") select = _d3Selection.selectorAll(select);
-    for(var groups = this._groups, m = groups.length, subgroups = [], parents = [], j = 0; j < m; ++j){
-        for(var group = groups[j], n = group.length, node, i = 0; i < n; ++i)if (node = group[i]) {
-            for(var children = select.call(node, node.__data__, i, group), child, inherit = _scheduleJs.get(node, id), k = 0, l = children.length; k < l; ++k)if (child = children[k]) _scheduleJsDefault.default(child, name, id, k, children, inherit);
-            subgroups.push(children);
-            parents.push(node);
-        }
-    }
-    return new _indexJs.Transition(subgroups, parents, name, id);
-};
-
-},{"d3-selection":"6hFAS","./index.js":"eOnuG","./schedule.js":"g22zU","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6m9gQ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Selection = require("d3-selection");
-var Selection = _d3Selection.selection.prototype.constructor;
-exports.default = function() {
-    return new Selection(this._groups, this._parents);
-};
-
-},{"d3-selection":"6hFAS","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9ZiQf":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Interpolate = require("d3-interpolate");
-var _d3Selection = require("d3-selection");
-var _scheduleJs = require("./schedule.js");
-var _tweenJs = require("./tween.js");
-var _interpolateJs = require("./interpolate.js");
-var _interpolateJsDefault = parcelHelpers.interopDefault(_interpolateJs);
-function styleNull(name, interpolate) {
-    var string00, string10, interpolate0;
-    return function() {
-        var string0 = _d3Selection.style(this, name), string1 = (this.style.removeProperty(name), _d3Selection.style(this, name));
-        return string0 === string1 ? null : string0 === string00 && string1 === string10 ? interpolate0 : interpolate0 = interpolate(string00 = string0, string10 = string1);
-    };
-}
-function styleRemove(name) {
-    return function() {
-        this.style.removeProperty(name);
-    };
-}
-function styleConstant(name, interpolate, value1) {
-    var string00, string1 = value1 + "", interpolate0;
-    return function() {
-        var string0 = _d3Selection.style(this, name);
-        return string0 === string1 ? null : string0 === string00 ? interpolate0 : interpolate0 = interpolate(string00 = string0, value1);
-    };
-}
-function styleFunction(name, interpolate, value) {
-    var string00, string10, interpolate0;
-    return function() {
-        var string0 = _d3Selection.style(this, name), value1 = value(this), string1 = value1 + "";
-        if (value1 == null) string1 = value1 = (this.style.removeProperty(name), _d3Selection.style(this, name));
-        return string0 === string1 ? null : string0 === string00 && string1 === string10 ? interpolate0 : (string10 = string1, interpolate0 = interpolate(string00 = string0, value1));
-    };
-}
-function styleMaybeRemove(id, name) {
-    var on0, on1, listener0, key = "style." + name, event = "end." + key, remove;
-    return function() {
-        var schedule = _scheduleJs.set(this, id), on = schedule.on, listener = schedule.value[key] == null ? remove || (remove = styleRemove(name)) : undefined;
-        // If this node shared a dispatch with the previous node,
-        // just assign the updated shared dispatch and we’re done!
-        // Otherwise, copy-on-write.
-        if (on !== on0 || listener0 !== listener) (on1 = (on0 = on).copy()).on(event, listener0 = listener);
-        schedule.on = on1;
-    };
-}
-exports.default = function(name, value, priority) {
-    var i = (name += "") === "transform" ? _d3Interpolate.interpolateTransformCss : _interpolateJsDefault.default;
-    return value == null ? this.styleTween(name, styleNull(name, i)).on("end.style." + name, styleRemove(name)) : typeof value === "function" ? this.styleTween(name, styleFunction(name, i, _tweenJs.tweenValue(this, "style." + name, value))).each(styleMaybeRemove(this._id, name)) : this.styleTween(name, styleConstant(name, i, value), priority).on("end.style." + name, null);
-};
-
-},{"d3-interpolate":"6apFp","d3-selection":"6hFAS","./schedule.js":"g22zU","./tween.js":"erSem","./interpolate.js":"Hov8Q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4lUN1":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function styleInterpolate(name, i, priority) {
-    return function(t) {
-        this.style.setProperty(name, i.call(this, t), priority);
-    };
-}
-function styleTween(name, value, priority) {
-    var t, i0;
-    function tween() {
-        var i = value.apply(this, arguments);
-        if (i !== i0) t = (i0 = i) && styleInterpolate(name, i, priority);
-        return t;
-    }
-    tween._value = value;
-    return tween;
-}
-exports.default = function(name, value, priority) {
-    var key = "style." + (name += "");
-    if (arguments.length < 2) return (key = this.tween(key)) && key._value;
-    if (value == null) return this.tween(key, null);
-    if (typeof value !== "function") throw new Error;
-    return this.tween(key, styleTween(name, value, priority == null ? "" : priority));
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ccY9b":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _tweenJs = require("./tween.js");
-function textConstant(value) {
-    return function() {
-        this.textContent = value;
-    };
-}
-function textFunction(value) {
-    return function() {
-        var value1 = value(this);
-        this.textContent = value1 == null ? "" : value1;
-    };
-}
-exports.default = function(value) {
-    return this.tween("text", typeof value === "function" ? textFunction(_tweenJs.tweenValue(this, "text", value)) : textConstant(value == null ? "" : value + ""));
-};
-
-},{"./tween.js":"erSem","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1l8Ei":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function textInterpolate(i) {
-    return function(t) {
-        this.textContent = i.call(this, t);
-    };
-}
-function textTween(value) {
-    var t0, i0;
-    function tween() {
-        var i = value.apply(this, arguments);
-        if (i !== i0) t0 = (i0 = i) && textInterpolate(i);
-        return t0;
-    }
-    tween._value = value;
-    return tween;
-}
-exports.default = function(value) {
-    var key = "text";
-    if (arguments.length < 1) return (key = this.tween(key)) && key._value;
-    if (value == null) return this.tween(key, null);
-    if (typeof value !== "function") throw new Error;
-    return this.tween(key, textTween(value));
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1mKEE":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("./index.js");
-var _scheduleJs = require("./schedule.js");
-var _scheduleJsDefault = parcelHelpers.interopDefault(_scheduleJs);
-exports.default = function() {
-    var name = this._name, id0 = this._id, id1 = _indexJs.newId();
-    for(var groups = this._groups, m = groups.length, j = 0; j < m; ++j){
-        for(var group = groups[j], n = group.length, node, i = 0; i < n; ++i)if (node = group[i]) {
-            var inherit = _scheduleJs.get(node, id0);
-            _scheduleJsDefault.default(node, name, id1, i, group, {
-                time: inherit.time + inherit.delay + inherit.duration,
-                delay: 0,
-                duration: inherit.duration,
-                ease: inherit.ease
-            });
-        }
-    }
-    return new _indexJs.Transition(groups, this._parents, name, id1);
-};
-
-},{"./index.js":"eOnuG","./schedule.js":"g22zU","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aoEHu":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _scheduleJs = require("./schedule.js");
-exports.default = function() {
-    var on0, on1, that = this, id = that._id, size = that.size();
-    return new Promise(function(resolve, reject) {
-        var cancel = {
-            value: reject
-        }, end = {
-            value: function() {
-                if (--size === 0) resolve();
-            }
-        };
-        that.each(function() {
-            var schedule = _scheduleJs.set(this, id), on = schedule.on;
-            // If this node shared a dispatch with the previous node,
-            // just assign the updated shared dispatch and we’re done!
-            // Otherwise, copy-on-write.
-            if (on !== on0) {
-                on1 = (on0 = on).copy();
-                on1._.cancel.push(cancel);
-                on1._.interrupt.push(cancel);
-                on1._.end.push(end);
-            }
-            schedule.on = on1;
-        });
-        // The selection was empty, resolve end immediately
-        if (size === 0) resolve();
-    });
-};
-
-},{"./schedule.js":"g22zU","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kFY3j":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "easeLinear", ()=>_linearJs.linear
-);
-parcelHelpers.export(exports, "easeQuad", ()=>_quadJs.quadInOut
-);
-parcelHelpers.export(exports, "easeQuadIn", ()=>_quadJs.quadIn
-);
-parcelHelpers.export(exports, "easeQuadOut", ()=>_quadJs.quadOut
-);
-parcelHelpers.export(exports, "easeQuadInOut", ()=>_quadJs.quadInOut
-);
-parcelHelpers.export(exports, "easeCubic", ()=>_cubicJs.cubicInOut
-);
-parcelHelpers.export(exports, "easeCubicIn", ()=>_cubicJs.cubicIn
-);
-parcelHelpers.export(exports, "easeCubicOut", ()=>_cubicJs.cubicOut
-);
-parcelHelpers.export(exports, "easeCubicInOut", ()=>_cubicJs.cubicInOut
-);
-parcelHelpers.export(exports, "easePoly", ()=>_polyJs.polyInOut
-);
-parcelHelpers.export(exports, "easePolyIn", ()=>_polyJs.polyIn
-);
-parcelHelpers.export(exports, "easePolyOut", ()=>_polyJs.polyOut
-);
-parcelHelpers.export(exports, "easePolyInOut", ()=>_polyJs.polyInOut
-);
-parcelHelpers.export(exports, "easeSin", ()=>_sinJs.sinInOut
-);
-parcelHelpers.export(exports, "easeSinIn", ()=>_sinJs.sinIn
-);
-parcelHelpers.export(exports, "easeSinOut", ()=>_sinJs.sinOut
-);
-parcelHelpers.export(exports, "easeSinInOut", ()=>_sinJs.sinInOut
-);
-parcelHelpers.export(exports, "easeExp", ()=>_expJs.expInOut
-);
-parcelHelpers.export(exports, "easeExpIn", ()=>_expJs.expIn
-);
-parcelHelpers.export(exports, "easeExpOut", ()=>_expJs.expOut
-);
-parcelHelpers.export(exports, "easeExpInOut", ()=>_expJs.expInOut
-);
-parcelHelpers.export(exports, "easeCircle", ()=>_circleJs.circleInOut
-);
-parcelHelpers.export(exports, "easeCircleIn", ()=>_circleJs.circleIn
-);
-parcelHelpers.export(exports, "easeCircleOut", ()=>_circleJs.circleOut
-);
-parcelHelpers.export(exports, "easeCircleInOut", ()=>_circleJs.circleInOut
-);
-parcelHelpers.export(exports, "easeBounce", ()=>_bounceJs.bounceOut
-);
-parcelHelpers.export(exports, "easeBounceIn", ()=>_bounceJs.bounceIn
-);
-parcelHelpers.export(exports, "easeBounceOut", ()=>_bounceJs.bounceOut
-);
-parcelHelpers.export(exports, "easeBounceInOut", ()=>_bounceJs.bounceInOut
-);
-parcelHelpers.export(exports, "easeBack", ()=>_backJs.backInOut
-);
-parcelHelpers.export(exports, "easeBackIn", ()=>_backJs.backIn
-);
-parcelHelpers.export(exports, "easeBackOut", ()=>_backJs.backOut
-);
-parcelHelpers.export(exports, "easeBackInOut", ()=>_backJs.backInOut
-);
-parcelHelpers.export(exports, "easeElastic", ()=>_elasticJs.elasticOut
-);
-parcelHelpers.export(exports, "easeElasticIn", ()=>_elasticJs.elasticIn
-);
-parcelHelpers.export(exports, "easeElasticOut", ()=>_elasticJs.elasticOut
-);
-parcelHelpers.export(exports, "easeElasticInOut", ()=>_elasticJs.elasticInOut
-);
-var _linearJs = require("./linear.js");
-var _quadJs = require("./quad.js");
-var _cubicJs = require("./cubic.js");
-var _polyJs = require("./poly.js");
-var _sinJs = require("./sin.js");
-var _expJs = require("./exp.js");
-var _circleJs = require("./circle.js");
-var _bounceJs = require("./bounce.js");
-var _backJs = require("./back.js");
-var _elasticJs = require("./elastic.js");
-
-},{"./linear.js":"fIAMh","./quad.js":"3QRmR","./cubic.js":"gAaFt","./poly.js":"8QVHf","./sin.js":"jwSwy","./exp.js":"foeAR","./circle.js":"fl2k1","./bounce.js":"6Z0iu","./back.js":"iv2Uo","./elastic.js":"gCe6e","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fIAMh":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "linear", ()=>linear
-);
-const linear = (t)=>+t
-;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3QRmR":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "quadIn", ()=>quadIn
-);
-parcelHelpers.export(exports, "quadOut", ()=>quadOut
-);
-parcelHelpers.export(exports, "quadInOut", ()=>quadInOut
-);
-function quadIn(t) {
-    return t * t;
-}
-function quadOut(t) {
-    return t * (2 - t);
-}
-function quadInOut(t) {
-    return ((t *= 2) <= 1 ? t * t : --t * (2 - t) + 1) / 2;
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gAaFt":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "cubicIn", ()=>cubicIn
-);
-parcelHelpers.export(exports, "cubicOut", ()=>cubicOut
-);
-parcelHelpers.export(exports, "cubicInOut", ()=>cubicInOut
-);
-function cubicIn(t) {
-    return t * t * t;
-}
-function cubicOut(t) {
-    return --t * t * t + 1;
-}
-function cubicInOut(t) {
-    return ((t *= 2) <= 1 ? t * t * t : (t -= 2) * t * t + 2) / 2;
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8QVHf":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "polyIn", ()=>polyIn1
-);
-parcelHelpers.export(exports, "polyOut", ()=>polyOut1
-);
-parcelHelpers.export(exports, "polyInOut", ()=>polyInOut1
-);
-var exponent = 3;
-var polyIn1 = function custom(e) {
-    e = +e;
-    function polyIn(t) {
-        return Math.pow(t, e);
-    }
-    polyIn.exponent = custom;
-    return polyIn;
-}(exponent);
-var polyOut1 = function custom(e) {
-    e = +e;
-    function polyOut(t) {
-        return 1 - Math.pow(1 - t, e);
-    }
-    polyOut.exponent = custom;
-    return polyOut;
-}(exponent);
-var polyInOut1 = function custom(e) {
-    e = +e;
-    function polyInOut(t) {
-        return ((t *= 2) <= 1 ? Math.pow(t, e) : 2 - Math.pow(2 - t, e)) / 2;
-    }
-    polyInOut.exponent = custom;
-    return polyInOut;
-}(exponent);
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jwSwy":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "sinIn", ()=>sinIn
-);
-parcelHelpers.export(exports, "sinOut", ()=>sinOut
-);
-parcelHelpers.export(exports, "sinInOut", ()=>sinInOut
-);
-var pi = Math.PI, halfPi = pi / 2;
-function sinIn(t) {
-    return +t === 1 ? 1 : 1 - Math.cos(t * halfPi);
-}
-function sinOut(t) {
-    return Math.sin(t * halfPi);
-}
-function sinInOut(t) {
-    return (1 - Math.cos(pi * t)) / 2;
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"foeAR":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "expIn", ()=>expIn
-);
-parcelHelpers.export(exports, "expOut", ()=>expOut
-);
-parcelHelpers.export(exports, "expInOut", ()=>expInOut
-);
-var _mathJs = require("./math.js");
-function expIn(t) {
-    return _mathJs.tpmt(1 - +t);
-}
-function expOut(t) {
-    return 1 - _mathJs.tpmt(t);
-}
-function expInOut(t) {
-    return ((t *= 2) <= 1 ? _mathJs.tpmt(1 - t) : 2 - _mathJs.tpmt(t - 1)) / 2;
-}
-
-},{"./math.js":"1XLPD","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1XLPD":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-// tpmt is two power minus ten times t scaled to [0,1]
-parcelHelpers.export(exports, "tpmt", ()=>tpmt
-);
-function tpmt(x) {
-    return (Math.pow(2, -10 * x) - 0.0009765625) * 1.0009775171065494;
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fl2k1":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "circleIn", ()=>circleIn
-);
-parcelHelpers.export(exports, "circleOut", ()=>circleOut
-);
-parcelHelpers.export(exports, "circleInOut", ()=>circleInOut
-);
-function circleIn(t) {
-    return 1 - Math.sqrt(1 - t * t);
-}
-function circleOut(t) {
-    return Math.sqrt(1 - --t * t);
-}
-function circleInOut(t) {
-    return ((t *= 2) <= 1 ? 1 - Math.sqrt(1 - t * t) : Math.sqrt(1 - (t -= 2) * t) + 1) / 2;
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6Z0iu":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "bounceIn", ()=>bounceIn
-);
-parcelHelpers.export(exports, "bounceOut", ()=>bounceOut
-);
-parcelHelpers.export(exports, "bounceInOut", ()=>bounceInOut
-);
-var b1 = 4 / 11, b2 = 6 / 11, b3 = 8 / 11, b4 = 0.75, b5 = 9 / 11, b6 = 10 / 11, b7 = 0.9375, b8 = 21 / 22, b9 = 63 / 64, b0 = 1 / b1 / b1;
-function bounceIn(t) {
-    return 1 - bounceOut(1 - t);
-}
-function bounceOut(t) {
-    return (t = +t) < b1 ? b0 * t * t : t < b3 ? b0 * (t -= b2) * t + b4 : t < b6 ? b0 * (t -= b5) * t + b7 : b0 * (t -= b8) * t + b9;
-}
-function bounceInOut(t) {
-    return ((t *= 2) <= 1 ? 1 - bounceOut(1 - t) : bounceOut(t - 1) + 1) / 2;
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iv2Uo":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "backIn", ()=>backIn1
-);
-parcelHelpers.export(exports, "backOut", ()=>backOut1
-);
-parcelHelpers.export(exports, "backInOut", ()=>backInOut1
-);
-var overshoot = 1.70158;
-var backIn1 = function custom(s) {
-    s = +s;
-    function backIn(t) {
-        return (t = +t) * t * (s * (t - 1) + t);
-    }
-    backIn.overshoot = custom;
-    return backIn;
-}(overshoot);
-var backOut1 = function custom(s) {
-    s = +s;
-    function backOut(t) {
-        return --t * t * ((t + 1) * s + t) + 1;
-    }
-    backOut.overshoot = custom;
-    return backOut;
-}(overshoot);
-var backInOut1 = function custom(s) {
-    s = +s;
-    function backInOut(t) {
-        return ((t *= 2) < 1 ? t * t * ((s + 1) * t - s) : (t -= 2) * t * ((s + 1) * t + s) + 2) / 2;
-    }
-    backInOut.overshoot = custom;
-    return backInOut;
-}(overshoot);
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gCe6e":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "elasticIn", ()=>elasticIn1
-);
-parcelHelpers.export(exports, "elasticOut", ()=>elasticOut1
-);
-parcelHelpers.export(exports, "elasticInOut", ()=>elasticInOut1
-);
-var _mathJs = require("./math.js");
-var tau = 2 * Math.PI, amplitude = 1, period = 0.3;
-var elasticIn1 = function custom(a1, p1) {
-    var s = Math.asin(1 / (a1 = Math.max(1, a1))) * (p1 /= tau);
-    function elasticIn(t) {
-        return a1 * _mathJs.tpmt(- --t) * Math.sin((s - t) / p1);
-    }
-    elasticIn.amplitude = function(a) {
-        return custom(a, p1 * tau);
-    };
-    elasticIn.period = function(p) {
-        return custom(a1, p);
-    };
-    return elasticIn;
-}(amplitude, period);
-var elasticOut1 = function custom(a2, p2) {
-    var s = Math.asin(1 / (a2 = Math.max(1, a2))) * (p2 /= tau);
-    function elasticOut(t) {
-        return 1 - a2 * _mathJs.tpmt(t = +t) * Math.sin((t + s) / p2);
-    }
-    elasticOut.amplitude = function(a) {
-        return custom(a, p2 * tau);
-    };
-    elasticOut.period = function(p) {
-        return custom(a2, p);
-    };
-    return elasticOut;
-}(amplitude, period);
-var elasticInOut1 = function custom(a3, p3) {
-    var s = Math.asin(1 / (a3 = Math.max(1, a3))) * (p3 /= tau);
-    function elasticInOut(t) {
-        return ((t = t * 2 - 1) < 0 ? a3 * _mathJs.tpmt(-t) * Math.sin((s - t) / p3) : 2 - a3 * _mathJs.tpmt(t) * Math.sin((s + t) / p3)) / 2;
-    }
-    elasticInOut.amplitude = function(a) {
-        return custom(a, p3 * tau);
-    };
-    elasticInOut.period = function(p) {
-        return custom(a3, p);
-    };
-    return elasticInOut;
-}(amplitude, period);
-
-},{"./math.js":"1XLPD","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"AJlAo":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("./transition/index.js");
-var _scheduleJs = require("./transition/schedule.js");
-var root = [
-    null
-];
-exports.default = function(node, name) {
-    var schedules = node.__transition, schedule, i;
-    if (schedules) {
-        name = name == null ? null : name + "";
-        for(i in schedules){
-            if ((schedule = schedules[i]).state > _scheduleJs.SCHEDULED && schedule.name === name) return new _indexJs.Transition([
-                [
-                    node
-                ]
-            ], root, name, +i);
-        }
-    }
-    return null;
-};
-
-},{"./transition/index.js":"eOnuG","./transition/schedule.js":"g22zU","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jj2Dx":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "drag", ()=>_dragJsDefault.default
-);
-parcelHelpers.export(exports, "dragDisable", ()=>_nodragJsDefault.default
-);
-parcelHelpers.export(exports, "dragEnable", ()=>_nodragJs.yesdrag
-);
-var _dragJs = require("./drag.js");
-var _dragJsDefault = parcelHelpers.interopDefault(_dragJs);
-var _nodragJs = require("./nodrag.js");
-var _nodragJsDefault = parcelHelpers.interopDefault(_nodragJs);
-
-},{"./drag.js":"L8sEQ","./nodrag.js":"lUmKM","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"L8sEQ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Dispatch = require("d3-dispatch");
-var _d3Selection = require("d3-selection");
-var _nodragJs = require("./nodrag.js");
-var _nodragJsDefault = parcelHelpers.interopDefault(_nodragJs);
-var _noeventJs = require("./noevent.js");
-var _noeventJsDefault = parcelHelpers.interopDefault(_noeventJs);
-var _constantJs = require("./constant.js");
-var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
-var _eventJs = require("./event.js");
-var _eventJsDefault = parcelHelpers.interopDefault(_eventJs);
-// Ignore right-click, since that should open the context menu.
-function defaultFilter(event) {
-    return !event.ctrlKey && !event.button;
-}
-function defaultContainer() {
-    return this.parentNode;
-}
-function defaultSubject(event, d) {
-    return d == null ? {
-        x: event.x,
-        y: event.y
-    } : d;
-}
-function defaultTouchable() {
-    return navigator.maxTouchPoints || "ontouchstart" in this;
-}
-exports.default = function() {
-    var filter = defaultFilter, container1 = defaultContainer, subject = defaultSubject, touchable = defaultTouchable, gestures = {
-    }, listeners = _d3Dispatch.dispatch("start", "drag", "end"), active = 0, mousedownx, mousedowny, mousemoving, touchending, clickDistance2 = 0;
-    function drag(selection) {
-        selection.on("mousedown.drag", mousedowned).filter(touchable).on("touchstart.drag", touchstarted).on("touchmove.drag", touchmoved).on("touchend.drag touchcancel.drag", touchended).style("touch-action", "none").style("-webkit-tap-highlight-color", "rgba(0,0,0,0)");
-    }
-    function mousedowned(event, d) {
-        if (touchending || !filter.call(this, event, d)) return;
-        var gesture = beforestart(this, container1.call(this, event, d), event, d, "mouse");
-        if (!gesture) return;
-        _d3Selection.select(event.view).on("mousemove.drag", mousemoved, true).on("mouseup.drag", mouseupped, true);
-        _nodragJsDefault.default(event.view);
-        _noeventJs.nopropagation(event);
-        mousemoving = false;
-        mousedownx = event.clientX;
-        mousedowny = event.clientY;
-        gesture("start", event);
-    }
-    function mousemoved(event) {
-        _noeventJsDefault.default(event);
-        if (!mousemoving) {
-            var dx = event.clientX - mousedownx, dy = event.clientY - mousedowny;
-            mousemoving = dx * dx + dy * dy > clickDistance2;
-        }
-        gestures.mouse("drag", event);
-    }
-    function mouseupped(event) {
-        _d3Selection.select(event.view).on("mousemove.drag mouseup.drag", null);
-        _nodragJs.yesdrag(event.view, mousemoving);
-        _noeventJsDefault.default(event);
-        gestures.mouse("end", event);
-    }
-    function touchstarted(event, d) {
-        if (!filter.call(this, event, d)) return;
-        var touches = event.changedTouches, c = container1.call(this, event, d), n = touches.length, i, gesture;
-        for(i = 0; i < n; ++i)if (gesture = beforestart(this, c, event, d, touches[i].identifier, touches[i])) {
-            _noeventJs.nopropagation(event);
-            gesture("start", event, touches[i]);
-        }
-    }
-    function touchmoved(event) {
-        var touches = event.changedTouches, n = touches.length, i, gesture;
-        for(i = 0; i < n; ++i)if (gesture = gestures[touches[i].identifier]) {
-            _noeventJsDefault.default(event);
-            gesture("drag", event, touches[i]);
-        }
-    }
-    function touchended(event) {
-        var touches = event.changedTouches, n = touches.length, i, gesture;
-        if (touchending) clearTimeout(touchending);
-        touchending = setTimeout(function() {
-            touchending = null;
-        }, 500); // Ghost clicks are delayed!
-        for(i = 0; i < n; ++i)if (gesture = gestures[touches[i].identifier]) {
-            _noeventJs.nopropagation(event);
-            gesture("end", event, touches[i]);
-        }
-    }
-    function beforestart(that, container, event1, d, identifier, touch1) {
-        var dispatch = listeners.copy(), p = _d3Selection.pointer(touch1 || event1, container), dx, dy, s;
-        if ((s = subject.call(that, new _eventJsDefault.default("beforestart", {
-            sourceEvent: event1,
-            target: drag,
-            identifier,
-            active,
-            x: p[0],
-            y: p[1],
-            dx: 0,
-            dy: 0,
-            dispatch
-        }), d)) == null) return;
-        dx = s.x - p[0] || 0;
-        dy = s.y - p[1] || 0;
-        return function gesture(type, event, touch) {
-            var p0 = p, n;
-            switch(type){
-                case "start":
-                    gestures[identifier] = gesture, n = active++;
-                    break;
-                case "end":
-                    delete gestures[identifier], --active; // nobreak
-                case "drag":
-                    p = _d3Selection.pointer(touch || event, container), n = active;
-                    break;
-            }
-            dispatch.call(type, that, new _eventJsDefault.default(type, {
-                sourceEvent: event,
-                subject: s,
-                target: drag,
-                identifier,
-                active: n,
-                x: p[0] + dx,
-                y: p[1] + dy,
-                dx: p[0] - p0[0],
-                dy: p[1] - p0[1],
-                dispatch
-            }), d);
-        };
-    }
-    drag.filter = function(_) {
-        return arguments.length ? (filter = typeof _ === "function" ? _ : _constantJsDefault.default(!!_), drag) : filter;
-    };
-    drag.container = function(_) {
-        return arguments.length ? (container1 = typeof _ === "function" ? _ : _constantJsDefault.default(_), drag) : container1;
-    };
-    drag.subject = function(_) {
-        return arguments.length ? (subject = typeof _ === "function" ? _ : _constantJsDefault.default(_), drag) : subject;
-    };
-    drag.touchable = function(_) {
-        return arguments.length ? (touchable = typeof _ === "function" ? _ : _constantJsDefault.default(!!_), drag) : touchable;
-    };
-    drag.on = function() {
-        var value = listeners.on.apply(listeners, arguments);
-        return value === listeners ? drag : value;
-    };
-    drag.clickDistance = function(_) {
-        return arguments.length ? (clickDistance2 = (_ = +_) * _, drag) : Math.sqrt(clickDistance2);
-    };
-    return drag;
-};
-
-},{"d3-dispatch":"8bLpz","d3-selection":"6hFAS","./nodrag.js":"lUmKM","./noevent.js":"4HKnc","./constant.js":"kROYy","./event.js":"bTGHw","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lUmKM":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "yesdrag", ()=>yesdrag
-);
-var _d3Selection = require("d3-selection");
-var _noeventJs = require("./noevent.js");
-var _noeventJsDefault = parcelHelpers.interopDefault(_noeventJs);
-exports.default = function(view) {
-    var root = view.document.documentElement, selection = _d3Selection.select(view).on("dragstart.drag", _noeventJsDefault.default, true);
-    if ("onselectstart" in root) selection.on("selectstart.drag", _noeventJsDefault.default, true);
-    else {
-        root.__noselect = root.style.MozUserSelect;
-        root.style.MozUserSelect = "none";
-    }
-};
-function yesdrag(view, noclick) {
-    var root = view.document.documentElement, selection = _d3Selection.select(view).on("dragstart.drag", null);
-    if (noclick) {
-        selection.on("click.drag", _noeventJsDefault.default, true);
-        setTimeout(function() {
-            selection.on("click.drag", null);
-        }, 0);
-    }
-    if ("onselectstart" in root) selection.on("selectstart.drag", null);
-    else {
-        root.style.MozUserSelect = root.__noselect;
-        delete root.__noselect;
-    }
-}
-
-},{"d3-selection":"6hFAS","./noevent.js":"4HKnc","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4HKnc":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "nopropagation", ()=>nopropagation
-);
-function nopropagation(event) {
-    event.stopImmediatePropagation();
-}
-exports.default = function(event) {
-    event.preventDefault();
-    event.stopImmediatePropagation();
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kROYy":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = (x)=>()=>x
-;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bTGHw":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function DragEvent(type, { sourceEvent , subject , target , identifier , active , x , y , dx , dy , dispatch  }) {
-    Object.defineProperties(this, {
-        type: {
-            value: type,
-            enumerable: true,
-            configurable: true
-        },
-        sourceEvent: {
-            value: sourceEvent,
-            enumerable: true,
-            configurable: true
-        },
-        subject: {
-            value: subject,
-            enumerable: true,
-            configurable: true
-        },
-        target: {
-            value: target,
-            enumerable: true,
-            configurable: true
-        },
-        identifier: {
-            value: identifier,
-            enumerable: true,
-            configurable: true
-        },
-        active: {
-            value: active,
-            enumerable: true,
-            configurable: true
-        },
-        x: {
-            value: x,
-            enumerable: true,
-            configurable: true
-        },
-        y: {
-            value: y,
-            enumerable: true,
-            configurable: true
-        },
-        dx: {
-            value: dx,
-            enumerable: true,
-            configurable: true
-        },
-        dy: {
-            value: dy,
-            enumerable: true,
-            configurable: true
-        },
-        _: {
-            value: dispatch
-        }
-    });
-}
-exports.default = DragEvent;
-DragEvent.prototype.on = function() {
-    var value = this._.on.apply(this._, arguments);
-    return value === this._ ? this : value;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9eU5U":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "arc", ()=>_arcJsDefault.default
-);
-parcelHelpers.export(exports, "area", ()=>_areaJsDefault.default
-);
-parcelHelpers.export(exports, "line", ()=>_lineJsDefault.default
-);
-parcelHelpers.export(exports, "pie", ()=>_pieJsDefault.default
-);
-parcelHelpers.export(exports, "areaRadial", ()=>_areaRadialJsDefault.default
-) // Note: radialArea is deprecated!
-;
-parcelHelpers.export(exports, "radialArea", ()=>_areaRadialJsDefault.default
-);
-parcelHelpers.export(exports, "lineRadial", ()=>_lineRadialJsDefault.default
-) // Note: radialLine is deprecated!
-;
-parcelHelpers.export(exports, "radialLine", ()=>_lineRadialJsDefault.default
-);
-parcelHelpers.export(exports, "pointRadial", ()=>_pointRadialJsDefault.default
-);
-parcelHelpers.export(exports, "linkHorizontal", ()=>_indexJs.linkHorizontal
-);
-parcelHelpers.export(exports, "linkVertical", ()=>_indexJs.linkVertical
-);
-parcelHelpers.export(exports, "linkRadial", ()=>_indexJs.linkRadial
-);
-parcelHelpers.export(exports, "symbol", ()=>_symbolJsDefault.default
-);
-parcelHelpers.export(exports, "symbols", ()=>_symbolJs.symbols
-);
-parcelHelpers.export(exports, "symbolCircle", ()=>_circleJsDefault.default
-);
-parcelHelpers.export(exports, "symbolCross", ()=>_crossJsDefault.default
-);
-parcelHelpers.export(exports, "symbolDiamond", ()=>_diamondJsDefault.default
-);
-parcelHelpers.export(exports, "symbolSquare", ()=>_squareJsDefault.default
-);
-parcelHelpers.export(exports, "symbolStar", ()=>_starJsDefault.default
-);
-parcelHelpers.export(exports, "symbolTriangle", ()=>_triangleJsDefault.default
-);
-parcelHelpers.export(exports, "symbolWye", ()=>_wyeJsDefault.default
-);
-parcelHelpers.export(exports, "curveBasisClosed", ()=>_basisClosedJsDefault.default
-);
-parcelHelpers.export(exports, "curveBasisOpen", ()=>_basisOpenJsDefault.default
-);
-parcelHelpers.export(exports, "curveBasis", ()=>_basisJsDefault.default
-);
-parcelHelpers.export(exports, "curveBumpX", ()=>_bumpJs.bumpX
-);
-parcelHelpers.export(exports, "curveBumpY", ()=>_bumpJs.bumpY
-);
-parcelHelpers.export(exports, "curveBundle", ()=>_bundleJsDefault.default
-);
-parcelHelpers.export(exports, "curveCardinalClosed", ()=>_cardinalClosedJsDefault.default
-);
-parcelHelpers.export(exports, "curveCardinalOpen", ()=>_cardinalOpenJsDefault.default
-);
-parcelHelpers.export(exports, "curveCardinal", ()=>_cardinalJsDefault.default
-);
-parcelHelpers.export(exports, "curveCatmullRomClosed", ()=>_catmullRomClosedJsDefault.default
-);
-parcelHelpers.export(exports, "curveCatmullRomOpen", ()=>_catmullRomOpenJsDefault.default
-);
-parcelHelpers.export(exports, "curveCatmullRom", ()=>_catmullRomJsDefault.default
-);
-parcelHelpers.export(exports, "curveLinearClosed", ()=>_linearClosedJsDefault.default
-);
-parcelHelpers.export(exports, "curveLinear", ()=>_linearJsDefault.default
-);
-parcelHelpers.export(exports, "curveMonotoneX", ()=>_monotoneJs.monotoneX
-);
-parcelHelpers.export(exports, "curveMonotoneY", ()=>_monotoneJs.monotoneY
-);
-parcelHelpers.export(exports, "curveNatural", ()=>_naturalJsDefault.default
-);
-parcelHelpers.export(exports, "curveStep", ()=>_stepJsDefault.default
-);
-parcelHelpers.export(exports, "curveStepAfter", ()=>_stepJs.stepAfter
-);
-parcelHelpers.export(exports, "curveStepBefore", ()=>_stepJs.stepBefore
-);
-parcelHelpers.export(exports, "stack", ()=>_stackJsDefault.default
-);
-parcelHelpers.export(exports, "stackOffsetExpand", ()=>_expandJsDefault.default
-);
-parcelHelpers.export(exports, "stackOffsetDiverging", ()=>_divergingJsDefault.default
-);
-parcelHelpers.export(exports, "stackOffsetNone", ()=>_noneJsDefault.default
-);
-parcelHelpers.export(exports, "stackOffsetSilhouette", ()=>_silhouetteJsDefault.default
-);
-parcelHelpers.export(exports, "stackOffsetWiggle", ()=>_wiggleJsDefault.default
-);
-parcelHelpers.export(exports, "stackOrderAppearance", ()=>_appearanceJsDefault.default
-);
-parcelHelpers.export(exports, "stackOrderAscending", ()=>_ascendingJsDefault.default
-);
-parcelHelpers.export(exports, "stackOrderDescending", ()=>_descendingJsDefault.default
-);
-parcelHelpers.export(exports, "stackOrderInsideOut", ()=>_insideOutJsDefault.default
-);
-parcelHelpers.export(exports, "stackOrderNone", ()=>_noneJsDefault1.default
-);
-parcelHelpers.export(exports, "stackOrderReverse", ()=>_reverseJsDefault.default
-);
-var _arcJs = require("./arc.js");
-var _arcJsDefault = parcelHelpers.interopDefault(_arcJs);
-var _areaJs = require("./area.js");
-var _areaJsDefault = parcelHelpers.interopDefault(_areaJs);
-var _lineJs = require("./line.js");
-var _lineJsDefault = parcelHelpers.interopDefault(_lineJs);
-var _pieJs = require("./pie.js");
-var _pieJsDefault = parcelHelpers.interopDefault(_pieJs);
-var _areaRadialJs = require("./areaRadial.js");
-var _areaRadialJsDefault = parcelHelpers.interopDefault(_areaRadialJs);
-var _lineRadialJs = require("./lineRadial.js");
-var _lineRadialJsDefault = parcelHelpers.interopDefault(_lineRadialJs);
-var _pointRadialJs = require("./pointRadial.js");
-var _pointRadialJsDefault = parcelHelpers.interopDefault(_pointRadialJs);
-var _indexJs = require("./link/index.js");
-var _symbolJs = require("./symbol.js");
-var _symbolJsDefault = parcelHelpers.interopDefault(_symbolJs);
-var _circleJs = require("./symbol/circle.js");
-var _circleJsDefault = parcelHelpers.interopDefault(_circleJs);
-var _crossJs = require("./symbol/cross.js");
-var _crossJsDefault = parcelHelpers.interopDefault(_crossJs);
-var _diamondJs = require("./symbol/diamond.js");
-var _diamondJsDefault = parcelHelpers.interopDefault(_diamondJs);
-var _squareJs = require("./symbol/square.js");
-var _squareJsDefault = parcelHelpers.interopDefault(_squareJs);
-var _starJs = require("./symbol/star.js");
-var _starJsDefault = parcelHelpers.interopDefault(_starJs);
-var _triangleJs = require("./symbol/triangle.js");
-var _triangleJsDefault = parcelHelpers.interopDefault(_triangleJs);
-var _wyeJs = require("./symbol/wye.js");
-var _wyeJsDefault = parcelHelpers.interopDefault(_wyeJs);
-var _basisClosedJs = require("./curve/basisClosed.js");
-var _basisClosedJsDefault = parcelHelpers.interopDefault(_basisClosedJs);
-var _basisOpenJs = require("./curve/basisOpen.js");
-var _basisOpenJsDefault = parcelHelpers.interopDefault(_basisOpenJs);
-var _basisJs = require("./curve/basis.js");
-var _basisJsDefault = parcelHelpers.interopDefault(_basisJs);
-var _bumpJs = require("./curve/bump.js");
-var _bundleJs = require("./curve/bundle.js");
-var _bundleJsDefault = parcelHelpers.interopDefault(_bundleJs);
-var _cardinalClosedJs = require("./curve/cardinalClosed.js");
-var _cardinalClosedJsDefault = parcelHelpers.interopDefault(_cardinalClosedJs);
-var _cardinalOpenJs = require("./curve/cardinalOpen.js");
-var _cardinalOpenJsDefault = parcelHelpers.interopDefault(_cardinalOpenJs);
-var _cardinalJs = require("./curve/cardinal.js");
-var _cardinalJsDefault = parcelHelpers.interopDefault(_cardinalJs);
-var _catmullRomClosedJs = require("./curve/catmullRomClosed.js");
-var _catmullRomClosedJsDefault = parcelHelpers.interopDefault(_catmullRomClosedJs);
-var _catmullRomOpenJs = require("./curve/catmullRomOpen.js");
-var _catmullRomOpenJsDefault = parcelHelpers.interopDefault(_catmullRomOpenJs);
-var _catmullRomJs = require("./curve/catmullRom.js");
-var _catmullRomJsDefault = parcelHelpers.interopDefault(_catmullRomJs);
-var _linearClosedJs = require("./curve/linearClosed.js");
-var _linearClosedJsDefault = parcelHelpers.interopDefault(_linearClosedJs);
-var _linearJs = require("./curve/linear.js");
-var _linearJsDefault = parcelHelpers.interopDefault(_linearJs);
-var _monotoneJs = require("./curve/monotone.js");
-var _naturalJs = require("./curve/natural.js");
-var _naturalJsDefault = parcelHelpers.interopDefault(_naturalJs);
-var _stepJs = require("./curve/step.js");
-var _stepJsDefault = parcelHelpers.interopDefault(_stepJs);
-var _stackJs = require("./stack.js");
-var _stackJsDefault = parcelHelpers.interopDefault(_stackJs);
-var _expandJs = require("./offset/expand.js");
-var _expandJsDefault = parcelHelpers.interopDefault(_expandJs);
-var _divergingJs = require("./offset/diverging.js");
-var _divergingJsDefault = parcelHelpers.interopDefault(_divergingJs);
-var _noneJs = require("./offset/none.js");
-var _noneJsDefault = parcelHelpers.interopDefault(_noneJs);
-var _silhouetteJs = require("./offset/silhouette.js");
-var _silhouetteJsDefault = parcelHelpers.interopDefault(_silhouetteJs);
-var _wiggleJs = require("./offset/wiggle.js");
-var _wiggleJsDefault = parcelHelpers.interopDefault(_wiggleJs);
-var _appearanceJs = require("./order/appearance.js");
-var _appearanceJsDefault = parcelHelpers.interopDefault(_appearanceJs);
-var _ascendingJs = require("./order/ascending.js");
-var _ascendingJsDefault = parcelHelpers.interopDefault(_ascendingJs);
-var _descendingJs = require("./order/descending.js");
-var _descendingJsDefault = parcelHelpers.interopDefault(_descendingJs);
-var _insideOutJs = require("./order/insideOut.js");
-var _insideOutJsDefault = parcelHelpers.interopDefault(_insideOutJs);
-var _noneJs1 = require("./order/none.js");
-var _noneJsDefault1 = parcelHelpers.interopDefault(_noneJs1);
-var _reverseJs = require("./order/reverse.js");
-var _reverseJsDefault = parcelHelpers.interopDefault(_reverseJs);
-
-},{"./arc.js":"aOiE4","./area.js":"iPxhY","./line.js":"gIY1L","./pie.js":"Xi3Ru","./areaRadial.js":"fhHJH","./lineRadial.js":"a59hC","./pointRadial.js":"e5Z1o","./link/index.js":"diLKc","./symbol.js":"g2zzn","./symbol/circle.js":"lbWpD","./symbol/cross.js":"6lJ6b","./symbol/diamond.js":"9EeZq","./symbol/square.js":"kVr40","./symbol/star.js":"3i3gg","./symbol/triangle.js":"inoin","./symbol/wye.js":"3KV0T","./curve/basisClosed.js":"cugnO","./curve/basisOpen.js":"DB2Zg","./curve/basis.js":"ckmSf","./curve/bump.js":"9yctA","./curve/bundle.js":"hxEx5","./curve/cardinalClosed.js":"hckQ0","./curve/cardinalOpen.js":"fgG5w","./curve/cardinal.js":"agrkf","./curve/catmullRomClosed.js":"94yfW","./curve/catmullRomOpen.js":"ldGFd","./curve/catmullRom.js":"7Sz6w","./curve/linearClosed.js":"ijNXS","./curve/linear.js":"9XfvO","./curve/monotone.js":"hWFui","./curve/natural.js":"fx10Q","./curve/step.js":"gaNu5","./stack.js":"hlLYL","./offset/expand.js":"1WI6e","./offset/diverging.js":"8ePmo","./offset/none.js":"eEYVe","./offset/silhouette.js":"8uIax","./offset/wiggle.js":"acV1f","./order/appearance.js":"fpvhN","./order/ascending.js":"1DbGk","./order/descending.js":"leL9k","./order/insideOut.js":"hujx7","./order/none.js":"gFy2Q","./order/reverse.js":"lRSAb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aOiE4":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Path = require("d3-path");
-var _constantJs = require("./constant.js");
-var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
-var _mathJs = require("./math.js");
-function arcInnerRadius(d) {
-    return d.innerRadius;
-}
-function arcOuterRadius(d) {
-    return d.outerRadius;
-}
-function arcStartAngle(d) {
-    return d.startAngle;
-}
-function arcEndAngle(d) {
-    return d.endAngle;
-}
-function arcPadAngle(d) {
-    return d && d.padAngle; // Note: optional!
-}
-function intersect(x0, y0, x1, y1, x2, y2, x3, y3) {
-    var x10 = x1 - x0, y10 = y1 - y0, x32 = x3 - x2, y32 = y3 - y2, t = y32 * x10 - x32 * y10;
-    if (t * t < _mathJs.epsilon) return;
-    t = (x32 * (y0 - y2) - y32 * (x0 - x2)) / t;
-    return [
-        x0 + t * x10,
-        y0 + t * y10
-    ];
-}
-// Compute perpendicular offset line of length rc.
-// http://mathworld.wolfram.com/Circle-LineIntersection.html
-function cornerTangents(x0, y0, x1, y1, r1, rc, cw) {
-    var x01 = x0 - x1, y01 = y0 - y1, lo = (cw ? rc : -rc) / _mathJs.sqrt(x01 * x01 + y01 * y01), ox = lo * y01, oy = -lo * x01, x11 = x0 + ox, y11 = y0 + oy, x10 = x1 + ox, y10 = y1 + oy, x00 = (x11 + x10) / 2, y00 = (y11 + y10) / 2, dx = x10 - x11, dy = y10 - y11, d2 = dx * dx + dy * dy, r = r1 - rc, D = x11 * y10 - x10 * y11, d = (dy < 0 ? -1 : 1) * _mathJs.sqrt(_mathJs.max(0, r * r * d2 - D * D)), cx0 = (D * dy - dx * d) / d2, cy0 = (-D * dx - dy * d) / d2, cx1 = (D * dy + dx * d) / d2, cy1 = (-D * dx + dy * d) / d2, dx0 = cx0 - x00, dy0 = cy0 - y00, dx1 = cx1 - x00, dy1 = cy1 - y00;
-    // Pick the closer of the two intersection points.
-    // TODO Is there a faster way to determine which intersection to use?
-    if (dx0 * dx0 + dy0 * dy0 > dx1 * dx1 + dy1 * dy1) cx0 = cx1, cy0 = cy1;
-    return {
-        cx: cx0,
-        cy: cy0,
-        x01: -ox,
-        y01: -oy,
-        x11: cx0 * (r1 / r - 1),
-        y11: cy0 * (r1 / r - 1)
-    };
-}
-exports.default = function() {
-    var innerRadius = arcInnerRadius, outerRadius = arcOuterRadius, cornerRadius = _constantJsDefault.default(0), padRadius = null, startAngle = arcStartAngle, endAngle = arcEndAngle, padAngle = arcPadAngle, context = null;
-    function arc() {
-        var buffer, r, r0 = +innerRadius.apply(this, arguments), r1 = +outerRadius.apply(this, arguments), a0 = startAngle.apply(this, arguments) - _mathJs.halfPi, a1 = endAngle.apply(this, arguments) - _mathJs.halfPi, da = _mathJs.abs(a1 - a0), cw = a1 > a0;
-        if (!context) context = buffer = _d3Path.path();
-        // Ensure that the outer radius is always larger than the inner radius.
-        if (r1 < r0) r = r1, r1 = r0, r0 = r;
-        // Is it a point?
-        if (!(r1 > _mathJs.epsilon)) context.moveTo(0, 0);
-        else if (da > _mathJs.tau - _mathJs.epsilon) {
-            context.moveTo(r1 * _mathJs.cos(a0), r1 * _mathJs.sin(a0));
-            context.arc(0, 0, r1, a0, a1, !cw);
-            if (r0 > _mathJs.epsilon) {
-                context.moveTo(r0 * _mathJs.cos(a1), r0 * _mathJs.sin(a1));
-                context.arc(0, 0, r0, a1, a0, cw);
-            }
-        } else {
-            var a01 = a0, a11 = a1, a00 = a0, a10 = a1, da0 = da, da1 = da, ap = padAngle.apply(this, arguments) / 2, rp = ap > _mathJs.epsilon && (padRadius ? +padRadius.apply(this, arguments) : _mathJs.sqrt(r0 * r0 + r1 * r1)), rc = _mathJs.min(_mathJs.abs(r1 - r0) / 2, +cornerRadius.apply(this, arguments)), rc0 = rc, rc1 = rc, t0, t1;
-            // Apply padding? Note that since r1 ≥ r0, da1 ≥ da0.
-            if (rp > _mathJs.epsilon) {
-                var p0 = _mathJs.asin(rp / r0 * _mathJs.sin(ap)), p1 = _mathJs.asin(rp / r1 * _mathJs.sin(ap));
-                if ((da0 -= p0 * 2) > _mathJs.epsilon) p0 *= cw ? 1 : -1, a00 += p0, a10 -= p0;
-                else da0 = 0, a00 = a10 = (a0 + a1) / 2;
-                if ((da1 -= p1 * 2) > _mathJs.epsilon) p1 *= cw ? 1 : -1, a01 += p1, a11 -= p1;
-                else da1 = 0, a01 = a11 = (a0 + a1) / 2;
-            }
-            var x01 = r1 * _mathJs.cos(a01), y01 = r1 * _mathJs.sin(a01), x10 = r0 * _mathJs.cos(a10), y10 = r0 * _mathJs.sin(a10);
-            // Apply rounded corners?
-            if (rc > _mathJs.epsilon) {
-                var x11 = r1 * _mathJs.cos(a11), y11 = r1 * _mathJs.sin(a11), x00 = r0 * _mathJs.cos(a00), y00 = r0 * _mathJs.sin(a00), oc;
-                // Restrict the corner radius according to the sector angle.
-                if (da < _mathJs.pi && (oc = intersect(x01, y01, x00, y00, x11, y11, x10, y10))) {
-                    var ax = x01 - oc[0], ay = y01 - oc[1], bx = x11 - oc[0], by = y11 - oc[1], kc = 1 / _mathJs.sin(_mathJs.acos((ax * bx + ay * by) / (_mathJs.sqrt(ax * ax + ay * ay) * _mathJs.sqrt(bx * bx + by * by))) / 2), lc = _mathJs.sqrt(oc[0] * oc[0] + oc[1] * oc[1]);
-                    rc0 = _mathJs.min(rc, (r0 - lc) / (kc - 1));
-                    rc1 = _mathJs.min(rc, (r1 - lc) / (kc + 1));
-                }
-            }
-            // Is the sector collapsed to a line?
-            if (!(da1 > _mathJs.epsilon)) context.moveTo(x01, y01);
-            else if (rc1 > _mathJs.epsilon) {
-                t0 = cornerTangents(x00, y00, x01, y01, r1, rc1, cw);
-                t1 = cornerTangents(x11, y11, x10, y10, r1, rc1, cw);
-                context.moveTo(t0.cx + t0.x01, t0.cy + t0.y01);
-                // Have the corners merged?
-                if (rc1 < rc) context.arc(t0.cx, t0.cy, rc1, _mathJs.atan2(t0.y01, t0.x01), _mathJs.atan2(t1.y01, t1.x01), !cw);
-                else {
-                    context.arc(t0.cx, t0.cy, rc1, _mathJs.atan2(t0.y01, t0.x01), _mathJs.atan2(t0.y11, t0.x11), !cw);
-                    context.arc(0, 0, r1, _mathJs.atan2(t0.cy + t0.y11, t0.cx + t0.x11), _mathJs.atan2(t1.cy + t1.y11, t1.cx + t1.x11), !cw);
-                    context.arc(t1.cx, t1.cy, rc1, _mathJs.atan2(t1.y11, t1.x11), _mathJs.atan2(t1.y01, t1.x01), !cw);
-                }
-            } else context.moveTo(x01, y01), context.arc(0, 0, r1, a01, a11, !cw);
-            // Is there no inner ring, and it’s a circular sector?
-            // Or perhaps it’s an annular sector collapsed due to padding?
-            if (!(r0 > _mathJs.epsilon) || !(da0 > _mathJs.epsilon)) context.lineTo(x10, y10);
-            else if (rc0 > _mathJs.epsilon) {
-                t0 = cornerTangents(x10, y10, x11, y11, r0, -rc0, cw);
-                t1 = cornerTangents(x01, y01, x00, y00, r0, -rc0, cw);
-                context.lineTo(t0.cx + t0.x01, t0.cy + t0.y01);
-                // Have the corners merged?
-                if (rc0 < rc) context.arc(t0.cx, t0.cy, rc0, _mathJs.atan2(t0.y01, t0.x01), _mathJs.atan2(t1.y01, t1.x01), !cw);
-                else {
-                    context.arc(t0.cx, t0.cy, rc0, _mathJs.atan2(t0.y01, t0.x01), _mathJs.atan2(t0.y11, t0.x11), !cw);
-                    context.arc(0, 0, r0, _mathJs.atan2(t0.cy + t0.y11, t0.cx + t0.x11), _mathJs.atan2(t1.cy + t1.y11, t1.cx + t1.x11), cw);
-                    context.arc(t1.cx, t1.cy, rc0, _mathJs.atan2(t1.y11, t1.x11), _mathJs.atan2(t1.y01, t1.x01), !cw);
-                }
-            } else context.arc(0, 0, r0, a10, a00, cw);
-        }
-        context.closePath();
-        if (buffer) return context = null, buffer + "" || null;
-    }
-    arc.centroid = function() {
-        var r = (+innerRadius.apply(this, arguments) + +outerRadius.apply(this, arguments)) / 2, a = (+startAngle.apply(this, arguments) + +endAngle.apply(this, arguments)) / 2 - _mathJs.pi / 2;
-        return [
-            _mathJs.cos(a) * r,
-            _mathJs.sin(a) * r
-        ];
-    };
-    arc.innerRadius = function(_) {
-        return arguments.length ? (innerRadius = typeof _ === "function" ? _ : _constantJsDefault.default(+_), arc) : innerRadius;
-    };
-    arc.outerRadius = function(_) {
-        return arguments.length ? (outerRadius = typeof _ === "function" ? _ : _constantJsDefault.default(+_), arc) : outerRadius;
-    };
-    arc.cornerRadius = function(_) {
-        return arguments.length ? (cornerRadius = typeof _ === "function" ? _ : _constantJsDefault.default(+_), arc) : cornerRadius;
-    };
-    arc.padRadius = function(_) {
-        return arguments.length ? (padRadius = _ == null ? null : typeof _ === "function" ? _ : _constantJsDefault.default(+_), arc) : padRadius;
-    };
-    arc.startAngle = function(_) {
-        return arguments.length ? (startAngle = typeof _ === "function" ? _ : _constantJsDefault.default(+_), arc) : startAngle;
-    };
-    arc.endAngle = function(_) {
-        return arguments.length ? (endAngle = typeof _ === "function" ? _ : _constantJsDefault.default(+_), arc) : endAngle;
-    };
-    arc.padAngle = function(_) {
-        return arguments.length ? (padAngle = typeof _ === "function" ? _ : _constantJsDefault.default(+_), arc) : padAngle;
-    };
-    arc.context = function(_) {
-        return arguments.length ? (context = _ == null ? null : _, arc) : context;
-    };
-    return arc;
-};
-
-},{"d3-path":"2bVYV","./constant.js":"ekTDw","./math.js":"a4nHA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2bVYV":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "path", ()=>_pathJsDefault.default
-);
-var _pathJs = require("./path.js");
-var _pathJsDefault = parcelHelpers.interopDefault(_pathJs);
-
-},{"./path.js":"cXTRm","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cXTRm":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const pi = Math.PI, tau = 2 * pi, epsilon = 0.000001, tauEpsilon = tau - epsilon;
-function Path() {
-    this._x0 = this._y0 = this._x1 = this._y1 = null; // end of current subpath
-    this._ = "";
-}
-function path() {
-    return new Path;
-}
-Path.prototype = path.prototype = {
-    constructor: Path,
-    moveTo: function(x, y) {
-        this._ += "M" + (this._x0 = this._x1 = +x) + "," + (this._y0 = this._y1 = +y);
-    },
-    closePath: function() {
-        if (this._x1 !== null) {
-            this._x1 = this._x0, this._y1 = this._y0;
-            this._ += "Z";
-        }
-    },
-    lineTo: function(x, y) {
-        this._ += "L" + (this._x1 = +x) + "," + (this._y1 = +y);
-    },
-    quadraticCurveTo: function(x1, y1, x, y) {
-        this._ += "Q" + +x1 + "," + +y1 + "," + (this._x1 = +x) + "," + (this._y1 = +y);
-    },
-    bezierCurveTo: function(x1, y1, x2, y2, x, y) {
-        this._ += "C" + +x1 + "," + +y1 + "," + +x2 + "," + +y2 + "," + (this._x1 = +x) + "," + (this._y1 = +y);
-    },
-    arcTo: function(x1, y1, x2, y2, r) {
-        x1 = +x1, y1 = +y1, x2 = +x2, y2 = +y2, r = +r;
-        var x0 = this._x1, y0 = this._y1, x21 = x2 - x1, y21 = y2 - y1, x01 = x0 - x1, y01 = y0 - y1, l01_2 = x01 * x01 + y01 * y01;
-        // Is the radius negative? Error.
-        if (r < 0) throw new Error("negative radius: " + r);
-        // Is this path empty? Move to (x1,y1).
-        if (this._x1 === null) this._ += "M" + (this._x1 = x1) + "," + (this._y1 = y1);
-        else if (!(l01_2 > epsilon)) ;
-        else if (!(Math.abs(y01 * x21 - y21 * x01) > epsilon) || !r) this._ += "L" + (this._x1 = x1) + "," + (this._y1 = y1);
-        else {
-            var x20 = x2 - x0, y20 = y2 - y0, l21_2 = x21 * x21 + y21 * y21, l20_2 = x20 * x20 + y20 * y20, l21 = Math.sqrt(l21_2), l01 = Math.sqrt(l01_2), l = r * Math.tan((pi - Math.acos((l21_2 + l01_2 - l20_2) / (2 * l21 * l01))) / 2), t01 = l / l01, t21 = l / l21;
-            // If the start tangent is not coincident with (x0,y0), line to.
-            if (Math.abs(t01 - 1) > epsilon) this._ += "L" + (x1 + t01 * x01) + "," + (y1 + t01 * y01);
-            this._ += "A" + r + "," + r + ",0,0," + +(y01 * x20 > x01 * y20) + "," + (this._x1 = x1 + t21 * x21) + "," + (this._y1 = y1 + t21 * y21);
-        }
-    },
-    arc: function(x, y, r, a0, a1, ccw) {
-        x = +x, y = +y, r = +r, ccw = !!ccw;
-        var dx = r * Math.cos(a0), dy = r * Math.sin(a0), x0 = x + dx, y0 = y + dy, cw = 1 ^ ccw, da = ccw ? a0 - a1 : a1 - a0;
-        // Is the radius negative? Error.
-        if (r < 0) throw new Error("negative radius: " + r);
-        // Is this path empty? Move to (x0,y0).
-        if (this._x1 === null) this._ += "M" + x0 + "," + y0;
-        else if (Math.abs(this._x1 - x0) > epsilon || Math.abs(this._y1 - y0) > epsilon) this._ += "L" + x0 + "," + y0;
-        // Is this arc empty? We’re done.
-        if (!r) return;
-        // Does the angle go the wrong way? Flip the direction.
-        if (da < 0) da = da % tau + tau;
-        // Is this a complete circle? Draw two arcs to complete the circle.
-        if (da > tauEpsilon) this._ += "A" + r + "," + r + ",0,1," + cw + "," + (x - dx) + "," + (y - dy) + "A" + r + "," + r + ",0,1," + cw + "," + (this._x1 = x0) + "," + (this._y1 = y0);
-        else if (da > epsilon) this._ += "A" + r + "," + r + ",0," + +(da >= pi) + "," + cw + "," + (this._x1 = x + r * Math.cos(a1)) + "," + (this._y1 = y + r * Math.sin(a1));
-    },
-    rect: function(x, y, w, h) {
-        this._ += "M" + (this._x0 = this._x1 = +x) + "," + (this._y0 = this._y1 = +y) + "h" + +w + "v" + +h + "h" + -w + "Z";
-    },
-    toString: function() {
-        return this._;
-    }
-};
-exports.default = path;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ekTDw":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(x) {
-    return function constant() {
-        return x;
-    };
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"a4nHA":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "abs", ()=>abs
-);
-parcelHelpers.export(exports, "atan2", ()=>atan2
-);
-parcelHelpers.export(exports, "cos", ()=>cos
-);
-parcelHelpers.export(exports, "max", ()=>max
-);
-parcelHelpers.export(exports, "min", ()=>min
-);
-parcelHelpers.export(exports, "sin", ()=>sin
-);
-parcelHelpers.export(exports, "sqrt", ()=>sqrt
-);
-parcelHelpers.export(exports, "epsilon", ()=>epsilon
-);
-parcelHelpers.export(exports, "pi", ()=>pi
-);
-parcelHelpers.export(exports, "halfPi", ()=>halfPi
-);
-parcelHelpers.export(exports, "tau", ()=>tau
-);
-parcelHelpers.export(exports, "acos", ()=>acos
-);
-parcelHelpers.export(exports, "asin", ()=>asin
-);
-var abs = Math.abs;
-var atan2 = Math.atan2;
-var cos = Math.cos;
-var max = Math.max;
-var min = Math.min;
-var sin = Math.sin;
-var sqrt = Math.sqrt;
-var epsilon = 0.000000000001;
-var pi = Math.PI;
-var halfPi = pi / 2;
-var tau = 2 * pi;
-function acos(x) {
-    return x > 1 ? 0 : x < -1 ? pi : Math.acos(x);
-}
-function asin(x) {
-    return x >= 1 ? halfPi : x <= -1 ? -halfPi : Math.asin(x);
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iPxhY":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Path = require("d3-path");
-var _arrayJs = require("./array.js");
-var _arrayJsDefault = parcelHelpers.interopDefault(_arrayJs);
-var _constantJs = require("./constant.js");
-var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
-var _linearJs = require("./curve/linear.js");
-var _linearJsDefault = parcelHelpers.interopDefault(_linearJs);
-var _lineJs = require("./line.js");
-var _lineJsDefault = parcelHelpers.interopDefault(_lineJs);
-var _pointJs = require("./point.js");
-exports.default = function(x0, y0, y1) {
-    var x1 = null, defined = _constantJsDefault.default(true), context = null, curve = _linearJsDefault.default, output = null;
-    x0 = typeof x0 === "function" ? x0 : x0 === undefined ? _pointJs.x : _constantJsDefault.default(+x0);
-    y0 = typeof y0 === "function" ? y0 : y0 === undefined ? _constantJsDefault.default(0) : _constantJsDefault.default(+y0);
-    y1 = typeof y1 === "function" ? y1 : y1 === undefined ? _pointJs.y : _constantJsDefault.default(+y1);
-    function area(data) {
-        var i, j, k, n = (data = _arrayJsDefault.default(data)).length, d, defined0 = false, buffer, x0z = new Array(n), y0z = new Array(n);
-        if (context == null) output = curve(buffer = _d3Path.path());
-        for(i = 0; i <= n; ++i){
-            if (!(i < n && defined(d = data[i], i, data)) === defined0) {
-                if (defined0 = !defined0) {
-                    j = i;
-                    output.areaStart();
-                    output.lineStart();
-                } else {
-                    output.lineEnd();
-                    output.lineStart();
-                    for(k = i - 1; k >= j; --k)output.point(x0z[k], y0z[k]);
-                    output.lineEnd();
-                    output.areaEnd();
-                }
-            }
-            if (defined0) {
-                x0z[i] = +x0(d, i, data), y0z[i] = +y0(d, i, data);
-                output.point(x1 ? +x1(d, i, data) : x0z[i], y1 ? +y1(d, i, data) : y0z[i]);
-            }
-        }
-        if (buffer) return output = null, buffer + "" || null;
-    }
-    function arealine() {
-        return _lineJsDefault.default().defined(defined).curve(curve).context(context);
-    }
-    area.x = function(_) {
-        return arguments.length ? (x0 = typeof _ === "function" ? _ : _constantJsDefault.default(+_), x1 = null, area) : x0;
-    };
-    area.x0 = function(_) {
-        return arguments.length ? (x0 = typeof _ === "function" ? _ : _constantJsDefault.default(+_), area) : x0;
-    };
-    area.x1 = function(_) {
-        return arguments.length ? (x1 = _ == null ? null : typeof _ === "function" ? _ : _constantJsDefault.default(+_), area) : x1;
-    };
-    area.y = function(_) {
-        return arguments.length ? (y0 = typeof _ === "function" ? _ : _constantJsDefault.default(+_), y1 = null, area) : y0;
-    };
-    area.y0 = function(_) {
-        return arguments.length ? (y0 = typeof _ === "function" ? _ : _constantJsDefault.default(+_), area) : y0;
-    };
-    area.y1 = function(_) {
-        return arguments.length ? (y1 = _ == null ? null : typeof _ === "function" ? _ : _constantJsDefault.default(+_), area) : y1;
-    };
-    area.lineX0 = area.lineY0 = function() {
-        return arealine().x(x0).y(y0);
-    };
-    area.lineY1 = function() {
-        return arealine().x(x0).y(y1);
-    };
-    area.lineX1 = function() {
-        return arealine().x(x1).y(y0);
-    };
-    area.defined = function(_) {
-        return arguments.length ? (defined = typeof _ === "function" ? _ : _constantJsDefault.default(!!_), area) : defined;
-    };
-    area.curve = function(_) {
-        return arguments.length ? (curve = _, context != null && (output = curve(context)), area) : curve;
-    };
-    area.context = function(_) {
-        return arguments.length ? (_ == null ? context = output = null : output = curve(context = _), area) : context;
-    };
-    return area;
-};
-
-},{"d3-path":"2bVYV","./array.js":"57r45","./constant.js":"ekTDw","./curve/linear.js":"9XfvO","./line.js":"gIY1L","./point.js":"hR3CH","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"57r45":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "slice", ()=>slice
-);
-var slice = Array.prototype.slice;
-exports.default = function(x) {
-    return typeof x === "object" && "length" in x ? x // Array, TypedArray, NodeList, array-like
-     : Array.from(x); // Map, Set, iterable, string, or anything else
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9XfvO":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function Linear(context) {
-    this._context = context;
-}
-Linear.prototype = {
-    areaStart: function() {
-        this._line = 0;
-    },
-    areaEnd: function() {
-        this._line = NaN;
-    },
-    lineStart: function() {
-        this._point = 0;
-    },
-    lineEnd: function() {
-        if (this._line || this._line !== 0 && this._point === 1) this._context.closePath();
-        this._line = 1 - this._line;
-    },
-    point: function(x, y) {
-        x = +x, y = +y;
-        switch(this._point){
-            case 0:
-                this._point = 1;
-                this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y);
-                break;
-            case 1:
-                this._point = 2; // proceed
-            default:
-                this._context.lineTo(x, y);
-                break;
-        }
-    }
-};
-exports.default = function(context) {
-    return new Linear(context);
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gIY1L":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Path = require("d3-path");
-var _arrayJs = require("./array.js");
-var _arrayJsDefault = parcelHelpers.interopDefault(_arrayJs);
-var _constantJs = require("./constant.js");
-var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
-var _linearJs = require("./curve/linear.js");
-var _linearJsDefault = parcelHelpers.interopDefault(_linearJs);
-var _pointJs = require("./point.js");
-exports.default = function(x, y) {
-    var defined = _constantJsDefault.default(true), context = null, curve = _linearJsDefault.default, output = null;
-    x = typeof x === "function" ? x : x === undefined ? _pointJs.x : _constantJsDefault.default(x);
-    y = typeof y === "function" ? y : y === undefined ? _pointJs.y : _constantJsDefault.default(y);
-    function line(data) {
-        var i, n = (data = _arrayJsDefault.default(data)).length, d, defined0 = false, buffer;
-        if (context == null) output = curve(buffer = _d3Path.path());
-        for(i = 0; i <= n; ++i){
-            if (!(i < n && defined(d = data[i], i, data)) === defined0) {
-                if (defined0 = !defined0) output.lineStart();
-                else output.lineEnd();
-            }
-            if (defined0) output.point(+x(d, i, data), +y(d, i, data));
-        }
-        if (buffer) return output = null, buffer + "" || null;
-    }
-    line.x = function(_) {
-        return arguments.length ? (x = typeof _ === "function" ? _ : _constantJsDefault.default(+_), line) : x;
-    };
-    line.y = function(_) {
-        return arguments.length ? (y = typeof _ === "function" ? _ : _constantJsDefault.default(+_), line) : y;
-    };
-    line.defined = function(_) {
-        return arguments.length ? (defined = typeof _ === "function" ? _ : _constantJsDefault.default(!!_), line) : defined;
-    };
-    line.curve = function(_) {
-        return arguments.length ? (curve = _, context != null && (output = curve(context)), line) : curve;
-    };
-    line.context = function(_) {
-        return arguments.length ? (_ == null ? context = output = null : output = curve(context = _), line) : context;
-    };
-    return line;
-};
-
-},{"d3-path":"2bVYV","./array.js":"57r45","./constant.js":"ekTDw","./curve/linear.js":"9XfvO","./point.js":"hR3CH","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hR3CH":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "x", ()=>x
-);
-parcelHelpers.export(exports, "y", ()=>y
-);
-function x(p) {
-    return p[0];
-}
-function y(p) {
-    return p[1];
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"Xi3Ru":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _arrayJs = require("./array.js");
-var _arrayJsDefault = parcelHelpers.interopDefault(_arrayJs);
-var _constantJs = require("./constant.js");
-var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
-var _descendingJs = require("./descending.js");
-var _descendingJsDefault = parcelHelpers.interopDefault(_descendingJs);
-var _identityJs = require("./identity.js");
-var _identityJsDefault = parcelHelpers.interopDefault(_identityJs);
-var _mathJs = require("./math.js");
-exports.default = function() {
-    var value = _identityJsDefault.default, sortValues = _descendingJsDefault.default, sort = null, startAngle = _constantJsDefault.default(0), endAngle = _constantJsDefault.default(_mathJs.tau), padAngle = _constantJsDefault.default(0);
-    function pie(data) {
-        var i, n = (data = _arrayJsDefault.default(data)).length, j, k, sum = 0, index = new Array(n), arcs = new Array(n), a0 = +startAngle.apply(this, arguments), da = Math.min(_mathJs.tau, Math.max(-_mathJs.tau, endAngle.apply(this, arguments) - a0)), a1, p = Math.min(Math.abs(da) / n, padAngle.apply(this, arguments)), pa = p * (da < 0 ? -1 : 1), v;
-        for(i = 0; i < n; ++i)if ((v = arcs[index[i] = i] = +value(data[i], i, data)) > 0) sum += v;
-        // Optionally sort the arcs by previously-computed values or by data.
-        if (sortValues != null) index.sort(function(i, j) {
-            return sortValues(arcs[i], arcs[j]);
-        });
-        else if (sort != null) index.sort(function(i, j) {
-            return sort(data[i], data[j]);
-        });
-        // Compute the arcs! They are stored in the original data's order.
-        for(i = 0, k = sum ? (da - n * pa) / sum : 0; i < n; ++i, a0 = a1)j = index[i], v = arcs[j], a1 = a0 + (v > 0 ? v * k : 0) + pa, arcs[j] = {
-            data: data[j],
-            index: i,
-            value: v,
-            startAngle: a0,
-            endAngle: a1,
-            padAngle: p
-        };
-        return arcs;
-    }
-    pie.value = function(_) {
-        return arguments.length ? (value = typeof _ === "function" ? _ : _constantJsDefault.default(+_), pie) : value;
-    };
-    pie.sortValues = function(_) {
-        return arguments.length ? (sortValues = _, sort = null, pie) : sortValues;
-    };
-    pie.sort = function(_) {
-        return arguments.length ? (sort = _, sortValues = null, pie) : sort;
-    };
-    pie.startAngle = function(_) {
-        return arguments.length ? (startAngle = typeof _ === "function" ? _ : _constantJsDefault.default(+_), pie) : startAngle;
-    };
-    pie.endAngle = function(_) {
-        return arguments.length ? (endAngle = typeof _ === "function" ? _ : _constantJsDefault.default(+_), pie) : endAngle;
-    };
-    pie.padAngle = function(_) {
-        return arguments.length ? (padAngle = typeof _ === "function" ? _ : _constantJsDefault.default(+_), pie) : padAngle;
-    };
-    return pie;
-};
-
-},{"./array.js":"57r45","./constant.js":"ekTDw","./descending.js":"1ycL4","./identity.js":"cc65F","./math.js":"a4nHA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1ycL4":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(a, b) {
-    return b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cc65F":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(d) {
-    return d;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fhHJH":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _radialJs = require("./curve/radial.js");
-var _radialJsDefault = parcelHelpers.interopDefault(_radialJs);
-var _areaJs = require("./area.js");
-var _areaJsDefault = parcelHelpers.interopDefault(_areaJs);
-var _lineRadialJs = require("./lineRadial.js");
-exports.default = function() {
-    var a = _areaJsDefault.default().curve(_radialJs.curveRadialLinear), c = a.curve, x0 = a.lineX0, x1 = a.lineX1, y0 = a.lineY0, y1 = a.lineY1;
-    a.angle = a.x, delete a.x;
-    a.startAngle = a.x0, delete a.x0;
-    a.endAngle = a.x1, delete a.x1;
-    a.radius = a.y, delete a.y;
-    a.innerRadius = a.y0, delete a.y0;
-    a.outerRadius = a.y1, delete a.y1;
-    a.lineStartAngle = function() {
-        return _lineRadialJs.lineRadial(x0());
-    }, delete a.lineX0;
-    a.lineEndAngle = function() {
-        return _lineRadialJs.lineRadial(x1());
-    }, delete a.lineX1;
-    a.lineInnerRadius = function() {
-        return _lineRadialJs.lineRadial(y0());
-    }, delete a.lineY0;
-    a.lineOuterRadius = function() {
-        return _lineRadialJs.lineRadial(y1());
-    }, delete a.lineY1;
-    a.curve = function(_) {
-        return arguments.length ? c(_radialJsDefault.default(_)) : c()._curve;
-    };
-    return a;
-};
-
-},{"./curve/radial.js":"iUdGf","./area.js":"iPxhY","./lineRadial.js":"a59hC","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iUdGf":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "curveRadialLinear", ()=>curveRadialLinear
-);
-var _linearJs = require("./linear.js");
-var _linearJsDefault = parcelHelpers.interopDefault(_linearJs);
-var curveRadialLinear = curveRadial(_linearJsDefault.default);
-function Radial(curve) {
-    this._curve = curve;
-}
-Radial.prototype = {
-    areaStart: function() {
-        this._curve.areaStart();
-    },
-    areaEnd: function() {
-        this._curve.areaEnd();
-    },
-    lineStart: function() {
-        this._curve.lineStart();
-    },
-    lineEnd: function() {
-        this._curve.lineEnd();
-    },
-    point: function(a, r) {
-        this._curve.point(r * Math.sin(a), r * -Math.cos(a));
-    }
-};
-function curveRadial(curve) {
-    function radial(context) {
-        return new Radial(curve(context));
-    }
-    radial._curve = curve;
-    return radial;
-}
-exports.default = curveRadial;
-
-},{"./linear.js":"9XfvO","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"a59hC":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "lineRadial", ()=>lineRadial
-);
-var _radialJs = require("./curve/radial.js");
-var _radialJsDefault = parcelHelpers.interopDefault(_radialJs);
-var _lineJs = require("./line.js");
-var _lineJsDefault = parcelHelpers.interopDefault(_lineJs);
-function lineRadial(l) {
-    var c = l.curve;
-    l.angle = l.x, delete l.x;
-    l.radius = l.y, delete l.y;
-    l.curve = function(_) {
-        return arguments.length ? c(_radialJsDefault.default(_)) : c()._curve;
-    };
-    return l;
-}
-exports.default = function() {
-    return lineRadial(_lineJsDefault.default().curve(_radialJs.curveRadialLinear));
-};
-
-},{"./curve/radial.js":"iUdGf","./line.js":"gIY1L","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"e5Z1o":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(x, y) {
-    return [
-        (y = +y) * Math.cos(x -= Math.PI / 2),
-        y * Math.sin(x)
-    ];
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"diLKc":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "linkHorizontal", ()=>linkHorizontal
-);
-parcelHelpers.export(exports, "linkVertical", ()=>linkVertical
-);
-parcelHelpers.export(exports, "linkRadial", ()=>linkRadial
-);
-var _d3Path = require("d3-path");
-var _arrayJs = require("../array.js");
-var _constantJs = require("../constant.js");
-var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
-var _pointJs = require("../point.js");
-var _pointRadialJs = require("../pointRadial.js");
-var _pointRadialJsDefault = parcelHelpers.interopDefault(_pointRadialJs);
-function linkSource(d) {
-    return d.source;
-}
-function linkTarget(d) {
-    return d.target;
-}
-function link1(curve) {
-    var source = linkSource, target = linkTarget, x = _pointJs.x, y = _pointJs.y, context = null;
-    function link() {
-        var buffer, argv = _arrayJs.slice.call(arguments), s = source.apply(this, argv), t = target.apply(this, argv);
-        if (!context) context = buffer = _d3Path.path();
-        curve(context, +x.apply(this, (argv[0] = s, argv)), +y.apply(this, argv), +x.apply(this, (argv[0] = t, argv)), +y.apply(this, argv));
-        if (buffer) return context = null, buffer + "" || null;
-    }
-    link.source = function(_) {
-        return arguments.length ? (source = _, link) : source;
-    };
-    link.target = function(_) {
-        return arguments.length ? (target = _, link) : target;
-    };
-    link.x = function(_) {
-        return arguments.length ? (x = typeof _ === "function" ? _ : _constantJsDefault.default(+_), link) : x;
-    };
-    link.y = function(_) {
-        return arguments.length ? (y = typeof _ === "function" ? _ : _constantJsDefault.default(+_), link) : y;
-    };
-    link.context = function(_) {
-        return arguments.length ? (context = _ == null ? null : _, link) : context;
-    };
-    return link;
-}
-function curveHorizontal(context, x0, y0, x1, y1) {
-    context.moveTo(x0, y0);
-    context.bezierCurveTo(x0 = (x0 + x1) / 2, y0, x0, y1, x1, y1);
-}
-function curveVertical(context, x0, y0, x1, y1) {
-    context.moveTo(x0, y0);
-    context.bezierCurveTo(x0, y0 = (y0 + y1) / 2, x1, y0, x1, y1);
-}
-function curveRadial(context, x0, y0, x1, y1) {
-    var p0 = _pointRadialJsDefault.default(x0, y0), p1 = _pointRadialJsDefault.default(x0, y0 = (y0 + y1) / 2), p2 = _pointRadialJsDefault.default(x1, y0), p3 = _pointRadialJsDefault.default(x1, y1);
-    context.moveTo(p0[0], p0[1]);
-    context.bezierCurveTo(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-}
-function linkHorizontal() {
-    return link1(curveHorizontal);
-}
-function linkVertical() {
-    return link1(curveVertical);
-}
-function linkRadial() {
-    var l = link1(curveRadial);
-    l.angle = l.x, delete l.x;
-    l.radius = l.y, delete l.y;
-    return l;
-}
-
-},{"d3-path":"2bVYV","../array.js":"57r45","../constant.js":"ekTDw","../point.js":"hR3CH","../pointRadial.js":"e5Z1o","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"g2zzn":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "symbols", ()=>symbols
-);
-var _d3Path = require("d3-path");
-var _circleJs = require("./symbol/circle.js");
-var _circleJsDefault = parcelHelpers.interopDefault(_circleJs);
-var _crossJs = require("./symbol/cross.js");
-var _crossJsDefault = parcelHelpers.interopDefault(_crossJs);
-var _diamondJs = require("./symbol/diamond.js");
-var _diamondJsDefault = parcelHelpers.interopDefault(_diamondJs);
-var _starJs = require("./symbol/star.js");
-var _starJsDefault = parcelHelpers.interopDefault(_starJs);
-var _squareJs = require("./symbol/square.js");
-var _squareJsDefault = parcelHelpers.interopDefault(_squareJs);
-var _triangleJs = require("./symbol/triangle.js");
-var _triangleJsDefault = parcelHelpers.interopDefault(_triangleJs);
-var _wyeJs = require("./symbol/wye.js");
-var _wyeJsDefault = parcelHelpers.interopDefault(_wyeJs);
-var _constantJs = require("./constant.js");
-var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
-var symbols = [
-    _circleJsDefault.default,
-    _crossJsDefault.default,
-    _diamondJsDefault.default,
-    _squareJsDefault.default,
-    _starJsDefault.default,
-    _triangleJsDefault.default,
-    _wyeJsDefault.default
-];
-exports.default = function(type, size) {
-    var context = null;
-    type = typeof type === "function" ? type : _constantJsDefault.default(type || _circleJsDefault.default);
-    size = typeof size === "function" ? size : _constantJsDefault.default(size === undefined ? 64 : +size);
-    function symbol() {
-        var buffer;
-        if (!context) context = buffer = _d3Path.path();
-        type.apply(this, arguments).draw(context, +size.apply(this, arguments));
-        if (buffer) return context = null, buffer + "" || null;
-    }
-    symbol.type = function(_) {
-        return arguments.length ? (type = typeof _ === "function" ? _ : _constantJsDefault.default(_), symbol) : type;
-    };
-    symbol.size = function(_) {
-        return arguments.length ? (size = typeof _ === "function" ? _ : _constantJsDefault.default(+_), symbol) : size;
-    };
-    symbol.context = function(_) {
-        return arguments.length ? (context = _ == null ? null : _, symbol) : context;
-    };
-    return symbol;
-};
-
-},{"d3-path":"2bVYV","./symbol/circle.js":"lbWpD","./symbol/cross.js":"6lJ6b","./symbol/diamond.js":"9EeZq","./symbol/star.js":"3i3gg","./symbol/square.js":"kVr40","./symbol/triangle.js":"inoin","./symbol/wye.js":"3KV0T","./constant.js":"ekTDw","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lbWpD":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _mathJs = require("../math.js");
-exports.default = {
-    draw: function(context, size) {
-        var r = Math.sqrt(size / _mathJs.pi);
-        context.moveTo(r, 0);
-        context.arc(0, 0, r, 0, _mathJs.tau);
-    }
-};
-
-},{"../math.js":"a4nHA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6lJ6b":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = {
-    draw: function(context, size) {
-        var r = Math.sqrt(size / 5) / 2;
-        context.moveTo(-3 * r, -r);
-        context.lineTo(-r, -r);
-        context.lineTo(-r, -3 * r);
-        context.lineTo(r, -3 * r);
-        context.lineTo(r, -r);
-        context.lineTo(3 * r, -r);
-        context.lineTo(3 * r, r);
-        context.lineTo(r, r);
-        context.lineTo(r, 3 * r);
-        context.lineTo(-r, 3 * r);
-        context.lineTo(-r, r);
-        context.lineTo(-3 * r, r);
-        context.closePath();
-    }
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9EeZq":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var tan30 = Math.sqrt(1 / 3), tan30_2 = tan30 * 2;
-exports.default = {
-    draw: function(context, size) {
-        var y = Math.sqrt(size / tan30_2), x = y * tan30;
-        context.moveTo(0, -y);
-        context.lineTo(x, 0);
-        context.lineTo(0, y);
-        context.lineTo(-x, 0);
-        context.closePath();
-    }
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3i3gg":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _mathJs = require("../math.js");
-var ka = 0.8908130915292852, kr = Math.sin(_mathJs.pi / 10) / Math.sin(7 * _mathJs.pi / 10), kx = Math.sin(_mathJs.tau / 10) * kr, ky = -Math.cos(_mathJs.tau / 10) * kr;
-exports.default = {
-    draw: function(context, size) {
-        var r = Math.sqrt(size * ka), x = kx * r, y = ky * r;
-        context.moveTo(0, -r);
-        context.lineTo(x, y);
-        for(var i = 1; i < 5; ++i){
-            var a = _mathJs.tau * i / 5, c = Math.cos(a), s = Math.sin(a);
-            context.lineTo(s * r, -c * r);
-            context.lineTo(c * x - s * y, s * x + c * y);
-        }
-        context.closePath();
-    }
-};
-
-},{"../math.js":"a4nHA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kVr40":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = {
-    draw: function(context, size) {
-        var w = Math.sqrt(size), x = -w / 2;
-        context.rect(x, x, w, w);
-    }
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"inoin":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var sqrt3 = Math.sqrt(3);
-exports.default = {
-    draw: function(context, size) {
-        var y = -Math.sqrt(size / (sqrt3 * 3));
-        context.moveTo(0, y * 2);
-        context.lineTo(-sqrt3 * y, -y);
-        context.lineTo(sqrt3 * y, -y);
-        context.closePath();
-    }
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3KV0T":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var c = -0.5, s = Math.sqrt(3) / 2, k = 1 / Math.sqrt(12), a = (k / 2 + 1) * 3;
-exports.default = {
-    draw: function(context, size) {
-        var r = Math.sqrt(size / a), x0 = r / 2, y0 = r * k, x1 = x0, y1 = r * k + r, x2 = -x1, y2 = y1;
-        context.moveTo(x0, y0);
-        context.lineTo(x1, y1);
-        context.lineTo(x2, y2);
-        context.lineTo(c * x0 - s * y0, s * x0 + c * y0);
-        context.lineTo(c * x1 - s * y1, s * x1 + c * y1);
-        context.lineTo(c * x2 - s * y2, s * x2 + c * y2);
-        context.lineTo(c * x0 + s * y0, c * y0 - s * x0);
-        context.lineTo(c * x1 + s * y1, c * y1 - s * x1);
-        context.lineTo(c * x2 + s * y2, c * y2 - s * x2);
-        context.closePath();
-    }
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cugnO":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _noopJs = require("../noop.js");
-var _noopJsDefault = parcelHelpers.interopDefault(_noopJs);
-var _basisJs = require("./basis.js");
-function BasisClosed(context) {
-    this._context = context;
-}
-BasisClosed.prototype = {
-    areaStart: _noopJsDefault.default,
-    areaEnd: _noopJsDefault.default,
-    lineStart: function() {
-        this._x0 = this._x1 = this._x2 = this._x3 = this._x4 = this._y0 = this._y1 = this._y2 = this._y3 = this._y4 = NaN;
-        this._point = 0;
-    },
-    lineEnd: function() {
-        switch(this._point){
-            case 1:
-                this._context.moveTo(this._x2, this._y2);
-                this._context.closePath();
-                break;
-            case 2:
-                this._context.moveTo((this._x2 + 2 * this._x3) / 3, (this._y2 + 2 * this._y3) / 3);
-                this._context.lineTo((this._x3 + 2 * this._x2) / 3, (this._y3 + 2 * this._y2) / 3);
-                this._context.closePath();
-                break;
-            case 3:
-                this.point(this._x2, this._y2);
-                this.point(this._x3, this._y3);
-                this.point(this._x4, this._y4);
-                break;
-        }
-    },
-    point: function(x, y) {
-        x = +x, y = +y;
-        switch(this._point){
-            case 0:
-                this._point = 1;
-                this._x2 = x, this._y2 = y;
-                break;
-            case 1:
-                this._point = 2;
-                this._x3 = x, this._y3 = y;
-                break;
-            case 2:
-                this._point = 3;
-                this._x4 = x, this._y4 = y;
-                this._context.moveTo((this._x0 + 4 * this._x1 + x) / 6, (this._y0 + 4 * this._y1 + y) / 6);
-                break;
-            default:
-                _basisJs.point(this, x, y);
-                break;
-        }
-        this._x0 = this._x1, this._x1 = x;
-        this._y0 = this._y1, this._y1 = y;
-    }
-};
-exports.default = function(context) {
-    return new BasisClosed(context);
-};
-
-},{"../noop.js":"15VRo","./basis.js":"ckmSf","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"15VRo":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function() {
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ckmSf":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "point", ()=>point
-);
-parcelHelpers.export(exports, "Basis", ()=>Basis
-);
-function point(that, x, y) {
-    that._context.bezierCurveTo((2 * that._x0 + that._x1) / 3, (2 * that._y0 + that._y1) / 3, (that._x0 + 2 * that._x1) / 3, (that._y0 + 2 * that._y1) / 3, (that._x0 + 4 * that._x1 + x) / 6, (that._y0 + 4 * that._y1 + y) / 6);
-}
-function Basis(context) {
-    this._context = context;
-}
-Basis.prototype = {
-    areaStart: function() {
-        this._line = 0;
-    },
-    areaEnd: function() {
-        this._line = NaN;
-    },
-    lineStart: function() {
-        this._x0 = this._x1 = this._y0 = this._y1 = NaN;
-        this._point = 0;
-    },
-    lineEnd: function() {
-        switch(this._point){
-            case 3:
-                point(this, this._x1, this._y1); // proceed
-            case 2:
-                this._context.lineTo(this._x1, this._y1);
-                break;
-        }
-        if (this._line || this._line !== 0 && this._point === 1) this._context.closePath();
-        this._line = 1 - this._line;
-    },
-    point: function(x, y) {
-        x = +x, y = +y;
-        switch(this._point){
-            case 0:
-                this._point = 1;
-                this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y);
-                break;
-            case 1:
-                this._point = 2;
-                break;
-            case 2:
-                this._point = 3;
-                this._context.lineTo((5 * this._x0 + this._x1) / 6, (5 * this._y0 + this._y1) / 6); // proceed
-            default:
-                point(this, x, y);
-                break;
-        }
-        this._x0 = this._x1, this._x1 = x;
-        this._y0 = this._y1, this._y1 = y;
-    }
-};
-exports.default = function(context) {
-    return new Basis(context);
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"DB2Zg":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _basisJs = require("./basis.js");
-function BasisOpen(context) {
-    this._context = context;
-}
-BasisOpen.prototype = {
-    areaStart: function() {
-        this._line = 0;
-    },
-    areaEnd: function() {
-        this._line = NaN;
-    },
-    lineStart: function() {
-        this._x0 = this._x1 = this._y0 = this._y1 = NaN;
-        this._point = 0;
-    },
-    lineEnd: function() {
-        if (this._line || this._line !== 0 && this._point === 3) this._context.closePath();
-        this._line = 1 - this._line;
-    },
-    point: function(x, y) {
-        x = +x, y = +y;
-        switch(this._point){
-            case 0:
-                this._point = 1;
-                break;
-            case 1:
-                this._point = 2;
-                break;
-            case 2:
-                this._point = 3;
-                var x0 = (this._x0 + 4 * this._x1 + x) / 6, y0 = (this._y0 + 4 * this._y1 + y) / 6;
-                this._line ? this._context.lineTo(x0, y0) : this._context.moveTo(x0, y0);
-                break;
-            case 3:
-                this._point = 4; // proceed
-            default:
-                _basisJs.point(this, x, y);
-                break;
-        }
-        this._x0 = this._x1, this._x1 = x;
-        this._y0 = this._y1, this._y1 = y;
-    }
-};
-exports.default = function(context) {
-    return new BasisOpen(context);
-};
-
-},{"./basis.js":"ckmSf","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9yctA":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "bumpX", ()=>bumpX
-);
-parcelHelpers.export(exports, "bumpY", ()=>bumpY
-);
-class Bump {
-    constructor(context1, x){
-        this._context = context1;
-        this._x = x;
-    }
-    areaStart() {
-        this._line = 0;
-    }
-    areaEnd() {
-        this._line = NaN;
-    }
-    lineStart() {
-        this._point = 0;
-    }
-    lineEnd() {
-        if (this._line || this._line !== 0 && this._point === 1) this._context.closePath();
-        this._line = 1 - this._line;
-    }
-    point(x1, y) {
-        x1 = +x1, y = +y;
-        switch(this._point){
-            case 0:
-                this._point = 1;
-                if (this._line) this._context.lineTo(x1, y);
-                else this._context.moveTo(x1, y);
-                break;
-            case 1:
-                this._point = 2; // proceed
-            default:
-                if (this._x) this._context.bezierCurveTo(this._x0 = (this._x0 + x1) / 2, this._y0, this._x0, y, x1, y);
-                else this._context.bezierCurveTo(this._x0, this._y0 = (this._y0 + y) / 2, x1, this._y0, x1, y);
-                break;
-        }
-        this._x0 = x1, this._y0 = y;
-    }
-}
-function bumpX(context) {
-    return new Bump(context, true);
-}
-function bumpY(context) {
-    return new Bump(context, false);
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hxEx5":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _basisJs = require("./basis.js");
-function Bundle(context, beta) {
-    this._basis = new _basisJs.Basis(context);
-    this._beta = beta;
-}
-Bundle.prototype = {
-    lineStart: function() {
-        this._x = [];
-        this._y = [];
-        this._basis.lineStart();
-    },
-    lineEnd: function() {
-        var x = this._x, y = this._y, j = x.length - 1;
-        if (j > 0) {
-            var x0 = x[0], y0 = y[0], dx = x[j] - x0, dy = y[j] - y0, i = -1, t;
-            while(++i <= j){
-                t = i / j;
-                this._basis.point(this._beta * x[i] + (1 - this._beta) * (x0 + t * dx), this._beta * y[i] + (1 - this._beta) * (y0 + t * dy));
-            }
-        }
-        this._x = this._y = null;
-        this._basis.lineEnd();
-    },
-    point: function(x, y) {
-        this._x.push(+x);
-        this._y.push(+y);
-    }
-};
-exports.default = (function custom(beta1) {
-    function bundle(context) {
-        return beta1 === 1 ? new _basisJs.Basis(context) : new Bundle(context, beta1);
-    }
-    bundle.beta = function(beta) {
-        return custom(+beta);
-    };
-    return bundle;
-})(0.85);
-
-},{"./basis.js":"ckmSf","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hckQ0":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CardinalClosed", ()=>CardinalClosed
-);
-var _noopJs = require("../noop.js");
-var _noopJsDefault = parcelHelpers.interopDefault(_noopJs);
-var _cardinalJs = require("./cardinal.js");
-function CardinalClosed(context, tension) {
-    this._context = context;
-    this._k = (1 - tension) / 6;
-}
-CardinalClosed.prototype = {
-    areaStart: _noopJsDefault.default,
-    areaEnd: _noopJsDefault.default,
-    lineStart: function() {
-        this._x0 = this._x1 = this._x2 = this._x3 = this._x4 = this._x5 = this._y0 = this._y1 = this._y2 = this._y3 = this._y4 = this._y5 = NaN;
-        this._point = 0;
-    },
-    lineEnd: function() {
-        switch(this._point){
-            case 1:
-                this._context.moveTo(this._x3, this._y3);
-                this._context.closePath();
-                break;
-            case 2:
-                this._context.lineTo(this._x3, this._y3);
-                this._context.closePath();
-                break;
-            case 3:
-                this.point(this._x3, this._y3);
-                this.point(this._x4, this._y4);
-                this.point(this._x5, this._y5);
-                break;
-        }
-    },
-    point: function(x, y) {
-        x = +x, y = +y;
-        switch(this._point){
-            case 0:
-                this._point = 1;
-                this._x3 = x, this._y3 = y;
-                break;
-            case 1:
-                this._point = 2;
-                this._context.moveTo(this._x4 = x, this._y4 = y);
-                break;
-            case 2:
-                this._point = 3;
-                this._x5 = x, this._y5 = y;
-                break;
-            default:
-                _cardinalJs.point(this, x, y);
-                break;
-        }
-        this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
-        this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
-    }
-};
-exports.default = (function custom(tension1) {
-    function cardinal(context) {
-        return new CardinalClosed(context, tension1);
-    }
-    cardinal.tension = function(tension) {
-        return custom(+tension);
-    };
-    return cardinal;
-})(0);
-
-},{"../noop.js":"15VRo","./cardinal.js":"agrkf","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"agrkf":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "point", ()=>point
-);
-parcelHelpers.export(exports, "Cardinal", ()=>Cardinal
-);
-function point(that, x, y) {
-    that._context.bezierCurveTo(that._x1 + that._k * (that._x2 - that._x0), that._y1 + that._k * (that._y2 - that._y0), that._x2 + that._k * (that._x1 - x), that._y2 + that._k * (that._y1 - y), that._x2, that._y2);
-}
-function Cardinal(context, tension) {
-    this._context = context;
-    this._k = (1 - tension) / 6;
-}
-Cardinal.prototype = {
-    areaStart: function() {
-        this._line = 0;
-    },
-    areaEnd: function() {
-        this._line = NaN;
-    },
-    lineStart: function() {
-        this._x0 = this._x1 = this._x2 = this._y0 = this._y1 = this._y2 = NaN;
-        this._point = 0;
-    },
-    lineEnd: function() {
-        switch(this._point){
-            case 2:
-                this._context.lineTo(this._x2, this._y2);
-                break;
-            case 3:
-                point(this, this._x1, this._y1);
-                break;
-        }
-        if (this._line || this._line !== 0 && this._point === 1) this._context.closePath();
-        this._line = 1 - this._line;
-    },
-    point: function(x, y) {
-        x = +x, y = +y;
-        switch(this._point){
-            case 0:
-                this._point = 1;
-                this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y);
-                break;
-            case 1:
-                this._point = 2;
-                this._x1 = x, this._y1 = y;
-                break;
-            case 2:
-                this._point = 3; // proceed
-            default:
-                point(this, x, y);
-                break;
-        }
-        this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
-        this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
-    }
-};
-exports.default = (function custom(tension1) {
-    function cardinal(context) {
-        return new Cardinal(context, tension1);
-    }
-    cardinal.tension = function(tension) {
-        return custom(+tension);
-    };
-    return cardinal;
-})(0);
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fgG5w":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CardinalOpen", ()=>CardinalOpen
-);
-var _cardinalJs = require("./cardinal.js");
-function CardinalOpen(context, tension) {
-    this._context = context;
-    this._k = (1 - tension) / 6;
-}
-CardinalOpen.prototype = {
-    areaStart: function() {
-        this._line = 0;
-    },
-    areaEnd: function() {
-        this._line = NaN;
-    },
-    lineStart: function() {
-        this._x0 = this._x1 = this._x2 = this._y0 = this._y1 = this._y2 = NaN;
-        this._point = 0;
-    },
-    lineEnd: function() {
-        if (this._line || this._line !== 0 && this._point === 3) this._context.closePath();
-        this._line = 1 - this._line;
-    },
-    point: function(x, y) {
-        x = +x, y = +y;
-        switch(this._point){
-            case 0:
-                this._point = 1;
-                break;
-            case 1:
-                this._point = 2;
-                break;
-            case 2:
-                this._point = 3;
-                this._line ? this._context.lineTo(this._x2, this._y2) : this._context.moveTo(this._x2, this._y2);
-                break;
-            case 3:
-                this._point = 4; // proceed
-            default:
-                _cardinalJs.point(this, x, y);
-                break;
-        }
-        this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
-        this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
-    }
-};
-exports.default = (function custom(tension1) {
-    function cardinal(context) {
-        return new CardinalOpen(context, tension1);
-    }
-    cardinal.tension = function(tension) {
-        return custom(+tension);
-    };
-    return cardinal;
-})(0);
-
-},{"./cardinal.js":"agrkf","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"94yfW":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _cardinalClosedJs = require("./cardinalClosed.js");
-var _noopJs = require("../noop.js");
-var _noopJsDefault = parcelHelpers.interopDefault(_noopJs);
-var _catmullRomJs = require("./catmullRom.js");
-function CatmullRomClosed(context, alpha) {
-    this._context = context;
-    this._alpha = alpha;
-}
-CatmullRomClosed.prototype = {
-    areaStart: _noopJsDefault.default,
-    areaEnd: _noopJsDefault.default,
-    lineStart: function() {
-        this._x0 = this._x1 = this._x2 = this._x3 = this._x4 = this._x5 = this._y0 = this._y1 = this._y2 = this._y3 = this._y4 = this._y5 = NaN;
-        this._l01_a = this._l12_a = this._l23_a = this._l01_2a = this._l12_2a = this._l23_2a = this._point = 0;
-    },
-    lineEnd: function() {
-        switch(this._point){
-            case 1:
-                this._context.moveTo(this._x3, this._y3);
-                this._context.closePath();
-                break;
-            case 2:
-                this._context.lineTo(this._x3, this._y3);
-                this._context.closePath();
-                break;
-            case 3:
-                this.point(this._x3, this._y3);
-                this.point(this._x4, this._y4);
-                this.point(this._x5, this._y5);
-                break;
-        }
-    },
-    point: function(x, y) {
-        x = +x, y = +y;
-        if (this._point) {
-            var x23 = this._x2 - x, y23 = this._y2 - y;
-            this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
-        }
-        switch(this._point){
-            case 0:
-                this._point = 1;
-                this._x3 = x, this._y3 = y;
-                break;
-            case 1:
-                this._point = 2;
-                this._context.moveTo(this._x4 = x, this._y4 = y);
-                break;
-            case 2:
-                this._point = 3;
-                this._x5 = x, this._y5 = y;
-                break;
-            default:
-                _catmullRomJs.point(this, x, y);
-                break;
-        }
-        this._l01_a = this._l12_a, this._l12_a = this._l23_a;
-        this._l01_2a = this._l12_2a, this._l12_2a = this._l23_2a;
-        this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
-        this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
-    }
-};
-exports.default = (function custom(alpha1) {
-    function catmullRom(context) {
-        return alpha1 ? new CatmullRomClosed(context, alpha1) : new _cardinalClosedJs.CardinalClosed(context, 0);
-    }
-    catmullRom.alpha = function(alpha) {
-        return custom(+alpha);
-    };
-    return catmullRom;
-})(0.5);
-
-},{"./cardinalClosed.js":"hckQ0","../noop.js":"15VRo","./catmullRom.js":"7Sz6w","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7Sz6w":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "point", ()=>point
-);
-var _mathJs = require("../math.js");
-var _cardinalJs = require("./cardinal.js");
-function point(that, x, y) {
-    var x1 = that._x1, y1 = that._y1, x2 = that._x2, y2 = that._y2;
-    if (that._l01_a > _mathJs.epsilon) {
-        var a = 2 * that._l01_2a + 3 * that._l01_a * that._l12_a + that._l12_2a, n = 3 * that._l01_a * (that._l01_a + that._l12_a);
-        x1 = (x1 * a - that._x0 * that._l12_2a + that._x2 * that._l01_2a) / n;
-        y1 = (y1 * a - that._y0 * that._l12_2a + that._y2 * that._l01_2a) / n;
-    }
-    if (that._l23_a > _mathJs.epsilon) {
-        var b = 2 * that._l23_2a + 3 * that._l23_a * that._l12_a + that._l12_2a, m = 3 * that._l23_a * (that._l23_a + that._l12_a);
-        x2 = (x2 * b + that._x1 * that._l23_2a - x * that._l12_2a) / m;
-        y2 = (y2 * b + that._y1 * that._l23_2a - y * that._l12_2a) / m;
-    }
-    that._context.bezierCurveTo(x1, y1, x2, y2, that._x2, that._y2);
-}
-function CatmullRom(context, alpha) {
-    this._context = context;
-    this._alpha = alpha;
-}
-CatmullRom.prototype = {
-    areaStart: function() {
-        this._line = 0;
-    },
-    areaEnd: function() {
-        this._line = NaN;
-    },
-    lineStart: function() {
-        this._x0 = this._x1 = this._x2 = this._y0 = this._y1 = this._y2 = NaN;
-        this._l01_a = this._l12_a = this._l23_a = this._l01_2a = this._l12_2a = this._l23_2a = this._point = 0;
-    },
-    lineEnd: function() {
-        switch(this._point){
-            case 2:
-                this._context.lineTo(this._x2, this._y2);
-                break;
-            case 3:
-                this.point(this._x2, this._y2);
-                break;
-        }
-        if (this._line || this._line !== 0 && this._point === 1) this._context.closePath();
-        this._line = 1 - this._line;
-    },
-    point: function(x, y) {
-        x = +x, y = +y;
-        if (this._point) {
-            var x23 = this._x2 - x, y23 = this._y2 - y;
-            this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
-        }
-        switch(this._point){
-            case 0:
-                this._point = 1;
-                this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y);
-                break;
-            case 1:
-                this._point = 2;
-                break;
-            case 2:
-                this._point = 3; // proceed
-            default:
-                point(this, x, y);
-                break;
-        }
-        this._l01_a = this._l12_a, this._l12_a = this._l23_a;
-        this._l01_2a = this._l12_2a, this._l12_2a = this._l23_2a;
-        this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
-        this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
-    }
-};
-exports.default = (function custom(alpha1) {
-    function catmullRom(context) {
-        return alpha1 ? new CatmullRom(context, alpha1) : new _cardinalJs.Cardinal(context, 0);
-    }
-    catmullRom.alpha = function(alpha) {
-        return custom(+alpha);
-    };
-    return catmullRom;
-})(0.5);
-
-},{"../math.js":"a4nHA","./cardinal.js":"agrkf","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ldGFd":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _cardinalOpenJs = require("./cardinalOpen.js");
-var _catmullRomJs = require("./catmullRom.js");
-function CatmullRomOpen(context, alpha) {
-    this._context = context;
-    this._alpha = alpha;
-}
-CatmullRomOpen.prototype = {
-    areaStart: function() {
-        this._line = 0;
-    },
-    areaEnd: function() {
-        this._line = NaN;
-    },
-    lineStart: function() {
-        this._x0 = this._x1 = this._x2 = this._y0 = this._y1 = this._y2 = NaN;
-        this._l01_a = this._l12_a = this._l23_a = this._l01_2a = this._l12_2a = this._l23_2a = this._point = 0;
-    },
-    lineEnd: function() {
-        if (this._line || this._line !== 0 && this._point === 3) this._context.closePath();
-        this._line = 1 - this._line;
-    },
-    point: function(x, y) {
-        x = +x, y = +y;
-        if (this._point) {
-            var x23 = this._x2 - x, y23 = this._y2 - y;
-            this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
-        }
-        switch(this._point){
-            case 0:
-                this._point = 1;
-                break;
-            case 1:
-                this._point = 2;
-                break;
-            case 2:
-                this._point = 3;
-                this._line ? this._context.lineTo(this._x2, this._y2) : this._context.moveTo(this._x2, this._y2);
-                break;
-            case 3:
-                this._point = 4; // proceed
-            default:
-                _catmullRomJs.point(this, x, y);
-                break;
-        }
-        this._l01_a = this._l12_a, this._l12_a = this._l23_a;
-        this._l01_2a = this._l12_2a, this._l12_2a = this._l23_2a;
-        this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
-        this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
-    }
-};
-exports.default = (function custom(alpha1) {
-    function catmullRom(context) {
-        return alpha1 ? new CatmullRomOpen(context, alpha1) : new _cardinalOpenJs.CardinalOpen(context, 0);
-    }
-    catmullRom.alpha = function(alpha) {
-        return custom(+alpha);
-    };
-    return catmullRom;
-})(0.5);
-
-},{"./cardinalOpen.js":"fgG5w","./catmullRom.js":"7Sz6w","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ijNXS":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _noopJs = require("../noop.js");
-var _noopJsDefault = parcelHelpers.interopDefault(_noopJs);
-function LinearClosed(context) {
-    this._context = context;
-}
-LinearClosed.prototype = {
-    areaStart: _noopJsDefault.default,
-    areaEnd: _noopJsDefault.default,
-    lineStart: function() {
-        this._point = 0;
-    },
-    lineEnd: function() {
-        if (this._point) this._context.closePath();
-    },
-    point: function(x, y) {
-        x = +x, y = +y;
-        if (this._point) this._context.lineTo(x, y);
-        else this._point = 1, this._context.moveTo(x, y);
-    }
-};
-exports.default = function(context) {
-    return new LinearClosed(context);
-};
-
-},{"../noop.js":"15VRo","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hWFui":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "monotoneX", ()=>monotoneX
-);
-parcelHelpers.export(exports, "monotoneY", ()=>monotoneY
-);
-function sign(x) {
-    return x < 0 ? -1 : 1;
-}
-// Calculate the slopes of the tangents (Hermite-type interpolation) based on
-// the following paper: Steffen, M. 1990. A Simple Method for Monotonic
-// Interpolation in One Dimension. Astronomy and Astrophysics, Vol. 239, NO.
-// NOV(II), P. 443, 1990.
-function slope3(that, x2, y2) {
-    var h0 = that._x1 - that._x0, h1 = x2 - that._x1, s0 = (that._y1 - that._y0) / (h0 || h1 < 0 && -0), s1 = (y2 - that._y1) / (h1 || h0 < 0 && -0), p = (s0 * h1 + s1 * h0) / (h0 + h1);
-    return (sign(s0) + sign(s1)) * Math.min(Math.abs(s0), Math.abs(s1), 0.5 * Math.abs(p)) || 0;
-}
-// Calculate a one-sided slope.
-function slope2(that, t) {
-    var h = that._x1 - that._x0;
-    return h ? (3 * (that._y1 - that._y0) / h - t) / 2 : t;
-}
-// According to https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Representations
-// "you can express cubic Hermite interpolation in terms of cubic Bézier curves
-// with respect to the four values p0, p0 + m0 / 3, p1 - m1 / 3, p1".
-function point(that, t0, t1) {
-    var x0 = that._x0, y0 = that._y0, x1 = that._x1, y1 = that._y1, dx = (x1 - x0) / 3;
-    that._context.bezierCurveTo(x0 + dx, y0 + dx * t0, x1 - dx, y1 - dx * t1, x1, y1);
-}
-function MonotoneX(context) {
-    this._context = context;
-}
-MonotoneX.prototype = {
-    areaStart: function() {
-        this._line = 0;
-    },
-    areaEnd: function() {
-        this._line = NaN;
-    },
-    lineStart: function() {
-        this._x0 = this._x1 = this._y0 = this._y1 = this._t0 = NaN;
-        this._point = 0;
-    },
-    lineEnd: function() {
-        switch(this._point){
-            case 2:
-                this._context.lineTo(this._x1, this._y1);
-                break;
-            case 3:
-                point(this, this._t0, slope2(this, this._t0));
-                break;
-        }
-        if (this._line || this._line !== 0 && this._point === 1) this._context.closePath();
-        this._line = 1 - this._line;
-    },
-    point: function(x, y) {
-        var t1 = NaN;
-        x = +x, y = +y;
-        if (x === this._x1 && y === this._y1) return; // Ignore coincident points.
-        switch(this._point){
-            case 0:
-                this._point = 1;
-                this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y);
-                break;
-            case 1:
-                this._point = 2;
-                break;
-            case 2:
-                this._point = 3;
-                point(this, slope2(this, t1 = slope3(this, x, y)), t1);
-                break;
-            default:
-                point(this, this._t0, t1 = slope3(this, x, y));
-                break;
-        }
-        this._x0 = this._x1, this._x1 = x;
-        this._y0 = this._y1, this._y1 = y;
-        this._t0 = t1;
-    }
-};
-function MonotoneY(context) {
-    this._context = new ReflectContext(context);
-}
-(MonotoneY.prototype = Object.create(MonotoneX.prototype)).point = function(x, y) {
-    MonotoneX.prototype.point.call(this, y, x);
-};
-function ReflectContext(context) {
-    this._context = context;
-}
-ReflectContext.prototype = {
-    moveTo: function(x, y) {
-        this._context.moveTo(y, x);
-    },
-    closePath: function() {
-        this._context.closePath();
-    },
-    lineTo: function(x, y) {
-        this._context.lineTo(y, x);
-    },
-    bezierCurveTo: function(x1, y1, x2, y2, x, y) {
-        this._context.bezierCurveTo(y1, x1, y2, x2, y, x);
-    }
-};
-function monotoneX(context) {
-    return new MonotoneX(context);
-}
-function monotoneY(context) {
-    return new MonotoneY(context);
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fx10Q":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function Natural(context) {
-    this._context = context;
-}
-Natural.prototype = {
-    areaStart: function() {
-        this._line = 0;
-    },
-    areaEnd: function() {
-        this._line = NaN;
-    },
-    lineStart: function() {
-        this._x = [];
-        this._y = [];
-    },
-    lineEnd: function() {
-        var x = this._x, y = this._y, n = x.length;
-        if (n) {
-            this._line ? this._context.lineTo(x[0], y[0]) : this._context.moveTo(x[0], y[0]);
-            if (n === 2) this._context.lineTo(x[1], y[1]);
-            else {
-                var px = controlPoints(x), py = controlPoints(y);
-                for(var i0 = 0, i1 = 1; i1 < n; ++i0, ++i1)this._context.bezierCurveTo(px[0][i0], py[0][i0], px[1][i0], py[1][i0], x[i1], y[i1]);
-            }
-        }
-        if (this._line || this._line !== 0 && n === 1) this._context.closePath();
-        this._line = 1 - this._line;
-        this._x = this._y = null;
-    },
-    point: function(x, y) {
-        this._x.push(+x);
-        this._y.push(+y);
-    }
-};
-// See https://www.particleincell.com/2012/bezier-splines/ for derivation.
-function controlPoints(x) {
-    var i, n = x.length - 1, m, a = new Array(n), b = new Array(n), r = new Array(n);
-    a[0] = 0, b[0] = 2, r[0] = x[0] + 2 * x[1];
-    for(i = 1; i < n - 1; ++i)a[i] = 1, b[i] = 4, r[i] = 4 * x[i] + 2 * x[i + 1];
-    a[n - 1] = 2, b[n - 1] = 7, r[n - 1] = 8 * x[n - 1] + x[n];
-    for(i = 1; i < n; ++i)m = a[i] / b[i - 1], b[i] -= m, r[i] -= m * r[i - 1];
-    a[n - 1] = r[n - 1] / b[n - 1];
-    for(i = n - 2; i >= 0; --i)a[i] = (r[i] - a[i + 1]) / b[i];
-    b[n - 1] = (x[n] + a[n - 1]) / 2;
-    for(i = 0; i < n - 1; ++i)b[i] = 2 * x[i + 1] - a[i + 1];
-    return [
-        a,
-        b
-    ];
-}
-exports.default = function(context) {
-    return new Natural(context);
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gaNu5":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "stepBefore", ()=>stepBefore
-);
-parcelHelpers.export(exports, "stepAfter", ()=>stepAfter
-);
-function Step(context, t) {
-    this._context = context;
-    this._t = t;
-}
-Step.prototype = {
-    areaStart: function() {
-        this._line = 0;
-    },
-    areaEnd: function() {
-        this._line = NaN;
-    },
-    lineStart: function() {
-        this._x = this._y = NaN;
-        this._point = 0;
-    },
-    lineEnd: function() {
-        if (0 < this._t && this._t < 1 && this._point === 2) this._context.lineTo(this._x, this._y);
-        if (this._line || this._line !== 0 && this._point === 1) this._context.closePath();
-        if (this._line >= 0) this._t = 1 - this._t, this._line = 1 - this._line;
-    },
-    point: function(x, y) {
-        x = +x, y = +y;
-        switch(this._point){
-            case 0:
-                this._point = 1;
-                this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y);
-                break;
-            case 1:
-                this._point = 2; // proceed
-            default:
-                if (this._t <= 0) {
-                    this._context.lineTo(this._x, y);
-                    this._context.lineTo(x, y);
-                } else {
-                    var x1 = this._x * (1 - this._t) + x * this._t;
-                    this._context.lineTo(x1, this._y);
-                    this._context.lineTo(x1, y);
-                }
-                break;
-        }
-        this._x = x, this._y = y;
-    }
-};
-exports.default = function(context) {
-    return new Step(context, 0.5);
-};
-function stepBefore(context) {
-    return new Step(context, 0);
-}
-function stepAfter(context) {
-    return new Step(context, 1);
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hlLYL":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _arrayJs = require("./array.js");
-var _arrayJsDefault = parcelHelpers.interopDefault(_arrayJs);
-var _constantJs = require("./constant.js");
-var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
-var _noneJs = require("./offset/none.js");
-var _noneJsDefault = parcelHelpers.interopDefault(_noneJs);
-var _noneJs1 = require("./order/none.js");
-var _noneJsDefault1 = parcelHelpers.interopDefault(_noneJs1);
-function stackValue(d, key) {
-    return d[key];
-}
-function stackSeries(key) {
-    const series = [];
-    series.key = key;
-    return series;
-}
-exports.default = function() {
-    var keys = _constantJsDefault.default([]), order = _noneJsDefault1.default, offset = _noneJsDefault.default, value = stackValue;
-    function stack(data) {
-        var sz = Array.from(keys.apply(this, arguments), stackSeries), i, n = sz.length, j = -1, oz;
-        for (const d of data)for(i = 0, ++j; i < n; ++i)(sz[i][j] = [
-            0,
-            +value(d, sz[i].key, j, data)
-        ]).data = d;
-        for(i = 0, oz = _arrayJsDefault.default(order(sz)); i < n; ++i)sz[oz[i]].index = i;
-        offset(sz, oz);
-        return sz;
-    }
-    stack.keys = function(_) {
-        return arguments.length ? (keys = typeof _ === "function" ? _ : _constantJsDefault.default(Array.from(_)), stack) : keys;
-    };
-    stack.value = function(_) {
-        return arguments.length ? (value = typeof _ === "function" ? _ : _constantJsDefault.default(+_), stack) : value;
-    };
-    stack.order = function(_) {
-        return arguments.length ? (order = _ == null ? _noneJsDefault1.default : typeof _ === "function" ? _ : _constantJsDefault.default(Array.from(_)), stack) : order;
-    };
-    stack.offset = function(_) {
-        return arguments.length ? (offset = _ == null ? _noneJsDefault.default : _, stack) : offset;
-    };
-    return stack;
-};
-
-},{"./array.js":"57r45","./constant.js":"ekTDw","./offset/none.js":"eEYVe","./order/none.js":"gFy2Q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eEYVe":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(series, order) {
-    if (!((n = series.length) > 1)) return;
-    for(var i = 1, j, s0, s1 = series[order[0]], n, m = s1.length; i < n; ++i){
-        s0 = s1, s1 = series[order[i]];
-        for(j = 0; j < m; ++j)s1[j][1] += s1[j][0] = isNaN(s0[j][1]) ? s0[j][0] : s0[j][1];
-    }
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gFy2Q":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(series) {
-    var n = series.length, o = new Array(n);
-    while(--n >= 0)o[n] = n;
-    return o;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1WI6e":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _noneJs = require("./none.js");
-var _noneJsDefault = parcelHelpers.interopDefault(_noneJs);
-exports.default = function(series, order) {
-    if (!((n = series.length) > 0)) return;
-    for(var i, n, j = 0, m = series[0].length, y; j < m; ++j){
-        for(y = i = 0; i < n; ++i)y += series[i][j][1] || 0;
-        if (y) for(i = 0; i < n; ++i)series[i][j][1] /= y;
-    }
-    _noneJsDefault.default(series, order);
-};
-
-},{"./none.js":"eEYVe","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8ePmo":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = function(series, order) {
-    if (!((n = series.length) > 0)) return;
-    for(var i, j = 0, d, dy, yp, yn, n, m = series[order[0]].length; j < m; ++j)for(yp = yn = 0, i = 0; i < n; ++i){
-        if ((dy = (d = series[order[i]][j])[1] - d[0]) > 0) d[0] = yp, d[1] = yp += dy;
-        else if (dy < 0) d[1] = yn, d[0] = yn += dy;
-        else d[0] = 0, d[1] = dy;
-    }
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8uIax":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _noneJs = require("./none.js");
-var _noneJsDefault = parcelHelpers.interopDefault(_noneJs);
-exports.default = function(series, order) {
-    if (!((n = series.length) > 0)) return;
-    for(var j = 0, s0 = series[order[0]], n, m = s0.length; j < m; ++j){
-        for(var i = 0, y = 0; i < n; ++i)y += series[i][j][1] || 0;
-        s0[j][1] += s0[j][0] = -y / 2;
-    }
-    _noneJsDefault.default(series, order);
-};
-
-},{"./none.js":"eEYVe","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"acV1f":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _noneJs = require("./none.js");
-var _noneJsDefault = parcelHelpers.interopDefault(_noneJs);
-exports.default = function(series, order) {
-    if (!((n = series.length) > 0) || !((m = (s0 = series[order[0]]).length) > 0)) return;
-    for(var y = 0, j = 1, s0, m, n; j < m; ++j){
-        for(var i = 0, s1 = 0, s2 = 0; i < n; ++i){
-            var si = series[order[i]], sij0 = si[j][1] || 0, sij1 = si[j - 1][1] || 0, s3 = (sij0 - sij1) / 2;
-            for(var k = 0; k < i; ++k){
-                var sk = series[order[k]], skj0 = sk[j][1] || 0, skj1 = sk[j - 1][1] || 0;
-                s3 += skj0 - skj1;
-            }
-            s1 += sij0, s2 += s3 * sij0;
-        }
-        s0[j - 1][1] += s0[j - 1][0] = y;
-        if (s1) y -= s2 / s1;
-    }
-    s0[j - 1][1] += s0[j - 1][0] = y;
-    _noneJsDefault.default(series, order);
-};
-
-},{"./none.js":"eEYVe","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fpvhN":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _noneJs = require("./none.js");
-var _noneJsDefault = parcelHelpers.interopDefault(_noneJs);
-exports.default = function(series) {
-    var peaks = series.map(peak);
-    return _noneJsDefault.default(series).sort(function(a, b) {
-        return peaks[a] - peaks[b];
-    });
-};
-function peak(series) {
-    var i = -1, j = 0, n = series.length, vi, vj = -Infinity;
-    while(++i < n)if ((vi = +series[i][1]) > vj) vj = vi, j = i;
-    return j;
-}
-
-},{"./none.js":"gFy2Q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1DbGk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "sum", ()=>sum
-);
-var _noneJs = require("./none.js");
-var _noneJsDefault = parcelHelpers.interopDefault(_noneJs);
-exports.default = function(series) {
-    var sums = series.map(sum);
-    return _noneJsDefault.default(series).sort(function(a, b) {
-        return sums[a] - sums[b];
-    });
-};
-function sum(series) {
-    var s = 0, i = -1, n = series.length, v;
-    while(++i < n)if (v = +series[i][1]) s += v;
-    return s;
-}
-
-},{"./none.js":"gFy2Q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"leL9k":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _ascendingJs = require("./ascending.js");
-var _ascendingJsDefault = parcelHelpers.interopDefault(_ascendingJs);
-exports.default = function(series) {
-    return _ascendingJsDefault.default(series).reverse();
-};
-
-},{"./ascending.js":"1DbGk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hujx7":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _appearanceJs = require("./appearance.js");
-var _appearanceJsDefault = parcelHelpers.interopDefault(_appearanceJs);
-var _ascendingJs = require("./ascending.js");
-exports.default = function(series) {
-    var n = series.length, i, j, sums = series.map(_ascendingJs.sum), order = _appearanceJsDefault.default(series), top = 0, bottom = 0, tops = [], bottoms = [];
-    for(i = 0; i < n; ++i){
-        j = order[i];
-        if (top < bottom) {
-            top += sums[j];
-            tops.push(j);
-        } else {
-            bottom += sums[j];
-            bottoms.push(j);
-        }
-    }
-    return bottoms.reverse().concat(tops);
-};
-
-},{"./appearance.js":"fpvhN","./ascending.js":"1DbGk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lRSAb":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _noneJs = require("./none.js");
-var _noneJsDefault = parcelHelpers.interopDefault(_noneJs);
-exports.default = function(series) {
-    return _noneJsDefault.default(series).reverse();
-};
-
-},{"./none.js":"gFy2Q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kBLXT":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "zoom", ()=>_zoomJsDefault.default
-);
-parcelHelpers.export(exports, "zoomTransform", ()=>_transformJsDefault.default
-);
-parcelHelpers.export(exports, "zoomIdentity", ()=>_transformJs.identity
-);
-var _zoomJs = require("./zoom.js");
-var _zoomJsDefault = parcelHelpers.interopDefault(_zoomJs);
-var _transformJs = require("./transform.js");
-var _transformJsDefault = parcelHelpers.interopDefault(_transformJs);
-
-},{"./zoom.js":"c1NFe","./transform.js":"iwy2g","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"c1NFe":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _d3Dispatch = require("d3-dispatch");
-var _d3Drag = require("d3-drag");
-var _d3Interpolate = require("d3-interpolate");
-var _d3Selection = require("d3-selection");
-var _d3Transition = require("d3-transition");
-var _constantJs = require("./constant.js");
-var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
-var _eventJs = require("./event.js");
-var _eventJsDefault = parcelHelpers.interopDefault(_eventJs);
-var _transformJs = require("./transform.js");
-var _noeventJs = require("./noevent.js");
-var _noeventJsDefault = parcelHelpers.interopDefault(_noeventJs);
-// Ignore right-click, since that should open the context menu.
-// except for pinch-to-zoom, which is sent as a wheel+ctrlKey event
-function defaultFilter(event) {
-    return (!event.ctrlKey || event.type === 'wheel') && !event.button;
-}
-function defaultExtent() {
-    var e = this;
-    if (e instanceof SVGElement) {
-        e = e.ownerSVGElement || e;
-        if (e.hasAttribute("viewBox")) {
-            e = e.viewBox.baseVal;
-            return [
-                [
-                    e.x,
-                    e.y
-                ],
-                [
-                    e.x + e.width,
-                    e.y + e.height
-                ]
-            ];
-        }
-        return [
-            [
-                0,
-                0
-            ],
-            [
-                e.width.baseVal.value,
-                e.height.baseVal.value
-            ]
-        ];
-    }
-    return [
-        [
-            0,
-            0
-        ],
-        [
-            e.clientWidth,
-            e.clientHeight
-        ]
-    ];
-}
-function defaultTransform() {
-    return this.__zoom || _transformJs.identity;
-}
-function defaultWheelDelta(event) {
-    return -event.deltaY * (event.deltaMode === 1 ? 0.05 : event.deltaMode ? 1 : 0.002) * (event.ctrlKey ? 10 : 1);
-}
-function defaultTouchable() {
-    return navigator.maxTouchPoints || "ontouchstart" in this;
-}
-function defaultConstrain(transform, extent, translateExtent) {
-    var dx0 = transform.invertX(extent[0][0]) - translateExtent[0][0], dx1 = transform.invertX(extent[1][0]) - translateExtent[1][0], dy0 = transform.invertY(extent[0][1]) - translateExtent[0][1], dy1 = transform.invertY(extent[1][1]) - translateExtent[1][1];
-    return transform.translate(dx1 > dx0 ? (dx0 + dx1) / 2 : Math.min(0, dx0) || Math.max(0, dx1), dy1 > dy0 ? (dy0 + dy1) / 2 : Math.min(0, dy0) || Math.max(0, dy1));
-}
-exports.default = function() {
-    var filter = defaultFilter, extent1 = defaultExtent, constrain = defaultConstrain, wheelDelta = defaultWheelDelta, touchable = defaultTouchable, scaleExtent = [
-        0,
-        Infinity
-    ], translateExtent = [
-        [
-            -Infinity,
-            -Infinity
-        ],
-        [
-            Infinity,
-            Infinity
-        ]
-    ], duration = 250, interpolate = _d3Interpolate.interpolateZoom, listeners = _d3Dispatch.dispatch("start", "zoom", "end"), touchstarting, touchfirst, touchending, touchDelay = 500, wheelDelay = 150, clickDistance2 = 0, tapDistance = 10;
-    function zoom(selection) {
-        selection.property("__zoom", defaultTransform).on("wheel.zoom", wheeled).on("mousedown.zoom", mousedowned).on("dblclick.zoom", dblclicked).filter(touchable).on("touchstart.zoom", touchstarted).on("touchmove.zoom", touchmoved).on("touchend.zoom touchcancel.zoom", touchended).style("-webkit-tap-highlight-color", "rgba(0,0,0,0)");
-    }
-    zoom.transform = function(collection, transform, point, event) {
-        var selection = collection.selection ? collection.selection() : collection;
-        selection.property("__zoom", defaultTransform);
-        if (collection !== selection) schedule(collection, transform, point, event);
-        else selection.interrupt().each(function() {
-            gesture(this, arguments).event(event).start().zoom(null, typeof transform === "function" ? transform.apply(this, arguments) : transform).end();
-        });
-    };
-    zoom.scaleBy = function(selection, k, p, event) {
-        zoom.scaleTo(selection, function() {
-            var k0 = this.__zoom.k, k1 = typeof k === "function" ? k.apply(this, arguments) : k;
-            return k0 * k1;
-        }, p, event);
-    };
-    zoom.scaleTo = function(selection, k, p, event) {
-        zoom.transform(selection, function() {
-            var e = extent1.apply(this, arguments), t0 = this.__zoom, p0 = p == null ? centroid(e) : typeof p === "function" ? p.apply(this, arguments) : p, p1 = t0.invert(p0), k1 = typeof k === "function" ? k.apply(this, arguments) : k;
-            return constrain(translate(scale(t0, k1), p0, p1), e, translateExtent);
-        }, p, event);
-    };
-    zoom.translateBy = function(selection, x, y, event) {
-        zoom.transform(selection, function() {
-            return constrain(this.__zoom.translate(typeof x === "function" ? x.apply(this, arguments) : x, typeof y === "function" ? y.apply(this, arguments) : y), extent1.apply(this, arguments), translateExtent);
-        }, null, event);
-    };
-    zoom.translateTo = function(selection, x, y, p, event) {
-        zoom.transform(selection, function() {
-            var e = extent1.apply(this, arguments), t = this.__zoom, p0 = p == null ? centroid(e) : typeof p === "function" ? p.apply(this, arguments) : p;
-            return constrain(_transformJs.identity.translate(p0[0], p0[1]).scale(t.k).translate(typeof x === "function" ? -x.apply(this, arguments) : -x, typeof y === "function" ? -y.apply(this, arguments) : -y), e, translateExtent);
-        }, p, event);
-    };
-    function scale(transform, k) {
-        k = Math.max(scaleExtent[0], Math.min(scaleExtent[1], k));
-        return k === transform.k ? transform : new _transformJs.Transform(k, transform.x, transform.y);
-    }
-    function translate(transform, p0, p1) {
-        var x = p0[0] - p1[0] * transform.k, y = p0[1] - p1[1] * transform.k;
-        return x === transform.x && y === transform.y ? transform : new _transformJs.Transform(transform.k, x, y);
-    }
-    function centroid(extent) {
-        return [
-            (+extent[0][0] + +extent[1][0]) / 2,
-            (+extent[0][1] + +extent[1][1]) / 2
-        ];
-    }
-    function schedule(transition, transform, point, event) {
-        transition.on("start.zoom", function() {
-            gesture(this, arguments).event(event).start();
-        }).on("interrupt.zoom end.zoom", function() {
-            gesture(this, arguments).event(event).end();
-        }).tween("zoom", function() {
-            var that = this, args = arguments, g = gesture(that, args).event(event), e = extent1.apply(that, args), p = point == null ? centroid(e) : typeof point === "function" ? point.apply(that, args) : point, w = Math.max(e[1][0] - e[0][0], e[1][1] - e[0][1]), a = that.__zoom, b = typeof transform === "function" ? transform.apply(that, args) : transform, i = interpolate(a.invert(p).concat(w / a.k), b.invert(p).concat(w / b.k));
-            return function(t) {
-                if (t === 1) t = b; // Avoid rounding error on end.
-                else {
-                    var l = i(t), k = w / l[2];
-                    t = new _transformJs.Transform(k, p[0] - l[0] * k, p[1] - l[1] * k);
-                }
-                g.zoom(null, t);
-            };
-        });
-    }
-    function gesture(that, args, clean) {
-        return !clean && that.__zooming || new Gesture(that, args);
-    }
-    function Gesture(that, args) {
-        this.that = that;
-        this.args = args;
-        this.active = 0;
-        this.sourceEvent = null;
-        this.extent = extent1.apply(that, args);
-        this.taps = 0;
-    }
-    Gesture.prototype = {
-        event: function(event) {
-            if (event) this.sourceEvent = event;
-            return this;
-        },
-        start: function() {
-            if (++this.active === 1) {
-                this.that.__zooming = this;
-                this.emit("start");
-            }
-            return this;
-        },
-        zoom: function(key, transform) {
-            if (this.mouse && key !== "mouse") this.mouse[1] = transform.invert(this.mouse[0]);
-            if (this.touch0 && key !== "touch") this.touch0[1] = transform.invert(this.touch0[0]);
-            if (this.touch1 && key !== "touch") this.touch1[1] = transform.invert(this.touch1[0]);
-            this.that.__zoom = transform;
-            this.emit("zoom");
-            return this;
-        },
-        end: function() {
-            if (--this.active === 0) {
-                delete this.that.__zooming;
-                this.emit("end");
-            }
-            return this;
-        },
-        emit: function(type) {
-            var d = _d3Selection.select(this.that).datum();
-            listeners.call(type, this.that, new _eventJsDefault.default(type, {
-                sourceEvent: this.sourceEvent,
-                target: zoom,
-                type,
-                transform: this.that.__zoom,
-                dispatch: listeners
-            }), d);
-        }
-    };
-    function wheeled(event, ...args) {
-        if (!filter.apply(this, arguments)) return;
-        var g = gesture(this, args).event(event), t = this.__zoom, k = Math.max(scaleExtent[0], Math.min(scaleExtent[1], t.k * Math.pow(2, wheelDelta.apply(this, arguments)))), p = _d3Selection.pointer(event);
-        // If the mouse is in the same location as before, reuse it.
-        // If there were recent wheel events, reset the wheel idle timeout.
-        if (g.wheel) {
-            if (g.mouse[0][0] !== p[0] || g.mouse[0][1] !== p[1]) g.mouse[1] = t.invert(g.mouse[0] = p);
-            clearTimeout(g.wheel);
-        } else if (t.k === k) return;
-        else {
-            g.mouse = [
-                p,
-                t.invert(p)
-            ];
-            _d3Transition.interrupt(this);
-            g.start();
-        }
-        _noeventJsDefault.default(event);
-        g.wheel = setTimeout(wheelidled, wheelDelay);
-        g.zoom("mouse", constrain(translate(scale(t, k), g.mouse[0], g.mouse[1]), g.extent, translateExtent));
-        function wheelidled() {
-            g.wheel = null;
-            g.end();
-        }
-    }
-    function mousedowned(event1, ...args) {
-        if (touchending || !filter.apply(this, arguments)) return;
-        var g = gesture(this, args, true).event(event1), v = _d3Selection.select(event1.view).on("mousemove.zoom", mousemoved, true).on("mouseup.zoom", mouseupped, true), p = _d3Selection.pointer(event1, currentTarget), currentTarget = event1.currentTarget, x0 = event1.clientX, y0 = event1.clientY;
-        _d3Drag.dragDisable(event1.view);
-        _noeventJs.nopropagation(event1);
-        g.mouse = [
-            p,
-            this.__zoom.invert(p)
-        ];
-        _d3Transition.interrupt(this);
-        g.start();
-        function mousemoved(event) {
-            _noeventJsDefault.default(event);
-            if (!g.moved) {
-                var dx = event.clientX - x0, dy = event.clientY - y0;
-                g.moved = dx * dx + dy * dy > clickDistance2;
-            }
-            g.event(event).zoom("mouse", constrain(translate(g.that.__zoom, g.mouse[0] = _d3Selection.pointer(event, currentTarget), g.mouse[1]), g.extent, translateExtent));
-        }
-        function mouseupped(event) {
-            v.on("mousemove.zoom mouseup.zoom", null);
-            _d3Drag.dragEnable(event.view, g.moved);
-            _noeventJsDefault.default(event);
-            g.event(event).end();
-        }
-    }
-    function dblclicked(event, ...args) {
-        if (!filter.apply(this, arguments)) return;
-        var t0 = this.__zoom, p0 = _d3Selection.pointer(event.changedTouches ? event.changedTouches[0] : event, this), p1 = t0.invert(p0), k1 = t0.k * (event.shiftKey ? 0.5 : 2), t1 = constrain(translate(scale(t0, k1), p0, p1), extent1.apply(this, args), translateExtent);
-        _noeventJsDefault.default(event);
-        if (duration > 0) _d3Selection.select(this).transition().duration(duration).call(schedule, t1, p0, event);
-        else _d3Selection.select(this).call(zoom.transform, t1, p0, event);
-    }
-    function touchstarted(event, ...args) {
-        if (!filter.apply(this, arguments)) return;
-        var touches = event.touches, n = touches.length, g = gesture(this, args, event.changedTouches.length === n).event(event), started, i, t, p;
-        _noeventJs.nopropagation(event);
-        for(i = 0; i < n; ++i){
-            t = touches[i], p = _d3Selection.pointer(t, this);
-            p = [
-                p,
-                this.__zoom.invert(p),
-                t.identifier
-            ];
-            if (!g.touch0) g.touch0 = p, started = true, g.taps = 1 + !!touchstarting;
-            else if (!g.touch1 && g.touch0[2] !== p[2]) g.touch1 = p, g.taps = 0;
-        }
-        if (touchstarting) touchstarting = clearTimeout(touchstarting);
-        if (started) {
-            if (g.taps < 2) touchfirst = p[0], touchstarting = setTimeout(function() {
-                touchstarting = null;
-            }, touchDelay);
-            _d3Transition.interrupt(this);
-            g.start();
-        }
-    }
-    function touchmoved(event, ...args) {
-        if (!this.__zooming) return;
-        var g = gesture(this, args).event(event), touches = event.changedTouches, n = touches.length, i, t, p, l;
-        _noeventJsDefault.default(event);
-        for(i = 0; i < n; ++i){
-            t = touches[i], p = _d3Selection.pointer(t, this);
-            if (g.touch0 && g.touch0[2] === t.identifier) g.touch0[0] = p;
-            else if (g.touch1 && g.touch1[2] === t.identifier) g.touch1[0] = p;
-        }
-        t = g.that.__zoom;
-        if (g.touch1) {
-            var p0 = g.touch0[0], l0 = g.touch0[1], p1 = g.touch1[0], l1 = g.touch1[1], dp = (dp = p1[0] - p0[0]) * dp + (dp = p1[1] - p0[1]) * dp, dl = (dl = l1[0] - l0[0]) * dl + (dl = l1[1] - l0[1]) * dl;
-            t = scale(t, Math.sqrt(dp / dl));
-            p = [
-                (p0[0] + p1[0]) / 2,
-                (p0[1] + p1[1]) / 2
-            ];
-            l = [
-                (l0[0] + l1[0]) / 2,
-                (l0[1] + l1[1]) / 2
-            ];
-        } else if (g.touch0) p = g.touch0[0], l = g.touch0[1];
-        else return;
-        g.zoom("touch", constrain(translate(t, p, l), g.extent, translateExtent));
-    }
-    function touchended(event, ...args) {
-        if (!this.__zooming) return;
-        var g = gesture(this, args).event(event), touches = event.changedTouches, n = touches.length, i, t;
-        _noeventJs.nopropagation(event);
-        if (touchending) clearTimeout(touchending);
-        touchending = setTimeout(function() {
-            touchending = null;
-        }, touchDelay);
-        for(i = 0; i < n; ++i){
-            t = touches[i];
-            if (g.touch0 && g.touch0[2] === t.identifier) delete g.touch0;
-            else if (g.touch1 && g.touch1[2] === t.identifier) delete g.touch1;
-        }
-        if (g.touch1 && !g.touch0) g.touch0 = g.touch1, delete g.touch1;
-        if (g.touch0) g.touch0[1] = this.__zoom.invert(g.touch0[0]);
-        else {
-            g.end();
-            // If this was a dbltap, reroute to the (optional) dblclick.zoom handler.
-            if (g.taps === 2) {
-                t = _d3Selection.pointer(t, this);
-                if (Math.hypot(touchfirst[0] - t[0], touchfirst[1] - t[1]) < tapDistance) {
-                    var p = _d3Selection.select(this).on("dblclick.zoom");
-                    if (p) p.apply(this, arguments);
-                }
-            }
-        }
-    }
-    zoom.wheelDelta = function(_) {
-        return arguments.length ? (wheelDelta = typeof _ === "function" ? _ : _constantJsDefault.default(+_), zoom) : wheelDelta;
-    };
-    zoom.filter = function(_) {
-        return arguments.length ? (filter = typeof _ === "function" ? _ : _constantJsDefault.default(!!_), zoom) : filter;
-    };
-    zoom.touchable = function(_) {
-        return arguments.length ? (touchable = typeof _ === "function" ? _ : _constantJsDefault.default(!!_), zoom) : touchable;
-    };
-    zoom.extent = function(_) {
-        return arguments.length ? (extent1 = typeof _ === "function" ? _ : _constantJsDefault.default([
-            [
-                +_[0][0],
-                +_[0][1]
-            ],
-            [
-                +_[1][0],
-                +_[1][1]
-            ]
-        ]), zoom) : extent1;
-    };
-    zoom.scaleExtent = function(_) {
-        return arguments.length ? (scaleExtent[0] = +_[0], scaleExtent[1] = +_[1], zoom) : [
-            scaleExtent[0],
-            scaleExtent[1]
-        ];
-    };
-    zoom.translateExtent = function(_) {
-        return arguments.length ? (translateExtent[0][0] = +_[0][0], translateExtent[1][0] = +_[1][0], translateExtent[0][1] = +_[0][1], translateExtent[1][1] = +_[1][1], zoom) : [
-            [
-                translateExtent[0][0],
-                translateExtent[0][1]
-            ],
-            [
-                translateExtent[1][0],
-                translateExtent[1][1]
-            ]
-        ];
-    };
-    zoom.constrain = function(_) {
-        return arguments.length ? (constrain = _, zoom) : constrain;
-    };
-    zoom.duration = function(_) {
-        return arguments.length ? (duration = +_, zoom) : duration;
-    };
-    zoom.interpolate = function(_) {
-        return arguments.length ? (interpolate = _, zoom) : interpolate;
-    };
-    zoom.on = function() {
-        var value = listeners.on.apply(listeners, arguments);
-        return value === listeners ? zoom : value;
-    };
-    zoom.clickDistance = function(_) {
-        return arguments.length ? (clickDistance2 = (_ = +_) * _, zoom) : Math.sqrt(clickDistance2);
-    };
-    zoom.tapDistance = function(_) {
-        return arguments.length ? (tapDistance = +_, zoom) : tapDistance;
-    };
-    return zoom;
-};
-
-},{"d3-dispatch":"8bLpz","d3-drag":"jj2Dx","d3-interpolate":"6apFp","d3-selection":"6hFAS","d3-transition":"96X82","./constant.js":"kceTl","./event.js":"eUuj3","./transform.js":"iwy2g","./noevent.js":"8psUy","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kceTl":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-exports.default = (x)=>()=>x
-;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eUuj3":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function ZoomEvent(type, { sourceEvent , target , transform , dispatch  }) {
-    Object.defineProperties(this, {
-        type: {
-            value: type,
-            enumerable: true,
-            configurable: true
-        },
-        sourceEvent: {
-            value: sourceEvent,
-            enumerable: true,
-            configurable: true
-        },
-        target: {
-            value: target,
-            enumerable: true,
-            configurable: true
-        },
-        transform: {
-            value: transform,
-            enumerable: true,
-            configurable: true
-        },
-        _: {
-            value: dispatch
-        }
-    });
-}
-exports.default = ZoomEvent;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iwy2g":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Transform", ()=>Transform
-);
-parcelHelpers.export(exports, "identity", ()=>identity
-);
-function Transform(k, x, y) {
-    this.k = k;
-    this.x = x;
-    this.y = y;
-}
-Transform.prototype = {
-    constructor: Transform,
-    scale: function(k) {
-        return k === 1 ? this : new Transform(this.k * k, this.x, this.y);
-    },
-    translate: function(x, y) {
-        return x === 0 & y === 0 ? this : new Transform(this.k, this.x + this.k * x, this.y + this.k * y);
-    },
-    apply: function(point) {
-        return [
-            point[0] * this.k + this.x,
-            point[1] * this.k + this.y
-        ];
-    },
-    applyX: function(x) {
-        return x * this.k + this.x;
-    },
-    applyY: function(y) {
-        return y * this.k + this.y;
-    },
-    invert: function(location) {
-        return [
-            (location[0] - this.x) / this.k,
-            (location[1] - this.y) / this.k
-        ];
-    },
-    invertX: function(x) {
-        return (x - this.x) / this.k;
-    },
-    invertY: function(y) {
-        return (y - this.y) / this.k;
-    },
-    rescaleX: function(x) {
-        return x.copy().domain(x.range().map(this.invertX, this).map(x.invert, x));
-    },
-    rescaleY: function(y) {
-        return y.copy().domain(y.range().map(this.invertY, this).map(y.invert, y));
-    },
-    toString: function() {
-        return "translate(" + this.x + "," + this.y + ") scale(" + this.k + ")";
-    }
-};
-var identity = new Transform(1, 0, 0);
-transform.prototype = Transform.prototype;
-function transform(node) {
-    while(!node.__zoom)if (!(node = node.parentNode)) return identity;
-    return node.__zoom;
-}
-exports.default = transform;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8psUy":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "nopropagation", ()=>nopropagation
-);
-function nopropagation(event) {
-    event.stopImmediatePropagation();
-}
-exports.default = function(event) {
-    event.preventDefault();
-    event.stopImmediatePropagation();
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"g2DKJ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-//  HIDE NAV ON SCROLL
-parcelHelpers.export(exports, "isMobileDevice", ()=>isMobileDevice
-);
-parcelHelpers.export(exports, "isSafari", ()=>isSafari
-);
-function isMobileDevice() {
-    let check = false;
-    (function(a) {
-        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od|ad)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(Browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
-    })(navigator.userAgent || navigator.vendor || window.opera);
-    return check;
-}
-const isSafari = /constructor/i.test(window.HTMLElement) || function(p) {
-    return p.toString() === "[object SafariRemoteNotification]";
-}(!window['safari'] || typeof safari !== 'undefined' && window['safari'].pushNotification);
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["grPCQ","cdtrO"], "cdtrO", "parcelRequirece68")
+},{"./layout":"3jcMK","./gridrouter":"8OixU"}]},["grPCQ","cdtrO"], "cdtrO", "parcelRequirece68")
 
 //# sourceMappingURL=lab.66a7346f.js.map

@@ -520,7 +520,13 @@ svg.grafica {
     font-size: 3px;
   }
 }
-
+#container {
+  text {
+    font-size: $size-0;
+    font-weight: $medium;
+    fill: white;
+  }
+}
 
 .overlay {
   @media screen and (min-width: $bp1) {

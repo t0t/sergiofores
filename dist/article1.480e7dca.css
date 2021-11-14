@@ -766,6 +766,11 @@ svg.grafica text {
   fill: black;
   font-size: 3px;
 }
+#container text {
+  font-size: 0.61rem;
+  font-weight: 500;
+  fill: white;
+}
 @media screen and (min-width: 373px) {
   .overlay {
     display: block;
