@@ -555,246 +555,44 @@ if (!isSafari && !isMobileDevice()) {
   quitaBgFixed.style.backgroundSize = 'inherit'
 }
 
+
+
+
+
+// NETWORK
 import { createCanvas } from 'algorithmx'
 
 const canvas = createCanvas('my_dataviz')
+canvas.size([window.innerWidth, window.innerHeight])
 
-canvas.size([window.innerWidth, window.innerHeight]).zoom(2)
+// Mapa
+const canvas2 = canvas;
+canvas2.edgelayout('symmetric').edgelength(25).zoom(5.5)
 
-// NODOS
+const nodes2 = [0,1,2,3,4,5,6,7,8,9,"diez"]
+canvas2.nodes(nodes2).add().size('0.4x')
+canvas2.node(nodes2[1]).color('#2BC4A9')
+canvas2.node(nodes2[2]).color('#e2777a').highlight()
+canvas2.node(nodes2[3]).color('#9F9FFF').highlight()
+canvas2.node(nodes2[4]).color('#FFFF9F').highlight().size('1x')
+canvas2.node(nodes2[10]).color('#2e2e2e').size('0.05x').add({
+  shape: 'rect',
+  size: [18, 5],
+  labels: { 0: { text: 'Diez' } }
+})
+canvas2.node(nodes2[0]).color('black').size('2x')
 
-canvas
-  .node(1)
-  .add({ color: '#2BC4A9' })
-  .label('arje')
-  .add({ text: 'Tierra' })
+const edges2 = [[1,3],[3,4],[4,5],[5,7],[7,9],[9,0]]
+const edges2a = [[0,8],[8,7],[7,6],[6,4],[4,2],[2,1]]
+const edges2b = [[2,5],[5,8],[3,6],[6,9]]
+const edges2c = [["diez",1]]
+const edges2d = [[1,4],[4,7],[7,0]]
+const edges2e = [[0,1]]
+canvas2.edges(edges2).add().traverse('#2BC4A9')
+canvas2.edges(edges2a).thickness(1).color('#9F9FFF')
+canvas2.edges(edges2b).thickness(0.5).color('#e2777a')
+canvas2.edges(edges2c).thickness(1).color('#9F9FFF')
+canvas2.edges(edges2d).add().thickness(1.5).color('#FFFF9F')
+canvas2.edges(edges2e).add({ directed: true, path: [[-25, 25], [25, -25]] }).thickness(0.4).color('#6f6f6f')
+// canvas2.edge(edges2e).add({ path: [[-25, 5], [5, -25]] })
 
-canvas
-  .node(2)
-  .add({ color: '#e2777a' })
-  .label('arje')
-  .add({ text: 'Agua', angle: 45 })
-
-canvas
-  .node(3)
-  .add({ color: '#9F9FFF' })
-  .label('arje')
-  .add({ text: 'Aire' })
-
-canvas
-  .node(4)
-  .add({ color: '#FFFF9F' })
-  .label('arje')
-  .add({ text: 'Fuego' })
-// .ease('elastic-in').size('1.5x').pause(0.5)
-canvas
-  .node(5)
-  .add({ color: 'grey' })
-  .label('arje')
-  .add({ text: 'Logica' })
-// .ease('elastic-in').size('1.5x').pause(0.5)
-canvas
-  .node(6)
-  .add({ color: 'grey' })
-  .label('arje')
-  .add({ text: 'seis' })
-// .ease('elastic-in').size('1.5x').pause(0.5)
-canvas
-  .node(7)
-  .add({ color: 'grey' })
-  .label('arje')
-  .add({ text: 'Origen' })
-// .ease('elastic-in').size('1.5x').pause(0.5)
-canvas
-  .node(8)
-  .add({ color: 'grey' })
-  .label('arje')
-  .add({ text: 'Red' })
-// .ease('elastic-in').size('1.5x').pause(0.5)
-canvas
-  .node(9)
-  .add({ color: 'grey' })
-  .label('arje')
-  .add({ text: 'Propósito' })
-// .ease('elastic-in').size('1.5x').pause(0.5)
-canvas
-  .node(0)
-  .add({ color: 'black' })
-  .label('arje')
-  .add({ text: 'Vacío' })
-// .ease('elastic-in').size('1.5x').pause(0.5)
-
-// canvas.nodes([1,2,3]).add({ color: "red"})
-
-// EDGES
-
-canvas
-  .edge([1, 2])
-  .add()
-  .label('cross')
-  .add({ text: 'xxxxx' })
-
-canvas
-  .edge([1, 3])
-  .add()
-  .label('cross')
-  .add({ text: 'xxxxxxx' })
-
-canvas
-  .edge([1, 4])
-  .add()
-  .label('cross')
-  .add({ text: 'xxxxxxxx' })
-
-canvas
-  .edge([2, 3])
-  .add()
-  .label('cross')
-  .add({ text: 'xxxxxxxx' })
-canvas
-  .edge([2, 4])
-  .add()
-  .label('cross')
-  .add({ text: 'xxxxxxxx' })
-
-canvas
-  .edge([2, 1])
-  .add()
-  .label('cross')
-  .add({ text: 'xxxxxxxx' })
-
-canvas
-  .edge([2, 5])
-  .add()
-  .label('cross')
-  .add({ text: 'xxxxxxxx' })
-
-canvas
-  .edge([3, 1])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-
-canvas
-  .edge([3, 2])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-
-canvas
-  .edge([3, 4])
-  .add()
-  .label('cross')
-  .add({ text: 'xxxxxx' })
-
-canvas
-  .edge([3, 6])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-
-canvas
-  .edge([4, 5])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-  
-canvas
-  .edge([4, 6])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-  
-canvas
-  .edge([4, 7])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-  
-canvas
-  .edge([5, 6])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-  
-canvas
-  .edge([5, 8])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-
-canvas
-  .edge([5, 6])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-
-canvas
-  .edge([7, 5])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-  
-canvas
-  .edge([7, 0])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-  
-canvas
-  .edge([7, 6])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-  
-canvas
-  .edge([7, 8])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-  
-canvas
-  .edge([7, 9])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-
-canvas
-  .edge([8, 9])
-  .add()
-  .label('cross')
-  .add({ text: 'xxxxx' })
-
-canvas
-  .edge([8, 9])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-  
-canvas
-  .edge([6, 9])
-  .add()
-  .label('cross')
-  .add({ text: 'xxx' })
-  
-canvas
-  .edge([8, 0])
-  .add()
-  .label('cross')
-  .add({ text: 'xxxx' })
-
-canvas
-  .edge([9, 7])
-  .add()
-  .label('cross')
-  .add({ text: 'xxxxxx' })
-
-canvas
-  .edge([9, 0])
-  .add()
-  .label('cross')
-  .add({ text: 'xxxxxx' })
-// canvas
-//   .edge([0, 1]).add()
-//   .label('cross')
-//   .add({ text: 'xxxxxx' })
