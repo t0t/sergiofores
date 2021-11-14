@@ -16,9 +16,7 @@
     "autoprefixer": "^10.4.0",
     "parcel": "^2.0.1",
     "postcss": "^8.3.11",
-    "sass": "^1.43.4"
-  },
-  "dependencies": {
+    "sass": "^1.43.4",
     "algorithmx": "^2.0.2",
     "d3": "^7.1.1",
     "moment": "^2.29.1",

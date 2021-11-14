@@ -768,8 +768,12 @@ svg.grafica text {
 }
 #container text {
   font-size: 0.61rem;
+  font-family: Montserrat;
   font-weight: 500;
   fill: white;
+}
+#container #Cuatro {
+  fill: black;
 }
 @media screen and (min-width: 373px) {
   .overlay {

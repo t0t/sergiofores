@@ -1,7 +1,7 @@
 import '../estilos/main.scss'
 // const moment = require("moment");
 const d3 = require('d3')
-
+console.log(d3)
 // SIDENAV open-close
 import { openNav, closeNav } from './sidenav'
 const hambutton = document.getElementById('hambutton')
@@ -533,29 +533,37 @@ if (btnGenerar) {
 
 
 
-import {
-  select,
-  forceSimulation,
-  forceManyBody,
-  forceLink,
-  forceCenter,
-  drag,
-} from 'd3';
+// import {
+//   // select,
+//   forceSimulation,
+//   forceManyBody,
+//   forceLink,
+//   forceCenter,
+//   drag,
+// } from 'd3';
 
 import { nodes, links, MANY_BODY_STRENGTH } from './data/data.js';
 
-const contenedor = select('#container');
-const width = +contenedor.attr('width');
-const height = +contenedor.attr('height');
+const width = +window.innerWidth;
+const height = +window.innerHeight;
+
+const contenedor = d3.select('#container')
+  .attr("width", width)
+  .attr("height", height);
+console.log(contenedor)
+// const width = window.innerWidth;
+// const height = window.innerHeight;
+// const width = +contenedor.attr('width');
+// const height = +contenedor.attr('height');
 const centerX = width / 2;
 const centerY = height / 2;
 
-const simulation = forceSimulation(nodes)
-  .force('charge', forceManyBody().strength(MANY_BODY_STRENGTH))
-  .force('link', forceLink(links).distance((link) => link.distance))
-  .force('center', forceCenter(centerX, centerY));
+const simulation = d3.forceSimulation(nodes)
+  .force('charge', d3.forceManyBody().strength(MANY_BODY_STRENGTH))
+  .force('link', d3.forceLink(links).distance((link) => link.distance))
+  .force('center', d3.forceCenter(centerX, centerY));
 
-const dragInteraction = drag().on('drag', (event, node) => {
+const dragInteraction = d3.drag().on('drag', (event, node) => {
   node.fx = event.x;
   node.fy = event.y;
   simulation.alpha(1);
@@ -585,15 +593,20 @@ const text = contenedor
   .data(nodes)
   .enter()
   .append('text')
+  .attr('id', (node) => node.id)
   .attr('text-anchor', 'middle')
   .attr('alignment-baseline', 'middle')
   .style('pointer-events', 'none')
   .text((node) => node.id);
 
 simulation.on('tick', () => {
-  circles.attr('cx', (node) => node.x).attr('cy', (node) => node.y);
-  text.attr('x', (node) => node.x).attr('y', (node) => node.y);
-
+  circles
+    .attr('cx', (node) => node.x)
+    .attr('cy', (node) => node.y);
+  text
+    .attr('x', (node) => node.x)
+    .attr('y', (node) => node.y)
+    .attr('id', (node) => node.id)
   lines
     .attr('x1', (link) => link.source.x)
     .attr('y1', (link) => link.source.y)
@@ -638,78 +651,78 @@ if (!isSafari && !isMobileDevice()) {
 
 
 // NETWORK
-import { createCanvas } from 'algorithmx'
+// import { createCanvas } from 'algorithmx'
 
-const canvas = createCanvas('my_dataviz')
-canvas.size([window.innerWidth, window.innerHeight])
+// const canvas = createCanvas('my_dataviz')
+// canvas.size([window.innerWidth, window.innerHeight])
 
-// Mapa
-const canvas2 = canvas;
-canvas2.duration(2).edgelayout('symmetric').edgelength(14).zoom(2.3)
+// // Mapa
+// const canvas2 = canvas;
+// canvas2.duration(2).edgelayout('symmetric').edgelength(14).zoom(2.3)
 
-const nodes2 = [0,1,2,3,4,5,6,7,8,9]
-canvas2.nodes(nodes2).add().size('0.3x')
-canvas2.node(1).color('#2BC4A9')
-canvas2.node(2).color('#e2777a').highlight()
-canvas2.node(3).color('#9F9FFF').highlight()
-canvas2.node(4).color('#FFFF9F').add({
-  labels: { 0: { text: "4", color:"black" } }
-})
-canvas2.node("diez").color('#2e2e2e').add({
-  shape: 'rect',
-  size: [8, 4],
-  pos: [0,-20],
-  labels: { 0: { text: '10', color:"grey" } }
-})
-canvas2.node(0).color('black')
+// const nodes2 = [0,1,2,3,4,5,6,7,8,9]
+// canvas2.nodes(nodes2).add().size('0.3x')
+// canvas2.node(1).color('#2BC4A9')
+// canvas2.node(2).color('#e2777a').highlight()
+// canvas2.node(3).color('#9F9FFF').highlight()
+// canvas2.node(4).color('#FFFF9F').add({
+//   labels: { 0: { text: "4", color:"black" } }
+// })
+// canvas2.node("diez").color('#2e2e2e').add({
+//   shape: 'rect',
+//   size: [8, 4],
+//   pos: [0,-20],
+//   labels: { 0: { text: '10', color:"grey" } }
+// })
+// canvas2.node(0).color('black')
 
-const edges2 = [[1,3],[3,4],[4,5],[5,7],[7,9],[9,0]]
-const edges2a = [[0,8],[8,7],[7,6],[6,4],[4,2],[2,1]]
-const edges2b = [[2,5],[5,8]]
-const edges2e = [[3,6],[6,9]]
-const edges2c = [["diez",1]]
-const edges2d = [[1,4],[4,7],[7,0]]
-canvas2.edges(edges2).thickness(0.5).add().traverse("grey")
-canvas2.edges(edges2a).thickness(0.5).color("grey")
-canvas2.edges(edges2b).thickness(0.5).color('#e2777a')
-canvas2.edges(edges2e).thickness(0.5).color('#9F9FFF')
-canvas2.edges(edges2c).add({ path: [[-1, 1], [1, -1]] }).thickness(0.1).color('grey')
-canvas2.pause(1.75)
-canvas2.edges(edges2d).duration(2).thickness(1).traverse('#FFFF9F').add()
+// const edges2 = [[1,3],[3,4],[4,5],[5,7],[7,9],[9,0]]
+// const edges2a = [[0,8],[8,7],[7,6],[6,4],[4,2],[2,1]]
+// const edges2b = [[2,5],[5,8]]
+// const edges2e = [[3,6],[6,9]]
+// const edges2c = [["diez",1]]
+// const edges2d = [[1,4],[4,7],[7,0]]
+// canvas2.edges(edges2).thickness(0.5).add().traverse("grey")
+// canvas2.edges(edges2a).thickness(0.5).color("grey")
+// canvas2.edges(edges2b).thickness(0.5).color('#e2777a')
+// canvas2.edges(edges2e).thickness(0.5).color('#9F9FFF')
+// canvas2.edges(edges2c).add({ path: [[-1, 1], [1, -1]] }).thickness(0.1).color('grey')
+// canvas2.pause(1.75)
+// canvas2.edges(edges2d).duration(2).thickness(1).traverse('#FFFF9F').add()
 
 
-const canvas1 = canvas;
-canvas1.nodes([1, 10]).add({
-  shape: 'rect',
-  size: [5, 5]
-})
-canvas1.node(10).add({ fixed: true, pos: [-20, -50] })
-canvas1.edges([[1, 10], [1, 10, 'a'], [1, 10, 'b']]).add()
-canvas1.pause(4.5)
+// const canvas1 = canvas;
+// canvas1.nodes([1, 10]).add({
+//   shape: 'rect',
+//   size: [5, 5]
+// })
+// canvas1.node(10).add({ fixed: true, pos: [-20, -50] })
+// canvas1.edges([[1, 10], [1, 10, 'a'], [1, 10, 'b']]).add()
+// canvas1.pause(4.5)
 
-canvas1.attrs({
-  nodes: {
-      // 1: { color: 'blue' },
-      10: { 
-        labels: { 0: { text: '+0+1234', color:"grey" } },
-        color: 'transparent', 
-        svgattrs: {"stroke-width": 0.2, 'stroke': '#2BC4A9'} }
-  },
-  edges: {
-      '1-10': {
-          color: {
-            // value: 'blue',
-            animtype: 'traverse',
-            highlight: true,
-          },
-          svgattrs: {
-            'stroke-width': 0.1,
-            'stroke': '#2BC4A9',
-            'stroke-dasharray': '1 1',
-          },
-          thickness: 0.5
-      },
-      '1-10-a': { color: 'white', thickness: 0.5,  },
-      '1-10-b': { color: 'black', thickness: 0.5 }
-  }
-})
+// canvas1.attrs({
+//   nodes: {
+//       // 1: { color: 'blue' },
+//       10: { 
+//         labels: { 0: { text: '+0+1234', color:"grey" } },
+//         color: 'transparent', 
+//         svgattrs: {"stroke-width": 0.2, 'stroke': '#2BC4A9'} }
+//   },
+//   edges: {
+//       '1-10': {
+//           color: {
+//             // value: 'blue',
+//             animtype: 'traverse',
+//             highlight: true,
+//           },
+//           svgattrs: {
+//             'stroke-width': 0.1,
+//             'stroke': '#2BC4A9',
+//             'stroke-dasharray': '1 1',
+//           },
+//           thickness: 0.5
+//       },
+//       '1-10-a': { color: 'white', thickness: 0.5,  },
+//       '1-10-b': { color: 'black', thickness: 0.5 }
+//   }
+// })

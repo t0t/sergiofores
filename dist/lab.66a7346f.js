@@ -475,13 +475,19 @@ var _coreDefault = parcelHelpers.interopDefault(_core);
 // let pPath = `M 0,0 C -${sz2},-${sz2}, -${sz2},-${sz3} 0,-${sz1} C ${sz2},-${sz3} ${sz2},-${sz2} 0,0`;
 // 1. Muestra efecto navbar-scroll si no es mobil NI Safari
 // 2. CSS Bug fix para Apple devices en bagground-attachment: fixed
-var _d3 = require("d3");
+// import {
+//   // select,
+//   forceSimulation,
+//   forceManyBody,
+//   forceLink,
+//   forceCenter,
+//   drag,
+// } from 'd3';
 var _dataJs = require("./data/data.js");
 var _deviceDetection = require("./utils/device-detection");
-// NETWORK
-var _algorithmx = require("algorithmx");
 // const moment = require("moment");
 const d3 = require('d3');
+console.log(d3);
 const hambutton = document.getElementById('hambutton');
 hambutton.addEventListener('click', _sidenav.openNav);
 const closesidenav = document.getElementById('closesidenav');
@@ -852,14 +858,19 @@ if (btnGenerar) {
         return esAgnioBisiesto(agnio) ? 366 : 365;
     }
 } // fin App
-const contenedor = _d3.select('#container');
-const width = +contenedor.attr('width');
-const height = +contenedor.attr('height');
+const width = +window.innerWidth;
+const height = +window.innerHeight;
+const contenedor = d3.select('#container').attr("width", width).attr("height", height);
+console.log(contenedor);
+// const width = window.innerWidth;
+// const height = window.innerHeight;
+// const width = +contenedor.attr('width');
+// const height = +contenedor.attr('height');
 const centerX = width / 2;
 const centerY = height / 2;
-const simulation = _d3.forceSimulation(_dataJs.nodes).force('charge', _d3.forceManyBody().strength(_dataJs.MANY_BODY_STRENGTH)).force('link', _d3.forceLink(_dataJs.links).distance((link)=>link.distance
-)).force('center', _d3.forceCenter(centerX, centerY));
-const dragInteraction = _d3.drag().on('drag', (event, node)=>{
+const simulation = d3.forceSimulation(_dataJs.nodes).force('charge', d3.forceManyBody().strength(_dataJs.MANY_BODY_STRENGTH)).force('link', d3.forceLink(_dataJs.links).distance((link)=>link.distance
+)).force('center', d3.forceCenter(centerX, centerY));
+const dragInteraction = d3.drag().on('drag', (event, node)=>{
     node.fx = event.x;
     node.fy = event.y;
     simulation.alpha(1);
@@ -870,7 +881,8 @@ const lines = contenedor.selectAll('line').data(_dataJs.links).enter().append('l
 const circles = contenedor.selectAll('circle').data(_dataJs.nodes).enter().append('circle').attr('fill', (node)=>node.color || 'gray'
 ).attr('r', (node)=>node.size * 2
 ).call(dragInteraction);
-const text = contenedor.selectAll('text').data(_dataJs.nodes).enter().append('text').attr('text-anchor', 'middle').attr('alignment-baseline', 'middle').style('pointer-events', 'none').text((node)=>node.id
+const text = contenedor.selectAll('text').data(_dataJs.nodes).enter().append('text').attr('id', (node)=>node.id
+).attr('text-anchor', 'middle').attr('alignment-baseline', 'middle').style('pointer-events', 'none').text((node)=>node.id
 );
 simulation.on('tick', ()=>{
     circles.attr('cx', (node)=>node.x
@@ -878,6 +890,7 @@ simulation.on('tick', ()=>{
     );
     text.attr('x', (node)=>node.x
     ).attr('y', (node)=>node.y
+    ).attr('id', (node)=>node.id
     );
     lines.attr('x1', (link)=>link.source.x
     ).attr('y1', (link)=>link.source.y
@@ -900,250 +913,79 @@ if (!_deviceDetection.isSafari && !_deviceDetection.isMobileDevice()) {
     quitaBgFixed.style.backgroundAttachment = 'scroll';
     quitaBgFixed.style.backgroundPosition = 'bottom left';
     quitaBgFixed.style.backgroundSize = 'inherit';
-}
-const canvas = _algorithmx.createCanvas('my_dataviz');
-canvas.size([
-    window.innerWidth,
-    window.innerHeight
-]);
-// Mapa
-const canvas2 = canvas;
-canvas2.duration(2).edgelayout('symmetric').edgelength(14).zoom(2.3);
-const nodes2 = [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9
-];
-canvas2.nodes(nodes2).add().size('0.3x');
-canvas2.node(1).color('#2BC4A9');
-canvas2.node(2).color('#e2777a').highlight();
-canvas2.node(3).color('#9F9FFF').highlight();
-canvas2.node(4).color('#FFFF9F').add({
-    labels: {
-        0: {
-            text: "4",
-            color: "black"
-        }
-    }
-});
-canvas2.node("diez").color('#2e2e2e').add({
-    shape: 'rect',
-    size: [
-        8,
-        4
-    ],
-    pos: [
-        0,
-        -20
-    ],
-    labels: {
-        0: {
-            text: '10',
-            color: "grey"
-        }
-    }
-});
-canvas2.node(0).color('black');
-const edges2 = [
-    [
-        1,
-        3
-    ],
-    [
-        3,
-        4
-    ],
-    [
-        4,
-        5
-    ],
-    [
-        5,
-        7
-    ],
-    [
-        7,
-        9
-    ],
-    [
-        9,
-        0
-    ]
-];
-const edges2a = [
-    [
-        0,
-        8
-    ],
-    [
-        8,
-        7
-    ],
-    [
-        7,
-        6
-    ],
-    [
-        6,
-        4
-    ],
-    [
-        4,
-        2
-    ],
-    [
-        2,
-        1
-    ]
-];
-const edges2b = [
-    [
-        2,
-        5
-    ],
-    [
-        5,
-        8
-    ]
-];
-const edges2e = [
-    [
-        3,
-        6
-    ],
-    [
-        6,
-        9
-    ]
-];
-const edges2c = [
-    [
-        "diez",
-        1
-    ]
-];
-const edges2d = [
-    [
-        1,
-        4
-    ],
-    [
-        4,
-        7
-    ],
-    [
-        7,
-        0
-    ]
-];
-canvas2.edges(edges2).thickness(0.5).add().traverse("grey");
-canvas2.edges(edges2a).thickness(0.5).color("grey");
-canvas2.edges(edges2b).thickness(0.5).color('#e2777a');
-canvas2.edges(edges2e).thickness(0.5).color('#9F9FFF');
-canvas2.edges(edges2c).add({
-    path: [
-        [
-            -1,
-            1
-        ],
-        [
-            1,
-            -1
-        ]
-    ]
-}).thickness(0.1).color('grey');
-canvas2.pause(1.75);
-canvas2.edges(edges2d).duration(2).thickness(1).traverse('#FFFF9F').add();
-const canvas1 = canvas;
-canvas1.nodes([
-    1,
-    10
-]).add({
-    shape: 'rect',
-    size: [
-        5,
-        5
-    ]
-});
-canvas1.node(10).add({
-    fixed: true,
-    pos: [
-        -20,
-        -50
-    ]
-});
-canvas1.edges([
-    [
-        1,
-        10
-    ],
-    [
-        1,
-        10,
-        'a'
-    ],
-    [
-        1,
-        10,
-        'b'
-    ]
-]).add();
-canvas1.pause(4.5);
-canvas1.attrs({
-    nodes: {
-        // 1: { color: 'blue' },
-        10: {
-            labels: {
-                0: {
-                    text: '+0+1234',
-                    color: "grey"
-                }
-            },
-            color: 'transparent',
-            svgattrs: {
-                "stroke-width": 0.2,
-                'stroke': '#2BC4A9'
-            }
-        }
-    },
-    edges: {
-        '1-10': {
-            color: {
-                // value: 'blue',
-                animtype: 'traverse',
-                highlight: true
-            },
-            svgattrs: {
-                'stroke-width': 0.1,
-                'stroke': '#2BC4A9',
-                'stroke-dasharray': '1 1'
-            },
-            thickness: 0.5
-        },
-        '1-10-a': {
-            color: 'white',
-            thickness: 0.5
-        },
-        '1-10-b': {
-            color: 'black',
-            thickness: 0.5
-        }
-    }
-});
+} // NETWORK
+ // import { createCanvas } from 'algorithmx'
+ // const canvas = createCanvas('my_dataviz')
+ // canvas.size([window.innerWidth, window.innerHeight])
+ // // Mapa
+ // const canvas2 = canvas;
+ // canvas2.duration(2).edgelayout('symmetric').edgelength(14).zoom(2.3)
+ // const nodes2 = [0,1,2,3,4,5,6,7,8,9]
+ // canvas2.nodes(nodes2).add().size('0.3x')
+ // canvas2.node(1).color('#2BC4A9')
+ // canvas2.node(2).color('#e2777a').highlight()
+ // canvas2.node(3).color('#9F9FFF').highlight()
+ // canvas2.node(4).color('#FFFF9F').add({
+ //   labels: { 0: { text: "4", color:"black" } }
+ // })
+ // canvas2.node("diez").color('#2e2e2e').add({
+ //   shape: 'rect',
+ //   size: [8, 4],
+ //   pos: [0,-20],
+ //   labels: { 0: { text: '10', color:"grey" } }
+ // })
+ // canvas2.node(0).color('black')
+ // const edges2 = [[1,3],[3,4],[4,5],[5,7],[7,9],[9,0]]
+ // const edges2a = [[0,8],[8,7],[7,6],[6,4],[4,2],[2,1]]
+ // const edges2b = [[2,5],[5,8]]
+ // const edges2e = [[3,6],[6,9]]
+ // const edges2c = [["diez",1]]
+ // const edges2d = [[1,4],[4,7],[7,0]]
+ // canvas2.edges(edges2).thickness(0.5).add().traverse("grey")
+ // canvas2.edges(edges2a).thickness(0.5).color("grey")
+ // canvas2.edges(edges2b).thickness(0.5).color('#e2777a')
+ // canvas2.edges(edges2e).thickness(0.5).color('#9F9FFF')
+ // canvas2.edges(edges2c).add({ path: [[-1, 1], [1, -1]] }).thickness(0.1).color('grey')
+ // canvas2.pause(1.75)
+ // canvas2.edges(edges2d).duration(2).thickness(1).traverse('#FFFF9F').add()
+ // const canvas1 = canvas;
+ // canvas1.nodes([1, 10]).add({
+ //   shape: 'rect',
+ //   size: [5, 5]
+ // })
+ // canvas1.node(10).add({ fixed: true, pos: [-20, -50] })
+ // canvas1.edges([[1, 10], [1, 10, 'a'], [1, 10, 'b']]).add()
+ // canvas1.pause(4.5)
+ // canvas1.attrs({
+ //   nodes: {
+ //       // 1: { color: 'blue' },
+ //       10: { 
+ //         labels: { 0: { text: '+0+1234', color:"grey" } },
+ //         color: 'transparent', 
+ //         svgattrs: {"stroke-width": 0.2, 'stroke': '#2BC4A9'} }
+ //   },
+ //   edges: {
+ //       '1-10': {
+ //           color: {
+ //             // value: 'blue',
+ //             animtype: 'traverse',
+ //             highlight: true,
+ //           },
+ //           svgattrs: {
+ //             'stroke-width': 0.1,
+ //             'stroke': '#2BC4A9',
+ //             'stroke-dasharray': '1 1',
+ //           },
+ //           thickness: 0.5
+ //       },
+ //       '1-10-a': { color: 'white', thickness: 0.5,  },
+ //       '1-10-b': { color: 'black', thickness: 0.5 }
+ //   }
+ // })
 
-},{"../estilos/main.scss":"hGvuj","d3":"lm5gy","./sidenav":"9MwHJ","../../node_modules/typewriter-effect/dist/core":"hXq0y","./data/data.js":"4PhqF","./utils/device-detection":"g2DKJ","algorithmx":"eZlUk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hGvuj":[function() {},{}],"lm5gy":[function(require,module,exports) {
+},{"../estilos/main.scss":"hGvuj","d3":"97vK6","./sidenav":"9MwHJ","../../node_modules/typewriter-effect/dist/core":"hXq0y","./utils/device-detection":"g2DKJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./data/data.js":"4PhqF"}],"hGvuj":[function() {},{}],"97vK6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "version", ()=>_packageJs.version
-);
-var _packageJs = require("./dist/package.js");
 var _d3Array = require("d3-array");
 parcelHelpers.exportAll(_d3Array, exports);
 var _d3Axis = require("d3-axis");
@@ -1205,149 +1047,7 @@ parcelHelpers.exportAll(_d3Transition, exports);
 var _d3Zoom = require("d3-zoom");
 parcelHelpers.exportAll(_d3Zoom, exports);
 
-},{"./dist/package.js":"c0Spb","d3-array":"dclxS","d3-axis":"3HH3d","d3-brush":"j4mPt","d3-chord":"8oHeW","d3-color":"ap3Jg","d3-contour":"jmn9V","d3-delaunay":"eS5CH","d3-dispatch":"9d2te","d3-drag":"dKCUo","d3-dsv":"lK0ts","d3-ease":"elZFc","d3-fetch":"hPJXo","d3-force":"5HM4e","d3-format":"hzInr","d3-geo":"euFVP","d3-hierarchy":"1CTpH","d3-interpolate":"e7XwA","d3-path":"4S67G","d3-polygon":"6ide9","d3-quadtree":"1oyVd","d3-random":"dyiSs","d3-scale":"hrwOn","d3-scale-chromatic":"aFDOR","d3-selection":"hgWtk","d3-shape":"dTLqu","d3-time":"lTNsW","d3-time-format":"ioDBG","d3-timer":"82ygz","d3-transition":"cRYyR","d3-zoom":"7E00u","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"c0Spb":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "name", ()=>name
-);
-parcelHelpers.export(exports, "version", ()=>version
-);
-parcelHelpers.export(exports, "description", ()=>description
-);
-parcelHelpers.export(exports, "keywords", ()=>keywords
-);
-parcelHelpers.export(exports, "homepage", ()=>homepage
-);
-parcelHelpers.export(exports, "license", ()=>license
-);
-parcelHelpers.export(exports, "author", ()=>author
-);
-parcelHelpers.export(exports, "main", ()=>main
-);
-parcelHelpers.export(exports, "unpkg", ()=>unpkg
-);
-parcelHelpers.export(exports, "jsdelivr", ()=>jsdelivr
-);
-parcelHelpers.export(exports, "module", ()=>module
-);
-parcelHelpers.export(exports, "repository", ()=>repository
-);
-parcelHelpers.export(exports, "files", ()=>files
-);
-parcelHelpers.export(exports, "scripts", ()=>scripts
-);
-parcelHelpers.export(exports, "devDependencies", ()=>devDependencies
-);
-parcelHelpers.export(exports, "dependencies", ()=>dependencies
-);
-var name = "d3";
-var version = "6.7.0";
-var description = "Data-Driven Documents";
-var keywords = [
-    "dom",
-    "visualization",
-    "svg",
-    "animation",
-    "canvas"
-];
-var homepage = "https://d3js.org";
-var license = "BSD-3-Clause";
-var author = {
-    "name": "Mike Bostock",
-    "url": "https://bost.ocks.org/mike"
-};
-var main = "dist/d3.node.js";
-var unpkg = "dist/d3.min.js";
-var jsdelivr = "dist/d3.min.js";
-var module = "index.js";
-var repository = {
-    "type": "git",
-    "url": "https://github.com/d3/d3.git"
-};
-var files = [
-    "dist/**/*.js",
-    "index.js"
-];
-var scripts = {
-    "pretest": "rimraf dist && mkdir dist && json2module package.json > dist/package.js && rollup -c",
-    "test": "tape 'test/**/*-test.js'",
-    "prepublishOnly": "yarn test",
-    "postpublish": "git push && git push --tags && cd ../d3.github.com && git pull && cp ../d3/dist/d3.js d3.v${npm_package_version%%.*}.js && cp ../d3/dist/d3.min.js d3.v${npm_package_version%%.*}.min.js && git add d3.v${npm_package_version%%.*}.js d3.v${npm_package_version%%.*}.min.js && git commit -m \"d3 ${npm_package_version}\" && git push && cd - && zip -j dist/d3.zip -- LICENSE README.md API.md CHANGES.md dist/d3.js dist/d3.min.js"
-};
-var devDependencies = {
-    "json2module": "0.0",
-    "rimraf": "3",
-    "rollup": "2",
-    "rollup-plugin-ascii": "0.0",
-    "rollup-plugin-node-resolve": "5",
-    "rollup-plugin-terser": "7",
-    "tape": "4",
-    "tape-await": "0.1"
-};
-var dependencies = {
-    "d3-array": "2",
-    "d3-axis": "2",
-    "d3-brush": "2",
-    "d3-chord": "2",
-    "d3-color": "2",
-    "d3-contour": "2",
-    "d3-delaunay": "5",
-    "d3-dispatch": "2",
-    "d3-drag": "2",
-    "d3-dsv": "2",
-    "d3-ease": "2",
-    "d3-fetch": "2",
-    "d3-force": "2",
-    "d3-format": "2",
-    "d3-geo": "2",
-    "d3-hierarchy": "2",
-    "d3-interpolate": "2",
-    "d3-path": "2",
-    "d3-polygon": "2",
-    "d3-quadtree": "2",
-    "d3-random": "2",
-    "d3-scale": "3",
-    "d3-scale-chromatic": "2",
-    "d3-selection": "2",
-    "d3-shape": "2",
-    "d3-time": "2",
-    "d3-time-format": "3",
-    "d3-timer": "2",
-    "d3-transition": "2",
-    "d3-zoom": "2"
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"dclxS":[function(require,module,exports) {
+},{"d3-array":"dclxS","d3-axis":"3HH3d","d3-brush":"j4mPt","d3-chord":"8oHeW","d3-color":"jBVGV","d3-contour":"jmn9V","d3-delaunay":"eS5CH","d3-dispatch":"DdGrt","d3-drag":"4FQ3g","d3-dsv":"lK0ts","d3-ease":"206iK","d3-fetch":"hPJXo","d3-force":"5HM4e","d3-format":"hzInr","d3-geo":"euFVP","d3-hierarchy":"1CTpH","d3-interpolate":"gzaRD","d3-path":"jvaAz","d3-polygon":"6ide9","d3-quadtree":"1oyVd","d3-random":"dyiSs","d3-scale":"hrwOn","d3-scale-chromatic":"aFDOR","d3-selection":"gUhVK","d3-shape":"b6kLj","d3-time":"lTNsW","d3-time-format":"ioDBG","d3-timer":"6ZY5Q","d3-transition":"8yZNl","d3-zoom":"9qptB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dclxS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "bisect", ()=>_bisectJsDefault.default
@@ -1381,6 +1081,10 @@ parcelHelpers.export(exports, "fsum", ()=>_fsumJs.fsum
 parcelHelpers.export(exports, "fcumsum", ()=>_fsumJs.fcumsum
 );
 parcelHelpers.export(exports, "group", ()=>_groupJsDefault.default
+);
+parcelHelpers.export(exports, "flatGroup", ()=>_groupJs.flatGroup
+);
+parcelHelpers.export(exports, "flatRollup", ()=>_groupJs.flatRollup
 );
 parcelHelpers.export(exports, "groups", ()=>_groupJs.groups
 );
@@ -1419,6 +1123,8 @@ parcelHelpers.export(exports, "min", ()=>_minJsDefault.default
 );
 parcelHelpers.export(exports, "minIndex", ()=>_minIndexJsDefault.default
 );
+parcelHelpers.export(exports, "mode", ()=>_modeJsDefault.default
+);
 parcelHelpers.export(exports, "nice", ()=>_niceJsDefault.default
 );
 parcelHelpers.export(exports, "pairs", ()=>_pairsJsDefault.default
@@ -1432,6 +1138,8 @@ parcelHelpers.export(exports, "quantileSorted", ()=>_quantileJs.quantileSorted
 parcelHelpers.export(exports, "quickselect", ()=>_quickselectJsDefault.default
 );
 parcelHelpers.export(exports, "range", ()=>_rangeJsDefault.default
+);
+parcelHelpers.export(exports, "rank", ()=>_rankJsDefault.default
 );
 parcelHelpers.export(exports, "least", ()=>_leastJsDefault.default
 );
@@ -1537,6 +1245,8 @@ var _minJs = require("./min.js");
 var _minJsDefault = parcelHelpers.interopDefault(_minJs);
 var _minIndexJs = require("./minIndex.js");
 var _minIndexJsDefault = parcelHelpers.interopDefault(_minIndexJs);
+var _modeJs = require("./mode.js");
+var _modeJsDefault = parcelHelpers.interopDefault(_modeJs);
 var _niceJs = require("./nice.js");
 var _niceJsDefault = parcelHelpers.interopDefault(_niceJs);
 var _pairsJs = require("./pairs.js");
@@ -1549,6 +1259,8 @@ var _quickselectJs = require("./quickselect.js");
 var _quickselectJsDefault = parcelHelpers.interopDefault(_quickselectJs);
 var _rangeJs = require("./range.js");
 var _rangeJsDefault = parcelHelpers.interopDefault(_rangeJs);
+var _rankJs = require("./rank.js");
+var _rankJsDefault = parcelHelpers.interopDefault(_rankJs);
 var _leastJs = require("./least.js");
 var _leastJsDefault = parcelHelpers.interopDefault(_leastJs);
 var _leastIndexJs = require("./leastIndex.js");
@@ -1599,7 +1311,7 @@ var _unionJs = require("./union.js");
 var _unionJsDefault = parcelHelpers.interopDefault(_unionJs);
 var _internmap = require("internmap");
 
-},{"./bisect.js":"aBOzL","./ascending.js":"is3Cq","./bisector.js":"d0uRQ","./count.js":"3W7W6","./cross.js":"9wmuf","./cumsum.js":"gTBYA","./descending.js":"3aHVG","./deviation.js":"gC5d9","./extent.js":"i65AD","./fsum.js":"kNcPo","./group.js":"9hlDG","./groupSort.js":"9bi08","./bin.js":"e29mp","./threshold/freedmanDiaconis.js":"YcDJP","./threshold/scott.js":"h9Xie","./threshold/sturges.js":"iBhHB","./max.js":"aKI7F","./maxIndex.js":"cI4hF","./mean.js":"522BH","./median.js":"25KY1","./merge.js":"lLqaS","./min.js":"ah5VG","./minIndex.js":"cjolc","./nice.js":"8MlNU","./pairs.js":"f10CX","./permute.js":"lBJIA","./quantile.js":"g22bz","./quickselect.js":"fusOg","./range.js":"aFuRJ","./least.js":"ewg2M","./leastIndex.js":"hCcEV","./greatest.js":"jX3nM","./greatestIndex.js":"5lFsk","./scan.js":"ek53c","./shuffle.js":"hrDvf","./sum.js":"5x489","./ticks.js":"eP3r2","./transpose.js":"eTl2h","./variance.js":"fFwh7","./zip.js":"g6Swo","./every.js":"j8w8G","./some.js":"258kt","./filter.js":"kmzCm","./map.js":"g8C0v","./reduce.js":"kJqMu","./reverse.js":"c5OzD","./sort.js":"iPqde","./difference.js":"4yCN3","./disjoint.js":"i51B2","./intersection.js":"xQI0g","./subset.js":"bSPhW","./superset.js":"30CTh","./union.js":"byxPk","internmap":"jYc4q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aBOzL":[function(require,module,exports) {
+},{"./bisect.js":"aBOzL","./ascending.js":"is3Cq","./bisector.js":"d0uRQ","./count.js":"3W7W6","./cross.js":"9wmuf","./cumsum.js":"gTBYA","./descending.js":"3aHVG","./deviation.js":"gC5d9","./extent.js":"i65AD","./fsum.js":"kNcPo","./group.js":"9hlDG","./groupSort.js":"9bi08","./bin.js":"e29mp","./threshold/freedmanDiaconis.js":"YcDJP","./threshold/scott.js":"h9Xie","./threshold/sturges.js":"iBhHB","./max.js":"aKI7F","./maxIndex.js":"cI4hF","./mean.js":"522BH","./median.js":"25KY1","./merge.js":"lLqaS","./min.js":"ah5VG","./minIndex.js":"cjolc","./mode.js":"atCGw","./nice.js":"8MlNU","./pairs.js":"f10CX","./permute.js":"lBJIA","./quantile.js":"g22bz","./quickselect.js":"fusOg","./range.js":"aFuRJ","./rank.js":"98L3a","./least.js":"ewg2M","./leastIndex.js":"hCcEV","./greatest.js":"jX3nM","./greatestIndex.js":"5lFsk","./scan.js":"ek53c","./shuffle.js":"hrDvf","./sum.js":"5x489","./ticks.js":"eP3r2","./transpose.js":"eTl2h","./variance.js":"fFwh7","./zip.js":"g6Swo","./every.js":"j8w8G","./some.js":"258kt","./filter.js":"kmzCm","./map.js":"g8C0v","./reduce.js":"kJqMu","./reverse.js":"c5OzD","./sort.js":"iPqde","./difference.js":"4yCN3","./disjoint.js":"i51B2","./intersection.js":"xQI0g","./subset.js":"bSPhW","./superset.js":"30CTh","./union.js":"byxPk","internmap":"jYc4q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aBOzL":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "bisectRight", ()=>bisectRight
@@ -1623,46 +1335,80 @@ exports.default = bisectRight;
 },{"./ascending.js":"is3Cq","./bisector.js":"d0uRQ","./number.js":"bMc02","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"is3Cq":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-exports.default = function(a, b) {
-    return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
+function ascending(a, b) {
+    return a == null || b == null ? NaN : a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
+}
+exports.default = ascending;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"d0uRQ":[function(require,module,exports) {
+},{}],"d0uRQ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _ascendingJs = require("./ascending.js");
 var _ascendingJsDefault = parcelHelpers.interopDefault(_ascendingJs);
-exports.default = function(f) {
+function bisector(f) {
     let delta = f;
-    let compare = f;
-    if (f.length === 1) {
+    let compare1 = f;
+    let compare2 = f;
+    if (f.length !== 2) {
         delta = (d, x)=>f(d) - x
         ;
-        compare = ascendingComparator(f);
+        compare1 = _ascendingJsDefault.default;
+        compare2 = (d, x)=>_ascendingJsDefault.default(f(d), x)
+        ;
     }
-    function left(a, x, lo, hi) {
-        if (lo == null) lo = 0;
-        if (hi == null) hi = a.length;
-        while(lo < hi){
-            const mid = lo + hi >>> 1;
-            if (compare(a[mid], x) < 0) lo = mid + 1;
-            else hi = mid;
+    function left(a, x, lo = 0, hi = a.length) {
+        if (lo < hi) {
+            if (compare1(x, x) !== 0) return hi;
+            do {
+                const mid = lo + hi >>> 1;
+                if (compare2(a[mid], x) < 0) lo = mid + 1;
+                else hi = mid;
+            }while (lo < hi)
         }
         return lo;
     }
-    function right(a, x, lo, hi) {
-        if (lo == null) lo = 0;
-        if (hi == null) hi = a.length;
-        while(lo < hi){
-            const mid = lo + hi >>> 1;
-            if (compare(a[mid], x) > 0) hi = mid;
-            else lo = mid + 1;
+    function right(a, x, lo = 0, hi = a.length) {
+        if (lo < hi) {
+            if (compare1(x, x) !== 0) return hi;
+            do {
+                const mid = lo + hi >>> 1;
+                if (compare2(a[mid], x) <= 0) lo = mid + 1;
+                else hi = mid;
+            }while (lo < hi)
         }
         return lo;
     }
-    function center(a, x, lo, hi) {
-        if (lo == null) lo = 0;
-        if (hi == null) hi = a.length;
+    function center(a, x, lo = 0, hi = a.length) {
         const i = left(a, x, lo, hi - 1);
         return i > lo && delta(a[i - 1], x) > -delta(a[i], x) ? i - 1 : i;
     }
@@ -1671,20 +1417,18 @@ exports.default = function(f) {
         center,
         right
     };
-};
-function ascendingComparator(f) {
-    return (d, x)=>_ascendingJsDefault.default(f(d), x)
-    ;
 }
+exports.default = bisector;
 
 },{"./ascending.js":"is3Cq","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bMc02":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "numbers", ()=>numbers
 );
-exports.default = function(x) {
+function number(x) {
     return x === null ? NaN : +x;
-};
+}
+exports.default = number;
 function* numbers(values, valueof) {
     if (valueof === undefined) {
         for (let value of values)if (value != null && (value = +value) >= value) yield value;
@@ -1759,9 +1503,10 @@ exports.default = cumsum;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3aHVG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-exports.default = function(a, b) {
-    return b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
-};
+function descending(a, b) {
+    return a == null || b == null ? NaN : b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
+}
+exports.default = descending;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gC5d9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1803,7 +1548,7 @@ exports.default = variance;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i65AD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-exports.default = function(values, valueof) {
+function extent(values, valueof) {
     let min;
     let max;
     if (valueof === undefined) {
@@ -1830,7 +1575,8 @@ exports.default = function(values, valueof) {
         min,
         max
     ];
-};
+}
+exports.default = extent;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kNcPo":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1903,6 +1649,10 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "groups", ()=>groups1
 );
+parcelHelpers.export(exports, "flatGroup", ()=>flatGroup
+);
+parcelHelpers.export(exports, "flatRollup", ()=>flatRollup
+);
 parcelHelpers.export(exports, "rollup", ()=>rollup
 );
 parcelHelpers.export(exports, "rollups", ()=>rollups
@@ -1920,6 +1670,22 @@ function group1(values, ...keys) {
 exports.default = group1;
 function groups1(values, ...keys) {
     return nest(values, Array.from, _identityJsDefault.default, keys);
+}
+function flatten(groups, keys) {
+    for(let i = 1, n = keys.length; i < n; ++i)groups = groups.flatMap((g)=>g.pop().map(([key, value])=>[
+                ...g,
+                key,
+                value
+            ]
+        )
+    );
+    return groups;
+}
+function flatGroup(values, ...keys) {
+    return flatten(groups1(values, ...keys), keys);
+}
+function flatRollup(values, reduce, ...keys) {
+    return flatten(rollups(values, reduce, ...keys), keys);
 }
 function rollup(values, reduce, ...keys) {
     return nest(values, _identityJsDefault.default, reduce, keys);
@@ -2025,7 +1791,7 @@ function intern_set({ _intern , _key  }, value) {
 function intern_delete({ _intern , _key  }, value) {
     const key = _key(value);
     if (_intern.has(key)) {
-        value = _intern.get(value);
+        value = _intern.get(key);
         _intern.delete(key);
     }
     return value;
@@ -2037,9 +1803,10 @@ function keyof(value) {
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4zs3O":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-exports.default = function(x) {
+function identity(x) {
     return x;
-};
+}
+exports.default = identity;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9bi08":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2051,7 +1818,7 @@ var _groupJsDefault = parcelHelpers.interopDefault(_groupJs);
 var _sortJs = require("./sort.js");
 var _sortJsDefault = parcelHelpers.interopDefault(_sortJs);
 function groupSort(values, reduce, key1) {
-    return (reduce.length === 1 ? _sortJsDefault.default(_groupJs.rollup(values, reduce, key1), ([ak, av], [bk, bv])=>_ascendingJsDefault.default(av, bv) || _ascendingJsDefault.default(ak, bk)
+    return (reduce.length !== 2 ? _sortJsDefault.default(_groupJs.rollup(values, reduce, key1), ([ak, av], [bk, bv])=>_ascendingJsDefault.default(av, bv) || _ascendingJsDefault.default(ak, bk)
     ) : _sortJsDefault.default(_groupJsDefault.default(values, key1), ([ak, av], [bk, bv])=>reduce(av, bv) || _ascendingJsDefault.default(ak, bk)
     )).map(([key])=>key
     );
@@ -2061,6 +1828,10 @@ exports.default = groupSort;
 },{"./ascending.js":"is3Cq","./group.js":"9hlDG","./sort.js":"iPqde","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iPqde":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "compareDefined", ()=>compareDefined
+);
+parcelHelpers.export(exports, "ascendingDefined", ()=>ascendingDefined
+);
 var _ascendingJs = require("./ascending.js");
 var _ascendingJsDefault = parcelHelpers.interopDefault(_ascendingJs);
 var _permuteJs = require("./permute.js");
@@ -2068,8 +1839,8 @@ var _permuteJsDefault = parcelHelpers.interopDefault(_permuteJs);
 function sort(values, ...F) {
     if (typeof values[Symbol.iterator] !== "function") throw new TypeError("values is not iterable");
     values = Array.from(values);
-    let [f1 = _ascendingJsDefault.default] = F;
-    if (f1.length === 1 || F.length > 1) {
+    let [f1] = F;
+    if (f1 && f1.length !== 2 || F.length > 1) {
         const index = Uint32Array.from(values, (d, i)=>i
         );
         if (F.length > 1) {
@@ -2077,28 +1848,41 @@ function sort(values, ...F) {
             );
             index.sort((i, j)=>{
                 for (const f of F){
-                    const c = _ascendingJsDefault.default(f[i], f[j]);
+                    const c = ascendingDefined(f[i], f[j]);
                     if (c) return c;
                 }
             });
         } else {
             f1 = values.map(f1);
-            index.sort((i, j)=>_ascendingJsDefault.default(f1[i], f1[j])
+            index.sort((i, j)=>ascendingDefined(f1[i], f1[j])
             );
         }
         return _permuteJsDefault.default(values, index);
     }
-    return values.sort(f1);
+    return values.sort(compareDefined(f1));
 }
 exports.default = sort;
+function compareDefined(compare = _ascendingJsDefault.default) {
+    if (compare === _ascendingJsDefault.default) return ascendingDefined;
+    if (typeof compare !== "function") throw new TypeError("compare is not a function");
+    return (a, b)=>{
+        const x = compare(a, b);
+        if (x || x === 0) return x;
+        return (compare(b, b) === 0) - (compare(a, a) === 0);
+    };
+}
+function ascendingDefined(a, b) {
+    return (a == null || !(a >= a)) - (b == null || !(b >= b)) || (a < b ? -1 : a > b ? 1 : 0);
+}
 
 },{"./ascending.js":"is3Cq","./permute.js":"lBJIA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lBJIA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-exports.default = function(source, keys) {
+function permute(source, keys) {
     return Array.from(keys, (key)=>source[key]
     );
-};
+}
+exports.default = permute;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"e29mp":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2118,7 +1902,7 @@ var _ticksJs = require("./ticks.js");
 var _ticksJsDefault = parcelHelpers.interopDefault(_ticksJs);
 var _sturgesJs = require("./threshold/sturges.js");
 var _sturgesJsDefault = parcelHelpers.interopDefault(_sturgesJs);
-exports.default = function() {
+function bin1() {
     var value = _identityJsDefault.default, domain = _extentJsDefault.default, threshold = _sturgesJsDefault.default;
     function histogram(data) {
         if (!Array.isArray(data)) data = Array.from(data);
@@ -2162,7 +1946,7 @@ exports.default = function() {
         // Assign data to bins by value, ignoring any outside the domain.
         for(i = 0; i < n; ++i){
             x = values[i];
-            if (x0 <= x && x <= x1) bins[_bisectJsDefault.default(tz, x, 0, m)].push(data[i]);
+            if (x != null && x0 <= x && x <= x1) bins[_bisectJsDefault.default(tz, x, 0, m)].push(data[i]);
         }
         return bins;
     }
@@ -2179,7 +1963,8 @@ exports.default = function() {
         return arguments.length ? (threshold = typeof _ === "function" ? _ : Array.isArray(_) ? _constantJsDefault.default(_arrayJs.slice.call(_)) : _constantJsDefault.default(_), histogram) : threshold;
     };
     return histogram;
-};
+}
+exports.default = bin1;
 
 },{"./array.js":"iz59S","./bisect.js":"aBOzL","./constant.js":"gS2I2","./extent.js":"i65AD","./identity.js":"4zs3O","./nice.js":"8MlNU","./ticks.js":"eP3r2","./threshold/sturges.js":"iBhHB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iz59S":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2195,11 +1980,11 @@ var map = array.map;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gS2I2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-exports.default = function(x) {
-    return function() {
-        return x;
-    };
-};
+function constant(x) {
+    return ()=>x
+    ;
+}
+exports.default = constant;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8MlNU":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2233,7 +2018,7 @@ parcelHelpers.export(exports, "tickIncrement", ()=>tickIncrement
 parcelHelpers.export(exports, "tickStep", ()=>tickStep
 );
 var e10 = Math.sqrt(50), e5 = Math.sqrt(10), e2 = Math.sqrt(2);
-exports.default = function(start, stop, count) {
+function ticks1(start, stop, count) {
     var reverse, i = -1, n, ticks, step;
     stop = +stop, start = +start, count = +count;
     if (start === stop && count > 0) return [
@@ -2257,7 +2042,8 @@ exports.default = function(start, stop, count) {
     }
     if (reverse) ticks.reverse();
     return ticks;
-};
+}
+exports.default = ticks1;
 function tickIncrement(start, stop, count) {
     var step = (stop - start) / Math.max(0, count), power = Math.floor(Math.log(step) / Math.LN10), error = step / Math.pow(10, power);
     return power >= 0 ? (error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1) * Math.pow(10, power) : -Math.pow(10, -power) / (error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1);
@@ -2275,9 +2061,10 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _countJs = require("../count.js");
 var _countJsDefault = parcelHelpers.interopDefault(_countJs);
-exports.default = function(values) {
+function thresholdSturges(values) {
     return Math.ceil(Math.log(_countJsDefault.default(values)) / Math.LN2) + 1;
-};
+}
+exports.default = thresholdSturges;
 
 },{"../count.js":"3W7W6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"YcDJP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2286,9 +2073,10 @@ var _countJs = require("../count.js");
 var _countJsDefault = parcelHelpers.interopDefault(_countJs);
 var _quantileJs = require("../quantile.js");
 var _quantileJsDefault = parcelHelpers.interopDefault(_quantileJs);
-exports.default = function(values, min, max) {
+function thresholdFreedmanDiaconis(values, min, max) {
     return Math.ceil((max - min) / (2 * (_quantileJsDefault.default(values, 0.75) - _quantileJsDefault.default(values, 0.25)) * Math.pow(_countJsDefault.default(values), -1 / 3)));
-};
+}
+exports.default = thresholdFreedmanDiaconis;
 
 },{"../count.js":"3W7W6","../quantile.js":"g22bz","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"g22bz":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2353,9 +2141,9 @@ exports.default = min1;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fusOg":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _ascendingJs = require("./ascending.js");
-var _ascendingJsDefault = parcelHelpers.interopDefault(_ascendingJs);
-function quickselect(array, k, left = 0, right = array.length - 1, compare = _ascendingJsDefault.default) {
+var _sortJs = require("./sort.js");
+function quickselect(array, k, left = 0, right = array.length - 1, compare) {
+    compare = compare === undefined ? _sortJs.ascendingDefined : _sortJs.compareDefined(compare);
     while(right > left){
         if (right - left > 600) {
             const n = right - left + 1;
@@ -2391,16 +2179,17 @@ function swap(array, i, j) {
     array[j] = t;
 }
 
-},{"./ascending.js":"is3Cq","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"h9Xie":[function(require,module,exports) {
+},{"./sort.js":"iPqde","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"h9Xie":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _countJs = require("../count.js");
 var _countJsDefault = parcelHelpers.interopDefault(_countJs);
 var _deviationJs = require("../deviation.js");
 var _deviationJsDefault = parcelHelpers.interopDefault(_deviationJs);
-exports.default = function(values, min, max) {
+function thresholdScott(values, min, max) {
     return Math.ceil((max - min) / (3.5 * _deviationJsDefault.default(values) * Math.pow(_countJsDefault.default(values), -1 / 3)));
-};
+}
+exports.default = thresholdScott;
 
 },{"../count.js":"3W7W6","../deviation.js":"gC5d9","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cI4hF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2441,9 +2230,10 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _quantileJs = require("./quantile.js");
 var _quantileJsDefault = parcelHelpers.interopDefault(_quantileJs);
-exports.default = function(values, valueof) {
+function median(values, valueof) {
     return _quantileJsDefault.default(values, 0.5, valueof);
-};
+}
+exports.default = median;
 
 },{"./quantile.js":"g22bz","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lLqaS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2474,7 +2264,29 @@ function minIndex1(values, valueof) {
 }
 exports.default = minIndex1;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"f10CX":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"atCGw":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _internmap = require("internmap");
+function mode(values, valueof) {
+    const counts = new _internmap.InternMap();
+    if (valueof === undefined) {
+        for (let value of values)if (value != null && value >= value) counts.set(value, (counts.get(value) || 0) + 1);
+    } else {
+        let index = -1;
+        for (let value of values)if ((value = valueof(value, ++index, values)) != null && value >= value) counts.set(value, (counts.get(value) || 0) + 1);
+    }
+    let modeValue;
+    let modeCount = 0;
+    for (const [value, count] of counts)if (count > modeCount) {
+        modeCount = count;
+        modeValue = value;
+    }
+    return modeValue;
+}
+exports.default = mode;
+
+},{"internmap":"jYc4q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"f10CX":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "pair", ()=>pair
@@ -2501,14 +2313,42 @@ function pair(a, b) {
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aFuRJ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-exports.default = function(start, stop, step) {
+function range1(start, stop, step) {
     start = +start, stop = +stop, step = (n = arguments.length) < 2 ? (stop = start, start = 0, 1) : n < 3 ? 1 : +step;
     var i = -1, n = Math.max(0, Math.ceil((stop - start) / step)) | 0, range = new Array(n);
     while(++i < n)range[i] = start + i * step;
     return range;
-};
+}
+exports.default = range1;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ewg2M":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"98L3a":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _ascendingJs = require("./ascending.js");
+var _ascendingJsDefault = parcelHelpers.interopDefault(_ascendingJs);
+var _sortJs = require("./sort.js");
+function rank(values, valueof = _ascendingJsDefault.default) {
+    if (typeof values[Symbol.iterator] !== "function") throw new TypeError("values is not iterable");
+    let V = Array.from(values);
+    const R = new Float64Array(V.length);
+    if (valueof.length !== 2) V = V.map(valueof), valueof = _ascendingJsDefault.default;
+    const compareIndex = (i, j)=>valueof(V[i], V[j])
+    ;
+    let k, r;
+    Uint32Array.from(V, (_, i)=>i
+    ).sort(valueof === _ascendingJsDefault.default ? (i, j)=>_sortJs.ascendingDefined(V[i], V[j])
+     : _sortJs.compareDefined(compareIndex)).forEach((j, i)=>{
+        const c = compareIndex(j, k === undefined ? j : k);
+        if (c >= 0) {
+            if (k === undefined || c > 0) k = j, r = i;
+            R[j] = r;
+        } else R[j] = NaN;
+    });
+    return R;
+}
+exports.default = rank;
+
+},{"./ascending.js":"is3Cq","./sort.js":"iPqde","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ewg2M":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _ascendingJs = require("./ascending.js");
@@ -2659,11 +2499,12 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _minJs = require("./min.js");
 var _minJsDefault = parcelHelpers.interopDefault(_minJs);
-exports.default = function(matrix) {
+function transpose1(matrix) {
     if (!(n = matrix.length)) return [];
     for(var i = -1, m = _minJsDefault.default(matrix, length), transpose = new Array(m); ++i < m;)for(var j = -1, n, row = transpose[i] = new Array(n); ++j < n;)row[j] = matrix[j][i];
     return transpose;
-};
+}
+exports.default = transpose1;
 function length(d) {
     return d.length;
 }
@@ -2673,9 +2514,10 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _transposeJs = require("./transpose.js");
 var _transposeJsDefault = parcelHelpers.interopDefault(_transposeJs);
-exports.default = function() {
+function zip() {
     return _transposeJsDefault.default(arguments);
-};
+}
+exports.default = zip;
 
 },{"./transpose.js":"eTl2h","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"j8w8G":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2755,18 +2597,20 @@ exports.default = reverse;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4yCN3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+var _internmap = require("internmap");
 function difference(values, ...others) {
-    values = new Set(values);
+    values = new _internmap.InternSet(values);
     for (const other of others)for (const value of other)values.delete(value);
     return values;
 }
 exports.default = difference;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i51B2":[function(require,module,exports) {
+},{"internmap":"jYc4q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i51B2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+var _internmap = require("internmap");
 function disjoint(values, other) {
-    const iterator = other[Symbol.iterator](), set = new Set();
+    const iterator = other[Symbol.iterator](), set = new _internmap.InternSet();
     for (const v of values){
         if (set.has(v)) return false;
         let value, done;
@@ -2780,14 +2624,13 @@ function disjoint(values, other) {
 }
 exports.default = disjoint;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"xQI0g":[function(require,module,exports) {
+},{"internmap":"jYc4q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"xQI0g":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _setJs = require("./set.js");
-var _setJsDefault = parcelHelpers.interopDefault(_setJs);
+var _internmap = require("internmap");
 function intersection(values, ...others) {
-    values = new Set(values);
-    others = others.map(_setJsDefault.default);
+    values = new _internmap.InternSet(values);
+    others = others.map(set);
     out: for (const value of values){
         for (const other of others)if (!other.has(value)) {
             values.delete(value);
@@ -2797,16 +2640,11 @@ function intersection(values, ...others) {
     return values;
 }
 exports.default = intersection;
-
-},{"./set.js":"j3rvb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"j3rvb":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
 function set(values) {
-    return values instanceof Set ? values : new Set(values);
+    return values instanceof _internmap.InternSet ? values : new _internmap.InternSet(values);
 }
-exports.default = set;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bSPhW":[function(require,module,exports) {
+},{"internmap":"jYc4q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bSPhW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _supersetJs = require("./superset.js");
@@ -2822,29 +2660,35 @@ parcelHelpers.defineInteropFlag(exports);
 function superset(values, other) {
     const iterator = values[Symbol.iterator](), set = new Set();
     for (const o of other){
-        if (set.has(o)) continue;
+        const io = intern(o);
+        if (set.has(io)) continue;
         let value, done;
         while({ value , done  } = iterator.next()){
             if (done) return false;
-            set.add(value);
-            if (Object.is(o, value)) break;
+            const ivalue = intern(value);
+            set.add(ivalue);
+            if (Object.is(io, ivalue)) break;
         }
     }
     return true;
 }
 exports.default = superset;
+function intern(value) {
+    return value !== null && typeof value === "object" ? value.valueOf() : value;
+}
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"byxPk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+var _internmap = require("internmap");
 function union(...others) {
-    const set = new Set();
+    const set = new _internmap.InternSet();
     for (const other of others)for (const o of other)set.add(o);
     return set;
 }
 exports.default = union;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3HH3d":[function(require,module,exports) {
+},{"internmap":"jYc4q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3HH3d":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "axisTop", ()=>_axisJs.axisTop
@@ -2868,7 +2712,6 @@ parcelHelpers.export(exports, "axisBottom", ()=>axisBottom
 );
 parcelHelpers.export(exports, "axisLeft", ()=>axisLeft
 );
-var _arrayJs = require("./array.js");
 var _identityJs = require("./identity.js");
 var _identityJsDefault = parcelHelpers.interopDefault(_identityJs);
 var top = 1, right = 2, bottom = 3, left = 4, epsilon = 0.000001;
@@ -2930,13 +2773,13 @@ function axis1(orient, scale) {
         return arguments.length ? (scale = _, axis) : scale;
     };
     axis.ticks = function() {
-        return tickArguments = _arrayJs.slice.call(arguments), axis;
+        return tickArguments = Array.from(arguments), axis;
     };
     axis.tickArguments = function(_) {
-        return arguments.length ? (tickArguments = _ == null ? [] : _arrayJs.slice.call(_), axis) : tickArguments.slice();
+        return arguments.length ? (tickArguments = _ == null ? [] : Array.from(_), axis) : tickArguments.slice();
     };
     axis.tickValues = function(_) {
-        return arguments.length ? (tickValues = _ == null ? null : _arrayJs.slice.call(_), axis) : tickValues && tickValues.slice();
+        return arguments.length ? (tickValues = _ == null ? null : Array.from(_), axis) : tickValues && tickValues.slice();
     };
     axis.tickFormat = function(_) {
         return arguments.length ? (tickFormat = _, axis) : tickFormat;
@@ -2971,14 +2814,7 @@ function axisLeft(scale) {
     return axis1(left, scale);
 }
 
-},{"./array.js":"jGeXs","./identity.js":"eB8bj","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jGeXs":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "slice", ()=>slice
-);
-var slice = Array.prototype.slice;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eB8bj":[function(require,module,exports) {
+},{"./identity.js":"eB8bj","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eB8bj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = function(x) {
@@ -3245,7 +3081,7 @@ function brush1(dim) {
         });
         group.each(redraw).attr("fill", "none").attr("pointer-events", "all").on("mousedown.brush", started).filter(touchable).on("touchstart.brush", started).on("touchmove.brush", touchmoved).on("touchend.brush touchcancel.brush", touchended).style("touch-action", "none").style("-webkit-tap-highlight-color", "rgba(0,0,0,0)");
     }
-    brush.move = function(group, selection) {
+    brush.move = function(group, selection, event1) {
         if (group.tween) group.on("start.brush", function(event) {
             emitter(this, arguments).beforestart().start(event);
         }).on("interrupt.brush end.brush", function(event) {
@@ -3264,11 +3100,11 @@ function brush1(dim) {
             _d3Transition.interrupt(that);
             state.selection = selection1 === null ? null : selection1;
             redraw.call(that);
-            emit.start().brush().end();
+            emit.start(event1).brush(event1).end(event1);
         });
     };
-    brush.clear = function(group) {
-        brush.move(group, null);
+    brush.clear = function(group, event) {
+        brush.move(group, null, event);
     };
     function redraw() {
         var group = _d3Selection.select(this), selection = local(this).selection;
@@ -3325,11 +3161,11 @@ function brush1(dim) {
             }), d);
         }
     };
-    function started(event1) {
-        if (touchending && !event1.touches) return;
+    function started(event2) {
+        if (touchending && !event2.touches) return;
         if (!filter.apply(this, arguments)) return;
-        var that = this, type = event1.target.__data__.type, mode = (keys && event1.metaKey ? type = "overlay" : type) === "selection" ? MODE_DRAG : keys && event1.altKey ? MODE_CENTER : MODE_HANDLE, signX = dim === Y ? null : signsX[type], signY = dim === X ? null : signsY[type], state = local(that), extent = state.extent, selection = state.selection, W = extent[0][0], w0, w1, N = extent[0][1], n0, n1, E = extent[1][0], e0, e1, S = extent[1][1], s0, s1, dx = 0, dy = 0, moving, shifting = signX && signY && keys && event1.shiftKey, lockX, lockY, points = Array.from(event1.touches || [
-            event1
+        var that = this, type = event2.target.__data__.type, mode = (keys && event2.metaKey ? type = "overlay" : type) === "selection" ? MODE_DRAG : keys && event2.altKey ? MODE_CENTER : MODE_HANDLE, signX = dim === Y ? null : signsX[type], signY = dim === X ? null : signsY[type], state = local(that), extent = state.extent, selection = state.selection, W = extent[0][0], w0, w1, N = extent[0][1], n0, n1, E = extent[1][0], e0, e1, S = extent[1][1], s0, s1, dx = 0, dy = 0, moving, shifting = signX && signY && keys && event2.shiftKey, lockX, lockY, points = Array.from(event2.touches || [
+            event2
         ], (t)=>{
             const i = t.identifier;
             t = _d3Selection.pointer(t, that);
@@ -3337,6 +3173,8 @@ function brush1(dim) {
             t.identifier = i;
             return t;
         });
+        _d3Transition.interrupt(that);
+        var emit = emitter(that, arguments, true).beforestart();
         if (type === "overlay") {
             if (selection) moving = true;
             const pts = [
@@ -3353,7 +3191,7 @@ function brush1(dim) {
                     s0 = dim === X ? S : max(pts[0][1], pts[1][1])
                 ]
             ];
-            if (points.length > 1) move();
+            if (points.length > 1) move(event2);
         } else {
             w0 = selection[0][0];
             n0 = selection[0][1];
@@ -3366,18 +3204,16 @@ function brush1(dim) {
         s1 = s0;
         var group = _d3Selection.select(that).attr("pointer-events", "none");
         var overlay = group.selectAll(".overlay").attr("cursor", cursors[type]);
-        _d3Transition.interrupt(that);
-        var emit = emitter(that, arguments, true).beforestart();
-        if (event1.touches) {
+        if (event2.touches) {
             emit.moved = moved;
             emit.ended = ended;
         } else {
-            var view = _d3Selection.select(event1.view).on("mousemove.brush", moved, true).on("mouseup.brush", ended, true);
+            var view = _d3Selection.select(event2.view).on("mousemove.brush", moved, true).on("mouseup.brush", ended, true);
             if (keys) view.on("keydown.brush", keydowned, true).on("keyup.brush", keyupped, true);
-            _d3Drag.dragDisable(event1.view);
+            _d3Drag.dragDisable(event2.view);
         }
         redraw.call(that);
-        emit.start(event1, mode.name);
+        emit.start(event2, mode.name);
         function moved(event) {
             for (const p of event.changedTouches || [
                 event
@@ -3479,7 +3315,7 @@ function brush1(dim) {
                         if (signX) e0 = e1 - dx * signX, w0 = w1 + dx * signX;
                         if (signY) s0 = s1 - dy * signY, n0 = n1 + dy * signY;
                         mode = MODE_CENTER;
-                        move();
+                        move(event);
                     }
                     break;
                 case 32:
@@ -3490,7 +3326,7 @@ function brush1(dim) {
                         else if (signY > 0) n0 = n1 - dy;
                         mode = MODE_SPACE;
                         overlay.attr("cursor", cursors.selection);
-                        move();
+                        move(event);
                     }
                     break;
                 default:
@@ -3503,7 +3339,7 @@ function brush1(dim) {
                 case 16:
                     if (shifting) {
                         lockX = lockY = shifting = false;
-                        move();
+                        move(event);
                     }
                     break;
                 case 18:
@@ -3513,7 +3349,7 @@ function brush1(dim) {
                         if (signY < 0) s0 = s1;
                         else if (signY > 0) n0 = n1;
                         mode = MODE_HANDLE;
-                        move();
+                        move(event);
                     }
                     break;
                 case 32:
@@ -3530,7 +3366,7 @@ function brush1(dim) {
                             mode = MODE_HANDLE;
                         }
                         overlay.attr("cursor", cursors[type]);
-                        move();
+                        move(event);
                     }
                     break;
                 default:
@@ -3575,7 +3411,7 @@ function brush1(dim) {
     return brush;
 }
 
-},{"d3-dispatch":"9d2te","d3-drag":"dKCUo","d3-interpolate":"e7XwA","d3-selection":"hgWtk","d3-transition":"cRYyR","./constant.js":"j4KZw","./event.js":"3Rq9l","./noevent.js":"9Mi58","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9d2te":[function(require,module,exports) {
+},{"d3-dispatch":"9d2te","d3-drag":"dKCUo","d3-interpolate":"e7XwA","d3-selection":"7GQex","d3-transition":"c32b6","./constant.js":"j4KZw","./event.js":"3Rq9l","./noevent.js":"9Mi58","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9d2te":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "dispatch", ()=>_dispatchJsDefault.default
@@ -6359,7 +6195,1182 @@ exports.default = function(interpolator, n) {
     return samples;
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cRYyR":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7GQex":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "create", ()=>_createJsDefault.default
+);
+parcelHelpers.export(exports, "creator", ()=>_creatorJsDefault.default
+);
+parcelHelpers.export(exports, "local", ()=>_localJsDefault.default
+);
+parcelHelpers.export(exports, "matcher", ()=>_matcherJsDefault.default
+);
+parcelHelpers.export(exports, "namespace", ()=>_namespaceJsDefault.default
+);
+parcelHelpers.export(exports, "namespaces", ()=>_namespacesJsDefault.default
+);
+parcelHelpers.export(exports, "pointer", ()=>_pointerJsDefault.default
+);
+parcelHelpers.export(exports, "pointers", ()=>_pointersJsDefault.default
+);
+parcelHelpers.export(exports, "select", ()=>_selectJsDefault.default
+);
+parcelHelpers.export(exports, "selectAll", ()=>_selectAllJsDefault.default
+);
+parcelHelpers.export(exports, "selection", ()=>_indexJsDefault.default
+);
+parcelHelpers.export(exports, "selector", ()=>_selectorJsDefault.default
+);
+parcelHelpers.export(exports, "selectorAll", ()=>_selectorAllJsDefault.default
+);
+parcelHelpers.export(exports, "style", ()=>_styleJs.styleValue
+);
+parcelHelpers.export(exports, "window", ()=>_windowJsDefault.default
+);
+var _createJs = require("./create.js");
+var _createJsDefault = parcelHelpers.interopDefault(_createJs);
+var _creatorJs = require("./creator.js");
+var _creatorJsDefault = parcelHelpers.interopDefault(_creatorJs);
+var _localJs = require("./local.js");
+var _localJsDefault = parcelHelpers.interopDefault(_localJs);
+var _matcherJs = require("./matcher.js");
+var _matcherJsDefault = parcelHelpers.interopDefault(_matcherJs);
+var _namespaceJs = require("./namespace.js");
+var _namespaceJsDefault = parcelHelpers.interopDefault(_namespaceJs);
+var _namespacesJs = require("./namespaces.js");
+var _namespacesJsDefault = parcelHelpers.interopDefault(_namespacesJs);
+var _pointerJs = require("./pointer.js");
+var _pointerJsDefault = parcelHelpers.interopDefault(_pointerJs);
+var _pointersJs = require("./pointers.js");
+var _pointersJsDefault = parcelHelpers.interopDefault(_pointersJs);
+var _selectJs = require("./select.js");
+var _selectJsDefault = parcelHelpers.interopDefault(_selectJs);
+var _selectAllJs = require("./selectAll.js");
+var _selectAllJsDefault = parcelHelpers.interopDefault(_selectAllJs);
+var _indexJs = require("./selection/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _selectorJs = require("./selector.js");
+var _selectorJsDefault = parcelHelpers.interopDefault(_selectorJs);
+var _selectorAllJs = require("./selectorAll.js");
+var _selectorAllJsDefault = parcelHelpers.interopDefault(_selectorAllJs);
+var _styleJs = require("./selection/style.js");
+var _windowJs = require("./window.js");
+var _windowJsDefault = parcelHelpers.interopDefault(_windowJs);
+
+},{"./create.js":"1TiqN","./creator.js":"jJRwA","./local.js":"I5JNe","./matcher.js":"hUrpn","./namespace.js":"6ek2B","./namespaces.js":"e9GkM","./pointer.js":"anuPF","./pointers.js":"gPGFu","./select.js":"ktJGW","./selectAll.js":"ima4m","./selection/index.js":"cmRC5","./selector.js":"lRJax","./selectorAll.js":"5qWOP","./selection/style.js":"db2Gd","./window.js":"avC2F","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1TiqN":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _creatorJs = require("./creator.js");
+var _creatorJsDefault = parcelHelpers.interopDefault(_creatorJs);
+var _selectJs = require("./select.js");
+var _selectJsDefault = parcelHelpers.interopDefault(_selectJs);
+exports.default = function(name) {
+    return _selectJsDefault.default(_creatorJsDefault.default(name).call(document.documentElement));
+};
+
+},{"./creator.js":"jJRwA","./select.js":"ktJGW","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jJRwA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _namespaceJs = require("./namespace.js");
+var _namespaceJsDefault = parcelHelpers.interopDefault(_namespaceJs);
+var _namespacesJs = require("./namespaces.js");
+function creatorInherit(name) {
+    return function() {
+        var document = this.ownerDocument, uri = this.namespaceURI;
+        return uri === _namespacesJs.xhtml && document.documentElement.namespaceURI === _namespacesJs.xhtml ? document.createElement(name) : document.createElementNS(uri, name);
+    };
+}
+function creatorFixed(fullname) {
+    return function() {
+        return this.ownerDocument.createElementNS(fullname.space, fullname.local);
+    };
+}
+exports.default = function(name) {
+    var fullname = _namespaceJsDefault.default(name);
+    return (fullname.local ? creatorFixed : creatorInherit)(fullname);
+};
+
+},{"./namespace.js":"6ek2B","./namespaces.js":"e9GkM","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6ek2B":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _namespacesJs = require("./namespaces.js");
+var _namespacesJsDefault = parcelHelpers.interopDefault(_namespacesJs);
+exports.default = function(name) {
+    var prefix = name += "", i = prefix.indexOf(":");
+    if (i >= 0 && (prefix = name.slice(0, i)) !== "xmlns") name = name.slice(i + 1);
+    return _namespacesJsDefault.default.hasOwnProperty(prefix) ? {
+        space: _namespacesJsDefault.default[prefix],
+        local: name
+    } : name; // eslint-disable-line no-prototype-builtins
+};
+
+},{"./namespaces.js":"e9GkM","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"e9GkM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "xhtml", ()=>xhtml
+);
+var xhtml = "http://www.w3.org/1999/xhtml";
+exports.default = {
+    svg: "http://www.w3.org/2000/svg",
+    xhtml: xhtml,
+    xlink: "http://www.w3.org/1999/xlink",
+    xml: "http://www.w3.org/XML/1998/namespace",
+    xmlns: "http://www.w3.org/2000/xmlns/"
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ktJGW":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./selection/index.js");
+exports.default = function(selector) {
+    return typeof selector === "string" ? new _indexJs.Selection([
+        [
+            document.querySelector(selector)
+        ]
+    ], [
+        document.documentElement
+    ]) : new _indexJs.Selection([
+        [
+            selector
+        ]
+    ], _indexJs.root);
+};
+
+},{"./selection/index.js":"cmRC5","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cmRC5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "root", ()=>root
+);
+parcelHelpers.export(exports, "Selection", ()=>Selection
+);
+var _selectJs = require("./select.js");
+var _selectJsDefault = parcelHelpers.interopDefault(_selectJs);
+var _selectAllJs = require("./selectAll.js");
+var _selectAllJsDefault = parcelHelpers.interopDefault(_selectAllJs);
+var _selectChildJs = require("./selectChild.js");
+var _selectChildJsDefault = parcelHelpers.interopDefault(_selectChildJs);
+var _selectChildrenJs = require("./selectChildren.js");
+var _selectChildrenJsDefault = parcelHelpers.interopDefault(_selectChildrenJs);
+var _filterJs = require("./filter.js");
+var _filterJsDefault = parcelHelpers.interopDefault(_filterJs);
+var _dataJs = require("./data.js");
+var _dataJsDefault = parcelHelpers.interopDefault(_dataJs);
+var _enterJs = require("./enter.js");
+var _enterJsDefault = parcelHelpers.interopDefault(_enterJs);
+var _exitJs = require("./exit.js");
+var _exitJsDefault = parcelHelpers.interopDefault(_exitJs);
+var _joinJs = require("./join.js");
+var _joinJsDefault = parcelHelpers.interopDefault(_joinJs);
+var _mergeJs = require("./merge.js");
+var _mergeJsDefault = parcelHelpers.interopDefault(_mergeJs);
+var _orderJs = require("./order.js");
+var _orderJsDefault = parcelHelpers.interopDefault(_orderJs);
+var _sortJs = require("./sort.js");
+var _sortJsDefault = parcelHelpers.interopDefault(_sortJs);
+var _callJs = require("./call.js");
+var _callJsDefault = parcelHelpers.interopDefault(_callJs);
+var _nodesJs = require("./nodes.js");
+var _nodesJsDefault = parcelHelpers.interopDefault(_nodesJs);
+var _nodeJs = require("./node.js");
+var _nodeJsDefault = parcelHelpers.interopDefault(_nodeJs);
+var _sizeJs = require("./size.js");
+var _sizeJsDefault = parcelHelpers.interopDefault(_sizeJs);
+var _emptyJs = require("./empty.js");
+var _emptyJsDefault = parcelHelpers.interopDefault(_emptyJs);
+var _eachJs = require("./each.js");
+var _eachJsDefault = parcelHelpers.interopDefault(_eachJs);
+var _attrJs = require("./attr.js");
+var _attrJsDefault = parcelHelpers.interopDefault(_attrJs);
+var _styleJs = require("./style.js");
+var _styleJsDefault = parcelHelpers.interopDefault(_styleJs);
+var _propertyJs = require("./property.js");
+var _propertyJsDefault = parcelHelpers.interopDefault(_propertyJs);
+var _classedJs = require("./classed.js");
+var _classedJsDefault = parcelHelpers.interopDefault(_classedJs);
+var _textJs = require("./text.js");
+var _textJsDefault = parcelHelpers.interopDefault(_textJs);
+var _htmlJs = require("./html.js");
+var _htmlJsDefault = parcelHelpers.interopDefault(_htmlJs);
+var _raiseJs = require("./raise.js");
+var _raiseJsDefault = parcelHelpers.interopDefault(_raiseJs);
+var _lowerJs = require("./lower.js");
+var _lowerJsDefault = parcelHelpers.interopDefault(_lowerJs);
+var _appendJs = require("./append.js");
+var _appendJsDefault = parcelHelpers.interopDefault(_appendJs);
+var _insertJs = require("./insert.js");
+var _insertJsDefault = parcelHelpers.interopDefault(_insertJs);
+var _removeJs = require("./remove.js");
+var _removeJsDefault = parcelHelpers.interopDefault(_removeJs);
+var _cloneJs = require("./clone.js");
+var _cloneJsDefault = parcelHelpers.interopDefault(_cloneJs);
+var _datumJs = require("./datum.js");
+var _datumJsDefault = parcelHelpers.interopDefault(_datumJs);
+var _onJs = require("./on.js");
+var _onJsDefault = parcelHelpers.interopDefault(_onJs);
+var _dispatchJs = require("./dispatch.js");
+var _dispatchJsDefault = parcelHelpers.interopDefault(_dispatchJs);
+var _iteratorJs = require("./iterator.js");
+var _iteratorJsDefault = parcelHelpers.interopDefault(_iteratorJs);
+var root = [
+    null
+];
+function Selection(groups, parents) {
+    this._groups = groups;
+    this._parents = parents;
+}
+function selection() {
+    return new Selection([
+        [
+            document.documentElement
+        ]
+    ], root);
+}
+function selection_selection() {
+    return this;
+}
+Selection.prototype = selection.prototype = {
+    constructor: Selection,
+    select: _selectJsDefault.default,
+    selectAll: _selectAllJsDefault.default,
+    selectChild: _selectChildJsDefault.default,
+    selectChildren: _selectChildrenJsDefault.default,
+    filter: _filterJsDefault.default,
+    data: _dataJsDefault.default,
+    enter: _enterJsDefault.default,
+    exit: _exitJsDefault.default,
+    join: _joinJsDefault.default,
+    merge: _mergeJsDefault.default,
+    selection: selection_selection,
+    order: _orderJsDefault.default,
+    sort: _sortJsDefault.default,
+    call: _callJsDefault.default,
+    nodes: _nodesJsDefault.default,
+    node: _nodeJsDefault.default,
+    size: _sizeJsDefault.default,
+    empty: _emptyJsDefault.default,
+    each: _eachJsDefault.default,
+    attr: _attrJsDefault.default,
+    style: _styleJsDefault.default,
+    property: _propertyJsDefault.default,
+    classed: _classedJsDefault.default,
+    text: _textJsDefault.default,
+    html: _htmlJsDefault.default,
+    raise: _raiseJsDefault.default,
+    lower: _lowerJsDefault.default,
+    append: _appendJsDefault.default,
+    insert: _insertJsDefault.default,
+    remove: _removeJsDefault.default,
+    clone: _cloneJsDefault.default,
+    datum: _datumJsDefault.default,
+    on: _onJsDefault.default,
+    dispatch: _dispatchJsDefault.default,
+    [Symbol.iterator]: _iteratorJsDefault.default
+};
+exports.default = selection;
+
+},{"./select.js":"as2J2","./selectAll.js":"hzDfg","./selectChild.js":"dC4d5","./selectChildren.js":"9MUxF","./filter.js":"9LpxL","./data.js":"eLwH2","./enter.js":"c86fX","./exit.js":"9xHW4","./join.js":"6pAfL","./merge.js":"63Jy3","./order.js":"8YE5q","./sort.js":"7DdWP","./call.js":"5FG3G","./nodes.js":"gxZxn","./node.js":"f1cvb","./size.js":"dQV3m","./empty.js":"fUQQQ","./each.js":"irDCq","./attr.js":"cZ5Ll","./style.js":"db2Gd","./property.js":"jFaC8","./classed.js":"jrMKd","./text.js":"2U8p2","./html.js":"32rMg","./raise.js":"4yfI7","./lower.js":"0vvZw","./append.js":"j20oY","./insert.js":"3gsG8","./remove.js":"N5Bik","./clone.js":"sXDMQ","./datum.js":"edbgY","./on.js":"h15An","./dispatch.js":"gONc8","./iterator.js":"au5ZR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"as2J2":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./index.js");
+var _selectorJs = require("../selector.js");
+var _selectorJsDefault = parcelHelpers.interopDefault(_selectorJs);
+exports.default = function(select) {
+    if (typeof select !== "function") select = _selectorJsDefault.default(select);
+    for(var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j){
+        for(var group = groups[j], n = group.length, subgroup = subgroups[j] = new Array(n), node, subnode, i = 0; i < n; ++i)if ((node = group[i]) && (subnode = select.call(node, node.__data__, i, group))) {
+            if ("__data__" in node) subnode.__data__ = node.__data__;
+            subgroup[i] = subnode;
+        }
+    }
+    return new _indexJs.Selection(subgroups, this._parents);
+};
+
+},{"./index.js":"cmRC5","../selector.js":"lRJax","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lRJax":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function none() {
+}
+exports.default = function(selector) {
+    return selector == null ? none : function() {
+        return this.querySelector(selector);
+    };
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hzDfg":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./index.js");
+var _arrayJs = require("../array.js");
+var _arrayJsDefault = parcelHelpers.interopDefault(_arrayJs);
+var _selectorAllJs = require("../selectorAll.js");
+var _selectorAllJsDefault = parcelHelpers.interopDefault(_selectorAllJs);
+function arrayAll(select) {
+    return function() {
+        return _arrayJsDefault.default(select.apply(this, arguments));
+    };
+}
+exports.default = function(select) {
+    if (typeof select === "function") select = arrayAll(select);
+    else select = _selectorAllJsDefault.default(select);
+    for(var groups = this._groups, m = groups.length, subgroups = [], parents = [], j = 0; j < m; ++j){
+        for(var group = groups[j], n = group.length, node, i = 0; i < n; ++i)if (node = group[i]) {
+            subgroups.push(select.call(node, node.__data__, i, group));
+            parents.push(node);
+        }
+    }
+    return new _indexJs.Selection(subgroups, parents);
+};
+
+},{"./index.js":"cmRC5","../array.js":"afKQ7","../selectorAll.js":"5qWOP","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"afKQ7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function array(x) {
+    return x == null ? [] : Array.isArray(x) ? x : Array.from(x);
+}
+exports.default = array;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5qWOP":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function empty() {
+    return [];
+}
+exports.default = function(selector) {
+    return selector == null ? empty : function() {
+        return this.querySelectorAll(selector);
+    };
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dC4d5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _matcherJs = require("../matcher.js");
+var find = Array.prototype.find;
+function childFind(match) {
+    return function() {
+        return find.call(this.children, match);
+    };
+}
+function childFirst() {
+    return this.firstElementChild;
+}
+exports.default = function(match) {
+    return this.select(match == null ? childFirst : childFind(typeof match === "function" ? match : _matcherJs.childMatcher(match)));
+};
+
+},{"../matcher.js":"hUrpn","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hUrpn":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "childMatcher", ()=>childMatcher
+);
+exports.default = function(selector) {
+    return function() {
+        return this.matches(selector);
+    };
+};
+function childMatcher(selector) {
+    return function(node) {
+        return node.matches(selector);
+    };
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9MUxF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _matcherJs = require("../matcher.js");
+var filter = Array.prototype.filter;
+function children() {
+    return Array.from(this.children);
+}
+function childrenFilter(match) {
+    return function() {
+        return filter.call(this.children, match);
+    };
+}
+exports.default = function(match) {
+    return this.selectAll(match == null ? children : childrenFilter(typeof match === "function" ? match : _matcherJs.childMatcher(match)));
+};
+
+},{"../matcher.js":"hUrpn","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9LpxL":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./index.js");
+var _matcherJs = require("../matcher.js");
+var _matcherJsDefault = parcelHelpers.interopDefault(_matcherJs);
+exports.default = function(match) {
+    if (typeof match !== "function") match = _matcherJsDefault.default(match);
+    for(var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j){
+        for(var group = groups[j], n = group.length, subgroup = subgroups[j] = [], node, i = 0; i < n; ++i)if ((node = group[i]) && match.call(node, node.__data__, i, group)) subgroup.push(node);
+    }
+    return new _indexJs.Selection(subgroups, this._parents);
+};
+
+},{"./index.js":"cmRC5","../matcher.js":"hUrpn","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eLwH2":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./index.js");
+var _enterJs = require("./enter.js");
+var _constantJs = require("../constant.js");
+var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
+function bindIndex(parent, group, enter, update, exit, data) {
+    var i = 0, node, groupLength = group.length, dataLength = data.length;
+    // Put any non-null nodes that fit into update.
+    // Put any null nodes into enter.
+    // Put any remaining data into enter.
+    for(; i < dataLength; ++i)if (node = group[i]) {
+        node.__data__ = data[i];
+        update[i] = node;
+    } else enter[i] = new _enterJs.EnterNode(parent, data[i]);
+    // Put any non-null nodes that don’t fit into exit.
+    for(; i < groupLength; ++i)if (node = group[i]) exit[i] = node;
+}
+function bindKey(parent, group, enter, update, exit, data, key) {
+    var i, node, nodeByKeyValue = new Map, groupLength = group.length, dataLength = data.length, keyValues = new Array(groupLength), keyValue;
+    // Compute the key for each node.
+    // If multiple nodes have the same key, the duplicates are added to exit.
+    for(i = 0; i < groupLength; ++i)if (node = group[i]) {
+        keyValues[i] = keyValue = key.call(node, node.__data__, i, group) + "";
+        if (nodeByKeyValue.has(keyValue)) exit[i] = node;
+        else nodeByKeyValue.set(keyValue, node);
+    }
+    // Compute the key for each datum.
+    // If there a node associated with this key, join and add it to update.
+    // If there is not (or the key is a duplicate), add it to enter.
+    for(i = 0; i < dataLength; ++i){
+        keyValue = key.call(parent, data[i], i, data) + "";
+        if (node = nodeByKeyValue.get(keyValue)) {
+            update[i] = node;
+            node.__data__ = data[i];
+            nodeByKeyValue.delete(keyValue);
+        } else enter[i] = new _enterJs.EnterNode(parent, data[i]);
+    }
+    // Add any remaining nodes that were not bound to data to exit.
+    for(i = 0; i < groupLength; ++i)if ((node = group[i]) && nodeByKeyValue.get(keyValues[i]) === node) exit[i] = node;
+}
+function datum(node) {
+    return node.__data__;
+}
+exports.default = function(value, key) {
+    if (!arguments.length) return Array.from(this, datum);
+    var bind = key ? bindKey : bindIndex, parents = this._parents, groups = this._groups;
+    if (typeof value !== "function") value = _constantJsDefault.default(value);
+    for(var m = groups.length, update = new Array(m), enter = new Array(m), exit = new Array(m), j = 0; j < m; ++j){
+        var parent = parents[j], group = groups[j], groupLength = group.length, data = arraylike(value.call(parent, parent && parent.__data__, j, parents)), dataLength = data.length, enterGroup = enter[j] = new Array(dataLength), updateGroup = update[j] = new Array(dataLength), exitGroup = exit[j] = new Array(groupLength);
+        bind(parent, group, enterGroup, updateGroup, exitGroup, data, key);
+        // Now connect the enter nodes to their following update node, such that
+        // appendChild can insert the materialized enter node before this node,
+        // rather than at the end of the parent node.
+        for(var i0 = 0, i1 = 0, previous, next; i0 < dataLength; ++i0)if (previous = enterGroup[i0]) {
+            if (i0 >= i1) i1 = i0 + 1;
+            while(!(next = updateGroup[i1]) && ++i1 < dataLength);
+            previous._next = next || null;
+        }
+    }
+    update = new _indexJs.Selection(update, parents);
+    update._enter = enter;
+    update._exit = exit;
+    return update;
+};
+// Given some data, this returns an array-like view of it: an object that
+// exposes a length property and allows numeric indexing. Note that unlike
+// selectAll, this isn’t worried about “live” collections because the resulting
+// array will only be used briefly while data is being bound. (It is possible to
+// cause the data to change while iterating by using a key function, but please
+// don’t; we’d rather avoid a gratuitous copy.)
+function arraylike(data) {
+    return typeof data === "object" && "length" in data ? data // Array, TypedArray, NodeList, array-like
+     : Array.from(data); // Map, Set, iterable, string, or anything else
+}
+
+},{"./index.js":"cmRC5","./enter.js":"c86fX","../constant.js":"5WEsS","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"c86fX":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "EnterNode", ()=>EnterNode
+);
+var _sparseJs = require("./sparse.js");
+var _sparseJsDefault = parcelHelpers.interopDefault(_sparseJs);
+var _indexJs = require("./index.js");
+exports.default = function() {
+    return new _indexJs.Selection(this._enter || this._groups.map(_sparseJsDefault.default), this._parents);
+};
+function EnterNode(parent, datum) {
+    this.ownerDocument = parent.ownerDocument;
+    this.namespaceURI = parent.namespaceURI;
+    this._next = null;
+    this._parent = parent;
+    this.__data__ = datum;
+}
+EnterNode.prototype = {
+    constructor: EnterNode,
+    appendChild: function(child) {
+        return this._parent.insertBefore(child, this._next);
+    },
+    insertBefore: function(child, next) {
+        return this._parent.insertBefore(child, next);
+    },
+    querySelector: function(selector) {
+        return this._parent.querySelector(selector);
+    },
+    querySelectorAll: function(selector) {
+        return this._parent.querySelectorAll(selector);
+    }
+};
+
+},{"./sparse.js":"c0cib","./index.js":"cmRC5","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"c0cib":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(update) {
+    return new Array(update.length);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5WEsS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(x) {
+    return function() {
+        return x;
+    };
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9xHW4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _sparseJs = require("./sparse.js");
+var _sparseJsDefault = parcelHelpers.interopDefault(_sparseJs);
+var _indexJs = require("./index.js");
+exports.default = function() {
+    return new _indexJs.Selection(this._exit || this._groups.map(_sparseJsDefault.default), this._parents);
+};
+
+},{"./sparse.js":"c0cib","./index.js":"cmRC5","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6pAfL":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(onenter, onupdate, onexit) {
+    var enter = this.enter(), update = this, exit = this.exit();
+    if (typeof onenter === "function") {
+        enter = onenter(enter);
+        if (enter) enter = enter.selection();
+    } else enter = enter.append(onenter + "");
+    if (onupdate != null) {
+        update = onupdate(update);
+        if (update) update = update.selection();
+    }
+    if (onexit == null) exit.remove();
+    else onexit(exit);
+    return enter && update ? enter.merge(update).order() : update;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"63Jy3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./index.js");
+exports.default = function(context) {
+    var selection = context.selection ? context.selection() : context;
+    for(var groups0 = this._groups, groups1 = selection._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j){
+        for(var group0 = groups0[j], group1 = groups1[j], n = group0.length, merge = merges[j] = new Array(n), node, i = 0; i < n; ++i)if (node = group0[i] || group1[i]) merge[i] = node;
+    }
+    for(; j < m0; ++j)merges[j] = groups0[j];
+    return new _indexJs.Selection(merges, this._parents);
+};
+
+},{"./index.js":"cmRC5","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8YE5q":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function() {
+    for(var groups = this._groups, j = -1, m = groups.length; ++j < m;){
+        for(var group = groups[j], i = group.length - 1, next = group[i], node; --i >= 0;)if (node = group[i]) {
+            if (next && node.compareDocumentPosition(next) ^ 4) next.parentNode.insertBefore(node, next);
+            next = node;
+        }
+    }
+    return this;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7DdWP":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./index.js");
+exports.default = function(compare) {
+    if (!compare) compare = ascending;
+    function compareNode(a, b) {
+        return a && b ? compare(a.__data__, b.__data__) : !a - !b;
+    }
+    for(var groups = this._groups, m = groups.length, sortgroups = new Array(m), j = 0; j < m; ++j){
+        for(var group = groups[j], n = group.length, sortgroup = sortgroups[j] = new Array(n), node, i = 0; i < n; ++i)if (node = group[i]) sortgroup[i] = node;
+        sortgroup.sort(compareNode);
+    }
+    return new _indexJs.Selection(sortgroups, this._parents).order();
+};
+function ascending(a, b) {
+    return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
+}
+
+},{"./index.js":"cmRC5","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5FG3G":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function() {
+    var callback = arguments[0];
+    arguments[0] = this;
+    callback.apply(null, arguments);
+    return this;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gxZxn":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function() {
+    return Array.from(this);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"f1cvb":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function() {
+    for(var groups = this._groups, j = 0, m = groups.length; j < m; ++j)for(var group = groups[j], i = 0, n = group.length; i < n; ++i){
+        var node = group[i];
+        if (node) return node;
+    }
+    return null;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dQV3m":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function() {
+    let size = 0;
+    for (const node of this)++size; // eslint-disable-line no-unused-vars
+    return size;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fUQQQ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function() {
+    return !this.node();
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"irDCq":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(callback) {
+    for(var groups = this._groups, j = 0, m = groups.length; j < m; ++j){
+        for(var group = groups[j], i = 0, n = group.length, node; i < n; ++i)if (node = group[i]) callback.call(node, node.__data__, i, group);
+    }
+    return this;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cZ5Ll":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _namespaceJs = require("../namespace.js");
+var _namespaceJsDefault = parcelHelpers.interopDefault(_namespaceJs);
+function attrRemove(name) {
+    return function() {
+        this.removeAttribute(name);
+    };
+}
+function attrRemoveNS(fullname) {
+    return function() {
+        this.removeAttributeNS(fullname.space, fullname.local);
+    };
+}
+function attrConstant(name, value) {
+    return function() {
+        this.setAttribute(name, value);
+    };
+}
+function attrConstantNS(fullname, value) {
+    return function() {
+        this.setAttributeNS(fullname.space, fullname.local, value);
+    };
+}
+function attrFunction(name, value) {
+    return function() {
+        var v = value.apply(this, arguments);
+        if (v == null) this.removeAttribute(name);
+        else this.setAttribute(name, v);
+    };
+}
+function attrFunctionNS(fullname, value) {
+    return function() {
+        var v = value.apply(this, arguments);
+        if (v == null) this.removeAttributeNS(fullname.space, fullname.local);
+        else this.setAttributeNS(fullname.space, fullname.local, v);
+    };
+}
+exports.default = function(name, value) {
+    var fullname = _namespaceJsDefault.default(name);
+    if (arguments.length < 2) {
+        var node = this.node();
+        return fullname.local ? node.getAttributeNS(fullname.space, fullname.local) : node.getAttribute(fullname);
+    }
+    return this.each((value == null ? fullname.local ? attrRemoveNS : attrRemove : typeof value === "function" ? fullname.local ? attrFunctionNS : attrFunction : fullname.local ? attrConstantNS : attrConstant)(fullname, value));
+};
+
+},{"../namespace.js":"6ek2B","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"db2Gd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "styleValue", ()=>styleValue
+);
+var _windowJs = require("../window.js");
+var _windowJsDefault = parcelHelpers.interopDefault(_windowJs);
+function styleRemove(name) {
+    return function() {
+        this.style.removeProperty(name);
+    };
+}
+function styleConstant(name, value, priority) {
+    return function() {
+        this.style.setProperty(name, value, priority);
+    };
+}
+function styleFunction(name, value, priority) {
+    return function() {
+        var v = value.apply(this, arguments);
+        if (v == null) this.style.removeProperty(name);
+        else this.style.setProperty(name, v, priority);
+    };
+}
+exports.default = function(name, value, priority) {
+    return arguments.length > 1 ? this.each((value == null ? styleRemove : typeof value === "function" ? styleFunction : styleConstant)(name, value, priority == null ? "" : priority)) : styleValue(this.node(), name);
+};
+function styleValue(node, name) {
+    return node.style.getPropertyValue(name) || _windowJsDefault.default(node).getComputedStyle(node, null).getPropertyValue(name);
+}
+
+},{"../window.js":"avC2F","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"avC2F":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(node) {
+    return node.ownerDocument && node.ownerDocument.defaultView || node.document && node || node.defaultView; // node is a Document
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jFaC8":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function propertyRemove(name) {
+    return function() {
+        delete this[name];
+    };
+}
+function propertyConstant(name, value) {
+    return function() {
+        this[name] = value;
+    };
+}
+function propertyFunction(name, value) {
+    return function() {
+        var v = value.apply(this, arguments);
+        if (v == null) delete this[name];
+        else this[name] = v;
+    };
+}
+exports.default = function(name, value) {
+    return arguments.length > 1 ? this.each((value == null ? propertyRemove : typeof value === "function" ? propertyFunction : propertyConstant)(name, value)) : this.node()[name];
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jrMKd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function classArray(string) {
+    return string.trim().split(/^|\s+/);
+}
+function classList(node) {
+    return node.classList || new ClassList(node);
+}
+function ClassList(node) {
+    this._node = node;
+    this._names = classArray(node.getAttribute("class") || "");
+}
+ClassList.prototype = {
+    add: function(name) {
+        var i = this._names.indexOf(name);
+        if (i < 0) {
+            this._names.push(name);
+            this._node.setAttribute("class", this._names.join(" "));
+        }
+    },
+    remove: function(name) {
+        var i = this._names.indexOf(name);
+        if (i >= 0) {
+            this._names.splice(i, 1);
+            this._node.setAttribute("class", this._names.join(" "));
+        }
+    },
+    contains: function(name) {
+        return this._names.indexOf(name) >= 0;
+    }
+};
+function classedAdd(node, names) {
+    var list = classList(node), i = -1, n = names.length;
+    while(++i < n)list.add(names[i]);
+}
+function classedRemove(node, names) {
+    var list = classList(node), i = -1, n = names.length;
+    while(++i < n)list.remove(names[i]);
+}
+function classedTrue(names) {
+    return function() {
+        classedAdd(this, names);
+    };
+}
+function classedFalse(names) {
+    return function() {
+        classedRemove(this, names);
+    };
+}
+function classedFunction(names, value) {
+    return function() {
+        (value.apply(this, arguments) ? classedAdd : classedRemove)(this, names);
+    };
+}
+exports.default = function(name, value) {
+    var names = classArray(name + "");
+    if (arguments.length < 2) {
+        var list = classList(this.node()), i = -1, n = names.length;
+        while(++i < n)if (!list.contains(names[i])) return false;
+        return true;
+    }
+    return this.each((typeof value === "function" ? classedFunction : value ? classedTrue : classedFalse)(names, value));
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2U8p2":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function textRemove() {
+    this.textContent = "";
+}
+function textConstant(value) {
+    return function() {
+        this.textContent = value;
+    };
+}
+function textFunction(value) {
+    return function() {
+        var v = value.apply(this, arguments);
+        this.textContent = v == null ? "" : v;
+    };
+}
+exports.default = function(value) {
+    return arguments.length ? this.each(value == null ? textRemove : (typeof value === "function" ? textFunction : textConstant)(value)) : this.node().textContent;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"32rMg":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function htmlRemove() {
+    this.innerHTML = "";
+}
+function htmlConstant(value) {
+    return function() {
+        this.innerHTML = value;
+    };
+}
+function htmlFunction(value) {
+    return function() {
+        var v = value.apply(this, arguments);
+        this.innerHTML = v == null ? "" : v;
+    };
+}
+exports.default = function(value) {
+    return arguments.length ? this.each(value == null ? htmlRemove : (typeof value === "function" ? htmlFunction : htmlConstant)(value)) : this.node().innerHTML;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4yfI7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function raise() {
+    if (this.nextSibling) this.parentNode.appendChild(this);
+}
+exports.default = function() {
+    return this.each(raise);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"0vvZw":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function lower() {
+    if (this.previousSibling) this.parentNode.insertBefore(this, this.parentNode.firstChild);
+}
+exports.default = function() {
+    return this.each(lower);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"j20oY":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _creatorJs = require("../creator.js");
+var _creatorJsDefault = parcelHelpers.interopDefault(_creatorJs);
+exports.default = function(name) {
+    var create = typeof name === "function" ? name : _creatorJsDefault.default(name);
+    return this.select(function() {
+        return this.appendChild(create.apply(this, arguments));
+    });
+};
+
+},{"../creator.js":"jJRwA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3gsG8":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _creatorJs = require("../creator.js");
+var _creatorJsDefault = parcelHelpers.interopDefault(_creatorJs);
+var _selectorJs = require("../selector.js");
+var _selectorJsDefault = parcelHelpers.interopDefault(_selectorJs);
+function constantNull() {
+    return null;
+}
+exports.default = function(name, before) {
+    var create = typeof name === "function" ? name : _creatorJsDefault.default(name), select = before == null ? constantNull : typeof before === "function" ? before : _selectorJsDefault.default(before);
+    return this.select(function() {
+        return this.insertBefore(create.apply(this, arguments), select.apply(this, arguments) || null);
+    });
+};
+
+},{"../creator.js":"jJRwA","../selector.js":"lRJax","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"N5Bik":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function remove() {
+    var parent = this.parentNode;
+    if (parent) parent.removeChild(this);
+}
+exports.default = function() {
+    return this.each(remove);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"sXDMQ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function selection_cloneShallow() {
+    var clone = this.cloneNode(false), parent = this.parentNode;
+    return parent ? parent.insertBefore(clone, this.nextSibling) : clone;
+}
+function selection_cloneDeep() {
+    var clone = this.cloneNode(true), parent = this.parentNode;
+    return parent ? parent.insertBefore(clone, this.nextSibling) : clone;
+}
+exports.default = function(deep) {
+    return this.select(deep ? selection_cloneDeep : selection_cloneShallow);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"edbgY":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(value) {
+    return arguments.length ? this.property("__data__", value) : this.node().__data__;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"h15An":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function contextListener(listener) {
+    return function(event) {
+        listener.call(this, event, this.__data__);
+    };
+}
+function parseTypenames(typenames) {
+    return typenames.trim().split(/^|\s+/).map(function(t) {
+        var name = "", i = t.indexOf(".");
+        if (i >= 0) name = t.slice(i + 1), t = t.slice(0, i);
+        return {
+            type: t,
+            name: name
+        };
+    });
+}
+function onRemove(typename) {
+    return function() {
+        var on = this.__on;
+        if (!on) return;
+        for(var j = 0, i = -1, m = on.length, o; j < m; ++j)if (o = on[j], (!typename.type || o.type === typename.type) && o.name === typename.name) this.removeEventListener(o.type, o.listener, o.options);
+        else on[++i] = o;
+        if (++i) on.length = i;
+        else delete this.__on;
+    };
+}
+function onAdd(typename, value, options) {
+    return function() {
+        var on = this.__on, o, listener = contextListener(value);
+        if (on) {
+            for(var j = 0, m = on.length; j < m; ++j)if ((o = on[j]).type === typename.type && o.name === typename.name) {
+                this.removeEventListener(o.type, o.listener, o.options);
+                this.addEventListener(o.type, o.listener = listener, o.options = options);
+                o.value = value;
+                return;
+            }
+        }
+        this.addEventListener(typename.type, listener, options);
+        o = {
+            type: typename.type,
+            name: typename.name,
+            value: value,
+            listener: listener,
+            options: options
+        };
+        if (!on) this.__on = [
+            o
+        ];
+        else on.push(o);
+    };
+}
+exports.default = function(typename, value, options) {
+    var typenames = parseTypenames(typename + ""), i, n = typenames.length, t;
+    if (arguments.length < 2) {
+        var on = this.node().__on;
+        if (on) for(var j = 0, m = on.length, o; j < m; ++j)for(i = 0, o = on[j]; i < n; ++i){
+            if ((t = typenames[i]).type === o.type && t.name === o.name) return o.value;
+        }
+        return;
+    }
+    on = value ? onAdd : onRemove;
+    for(i = 0; i < n; ++i)this.each(on(typenames[i], value, options));
+    return this;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gONc8":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _windowJs = require("../window.js");
+var _windowJsDefault = parcelHelpers.interopDefault(_windowJs);
+function dispatchEvent(node, type, params) {
+    var window = _windowJsDefault.default(node), event = window.CustomEvent;
+    if (typeof event === "function") event = new event(type, params);
+    else {
+        event = window.document.createEvent("Event");
+        if (params) event.initEvent(type, params.bubbles, params.cancelable), event.detail = params.detail;
+        else event.initEvent(type, false, false);
+    }
+    node.dispatchEvent(event);
+}
+function dispatchConstant(type, params) {
+    return function() {
+        return dispatchEvent(this, type, params);
+    };
+}
+function dispatchFunction(type, params) {
+    return function() {
+        return dispatchEvent(this, type, params.apply(this, arguments));
+    };
+}
+exports.default = function(type, params) {
+    return this.each((typeof params === "function" ? dispatchFunction : dispatchConstant)(type, params));
+};
+
+},{"../window.js":"avC2F","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"au5ZR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function*() {
+    for(var groups = this._groups, j = 0, m = groups.length; j < m; ++j){
+        for(var group = groups[j], i = 0, n = group.length, node; i < n; ++i)if (node = group[i]) yield node;
+    }
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"I5JNe":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var nextId = 0;
+function local() {
+    return new Local;
+}
+exports.default = local;
+function Local() {
+    this._ = "@" + (++nextId).toString(36);
+}
+Local.prototype = local.prototype = {
+    constructor: Local,
+    get: function(node) {
+        var id = this._;
+        while(!(id in node))if (!(node = node.parentNode)) return;
+        return node[id];
+    },
+    set: function(node, value) {
+        return node[this._] = value;
+    },
+    remove: function(node) {
+        return this._ in node && delete node[this._];
+    },
+    toString: function() {
+        return this._;
+    }
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"anuPF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _sourceEventJs = require("./sourceEvent.js");
+var _sourceEventJsDefault = parcelHelpers.interopDefault(_sourceEventJs);
+exports.default = function(event, node) {
+    event = _sourceEventJsDefault.default(event);
+    if (node === undefined) node = event.currentTarget;
+    if (node) {
+        var svg = node.ownerSVGElement || node;
+        if (svg.createSVGPoint) {
+            var point = svg.createSVGPoint();
+            point.x = event.clientX, point.y = event.clientY;
+            point = point.matrixTransform(node.getScreenCTM().inverse());
+            return [
+                point.x,
+                point.y
+            ];
+        }
+        if (node.getBoundingClientRect) {
+            var rect = node.getBoundingClientRect();
+            return [
+                event.clientX - rect.left - node.clientLeft,
+                event.clientY - rect.top - node.clientTop
+            ];
+        }
+    }
+    return [
+        event.pageX,
+        event.pageY
+    ];
+};
+
+},{"./sourceEvent.js":"1yGDP","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1yGDP":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(event) {
+    let sourceEvent;
+    while(sourceEvent = event.sourceEvent)event = sourceEvent;
+    return event;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gPGFu":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _pointerJs = require("./pointer.js");
+var _pointerJsDefault = parcelHelpers.interopDefault(_pointerJs);
+var _sourceEventJs = require("./sourceEvent.js");
+var _sourceEventJsDefault = parcelHelpers.interopDefault(_sourceEventJs);
+exports.default = function(events, node) {
+    if (events.target) {
+        events = _sourceEventJsDefault.default(events);
+        if (node === undefined) node = events.currentTarget;
+        events = events.touches || [
+            events
+        ];
+    }
+    return Array.from(events, (event)=>_pointerJsDefault.default(event, node)
+    );
+};
+
+},{"./pointer.js":"anuPF","./sourceEvent.js":"1yGDP","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ima4m":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _arrayJs = require("./array.js");
+var _arrayJsDefault = parcelHelpers.interopDefault(_arrayJs);
+var _indexJs = require("./selection/index.js");
+exports.default = function(selector) {
+    return typeof selector === "string" ? new _indexJs.Selection([
+        document.querySelectorAll(selector)
+    ], [
+        document.documentElement
+    ]) : new _indexJs.Selection([
+        _arrayJsDefault.default(selector)
+    ], _indexJs.root);
+};
+
+},{"./array.js":"afKQ7","./selection/index.js":"cmRC5","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"c32b6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "transition", ()=>_indexJsDefault.default
@@ -6376,7 +7387,7 @@ var _activeJsDefault = parcelHelpers.interopDefault(_activeJs);
 var _interruptJs = require("./interrupt.js");
 var _interruptJsDefault = parcelHelpers.interopDefault(_interruptJs);
 
-},{"./selection/index.js":"gNdN5","./transition/index.js":"18i1e","./active.js":"e5Mev","./interrupt.js":"d4VjA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gNdN5":[function(require,module,exports) {
+},{"./selection/index.js":"araeo","./transition/index.js":"aZ896","./active.js":"1ijZ3","./interrupt.js":"31eFb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"araeo":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _d3Selection = require("d3-selection");
 var _interruptJs = require("./interrupt.js");
@@ -6386,7 +7397,7 @@ var _transitionJsDefault = parcelHelpers.interopDefault(_transitionJs);
 _d3Selection.selection.prototype.interrupt = _interruptJsDefault.default;
 _d3Selection.selection.prototype.transition = _transitionJsDefault.default;
 
-},{"d3-selection":"hgWtk","./interrupt.js":"hoP2s","./transition.js":"7r67v","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hoP2s":[function(require,module,exports) {
+},{"d3-selection":"7GQex","./interrupt.js":"e4fMh","./transition.js":"fDBOx","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"e4fMh":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _interruptJs = require("../interrupt.js");
@@ -6397,7 +7408,7 @@ exports.default = function(name) {
     });
 };
 
-},{"../interrupt.js":"d4VjA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"d4VjA":[function(require,module,exports) {
+},{"../interrupt.js":"31eFb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"31eFb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _scheduleJs = require("./transition/schedule.js");
@@ -6419,7 +7430,7 @@ exports.default = function(node, name) {
     if (empty) delete node.__transition;
 };
 
-},{"./transition/schedule.js":"dTpjR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dTpjR":[function(require,module,exports) {
+},{"./transition/schedule.js":"21pci","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"21pci":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CREATED", ()=>CREATED
@@ -6716,7 +7727,7 @@ exports.default = function(callback1, delay1, time1) {
     return t;
 };
 
-},{"./timer.js":"e5Yqg","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7r67v":[function(require,module,exports) {
+},{"./timer.js":"e5Yqg","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fDBOx":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("../transition/index.js");
@@ -6747,7 +7758,7 @@ exports.default = function(name) {
     return new _indexJs.Transition(groups, this._parents, name, id);
 };
 
-},{"../transition/index.js":"18i1e","../transition/schedule.js":"dTpjR","d3-ease":"elZFc","d3-timer":"82ygz","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"18i1e":[function(require,module,exports) {
+},{"../transition/index.js":"aZ896","../transition/schedule.js":"21pci","d3-ease":"elZFc","d3-timer":"82ygz","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aZ896":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Transition", ()=>Transition
@@ -6814,6 +7825,8 @@ Transition.prototype = transition.prototype = {
     constructor: Transition,
     select: _selectJsDefault.default,
     selectAll: _selectAllJsDefault.default,
+    selectChild: selection_prototype.selectChild,
+    selectChildren: selection_prototype.selectChildren,
     filter: _filterJsDefault.default,
     merge: _mergeJsDefault.default,
     selection: _selectionJsDefault.default,
@@ -6841,7 +7854,7 @@ Transition.prototype = transition.prototype = {
     [Symbol.iterator]: selection_prototype[Symbol.iterator]
 };
 
-},{"d3-selection":"hgWtk","./attr.js":"a88nM","./attrTween.js":"4rwV3","./delay.js":"zwknt","./duration.js":"fXFoC","./ease.js":"d7SOb","./easeVarying.js":"6ms9d","./filter.js":"koiOg","./merge.js":"66rfJ","./on.js":"2whzO","./remove.js":"jdITm","./select.js":"fZfF3","./selectAll.js":"lJAHb","./selection.js":"a9rwa","./style.js":"8dHzR","./styleTween.js":"8Kz8d","./text.js":"hhhZ2","./textTween.js":"ezXKs","./transition.js":"eIPZ1","./tween.js":"8L0br","./end.js":"bGIdi","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"a88nM":[function(require,module,exports) {
+},{"d3-selection":"7GQex","./attr.js":"82zuA","./attrTween.js":"6AKs7","./delay.js":"3Ce8c","./duration.js":"jvnRB","./ease.js":"7QoXP","./easeVarying.js":"1iqf2","./filter.js":"amANs","./merge.js":"asdPj","./on.js":"9la8r","./remove.js":"itxOE","./select.js":"c2Hl7","./selectAll.js":"hBemx","./selection.js":"h4gSd","./style.js":"ePbS3","./styleTween.js":"llT80","./text.js":"6xD24","./textTween.js":"e81ax","./transition.js":"eQnB6","./tween.js":"6da90","./end.js":"ew7Rd","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"82zuA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Interpolate = require("d3-interpolate");
@@ -6898,7 +7911,7 @@ exports.default = function(name, value) {
     return this.attrTween(name, typeof value === "function" ? (fullname.local ? attrFunctionNS : attrFunction)(fullname, i, _tweenJs.tweenValue(this, "attr." + name, value)) : value == null ? (fullname.local ? attrRemoveNS : attrRemove)(fullname) : (fullname.local ? attrConstantNS : attrConstant)(fullname, i, value));
 };
 
-},{"d3-interpolate":"e7XwA","d3-selection":"hgWtk","./tween.js":"8L0br","./interpolate.js":"1aR0B","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8L0br":[function(require,module,exports) {
+},{"d3-interpolate":"e7XwA","d3-selection":"7GQex","./tween.js":"6da90","./interpolate.js":"kEXS7","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6da90":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "tweenValue", ()=>tweenValue
@@ -6968,7 +7981,7 @@ function tweenValue(transition, name, value) {
     };
 }
 
-},{"./schedule.js":"dTpjR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1aR0B":[function(require,module,exports) {
+},{"./schedule.js":"21pci","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kEXS7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Color = require("d3-color");
@@ -6978,7 +7991,7 @@ exports.default = function(a, b) {
     return (typeof b === "number" ? _d3Interpolate.interpolateNumber : b instanceof _d3Color.color ? _d3Interpolate.interpolateRgb : (c = _d3Color.color(b)) ? (b = c, _d3Interpolate.interpolateRgb) : _d3Interpolate.interpolateString)(a, b);
 };
 
-},{"d3-color":"ap3Jg","d3-interpolate":"e7XwA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4rwV3":[function(require,module,exports) {
+},{"d3-color":"ap3Jg","d3-interpolate":"e7XwA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6AKs7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Selection = require("d3-selection");
@@ -7021,7 +8034,7 @@ exports.default = function(name, value) {
     return this.tween(key, (fullname.local ? attrTweenNS : attrTween)(fullname, value));
 };
 
-},{"d3-selection":"hgWtk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"zwknt":[function(require,module,exports) {
+},{"d3-selection":"7GQex","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3Ce8c":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _scheduleJs = require("./schedule.js");
@@ -7040,7 +8053,7 @@ exports.default = function(value) {
     return arguments.length ? this.each((typeof value === "function" ? delayFunction : delayConstant)(id, value)) : _scheduleJs.get(this.node(), id).delay;
 };
 
-},{"./schedule.js":"dTpjR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fXFoC":[function(require,module,exports) {
+},{"./schedule.js":"21pci","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jvnRB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _scheduleJs = require("./schedule.js");
@@ -7059,7 +8072,7 @@ exports.default = function(value) {
     return arguments.length ? this.each((typeof value === "function" ? durationFunction : durationConstant)(id, value)) : _scheduleJs.get(this.node(), id).duration;
 };
 
-},{"./schedule.js":"dTpjR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"d7SOb":[function(require,module,exports) {
+},{"./schedule.js":"21pci","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7QoXP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _scheduleJs = require("./schedule.js");
@@ -7074,7 +8087,7 @@ exports.default = function(value) {
     return arguments.length ? this.each(easeConstant(id, value)) : _scheduleJs.get(this.node(), id).ease;
 };
 
-},{"./schedule.js":"dTpjR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6ms9d":[function(require,module,exports) {
+},{"./schedule.js":"21pci","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1iqf2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _scheduleJs = require("./schedule.js");
@@ -7090,7 +8103,7 @@ exports.default = function(value) {
     return this.each(easeVarying(this._id, value));
 };
 
-},{"./schedule.js":"dTpjR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"koiOg":[function(require,module,exports) {
+},{"./schedule.js":"21pci","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"amANs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Selection = require("d3-selection");
@@ -7103,7 +8116,7 @@ exports.default = function(match) {
     return new _indexJs.Transition(subgroups, this._parents, this._name, this._id);
 };
 
-},{"d3-selection":"hgWtk","./index.js":"18i1e","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"66rfJ":[function(require,module,exports) {
+},{"d3-selection":"7GQex","./index.js":"aZ896","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"asdPj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("./index.js");
@@ -7116,7 +8129,7 @@ exports.default = function(transition) {
     return new _indexJs.Transition(merges, this._parents, this._name, this._id);
 };
 
-},{"./index.js":"18i1e","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2whzO":[function(require,module,exports) {
+},{"./index.js":"aZ896","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9la8r":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _scheduleJs = require("./schedule.js");
@@ -7143,7 +8156,7 @@ exports.default = function(name, listener) {
     return arguments.length < 2 ? _scheduleJs.get(this.node(), id).on.on(name) : this.each(onFunction(id, name, listener));
 };
 
-},{"./schedule.js":"dTpjR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jdITm":[function(require,module,exports) {
+},{"./schedule.js":"21pci","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"itxOE":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function removeFunction(id) {
@@ -7157,7 +8170,7 @@ exports.default = function() {
     return this.on("end.remove", removeFunction(this._id));
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fZfF3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"c2Hl7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Selection = require("d3-selection");
@@ -7177,7 +8190,7 @@ exports.default = function(select) {
     return new _indexJs.Transition(subgroups, this._parents, name, id);
 };
 
-},{"d3-selection":"hgWtk","./index.js":"18i1e","./schedule.js":"dTpjR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lJAHb":[function(require,module,exports) {
+},{"d3-selection":"7GQex","./index.js":"aZ896","./schedule.js":"21pci","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hBemx":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Selection = require("d3-selection");
@@ -7197,7 +8210,7 @@ exports.default = function(select) {
     return new _indexJs.Transition(subgroups, parents, name, id);
 };
 
-},{"d3-selection":"hgWtk","./index.js":"18i1e","./schedule.js":"dTpjR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"a9rwa":[function(require,module,exports) {
+},{"d3-selection":"7GQex","./index.js":"aZ896","./schedule.js":"21pci","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"h4gSd":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Selection = require("d3-selection");
@@ -7206,7 +8219,7 @@ exports.default = function() {
     return new Selection(this._groups, this._parents);
 };
 
-},{"d3-selection":"hgWtk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8dHzR":[function(require,module,exports) {
+},{"d3-selection":"7GQex","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ePbS3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Interpolate = require("d3-interpolate");
@@ -7258,7 +8271,7 @@ exports.default = function(name, value, priority) {
     return value == null ? this.styleTween(name, styleNull(name, i)).on("end.style." + name, styleRemove(name)) : typeof value === "function" ? this.styleTween(name, styleFunction(name, i, _tweenJs.tweenValue(this, "style." + name, value))).each(styleMaybeRemove(this._id, name)) : this.styleTween(name, styleConstant(name, i, value), priority).on("end.style." + name, null);
 };
 
-},{"d3-interpolate":"e7XwA","d3-selection":"hgWtk","./schedule.js":"dTpjR","./tween.js":"8L0br","./interpolate.js":"1aR0B","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8Kz8d":[function(require,module,exports) {
+},{"d3-interpolate":"e7XwA","d3-selection":"7GQex","./schedule.js":"21pci","./tween.js":"6da90","./interpolate.js":"kEXS7","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"llT80":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function styleInterpolate(name, i, priority) {
@@ -7284,7 +8297,7 @@ exports.default = function(name, value, priority) {
     return this.tween(key, styleTween(name, value, priority == null ? "" : priority));
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hhhZ2":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6xD24":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _tweenJs = require("./tween.js");
@@ -7303,7 +8316,7 @@ exports.default = function(value) {
     return this.tween("text", typeof value === "function" ? textFunction(_tweenJs.tweenValue(this, "text", value)) : textConstant(value == null ? "" : value + ""));
 };
 
-},{"./tween.js":"8L0br","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ezXKs":[function(require,module,exports) {
+},{"./tween.js":"6da90","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"e81ax":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function textInterpolate(i) {
@@ -7329,7 +8342,7 @@ exports.default = function(value) {
     return this.tween(key, textTween(value));
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eIPZ1":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eQnB6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("./index.js");
@@ -7351,7 +8364,7 @@ exports.default = function() {
     return new _indexJs.Transition(groups, this._parents, name, id1);
 };
 
-},{"./index.js":"18i1e","./schedule.js":"dTpjR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bGIdi":[function(require,module,exports) {
+},{"./index.js":"aZ896","./schedule.js":"21pci","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ew7Rd":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _scheduleJs = require("./schedule.js");
@@ -7383,7 +8396,7 @@ exports.default = function() {
     });
 };
 
-},{"./schedule.js":"dTpjR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"elZFc":[function(require,module,exports) {
+},{"./schedule.js":"21pci","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"elZFc":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "easeLinear", ()=>_linearJs.linear
@@ -7727,7 +8740,7 @@ var elasticInOut1 = function custom(a3, p3) {
     return elasticInOut;
 }(amplitude, period);
 
-},{"./math.js":"7Y1a5","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"e5Mev":[function(require,module,exports) {
+},{"./math.js":"7Y1a5","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1ijZ3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("./transition/index.js");
@@ -7750,7 +8763,7 @@ exports.default = function(node, name) {
     return null;
 };
 
-},{"./transition/index.js":"18i1e","./transition/schedule.js":"dTpjR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"j4KZw":[function(require,module,exports) {
+},{"./transition/index.js":"aZ896","./transition/schedule.js":"21pci","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"j4KZw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = (x)=>()=>x
@@ -8199,7 +9212,559 @@ exports.default = function(x) {
     };
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jmn9V":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jBVGV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "color", ()=>_colorJsDefault.default
+);
+parcelHelpers.export(exports, "rgb", ()=>_colorJs.rgb
+);
+parcelHelpers.export(exports, "hsl", ()=>_colorJs.hsl
+);
+parcelHelpers.export(exports, "lab", ()=>_labJsDefault.default
+);
+parcelHelpers.export(exports, "hcl", ()=>_labJs.hcl
+);
+parcelHelpers.export(exports, "lch", ()=>_labJs.lch
+);
+parcelHelpers.export(exports, "gray", ()=>_labJs.gray
+);
+parcelHelpers.export(exports, "cubehelix", ()=>_cubehelixJsDefault.default
+);
+var _colorJs = require("./color.js");
+var _colorJsDefault = parcelHelpers.interopDefault(_colorJs);
+var _labJs = require("./lab.js");
+var _labJsDefault = parcelHelpers.interopDefault(_labJs);
+var _cubehelixJs = require("./cubehelix.js");
+var _cubehelixJsDefault = parcelHelpers.interopDefault(_cubehelixJs);
+
+},{"./color.js":"3vDoy","./lab.js":"fh7ik","./cubehelix.js":"fhjZJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3vDoy":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Color", ()=>Color
+);
+parcelHelpers.export(exports, "darker", ()=>darker
+);
+parcelHelpers.export(exports, "brighter", ()=>brighter
+);
+parcelHelpers.export(exports, "rgbConvert", ()=>rgbConvert
+);
+parcelHelpers.export(exports, "rgb", ()=>rgb
+);
+parcelHelpers.export(exports, "Rgb", ()=>Rgb
+);
+parcelHelpers.export(exports, "hslConvert", ()=>hslConvert
+);
+parcelHelpers.export(exports, "hsl", ()=>hsl
+);
+var _defineJs = require("./define.js");
+var _defineJsDefault = parcelHelpers.interopDefault(_defineJs);
+function Color() {
+}
+var darker = 0.7;
+var brighter = 1 / darker;
+var reI = "\\s*([+-]?\\d+)\\s*", reN = "\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)\\s*", reP = "\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*", reHex = /^#([0-9a-f]{3,8})$/, reRgbInteger = new RegExp("^rgb\\(" + [
+    reI,
+    reI,
+    reI
+] + "\\)$"), reRgbPercent = new RegExp("^rgb\\(" + [
+    reP,
+    reP,
+    reP
+] + "\\)$"), reRgbaInteger = new RegExp("^rgba\\(" + [
+    reI,
+    reI,
+    reI,
+    reN
+] + "\\)$"), reRgbaPercent = new RegExp("^rgba\\(" + [
+    reP,
+    reP,
+    reP,
+    reN
+] + "\\)$"), reHslPercent = new RegExp("^hsl\\(" + [
+    reN,
+    reP,
+    reP
+] + "\\)$"), reHslaPercent = new RegExp("^hsla\\(" + [
+    reN,
+    reP,
+    reP,
+    reN
+] + "\\)$");
+var named = {
+    aliceblue: 15792383,
+    antiquewhite: 16444375,
+    aqua: 65535,
+    aquamarine: 8388564,
+    azure: 15794175,
+    beige: 16119260,
+    bisque: 16770244,
+    black: 0,
+    blanchedalmond: 16772045,
+    blue: 255,
+    blueviolet: 9055202,
+    brown: 10824234,
+    burlywood: 14596231,
+    cadetblue: 6266528,
+    chartreuse: 8388352,
+    chocolate: 13789470,
+    coral: 16744272,
+    cornflowerblue: 6591981,
+    cornsilk: 16775388,
+    crimson: 14423100,
+    cyan: 65535,
+    darkblue: 139,
+    darkcyan: 35723,
+    darkgoldenrod: 12092939,
+    darkgray: 11119017,
+    darkgreen: 25600,
+    darkgrey: 11119017,
+    darkkhaki: 12433259,
+    darkmagenta: 9109643,
+    darkolivegreen: 5597999,
+    darkorange: 16747520,
+    darkorchid: 10040012,
+    darkred: 9109504,
+    darksalmon: 15308410,
+    darkseagreen: 9419919,
+    darkslateblue: 4734347,
+    darkslategray: 3100495,
+    darkslategrey: 3100495,
+    darkturquoise: 52945,
+    darkviolet: 9699539,
+    deeppink: 16716947,
+    deepskyblue: 49151,
+    dimgray: 6908265,
+    dimgrey: 6908265,
+    dodgerblue: 2003199,
+    firebrick: 11674146,
+    floralwhite: 16775920,
+    forestgreen: 2263842,
+    fuchsia: 16711935,
+    gainsboro: 14474460,
+    ghostwhite: 16316671,
+    gold: 16766720,
+    goldenrod: 14329120,
+    gray: 8421504,
+    green: 32768,
+    greenyellow: 11403055,
+    grey: 8421504,
+    honeydew: 15794160,
+    hotpink: 16738740,
+    indianred: 13458524,
+    indigo: 4915330,
+    ivory: 16777200,
+    khaki: 15787660,
+    lavender: 15132410,
+    lavenderblush: 16773365,
+    lawngreen: 8190976,
+    lemonchiffon: 16775885,
+    lightblue: 11393254,
+    lightcoral: 15761536,
+    lightcyan: 14745599,
+    lightgoldenrodyellow: 16448210,
+    lightgray: 13882323,
+    lightgreen: 9498256,
+    lightgrey: 13882323,
+    lightpink: 16758465,
+    lightsalmon: 16752762,
+    lightseagreen: 2142890,
+    lightskyblue: 8900346,
+    lightslategray: 7833753,
+    lightslategrey: 7833753,
+    lightsteelblue: 11584734,
+    lightyellow: 16777184,
+    lime: 65280,
+    limegreen: 3329330,
+    linen: 16445670,
+    magenta: 16711935,
+    maroon: 8388608,
+    mediumaquamarine: 6737322,
+    mediumblue: 205,
+    mediumorchid: 12211667,
+    mediumpurple: 9662683,
+    mediumseagreen: 3978097,
+    mediumslateblue: 8087790,
+    mediumspringgreen: 64154,
+    mediumturquoise: 4772300,
+    mediumvioletred: 13047173,
+    midnightblue: 1644912,
+    mintcream: 16121850,
+    mistyrose: 16770273,
+    moccasin: 16770229,
+    navajowhite: 16768685,
+    navy: 128,
+    oldlace: 16643558,
+    olive: 8421376,
+    olivedrab: 7048739,
+    orange: 16753920,
+    orangered: 16729344,
+    orchid: 14315734,
+    palegoldenrod: 15657130,
+    palegreen: 10025880,
+    paleturquoise: 11529966,
+    palevioletred: 14381203,
+    papayawhip: 16773077,
+    peachpuff: 16767673,
+    peru: 13468991,
+    pink: 16761035,
+    plum: 14524637,
+    powderblue: 11591910,
+    purple: 8388736,
+    rebeccapurple: 6697881,
+    red: 16711680,
+    rosybrown: 12357519,
+    royalblue: 4286945,
+    saddlebrown: 9127187,
+    salmon: 16416882,
+    sandybrown: 16032864,
+    seagreen: 3050327,
+    seashell: 16774638,
+    sienna: 10506797,
+    silver: 12632256,
+    skyblue: 8900331,
+    slateblue: 6970061,
+    slategray: 7372944,
+    slategrey: 7372944,
+    snow: 16775930,
+    springgreen: 65407,
+    steelblue: 4620980,
+    tan: 13808780,
+    teal: 32896,
+    thistle: 14204888,
+    tomato: 16737095,
+    turquoise: 4251856,
+    violet: 15631086,
+    wheat: 16113331,
+    white: 16777215,
+    whitesmoke: 16119285,
+    yellow: 16776960,
+    yellowgreen: 10145074
+};
+_defineJsDefault.default(Color, color, {
+    copy: function(channels) {
+        return Object.assign(new this.constructor, this, channels);
+    },
+    displayable: function() {
+        return this.rgb().displayable();
+    },
+    hex: color_formatHex,
+    formatHex: color_formatHex,
+    formatHsl: color_formatHsl,
+    formatRgb: color_formatRgb,
+    toString: color_formatRgb
+});
+function color_formatHex() {
+    return this.rgb().formatHex();
+}
+function color_formatHsl() {
+    return hslConvert(this).formatHsl();
+}
+function color_formatRgb() {
+    return this.rgb().formatRgb();
+}
+function color(format) {
+    var m, l;
+    format = (format + "").trim().toLowerCase();
+    return (m = reHex.exec(format)) ? (l = m[1].length, m = parseInt(m[1], 16), l === 6 ? rgbn(m) // #ff0000
+     : l === 3 ? new Rgb(m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, (m & 15) << 4 | m & 15, 1) // #f00
+     : l === 8 ? rgba(m >> 24 & 255, m >> 16 & 255, m >> 8 & 255, (m & 255) / 255) // #ff000000
+     : l === 4 ? rgba(m >> 12 & 15 | m >> 8 & 240, m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, ((m & 15) << 4 | m & 15) / 255) // #f000
+     : null) : (m = reRgbInteger.exec(format)) ? new Rgb(m[1], m[2], m[3], 1) // rgb(255, 0, 0)
+     : (m = reRgbPercent.exec(format)) ? new Rgb(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, 1) // rgb(100%, 0%, 0%)
+     : (m = reRgbaInteger.exec(format)) ? rgba(m[1], m[2], m[3], m[4]) // rgba(255, 0, 0, 1)
+     : (m = reRgbaPercent.exec(format)) ? rgba(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, m[4]) // rgb(100%, 0%, 0%, 1)
+     : (m = reHslPercent.exec(format)) ? hsla(m[1], m[2] / 100, m[3] / 100, 1) // hsl(120, 50%, 50%)
+     : (m = reHslaPercent.exec(format)) ? hsla(m[1], m[2] / 100, m[3] / 100, m[4]) // hsla(120, 50%, 50%, 1)
+     : named.hasOwnProperty(format) ? rgbn(named[format]) // eslint-disable-line no-prototype-builtins
+     : format === "transparent" ? new Rgb(NaN, NaN, NaN, 0) : null;
+}
+exports.default = color;
+function rgbn(n) {
+    return new Rgb(n >> 16 & 255, n >> 8 & 255, n & 255, 1);
+}
+function rgba(r, g, b, a) {
+    if (a <= 0) r = g = b = NaN;
+    return new Rgb(r, g, b, a);
+}
+function rgbConvert(o) {
+    if (!(o instanceof Color)) o = color(o);
+    if (!o) return new Rgb;
+    o = o.rgb();
+    return new Rgb(o.r, o.g, o.b, o.opacity);
+}
+function rgb(r, g, b, opacity) {
+    return arguments.length === 1 ? rgbConvert(r) : new Rgb(r, g, b, opacity == null ? 1 : opacity);
+}
+function Rgb(r, g, b, opacity) {
+    this.r = +r;
+    this.g = +g;
+    this.b = +b;
+    this.opacity = +opacity;
+}
+_defineJsDefault.default(Rgb, rgb, _defineJs.extend(Color, {
+    brighter: function(k) {
+        k = k == null ? brighter : Math.pow(brighter, k);
+        return new Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
+    },
+    darker: function(k) {
+        k = k == null ? darker : Math.pow(darker, k);
+        return new Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
+    },
+    rgb: function() {
+        return this;
+    },
+    displayable: function() {
+        return -0.5 <= this.r && this.r < 255.5 && -0.5 <= this.g && this.g < 255.5 && -0.5 <= this.b && this.b < 255.5 && 0 <= this.opacity && this.opacity <= 1;
+    },
+    hex: rgb_formatHex,
+    formatHex: rgb_formatHex,
+    formatRgb: rgb_formatRgb,
+    toString: rgb_formatRgb
+}));
+function rgb_formatHex() {
+    return "#" + hex(this.r) + hex(this.g) + hex(this.b);
+}
+function rgb_formatRgb() {
+    var a = this.opacity;
+    a = isNaN(a) ? 1 : Math.max(0, Math.min(1, a));
+    return (a === 1 ? "rgb(" : "rgba(") + Math.max(0, Math.min(255, Math.round(this.r) || 0)) + ", " + Math.max(0, Math.min(255, Math.round(this.g) || 0)) + ", " + Math.max(0, Math.min(255, Math.round(this.b) || 0)) + (a === 1 ? ")" : ", " + a + ")");
+}
+function hex(value) {
+    value = Math.max(0, Math.min(255, Math.round(value) || 0));
+    return (value < 16 ? "0" : "") + value.toString(16);
+}
+function hsla(h, s, l, a) {
+    if (a <= 0) h = s = l = NaN;
+    else if (l <= 0 || l >= 1) h = s = NaN;
+    else if (s <= 0) h = NaN;
+    return new Hsl(h, s, l, a);
+}
+function hslConvert(o) {
+    if (o instanceof Hsl) return new Hsl(o.h, o.s, o.l, o.opacity);
+    if (!(o instanceof Color)) o = color(o);
+    if (!o) return new Hsl;
+    if (o instanceof Hsl) return o;
+    o = o.rgb();
+    var r = o.r / 255, g = o.g / 255, b = o.b / 255, min = Math.min(r, g, b), max = Math.max(r, g, b), h = NaN, s = max - min, l = (max + min) / 2;
+    if (s) {
+        if (r === max) h = (g - b) / s + (g < b) * 6;
+        else if (g === max) h = (b - r) / s + 2;
+        else h = (r - g) / s + 4;
+        s /= l < 0.5 ? max + min : 2 - max - min;
+        h *= 60;
+    } else s = l > 0 && l < 1 ? 0 : h;
+    return new Hsl(h, s, l, o.opacity);
+}
+function hsl(h, s, l, opacity) {
+    return arguments.length === 1 ? hslConvert(h) : new Hsl(h, s, l, opacity == null ? 1 : opacity);
+}
+function Hsl(h, s, l, opacity) {
+    this.h = +h;
+    this.s = +s;
+    this.l = +l;
+    this.opacity = +opacity;
+}
+_defineJsDefault.default(Hsl, hsl, _defineJs.extend(Color, {
+    brighter: function(k) {
+        k = k == null ? brighter : Math.pow(brighter, k);
+        return new Hsl(this.h, this.s, this.l * k, this.opacity);
+    },
+    darker: function(k) {
+        k = k == null ? darker : Math.pow(darker, k);
+        return new Hsl(this.h, this.s, this.l * k, this.opacity);
+    },
+    rgb: function() {
+        var h = this.h % 360 + (this.h < 0) * 360, s = isNaN(h) || isNaN(this.s) ? 0 : this.s, l = this.l, m2 = l + (l < 0.5 ? l : 1 - l) * s, m1 = 2 * l - m2;
+        return new Rgb(hsl2rgb(h >= 240 ? h - 240 : h + 120, m1, m2), hsl2rgb(h, m1, m2), hsl2rgb(h < 120 ? h + 240 : h - 120, m1, m2), this.opacity);
+    },
+    displayable: function() {
+        return (0 <= this.s && this.s <= 1 || isNaN(this.s)) && 0 <= this.l && this.l <= 1 && 0 <= this.opacity && this.opacity <= 1;
+    },
+    formatHsl: function() {
+        var a = this.opacity;
+        a = isNaN(a) ? 1 : Math.max(0, Math.min(1, a));
+        return (a === 1 ? "hsl(" : "hsla(") + (this.h || 0) + ", " + (this.s || 0) * 100 + "%, " + (this.l || 0) * 100 + "%" + (a === 1 ? ")" : ", " + a + ")");
+    }
+}));
+/* From FvD 13.37, CSS Color Module Level 3 */ function hsl2rgb(h, m1, m2) {
+    return (h < 60 ? m1 + (m2 - m1) * h / 60 : h < 180 ? m2 : h < 240 ? m1 + (m2 - m1) * (240 - h) / 60 : m1) * 255;
+}
+
+},{"./define.js":"5hIIS","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5hIIS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "extend", ()=>extend
+);
+exports.default = function(constructor, factory, prototype) {
+    constructor.prototype = factory.prototype = prototype;
+    prototype.constructor = constructor;
+};
+function extend(parent, definition) {
+    var prototype = Object.create(parent.prototype);
+    for(var key in definition)prototype[key] = definition[key];
+    return prototype;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fh7ik":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "gray", ()=>gray
+);
+parcelHelpers.export(exports, "Lab", ()=>Lab
+);
+parcelHelpers.export(exports, "lch", ()=>lch
+);
+parcelHelpers.export(exports, "hcl", ()=>hcl
+);
+parcelHelpers.export(exports, "Hcl", ()=>Hcl
+);
+var _defineJs = require("./define.js");
+var _defineJsDefault = parcelHelpers.interopDefault(_defineJs);
+var _colorJs = require("./color.js");
+var _mathJs = require("./math.js");
+// https://observablehq.com/@mbostock/lab-and-rgb
+const K = 18, Xn = 0.96422, Yn = 1, Zn = 0.82521, t0 = 4 / 29, t1 = 6 / 29, t2 = 3 * t1 * t1, t3 = t1 * t1 * t1;
+function labConvert(o) {
+    if (o instanceof Lab) return new Lab(o.l, o.a, o.b, o.opacity);
+    if (o instanceof Hcl) return hcl2lab(o);
+    if (!(o instanceof _colorJs.Rgb)) o = _colorJs.rgbConvert(o);
+    var r = rgb2lrgb(o.r), g = rgb2lrgb(o.g), b = rgb2lrgb(o.b), y = xyz2lab((0.2225045 * r + 0.7168786 * g + 0.0606169 * b) / Yn), x, z;
+    if (r === g && g === b) x = z = y;
+    else {
+        x = xyz2lab((0.4360747 * r + 0.3850649 * g + 0.1430804 * b) / Xn);
+        z = xyz2lab((0.0139322 * r + 0.0971045 * g + 0.7141733 * b) / Zn);
+    }
+    return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z), o.opacity);
+}
+function gray(l, opacity) {
+    return new Lab(l, 0, 0, opacity == null ? 1 : opacity);
+}
+function lab(l, a, b, opacity) {
+    return arguments.length === 1 ? labConvert(l) : new Lab(l, a, b, opacity == null ? 1 : opacity);
+}
+exports.default = lab;
+function Lab(l, a, b, opacity) {
+    this.l = +l;
+    this.a = +a;
+    this.b = +b;
+    this.opacity = +opacity;
+}
+_defineJsDefault.default(Lab, lab, _defineJs.extend(_colorJs.Color, {
+    brighter: function(k) {
+        return new Lab(this.l + K * (k == null ? 1 : k), this.a, this.b, this.opacity);
+    },
+    darker: function(k) {
+        return new Lab(this.l - K * (k == null ? 1 : k), this.a, this.b, this.opacity);
+    },
+    rgb: function() {
+        var y = (this.l + 16) / 116, x = isNaN(this.a) ? y : y + this.a / 500, z = isNaN(this.b) ? y : y - this.b / 200;
+        x = Xn * lab2xyz(x);
+        y = Yn * lab2xyz(y);
+        z = Zn * lab2xyz(z);
+        return new _colorJs.Rgb(lrgb2rgb(3.1338561 * x - 1.6168667 * y - 0.4906146 * z), lrgb2rgb(-0.9787684 * x + 1.9161415 * y + 0.033454 * z), lrgb2rgb(0.0719453 * x - 0.2289914 * y + 1.4052427 * z), this.opacity);
+    }
+}));
+function xyz2lab(t) {
+    return t > t3 ? Math.pow(t, 1 / 3) : t / t2 + t0;
+}
+function lab2xyz(t) {
+    return t > t1 ? t * t * t : t2 * (t - t0);
+}
+function lrgb2rgb(x) {
+    return 255 * (x <= 0.0031308 ? 12.92 * x : 1.055 * Math.pow(x, 1 / 2.4) - 0.055);
+}
+function rgb2lrgb(x) {
+    return (x /= 255) <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
+}
+function hclConvert(o) {
+    if (o instanceof Hcl) return new Hcl(o.h, o.c, o.l, o.opacity);
+    if (!(o instanceof Lab)) o = labConvert(o);
+    if (o.a === 0 && o.b === 0) return new Hcl(NaN, 0 < o.l && o.l < 100 ? 0 : NaN, o.l, o.opacity);
+    var h = Math.atan2(o.b, o.a) * _mathJs.degrees;
+    return new Hcl(h < 0 ? h + 360 : h, Math.sqrt(o.a * o.a + o.b * o.b), o.l, o.opacity);
+}
+function lch(l, c, h, opacity) {
+    return arguments.length === 1 ? hclConvert(l) : new Hcl(h, c, l, opacity == null ? 1 : opacity);
+}
+function hcl(h, c, l, opacity) {
+    return arguments.length === 1 ? hclConvert(h) : new Hcl(h, c, l, opacity == null ? 1 : opacity);
+}
+function Hcl(h, c, l, opacity) {
+    this.h = +h;
+    this.c = +c;
+    this.l = +l;
+    this.opacity = +opacity;
+}
+function hcl2lab(o) {
+    if (isNaN(o.h)) return new Lab(o.l, 0, 0, o.opacity);
+    var h = o.h * _mathJs.radians;
+    return new Lab(o.l, Math.cos(h) * o.c, Math.sin(h) * o.c, o.opacity);
+}
+_defineJsDefault.default(Hcl, hcl, _defineJs.extend(_colorJs.Color, {
+    brighter: function(k) {
+        return new Hcl(this.h, this.c, this.l + K * (k == null ? 1 : k), this.opacity);
+    },
+    darker: function(k) {
+        return new Hcl(this.h, this.c, this.l - K * (k == null ? 1 : k), this.opacity);
+    },
+    rgb: function() {
+        return hcl2lab(this).rgb();
+    }
+}));
+
+},{"./define.js":"5hIIS","./color.js":"3vDoy","./math.js":"aBomc","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aBomc":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "radians", ()=>radians
+);
+parcelHelpers.export(exports, "degrees", ()=>degrees
+);
+const radians = Math.PI / 180;
+const degrees = 180 / Math.PI;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fhjZJ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Cubehelix", ()=>Cubehelix
+);
+var _defineJs = require("./define.js");
+var _defineJsDefault = parcelHelpers.interopDefault(_defineJs);
+var _colorJs = require("./color.js");
+var _mathJs = require("./math.js");
+var A = -0.14861, B = 1.78277, C = -0.29227, D = -0.90649, E = 1.97294, ED = E * D, EB = E * B, BC_DA = B * C - D * A;
+function cubehelixConvert(o) {
+    if (o instanceof Cubehelix) return new Cubehelix(o.h, o.s, o.l, o.opacity);
+    if (!(o instanceof _colorJs.Rgb)) o = _colorJs.rgbConvert(o);
+    var r = o.r / 255, g = o.g / 255, b = o.b / 255, l = (BC_DA * b + ED * r - EB * g) / (BC_DA + ED - EB), bl = b - l, k = (E * (g - l) - C * bl) / D, s = Math.sqrt(k * k + bl * bl) / (E * l * (1 - l)), h = s ? Math.atan2(k, bl) * _mathJs.degrees - 120 : NaN;
+    return new Cubehelix(h < 0 ? h + 360 : h, s, l, o.opacity);
+}
+function cubehelix(h, s, l, opacity) {
+    return arguments.length === 1 ? cubehelixConvert(h) : new Cubehelix(h, s, l, opacity == null ? 1 : opacity);
+}
+exports.default = cubehelix;
+function Cubehelix(h, s, l, opacity) {
+    this.h = +h;
+    this.s = +s;
+    this.l = +l;
+    this.opacity = +opacity;
+}
+_defineJsDefault.default(Cubehelix, cubehelix, _defineJs.extend(_colorJs.Color, {
+    brighter: function(k) {
+        k = k == null ? _colorJs.brighter : Math.pow(_colorJs.brighter, k);
+        return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
+    },
+    darker: function(k) {
+        k = k == null ? _colorJs.darker : Math.pow(_colorJs.darker, k);
+        return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
+    },
+    rgb: function() {
+        var h = isNaN(this.h) ? 0 : (this.h + 120) * _mathJs.radians, l = +this.l, a = isNaN(this.s) ? 0 : this.s * l * (1 - l), cosh = Math.cos(h), sinh = Math.sin(h);
+        return new _colorJs.Rgb(255 * (l + a * (A * cosh + B * sinh)), 255 * (l + a * (C * cosh + D * sinh)), 255 * (l + a * (E * cosh)), this.opacity);
+    }
+}));
+
+},{"./define.js":"5hIIS","./color.js":"3vDoy","./math.js":"aBomc","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jmn9V":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "contours", ()=>_contoursJsDefault.default
@@ -8424,13 +9989,11 @@ exports.default = function() {
         var tz = threshold(values);
         // Convert number of thresholds into uniform thresholds.
         if (!Array.isArray(tz)) {
-            var domain = _d3Array.extent(values), start = domain[0], stop = domain[1];
-            tz = _d3Array.tickStep(start, stop, tz);
-            tz = _d3Array.range(Math.floor(start / tz) * tz, Math.floor(stop / tz) * tz, tz);
+            const e = _d3Array.extent(values), ts = _d3Array.tickStep(e[0], e[1], tz);
+            tz = _d3Array.ticks(Math.floor(e[0] / ts) * ts, Math.floor(e[1] / ts - 1) * ts, tz);
         } else tz = tz.slice().sort(_ascendingJsDefault.default);
-        return tz.map(function(value) {
-            return contour(values, value);
-        });
+        return tz.map((value)=>contour(values, value)
+        );
     }
     // Accumulate, smooth contour rings, assign holes to exterior rings.
     // Based on https://github.com/mbostock/shapefile/blob/v0.6.2/shp/polygon.js
@@ -8663,10 +10226,16 @@ function defaultWeight() {
 exports.default = function() {
     var x = defaultX, y = defaultY, weight = defaultWeight, dx = 960, dy = 500, r = 20, k = 2, o = r * 3, n = dx + o * 2 >> k, m = dy + o * 2 >> k, threshold = _constantJsDefault.default(20);
     function density(data1) {
-        var values0 = new Float32Array(n * m), values1 = new Float32Array(n * m);
+        var values0 = new Float32Array(n * m), values1 = new Float32Array(n * m), pow2k = Math.pow(2, -k);
         data1.forEach(function(d, i, data) {
-            var xi = +x(d, i, data) + o >> k, yi = +y(d, i, data) + o >> k, wi = +weight(d, i, data);
-            if (xi >= 0 && xi < n && yi >= 0 && yi < m) values0[xi + yi * n] += wi;
+            var xi = (x(d, i, data) + o) * pow2k, yi = (y(d, i, data) + o) * pow2k, wi = +weight(d, i, data);
+            if (xi >= 0 && xi < n && yi >= 0 && yi < m) {
+                var x0 = Math.floor(xi), y0 = Math.floor(yi), xt = xi - x0 - 0.5, yt = yi - y0 - 0.5;
+                values0[x0 + y0 * n] += (1 - xt) * (1 - yt) * wi;
+                values0[x0 + 1 + y0 * n] += xt * (1 - yt) * wi;
+                values0[x0 + 1 + (y0 + 1) * n] += xt * yt * wi;
+                values0[x0 + (y0 + 1) * n] += (1 - xt) * yt * wi;
+            }
         });
         // TODO Optimize.
         _blurJs.blurX({
@@ -8927,10 +10496,12 @@ class Delaunay {
             this.triangles = new Int32Array(3).fill(-1);
             this.halfedges = new Int32Array(3).fill(-1);
             this.triangles[0] = hull[0];
-            this.triangles[1] = hull[1];
-            this.triangles[2] = hull[1];
             inedges[hull[0]] = 1;
-            if (hull.length === 2) inedges[hull[1]] = 0;
+            if (hull.length === 2) {
+                inedges[hull[1]] = 0;
+                this.triangles[1] = hull[1];
+                this.triangles[2] = hull[1];
+            }
         }
     }
     voronoi(bounds) {
@@ -9005,7 +10576,9 @@ class Delaunay {
         this.renderHull(context);
         return buffer && buffer.value();
     }
-    renderPoints(context1, r = 2) {
+    renderPoints(context1, r) {
+        if (r === undefined && (!context1 || typeof context1.moveTo !== "function")) r = context1, context1 = null;
+        r = r == undefined ? 2 : +r;
         const buffer = context1 == null ? context1 = new _pathJsDefault.default : undefined;
         const { points  } = this;
         for(let i = 0, n = points.length; i < n; i += 2){
@@ -9077,6 +10650,7 @@ function* flatIterable(points, fx, fy, that) {
 },{"delaunator":"juMqj","./path.js":"kZ7BC","./polygon.js":"I8KG7","./voronoi.js":"lNO3t","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"juMqj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+var _robustPredicates = require("robust-predicates");
 const EPSILON = Math.pow(2, -52);
 const EDGE_STACK = new Uint32Array(512);
 class Delaunator {
@@ -9184,7 +10758,7 @@ class Delaunator {
             return;
         }
         // swap the order of the seed points for counter-clockwise orientation
-        if (orient(i0x, i0y, i1x, i1y, i2x, i2y)) {
+        if (_robustPredicates.orient2d(i0x, i0y, i1x, i1y, i2x, i2y) < 0) {
             const i = i1;
             const x = i1x;
             const y = i1y;
@@ -9234,7 +10808,7 @@ class Delaunator {
             }
             start = hullPrev[start];
             let e = start, q;
-            while(q = hullNext[e], !orient(x, y, coords[2 * e], coords[2 * e + 1], coords[2 * q], coords[2 * q + 1])){
+            while(q = hullNext[e], _robustPredicates.orient2d(x, y, coords[2 * e], coords[2 * e + 1], coords[2 * q], coords[2 * q + 1]) >= 0){
                 e = q;
                 if (e === start) {
                     e = -1;
@@ -9250,7 +10824,7 @@ class Delaunator {
             hullSize++;
             // walk forward through the hull, adding more triangles and flipping recursively
             let n = hullNext[e];
-            while(q = hullNext[n], orient(x, y, coords[2 * n], coords[2 * n + 1], coords[2 * q], coords[2 * q + 1])){
+            while(q = hullNext[n], _robustPredicates.orient2d(x, y, coords[2 * n], coords[2 * n + 1], coords[2 * q], coords[2 * q + 1]) < 0){
                 t = this._addTriangle(n, i, q, hullTri[i], -1, hullTri[n]);
                 hullTri[i] = this._legalize(t + 2);
                 hullNext[n] = n; // mark as removed
@@ -9258,7 +10832,7 @@ class Delaunator {
                 n = q;
             }
             // walk backward from the other side, adding more triangles and flipping
-            if (e === start) while(q = hullPrev[e], orient(x, y, coords[2 * q], coords[2 * q + 1], coords[2 * e], coords[2 * e + 1])){
+            if (e === start) while(q = hullPrev[e], _robustPredicates.orient2d(x, y, coords[2 * q], coords[2 * q + 1], coords[2 * e], coords[2 * e + 1]) < 0){
                 t = this._addTriangle(q, i, e, -1, hullTri[e], hullTri[q]);
                 this._legalize(t + 2);
                 hullTri[q] = t;
@@ -9378,17 +10952,6 @@ function dist(ax, ay, bx, by) {
     const dy = ay - by;
     return dx * dx + dy * dy;
 }
-// return 2d orientation sign if we're confident in it through J. Shewchuk's error bound check
-function orientIfSure(px, py, rx, ry, qx, qy) {
-    const l = (ry - py) * (qx - px);
-    const r = (rx - px) * (qy - py);
-    return Math.abs(l - r) >= 0.00000000000000033306690738754716 * Math.abs(l + r) ? l - r : 0;
-}
-// a more robust orientation test that's stable in a given triangle (to fix robustness issues)
-function orient(rx, ry, qx, qy, px, py) {
-    const sign = orientIfSure(px, py, rx, ry, qx, qy) || orientIfSure(rx, ry, qx, qy, px, py) || orientIfSure(qx, qy, px, py, rx, ry);
-    return sign < 0;
-}
 function inCircle(ax, ay, bx, by, cx, cy, px, py) {
     const dx = ax - px;
     const dy = ay - py;
@@ -9477,7 +11040,2083 @@ function defaultGetY(p) {
     return p[1];
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kZ7BC":[function(require,module,exports) {
+},{"robust-predicates":"96Ezg","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"96Ezg":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "orient2d", ()=>_orient2DJs.orient2d
+);
+parcelHelpers.export(exports, "orient2dfast", ()=>_orient2DJs.orient2dfast
+);
+parcelHelpers.export(exports, "orient3d", ()=>_orient3DJs.orient3d
+);
+parcelHelpers.export(exports, "orient3dfast", ()=>_orient3DJs.orient3dfast
+);
+parcelHelpers.export(exports, "incircle", ()=>_incircleJs.incircle
+);
+parcelHelpers.export(exports, "incirclefast", ()=>_incircleJs.incirclefast
+);
+parcelHelpers.export(exports, "insphere", ()=>_insphereJs.insphere
+);
+parcelHelpers.export(exports, "inspherefast", ()=>_insphereJs.inspherefast
+);
+var _orient2DJs = require("./esm/orient2d.js");
+var _orient3DJs = require("./esm/orient3d.js");
+var _incircleJs = require("./esm/incircle.js");
+var _insphereJs = require("./esm/insphere.js");
+
+},{"./esm/orient2d.js":"3B1q4","./esm/orient3d.js":"ifJ7f","./esm/incircle.js":"bbOYc","./esm/insphere.js":"j22Cf","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3B1q4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "orient2d", ()=>orient2d
+);
+parcelHelpers.export(exports, "orient2dfast", ()=>orient2dfast
+);
+var _utilJs = require("./util.js");
+const ccwerrboundA = (3 + 16 * _utilJs.epsilon) * _utilJs.epsilon;
+const ccwerrboundB = (2 + 12 * _utilJs.epsilon) * _utilJs.epsilon;
+const ccwerrboundC = (9 + 64 * _utilJs.epsilon) * _utilJs.epsilon * _utilJs.epsilon;
+const B = _utilJs.vec(4);
+const C1 = _utilJs.vec(8);
+const C2 = _utilJs.vec(12);
+const D = _utilJs.vec(16);
+const u = _utilJs.vec(4);
+function orient2dadapt(ax, ay, bx, by, cx, cy, detsum) {
+    let acxtail, acytail, bcxtail, bcytail;
+    let bvirt, c, ahi, alo, bhi, blo, _i, _j, _0, s1, s0, t1, t0, u3;
+    const acx = ax - cx;
+    const bcx = bx - cx;
+    const acy = ay - cy;
+    const bcy = by - cy;
+    s1 = acx * bcy;
+    c = _utilJs.splitter * acx;
+    ahi = c - (c - acx);
+    alo = acx - ahi;
+    c = _utilJs.splitter * bcy;
+    bhi = c - (c - bcy);
+    blo = bcy - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = acy * bcx;
+    c = _utilJs.splitter * acy;
+    ahi = c - (c - acy);
+    alo = acy - ahi;
+    c = _utilJs.splitter * bcx;
+    bhi = c - (c - bcx);
+    blo = bcx - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    B[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    B[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    B[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    B[3] = u3;
+    let det = _utilJs.estimate(4, B);
+    let errbound = ccwerrboundB * detsum;
+    if (det >= errbound || -det >= errbound) return det;
+    bvirt = ax - acx;
+    acxtail = ax - (acx + bvirt) + (bvirt - cx);
+    bvirt = bx - bcx;
+    bcxtail = bx - (bcx + bvirt) + (bvirt - cx);
+    bvirt = ay - acy;
+    acytail = ay - (acy + bvirt) + (bvirt - cy);
+    bvirt = by - bcy;
+    bcytail = by - (bcy + bvirt) + (bvirt - cy);
+    if (acxtail === 0 && acytail === 0 && bcxtail === 0 && bcytail === 0) return det;
+    errbound = ccwerrboundC * detsum + _utilJs.resulterrbound * Math.abs(det);
+    det += acx * bcytail + bcy * acxtail - (acy * bcxtail + bcx * acytail);
+    if (det >= errbound || -det >= errbound) return det;
+    s1 = acxtail * bcy;
+    c = _utilJs.splitter * acxtail;
+    ahi = c - (c - acxtail);
+    alo = acxtail - ahi;
+    c = _utilJs.splitter * bcy;
+    bhi = c - (c - bcy);
+    blo = bcy - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = acytail * bcx;
+    c = _utilJs.splitter * acytail;
+    ahi = c - (c - acytail);
+    alo = acytail - ahi;
+    c = _utilJs.splitter * bcx;
+    bhi = c - (c - bcx);
+    blo = bcx - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    u[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    u[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    u[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    u[3] = u3;
+    const C1len = _utilJs.sum(4, B, 4, u, C1);
+    s1 = acx * bcytail;
+    c = _utilJs.splitter * acx;
+    ahi = c - (c - acx);
+    alo = acx - ahi;
+    c = _utilJs.splitter * bcytail;
+    bhi = c - (c - bcytail);
+    blo = bcytail - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = acy * bcxtail;
+    c = _utilJs.splitter * acy;
+    ahi = c - (c - acy);
+    alo = acy - ahi;
+    c = _utilJs.splitter * bcxtail;
+    bhi = c - (c - bcxtail);
+    blo = bcxtail - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    u[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    u[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    u[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    u[3] = u3;
+    const C2len = _utilJs.sum(C1len, C1, 4, u, C2);
+    s1 = acxtail * bcytail;
+    c = _utilJs.splitter * acxtail;
+    ahi = c - (c - acxtail);
+    alo = acxtail - ahi;
+    c = _utilJs.splitter * bcytail;
+    bhi = c - (c - bcytail);
+    blo = bcytail - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = acytail * bcxtail;
+    c = _utilJs.splitter * acytail;
+    ahi = c - (c - acytail);
+    alo = acytail - ahi;
+    c = _utilJs.splitter * bcxtail;
+    bhi = c - (c - bcxtail);
+    blo = bcxtail - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    u[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    u[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    u[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    u[3] = u3;
+    const Dlen = _utilJs.sum(C2len, C2, 4, u, D);
+    return D[Dlen - 1];
+}
+function orient2d(ax, ay, bx, by, cx, cy) {
+    const detleft = (ay - cy) * (bx - cx);
+    const detright = (ax - cx) * (by - cy);
+    const det = detleft - detright;
+    if (detleft === 0 || detright === 0 || detleft > 0 !== detright > 0) return det;
+    const detsum = Math.abs(detleft + detright);
+    if (Math.abs(det) >= ccwerrboundA * detsum) return det;
+    return -orient2dadapt(ax, ay, bx, by, cx, cy, detsum);
+}
+function orient2dfast(ax, ay, bx, by, cx, cy) {
+    return (ay - cy) * (bx - cx) - (ax - cx) * (by - cy);
+}
+
+},{"./util.js":"kdlbG","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kdlbG":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "epsilon", ()=>epsilon
+);
+parcelHelpers.export(exports, "splitter", ()=>splitter
+);
+parcelHelpers.export(exports, "resulterrbound", ()=>resulterrbound
+);
+// fast_expansion_sum_zeroelim routine from oritinal code
+parcelHelpers.export(exports, "sum", ()=>sum1
+);
+parcelHelpers.export(exports, "sum_three", ()=>sum_three
+);
+// scale_expansion_zeroelim routine from oritinal code
+parcelHelpers.export(exports, "scale", ()=>scale
+);
+parcelHelpers.export(exports, "negate", ()=>negate
+);
+parcelHelpers.export(exports, "estimate", ()=>estimate
+);
+parcelHelpers.export(exports, "vec", ()=>vec
+);
+const epsilon = 0.00000000000000011102230246251565;
+const splitter = 134217729;
+const resulterrbound = (3 + 8 * epsilon) * epsilon;
+function sum1(elen, e, flen, f, h) {
+    let Q, Qnew, hh, bvirt;
+    let enow = e[0];
+    let fnow = f[0];
+    let eindex = 0;
+    let findex = 0;
+    if (fnow > enow === fnow > -enow) {
+        Q = enow;
+        enow = e[++eindex];
+    } else {
+        Q = fnow;
+        fnow = f[++findex];
+    }
+    let hindex = 0;
+    if (eindex < elen && findex < flen) {
+        if (fnow > enow === fnow > -enow) {
+            Qnew = enow + Q;
+            hh = Q - (Qnew - enow);
+            enow = e[++eindex];
+        } else {
+            Qnew = fnow + Q;
+            hh = Q - (Qnew - fnow);
+            fnow = f[++findex];
+        }
+        Q = Qnew;
+        if (hh !== 0) h[hindex++] = hh;
+        while(eindex < elen && findex < flen){
+            if (fnow > enow === fnow > -enow) {
+                Qnew = Q + enow;
+                bvirt = Qnew - Q;
+                hh = Q - (Qnew - bvirt) + (enow - bvirt);
+                enow = e[++eindex];
+            } else {
+                Qnew = Q + fnow;
+                bvirt = Qnew - Q;
+                hh = Q - (Qnew - bvirt) + (fnow - bvirt);
+                fnow = f[++findex];
+            }
+            Q = Qnew;
+            if (hh !== 0) h[hindex++] = hh;
+        }
+    }
+    while(eindex < elen){
+        Qnew = Q + enow;
+        bvirt = Qnew - Q;
+        hh = Q - (Qnew - bvirt) + (enow - bvirt);
+        enow = e[++eindex];
+        Q = Qnew;
+        if (hh !== 0) h[hindex++] = hh;
+    }
+    while(findex < flen){
+        Qnew = Q + fnow;
+        bvirt = Qnew - Q;
+        hh = Q - (Qnew - bvirt) + (fnow - bvirt);
+        fnow = f[++findex];
+        Q = Qnew;
+        if (hh !== 0) h[hindex++] = hh;
+    }
+    if (Q !== 0 || hindex === 0) h[hindex++] = Q;
+    return hindex;
+}
+function sum_three(alen, a, blen, b, clen, c, tmp, out) {
+    return sum1(sum1(alen, a, blen, b, tmp), tmp, clen, c, out);
+}
+function scale(elen, e, b, h) {
+    let Q, sum, hh, product1, product0;
+    let bvirt, c, ahi, alo, bhi, blo;
+    c = splitter * b;
+    bhi = c - (c - b);
+    blo = b - bhi;
+    let enow = e[0];
+    Q = enow * b;
+    c = splitter * enow;
+    ahi = c - (c - enow);
+    alo = enow - ahi;
+    hh = alo * blo - (Q - ahi * bhi - alo * bhi - ahi * blo);
+    let hindex = 0;
+    if (hh !== 0) h[hindex++] = hh;
+    for(let i = 1; i < elen; i++){
+        enow = e[i];
+        product1 = enow * b;
+        c = splitter * enow;
+        ahi = c - (c - enow);
+        alo = enow - ahi;
+        product0 = alo * blo - (product1 - ahi * bhi - alo * bhi - ahi * blo);
+        sum = Q + product0;
+        bvirt = sum - Q;
+        hh = Q - (sum - bvirt) + (product0 - bvirt);
+        if (hh !== 0) h[hindex++] = hh;
+        Q = product1 + sum;
+        hh = sum - (Q - product1);
+        if (hh !== 0) h[hindex++] = hh;
+    }
+    if (Q !== 0 || hindex === 0) h[hindex++] = Q;
+    return hindex;
+}
+function negate(elen, e) {
+    for(let i = 0; i < elen; i++)e[i] = -e[i];
+    return elen;
+}
+function estimate(elen, e) {
+    let Q = e[0];
+    for(let i = 1; i < elen; i++)Q += e[i];
+    return Q;
+}
+function vec(n) {
+    return new Float64Array(n);
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ifJ7f":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "orient3d", ()=>orient3d
+);
+parcelHelpers.export(exports, "orient3dfast", ()=>orient3dfast
+);
+var _utilJs = require("./util.js");
+const o3derrboundA = (7 + 56 * _utilJs.epsilon) * _utilJs.epsilon;
+const o3derrboundB = (3 + 28 * _utilJs.epsilon) * _utilJs.epsilon;
+const o3derrboundC = (26 + 288 * _utilJs.epsilon) * _utilJs.epsilon * _utilJs.epsilon;
+const bc = _utilJs.vec(4);
+const ca = _utilJs.vec(4);
+const ab = _utilJs.vec(4);
+const at_b = _utilJs.vec(4);
+const at_c = _utilJs.vec(4);
+const bt_c = _utilJs.vec(4);
+const bt_a = _utilJs.vec(4);
+const ct_a = _utilJs.vec(4);
+const ct_b = _utilJs.vec(4);
+const bct = _utilJs.vec(8);
+const cat = _utilJs.vec(8);
+const abt = _utilJs.vec(8);
+const u = _utilJs.vec(4);
+const _8 = _utilJs.vec(8);
+const _8b = _utilJs.vec(8);
+const _16 = _utilJs.vec(8);
+const _12 = _utilJs.vec(12);
+let fin = _utilJs.vec(192);
+let fin2 = _utilJs.vec(192);
+function finadd(finlen, alen, a) {
+    finlen = _utilJs.sum(finlen, fin, alen, a, fin2);
+    const tmp = fin;
+    fin = fin2;
+    fin2 = tmp;
+    return finlen;
+}
+function tailinit(xtail, ytail, ax, ay, bx, by, a, b) {
+    let bvirt, c, ahi, alo, bhi, blo, _i, _j, _k, _0, s1, s0, t1, t0, u3, negate;
+    if (xtail === 0) {
+        if (ytail === 0) {
+            a[0] = 0;
+            b[0] = 0;
+            return 1;
+        } else {
+            negate = -ytail;
+            s1 = negate * ax;
+            c = _utilJs.splitter * negate;
+            ahi = c - (c - negate);
+            alo = negate - ahi;
+            c = _utilJs.splitter * ax;
+            bhi = c - (c - ax);
+            blo = ax - bhi;
+            a[0] = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+            a[1] = s1;
+            s1 = ytail * bx;
+            c = _utilJs.splitter * ytail;
+            ahi = c - (c - ytail);
+            alo = ytail - ahi;
+            c = _utilJs.splitter * bx;
+            bhi = c - (c - bx);
+            blo = bx - bhi;
+            b[0] = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+            b[1] = s1;
+            return 2;
+        }
+    } else if (ytail === 0) {
+        s1 = xtail * ay;
+        c = _utilJs.splitter * xtail;
+        ahi = c - (c - xtail);
+        alo = xtail - ahi;
+        c = _utilJs.splitter * ay;
+        bhi = c - (c - ay);
+        blo = ay - bhi;
+        a[0] = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+        a[1] = s1;
+        negate = -xtail;
+        s1 = negate * by;
+        c = _utilJs.splitter * negate;
+        ahi = c - (c - negate);
+        alo = negate - ahi;
+        c = _utilJs.splitter * by;
+        bhi = c - (c - by);
+        blo = by - bhi;
+        b[0] = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+        b[1] = s1;
+        return 2;
+    } else {
+        s1 = xtail * ay;
+        c = _utilJs.splitter * xtail;
+        ahi = c - (c - xtail);
+        alo = xtail - ahi;
+        c = _utilJs.splitter * ay;
+        bhi = c - (c - ay);
+        blo = ay - bhi;
+        s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+        t1 = ytail * ax;
+        c = _utilJs.splitter * ytail;
+        ahi = c - (c - ytail);
+        alo = ytail - ahi;
+        c = _utilJs.splitter * ax;
+        bhi = c - (c - ax);
+        blo = ax - bhi;
+        t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+        _i = s0 - t0;
+        bvirt = s0 - _i;
+        a[0] = s0 - (_i + bvirt) + (bvirt - t0);
+        _j = s1 + _i;
+        bvirt = _j - s1;
+        _0 = s1 - (_j - bvirt) + (_i - bvirt);
+        _i = _0 - t1;
+        bvirt = _0 - _i;
+        a[1] = _0 - (_i + bvirt) + (bvirt - t1);
+        u3 = _j + _i;
+        bvirt = u3 - _j;
+        a[2] = _j - (u3 - bvirt) + (_i - bvirt);
+        a[3] = u3;
+        s1 = ytail * bx;
+        c = _utilJs.splitter * ytail;
+        ahi = c - (c - ytail);
+        alo = ytail - ahi;
+        c = _utilJs.splitter * bx;
+        bhi = c - (c - bx);
+        blo = bx - bhi;
+        s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+        t1 = xtail * by;
+        c = _utilJs.splitter * xtail;
+        ahi = c - (c - xtail);
+        alo = xtail - ahi;
+        c = _utilJs.splitter * by;
+        bhi = c - (c - by);
+        blo = by - bhi;
+        t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+        _i = s0 - t0;
+        bvirt = s0 - _i;
+        b[0] = s0 - (_i + bvirt) + (bvirt - t0);
+        _j = s1 + _i;
+        bvirt = _j - s1;
+        _0 = s1 - (_j - bvirt) + (_i - bvirt);
+        _i = _0 - t1;
+        bvirt = _0 - _i;
+        b[1] = _0 - (_i + bvirt) + (bvirt - t1);
+        u3 = _j + _i;
+        bvirt = u3 - _j;
+        b[2] = _j - (u3 - bvirt) + (_i - bvirt);
+        b[3] = u3;
+        return 4;
+    }
+}
+function tailadd(finlen, a, b, k, z) {
+    let bvirt, c, ahi, alo, bhi, blo, _i, _j, _k, _0, s1, s0, u3;
+    s1 = a * b;
+    c = _utilJs.splitter * a;
+    ahi = c - (c - a);
+    alo = a - ahi;
+    c = _utilJs.splitter * b;
+    bhi = c - (c - b);
+    blo = b - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    c = _utilJs.splitter * k;
+    bhi = c - (c - k);
+    blo = k - bhi;
+    _i = s0 * k;
+    c = _utilJs.splitter * s0;
+    ahi = c - (c - s0);
+    alo = s0 - ahi;
+    u[0] = alo * blo - (_i - ahi * bhi - alo * bhi - ahi * blo);
+    _j = s1 * k;
+    c = _utilJs.splitter * s1;
+    ahi = c - (c - s1);
+    alo = s1 - ahi;
+    _0 = alo * blo - (_j - ahi * bhi - alo * bhi - ahi * blo);
+    _k = _i + _0;
+    bvirt = _k - _i;
+    u[1] = _i - (_k - bvirt) + (_0 - bvirt);
+    u3 = _j + _k;
+    u[2] = _k - (u3 - _j);
+    u[3] = u3;
+    finlen = finadd(finlen, 4, u);
+    if (z !== 0) {
+        c = _utilJs.splitter * z;
+        bhi = c - (c - z);
+        blo = z - bhi;
+        _i = s0 * z;
+        c = _utilJs.splitter * s0;
+        ahi = c - (c - s0);
+        alo = s0 - ahi;
+        u[0] = alo * blo - (_i - ahi * bhi - alo * bhi - ahi * blo);
+        _j = s1 * z;
+        c = _utilJs.splitter * s1;
+        ahi = c - (c - s1);
+        alo = s1 - ahi;
+        _0 = alo * blo - (_j - ahi * bhi - alo * bhi - ahi * blo);
+        _k = _i + _0;
+        bvirt = _k - _i;
+        u[1] = _i - (_k - bvirt) + (_0 - bvirt);
+        u3 = _j + _k;
+        u[2] = _k - (u3 - _j);
+        u[3] = u3;
+        finlen = finadd(finlen, 4, u);
+    }
+    return finlen;
+}
+function orient3dadapt(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, permanent) {
+    let finlen;
+    let adxtail, bdxtail, cdxtail;
+    let adytail, bdytail, cdytail;
+    let adztail, bdztail, cdztail;
+    let bvirt, c, ahi, alo, bhi, blo, _i, _j, _k, _0, s1, s0, t1, t0, u3;
+    const adx = ax - dx;
+    const bdx = bx - dx;
+    const cdx = cx - dx;
+    const ady = ay - dy;
+    const bdy = by - dy;
+    const cdy = cy - dy;
+    const adz = az - dz;
+    const bdz = bz - dz;
+    const cdz = cz - dz;
+    s1 = bdx * cdy;
+    c = _utilJs.splitter * bdx;
+    ahi = c - (c - bdx);
+    alo = bdx - ahi;
+    c = _utilJs.splitter * cdy;
+    bhi = c - (c - cdy);
+    blo = cdy - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = cdx * bdy;
+    c = _utilJs.splitter * cdx;
+    ahi = c - (c - cdx);
+    alo = cdx - ahi;
+    c = _utilJs.splitter * bdy;
+    bhi = c - (c - bdy);
+    blo = bdy - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    bc[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    bc[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    bc[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    bc[3] = u3;
+    s1 = cdx * ady;
+    c = _utilJs.splitter * cdx;
+    ahi = c - (c - cdx);
+    alo = cdx - ahi;
+    c = _utilJs.splitter * ady;
+    bhi = c - (c - ady);
+    blo = ady - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = adx * cdy;
+    c = _utilJs.splitter * adx;
+    ahi = c - (c - adx);
+    alo = adx - ahi;
+    c = _utilJs.splitter * cdy;
+    bhi = c - (c - cdy);
+    blo = cdy - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    ca[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    ca[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    ca[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    ca[3] = u3;
+    s1 = adx * bdy;
+    c = _utilJs.splitter * adx;
+    ahi = c - (c - adx);
+    alo = adx - ahi;
+    c = _utilJs.splitter * bdy;
+    bhi = c - (c - bdy);
+    blo = bdy - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = bdx * ady;
+    c = _utilJs.splitter * bdx;
+    ahi = c - (c - bdx);
+    alo = bdx - ahi;
+    c = _utilJs.splitter * ady;
+    bhi = c - (c - ady);
+    blo = ady - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    ab[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    ab[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    ab[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    ab[3] = u3;
+    finlen = _utilJs.sum(_utilJs.sum(_utilJs.scale(4, bc, adz, _8), _8, _utilJs.scale(4, ca, bdz, _8b), _8b, _16), _16, _utilJs.scale(4, ab, cdz, _8), _8, fin);
+    let det = _utilJs.estimate(finlen, fin);
+    let errbound = o3derrboundB * permanent;
+    if (det >= errbound || -det >= errbound) return det;
+    bvirt = ax - adx;
+    adxtail = ax - (adx + bvirt) + (bvirt - dx);
+    bvirt = bx - bdx;
+    bdxtail = bx - (bdx + bvirt) + (bvirt - dx);
+    bvirt = cx - cdx;
+    cdxtail = cx - (cdx + bvirt) + (bvirt - dx);
+    bvirt = ay - ady;
+    adytail = ay - (ady + bvirt) + (bvirt - dy);
+    bvirt = by - bdy;
+    bdytail = by - (bdy + bvirt) + (bvirt - dy);
+    bvirt = cy - cdy;
+    cdytail = cy - (cdy + bvirt) + (bvirt - dy);
+    bvirt = az - adz;
+    adztail = az - (adz + bvirt) + (bvirt - dz);
+    bvirt = bz - bdz;
+    bdztail = bz - (bdz + bvirt) + (bvirt - dz);
+    bvirt = cz - cdz;
+    cdztail = cz - (cdz + bvirt) + (bvirt - dz);
+    if (adxtail === 0 && bdxtail === 0 && cdxtail === 0 && adytail === 0 && bdytail === 0 && cdytail === 0 && adztail === 0 && bdztail === 0 && cdztail === 0) return det;
+    errbound = o3derrboundC * permanent + _utilJs.resulterrbound * Math.abs(det);
+    det += adz * (bdx * cdytail + cdy * bdxtail - (bdy * cdxtail + cdx * bdytail)) + adztail * (bdx * cdy - bdy * cdx) + bdz * (cdx * adytail + ady * cdxtail - (cdy * adxtail + adx * cdytail)) + bdztail * (cdx * ady - cdy * adx) + cdz * (adx * bdytail + bdy * adxtail - (ady * bdxtail + bdx * adytail)) + cdztail * (adx * bdy - ady * bdx);
+    if (det >= errbound || -det >= errbound) return det;
+    const at_len = tailinit(adxtail, adytail, bdx, bdy, cdx, cdy, at_b, at_c);
+    const bt_len = tailinit(bdxtail, bdytail, cdx, cdy, adx, ady, bt_c, bt_a);
+    const ct_len = tailinit(cdxtail, cdytail, adx, ady, bdx, bdy, ct_a, ct_b);
+    const bctlen = _utilJs.sum(bt_len, bt_c, ct_len, ct_b, bct);
+    finlen = finadd(finlen, _utilJs.scale(bctlen, bct, adz, _16), _16);
+    const catlen = _utilJs.sum(ct_len, ct_a, at_len, at_c, cat);
+    finlen = finadd(finlen, _utilJs.scale(catlen, cat, bdz, _16), _16);
+    const abtlen = _utilJs.sum(at_len, at_b, bt_len, bt_a, abt);
+    finlen = finadd(finlen, _utilJs.scale(abtlen, abt, cdz, _16), _16);
+    if (adztail !== 0) {
+        finlen = finadd(finlen, _utilJs.scale(4, bc, adztail, _12), _12);
+        finlen = finadd(finlen, _utilJs.scale(bctlen, bct, adztail, _16), _16);
+    }
+    if (bdztail !== 0) {
+        finlen = finadd(finlen, _utilJs.scale(4, ca, bdztail, _12), _12);
+        finlen = finadd(finlen, _utilJs.scale(catlen, cat, bdztail, _16), _16);
+    }
+    if (cdztail !== 0) {
+        finlen = finadd(finlen, _utilJs.scale(4, ab, cdztail, _12), _12);
+        finlen = finadd(finlen, _utilJs.scale(abtlen, abt, cdztail, _16), _16);
+    }
+    if (adxtail !== 0) {
+        if (bdytail !== 0) finlen = tailadd(finlen, adxtail, bdytail, cdz, cdztail);
+        if (cdytail !== 0) finlen = tailadd(finlen, -adxtail, cdytail, bdz, bdztail);
+    }
+    if (bdxtail !== 0) {
+        if (cdytail !== 0) finlen = tailadd(finlen, bdxtail, cdytail, adz, adztail);
+        if (adytail !== 0) finlen = tailadd(finlen, -bdxtail, adytail, cdz, cdztail);
+    }
+    if (cdxtail !== 0) {
+        if (adytail !== 0) finlen = tailadd(finlen, cdxtail, adytail, bdz, bdztail);
+        if (bdytail !== 0) finlen = tailadd(finlen, -cdxtail, bdytail, adz, adztail);
+    }
+    return fin[finlen - 1];
+}
+function orient3d(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz) {
+    const adx = ax - dx;
+    const bdx = bx - dx;
+    const cdx = cx - dx;
+    const ady = ay - dy;
+    const bdy = by - dy;
+    const cdy = cy - dy;
+    const adz = az - dz;
+    const bdz = bz - dz;
+    const cdz = cz - dz;
+    const bdxcdy = bdx * cdy;
+    const cdxbdy = cdx * bdy;
+    const cdxady = cdx * ady;
+    const adxcdy = adx * cdy;
+    const adxbdy = adx * bdy;
+    const bdxady = bdx * ady;
+    const det = adz * (bdxcdy - cdxbdy) + bdz * (cdxady - adxcdy) + cdz * (adxbdy - bdxady);
+    const permanent = (Math.abs(bdxcdy) + Math.abs(cdxbdy)) * Math.abs(adz) + (Math.abs(cdxady) + Math.abs(adxcdy)) * Math.abs(bdz) + (Math.abs(adxbdy) + Math.abs(bdxady)) * Math.abs(cdz);
+    const errbound = o3derrboundA * permanent;
+    if (det > errbound || -det > errbound) return det;
+    return orient3dadapt(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, permanent);
+}
+function orient3dfast(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz) {
+    const adx = ax - dx;
+    const bdx = bx - dx;
+    const cdx = cx - dx;
+    const ady = ay - dy;
+    const bdy = by - dy;
+    const cdy = cy - dy;
+    const adz = az - dz;
+    const bdz = bz - dz;
+    const cdz = cz - dz;
+    return adx * (bdy * cdz - bdz * cdy) + bdx * (cdy * adz - cdz * ady) + cdx * (ady * bdz - adz * bdy);
+}
+
+},{"./util.js":"kdlbG","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bbOYc":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "incircle", ()=>incircle
+);
+parcelHelpers.export(exports, "incirclefast", ()=>incirclefast
+);
+var _utilJs = require("./util.js");
+const iccerrboundA = (10 + 96 * _utilJs.epsilon) * _utilJs.epsilon;
+const iccerrboundB = (4 + 48 * _utilJs.epsilon) * _utilJs.epsilon;
+const iccerrboundC = (44 + 576 * _utilJs.epsilon) * _utilJs.epsilon * _utilJs.epsilon;
+const bc = _utilJs.vec(4);
+const ca = _utilJs.vec(4);
+const ab = _utilJs.vec(4);
+const aa = _utilJs.vec(4);
+const bb = _utilJs.vec(4);
+const cc = _utilJs.vec(4);
+const u = _utilJs.vec(4);
+const v = _utilJs.vec(4);
+const axtbc = _utilJs.vec(8);
+const aytbc = _utilJs.vec(8);
+const bxtca = _utilJs.vec(8);
+const bytca = _utilJs.vec(8);
+const cxtab = _utilJs.vec(8);
+const cytab = _utilJs.vec(8);
+const abt = _utilJs.vec(8);
+const bct = _utilJs.vec(8);
+const cat = _utilJs.vec(8);
+const abtt = _utilJs.vec(4);
+const bctt = _utilJs.vec(4);
+const catt = _utilJs.vec(4);
+const _8 = _utilJs.vec(8);
+const _16 = _utilJs.vec(16);
+const _16b = _utilJs.vec(16);
+const _16c = _utilJs.vec(16);
+const _32 = _utilJs.vec(32);
+const _32b = _utilJs.vec(32);
+const _48 = _utilJs.vec(48);
+const _64 = _utilJs.vec(64);
+let fin = _utilJs.vec(1152);
+let fin2 = _utilJs.vec(1152);
+function finadd(finlen, a, alen) {
+    finlen = _utilJs.sum(finlen, fin, a, alen, fin2);
+    const tmp = fin;
+    fin = fin2;
+    fin2 = tmp;
+    return finlen;
+}
+function incircleadapt(ax, ay, bx, by, cx, cy, dx, dy, permanent) {
+    let finlen;
+    let adxtail, bdxtail, cdxtail, adytail, bdytail, cdytail;
+    let axtbclen, aytbclen, bxtcalen, bytcalen, cxtablen, cytablen;
+    let abtlen, bctlen, catlen;
+    let abttlen, bcttlen, cattlen;
+    let n1, n0;
+    let bvirt, c, ahi, alo, bhi, blo, _i, _j, _0, s1, s0, t1, t0, u3;
+    const adx = ax - dx;
+    const bdx = bx - dx;
+    const cdx = cx - dx;
+    const ady = ay - dy;
+    const bdy = by - dy;
+    const cdy = cy - dy;
+    s1 = bdx * cdy;
+    c = _utilJs.splitter * bdx;
+    ahi = c - (c - bdx);
+    alo = bdx - ahi;
+    c = _utilJs.splitter * cdy;
+    bhi = c - (c - cdy);
+    blo = cdy - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = cdx * bdy;
+    c = _utilJs.splitter * cdx;
+    ahi = c - (c - cdx);
+    alo = cdx - ahi;
+    c = _utilJs.splitter * bdy;
+    bhi = c - (c - bdy);
+    blo = bdy - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    bc[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    bc[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    bc[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    bc[3] = u3;
+    s1 = cdx * ady;
+    c = _utilJs.splitter * cdx;
+    ahi = c - (c - cdx);
+    alo = cdx - ahi;
+    c = _utilJs.splitter * ady;
+    bhi = c - (c - ady);
+    blo = ady - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = adx * cdy;
+    c = _utilJs.splitter * adx;
+    ahi = c - (c - adx);
+    alo = adx - ahi;
+    c = _utilJs.splitter * cdy;
+    bhi = c - (c - cdy);
+    blo = cdy - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    ca[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    ca[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    ca[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    ca[3] = u3;
+    s1 = adx * bdy;
+    c = _utilJs.splitter * adx;
+    ahi = c - (c - adx);
+    alo = adx - ahi;
+    c = _utilJs.splitter * bdy;
+    bhi = c - (c - bdy);
+    blo = bdy - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = bdx * ady;
+    c = _utilJs.splitter * bdx;
+    ahi = c - (c - bdx);
+    alo = bdx - ahi;
+    c = _utilJs.splitter * ady;
+    bhi = c - (c - ady);
+    blo = ady - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    ab[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    ab[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    ab[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    ab[3] = u3;
+    finlen = _utilJs.sum(_utilJs.sum(_utilJs.sum(_utilJs.scale(_utilJs.scale(4, bc, adx, _8), _8, adx, _16), _16, _utilJs.scale(_utilJs.scale(4, bc, ady, _8), _8, ady, _16b), _16b, _32), _32, _utilJs.sum(_utilJs.scale(_utilJs.scale(4, ca, bdx, _8), _8, bdx, _16), _16, _utilJs.scale(_utilJs.scale(4, ca, bdy, _8), _8, bdy, _16b), _16b, _32b), _32b, _64), _64, _utilJs.sum(_utilJs.scale(_utilJs.scale(4, ab, cdx, _8), _8, cdx, _16), _16, _utilJs.scale(_utilJs.scale(4, ab, cdy, _8), _8, cdy, _16b), _16b, _32), _32, fin);
+    let det = _utilJs.estimate(finlen, fin);
+    let errbound = iccerrboundB * permanent;
+    if (det >= errbound || -det >= errbound) return det;
+    bvirt = ax - adx;
+    adxtail = ax - (adx + bvirt) + (bvirt - dx);
+    bvirt = ay - ady;
+    adytail = ay - (ady + bvirt) + (bvirt - dy);
+    bvirt = bx - bdx;
+    bdxtail = bx - (bdx + bvirt) + (bvirt - dx);
+    bvirt = by - bdy;
+    bdytail = by - (bdy + bvirt) + (bvirt - dy);
+    bvirt = cx - cdx;
+    cdxtail = cx - (cdx + bvirt) + (bvirt - dx);
+    bvirt = cy - cdy;
+    cdytail = cy - (cdy + bvirt) + (bvirt - dy);
+    if (adxtail === 0 && bdxtail === 0 && cdxtail === 0 && adytail === 0 && bdytail === 0 && cdytail === 0) return det;
+    errbound = iccerrboundC * permanent + _utilJs.resulterrbound * Math.abs(det);
+    det += (adx * adx + ady * ady) * (bdx * cdytail + cdy * bdxtail - (bdy * cdxtail + cdx * bdytail)) + 2 * (adx * adxtail + ady * adytail) * (bdx * cdy - bdy * cdx) + ((bdx * bdx + bdy * bdy) * (cdx * adytail + ady * cdxtail - (cdy * adxtail + adx * cdytail)) + 2 * (bdx * bdxtail + bdy * bdytail) * (cdx * ady - cdy * adx)) + ((cdx * cdx + cdy * cdy) * (adx * bdytail + bdy * adxtail - (ady * bdxtail + bdx * adytail)) + 2 * (cdx * cdxtail + cdy * cdytail) * (adx * bdy - ady * bdx));
+    if (det >= errbound || -det >= errbound) return det;
+    if (bdxtail !== 0 || bdytail !== 0 || cdxtail !== 0 || cdytail !== 0) {
+        s1 = adx * adx;
+        c = _utilJs.splitter * adx;
+        ahi = c - (c - adx);
+        alo = adx - ahi;
+        s0 = alo * alo - (s1 - ahi * ahi - (ahi + ahi) * alo);
+        t1 = ady * ady;
+        c = _utilJs.splitter * ady;
+        ahi = c - (c - ady);
+        alo = ady - ahi;
+        t0 = alo * alo - (t1 - ahi * ahi - (ahi + ahi) * alo);
+        _i = s0 + t0;
+        bvirt = _i - s0;
+        aa[0] = s0 - (_i - bvirt) + (t0 - bvirt);
+        _j = s1 + _i;
+        bvirt = _j - s1;
+        _0 = s1 - (_j - bvirt) + (_i - bvirt);
+        _i = _0 + t1;
+        bvirt = _i - _0;
+        aa[1] = _0 - (_i - bvirt) + (t1 - bvirt);
+        u3 = _j + _i;
+        bvirt = u3 - _j;
+        aa[2] = _j - (u3 - bvirt) + (_i - bvirt);
+        aa[3] = u3;
+    }
+    if (cdxtail !== 0 || cdytail !== 0 || adxtail !== 0 || adytail !== 0) {
+        s1 = bdx * bdx;
+        c = _utilJs.splitter * bdx;
+        ahi = c - (c - bdx);
+        alo = bdx - ahi;
+        s0 = alo * alo - (s1 - ahi * ahi - (ahi + ahi) * alo);
+        t1 = bdy * bdy;
+        c = _utilJs.splitter * bdy;
+        ahi = c - (c - bdy);
+        alo = bdy - ahi;
+        t0 = alo * alo - (t1 - ahi * ahi - (ahi + ahi) * alo);
+        _i = s0 + t0;
+        bvirt = _i - s0;
+        bb[0] = s0 - (_i - bvirt) + (t0 - bvirt);
+        _j = s1 + _i;
+        bvirt = _j - s1;
+        _0 = s1 - (_j - bvirt) + (_i - bvirt);
+        _i = _0 + t1;
+        bvirt = _i - _0;
+        bb[1] = _0 - (_i - bvirt) + (t1 - bvirt);
+        u3 = _j + _i;
+        bvirt = u3 - _j;
+        bb[2] = _j - (u3 - bvirt) + (_i - bvirt);
+        bb[3] = u3;
+    }
+    if (adxtail !== 0 || adytail !== 0 || bdxtail !== 0 || bdytail !== 0) {
+        s1 = cdx * cdx;
+        c = _utilJs.splitter * cdx;
+        ahi = c - (c - cdx);
+        alo = cdx - ahi;
+        s0 = alo * alo - (s1 - ahi * ahi - (ahi + ahi) * alo);
+        t1 = cdy * cdy;
+        c = _utilJs.splitter * cdy;
+        ahi = c - (c - cdy);
+        alo = cdy - ahi;
+        t0 = alo * alo - (t1 - ahi * ahi - (ahi + ahi) * alo);
+        _i = s0 + t0;
+        bvirt = _i - s0;
+        cc[0] = s0 - (_i - bvirt) + (t0 - bvirt);
+        _j = s1 + _i;
+        bvirt = _j - s1;
+        _0 = s1 - (_j - bvirt) + (_i - bvirt);
+        _i = _0 + t1;
+        bvirt = _i - _0;
+        cc[1] = _0 - (_i - bvirt) + (t1 - bvirt);
+        u3 = _j + _i;
+        bvirt = u3 - _j;
+        cc[2] = _j - (u3 - bvirt) + (_i - bvirt);
+        cc[3] = u3;
+    }
+    if (adxtail !== 0) {
+        axtbclen = _utilJs.scale(4, bc, adxtail, axtbc);
+        finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(axtbclen, axtbc, 2 * adx, _16), _16, _utilJs.scale(_utilJs.scale(4, cc, adxtail, _8), _8, bdy, _16b), _16b, _utilJs.scale(_utilJs.scale(4, bb, adxtail, _8), _8, -cdy, _16c), _16c, _32, _48), _48);
+    }
+    if (adytail !== 0) {
+        aytbclen = _utilJs.scale(4, bc, adytail, aytbc);
+        finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(aytbclen, aytbc, 2 * ady, _16), _16, _utilJs.scale(_utilJs.scale(4, bb, adytail, _8), _8, cdx, _16b), _16b, _utilJs.scale(_utilJs.scale(4, cc, adytail, _8), _8, -bdx, _16c), _16c, _32, _48), _48);
+    }
+    if (bdxtail !== 0) {
+        bxtcalen = _utilJs.scale(4, ca, bdxtail, bxtca);
+        finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(bxtcalen, bxtca, 2 * bdx, _16), _16, _utilJs.scale(_utilJs.scale(4, aa, bdxtail, _8), _8, cdy, _16b), _16b, _utilJs.scale(_utilJs.scale(4, cc, bdxtail, _8), _8, -ady, _16c), _16c, _32, _48), _48);
+    }
+    if (bdytail !== 0) {
+        bytcalen = _utilJs.scale(4, ca, bdytail, bytca);
+        finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(bytcalen, bytca, 2 * bdy, _16), _16, _utilJs.scale(_utilJs.scale(4, cc, bdytail, _8), _8, adx, _16b), _16b, _utilJs.scale(_utilJs.scale(4, aa, bdytail, _8), _8, -cdx, _16c), _16c, _32, _48), _48);
+    }
+    if (cdxtail !== 0) {
+        cxtablen = _utilJs.scale(4, ab, cdxtail, cxtab);
+        finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(cxtablen, cxtab, 2 * cdx, _16), _16, _utilJs.scale(_utilJs.scale(4, bb, cdxtail, _8), _8, ady, _16b), _16b, _utilJs.scale(_utilJs.scale(4, aa, cdxtail, _8), _8, -bdy, _16c), _16c, _32, _48), _48);
+    }
+    if (cdytail !== 0) {
+        cytablen = _utilJs.scale(4, ab, cdytail, cytab);
+        finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(cytablen, cytab, 2 * cdy, _16), _16, _utilJs.scale(_utilJs.scale(4, aa, cdytail, _8), _8, bdx, _16b), _16b, _utilJs.scale(_utilJs.scale(4, bb, cdytail, _8), _8, -adx, _16c), _16c, _32, _48), _48);
+    }
+    if (adxtail !== 0 || adytail !== 0) {
+        if (bdxtail !== 0 || bdytail !== 0 || cdxtail !== 0 || cdytail !== 0) {
+            s1 = bdxtail * cdy;
+            c = _utilJs.splitter * bdxtail;
+            ahi = c - (c - bdxtail);
+            alo = bdxtail - ahi;
+            c = _utilJs.splitter * cdy;
+            bhi = c - (c - cdy);
+            blo = cdy - bhi;
+            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+            t1 = bdx * cdytail;
+            c = _utilJs.splitter * bdx;
+            ahi = c - (c - bdx);
+            alo = bdx - ahi;
+            c = _utilJs.splitter * cdytail;
+            bhi = c - (c - cdytail);
+            blo = cdytail - bhi;
+            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+            _i = s0 + t0;
+            bvirt = _i - s0;
+            u[0] = s0 - (_i - bvirt) + (t0 - bvirt);
+            _j = s1 + _i;
+            bvirt = _j - s1;
+            _0 = s1 - (_j - bvirt) + (_i - bvirt);
+            _i = _0 + t1;
+            bvirt = _i - _0;
+            u[1] = _0 - (_i - bvirt) + (t1 - bvirt);
+            u3 = _j + _i;
+            bvirt = u3 - _j;
+            u[2] = _j - (u3 - bvirt) + (_i - bvirt);
+            u[3] = u3;
+            s1 = cdxtail * -bdy;
+            c = _utilJs.splitter * cdxtail;
+            ahi = c - (c - cdxtail);
+            alo = cdxtail - ahi;
+            c = _utilJs.splitter * -bdy;
+            bhi = c - (c - -bdy);
+            blo = -bdy - bhi;
+            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+            t1 = cdx * -bdytail;
+            c = _utilJs.splitter * cdx;
+            ahi = c - (c - cdx);
+            alo = cdx - ahi;
+            c = _utilJs.splitter * -bdytail;
+            bhi = c - (c - -bdytail);
+            blo = -bdytail - bhi;
+            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+            _i = s0 + t0;
+            bvirt = _i - s0;
+            v[0] = s0 - (_i - bvirt) + (t0 - bvirt);
+            _j = s1 + _i;
+            bvirt = _j - s1;
+            _0 = s1 - (_j - bvirt) + (_i - bvirt);
+            _i = _0 + t1;
+            bvirt = _i - _0;
+            v[1] = _0 - (_i - bvirt) + (t1 - bvirt);
+            u3 = _j + _i;
+            bvirt = u3 - _j;
+            v[2] = _j - (u3 - bvirt) + (_i - bvirt);
+            v[3] = u3;
+            bctlen = _utilJs.sum(4, u, 4, v, bct);
+            s1 = bdxtail * cdytail;
+            c = _utilJs.splitter * bdxtail;
+            ahi = c - (c - bdxtail);
+            alo = bdxtail - ahi;
+            c = _utilJs.splitter * cdytail;
+            bhi = c - (c - cdytail);
+            blo = cdytail - bhi;
+            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+            t1 = cdxtail * bdytail;
+            c = _utilJs.splitter * cdxtail;
+            ahi = c - (c - cdxtail);
+            alo = cdxtail - ahi;
+            c = _utilJs.splitter * bdytail;
+            bhi = c - (c - bdytail);
+            blo = bdytail - bhi;
+            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+            _i = s0 - t0;
+            bvirt = s0 - _i;
+            bctt[0] = s0 - (_i + bvirt) + (bvirt - t0);
+            _j = s1 + _i;
+            bvirt = _j - s1;
+            _0 = s1 - (_j - bvirt) + (_i - bvirt);
+            _i = _0 - t1;
+            bvirt = _0 - _i;
+            bctt[1] = _0 - (_i + bvirt) + (bvirt - t1);
+            u3 = _j + _i;
+            bvirt = u3 - _j;
+            bctt[2] = _j - (u3 - bvirt) + (_i - bvirt);
+            bctt[3] = u3;
+            bcttlen = 4;
+        } else {
+            bct[0] = 0;
+            bctlen = 1;
+            bctt[0] = 0;
+            bcttlen = 1;
+        }
+        if (adxtail !== 0) {
+            const len = _utilJs.scale(bctlen, bct, adxtail, _16c);
+            finlen = finadd(finlen, _utilJs.sum(_utilJs.scale(axtbclen, axtbc, adxtail, _16), _16, _utilJs.scale(len, _16c, 2 * adx, _32), _32, _48), _48);
+            const len2 = _utilJs.scale(bcttlen, bctt, adxtail, _8);
+            finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(len2, _8, 2 * adx, _16), _16, _utilJs.scale(len2, _8, adxtail, _16b), _16b, _utilJs.scale(len, _16c, adxtail, _32), _32, _32b, _64), _64);
+            if (bdytail !== 0) finlen = finadd(finlen, _utilJs.scale(_utilJs.scale(4, cc, adxtail, _8), _8, bdytail, _16), _16);
+            if (cdytail !== 0) finlen = finadd(finlen, _utilJs.scale(_utilJs.scale(4, bb, -adxtail, _8), _8, cdytail, _16), _16);
+        }
+        if (adytail !== 0) {
+            const len = _utilJs.scale(bctlen, bct, adytail, _16c);
+            finlen = finadd(finlen, _utilJs.sum(_utilJs.scale(aytbclen, aytbc, adytail, _16), _16, _utilJs.scale(len, _16c, 2 * ady, _32), _32, _48), _48);
+            const len2 = _utilJs.scale(bcttlen, bctt, adytail, _8);
+            finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(len2, _8, 2 * ady, _16), _16, _utilJs.scale(len2, _8, adytail, _16b), _16b, _utilJs.scale(len, _16c, adytail, _32), _32, _32b, _64), _64);
+        }
+    }
+    if (bdxtail !== 0 || bdytail !== 0) {
+        if (cdxtail !== 0 || cdytail !== 0 || adxtail !== 0 || adytail !== 0) {
+            s1 = cdxtail * ady;
+            c = _utilJs.splitter * cdxtail;
+            ahi = c - (c - cdxtail);
+            alo = cdxtail - ahi;
+            c = _utilJs.splitter * ady;
+            bhi = c - (c - ady);
+            blo = ady - bhi;
+            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+            t1 = cdx * adytail;
+            c = _utilJs.splitter * cdx;
+            ahi = c - (c - cdx);
+            alo = cdx - ahi;
+            c = _utilJs.splitter * adytail;
+            bhi = c - (c - adytail);
+            blo = adytail - bhi;
+            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+            _i = s0 + t0;
+            bvirt = _i - s0;
+            u[0] = s0 - (_i - bvirt) + (t0 - bvirt);
+            _j = s1 + _i;
+            bvirt = _j - s1;
+            _0 = s1 - (_j - bvirt) + (_i - bvirt);
+            _i = _0 + t1;
+            bvirt = _i - _0;
+            u[1] = _0 - (_i - bvirt) + (t1 - bvirt);
+            u3 = _j + _i;
+            bvirt = u3 - _j;
+            u[2] = _j - (u3 - bvirt) + (_i - bvirt);
+            u[3] = u3;
+            n1 = -cdy;
+            n0 = -cdytail;
+            s1 = adxtail * n1;
+            c = _utilJs.splitter * adxtail;
+            ahi = c - (c - adxtail);
+            alo = adxtail - ahi;
+            c = _utilJs.splitter * n1;
+            bhi = c - (c - n1);
+            blo = n1 - bhi;
+            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+            t1 = adx * n0;
+            c = _utilJs.splitter * adx;
+            ahi = c - (c - adx);
+            alo = adx - ahi;
+            c = _utilJs.splitter * n0;
+            bhi = c - (c - n0);
+            blo = n0 - bhi;
+            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+            _i = s0 + t0;
+            bvirt = _i - s0;
+            v[0] = s0 - (_i - bvirt) + (t0 - bvirt);
+            _j = s1 + _i;
+            bvirt = _j - s1;
+            _0 = s1 - (_j - bvirt) + (_i - bvirt);
+            _i = _0 + t1;
+            bvirt = _i - _0;
+            v[1] = _0 - (_i - bvirt) + (t1 - bvirt);
+            u3 = _j + _i;
+            bvirt = u3 - _j;
+            v[2] = _j - (u3 - bvirt) + (_i - bvirt);
+            v[3] = u3;
+            catlen = _utilJs.sum(4, u, 4, v, cat);
+            s1 = cdxtail * adytail;
+            c = _utilJs.splitter * cdxtail;
+            ahi = c - (c - cdxtail);
+            alo = cdxtail - ahi;
+            c = _utilJs.splitter * adytail;
+            bhi = c - (c - adytail);
+            blo = adytail - bhi;
+            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+            t1 = adxtail * cdytail;
+            c = _utilJs.splitter * adxtail;
+            ahi = c - (c - adxtail);
+            alo = adxtail - ahi;
+            c = _utilJs.splitter * cdytail;
+            bhi = c - (c - cdytail);
+            blo = cdytail - bhi;
+            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+            _i = s0 - t0;
+            bvirt = s0 - _i;
+            catt[0] = s0 - (_i + bvirt) + (bvirt - t0);
+            _j = s1 + _i;
+            bvirt = _j - s1;
+            _0 = s1 - (_j - bvirt) + (_i - bvirt);
+            _i = _0 - t1;
+            bvirt = _0 - _i;
+            catt[1] = _0 - (_i + bvirt) + (bvirt - t1);
+            u3 = _j + _i;
+            bvirt = u3 - _j;
+            catt[2] = _j - (u3 - bvirt) + (_i - bvirt);
+            catt[3] = u3;
+            cattlen = 4;
+        } else {
+            cat[0] = 0;
+            catlen = 1;
+            catt[0] = 0;
+            cattlen = 1;
+        }
+        if (bdxtail !== 0) {
+            const len = _utilJs.scale(catlen, cat, bdxtail, _16c);
+            finlen = finadd(finlen, _utilJs.sum(_utilJs.scale(bxtcalen, bxtca, bdxtail, _16), _16, _utilJs.scale(len, _16c, 2 * bdx, _32), _32, _48), _48);
+            const len2 = _utilJs.scale(cattlen, catt, bdxtail, _8);
+            finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(len2, _8, 2 * bdx, _16), _16, _utilJs.scale(len2, _8, bdxtail, _16b), _16b, _utilJs.scale(len, _16c, bdxtail, _32), _32, _32b, _64), _64);
+            if (cdytail !== 0) finlen = finadd(finlen, _utilJs.scale(_utilJs.scale(4, aa, bdxtail, _8), _8, cdytail, _16), _16);
+            if (adytail !== 0) finlen = finadd(finlen, _utilJs.scale(_utilJs.scale(4, cc, -bdxtail, _8), _8, adytail, _16), _16);
+        }
+        if (bdytail !== 0) {
+            const len = _utilJs.scale(catlen, cat, bdytail, _16c);
+            finlen = finadd(finlen, _utilJs.sum(_utilJs.scale(bytcalen, bytca, bdytail, _16), _16, _utilJs.scale(len, _16c, 2 * bdy, _32), _32, _48), _48);
+            const len2 = _utilJs.scale(cattlen, catt, bdytail, _8);
+            finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(len2, _8, 2 * bdy, _16), _16, _utilJs.scale(len2, _8, bdytail, _16b), _16b, _utilJs.scale(len, _16c, bdytail, _32), _32, _32b, _64), _64);
+        }
+    }
+    if (cdxtail !== 0 || cdytail !== 0) {
+        if (adxtail !== 0 || adytail !== 0 || bdxtail !== 0 || bdytail !== 0) {
+            s1 = adxtail * bdy;
+            c = _utilJs.splitter * adxtail;
+            ahi = c - (c - adxtail);
+            alo = adxtail - ahi;
+            c = _utilJs.splitter * bdy;
+            bhi = c - (c - bdy);
+            blo = bdy - bhi;
+            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+            t1 = adx * bdytail;
+            c = _utilJs.splitter * adx;
+            ahi = c - (c - adx);
+            alo = adx - ahi;
+            c = _utilJs.splitter * bdytail;
+            bhi = c - (c - bdytail);
+            blo = bdytail - bhi;
+            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+            _i = s0 + t0;
+            bvirt = _i - s0;
+            u[0] = s0 - (_i - bvirt) + (t0 - bvirt);
+            _j = s1 + _i;
+            bvirt = _j - s1;
+            _0 = s1 - (_j - bvirt) + (_i - bvirt);
+            _i = _0 + t1;
+            bvirt = _i - _0;
+            u[1] = _0 - (_i - bvirt) + (t1 - bvirt);
+            u3 = _j + _i;
+            bvirt = u3 - _j;
+            u[2] = _j - (u3 - bvirt) + (_i - bvirt);
+            u[3] = u3;
+            n1 = -ady;
+            n0 = -adytail;
+            s1 = bdxtail * n1;
+            c = _utilJs.splitter * bdxtail;
+            ahi = c - (c - bdxtail);
+            alo = bdxtail - ahi;
+            c = _utilJs.splitter * n1;
+            bhi = c - (c - n1);
+            blo = n1 - bhi;
+            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+            t1 = bdx * n0;
+            c = _utilJs.splitter * bdx;
+            ahi = c - (c - bdx);
+            alo = bdx - ahi;
+            c = _utilJs.splitter * n0;
+            bhi = c - (c - n0);
+            blo = n0 - bhi;
+            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+            _i = s0 + t0;
+            bvirt = _i - s0;
+            v[0] = s0 - (_i - bvirt) + (t0 - bvirt);
+            _j = s1 + _i;
+            bvirt = _j - s1;
+            _0 = s1 - (_j - bvirt) + (_i - bvirt);
+            _i = _0 + t1;
+            bvirt = _i - _0;
+            v[1] = _0 - (_i - bvirt) + (t1 - bvirt);
+            u3 = _j + _i;
+            bvirt = u3 - _j;
+            v[2] = _j - (u3 - bvirt) + (_i - bvirt);
+            v[3] = u3;
+            abtlen = _utilJs.sum(4, u, 4, v, abt);
+            s1 = adxtail * bdytail;
+            c = _utilJs.splitter * adxtail;
+            ahi = c - (c - adxtail);
+            alo = adxtail - ahi;
+            c = _utilJs.splitter * bdytail;
+            bhi = c - (c - bdytail);
+            blo = bdytail - bhi;
+            s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+            t1 = bdxtail * adytail;
+            c = _utilJs.splitter * bdxtail;
+            ahi = c - (c - bdxtail);
+            alo = bdxtail - ahi;
+            c = _utilJs.splitter * adytail;
+            bhi = c - (c - adytail);
+            blo = adytail - bhi;
+            t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+            _i = s0 - t0;
+            bvirt = s0 - _i;
+            abtt[0] = s0 - (_i + bvirt) + (bvirt - t0);
+            _j = s1 + _i;
+            bvirt = _j - s1;
+            _0 = s1 - (_j - bvirt) + (_i - bvirt);
+            _i = _0 - t1;
+            bvirt = _0 - _i;
+            abtt[1] = _0 - (_i + bvirt) + (bvirt - t1);
+            u3 = _j + _i;
+            bvirt = u3 - _j;
+            abtt[2] = _j - (u3 - bvirt) + (_i - bvirt);
+            abtt[3] = u3;
+            abttlen = 4;
+        } else {
+            abt[0] = 0;
+            abtlen = 1;
+            abtt[0] = 0;
+            abttlen = 1;
+        }
+        if (cdxtail !== 0) {
+            const len = _utilJs.scale(abtlen, abt, cdxtail, _16c);
+            finlen = finadd(finlen, _utilJs.sum(_utilJs.scale(cxtablen, cxtab, cdxtail, _16), _16, _utilJs.scale(len, _16c, 2 * cdx, _32), _32, _48), _48);
+            const len2 = _utilJs.scale(abttlen, abtt, cdxtail, _8);
+            finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(len2, _8, 2 * cdx, _16), _16, _utilJs.scale(len2, _8, cdxtail, _16b), _16b, _utilJs.scale(len, _16c, cdxtail, _32), _32, _32b, _64), _64);
+            if (adytail !== 0) finlen = finadd(finlen, _utilJs.scale(_utilJs.scale(4, bb, cdxtail, _8), _8, adytail, _16), _16);
+            if (bdytail !== 0) finlen = finadd(finlen, _utilJs.scale(_utilJs.scale(4, aa, -cdxtail, _8), _8, bdytail, _16), _16);
+        }
+        if (cdytail !== 0) {
+            const len = _utilJs.scale(abtlen, abt, cdytail, _16c);
+            finlen = finadd(finlen, _utilJs.sum(_utilJs.scale(cytablen, cytab, cdytail, _16), _16, _utilJs.scale(len, _16c, 2 * cdy, _32), _32, _48), _48);
+            const len2 = _utilJs.scale(abttlen, abtt, cdytail, _8);
+            finlen = finadd(finlen, _utilJs.sum_three(_utilJs.scale(len2, _8, 2 * cdy, _16), _16, _utilJs.scale(len2, _8, cdytail, _16b), _16b, _utilJs.scale(len, _16c, cdytail, _32), _32, _32b, _64), _64);
+        }
+    }
+    return fin[finlen - 1];
+}
+function incircle(ax, ay, bx, by, cx, cy, dx, dy) {
+    const adx = ax - dx;
+    const bdx = bx - dx;
+    const cdx = cx - dx;
+    const ady = ay - dy;
+    const bdy = by - dy;
+    const cdy = cy - dy;
+    const bdxcdy = bdx * cdy;
+    const cdxbdy = cdx * bdy;
+    const alift = adx * adx + ady * ady;
+    const cdxady = cdx * ady;
+    const adxcdy = adx * cdy;
+    const blift = bdx * bdx + bdy * bdy;
+    const adxbdy = adx * bdy;
+    const bdxady = bdx * ady;
+    const clift = cdx * cdx + cdy * cdy;
+    const det = alift * (bdxcdy - cdxbdy) + blift * (cdxady - adxcdy) + clift * (adxbdy - bdxady);
+    const permanent = (Math.abs(bdxcdy) + Math.abs(cdxbdy)) * alift + (Math.abs(cdxady) + Math.abs(adxcdy)) * blift + (Math.abs(adxbdy) + Math.abs(bdxady)) * clift;
+    const errbound = iccerrboundA * permanent;
+    if (det > errbound || -det > errbound) return det;
+    return incircleadapt(ax, ay, bx, by, cx, cy, dx, dy, permanent);
+}
+function incirclefast(ax, ay, bx, by, cx, cy, dx, dy) {
+    const adx = ax - dx;
+    const ady = ay - dy;
+    const bdx = bx - dx;
+    const bdy = by - dy;
+    const cdx = cx - dx;
+    const cdy = cy - dy;
+    const abdet = adx * bdy - bdx * ady;
+    const bcdet = bdx * cdy - cdx * bdy;
+    const cadet = cdx * ady - adx * cdy;
+    const alift = adx * adx + ady * ady;
+    const blift = bdx * bdx + bdy * bdy;
+    const clift = cdx * cdx + cdy * cdy;
+    return alift * bcdet + blift * cadet + clift * abdet;
+}
+
+},{"./util.js":"kdlbG","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"j22Cf":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "insphere", ()=>insphere
+);
+parcelHelpers.export(exports, "inspherefast", ()=>inspherefast
+);
+var _utilJs = require("./util.js");
+const isperrboundA = (16 + 224 * _utilJs.epsilon) * _utilJs.epsilon;
+const isperrboundB = (5 + 72 * _utilJs.epsilon) * _utilJs.epsilon;
+const isperrboundC = (71 + 1408 * _utilJs.epsilon) * _utilJs.epsilon * _utilJs.epsilon;
+const ab1 = _utilJs.vec(4);
+const bc1 = _utilJs.vec(4);
+const cd1 = _utilJs.vec(4);
+const de = _utilJs.vec(4);
+const ea = _utilJs.vec(4);
+const ac1 = _utilJs.vec(4);
+const bd1 = _utilJs.vec(4);
+const ce = _utilJs.vec(4);
+const da1 = _utilJs.vec(4);
+const eb = _utilJs.vec(4);
+const abc1 = _utilJs.vec(24);
+const bcd1 = _utilJs.vec(24);
+const cde = _utilJs.vec(24);
+const dea = _utilJs.vec(24);
+const eab = _utilJs.vec(24);
+const abd = _utilJs.vec(24);
+const bce = _utilJs.vec(24);
+const cda1 = _utilJs.vec(24);
+const deb = _utilJs.vec(24);
+const eac = _utilJs.vec(24);
+const adet = _utilJs.vec(1152);
+const bdet = _utilJs.vec(1152);
+const cdet = _utilJs.vec(1152);
+const ddet = _utilJs.vec(1152);
+const edet = _utilJs.vec(1152);
+const abdet = _utilJs.vec(2304);
+const cddet = _utilJs.vec(2304);
+const cdedet = _utilJs.vec(3456);
+const deter = _utilJs.vec(5760);
+const _8 = _utilJs.vec(8);
+const _8b = _utilJs.vec(8);
+const _8c = _utilJs.vec(8);
+const _16 = _utilJs.vec(16);
+const _24 = _utilJs.vec(24);
+const _48 = _utilJs.vec(48);
+const _48b = _utilJs.vec(48);
+const _96 = _utilJs.vec(96);
+const _192 = _utilJs.vec(192);
+const _384x = _utilJs.vec(384);
+const _384y = _utilJs.vec(384);
+const _384z = _utilJs.vec(384);
+const _768 = _utilJs.vec(768);
+function sum_three_scale(a, b, c, az, bz, cz, out) {
+    return _utilJs.sum_three(_utilJs.scale(4, a, az, _8), _8, _utilJs.scale(4, b, bz, _8b), _8b, _utilJs.scale(4, c, cz, _8c), _8c, _16, out);
+}
+function liftexact(alen, a, blen, b, clen, c, dlen, d, x, y, z, out) {
+    const len = _utilJs.sum(_utilJs.sum(alen, a, blen, b, _48), _48, _utilJs.negate(_utilJs.sum(clen, c, dlen, d, _48b), _48b), _48b, _96);
+    return _utilJs.sum_three(_utilJs.scale(_utilJs.scale(len, _96, x, _192), _192, x, _384x), _384x, _utilJs.scale(_utilJs.scale(len, _96, y, _192), _192, y, _384y), _384y, _utilJs.scale(_utilJs.scale(len, _96, z, _192), _192, z, _384z), _384z, _768, out);
+}
+function insphereexact(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez) {
+    let bvirt, c, ahi, alo, bhi, blo, _i, _j, _0, s1, s0, t1, t0, u3;
+    s1 = ax * by;
+    c = _utilJs.splitter * ax;
+    ahi = c - (c - ax);
+    alo = ax - ahi;
+    c = _utilJs.splitter * by;
+    bhi = c - (c - by);
+    blo = by - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = bx * ay;
+    c = _utilJs.splitter * bx;
+    ahi = c - (c - bx);
+    alo = bx - ahi;
+    c = _utilJs.splitter * ay;
+    bhi = c - (c - ay);
+    blo = ay - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    ab1[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    ab1[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    ab1[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    ab1[3] = u3;
+    s1 = bx * cy;
+    c = _utilJs.splitter * bx;
+    ahi = c - (c - bx);
+    alo = bx - ahi;
+    c = _utilJs.splitter * cy;
+    bhi = c - (c - cy);
+    blo = cy - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = cx * by;
+    c = _utilJs.splitter * cx;
+    ahi = c - (c - cx);
+    alo = cx - ahi;
+    c = _utilJs.splitter * by;
+    bhi = c - (c - by);
+    blo = by - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    bc1[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    bc1[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    bc1[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    bc1[3] = u3;
+    s1 = cx * dy;
+    c = _utilJs.splitter * cx;
+    ahi = c - (c - cx);
+    alo = cx - ahi;
+    c = _utilJs.splitter * dy;
+    bhi = c - (c - dy);
+    blo = dy - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = dx * cy;
+    c = _utilJs.splitter * dx;
+    ahi = c - (c - dx);
+    alo = dx - ahi;
+    c = _utilJs.splitter * cy;
+    bhi = c - (c - cy);
+    blo = cy - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    cd1[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    cd1[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    cd1[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    cd1[3] = u3;
+    s1 = dx * ey;
+    c = _utilJs.splitter * dx;
+    ahi = c - (c - dx);
+    alo = dx - ahi;
+    c = _utilJs.splitter * ey;
+    bhi = c - (c - ey);
+    blo = ey - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = ex * dy;
+    c = _utilJs.splitter * ex;
+    ahi = c - (c - ex);
+    alo = ex - ahi;
+    c = _utilJs.splitter * dy;
+    bhi = c - (c - dy);
+    blo = dy - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    de[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    de[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    de[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    de[3] = u3;
+    s1 = ex * ay;
+    c = _utilJs.splitter * ex;
+    ahi = c - (c - ex);
+    alo = ex - ahi;
+    c = _utilJs.splitter * ay;
+    bhi = c - (c - ay);
+    blo = ay - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = ax * ey;
+    c = _utilJs.splitter * ax;
+    ahi = c - (c - ax);
+    alo = ax - ahi;
+    c = _utilJs.splitter * ey;
+    bhi = c - (c - ey);
+    blo = ey - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    ea[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    ea[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    ea[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    ea[3] = u3;
+    s1 = ax * cy;
+    c = _utilJs.splitter * ax;
+    ahi = c - (c - ax);
+    alo = ax - ahi;
+    c = _utilJs.splitter * cy;
+    bhi = c - (c - cy);
+    blo = cy - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = cx * ay;
+    c = _utilJs.splitter * cx;
+    ahi = c - (c - cx);
+    alo = cx - ahi;
+    c = _utilJs.splitter * ay;
+    bhi = c - (c - ay);
+    blo = ay - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    ac1[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    ac1[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    ac1[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    ac1[3] = u3;
+    s1 = bx * dy;
+    c = _utilJs.splitter * bx;
+    ahi = c - (c - bx);
+    alo = bx - ahi;
+    c = _utilJs.splitter * dy;
+    bhi = c - (c - dy);
+    blo = dy - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = dx * by;
+    c = _utilJs.splitter * dx;
+    ahi = c - (c - dx);
+    alo = dx - ahi;
+    c = _utilJs.splitter * by;
+    bhi = c - (c - by);
+    blo = by - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    bd1[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    bd1[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    bd1[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    bd1[3] = u3;
+    s1 = cx * ey;
+    c = _utilJs.splitter * cx;
+    ahi = c - (c - cx);
+    alo = cx - ahi;
+    c = _utilJs.splitter * ey;
+    bhi = c - (c - ey);
+    blo = ey - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = ex * cy;
+    c = _utilJs.splitter * ex;
+    ahi = c - (c - ex);
+    alo = ex - ahi;
+    c = _utilJs.splitter * cy;
+    bhi = c - (c - cy);
+    blo = cy - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    ce[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    ce[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    ce[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    ce[3] = u3;
+    s1 = dx * ay;
+    c = _utilJs.splitter * dx;
+    ahi = c - (c - dx);
+    alo = dx - ahi;
+    c = _utilJs.splitter * ay;
+    bhi = c - (c - ay);
+    blo = ay - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = ax * dy;
+    c = _utilJs.splitter * ax;
+    ahi = c - (c - ax);
+    alo = ax - ahi;
+    c = _utilJs.splitter * dy;
+    bhi = c - (c - dy);
+    blo = dy - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    da1[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    da1[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    da1[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    da1[3] = u3;
+    s1 = ex * by;
+    c = _utilJs.splitter * ex;
+    ahi = c - (c - ex);
+    alo = ex - ahi;
+    c = _utilJs.splitter * by;
+    bhi = c - (c - by);
+    blo = by - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = bx * ey;
+    c = _utilJs.splitter * bx;
+    ahi = c - (c - bx);
+    alo = bx - ahi;
+    c = _utilJs.splitter * ey;
+    bhi = c - (c - ey);
+    blo = ey - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    eb[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    eb[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    u3 = _j + _i;
+    bvirt = u3 - _j;
+    eb[2] = _j - (u3 - bvirt) + (_i - bvirt);
+    eb[3] = u3;
+    const abclen = sum_three_scale(ab1, bc1, ac1, cz, az, -bz, abc1);
+    const bcdlen = sum_three_scale(bc1, cd1, bd1, dz, bz, -cz, bcd1);
+    const cdelen = sum_three_scale(cd1, de, ce, ez, cz, -dz, cde);
+    const dealen = sum_three_scale(de, ea, da1, az, dz, -ez, dea);
+    const eablen = sum_three_scale(ea, ab1, eb, bz, ez, -az, eab);
+    const abdlen = sum_three_scale(ab1, bd1, da1, dz, az, bz, abd);
+    const bcelen = sum_three_scale(bc1, ce, eb, ez, bz, cz, bce);
+    const cdalen = sum_three_scale(cd1, da1, ac1, az, cz, dz, cda1);
+    const deblen = sum_three_scale(de, eb, bd1, bz, dz, ez, deb);
+    const eaclen = sum_three_scale(ea, ac1, ce, cz, ez, az, eac);
+    const deterlen = _utilJs.sum_three(liftexact(cdelen, cde, bcelen, bce, deblen, deb, bcdlen, bcd1, ax, ay, az, adet), adet, liftexact(dealen, dea, cdalen, cda1, eaclen, eac, cdelen, cde, bx, by, bz, bdet), bdet, _utilJs.sum_three(liftexact(eablen, eab, deblen, deb, abdlen, abd, dealen, dea, cx, cy, cz, cdet), cdet, liftexact(abclen, abc1, eaclen, eac, bcelen, bce, eablen, eab, dx, dy, dz, ddet), ddet, liftexact(bcdlen, bcd1, abdlen, abd, cdalen, cda1, abclen, abc1, ex, ey, ez, edet), edet, cddet, cdedet), cdedet, abdet, deter);
+    return deter[deterlen - 1];
+}
+const xdet = _utilJs.vec(96);
+const ydet = _utilJs.vec(96);
+const zdet = _utilJs.vec(96);
+const fin = _utilJs.vec(1152);
+function liftadapt(a, b, c, az, bz, cz, x, y, z, out) {
+    const len = sum_three_scale(a, b, c, az, bz, cz, _24);
+    return _utilJs.sum_three(_utilJs.scale(_utilJs.scale(len, _24, x, _48), _48, x, xdet), xdet, _utilJs.scale(_utilJs.scale(len, _24, y, _48), _48, y, ydet), ydet, _utilJs.scale(_utilJs.scale(len, _24, z, _48), _48, z, zdet), zdet, _192, out);
+}
+function insphereadapt(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez, permanent) {
+    let ab3, bc3, cd3, da3, ac3, bd3;
+    let aextail, bextail, cextail, dextail;
+    let aeytail, beytail, ceytail, deytail;
+    let aeztail, beztail, ceztail, deztail;
+    let bvirt, c, ahi, alo, bhi, blo, _i, _j, _0, s1, s0, t1, t0;
+    const aex = ax - ex;
+    const bex = bx - ex;
+    const cex = cx - ex;
+    const dex = dx - ex;
+    const aey = ay - ey;
+    const bey = by - ey;
+    const cey = cy - ey;
+    const dey = dy - ey;
+    const aez = az - ez;
+    const bez = bz - ez;
+    const cez = cz - ez;
+    const dez = dz - ez;
+    s1 = aex * bey;
+    c = _utilJs.splitter * aex;
+    ahi = c - (c - aex);
+    alo = aex - ahi;
+    c = _utilJs.splitter * bey;
+    bhi = c - (c - bey);
+    blo = bey - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = bex * aey;
+    c = _utilJs.splitter * bex;
+    ahi = c - (c - bex);
+    alo = bex - ahi;
+    c = _utilJs.splitter * aey;
+    bhi = c - (c - aey);
+    blo = aey - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    ab1[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    ab1[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    ab3 = _j + _i;
+    bvirt = ab3 - _j;
+    ab1[2] = _j - (ab3 - bvirt) + (_i - bvirt);
+    ab1[3] = ab3;
+    s1 = bex * cey;
+    c = _utilJs.splitter * bex;
+    ahi = c - (c - bex);
+    alo = bex - ahi;
+    c = _utilJs.splitter * cey;
+    bhi = c - (c - cey);
+    blo = cey - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = cex * bey;
+    c = _utilJs.splitter * cex;
+    ahi = c - (c - cex);
+    alo = cex - ahi;
+    c = _utilJs.splitter * bey;
+    bhi = c - (c - bey);
+    blo = bey - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    bc1[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    bc1[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    bc3 = _j + _i;
+    bvirt = bc3 - _j;
+    bc1[2] = _j - (bc3 - bvirt) + (_i - bvirt);
+    bc1[3] = bc3;
+    s1 = cex * dey;
+    c = _utilJs.splitter * cex;
+    ahi = c - (c - cex);
+    alo = cex - ahi;
+    c = _utilJs.splitter * dey;
+    bhi = c - (c - dey);
+    blo = dey - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = dex * cey;
+    c = _utilJs.splitter * dex;
+    ahi = c - (c - dex);
+    alo = dex - ahi;
+    c = _utilJs.splitter * cey;
+    bhi = c - (c - cey);
+    blo = cey - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    cd1[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    cd1[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    cd3 = _j + _i;
+    bvirt = cd3 - _j;
+    cd1[2] = _j - (cd3 - bvirt) + (_i - bvirt);
+    cd1[3] = cd3;
+    s1 = dex * aey;
+    c = _utilJs.splitter * dex;
+    ahi = c - (c - dex);
+    alo = dex - ahi;
+    c = _utilJs.splitter * aey;
+    bhi = c - (c - aey);
+    blo = aey - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = aex * dey;
+    c = _utilJs.splitter * aex;
+    ahi = c - (c - aex);
+    alo = aex - ahi;
+    c = _utilJs.splitter * dey;
+    bhi = c - (c - dey);
+    blo = dey - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    da1[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    da1[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    da3 = _j + _i;
+    bvirt = da3 - _j;
+    da1[2] = _j - (da3 - bvirt) + (_i - bvirt);
+    da1[3] = da3;
+    s1 = aex * cey;
+    c = _utilJs.splitter * aex;
+    ahi = c - (c - aex);
+    alo = aex - ahi;
+    c = _utilJs.splitter * cey;
+    bhi = c - (c - cey);
+    blo = cey - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = cex * aey;
+    c = _utilJs.splitter * cex;
+    ahi = c - (c - cex);
+    alo = cex - ahi;
+    c = _utilJs.splitter * aey;
+    bhi = c - (c - aey);
+    blo = aey - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    ac1[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    ac1[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    ac3 = _j + _i;
+    bvirt = ac3 - _j;
+    ac1[2] = _j - (ac3 - bvirt) + (_i - bvirt);
+    ac1[3] = ac3;
+    s1 = bex * dey;
+    c = _utilJs.splitter * bex;
+    ahi = c - (c - bex);
+    alo = bex - ahi;
+    c = _utilJs.splitter * dey;
+    bhi = c - (c - dey);
+    blo = dey - bhi;
+    s0 = alo * blo - (s1 - ahi * bhi - alo * bhi - ahi * blo);
+    t1 = dex * bey;
+    c = _utilJs.splitter * dex;
+    ahi = c - (c - dex);
+    alo = dex - ahi;
+    c = _utilJs.splitter * bey;
+    bhi = c - (c - bey);
+    blo = bey - bhi;
+    t0 = alo * blo - (t1 - ahi * bhi - alo * bhi - ahi * blo);
+    _i = s0 - t0;
+    bvirt = s0 - _i;
+    bd1[0] = s0 - (_i + bvirt) + (bvirt - t0);
+    _j = s1 + _i;
+    bvirt = _j - s1;
+    _0 = s1 - (_j - bvirt) + (_i - bvirt);
+    _i = _0 - t1;
+    bvirt = _0 - _i;
+    bd1[1] = _0 - (_i + bvirt) + (bvirt - t1);
+    bd3 = _j + _i;
+    bvirt = bd3 - _j;
+    bd1[2] = _j - (bd3 - bvirt) + (_i - bvirt);
+    bd1[3] = bd3;
+    const finlen = _utilJs.sum(_utilJs.sum(_utilJs.negate(liftadapt(bc1, cd1, bd1, dez, bez, -cez, aex, aey, aez, adet), adet), adet, liftadapt(cd1, da1, ac1, aez, cez, dez, bex, bey, bez, bdet), bdet, abdet), abdet, _utilJs.sum(_utilJs.negate(liftadapt(da1, ab1, bd1, bez, dez, aez, cex, cey, cez, cdet), cdet), cdet, liftadapt(ab1, bc1, ac1, cez, aez, -bez, dex, dey, dez, ddet), ddet, cddet), cddet, fin);
+    let det = _utilJs.estimate(finlen, fin);
+    let errbound = isperrboundB * permanent;
+    if (det >= errbound || -det >= errbound) return det;
+    bvirt = ax - aex;
+    aextail = ax - (aex + bvirt) + (bvirt - ex);
+    bvirt = ay - aey;
+    aeytail = ay - (aey + bvirt) + (bvirt - ey);
+    bvirt = az - aez;
+    aeztail = az - (aez + bvirt) + (bvirt - ez);
+    bvirt = bx - bex;
+    bextail = bx - (bex + bvirt) + (bvirt - ex);
+    bvirt = by - bey;
+    beytail = by - (bey + bvirt) + (bvirt - ey);
+    bvirt = bz - bez;
+    beztail = bz - (bez + bvirt) + (bvirt - ez);
+    bvirt = cx - cex;
+    cextail = cx - (cex + bvirt) + (bvirt - ex);
+    bvirt = cy - cey;
+    ceytail = cy - (cey + bvirt) + (bvirt - ey);
+    bvirt = cz - cez;
+    ceztail = cz - (cez + bvirt) + (bvirt - ez);
+    bvirt = dx - dex;
+    dextail = dx - (dex + bvirt) + (bvirt - ex);
+    bvirt = dy - dey;
+    deytail = dy - (dey + bvirt) + (bvirt - ey);
+    bvirt = dz - dez;
+    deztail = dz - (dez + bvirt) + (bvirt - ez);
+    if (aextail === 0 && aeytail === 0 && aeztail === 0 && bextail === 0 && beytail === 0 && beztail === 0 && cextail === 0 && ceytail === 0 && ceztail === 0 && dextail === 0 && deytail === 0 && deztail === 0) return det;
+    errbound = isperrboundC * permanent + _utilJs.resulterrbound * Math.abs(det);
+    const abeps = aex * beytail + bey * aextail - (aey * bextail + bex * aeytail);
+    const bceps = bex * ceytail + cey * bextail - (bey * cextail + cex * beytail);
+    const cdeps = cex * deytail + dey * cextail - (cey * dextail + dex * ceytail);
+    const daeps = dex * aeytail + aey * dextail - (dey * aextail + aex * deytail);
+    const aceps = aex * ceytail + cey * aextail - (aey * cextail + cex * aeytail);
+    const bdeps = bex * deytail + dey * bextail - (bey * dextail + dex * beytail);
+    det += (bex * bex + bey * bey + bez * bez) * (cez * daeps + dez * aceps + aez * cdeps + (ceztail * da3 + deztail * ac3 + aeztail * cd3)) + (dex * dex + dey * dey + dez * dez) * (aez * bceps - bez * aceps + cez * abeps + (aeztail * bc3 - beztail * ac3 + ceztail * ab3)) - ((aex * aex + aey * aey + aez * aez) * (bez * cdeps - cez * bdeps + dez * bceps + (beztail * cd3 - ceztail * bd3 + deztail * bc3)) + (cex * cex + cey * cey + cez * cez) * (dez * abeps + aez * bdeps + bez * daeps + (deztail * ab3 + aeztail * bd3 + beztail * da3))) + 2 * ((bex * bextail + bey * beytail + bez * beztail) * (cez * da3 + dez * ac3 + aez * cd3) + (dex * dextail + dey * deytail + dez * deztail) * (aez * bc3 - bez * ac3 + cez * ab3) - ((aex * aextail + aey * aeytail + aez * aeztail) * (bez * cd3 - cez * bd3 + dez * bc3) + (cex * cextail + cey * ceytail + cez * ceztail) * (dez * ab3 + aez * bd3 + bez * da3)));
+    if (det >= errbound || -det >= errbound) return det;
+    return insphereexact(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez);
+}
+function insphere(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez) {
+    const aex = ax - ex;
+    const bex = bx - ex;
+    const cex = cx - ex;
+    const dex = dx - ex;
+    const aey = ay - ey;
+    const bey = by - ey;
+    const cey = cy - ey;
+    const dey = dy - ey;
+    const aez = az - ez;
+    const bez = bz - ez;
+    const cez = cz - ez;
+    const dez = dz - ez;
+    const aexbey = aex * bey;
+    const bexaey = bex * aey;
+    const ab = aexbey - bexaey;
+    const bexcey = bex * cey;
+    const cexbey = cex * bey;
+    const bc = bexcey - cexbey;
+    const cexdey = cex * dey;
+    const dexcey = dex * cey;
+    const cd = cexdey - dexcey;
+    const dexaey = dex * aey;
+    const aexdey = aex * dey;
+    const da = dexaey - aexdey;
+    const aexcey = aex * cey;
+    const cexaey = cex * aey;
+    const ac = aexcey - cexaey;
+    const bexdey = bex * dey;
+    const dexbey = dex * bey;
+    const bd = bexdey - dexbey;
+    const abc = aez * bc - bez * ac + cez * ab;
+    const bcd = bez * cd - cez * bd + dez * bc;
+    const cda = cez * da + dez * ac + aez * cd;
+    const dab = dez * ab + aez * bd + bez * da;
+    const alift = aex * aex + aey * aey + aez * aez;
+    const blift = bex * bex + bey * bey + bez * bez;
+    const clift = cex * cex + cey * cey + cez * cez;
+    const dlift = dex * dex + dey * dey + dez * dez;
+    const det = clift * dab - dlift * abc + (alift * bcd - blift * cda);
+    const aezplus = Math.abs(aez);
+    const bezplus = Math.abs(bez);
+    const cezplus = Math.abs(cez);
+    const dezplus = Math.abs(dez);
+    const aexbeyplus = Math.abs(aexbey);
+    const bexaeyplus = Math.abs(bexaey);
+    const bexceyplus = Math.abs(bexcey);
+    const cexbeyplus = Math.abs(cexbey);
+    const cexdeyplus = Math.abs(cexdey);
+    const dexceyplus = Math.abs(dexcey);
+    const dexaeyplus = Math.abs(dexaey);
+    const aexdeyplus = Math.abs(aexdey);
+    const aexceyplus = Math.abs(aexcey);
+    const cexaeyplus = Math.abs(cexaey);
+    const bexdeyplus = Math.abs(bexdey);
+    const dexbeyplus = Math.abs(dexbey);
+    const permanent = ((cexdeyplus + dexceyplus) * bezplus + (dexbeyplus + bexdeyplus) * cezplus + (bexceyplus + cexbeyplus) * dezplus) * alift + ((dexaeyplus + aexdeyplus) * cezplus + (aexceyplus + cexaeyplus) * dezplus + (cexdeyplus + dexceyplus) * aezplus) * blift + ((aexbeyplus + bexaeyplus) * dezplus + (bexdeyplus + dexbeyplus) * aezplus + (dexaeyplus + aexdeyplus) * bezplus) * clift + ((bexceyplus + cexbeyplus) * aezplus + (cexaeyplus + aexceyplus) * bezplus + (aexbeyplus + bexaeyplus) * cezplus) * dlift;
+    const errbound = isperrboundA * permanent;
+    if (det > errbound || -det > errbound) return det;
+    return -insphereadapt(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez, permanent);
+}
+function inspherefast(pax, pay, paz, pbx, pby, pbz, pcx, pcy, pcz, pdx, pdy, pdz, pex, pey, pez) {
+    const aex = pax - pex;
+    const bex = pbx - pex;
+    const cex = pcx - pex;
+    const dex = pdx - pex;
+    const aey = pay - pey;
+    const bey = pby - pey;
+    const cey = pcy - pey;
+    const dey = pdy - pey;
+    const aez = paz - pez;
+    const bez = pbz - pez;
+    const cez = pcz - pez;
+    const dez = pdz - pez;
+    const ab = aex * bey - bex * aey;
+    const bc = bex * cey - cex * bey;
+    const cd = cex * dey - dex * cey;
+    const da = dex * aey - aex * dey;
+    const ac = aex * cey - cex * aey;
+    const bd = bex * dey - dex * bey;
+    const abc = aez * bc - bez * ac + cez * ab;
+    const bcd = bez * cd - cez * bd + dez * bc;
+    const cda = cez * da + dez * ac + aez * cd;
+    const dab = dez * ab + aez * bd + bez * da;
+    const alift = aex * aex + aey * aey + aez * aez;
+    const blift = bex * bex + bey * bey + bez * bez;
+    const clift = cex * cex + cey * cey + cez * cez;
+    const dlift = dex * dex + dey * dey + dez * dez;
+    return clift * dab - dlift * abc + (alift * bcd - blift * cda);
+}
+
+},{"./util.js":"kdlbG","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kZ7BC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const epsilon = 0.000001;
@@ -9590,19 +13229,25 @@ class Voronoi {
             const dy = y2 - y1;
             const ex = x3 - x1;
             const ey = y3 - y1;
-            const bl = dx * dx + dy * dy;
-            const cl = ex * ex + ey * ey;
             const ab = (dx * ey - dy * ex) * 2;
-            if (!ab) {
+            if (Math.abs(ab) < 0.000000001) {
                 // degenerate case (collinear diagram)
-                x = (x1 + x3) / 2 - 100000000 * ey;
-                y = (y1 + y3) / 2 + 100000000 * ex;
-            } else if (Math.abs(ab) < 0.00000001) {
                 // almost equal points (degenerate triangle)
-                x = (x1 + x3) / 2;
-                y = (y1 + y3) / 2;
+                // the circumcenter is at the infinity, in a
+                // direction that is:
+                // 1. orthogonal to the halfedge.
+                let a = 1000000000;
+                // 2. points away from the center; since the list of triangles starts
+                // in the center, the first point of the first triangle
+                // will be our reference
+                const r = triangles[0] * 2;
+                a *= Math.sign((points[r] - x1) * ey - (points[r + 1] - y1) * ex);
+                x = (x1 + x3) / 2 - a * ey;
+                y = (y1 + y3) / 2 + a * ex;
             } else {
                 const d = 1 / ab;
+                const bl = dx * dx + dy * dy;
+                const cl = ex * ex + ey * ey;
                 x = x1 + (ey * bl - dy * cl) * d;
                 y = y1 + (dx * cl - ex * bl) * d;
             }
@@ -9745,7 +13390,7 @@ class Voronoi {
         let P = null;
         let x0, y0, x1 = points[n - 2], y1 = points[n - 1];
         let c0, c1 = this._regioncode(x1, y1);
-        let e0, e1;
+        let e0, e1 = 0;
         for(let j = 0; j < n; j += 2){
             x0 = x1, y0 = y1, x1 = points[j], y1 = points[j + 1];
             c0 = c1, c1 = this._regioncode(x1, y1);
@@ -9863,6 +13508,8 @@ class Voronoi {
                     e0 = 5, x = this.xmin, y = this.ymin;
                     break; // left
             }
+            // Note: this implicitly checks for out of bounds: if P[j] or P[j+1] are
+            // undefined, the conditional statement will be executed.
             if ((P[j] !== x || P[j + 1] !== y) && this.contains(i11, x, y)) P.splice(j, 0, x, y), j += 2;
         }
         if (P.length > 4) for(let i = 0; i < P.length; i += 2){
@@ -9901,7 +13548,1562 @@ class Voronoi {
 }
 exports.default = Voronoi;
 
-},{"./path.js":"kZ7BC","./polygon.js":"I8KG7","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lK0ts":[function(require,module,exports) {
+},{"./path.js":"kZ7BC","./polygon.js":"I8KG7","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"DdGrt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "dispatch", ()=>_dispatchJsDefault.default
+);
+var _dispatchJs = require("./dispatch.js");
+var _dispatchJsDefault = parcelHelpers.interopDefault(_dispatchJs);
+
+},{"./dispatch.js":"cLuMG","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cLuMG":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var noop = {
+    value: ()=>{
+    }
+};
+function dispatch() {
+    for(var i = 0, n = arguments.length, _ = {
+    }, t; i < n; ++i){
+        if (!(t = arguments[i] + "") || t in _ || /[\s.]/.test(t)) throw new Error("illegal type: " + t);
+        _[t] = [];
+    }
+    return new Dispatch(_);
+}
+function Dispatch(_) {
+    this._ = _;
+}
+function parseTypenames(typenames, types) {
+    return typenames.trim().split(/^|\s+/).map(function(t) {
+        var name = "", i = t.indexOf(".");
+        if (i >= 0) name = t.slice(i + 1), t = t.slice(0, i);
+        if (t && !types.hasOwnProperty(t)) throw new Error("unknown type: " + t);
+        return {
+            type: t,
+            name: name
+        };
+    });
+}
+Dispatch.prototype = dispatch.prototype = {
+    constructor: Dispatch,
+    on: function(typename, callback) {
+        var _ = this._, T = parseTypenames(typename + "", _), t, i = -1, n = T.length;
+        // If no callback was specified, return the callback of the given type and name.
+        if (arguments.length < 2) {
+            while(++i < n)if ((t = (typename = T[i]).type) && (t = get(_[t], typename.name))) return t;
+            return;
+        }
+        // If a type was specified, set the callback for the given type and name.
+        // Otherwise, if a null callback was specified, remove callbacks of the given name.
+        if (callback != null && typeof callback !== "function") throw new Error("invalid callback: " + callback);
+        while(++i < n){
+            if (t = (typename = T[i]).type) _[t] = set(_[t], typename.name, callback);
+            else if (callback == null) for(t in _)_[t] = set(_[t], typename.name, null);
+        }
+        return this;
+    },
+    copy: function() {
+        var copy = {
+        }, _ = this._;
+        for(var t in _)copy[t] = _[t].slice();
+        return new Dispatch(copy);
+    },
+    call: function(type, that) {
+        if ((n = arguments.length - 2) > 0) for(var args = new Array(n), i = 0, n, t; i < n; ++i)args[i] = arguments[i + 2];
+        if (!this._.hasOwnProperty(type)) throw new Error("unknown type: " + type);
+        for(t = this._[type], i = 0, n = t.length; i < n; ++i)t[i].value.apply(that, args);
+    },
+    apply: function(type, that, args) {
+        if (!this._.hasOwnProperty(type)) throw new Error("unknown type: " + type);
+        for(var t = this._[type], i = 0, n = t.length; i < n; ++i)t[i].value.apply(that, args);
+    }
+};
+function get(type, name) {
+    for(var i = 0, n = type.length, c; i < n; ++i){
+        if ((c = type[i]).name === name) return c.value;
+    }
+}
+function set(type, name, callback) {
+    for(var i = 0, n = type.length; i < n; ++i)if (type[i].name === name) {
+        type[i] = noop, type = type.slice(0, i).concat(type.slice(i + 1));
+        break;
+    }
+    if (callback != null) type.push({
+        name: name,
+        value: callback
+    });
+    return type;
+}
+exports.default = dispatch;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4FQ3g":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "drag", ()=>_dragJsDefault.default
+);
+parcelHelpers.export(exports, "dragDisable", ()=>_nodragJsDefault.default
+);
+parcelHelpers.export(exports, "dragEnable", ()=>_nodragJs.yesdrag
+);
+var _dragJs = require("./drag.js");
+var _dragJsDefault = parcelHelpers.interopDefault(_dragJs);
+var _nodragJs = require("./nodrag.js");
+var _nodragJsDefault = parcelHelpers.interopDefault(_nodragJs);
+
+},{"./drag.js":"x5vHv","./nodrag.js":"21CS3","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"x5vHv":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _d3Dispatch = require("d3-dispatch");
+var _d3Selection = require("d3-selection");
+var _nodragJs = require("./nodrag.js");
+var _nodragJsDefault = parcelHelpers.interopDefault(_nodragJs);
+var _noeventJs = require("./noevent.js");
+var _noeventJsDefault = parcelHelpers.interopDefault(_noeventJs);
+var _constantJs = require("./constant.js");
+var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
+var _eventJs = require("./event.js");
+var _eventJsDefault = parcelHelpers.interopDefault(_eventJs);
+// Ignore right-click, since that should open the context menu.
+function defaultFilter(event) {
+    return !event.ctrlKey && !event.button;
+}
+function defaultContainer() {
+    return this.parentNode;
+}
+function defaultSubject(event, d) {
+    return d == null ? {
+        x: event.x,
+        y: event.y
+    } : d;
+}
+function defaultTouchable() {
+    return navigator.maxTouchPoints || "ontouchstart" in this;
+}
+exports.default = function() {
+    var filter = defaultFilter, container1 = defaultContainer, subject = defaultSubject, touchable = defaultTouchable, gestures = {
+    }, listeners = _d3Dispatch.dispatch("start", "drag", "end"), active = 0, mousedownx, mousedowny, mousemoving, touchending, clickDistance2 = 0;
+    function drag(selection) {
+        selection.on("mousedown.drag", mousedowned).filter(touchable).on("touchstart.drag", touchstarted).on("touchmove.drag", touchmoved, _noeventJs.nonpassive).on("touchend.drag touchcancel.drag", touchended).style("touch-action", "none").style("-webkit-tap-highlight-color", "rgba(0,0,0,0)");
+    }
+    function mousedowned(event, d) {
+        if (touchending || !filter.call(this, event, d)) return;
+        var gesture = beforestart(this, container1.call(this, event, d), event, d, "mouse");
+        if (!gesture) return;
+        _d3Selection.select(event.view).on("mousemove.drag", mousemoved, _noeventJs.nonpassivecapture).on("mouseup.drag", mouseupped, _noeventJs.nonpassivecapture);
+        _nodragJsDefault.default(event.view);
+        _noeventJs.nopropagation(event);
+        mousemoving = false;
+        mousedownx = event.clientX;
+        mousedowny = event.clientY;
+        gesture("start", event);
+    }
+    function mousemoved(event) {
+        _noeventJsDefault.default(event);
+        if (!mousemoving) {
+            var dx = event.clientX - mousedownx, dy = event.clientY - mousedowny;
+            mousemoving = dx * dx + dy * dy > clickDistance2;
+        }
+        gestures.mouse("drag", event);
+    }
+    function mouseupped(event) {
+        _d3Selection.select(event.view).on("mousemove.drag mouseup.drag", null);
+        _nodragJs.yesdrag(event.view, mousemoving);
+        _noeventJsDefault.default(event);
+        gestures.mouse("end", event);
+    }
+    function touchstarted(event, d) {
+        if (!filter.call(this, event, d)) return;
+        var touches = event.changedTouches, c = container1.call(this, event, d), n = touches.length, i, gesture;
+        for(i = 0; i < n; ++i)if (gesture = beforestart(this, c, event, d, touches[i].identifier, touches[i])) {
+            _noeventJs.nopropagation(event);
+            gesture("start", event, touches[i]);
+        }
+    }
+    function touchmoved(event) {
+        var touches = event.changedTouches, n = touches.length, i, gesture;
+        for(i = 0; i < n; ++i)if (gesture = gestures[touches[i].identifier]) {
+            _noeventJsDefault.default(event);
+            gesture("drag", event, touches[i]);
+        }
+    }
+    function touchended(event) {
+        var touches = event.changedTouches, n = touches.length, i, gesture;
+        if (touchending) clearTimeout(touchending);
+        touchending = setTimeout(function() {
+            touchending = null;
+        }, 500); // Ghost clicks are delayed!
+        for(i = 0; i < n; ++i)if (gesture = gestures[touches[i].identifier]) {
+            _noeventJs.nopropagation(event);
+            gesture("end", event, touches[i]);
+        }
+    }
+    function beforestart(that, container, event1, d, identifier, touch1) {
+        var dispatch = listeners.copy(), p = _d3Selection.pointer(touch1 || event1, container), dx, dy, s;
+        if ((s = subject.call(that, new _eventJsDefault.default("beforestart", {
+            sourceEvent: event1,
+            target: drag,
+            identifier,
+            active,
+            x: p[0],
+            y: p[1],
+            dx: 0,
+            dy: 0,
+            dispatch
+        }), d)) == null) return;
+        dx = s.x - p[0] || 0;
+        dy = s.y - p[1] || 0;
+        return function gesture(type, event, touch) {
+            var p0 = p, n;
+            switch(type){
+                case "start":
+                    gestures[identifier] = gesture, n = active++;
+                    break;
+                case "end":
+                    delete gestures[identifier], --active; // falls through
+                case "drag":
+                    p = _d3Selection.pointer(touch || event, container), n = active;
+                    break;
+            }
+            dispatch.call(type, that, new _eventJsDefault.default(type, {
+                sourceEvent: event,
+                subject: s,
+                target: drag,
+                identifier,
+                active: n,
+                x: p[0] + dx,
+                y: p[1] + dy,
+                dx: p[0] - p0[0],
+                dy: p[1] - p0[1],
+                dispatch
+            }), d);
+        };
+    }
+    drag.filter = function(_) {
+        return arguments.length ? (filter = typeof _ === "function" ? _ : _constantJsDefault.default(!!_), drag) : filter;
+    };
+    drag.container = function(_) {
+        return arguments.length ? (container1 = typeof _ === "function" ? _ : _constantJsDefault.default(_), drag) : container1;
+    };
+    drag.subject = function(_) {
+        return arguments.length ? (subject = typeof _ === "function" ? _ : _constantJsDefault.default(_), drag) : subject;
+    };
+    drag.touchable = function(_) {
+        return arguments.length ? (touchable = typeof _ === "function" ? _ : _constantJsDefault.default(!!_), drag) : touchable;
+    };
+    drag.on = function() {
+        var value = listeners.on.apply(listeners, arguments);
+        return value === listeners ? drag : value;
+    };
+    drag.clickDistance = function(_) {
+        return arguments.length ? (clickDistance2 = (_ = +_) * _, drag) : Math.sqrt(clickDistance2);
+    };
+    return drag;
+};
+
+},{"d3-dispatch":"DdGrt","d3-selection":"gUhVK","./nodrag.js":"21CS3","./noevent.js":"fwJZX","./constant.js":"7xpJb","./event.js":"5U6QQ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gUhVK":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "create", ()=>_createJsDefault.default
+);
+parcelHelpers.export(exports, "creator", ()=>_creatorJsDefault.default
+);
+parcelHelpers.export(exports, "local", ()=>_localJsDefault.default
+);
+parcelHelpers.export(exports, "matcher", ()=>_matcherJsDefault.default
+);
+parcelHelpers.export(exports, "namespace", ()=>_namespaceJsDefault.default
+);
+parcelHelpers.export(exports, "namespaces", ()=>_namespacesJsDefault.default
+);
+parcelHelpers.export(exports, "pointer", ()=>_pointerJsDefault.default
+);
+parcelHelpers.export(exports, "pointers", ()=>_pointersJsDefault.default
+);
+parcelHelpers.export(exports, "select", ()=>_selectJsDefault.default
+);
+parcelHelpers.export(exports, "selectAll", ()=>_selectAllJsDefault.default
+);
+parcelHelpers.export(exports, "selection", ()=>_indexJsDefault.default
+);
+parcelHelpers.export(exports, "selector", ()=>_selectorJsDefault.default
+);
+parcelHelpers.export(exports, "selectorAll", ()=>_selectorAllJsDefault.default
+);
+parcelHelpers.export(exports, "style", ()=>_styleJs.styleValue
+);
+parcelHelpers.export(exports, "window", ()=>_windowJsDefault.default
+);
+var _createJs = require("./create.js");
+var _createJsDefault = parcelHelpers.interopDefault(_createJs);
+var _creatorJs = require("./creator.js");
+var _creatorJsDefault = parcelHelpers.interopDefault(_creatorJs);
+var _localJs = require("./local.js");
+var _localJsDefault = parcelHelpers.interopDefault(_localJs);
+var _matcherJs = require("./matcher.js");
+var _matcherJsDefault = parcelHelpers.interopDefault(_matcherJs);
+var _namespaceJs = require("./namespace.js");
+var _namespaceJsDefault = parcelHelpers.interopDefault(_namespaceJs);
+var _namespacesJs = require("./namespaces.js");
+var _namespacesJsDefault = parcelHelpers.interopDefault(_namespacesJs);
+var _pointerJs = require("./pointer.js");
+var _pointerJsDefault = parcelHelpers.interopDefault(_pointerJs);
+var _pointersJs = require("./pointers.js");
+var _pointersJsDefault = parcelHelpers.interopDefault(_pointersJs);
+var _selectJs = require("./select.js");
+var _selectJsDefault = parcelHelpers.interopDefault(_selectJs);
+var _selectAllJs = require("./selectAll.js");
+var _selectAllJsDefault = parcelHelpers.interopDefault(_selectAllJs);
+var _indexJs = require("./selection/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _selectorJs = require("./selector.js");
+var _selectorJsDefault = parcelHelpers.interopDefault(_selectorJs);
+var _selectorAllJs = require("./selectorAll.js");
+var _selectorAllJsDefault = parcelHelpers.interopDefault(_selectorAllJs);
+var _styleJs = require("./selection/style.js");
+var _windowJs = require("./window.js");
+var _windowJsDefault = parcelHelpers.interopDefault(_windowJs);
+
+},{"./create.js":"9eLGp","./creator.js":"h0te6","./local.js":"3x2YN","./matcher.js":"ijTn7","./namespace.js":"qUwil","./namespaces.js":"eXdcm","./pointer.js":"etHs6","./pointers.js":"6XM1d","./select.js":"coR3f","./selectAll.js":"5cPa7","./selection/index.js":"f1DiR","./selector.js":"4dLju","./selectorAll.js":"2Yn3a","./selection/style.js":"hnCOy","./window.js":"2ID51","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9eLGp":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _creatorJs = require("./creator.js");
+var _creatorJsDefault = parcelHelpers.interopDefault(_creatorJs);
+var _selectJs = require("./select.js");
+var _selectJsDefault = parcelHelpers.interopDefault(_selectJs);
+exports.default = function(name) {
+    return _selectJsDefault.default(_creatorJsDefault.default(name).call(document.documentElement));
+};
+
+},{"./creator.js":"h0te6","./select.js":"coR3f","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"h0te6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _namespaceJs = require("./namespace.js");
+var _namespaceJsDefault = parcelHelpers.interopDefault(_namespaceJs);
+var _namespacesJs = require("./namespaces.js");
+function creatorInherit(name) {
+    return function() {
+        var document = this.ownerDocument, uri = this.namespaceURI;
+        return uri === _namespacesJs.xhtml && document.documentElement.namespaceURI === _namespacesJs.xhtml ? document.createElement(name) : document.createElementNS(uri, name);
+    };
+}
+function creatorFixed(fullname) {
+    return function() {
+        return this.ownerDocument.createElementNS(fullname.space, fullname.local);
+    };
+}
+exports.default = function(name) {
+    var fullname = _namespaceJsDefault.default(name);
+    return (fullname.local ? creatorFixed : creatorInherit)(fullname);
+};
+
+},{"./namespace.js":"qUwil","./namespaces.js":"eXdcm","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"qUwil":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _namespacesJs = require("./namespaces.js");
+var _namespacesJsDefault = parcelHelpers.interopDefault(_namespacesJs);
+exports.default = function(name) {
+    var prefix = name += "", i = prefix.indexOf(":");
+    if (i >= 0 && (prefix = name.slice(0, i)) !== "xmlns") name = name.slice(i + 1);
+    return _namespacesJsDefault.default.hasOwnProperty(prefix) ? {
+        space: _namespacesJsDefault.default[prefix],
+        local: name
+    } : name; // eslint-disable-line no-prototype-builtins
+};
+
+},{"./namespaces.js":"eXdcm","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eXdcm":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "xhtml", ()=>xhtml
+);
+var xhtml = "http://www.w3.org/1999/xhtml";
+exports.default = {
+    svg: "http://www.w3.org/2000/svg",
+    xhtml: xhtml,
+    xlink: "http://www.w3.org/1999/xlink",
+    xml: "http://www.w3.org/XML/1998/namespace",
+    xmlns: "http://www.w3.org/2000/xmlns/"
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"coR3f":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./selection/index.js");
+exports.default = function(selector) {
+    return typeof selector === "string" ? new _indexJs.Selection([
+        [
+            document.querySelector(selector)
+        ]
+    ], [
+        document.documentElement
+    ]) : new _indexJs.Selection([
+        [
+            selector
+        ]
+    ], _indexJs.root);
+};
+
+},{"./selection/index.js":"f1DiR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"f1DiR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "root", ()=>root
+);
+parcelHelpers.export(exports, "Selection", ()=>Selection
+);
+var _selectJs = require("./select.js");
+var _selectJsDefault = parcelHelpers.interopDefault(_selectJs);
+var _selectAllJs = require("./selectAll.js");
+var _selectAllJsDefault = parcelHelpers.interopDefault(_selectAllJs);
+var _selectChildJs = require("./selectChild.js");
+var _selectChildJsDefault = parcelHelpers.interopDefault(_selectChildJs);
+var _selectChildrenJs = require("./selectChildren.js");
+var _selectChildrenJsDefault = parcelHelpers.interopDefault(_selectChildrenJs);
+var _filterJs = require("./filter.js");
+var _filterJsDefault = parcelHelpers.interopDefault(_filterJs);
+var _dataJs = require("./data.js");
+var _dataJsDefault = parcelHelpers.interopDefault(_dataJs);
+var _enterJs = require("./enter.js");
+var _enterJsDefault = parcelHelpers.interopDefault(_enterJs);
+var _exitJs = require("./exit.js");
+var _exitJsDefault = parcelHelpers.interopDefault(_exitJs);
+var _joinJs = require("./join.js");
+var _joinJsDefault = parcelHelpers.interopDefault(_joinJs);
+var _mergeJs = require("./merge.js");
+var _mergeJsDefault = parcelHelpers.interopDefault(_mergeJs);
+var _orderJs = require("./order.js");
+var _orderJsDefault = parcelHelpers.interopDefault(_orderJs);
+var _sortJs = require("./sort.js");
+var _sortJsDefault = parcelHelpers.interopDefault(_sortJs);
+var _callJs = require("./call.js");
+var _callJsDefault = parcelHelpers.interopDefault(_callJs);
+var _nodesJs = require("./nodes.js");
+var _nodesJsDefault = parcelHelpers.interopDefault(_nodesJs);
+var _nodeJs = require("./node.js");
+var _nodeJsDefault = parcelHelpers.interopDefault(_nodeJs);
+var _sizeJs = require("./size.js");
+var _sizeJsDefault = parcelHelpers.interopDefault(_sizeJs);
+var _emptyJs = require("./empty.js");
+var _emptyJsDefault = parcelHelpers.interopDefault(_emptyJs);
+var _eachJs = require("./each.js");
+var _eachJsDefault = parcelHelpers.interopDefault(_eachJs);
+var _attrJs = require("./attr.js");
+var _attrJsDefault = parcelHelpers.interopDefault(_attrJs);
+var _styleJs = require("./style.js");
+var _styleJsDefault = parcelHelpers.interopDefault(_styleJs);
+var _propertyJs = require("./property.js");
+var _propertyJsDefault = parcelHelpers.interopDefault(_propertyJs);
+var _classedJs = require("./classed.js");
+var _classedJsDefault = parcelHelpers.interopDefault(_classedJs);
+var _textJs = require("./text.js");
+var _textJsDefault = parcelHelpers.interopDefault(_textJs);
+var _htmlJs = require("./html.js");
+var _htmlJsDefault = parcelHelpers.interopDefault(_htmlJs);
+var _raiseJs = require("./raise.js");
+var _raiseJsDefault = parcelHelpers.interopDefault(_raiseJs);
+var _lowerJs = require("./lower.js");
+var _lowerJsDefault = parcelHelpers.interopDefault(_lowerJs);
+var _appendJs = require("./append.js");
+var _appendJsDefault = parcelHelpers.interopDefault(_appendJs);
+var _insertJs = require("./insert.js");
+var _insertJsDefault = parcelHelpers.interopDefault(_insertJs);
+var _removeJs = require("./remove.js");
+var _removeJsDefault = parcelHelpers.interopDefault(_removeJs);
+var _cloneJs = require("./clone.js");
+var _cloneJsDefault = parcelHelpers.interopDefault(_cloneJs);
+var _datumJs = require("./datum.js");
+var _datumJsDefault = parcelHelpers.interopDefault(_datumJs);
+var _onJs = require("./on.js");
+var _onJsDefault = parcelHelpers.interopDefault(_onJs);
+var _dispatchJs = require("./dispatch.js");
+var _dispatchJsDefault = parcelHelpers.interopDefault(_dispatchJs);
+var _iteratorJs = require("./iterator.js");
+var _iteratorJsDefault = parcelHelpers.interopDefault(_iteratorJs);
+var root = [
+    null
+];
+function Selection(groups, parents) {
+    this._groups = groups;
+    this._parents = parents;
+}
+function selection() {
+    return new Selection([
+        [
+            document.documentElement
+        ]
+    ], root);
+}
+function selection_selection() {
+    return this;
+}
+Selection.prototype = selection.prototype = {
+    constructor: Selection,
+    select: _selectJsDefault.default,
+    selectAll: _selectAllJsDefault.default,
+    selectChild: _selectChildJsDefault.default,
+    selectChildren: _selectChildrenJsDefault.default,
+    filter: _filterJsDefault.default,
+    data: _dataJsDefault.default,
+    enter: _enterJsDefault.default,
+    exit: _exitJsDefault.default,
+    join: _joinJsDefault.default,
+    merge: _mergeJsDefault.default,
+    selection: selection_selection,
+    order: _orderJsDefault.default,
+    sort: _sortJsDefault.default,
+    call: _callJsDefault.default,
+    nodes: _nodesJsDefault.default,
+    node: _nodeJsDefault.default,
+    size: _sizeJsDefault.default,
+    empty: _emptyJsDefault.default,
+    each: _eachJsDefault.default,
+    attr: _attrJsDefault.default,
+    style: _styleJsDefault.default,
+    property: _propertyJsDefault.default,
+    classed: _classedJsDefault.default,
+    text: _textJsDefault.default,
+    html: _htmlJsDefault.default,
+    raise: _raiseJsDefault.default,
+    lower: _lowerJsDefault.default,
+    append: _appendJsDefault.default,
+    insert: _insertJsDefault.default,
+    remove: _removeJsDefault.default,
+    clone: _cloneJsDefault.default,
+    datum: _datumJsDefault.default,
+    on: _onJsDefault.default,
+    dispatch: _dispatchJsDefault.default,
+    [Symbol.iterator]: _iteratorJsDefault.default
+};
+exports.default = selection;
+
+},{"./select.js":"1O9q1","./selectAll.js":"bKoah","./selectChild.js":"g2pQl","./selectChildren.js":"3V9me","./filter.js":"01OI6","./data.js":"en9Yo","./enter.js":"5CNCf","./exit.js":"170gA","./join.js":"j0jTk","./merge.js":"b8WSO","./order.js":"4H86w","./sort.js":"gH3AS","./call.js":"a9lxV","./nodes.js":"dGftN","./node.js":"iumGZ","./size.js":"gcoCa","./empty.js":"8xeHC","./each.js":"628H2","./attr.js":"cjB8P","./style.js":"hnCOy","./property.js":"2BHQI","./classed.js":"7i9QR","./text.js":"aVYQ0","./html.js":"ftnU9","./raise.js":"iX0GH","./lower.js":"eLeVp","./append.js":"hHmgq","./insert.js":"hqqSv","./remove.js":"a8TMi","./clone.js":"8g9p7","./datum.js":"3sgYy","./on.js":"6rzZj","./dispatch.js":"dceLA","./iterator.js":"fgw6e","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1O9q1":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./index.js");
+var _selectorJs = require("../selector.js");
+var _selectorJsDefault = parcelHelpers.interopDefault(_selectorJs);
+exports.default = function(select) {
+    if (typeof select !== "function") select = _selectorJsDefault.default(select);
+    for(var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j){
+        for(var group = groups[j], n = group.length, subgroup = subgroups[j] = new Array(n), node, subnode, i = 0; i < n; ++i)if ((node = group[i]) && (subnode = select.call(node, node.__data__, i, group))) {
+            if ("__data__" in node) subnode.__data__ = node.__data__;
+            subgroup[i] = subnode;
+        }
+    }
+    return new _indexJs.Selection(subgroups, this._parents);
+};
+
+},{"./index.js":"f1DiR","../selector.js":"4dLju","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4dLju":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function none() {
+}
+exports.default = function(selector) {
+    return selector == null ? none : function() {
+        return this.querySelector(selector);
+    };
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bKoah":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./index.js");
+var _arrayJs = require("../array.js");
+var _arrayJsDefault = parcelHelpers.interopDefault(_arrayJs);
+var _selectorAllJs = require("../selectorAll.js");
+var _selectorAllJsDefault = parcelHelpers.interopDefault(_selectorAllJs);
+function arrayAll(select) {
+    return function() {
+        return _arrayJsDefault.default(select.apply(this, arguments));
+    };
+}
+exports.default = function(select) {
+    if (typeof select === "function") select = arrayAll(select);
+    else select = _selectorAllJsDefault.default(select);
+    for(var groups = this._groups, m = groups.length, subgroups = [], parents = [], j = 0; j < m; ++j){
+        for(var group = groups[j], n = group.length, node, i = 0; i < n; ++i)if (node = group[i]) {
+            subgroups.push(select.call(node, node.__data__, i, group));
+            parents.push(node);
+        }
+    }
+    return new _indexJs.Selection(subgroups, parents);
+};
+
+},{"./index.js":"f1DiR","../array.js":"9V1r1","../selectorAll.js":"2Yn3a","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9V1r1":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function array(x) {
+    return x == null ? [] : Array.isArray(x) ? x : Array.from(x);
+}
+exports.default = array;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2Yn3a":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function empty() {
+    return [];
+}
+exports.default = function(selector) {
+    return selector == null ? empty : function() {
+        return this.querySelectorAll(selector);
+    };
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"g2pQl":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _matcherJs = require("../matcher.js");
+var find = Array.prototype.find;
+function childFind(match) {
+    return function() {
+        return find.call(this.children, match);
+    };
+}
+function childFirst() {
+    return this.firstElementChild;
+}
+exports.default = function(match) {
+    return this.select(match == null ? childFirst : childFind(typeof match === "function" ? match : _matcherJs.childMatcher(match)));
+};
+
+},{"../matcher.js":"ijTn7","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ijTn7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "childMatcher", ()=>childMatcher
+);
+exports.default = function(selector) {
+    return function() {
+        return this.matches(selector);
+    };
+};
+function childMatcher(selector) {
+    return function(node) {
+        return node.matches(selector);
+    };
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3V9me":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _matcherJs = require("../matcher.js");
+var filter = Array.prototype.filter;
+function children() {
+    return Array.from(this.children);
+}
+function childrenFilter(match) {
+    return function() {
+        return filter.call(this.children, match);
+    };
+}
+exports.default = function(match) {
+    return this.selectAll(match == null ? children : childrenFilter(typeof match === "function" ? match : _matcherJs.childMatcher(match)));
+};
+
+},{"../matcher.js":"ijTn7","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"01OI6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./index.js");
+var _matcherJs = require("../matcher.js");
+var _matcherJsDefault = parcelHelpers.interopDefault(_matcherJs);
+exports.default = function(match) {
+    if (typeof match !== "function") match = _matcherJsDefault.default(match);
+    for(var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j){
+        for(var group = groups[j], n = group.length, subgroup = subgroups[j] = [], node, i = 0; i < n; ++i)if ((node = group[i]) && match.call(node, node.__data__, i, group)) subgroup.push(node);
+    }
+    return new _indexJs.Selection(subgroups, this._parents);
+};
+
+},{"./index.js":"f1DiR","../matcher.js":"ijTn7","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"en9Yo":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./index.js");
+var _enterJs = require("./enter.js");
+var _constantJs = require("../constant.js");
+var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
+function bindIndex(parent, group, enter, update, exit, data) {
+    var i = 0, node, groupLength = group.length, dataLength = data.length;
+    // Put any non-null nodes that fit into update.
+    // Put any null nodes into enter.
+    // Put any remaining data into enter.
+    for(; i < dataLength; ++i)if (node = group[i]) {
+        node.__data__ = data[i];
+        update[i] = node;
+    } else enter[i] = new _enterJs.EnterNode(parent, data[i]);
+    // Put any non-null nodes that don’t fit into exit.
+    for(; i < groupLength; ++i)if (node = group[i]) exit[i] = node;
+}
+function bindKey(parent, group, enter, update, exit, data, key) {
+    var i, node, nodeByKeyValue = new Map, groupLength = group.length, dataLength = data.length, keyValues = new Array(groupLength), keyValue;
+    // Compute the key for each node.
+    // If multiple nodes have the same key, the duplicates are added to exit.
+    for(i = 0; i < groupLength; ++i)if (node = group[i]) {
+        keyValues[i] = keyValue = key.call(node, node.__data__, i, group) + "";
+        if (nodeByKeyValue.has(keyValue)) exit[i] = node;
+        else nodeByKeyValue.set(keyValue, node);
+    }
+    // Compute the key for each datum.
+    // If there a node associated with this key, join and add it to update.
+    // If there is not (or the key is a duplicate), add it to enter.
+    for(i = 0; i < dataLength; ++i){
+        keyValue = key.call(parent, data[i], i, data) + "";
+        if (node = nodeByKeyValue.get(keyValue)) {
+            update[i] = node;
+            node.__data__ = data[i];
+            nodeByKeyValue.delete(keyValue);
+        } else enter[i] = new _enterJs.EnterNode(parent, data[i]);
+    }
+    // Add any remaining nodes that were not bound to data to exit.
+    for(i = 0; i < groupLength; ++i)if ((node = group[i]) && nodeByKeyValue.get(keyValues[i]) === node) exit[i] = node;
+}
+function datum(node) {
+    return node.__data__;
+}
+exports.default = function(value, key) {
+    if (!arguments.length) return Array.from(this, datum);
+    var bind = key ? bindKey : bindIndex, parents = this._parents, groups = this._groups;
+    if (typeof value !== "function") value = _constantJsDefault.default(value);
+    for(var m = groups.length, update = new Array(m), enter = new Array(m), exit = new Array(m), j = 0; j < m; ++j){
+        var parent = parents[j], group = groups[j], groupLength = group.length, data = arraylike(value.call(parent, parent && parent.__data__, j, parents)), dataLength = data.length, enterGroup = enter[j] = new Array(dataLength), updateGroup = update[j] = new Array(dataLength), exitGroup = exit[j] = new Array(groupLength);
+        bind(parent, group, enterGroup, updateGroup, exitGroup, data, key);
+        // Now connect the enter nodes to their following update node, such that
+        // appendChild can insert the materialized enter node before this node,
+        // rather than at the end of the parent node.
+        for(var i0 = 0, i1 = 0, previous, next; i0 < dataLength; ++i0)if (previous = enterGroup[i0]) {
+            if (i0 >= i1) i1 = i0 + 1;
+            while(!(next = updateGroup[i1]) && ++i1 < dataLength);
+            previous._next = next || null;
+        }
+    }
+    update = new _indexJs.Selection(update, parents);
+    update._enter = enter;
+    update._exit = exit;
+    return update;
+};
+// Given some data, this returns an array-like view of it: an object that
+// exposes a length property and allows numeric indexing. Note that unlike
+// selectAll, this isn’t worried about “live” collections because the resulting
+// array will only be used briefly while data is being bound. (It is possible to
+// cause the data to change while iterating by using a key function, but please
+// don’t; we’d rather avoid a gratuitous copy.)
+function arraylike(data) {
+    return typeof data === "object" && "length" in data ? data // Array, TypedArray, NodeList, array-like
+     : Array.from(data); // Map, Set, iterable, string, or anything else
+}
+
+},{"./index.js":"f1DiR","./enter.js":"5CNCf","../constant.js":"1JgDG","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5CNCf":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "EnterNode", ()=>EnterNode
+);
+var _sparseJs = require("./sparse.js");
+var _sparseJsDefault = parcelHelpers.interopDefault(_sparseJs);
+var _indexJs = require("./index.js");
+exports.default = function() {
+    return new _indexJs.Selection(this._enter || this._groups.map(_sparseJsDefault.default), this._parents);
+};
+function EnterNode(parent, datum) {
+    this.ownerDocument = parent.ownerDocument;
+    this.namespaceURI = parent.namespaceURI;
+    this._next = null;
+    this._parent = parent;
+    this.__data__ = datum;
+}
+EnterNode.prototype = {
+    constructor: EnterNode,
+    appendChild: function(child) {
+        return this._parent.insertBefore(child, this._next);
+    },
+    insertBefore: function(child, next) {
+        return this._parent.insertBefore(child, next);
+    },
+    querySelector: function(selector) {
+        return this._parent.querySelector(selector);
+    },
+    querySelectorAll: function(selector) {
+        return this._parent.querySelectorAll(selector);
+    }
+};
+
+},{"./sparse.js":"hrXT1","./index.js":"f1DiR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hrXT1":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(update) {
+    return new Array(update.length);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1JgDG":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(x) {
+    return function() {
+        return x;
+    };
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"170gA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _sparseJs = require("./sparse.js");
+var _sparseJsDefault = parcelHelpers.interopDefault(_sparseJs);
+var _indexJs = require("./index.js");
+exports.default = function() {
+    return new _indexJs.Selection(this._exit || this._groups.map(_sparseJsDefault.default), this._parents);
+};
+
+},{"./sparse.js":"hrXT1","./index.js":"f1DiR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"j0jTk":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(onenter, onupdate, onexit) {
+    var enter = this.enter(), update = this, exit = this.exit();
+    if (typeof onenter === "function") {
+        enter = onenter(enter);
+        if (enter) enter = enter.selection();
+    } else enter = enter.append(onenter + "");
+    if (onupdate != null) {
+        update = onupdate(update);
+        if (update) update = update.selection();
+    }
+    if (onexit == null) exit.remove();
+    else onexit(exit);
+    return enter && update ? enter.merge(update).order() : update;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"b8WSO":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./index.js");
+exports.default = function(context) {
+    var selection = context.selection ? context.selection() : context;
+    for(var groups0 = this._groups, groups1 = selection._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j){
+        for(var group0 = groups0[j], group1 = groups1[j], n = group0.length, merge = merges[j] = new Array(n), node, i = 0; i < n; ++i)if (node = group0[i] || group1[i]) merge[i] = node;
+    }
+    for(; j < m0; ++j)merges[j] = groups0[j];
+    return new _indexJs.Selection(merges, this._parents);
+};
+
+},{"./index.js":"f1DiR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4H86w":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function() {
+    for(var groups = this._groups, j = -1, m = groups.length; ++j < m;){
+        for(var group = groups[j], i = group.length - 1, next = group[i], node; --i >= 0;)if (node = group[i]) {
+            if (next && node.compareDocumentPosition(next) ^ 4) next.parentNode.insertBefore(node, next);
+            next = node;
+        }
+    }
+    return this;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gH3AS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./index.js");
+exports.default = function(compare) {
+    if (!compare) compare = ascending;
+    function compareNode(a, b) {
+        return a && b ? compare(a.__data__, b.__data__) : !a - !b;
+    }
+    for(var groups = this._groups, m = groups.length, sortgroups = new Array(m), j = 0; j < m; ++j){
+        for(var group = groups[j], n = group.length, sortgroup = sortgroups[j] = new Array(n), node, i = 0; i < n; ++i)if (node = group[i]) sortgroup[i] = node;
+        sortgroup.sort(compareNode);
+    }
+    return new _indexJs.Selection(sortgroups, this._parents).order();
+};
+function ascending(a, b) {
+    return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
+}
+
+},{"./index.js":"f1DiR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"a9lxV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function() {
+    var callback = arguments[0];
+    arguments[0] = this;
+    callback.apply(null, arguments);
+    return this;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dGftN":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function() {
+    return Array.from(this);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iumGZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function() {
+    for(var groups = this._groups, j = 0, m = groups.length; j < m; ++j)for(var group = groups[j], i = 0, n = group.length; i < n; ++i){
+        var node = group[i];
+        if (node) return node;
+    }
+    return null;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gcoCa":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function() {
+    let size = 0;
+    for (const node of this)++size; // eslint-disable-line no-unused-vars
+    return size;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8xeHC":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function() {
+    return !this.node();
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"628H2":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(callback) {
+    for(var groups = this._groups, j = 0, m = groups.length; j < m; ++j){
+        for(var group = groups[j], i = 0, n = group.length, node; i < n; ++i)if (node = group[i]) callback.call(node, node.__data__, i, group);
+    }
+    return this;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cjB8P":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _namespaceJs = require("../namespace.js");
+var _namespaceJsDefault = parcelHelpers.interopDefault(_namespaceJs);
+function attrRemove(name) {
+    return function() {
+        this.removeAttribute(name);
+    };
+}
+function attrRemoveNS(fullname) {
+    return function() {
+        this.removeAttributeNS(fullname.space, fullname.local);
+    };
+}
+function attrConstant(name, value) {
+    return function() {
+        this.setAttribute(name, value);
+    };
+}
+function attrConstantNS(fullname, value) {
+    return function() {
+        this.setAttributeNS(fullname.space, fullname.local, value);
+    };
+}
+function attrFunction(name, value) {
+    return function() {
+        var v = value.apply(this, arguments);
+        if (v == null) this.removeAttribute(name);
+        else this.setAttribute(name, v);
+    };
+}
+function attrFunctionNS(fullname, value) {
+    return function() {
+        var v = value.apply(this, arguments);
+        if (v == null) this.removeAttributeNS(fullname.space, fullname.local);
+        else this.setAttributeNS(fullname.space, fullname.local, v);
+    };
+}
+exports.default = function(name, value) {
+    var fullname = _namespaceJsDefault.default(name);
+    if (arguments.length < 2) {
+        var node = this.node();
+        return fullname.local ? node.getAttributeNS(fullname.space, fullname.local) : node.getAttribute(fullname);
+    }
+    return this.each((value == null ? fullname.local ? attrRemoveNS : attrRemove : typeof value === "function" ? fullname.local ? attrFunctionNS : attrFunction : fullname.local ? attrConstantNS : attrConstant)(fullname, value));
+};
+
+},{"../namespace.js":"qUwil","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hnCOy":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "styleValue", ()=>styleValue
+);
+var _windowJs = require("../window.js");
+var _windowJsDefault = parcelHelpers.interopDefault(_windowJs);
+function styleRemove(name) {
+    return function() {
+        this.style.removeProperty(name);
+    };
+}
+function styleConstant(name, value, priority) {
+    return function() {
+        this.style.setProperty(name, value, priority);
+    };
+}
+function styleFunction(name, value, priority) {
+    return function() {
+        var v = value.apply(this, arguments);
+        if (v == null) this.style.removeProperty(name);
+        else this.style.setProperty(name, v, priority);
+    };
+}
+exports.default = function(name, value, priority) {
+    return arguments.length > 1 ? this.each((value == null ? styleRemove : typeof value === "function" ? styleFunction : styleConstant)(name, value, priority == null ? "" : priority)) : styleValue(this.node(), name);
+};
+function styleValue(node, name) {
+    return node.style.getPropertyValue(name) || _windowJsDefault.default(node).getComputedStyle(node, null).getPropertyValue(name);
+}
+
+},{"../window.js":"2ID51","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2ID51":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(node) {
+    return node.ownerDocument && node.ownerDocument.defaultView || node.document && node || node.defaultView; // node is a Document
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2BHQI":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function propertyRemove(name) {
+    return function() {
+        delete this[name];
+    };
+}
+function propertyConstant(name, value) {
+    return function() {
+        this[name] = value;
+    };
+}
+function propertyFunction(name, value) {
+    return function() {
+        var v = value.apply(this, arguments);
+        if (v == null) delete this[name];
+        else this[name] = v;
+    };
+}
+exports.default = function(name, value) {
+    return arguments.length > 1 ? this.each((value == null ? propertyRemove : typeof value === "function" ? propertyFunction : propertyConstant)(name, value)) : this.node()[name];
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7i9QR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function classArray(string) {
+    return string.trim().split(/^|\s+/);
+}
+function classList(node) {
+    return node.classList || new ClassList(node);
+}
+function ClassList(node) {
+    this._node = node;
+    this._names = classArray(node.getAttribute("class") || "");
+}
+ClassList.prototype = {
+    add: function(name) {
+        var i = this._names.indexOf(name);
+        if (i < 0) {
+            this._names.push(name);
+            this._node.setAttribute("class", this._names.join(" "));
+        }
+    },
+    remove: function(name) {
+        var i = this._names.indexOf(name);
+        if (i >= 0) {
+            this._names.splice(i, 1);
+            this._node.setAttribute("class", this._names.join(" "));
+        }
+    },
+    contains: function(name) {
+        return this._names.indexOf(name) >= 0;
+    }
+};
+function classedAdd(node, names) {
+    var list = classList(node), i = -1, n = names.length;
+    while(++i < n)list.add(names[i]);
+}
+function classedRemove(node, names) {
+    var list = classList(node), i = -1, n = names.length;
+    while(++i < n)list.remove(names[i]);
+}
+function classedTrue(names) {
+    return function() {
+        classedAdd(this, names);
+    };
+}
+function classedFalse(names) {
+    return function() {
+        classedRemove(this, names);
+    };
+}
+function classedFunction(names, value) {
+    return function() {
+        (value.apply(this, arguments) ? classedAdd : classedRemove)(this, names);
+    };
+}
+exports.default = function(name, value) {
+    var names = classArray(name + "");
+    if (arguments.length < 2) {
+        var list = classList(this.node()), i = -1, n = names.length;
+        while(++i < n)if (!list.contains(names[i])) return false;
+        return true;
+    }
+    return this.each((typeof value === "function" ? classedFunction : value ? classedTrue : classedFalse)(names, value));
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aVYQ0":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function textRemove() {
+    this.textContent = "";
+}
+function textConstant(value) {
+    return function() {
+        this.textContent = value;
+    };
+}
+function textFunction(value) {
+    return function() {
+        var v = value.apply(this, arguments);
+        this.textContent = v == null ? "" : v;
+    };
+}
+exports.default = function(value) {
+    return arguments.length ? this.each(value == null ? textRemove : (typeof value === "function" ? textFunction : textConstant)(value)) : this.node().textContent;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ftnU9":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function htmlRemove() {
+    this.innerHTML = "";
+}
+function htmlConstant(value) {
+    return function() {
+        this.innerHTML = value;
+    };
+}
+function htmlFunction(value) {
+    return function() {
+        var v = value.apply(this, arguments);
+        this.innerHTML = v == null ? "" : v;
+    };
+}
+exports.default = function(value) {
+    return arguments.length ? this.each(value == null ? htmlRemove : (typeof value === "function" ? htmlFunction : htmlConstant)(value)) : this.node().innerHTML;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iX0GH":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function raise() {
+    if (this.nextSibling) this.parentNode.appendChild(this);
+}
+exports.default = function() {
+    return this.each(raise);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eLeVp":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function lower() {
+    if (this.previousSibling) this.parentNode.insertBefore(this, this.parentNode.firstChild);
+}
+exports.default = function() {
+    return this.each(lower);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hHmgq":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _creatorJs = require("../creator.js");
+var _creatorJsDefault = parcelHelpers.interopDefault(_creatorJs);
+exports.default = function(name) {
+    var create = typeof name === "function" ? name : _creatorJsDefault.default(name);
+    return this.select(function() {
+        return this.appendChild(create.apply(this, arguments));
+    });
+};
+
+},{"../creator.js":"h0te6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hqqSv":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _creatorJs = require("../creator.js");
+var _creatorJsDefault = parcelHelpers.interopDefault(_creatorJs);
+var _selectorJs = require("../selector.js");
+var _selectorJsDefault = parcelHelpers.interopDefault(_selectorJs);
+function constantNull() {
+    return null;
+}
+exports.default = function(name, before) {
+    var create = typeof name === "function" ? name : _creatorJsDefault.default(name), select = before == null ? constantNull : typeof before === "function" ? before : _selectorJsDefault.default(before);
+    return this.select(function() {
+        return this.insertBefore(create.apply(this, arguments), select.apply(this, arguments) || null);
+    });
+};
+
+},{"../creator.js":"h0te6","../selector.js":"4dLju","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"a8TMi":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function remove() {
+    var parent = this.parentNode;
+    if (parent) parent.removeChild(this);
+}
+exports.default = function() {
+    return this.each(remove);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8g9p7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function selection_cloneShallow() {
+    var clone = this.cloneNode(false), parent = this.parentNode;
+    return parent ? parent.insertBefore(clone, this.nextSibling) : clone;
+}
+function selection_cloneDeep() {
+    var clone = this.cloneNode(true), parent = this.parentNode;
+    return parent ? parent.insertBefore(clone, this.nextSibling) : clone;
+}
+exports.default = function(deep) {
+    return this.select(deep ? selection_cloneDeep : selection_cloneShallow);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3sgYy":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(value) {
+    return arguments.length ? this.property("__data__", value) : this.node().__data__;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6rzZj":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function contextListener(listener) {
+    return function(event) {
+        listener.call(this, event, this.__data__);
+    };
+}
+function parseTypenames(typenames) {
+    return typenames.trim().split(/^|\s+/).map(function(t) {
+        var name = "", i = t.indexOf(".");
+        if (i >= 0) name = t.slice(i + 1), t = t.slice(0, i);
+        return {
+            type: t,
+            name: name
+        };
+    });
+}
+function onRemove(typename) {
+    return function() {
+        var on = this.__on;
+        if (!on) return;
+        for(var j = 0, i = -1, m = on.length, o; j < m; ++j)if (o = on[j], (!typename.type || o.type === typename.type) && o.name === typename.name) this.removeEventListener(o.type, o.listener, o.options);
+        else on[++i] = o;
+        if (++i) on.length = i;
+        else delete this.__on;
+    };
+}
+function onAdd(typename, value, options) {
+    return function() {
+        var on = this.__on, o, listener = contextListener(value);
+        if (on) {
+            for(var j = 0, m = on.length; j < m; ++j)if ((o = on[j]).type === typename.type && o.name === typename.name) {
+                this.removeEventListener(o.type, o.listener, o.options);
+                this.addEventListener(o.type, o.listener = listener, o.options = options);
+                o.value = value;
+                return;
+            }
+        }
+        this.addEventListener(typename.type, listener, options);
+        o = {
+            type: typename.type,
+            name: typename.name,
+            value: value,
+            listener: listener,
+            options: options
+        };
+        if (!on) this.__on = [
+            o
+        ];
+        else on.push(o);
+    };
+}
+exports.default = function(typename, value, options) {
+    var typenames = parseTypenames(typename + ""), i, n = typenames.length, t;
+    if (arguments.length < 2) {
+        var on = this.node().__on;
+        if (on) for(var j = 0, m = on.length, o; j < m; ++j)for(i = 0, o = on[j]; i < n; ++i){
+            if ((t = typenames[i]).type === o.type && t.name === o.name) return o.value;
+        }
+        return;
+    }
+    on = value ? onAdd : onRemove;
+    for(i = 0; i < n; ++i)this.each(on(typenames[i], value, options));
+    return this;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dceLA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _windowJs = require("../window.js");
+var _windowJsDefault = parcelHelpers.interopDefault(_windowJs);
+function dispatchEvent(node, type, params) {
+    var window = _windowJsDefault.default(node), event = window.CustomEvent;
+    if (typeof event === "function") event = new event(type, params);
+    else {
+        event = window.document.createEvent("Event");
+        if (params) event.initEvent(type, params.bubbles, params.cancelable), event.detail = params.detail;
+        else event.initEvent(type, false, false);
+    }
+    node.dispatchEvent(event);
+}
+function dispatchConstant(type, params) {
+    return function() {
+        return dispatchEvent(this, type, params);
+    };
+}
+function dispatchFunction(type, params) {
+    return function() {
+        return dispatchEvent(this, type, params.apply(this, arguments));
+    };
+}
+exports.default = function(type, params) {
+    return this.each((typeof params === "function" ? dispatchFunction : dispatchConstant)(type, params));
+};
+
+},{"../window.js":"2ID51","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fgw6e":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function*() {
+    for(var groups = this._groups, j = 0, m = groups.length; j < m; ++j){
+        for(var group = groups[j], i = 0, n = group.length, node; i < n; ++i)if (node = group[i]) yield node;
+    }
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3x2YN":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var nextId = 0;
+function local() {
+    return new Local;
+}
+exports.default = local;
+function Local() {
+    this._ = "@" + (++nextId).toString(36);
+}
+Local.prototype = local.prototype = {
+    constructor: Local,
+    get: function(node) {
+        var id = this._;
+        while(!(id in node))if (!(node = node.parentNode)) return;
+        return node[id];
+    },
+    set: function(node, value) {
+        return node[this._] = value;
+    },
+    remove: function(node) {
+        return this._ in node && delete node[this._];
+    },
+    toString: function() {
+        return this._;
+    }
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"etHs6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _sourceEventJs = require("./sourceEvent.js");
+var _sourceEventJsDefault = parcelHelpers.interopDefault(_sourceEventJs);
+exports.default = function(event, node) {
+    event = _sourceEventJsDefault.default(event);
+    if (node === undefined) node = event.currentTarget;
+    if (node) {
+        var svg = node.ownerSVGElement || node;
+        if (svg.createSVGPoint) {
+            var point = svg.createSVGPoint();
+            point.x = event.clientX, point.y = event.clientY;
+            point = point.matrixTransform(node.getScreenCTM().inverse());
+            return [
+                point.x,
+                point.y
+            ];
+        }
+        if (node.getBoundingClientRect) {
+            var rect = node.getBoundingClientRect();
+            return [
+                event.clientX - rect.left - node.clientLeft,
+                event.clientY - rect.top - node.clientTop
+            ];
+        }
+    }
+    return [
+        event.pageX,
+        event.pageY
+    ];
+};
+
+},{"./sourceEvent.js":"6ePOa","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6ePOa":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(event) {
+    let sourceEvent;
+    while(sourceEvent = event.sourceEvent)event = sourceEvent;
+    return event;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6XM1d":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _pointerJs = require("./pointer.js");
+var _pointerJsDefault = parcelHelpers.interopDefault(_pointerJs);
+var _sourceEventJs = require("./sourceEvent.js");
+var _sourceEventJsDefault = parcelHelpers.interopDefault(_sourceEventJs);
+exports.default = function(events, node) {
+    if (events.target) {
+        events = _sourceEventJsDefault.default(events);
+        if (node === undefined) node = events.currentTarget;
+        events = events.touches || [
+            events
+        ];
+    }
+    return Array.from(events, (event)=>_pointerJsDefault.default(event, node)
+    );
+};
+
+},{"./pointer.js":"etHs6","./sourceEvent.js":"6ePOa","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5cPa7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _arrayJs = require("./array.js");
+var _arrayJsDefault = parcelHelpers.interopDefault(_arrayJs);
+var _indexJs = require("./selection/index.js");
+exports.default = function(selector) {
+    return typeof selector === "string" ? new _indexJs.Selection([
+        document.querySelectorAll(selector)
+    ], [
+        document.documentElement
+    ]) : new _indexJs.Selection([
+        _arrayJsDefault.default(selector)
+    ], _indexJs.root);
+};
+
+},{"./array.js":"9V1r1","./selection/index.js":"f1DiR","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"21CS3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "yesdrag", ()=>yesdrag
+);
+var _d3Selection = require("d3-selection");
+var _noeventJs = require("./noevent.js");
+var _noeventJsDefault = parcelHelpers.interopDefault(_noeventJs);
+exports.default = function(view) {
+    var root = view.document.documentElement, selection = _d3Selection.select(view).on("dragstart.drag", _noeventJsDefault.default, _noeventJs.nonpassivecapture);
+    if ("onselectstart" in root) selection.on("selectstart.drag", _noeventJsDefault.default, _noeventJs.nonpassivecapture);
+    else {
+        root.__noselect = root.style.MozUserSelect;
+        root.style.MozUserSelect = "none";
+    }
+};
+function yesdrag(view, noclick) {
+    var root = view.document.documentElement, selection = _d3Selection.select(view).on("dragstart.drag", null);
+    if (noclick) {
+        selection.on("click.drag", _noeventJsDefault.default, _noeventJs.nonpassivecapture);
+        setTimeout(function() {
+            selection.on("click.drag", null);
+        }, 0);
+    }
+    if ("onselectstart" in root) selection.on("selectstart.drag", null);
+    else {
+        root.style.MozUserSelect = root.__noselect;
+        delete root.__noselect;
+    }
+}
+
+},{"d3-selection":"gUhVK","./noevent.js":"fwJZX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fwJZX":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "nonpassive", ()=>nonpassive
+);
+parcelHelpers.export(exports, "nonpassivecapture", ()=>nonpassivecapture
+);
+parcelHelpers.export(exports, "nopropagation", ()=>nopropagation
+);
+const nonpassive = {
+    passive: false
+};
+const nonpassivecapture = {
+    capture: true,
+    passive: false
+};
+function nopropagation(event) {
+    event.stopImmediatePropagation();
+}
+exports.default = function(event) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7xpJb":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = (x)=>()=>x
+;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5U6QQ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function DragEvent(type, { sourceEvent , subject , target , identifier , active , x , y , dx , dy , dispatch  }) {
+    Object.defineProperties(this, {
+        type: {
+            value: type,
+            enumerable: true,
+            configurable: true
+        },
+        sourceEvent: {
+            value: sourceEvent,
+            enumerable: true,
+            configurable: true
+        },
+        subject: {
+            value: subject,
+            enumerable: true,
+            configurable: true
+        },
+        target: {
+            value: target,
+            enumerable: true,
+            configurable: true
+        },
+        identifier: {
+            value: identifier,
+            enumerable: true,
+            configurable: true
+        },
+        active: {
+            value: active,
+            enumerable: true,
+            configurable: true
+        },
+        x: {
+            value: x,
+            enumerable: true,
+            configurable: true
+        },
+        y: {
+            value: y,
+            enumerable: true,
+            configurable: true
+        },
+        dx: {
+            value: dx,
+            enumerable: true,
+            configurable: true
+        },
+        dy: {
+            value: dy,
+            enumerable: true,
+            configurable: true
+        },
+        _: {
+            value: dispatch
+        }
+    });
+}
+exports.default = DragEvent;
+DragEvent.prototype.on = function() {
+    var value = this._.on.apply(this._, arguments);
+    return value === this._ ? this : value;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lK0ts":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "dsvFormat", ()=>_dsvJsDefault.default
@@ -10145,7 +15347,351 @@ exports.default = autoType;
 // https://github.com/d3/d3-dsv/issues/45
 const fixtz = new Date("2019-01-01T00:00").getHours() || new Date("2019-07-01T00:00").getHours();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hPJXo":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"206iK":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "easeLinear", ()=>_linearJs.linear
+);
+parcelHelpers.export(exports, "easeQuad", ()=>_quadJs.quadInOut
+);
+parcelHelpers.export(exports, "easeQuadIn", ()=>_quadJs.quadIn
+);
+parcelHelpers.export(exports, "easeQuadOut", ()=>_quadJs.quadOut
+);
+parcelHelpers.export(exports, "easeQuadInOut", ()=>_quadJs.quadInOut
+);
+parcelHelpers.export(exports, "easeCubic", ()=>_cubicJs.cubicInOut
+);
+parcelHelpers.export(exports, "easeCubicIn", ()=>_cubicJs.cubicIn
+);
+parcelHelpers.export(exports, "easeCubicOut", ()=>_cubicJs.cubicOut
+);
+parcelHelpers.export(exports, "easeCubicInOut", ()=>_cubicJs.cubicInOut
+);
+parcelHelpers.export(exports, "easePoly", ()=>_polyJs.polyInOut
+);
+parcelHelpers.export(exports, "easePolyIn", ()=>_polyJs.polyIn
+);
+parcelHelpers.export(exports, "easePolyOut", ()=>_polyJs.polyOut
+);
+parcelHelpers.export(exports, "easePolyInOut", ()=>_polyJs.polyInOut
+);
+parcelHelpers.export(exports, "easeSin", ()=>_sinJs.sinInOut
+);
+parcelHelpers.export(exports, "easeSinIn", ()=>_sinJs.sinIn
+);
+parcelHelpers.export(exports, "easeSinOut", ()=>_sinJs.sinOut
+);
+parcelHelpers.export(exports, "easeSinInOut", ()=>_sinJs.sinInOut
+);
+parcelHelpers.export(exports, "easeExp", ()=>_expJs.expInOut
+);
+parcelHelpers.export(exports, "easeExpIn", ()=>_expJs.expIn
+);
+parcelHelpers.export(exports, "easeExpOut", ()=>_expJs.expOut
+);
+parcelHelpers.export(exports, "easeExpInOut", ()=>_expJs.expInOut
+);
+parcelHelpers.export(exports, "easeCircle", ()=>_circleJs.circleInOut
+);
+parcelHelpers.export(exports, "easeCircleIn", ()=>_circleJs.circleIn
+);
+parcelHelpers.export(exports, "easeCircleOut", ()=>_circleJs.circleOut
+);
+parcelHelpers.export(exports, "easeCircleInOut", ()=>_circleJs.circleInOut
+);
+parcelHelpers.export(exports, "easeBounce", ()=>_bounceJs.bounceOut
+);
+parcelHelpers.export(exports, "easeBounceIn", ()=>_bounceJs.bounceIn
+);
+parcelHelpers.export(exports, "easeBounceOut", ()=>_bounceJs.bounceOut
+);
+parcelHelpers.export(exports, "easeBounceInOut", ()=>_bounceJs.bounceInOut
+);
+parcelHelpers.export(exports, "easeBack", ()=>_backJs.backInOut
+);
+parcelHelpers.export(exports, "easeBackIn", ()=>_backJs.backIn
+);
+parcelHelpers.export(exports, "easeBackOut", ()=>_backJs.backOut
+);
+parcelHelpers.export(exports, "easeBackInOut", ()=>_backJs.backInOut
+);
+parcelHelpers.export(exports, "easeElastic", ()=>_elasticJs.elasticOut
+);
+parcelHelpers.export(exports, "easeElasticIn", ()=>_elasticJs.elasticIn
+);
+parcelHelpers.export(exports, "easeElasticOut", ()=>_elasticJs.elasticOut
+);
+parcelHelpers.export(exports, "easeElasticInOut", ()=>_elasticJs.elasticInOut
+);
+var _linearJs = require("./linear.js");
+var _quadJs = require("./quad.js");
+var _cubicJs = require("./cubic.js");
+var _polyJs = require("./poly.js");
+var _sinJs = require("./sin.js");
+var _expJs = require("./exp.js");
+var _circleJs = require("./circle.js");
+var _bounceJs = require("./bounce.js");
+var _backJs = require("./back.js");
+var _elasticJs = require("./elastic.js");
+
+},{"./linear.js":"cnj6n","./quad.js":"g02qB","./cubic.js":"1poKv","./poly.js":"ir5Qn","./sin.js":"7QMk0","./exp.js":"fXRnc","./circle.js":"7W6vF","./bounce.js":"59FbA","./back.js":"81lut","./elastic.js":"jjfoF","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cnj6n":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "linear", ()=>linear
+);
+const linear = (t)=>+t
+;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"g02qB":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "quadIn", ()=>quadIn
+);
+parcelHelpers.export(exports, "quadOut", ()=>quadOut
+);
+parcelHelpers.export(exports, "quadInOut", ()=>quadInOut
+);
+function quadIn(t) {
+    return t * t;
+}
+function quadOut(t) {
+    return t * (2 - t);
+}
+function quadInOut(t) {
+    return ((t *= 2) <= 1 ? t * t : --t * (2 - t) + 1) / 2;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1poKv":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "cubicIn", ()=>cubicIn
+);
+parcelHelpers.export(exports, "cubicOut", ()=>cubicOut
+);
+parcelHelpers.export(exports, "cubicInOut", ()=>cubicInOut
+);
+function cubicIn(t) {
+    return t * t * t;
+}
+function cubicOut(t) {
+    return --t * t * t + 1;
+}
+function cubicInOut(t) {
+    return ((t *= 2) <= 1 ? t * t * t : (t -= 2) * t * t + 2) / 2;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ir5Qn":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "polyIn", ()=>polyIn1
+);
+parcelHelpers.export(exports, "polyOut", ()=>polyOut1
+);
+parcelHelpers.export(exports, "polyInOut", ()=>polyInOut1
+);
+var exponent = 3;
+var polyIn1 = function custom(e) {
+    e = +e;
+    function polyIn(t) {
+        return Math.pow(t, e);
+    }
+    polyIn.exponent = custom;
+    return polyIn;
+}(exponent);
+var polyOut1 = function custom(e) {
+    e = +e;
+    function polyOut(t) {
+        return 1 - Math.pow(1 - t, e);
+    }
+    polyOut.exponent = custom;
+    return polyOut;
+}(exponent);
+var polyInOut1 = function custom(e) {
+    e = +e;
+    function polyInOut(t) {
+        return ((t *= 2) <= 1 ? Math.pow(t, e) : 2 - Math.pow(2 - t, e)) / 2;
+    }
+    polyInOut.exponent = custom;
+    return polyInOut;
+}(exponent);
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7QMk0":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "sinIn", ()=>sinIn
+);
+parcelHelpers.export(exports, "sinOut", ()=>sinOut
+);
+parcelHelpers.export(exports, "sinInOut", ()=>sinInOut
+);
+var pi = Math.PI, halfPi = pi / 2;
+function sinIn(t) {
+    return +t === 1 ? 1 : 1 - Math.cos(t * halfPi);
+}
+function sinOut(t) {
+    return Math.sin(t * halfPi);
+}
+function sinInOut(t) {
+    return (1 - Math.cos(pi * t)) / 2;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fXRnc":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "expIn", ()=>expIn
+);
+parcelHelpers.export(exports, "expOut", ()=>expOut
+);
+parcelHelpers.export(exports, "expInOut", ()=>expInOut
+);
+var _mathJs = require("./math.js");
+function expIn(t) {
+    return _mathJs.tpmt(1 - +t);
+}
+function expOut(t) {
+    return 1 - _mathJs.tpmt(t);
+}
+function expInOut(t) {
+    return ((t *= 2) <= 1 ? _mathJs.tpmt(1 - t) : 2 - _mathJs.tpmt(t - 1)) / 2;
+}
+
+},{"./math.js":"bYW0I","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bYW0I":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+// tpmt is two power minus ten times t scaled to [0,1]
+parcelHelpers.export(exports, "tpmt", ()=>tpmt
+);
+function tpmt(x) {
+    return (Math.pow(2, -10 * x) - 0.0009765625) * 1.0009775171065494;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7W6vF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "circleIn", ()=>circleIn
+);
+parcelHelpers.export(exports, "circleOut", ()=>circleOut
+);
+parcelHelpers.export(exports, "circleInOut", ()=>circleInOut
+);
+function circleIn(t) {
+    return 1 - Math.sqrt(1 - t * t);
+}
+function circleOut(t) {
+    return Math.sqrt(1 - --t * t);
+}
+function circleInOut(t) {
+    return ((t *= 2) <= 1 ? 1 - Math.sqrt(1 - t * t) : Math.sqrt(1 - (t -= 2) * t) + 1) / 2;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"59FbA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "bounceIn", ()=>bounceIn
+);
+parcelHelpers.export(exports, "bounceOut", ()=>bounceOut
+);
+parcelHelpers.export(exports, "bounceInOut", ()=>bounceInOut
+);
+var b1 = 4 / 11, b2 = 6 / 11, b3 = 8 / 11, b4 = 0.75, b5 = 9 / 11, b6 = 10 / 11, b7 = 0.9375, b8 = 21 / 22, b9 = 63 / 64, b0 = 1 / b1 / b1;
+function bounceIn(t) {
+    return 1 - bounceOut(1 - t);
+}
+function bounceOut(t) {
+    return (t = +t) < b1 ? b0 * t * t : t < b3 ? b0 * (t -= b2) * t + b4 : t < b6 ? b0 * (t -= b5) * t + b7 : b0 * (t -= b8) * t + b9;
+}
+function bounceInOut(t) {
+    return ((t *= 2) <= 1 ? 1 - bounceOut(1 - t) : bounceOut(t - 1) + 1) / 2;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"81lut":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "backIn", ()=>backIn1
+);
+parcelHelpers.export(exports, "backOut", ()=>backOut1
+);
+parcelHelpers.export(exports, "backInOut", ()=>backInOut1
+);
+var overshoot = 1.70158;
+var backIn1 = function custom(s) {
+    s = +s;
+    function backIn(t) {
+        return (t = +t) * t * (s * (t - 1) + t);
+    }
+    backIn.overshoot = custom;
+    return backIn;
+}(overshoot);
+var backOut1 = function custom(s) {
+    s = +s;
+    function backOut(t) {
+        return --t * t * ((t + 1) * s + t) + 1;
+    }
+    backOut.overshoot = custom;
+    return backOut;
+}(overshoot);
+var backInOut1 = function custom(s) {
+    s = +s;
+    function backInOut(t) {
+        return ((t *= 2) < 1 ? t * t * ((s + 1) * t - s) : (t -= 2) * t * ((s + 1) * t + s) + 2) / 2;
+    }
+    backInOut.overshoot = custom;
+    return backInOut;
+}(overshoot);
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jjfoF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "elasticIn", ()=>elasticIn1
+);
+parcelHelpers.export(exports, "elasticOut", ()=>elasticOut1
+);
+parcelHelpers.export(exports, "elasticInOut", ()=>elasticInOut1
+);
+var _mathJs = require("./math.js");
+var tau = 2 * Math.PI, amplitude = 1, period = 0.3;
+var elasticIn1 = function custom(a1, p1) {
+    var s = Math.asin(1 / (a1 = Math.max(1, a1))) * (p1 /= tau);
+    function elasticIn(t) {
+        return a1 * _mathJs.tpmt(- --t) * Math.sin((s - t) / p1);
+    }
+    elasticIn.amplitude = function(a) {
+        return custom(a, p1 * tau);
+    };
+    elasticIn.period = function(p) {
+        return custom(a1, p);
+    };
+    return elasticIn;
+}(amplitude, period);
+var elasticOut1 = function custom(a2, p2) {
+    var s = Math.asin(1 / (a2 = Math.max(1, a2))) * (p2 /= tau);
+    function elasticOut(t) {
+        return 1 - a2 * _mathJs.tpmt(t = +t) * Math.sin((t + s) / p2);
+    }
+    elasticOut.amplitude = function(a) {
+        return custom(a, p2 * tau);
+    };
+    elasticOut.period = function(p) {
+        return custom(a2, p);
+    };
+    return elasticOut;
+}(amplitude, period);
+var elasticInOut1 = function custom(a3, p3) {
+    var s = Math.asin(1 / (a3 = Math.max(1, a3))) * (p3 /= tau);
+    function elasticInOut(t) {
+        return ((t = t * 2 - 1) < 0 ? a3 * _mathJs.tpmt(-t) * Math.sin((s - t) / p3) : 2 - a3 * _mathJs.tpmt(t) * Math.sin((s + t) / p3)) / 2;
+    }
+    elasticInOut.amplitude = function(a) {
+        return custom(a, p3 * tau);
+    };
+    elasticInOut.period = function(p) {
+        return custom(a3, p);
+    };
+    return elasticInOut;
+}(amplitude, period);
+
+},{"./math.js":"bYW0I","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hPJXo":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "blob", ()=>_blobJsDefault.default
@@ -12872,8 +18418,7 @@ var _d3Array = require("d3-array");
 var _cartesianJs = require("./cartesian.js");
 var _mathJs = require("./math.js");
 function longitude(point) {
-    if (_mathJs.abs(point[0]) <= _mathJs.pi) return point[0];
-    else return _mathJs.sign(point[0]) * ((_mathJs.abs(point[0]) + _mathJs.pi) % _mathJs.tau - _mathJs.pi);
+    return _mathJs.abs(point[0]) <= _mathJs.pi ? point[0] : _mathJs.sign(point[0]) * ((_mathJs.abs(point[0]) + _mathJs.pi) % _mathJs.tau - _mathJs.pi);
 }
 exports.default = function(polygon, point) {
     var lambda = longitude(point), phi = point[1], sinPhi = _mathJs.sin(phi), normal = [
@@ -15108,6 +20653,8 @@ parcelHelpers.export(exports, "cluster", ()=>_clusterJsDefault.default
 );
 parcelHelpers.export(exports, "hierarchy", ()=>_indexJsDefault.default
 );
+parcelHelpers.export(exports, "Node", ()=>_indexJs.Node
+);
 parcelHelpers.export(exports, "pack", ()=>_indexJsDefault1.default
 );
 parcelHelpers.export(exports, "packSiblings", ()=>_siblingsJsDefault.default
@@ -16338,7 +21885,788 @@ exports.default = (function custom(ratio) {
     return resquarify;
 })(_squarifyJs.phi);
 
-},{"./dice.js":"97Wyc","./slice.js":"ewDPE","./squarify.js":"ctwRB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6ide9":[function(require,module,exports) {
+},{"./dice.js":"97Wyc","./slice.js":"ewDPE","./squarify.js":"ctwRB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gzaRD":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "interpolate", ()=>_valueJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateArray", ()=>_arrayJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateBasis", ()=>_basisJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateBasisClosed", ()=>_basisClosedJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateDate", ()=>_dateJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateDiscrete", ()=>_discreteJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateHue", ()=>_hueJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateNumber", ()=>_numberJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateNumberArray", ()=>_numberArrayJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateObject", ()=>_objectJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateRound", ()=>_roundJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateString", ()=>_stringJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateTransformCss", ()=>_indexJs.interpolateTransformCss
+);
+parcelHelpers.export(exports, "interpolateTransformSvg", ()=>_indexJs.interpolateTransformSvg
+);
+parcelHelpers.export(exports, "interpolateZoom", ()=>_zoomJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateRgb", ()=>_rgbJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateRgbBasis", ()=>_rgbJs.rgbBasis
+);
+parcelHelpers.export(exports, "interpolateRgbBasisClosed", ()=>_rgbJs.rgbBasisClosed
+);
+parcelHelpers.export(exports, "interpolateHsl", ()=>_hslJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateHslLong", ()=>_hslJs.hslLong
+);
+parcelHelpers.export(exports, "interpolateLab", ()=>_labJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateHcl", ()=>_hclJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateHclLong", ()=>_hclJs.hclLong
+);
+parcelHelpers.export(exports, "interpolateCubehelix", ()=>_cubehelixJsDefault.default
+);
+parcelHelpers.export(exports, "interpolateCubehelixLong", ()=>_cubehelixJs.cubehelixLong
+);
+parcelHelpers.export(exports, "piecewise", ()=>_piecewiseJsDefault.default
+);
+parcelHelpers.export(exports, "quantize", ()=>_quantizeJsDefault.default
+);
+var _valueJs = require("./value.js");
+var _valueJsDefault = parcelHelpers.interopDefault(_valueJs);
+var _arrayJs = require("./array.js");
+var _arrayJsDefault = parcelHelpers.interopDefault(_arrayJs);
+var _basisJs = require("./basis.js");
+var _basisJsDefault = parcelHelpers.interopDefault(_basisJs);
+var _basisClosedJs = require("./basisClosed.js");
+var _basisClosedJsDefault = parcelHelpers.interopDefault(_basisClosedJs);
+var _dateJs = require("./date.js");
+var _dateJsDefault = parcelHelpers.interopDefault(_dateJs);
+var _discreteJs = require("./discrete.js");
+var _discreteJsDefault = parcelHelpers.interopDefault(_discreteJs);
+var _hueJs = require("./hue.js");
+var _hueJsDefault = parcelHelpers.interopDefault(_hueJs);
+var _numberJs = require("./number.js");
+var _numberJsDefault = parcelHelpers.interopDefault(_numberJs);
+var _numberArrayJs = require("./numberArray.js");
+var _numberArrayJsDefault = parcelHelpers.interopDefault(_numberArrayJs);
+var _objectJs = require("./object.js");
+var _objectJsDefault = parcelHelpers.interopDefault(_objectJs);
+var _roundJs = require("./round.js");
+var _roundJsDefault = parcelHelpers.interopDefault(_roundJs);
+var _stringJs = require("./string.js");
+var _stringJsDefault = parcelHelpers.interopDefault(_stringJs);
+var _indexJs = require("./transform/index.js");
+var _zoomJs = require("./zoom.js");
+var _zoomJsDefault = parcelHelpers.interopDefault(_zoomJs);
+var _rgbJs = require("./rgb.js");
+var _rgbJsDefault = parcelHelpers.interopDefault(_rgbJs);
+var _hslJs = require("./hsl.js");
+var _hslJsDefault = parcelHelpers.interopDefault(_hslJs);
+var _labJs = require("./lab.js");
+var _labJsDefault = parcelHelpers.interopDefault(_labJs);
+var _hclJs = require("./hcl.js");
+var _hclJsDefault = parcelHelpers.interopDefault(_hclJs);
+var _cubehelixJs = require("./cubehelix.js");
+var _cubehelixJsDefault = parcelHelpers.interopDefault(_cubehelixJs);
+var _piecewiseJs = require("./piecewise.js");
+var _piecewiseJsDefault = parcelHelpers.interopDefault(_piecewiseJs);
+var _quantizeJs = require("./quantize.js");
+var _quantizeJsDefault = parcelHelpers.interopDefault(_quantizeJs);
+
+},{"./value.js":"9Zdkh","./array.js":"62SEJ","./basis.js":"2Pzo2","./basisClosed.js":"eVxfG","./date.js":"6Wsod","./discrete.js":"7CA76","./hue.js":"6fzML","./number.js":"iehGn","./numberArray.js":"efOJ4","./object.js":"1ILr9","./round.js":"fkU73","./string.js":"aIESn","./transform/index.js":"ldfOT","./zoom.js":"6hyjf","./rgb.js":"l0WEY","./hsl.js":"4LNup","./lab.js":"c3K7v","./hcl.js":"62ixB","./cubehelix.js":"cslTd","./piecewise.js":"ceD9e","./quantize.js":"2yEcy","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9Zdkh":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _d3Color = require("d3-color");
+var _rgbJs = require("./rgb.js");
+var _rgbJsDefault = parcelHelpers.interopDefault(_rgbJs);
+var _arrayJs = require("./array.js");
+var _dateJs = require("./date.js");
+var _dateJsDefault = parcelHelpers.interopDefault(_dateJs);
+var _numberJs = require("./number.js");
+var _numberJsDefault = parcelHelpers.interopDefault(_numberJs);
+var _objectJs = require("./object.js");
+var _objectJsDefault = parcelHelpers.interopDefault(_objectJs);
+var _stringJs = require("./string.js");
+var _stringJsDefault = parcelHelpers.interopDefault(_stringJs);
+var _constantJs = require("./constant.js");
+var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
+var _numberArrayJs = require("./numberArray.js");
+var _numberArrayJsDefault = parcelHelpers.interopDefault(_numberArrayJs);
+exports.default = function(a, b) {
+    var t = typeof b, c;
+    return b == null || t === "boolean" ? _constantJsDefault.default(b) : (t === "number" ? _numberJsDefault.default : t === "string" ? (c = _d3Color.color(b)) ? (b = c, _rgbJsDefault.default) : _stringJsDefault.default : b instanceof _d3Color.color ? _rgbJsDefault.default : b instanceof Date ? _dateJsDefault.default : _numberArrayJs.isNumberArray(b) ? _numberArrayJsDefault.default : Array.isArray(b) ? _arrayJs.genericArray : typeof b.valueOf !== "function" && typeof b.toString !== "function" || isNaN(b) ? _objectJsDefault.default : _numberJsDefault.default)(a, b);
+};
+
+},{"d3-color":"jBVGV","./rgb.js":"l0WEY","./array.js":"62SEJ","./date.js":"6Wsod","./number.js":"iehGn","./object.js":"1ILr9","./string.js":"aIESn","./constant.js":"inkRr","./numberArray.js":"efOJ4","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"l0WEY":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "rgbBasis", ()=>rgbBasis
+);
+parcelHelpers.export(exports, "rgbBasisClosed", ()=>rgbBasisClosed
+);
+var _d3Color = require("d3-color");
+var _basisJs = require("./basis.js");
+var _basisJsDefault = parcelHelpers.interopDefault(_basisJs);
+var _basisClosedJs = require("./basisClosed.js");
+var _basisClosedJsDefault = parcelHelpers.interopDefault(_basisClosedJs);
+var _colorJs = require("./color.js");
+var _colorJsDefault = parcelHelpers.interopDefault(_colorJs);
+exports.default = (function rgbGamma(y) {
+    var color = _colorJs.gamma(y);
+    function rgb(start, end) {
+        var r = color((start = _d3Color.rgb(start)).r, (end = _d3Color.rgb(end)).r), g = color(start.g, end.g), b = color(start.b, end.b), opacity = _colorJsDefault.default(start.opacity, end.opacity);
+        return function(t) {
+            start.r = r(t);
+            start.g = g(t);
+            start.b = b(t);
+            start.opacity = opacity(t);
+            return start + "";
+        };
+    }
+    rgb.gamma = rgbGamma;
+    return rgb;
+})(1);
+function rgbSpline(spline) {
+    return function(colors) {
+        var n = colors.length, r = new Array(n), g = new Array(n), b = new Array(n), i, color;
+        for(i = 0; i < n; ++i){
+            color = _d3Color.rgb(colors[i]);
+            r[i] = color.r || 0;
+            g[i] = color.g || 0;
+            b[i] = color.b || 0;
+        }
+        r = spline(r);
+        g = spline(g);
+        b = spline(b);
+        color.opacity = 1;
+        return function(t) {
+            color.r = r(t);
+            color.g = g(t);
+            color.b = b(t);
+            return color + "";
+        };
+    };
+}
+var rgbBasis = rgbSpline(_basisJsDefault.default);
+var rgbBasisClosed = rgbSpline(_basisClosedJsDefault.default);
+
+},{"d3-color":"jBVGV","./basis.js":"2Pzo2","./basisClosed.js":"eVxfG","./color.js":"88xFI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2Pzo2":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "basis", ()=>basis
+);
+function basis(t1, v0, v1, v2, v3) {
+    var t2 = t1 * t1, t3 = t2 * t1;
+    return ((1 - 3 * t1 + 3 * t2 - t3) * v0 + (4 - 6 * t2 + 3 * t3) * v1 + (1 + 3 * t1 + 3 * t2 - 3 * t3) * v2 + t3 * v3) / 6;
+}
+exports.default = function(values) {
+    var n = values.length - 1;
+    return function(t) {
+        var i = t <= 0 ? t = 0 : t >= 1 ? (t = 1, n - 1) : Math.floor(t * n), v1 = values[i], v2 = values[i + 1], v0 = i > 0 ? values[i - 1] : 2 * v1 - v2, v3 = i < n - 1 ? values[i + 2] : 2 * v2 - v1;
+        return basis((t - i / n) * n, v0, v1, v2, v3);
+    };
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eVxfG":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _basisJs = require("./basis.js");
+exports.default = function(values) {
+    var n = values.length;
+    return function(t) {
+        var i = Math.floor(((t %= 1) < 0 ? ++t : t) * n), v0 = values[(i + n - 1) % n], v1 = values[i % n], v2 = values[(i + 1) % n], v3 = values[(i + 2) % n];
+        return _basisJs.basis((t - i / n) * n, v0, v1, v2, v3);
+    };
+};
+
+},{"./basis.js":"2Pzo2","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"88xFI":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "hue", ()=>hue
+);
+parcelHelpers.export(exports, "gamma", ()=>gamma
+);
+var _constantJs = require("./constant.js");
+var _constantJsDefault = parcelHelpers.interopDefault(_constantJs);
+function linear(a, d) {
+    return function(t) {
+        return a + t * d;
+    };
+}
+function exponential(a, b, y) {
+    return a = Math.pow(a, y), b = Math.pow(b, y) - a, y = 1 / y, function(t) {
+        return Math.pow(a + t * b, y);
+    };
+}
+function hue(a, b) {
+    var d = b - a;
+    return d ? linear(a, d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d) : _constantJsDefault.default(isNaN(a) ? b : a);
+}
+function gamma(y) {
+    return (y = +y) === 1 ? nogamma : function(a, b) {
+        return b - a ? exponential(a, b, y) : _constantJsDefault.default(isNaN(a) ? b : a);
+    };
+}
+function nogamma(a, b) {
+    var d = b - a;
+    return d ? linear(a, d) : _constantJsDefault.default(isNaN(a) ? b : a);
+}
+exports.default = nogamma;
+
+},{"./constant.js":"inkRr","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"inkRr":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = (x)=>()=>x
+;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"62SEJ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "genericArray", ()=>genericArray
+);
+var _valueJs = require("./value.js");
+var _valueJsDefault = parcelHelpers.interopDefault(_valueJs);
+var _numberArrayJs = require("./numberArray.js");
+var _numberArrayJsDefault = parcelHelpers.interopDefault(_numberArrayJs);
+exports.default = function(a, b) {
+    return (_numberArrayJs.isNumberArray(b) ? _numberArrayJsDefault.default : genericArray)(a, b);
+};
+function genericArray(a, b) {
+    var nb = b ? b.length : 0, na = a ? Math.min(nb, a.length) : 0, x = new Array(na), c = new Array(nb), i;
+    for(i = 0; i < na; ++i)x[i] = _valueJsDefault.default(a[i], b[i]);
+    for(; i < nb; ++i)c[i] = b[i];
+    return function(t) {
+        for(i = 0; i < na; ++i)c[i] = x[i](t);
+        return c;
+    };
+}
+
+},{"./value.js":"9Zdkh","./numberArray.js":"efOJ4","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"efOJ4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "isNumberArray", ()=>isNumberArray
+);
+exports.default = function(a, b) {
+    if (!b) b = [];
+    var n = a ? Math.min(b.length, a.length) : 0, c = b.slice(), i;
+    return function(t) {
+        for(i = 0; i < n; ++i)c[i] = a[i] * (1 - t) + b[i] * t;
+        return c;
+    };
+};
+function isNumberArray(x) {
+    return ArrayBuffer.isView(x) && !(x instanceof DataView);
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6Wsod":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(a, b) {
+    var d = new Date;
+    return a = +a, b = +b, function(t) {
+        return d.setTime(a * (1 - t) + b * t), d;
+    };
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iehGn":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(a, b) {
+    return a = +a, b = +b, function(t) {
+        return a * (1 - t) + b * t;
+    };
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1ILr9":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _valueJs = require("./value.js");
+var _valueJsDefault = parcelHelpers.interopDefault(_valueJs);
+exports.default = function(a, b) {
+    var i = {
+    }, c = {
+    }, k;
+    if (a === null || typeof a !== "object") a = {
+    };
+    if (b === null || typeof b !== "object") b = {
+    };
+    for(k in b)if (k in a) i[k] = _valueJsDefault.default(a[k], b[k]);
+    else c[k] = b[k];
+    return function(t) {
+        for(k in i)c[k] = i[k](t);
+        return c;
+    };
+};
+
+},{"./value.js":"9Zdkh","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aIESn":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _numberJs = require("./number.js");
+var _numberJsDefault = parcelHelpers.interopDefault(_numberJs);
+var reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g, reB = new RegExp(reA.source, "g");
+function zero(b) {
+    return function() {
+        return b;
+    };
+}
+function one(b) {
+    return function(t) {
+        return b(t) + "";
+    };
+}
+exports.default = function(a, b) {
+    var bi = reA.lastIndex = reB.lastIndex = 0, am, bm, bs, i1 = -1, s = [], q = []; // number interpolators
+    // Coerce inputs to strings.
+    a = a + "", b = b + "";
+    // Interpolate pairs of numbers in a & b.
+    while((am = reA.exec(a)) && (bm = reB.exec(b))){
+        if ((bs = bm.index) > bi) {
+            bs = b.slice(bi, bs);
+            if (s[i1]) s[i1] += bs; // coalesce with previous string
+            else s[++i1] = bs;
+        }
+        if ((am = am[0]) === (bm = bm[0])) {
+            if (s[i1]) s[i1] += bm; // coalesce with previous string
+            else s[++i1] = bm;
+        } else {
+            s[++i1] = null;
+            q.push({
+                i: i1,
+                x: _numberJsDefault.default(am, bm)
+            });
+        }
+        bi = reB.lastIndex;
+    }
+    // Add remains of b.
+    if (bi < b.length) {
+        bs = b.slice(bi);
+        if (s[i1]) s[i1] += bs; // coalesce with previous string
+        else s[++i1] = bs;
+    }
+    // Special optimization for only a single match.
+    // Otherwise, interpolate each of the numbers and rejoin the string.
+    return s.length < 2 ? q[0] ? one(q[0].x) : zero(b) : (b = q.length, function(t) {
+        for(var i = 0, o; i < b; ++i)s[(o = q[i]).i] = o.x(t);
+        return s.join("");
+    });
+};
+
+},{"./number.js":"iehGn","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7CA76":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(range) {
+    var n = range.length;
+    return function(t) {
+        return range[Math.max(0, Math.min(n - 1, Math.floor(t * n)))];
+    };
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6fzML":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _colorJs = require("./color.js");
+exports.default = function(a, b) {
+    var i = _colorJs.hue(+a, +b);
+    return function(t) {
+        var x = i(t);
+        return x - 360 * Math.floor(x / 360);
+    };
+};
+
+},{"./color.js":"88xFI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fkU73":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(a, b) {
+    return a = +a, b = +b, function(t) {
+        return Math.round(a * (1 - t) + b * t);
+    };
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ldfOT":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "interpolateTransformCss", ()=>interpolateTransformCss
+);
+parcelHelpers.export(exports, "interpolateTransformSvg", ()=>interpolateTransformSvg
+);
+var _numberJs = require("../number.js");
+var _numberJsDefault = parcelHelpers.interopDefault(_numberJs);
+var _parseJs = require("./parse.js");
+function interpolateTransform(parse, pxComma, pxParen, degParen) {
+    function pop(s) {
+        return s.length ? s.pop() + " " : "";
+    }
+    function translate(xa, ya, xb, yb, s, q) {
+        if (xa !== xb || ya !== yb) {
+            var i = s.push("translate(", null, pxComma, null, pxParen);
+            q.push({
+                i: i - 4,
+                x: _numberJsDefault.default(xa, xb)
+            }, {
+                i: i - 2,
+                x: _numberJsDefault.default(ya, yb)
+            });
+        } else if (xb || yb) s.push("translate(" + xb + pxComma + yb + pxParen);
+    }
+    function rotate(a, b, s, q) {
+        if (a !== b) {
+            if (a - b > 180) b += 360;
+            else if (b - a > 180) a += 360; // shortest path
+            q.push({
+                i: s.push(pop(s) + "rotate(", null, degParen) - 2,
+                x: _numberJsDefault.default(a, b)
+            });
+        } else if (b) s.push(pop(s) + "rotate(" + b + degParen);
+    }
+    function skewX(a, b, s, q) {
+        if (a !== b) q.push({
+            i: s.push(pop(s) + "skewX(", null, degParen) - 2,
+            x: _numberJsDefault.default(a, b)
+        });
+        else if (b) s.push(pop(s) + "skewX(" + b + degParen);
+    }
+    function scale(xa, ya, xb, yb, s, q) {
+        if (xa !== xb || ya !== yb) {
+            var i = s.push(pop(s) + "scale(", null, ",", null, ")");
+            q.push({
+                i: i - 4,
+                x: _numberJsDefault.default(xa, xb)
+            }, {
+                i: i - 2,
+                x: _numberJsDefault.default(ya, yb)
+            });
+        } else if (xb !== 1 || yb !== 1) s.push(pop(s) + "scale(" + xb + "," + yb + ")");
+    }
+    return function(a, b) {
+        var s = [], q = []; // number interpolators
+        a = parse(a), b = parse(b);
+        translate(a.translateX, a.translateY, b.translateX, b.translateY, s, q);
+        rotate(a.rotate, b.rotate, s, q);
+        skewX(a.skewX, b.skewX, s, q);
+        scale(a.scaleX, a.scaleY, b.scaleX, b.scaleY, s, q);
+        a = b = null; // gc
+        return function(t) {
+            var i = -1, n = q.length, o;
+            while(++i < n)s[(o = q[i]).i] = o.x(t);
+            return s.join("");
+        };
+    };
+}
+var interpolateTransformCss = interpolateTransform(_parseJs.parseCss, "px, ", "px)", "deg)");
+var interpolateTransformSvg = interpolateTransform(_parseJs.parseSvg, ", ", ")", ")");
+
+},{"../number.js":"iehGn","./parse.js":"jyxsy","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jyxsy":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/* eslint-disable no-undef */ parcelHelpers.export(exports, "parseCss", ()=>parseCss
+);
+parcelHelpers.export(exports, "parseSvg", ()=>parseSvg
+);
+var _decomposeJs = require("./decompose.js");
+var _decomposeJsDefault = parcelHelpers.interopDefault(_decomposeJs);
+var svgNode;
+function parseCss(value) {
+    const m = new (typeof DOMMatrix === "function" ? DOMMatrix : WebKitCSSMatrix)(value + "");
+    return m.isIdentity ? _decomposeJs.identity : _decomposeJsDefault.default(m.a, m.b, m.c, m.d, m.e, m.f);
+}
+function parseSvg(value) {
+    if (value == null) return _decomposeJs.identity;
+    if (!svgNode) svgNode = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    svgNode.setAttribute("transform", value);
+    if (!(value = svgNode.transform.baseVal.consolidate())) return _decomposeJs.identity;
+    value = value.matrix;
+    return _decomposeJsDefault.default(value.a, value.b, value.c, value.d, value.e, value.f);
+}
+
+},{"./decompose.js":"bsezV","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bsezV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "identity", ()=>identity
+);
+var degrees = 180 / Math.PI;
+var identity = {
+    translateX: 0,
+    translateY: 0,
+    rotate: 0,
+    skewX: 0,
+    scaleX: 1,
+    scaleY: 1
+};
+exports.default = function(a, b, c, d, e, f) {
+    var scaleX, scaleY, skewX;
+    if (scaleX = Math.sqrt(a * a + b * b)) a /= scaleX, b /= scaleX;
+    if (skewX = a * c + b * d) c -= a * skewX, d -= b * skewX;
+    if (scaleY = Math.sqrt(c * c + d * d)) c /= scaleY, d /= scaleY, skewX /= scaleY;
+    if (a * d < b * c) a = -a, b = -b, skewX = -skewX, scaleX = -scaleX;
+    return {
+        translateX: e,
+        translateY: f,
+        rotate: Math.atan2(b, a) * degrees,
+        skewX: Math.atan(skewX) * degrees,
+        scaleX: scaleX,
+        scaleY: scaleY
+    };
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6hyjf":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var epsilon2 = 0.000000000001;
+function cosh(x) {
+    return ((x = Math.exp(x)) + 1 / x) / 2;
+}
+function sinh(x) {
+    return ((x = Math.exp(x)) - 1 / x) / 2;
+}
+function tanh(x) {
+    return ((x = Math.exp(2 * x)) - 1) / (x + 1);
+}
+exports.default = (function zoomRho(rho, rho2, rho4) {
+    // p0 = [ux0, uy0, w0]
+    // p1 = [ux1, uy1, w1]
+    function zoom(p0, p1) {
+        var ux0 = p0[0], uy0 = p0[1], w0 = p0[2], ux1 = p1[0], uy1 = p1[1], w1 = p1[2], dx = ux1 - ux0, dy = uy1 - uy0, d2 = dx * dx + dy * dy, i, S;
+        // Special case for u0 ≅ u1.
+        if (d2 < epsilon2) {
+            S = Math.log(w1 / w0) / rho;
+            i = function(t) {
+                return [
+                    ux0 + t * dx,
+                    uy0 + t * dy,
+                    w0 * Math.exp(rho * t * S)
+                ];
+            };
+        } else {
+            var d1 = Math.sqrt(d2), b0 = (w1 * w1 - w0 * w0 + rho4 * d2) / (2 * w0 * rho2 * d1), b1 = (w1 * w1 - w0 * w0 - rho4 * d2) / (2 * w1 * rho2 * d1), r0 = Math.log(Math.sqrt(b0 * b0 + 1) - b0), r1 = Math.log(Math.sqrt(b1 * b1 + 1) - b1);
+            S = (r1 - r0) / rho;
+            i = function(t) {
+                var s = t * S, coshr0 = cosh(r0), u = w0 / (rho2 * d1) * (coshr0 * tanh(rho * s + r0) - sinh(r0));
+                return [
+                    ux0 + u * dx,
+                    uy0 + u * dy,
+                    w0 * coshr0 / cosh(rho * s + r0)
+                ];
+            };
+        }
+        i.duration = S * 1000 * rho / Math.SQRT2;
+        return i;
+    }
+    zoom.rho = function(_) {
+        var _1 = Math.max(0.001, +_), _2 = _1 * _1, _4 = _2 * _2;
+        return zoomRho(_1, _2, _4);
+    };
+    return zoom;
+})(Math.SQRT2, 2, 4);
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4LNup":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "hslLong", ()=>hslLong
+);
+var _d3Color = require("d3-color");
+var _colorJs = require("./color.js");
+var _colorJsDefault = parcelHelpers.interopDefault(_colorJs);
+function hsl(hue) {
+    return function(start, end) {
+        var h = hue((start = _d3Color.hsl(start)).h, (end = _d3Color.hsl(end)).h), s = _colorJsDefault.default(start.s, end.s), l = _colorJsDefault.default(start.l, end.l), opacity = _colorJsDefault.default(start.opacity, end.opacity);
+        return function(t) {
+            start.h = h(t);
+            start.s = s(t);
+            start.l = l(t);
+            start.opacity = opacity(t);
+            return start + "";
+        };
+    };
+}
+exports.default = hsl(_colorJs.hue);
+var hslLong = hsl(_colorJsDefault.default);
+
+},{"d3-color":"jBVGV","./color.js":"88xFI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"c3K7v":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _d3Color = require("d3-color");
+var _colorJs = require("./color.js");
+var _colorJsDefault = parcelHelpers.interopDefault(_colorJs);
+function lab(start, end) {
+    var l = _colorJsDefault.default((start = _d3Color.lab(start)).l, (end = _d3Color.lab(end)).l), a = _colorJsDefault.default(start.a, end.a), b = _colorJsDefault.default(start.b, end.b), opacity = _colorJsDefault.default(start.opacity, end.opacity);
+    return function(t) {
+        start.l = l(t);
+        start.a = a(t);
+        start.b = b(t);
+        start.opacity = opacity(t);
+        return start + "";
+    };
+}
+exports.default = lab;
+
+},{"d3-color":"jBVGV","./color.js":"88xFI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"62ixB":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "hclLong", ()=>hclLong
+);
+var _d3Color = require("d3-color");
+var _colorJs = require("./color.js");
+var _colorJsDefault = parcelHelpers.interopDefault(_colorJs);
+function hcl(hue) {
+    return function(start, end) {
+        var h = hue((start = _d3Color.hcl(start)).h, (end = _d3Color.hcl(end)).h), c = _colorJsDefault.default(start.c, end.c), l = _colorJsDefault.default(start.l, end.l), opacity = _colorJsDefault.default(start.opacity, end.opacity);
+        return function(t) {
+            start.h = h(t);
+            start.c = c(t);
+            start.l = l(t);
+            start.opacity = opacity(t);
+            return start + "";
+        };
+    };
+}
+exports.default = hcl(_colorJs.hue);
+var hclLong = hcl(_colorJsDefault.default);
+
+},{"d3-color":"jBVGV","./color.js":"88xFI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cslTd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "cubehelixLong", ()=>cubehelixLong
+);
+var _d3Color = require("d3-color");
+var _colorJs = require("./color.js");
+var _colorJsDefault = parcelHelpers.interopDefault(_colorJs);
+function cubehelix1(hue) {
+    return (function cubehelixGamma(y) {
+        y = +y;
+        function cubehelix(start, end) {
+            var h = hue((start = _d3Color.cubehelix(start)).h, (end = _d3Color.cubehelix(end)).h), s = _colorJsDefault.default(start.s, end.s), l = _colorJsDefault.default(start.l, end.l), opacity = _colorJsDefault.default(start.opacity, end.opacity);
+            return function(t) {
+                start.h = h(t);
+                start.s = s(t);
+                start.l = l(Math.pow(t, y));
+                start.opacity = opacity(t);
+                return start + "";
+            };
+        }
+        cubehelix.gamma = cubehelixGamma;
+        return cubehelix;
+    })(1);
+}
+exports.default = cubehelix1(_colorJs.hue);
+var cubehelixLong = cubehelix1(_colorJsDefault.default);
+
+},{"d3-color":"jBVGV","./color.js":"88xFI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ceD9e":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _valueJs = require("./value.js");
+var _valueJsDefault = parcelHelpers.interopDefault(_valueJs);
+function piecewise(interpolate, values) {
+    if (values === undefined) values = interpolate, interpolate = _valueJsDefault.default;
+    var i1 = 0, n = values.length - 1, v = values[0], I = new Array(n < 0 ? 0 : n);
+    while(i1 < n)I[i1] = interpolate(v, v = values[++i1]);
+    return function(t) {
+        var i = Math.max(0, Math.min(n - 1, Math.floor(t *= n)));
+        return I[i](t - i);
+    };
+}
+exports.default = piecewise;
+
+},{"./value.js":"9Zdkh","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2yEcy":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = function(interpolator, n) {
+    var samples = new Array(n);
+    for(var i = 0; i < n; ++i)samples[i] = interpolator(i / (n - 1));
+    return samples;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jvaAz":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "path", ()=>_pathJsDefault.default
+);
+var _pathJs = require("./path.js");
+var _pathJsDefault = parcelHelpers.interopDefault(_pathJs);
+
+},{"./path.js":"9sYdo","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9sYdo":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const pi = Math.PI, tau = 2 * pi, epsilon = 0.000001, tauEpsilon = tau - epsilon;
+function Path() {
+    this._x0 = this._y0 = this._x1 = this._y1 = null; // end of current subpath
+    this._ = "";
+}
+function path() {
+    return new Path;
+}
+Path.prototype = path.prototype = {
+    constructor: Path,
+    moveTo: function(x, y) {
+        this._ += "M" + (this._x0 = this._x1 = +x) + "," + (this._y0 = this._y1 = +y);
+    },
+    closePath: function() {
+        if (this._x1 !== null) {
+            this._x1 = this._x0, this._y1 = this._y0;
+            this._ += "Z";
+        }
+    },
+    lineTo: function(x, y) {
+        this._ += "L" + (this._x1 = +x) + "," + (this._y1 = +y);
+    },
+    quadraticCurveTo: function(x1, y1, x, y) {
+        this._ += "Q" + +x1 + "," + +y1 + "," + (this._x1 = +x) + "," + (this._y1 = +y);
+    },
+    bezierCurveTo: function(x1, y1, x2, y2, x, y) {
+        this._ += "C" + +x1 + "," + +y1 + "," + +x2 + "," + +y2 + "," + (this._x1 = +x) + "," + (this._y1 = +y);
+    },
+    arcTo: function(x1, y1, x2, y2, r) {
+        x1 = +x1, y1 = +y1, x2 = +x2, y2 = +y2, r = +r;
+        var x0 = this._x1, y0 = this._y1, x21 = x2 - x1, y21 = y2 - y1, x01 = x0 - x1, y01 = y0 - y1, l01_2 = x01 * x01 + y01 * y01;
+        // Is the radius negative? Error.
+        if (r < 0) throw new Error("negative radius: " + r);
+        // Is this path empty? Move to (x1,y1).
+        if (this._x1 === null) this._ += "M" + (this._x1 = x1) + "," + (this._y1 = y1);
+        else if (!(l01_2 > epsilon)) ;
+        else if (!(Math.abs(y01 * x21 - y21 * x01) > epsilon) || !r) this._ += "L" + (this._x1 = x1) + "," + (this._y1 = y1);
+        else {
+            var x20 = x2 - x0, y20 = y2 - y0, l21_2 = x21 * x21 + y21 * y21, l20_2 = x20 * x20 + y20 * y20, l21 = Math.sqrt(l21_2), l01 = Math.sqrt(l01_2), l = r * Math.tan((pi - Math.acos((l21_2 + l01_2 - l20_2) / (2 * l21 * l01))) / 2), t01 = l / l01, t21 = l / l21;
+            // If the start tangent is not coincident with (x0,y0), line to.
+            if (Math.abs(t01 - 1) > epsilon) this._ += "L" + (x1 + t01 * x01) + "," + (y1 + t01 * y01);
+            this._ += "A" + r + "," + r + ",0,0," + +(y01 * x20 > x01 * y20) + "," + (this._x1 = x1 + t21 * x21) + "," + (this._y1 = y1 + t21 * y21);
+        }
+    },
+    arc: function(x, y, r, a0, a1, ccw) {
+        x = +x, y = +y, r = +r, ccw = !!ccw;
+        var dx = r * Math.cos(a0), dy = r * Math.sin(a0), x0 = x + dx, y0 = y + dy, cw = 1 ^ ccw, da = ccw ? a0 - a1 : a1 - a0;
+        // Is the radius negative? Error.
+        if (r < 0) throw new Error("negative radius: " + r);
+        // Is this path empty? Move to (x0,y0).
+        if (this._x1 === null) this._ += "M" + x0 + "," + y0;
+        else if (Math.abs(this._x1 - x0) > epsilon || Math.abs(this._y1 - y0) > epsilon) this._ += "L" + x0 + "," + y0;
+        // Is this arc empty? We’re done.
+        if (!r) return;
+        // Does the angle go the wrong way? Flip the direction.
+        if (da < 0) da = da % tau + tau;
+        // Is this a complete circle? Draw two arcs to complete the circle.
+        if (da > tauEpsilon) this._ += "A" + r + "," + r + ",0,1," + cw + "," + (x - dx) + "," + (y - dy) + "A" + r + "," + r + ",0,1," + cw + "," + (this._x1 = x0) + "," + (this._y1 = y0);
+        else if (da > epsilon) this._ += "A" + r + "," + r + ",0," + +(da >= pi) + "," + cw + "," + (this._x1 = x + r * Math.cos(a1)) + "," + (this._y1 = y + r * Math.sin(a1));
+    },
+    rect: function(x, y, w, h) {
+        this._ += "M" + (this._x0 = this._x1 = +x) + "," + (this._y0 = this._y1 = +y) + "h" + +w + "v" + +h + "h" + -w + "Z";
+    },
+    toString: function() {
+        return this._;
+    }
+};
+exports.default = path;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6ide9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "polygonArea", ()=>_areaJsDefault.default
@@ -17160,25 +23488,25 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "implicit", ()=>implicit
 );
+var _d3Array = require("d3-array");
 var _initJs = require("./init.js");
 const implicit = Symbol("implicit");
 function ordinal() {
-    var index = new Map(), domain = [], range = [], unknown = implicit;
+    var index = new _d3Array.InternMap(), domain = [], range = [], unknown = implicit;
     function scale(d) {
-        var key = d + "", i = index.get(key);
-        if (!i) {
+        let i = index.get(d);
+        if (i === undefined) {
             if (unknown !== implicit) return unknown;
-            index.set(key, i = domain.push(d));
+            index.set(d, i = domain.push(d) - 1);
         }
-        return range[(i - 1) % range.length];
+        return range[i % range.length];
     }
     scale.domain = function(_) {
         if (!arguments.length) return domain.slice();
-        domain = [], index = new Map();
+        domain = [], index = new _d3Array.InternMap();
         for (const value of _){
-            const key = value + "";
-            if (index.has(key)) continue;
-            index.set(key, domain.push(value));
+            if (index.has(value)) continue;
+            index.set(value, domain.push(value) - 1);
         }
         return scale;
     };
@@ -17196,7 +23524,7 @@ function ordinal() {
 }
 exports.default = ordinal;
 
-},{"./init.js":"76hF6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7A0m5":[function(require,module,exports) {
+},{"d3-array":"dclxS","./init.js":"76hF6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7A0m5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _linearJs = require("./linear.js");
@@ -17469,22 +23797,23 @@ function pow10(x) {
     return isFinite(x) ? +("1e" + x) : x < 0 ? 0 : x;
 }
 function powp(base) {
-    return base === 10 ? pow10 : base === Math.E ? Math.exp : function(x) {
-        return Math.pow(base, x);
-    };
+    return base === 10 ? pow10 : base === Math.E ? Math.exp : (x)=>Math.pow(base, x)
+    ;
 }
 function logp(base) {
-    return base === Math.E ? Math.log : base === 10 && Math.log10 || base === 2 && Math.log2 || (base = Math.log(base), function(x) {
-        return Math.log(x) / base;
-    });
+    return base === Math.E ? Math.log : base === 10 && Math.log10 || base === 2 && Math.log2 || (base = Math.log(base), (x)=>Math.log(x) / base
+    );
 }
 function reflect(f) {
-    return function(x) {
-        return -f(-x);
-    };
+    return (x, k)=>-f(-x, k)
+    ;
 }
 function loggish(transform) {
-    var scale = transform(transformLog, transformExp), domain = scale.domain, base = 10, logs, pows;
+    const scale = transform(transformLog, transformExp);
+    const domain = scale.domain;
+    let base = 10;
+    let logs;
+    let pows;
     function rescale() {
         logs = logp(base), pows = powp(base);
         if (domain()[0] < 0) {
@@ -17499,20 +23828,31 @@ function loggish(transform) {
     scale.domain = function(_) {
         return arguments.length ? (domain(_), rescale()) : domain();
     };
-    scale.ticks = function(count) {
-        var d = domain(), u = d[0], v = d[d.length - 1], r;
-        if (r = v < u) i = u, u = v, v = i;
-        var i = logs(u), j = logs(v), p, k, t, n = count == null ? 10 : +count, z = [];
+    scale.ticks = (count)=>{
+        const d = domain();
+        let u = d[0];
+        let v = d[d.length - 1];
+        const r = v < u;
+        if (r) [u, v] = [
+            v,
+            u
+        ];
+        let i = logs(u);
+        let j = logs(v);
+        let k;
+        let t;
+        const n = count == null ? 10 : +count;
+        let z = [];
         if (!(base % 1) && j - i < n) {
             i = Math.floor(i), j = Math.ceil(j);
-            if (u > 0) for(; i <= j; ++i)for(k = 1, p = pows(i); k < base; ++k){
-                t = p * k;
+            if (u > 0) for(; i <= j; ++i)for(k = 1; k < base; ++k){
+                t = i < 0 ? k / pows(-i) : k * pows(i);
                 if (t < u) continue;
                 if (t > v) break;
                 z.push(t);
             }
-            else for(; i <= j; ++i)for(k = base - 1, p = pows(i); k >= 1; --k){
-                t = p * k;
+            else for(; i <= j; ++i)for(k = base - 1; k >= 1; --k){
+                t = i > 0 ? k / pows(-i) : k * pows(i);
                 if (t < u) continue;
                 if (t > v) break;
                 z.push(t);
@@ -17521,38 +23861,37 @@ function loggish(transform) {
         } else z = _d3Array.ticks(i, j, Math.min(j - i, n)).map(pows);
         return r ? z.reverse() : z;
     };
-    scale.tickFormat = function(count, specifier) {
-        if (specifier == null) specifier = base === 10 ? ".0e" : ",";
-        if (typeof specifier !== "function") specifier = _d3Format.format(specifier);
-        if (count === Infinity) return specifier;
+    scale.tickFormat = (count, specifier)=>{
         if (count == null) count = 10;
-        var k = Math.max(1, base * count / scale.ticks().length); // TODO fast estimate?
-        return function(d) {
-            var i = d / pows(Math.round(logs(d)));
+        if (specifier == null) specifier = base === 10 ? "s" : ",";
+        if (typeof specifier !== "function") {
+            if (!(base % 1) && (specifier = _d3Format.formatSpecifier(specifier)).precision == null) specifier.trim = true;
+            specifier = _d3Format.format(specifier);
+        }
+        if (count === Infinity) return specifier;
+        const k = Math.max(1, base * count / scale.ticks().length); // TODO fast estimate?
+        return (d)=>{
+            let i = d / pows(Math.round(logs(d)));
             if (i * base < base - 0.5) i *= base;
             return i <= k ? specifier(d) : "";
         };
     };
-    scale.nice = function() {
+    scale.nice = ()=>{
         return domain(_niceJsDefault.default(domain(), {
-            floor: function(x) {
-                return pows(Math.floor(logs(x)));
-            },
-            ceil: function(x) {
-                return pows(Math.ceil(logs(x)));
-            }
+            floor: (x)=>pows(Math.floor(logs(x)))
+            ,
+            ceil: (x)=>pows(Math.ceil(logs(x)))
         }));
     };
     return scale;
 }
 function log() {
-    var scale = loggish(_continuousJs.transformer()).domain([
+    const scale = loggish(_continuousJs.transformer()).domain([
         1,
         10
     ]);
-    scale.copy = function() {
-        return _continuousJs.copy(scale, log()).base(scale.base());
-    };
+    scale.copy = ()=>_continuousJs.copy(scale, log()).base(scale.base())
+    ;
     _initJs.initRange.apply(scale, arguments);
     return scale;
 }
@@ -20379,7 +26718,7 @@ var magma = ramp(_colorsJsDefault.default("00000401000501010601010802010902020b0
 var inferno = ramp(_colorsJsDefault.default("00000401000501010601010802010a02020c02020e03021004031204031405041706041907051b08051d09061f0a07220b07240c08260d08290e092b10092d110a30120a32140b34150b37160b39180c3c190c3e1b0c411c0c431e0c451f0c48210c4a230c4c240c4f260c51280b53290b552b0b572d0b592f0a5b310a5c320a5e340a5f3609613809623909633b09643d09653e0966400a67420a68440a68450a69470b6a490b6a4a0c6b4c0c6b4d0d6c4f0d6c510e6c520e6d540f6d550f6d57106e59106e5a116e5c126e5d126e5f136e61136e62146e64156e65156e67166e69166e6a176e6c186e6d186e6f196e71196e721a6e741a6e751b6e771c6d781c6d7a1d6d7c1d6d7d1e6d7f1e6c801f6c82206c84206b85216b87216b88226a8a226a8c23698d23698f24699025689225689326679526679727669827669a28659b29649d29649f2a63a02a63a22b62a32c61a52c60a62d60a82e5fa92e5eab2f5ead305dae305cb0315bb1325ab3325ab43359b63458b73557b93556ba3655bc3754bd3853bf3952c03a51c13a50c33b4fc43c4ec63d4dc73e4cc83f4bca404acb4149cc4248ce4347cf4446d04545d24644d34743d44842d54a41d74b3fd84c3ed94d3dda4e3cdb503bdd513ade5238df5337e05536e15635e25734e35933e45a31e55c30e65d2fe75e2ee8602de9612bea632aeb6429eb6628ec6726ed6925ee6a24ef6c23ef6e21f06f20f1711ff1731df2741cf3761bf37819f47918f57b17f57d15f67e14f68013f78212f78410f8850ff8870ef8890cf98b0bf98c0af98e09fa9008fa9207fa9407fb9606fb9706fb9906fb9b06fb9d07fc9f07fca108fca309fca50afca60cfca80dfcaa0ffcac11fcae12fcb014fcb216fcb418fbb61afbb81dfbba1ffbbc21fbbe23fac026fac228fac42afac62df9c72ff9c932f9cb35f8cd37f8cf3af7d13df7d340f6d543f6d746f5d949f5db4cf4dd4ff4df53f4e156f3e35af3e55df2e661f2e865f2ea69f1ec6df1ed71f1ef75f1f179f2f27df2f482f3f586f3f68af4f88ef5f992f6fa96f8fb9af9fc9dfafda1fcffa4"));
 var plasma = ramp(_colorsJsDefault.default("0d088710078813078916078a19068c1b068d1d068e20068f2206902406912605912805922a05932c05942e05952f059631059733059735049837049938049a3a049a3c049b3e049c3f049c41049d43039e44039e46039f48039f4903a04b03a14c02a14e02a25002a25102a35302a35502a45601a45801a45901a55b01a55c01a65e01a66001a66100a76300a76400a76600a76700a86900a86a00a86c00a86e00a86f00a87100a87201a87401a87501a87701a87801a87a02a87b02a87d03a87e03a88004a88104a78305a78405a78606a68707a68808a68a09a58b0aa58d0ba58e0ca48f0da4910ea3920fa39410a29511a19613a19814a099159f9a169f9c179e9d189d9e199da01a9ca11b9ba21d9aa31e9aa51f99a62098a72197a82296aa2395ab2494ac2694ad2793ae2892b02991b12a90b22b8fb32c8eb42e8db52f8cb6308bb7318ab83289ba3388bb3488bc3587bd3786be3885bf3984c03a83c13b82c23c81c33d80c43e7fc5407ec6417dc7427cc8437bc9447aca457acb4679cc4778cc4977cd4a76ce4b75cf4c74d04d73d14e72d24f71d35171d45270d5536fd5546ed6556dd7566cd8576bd9586ada5a6ada5b69db5c68dc5d67dd5e66de5f65de6164df6263e06363e16462e26561e26660e3685fe4695ee56a5de56b5de66c5ce76e5be76f5ae87059e97158e97257ea7457eb7556eb7655ec7754ed7953ed7a52ee7b51ef7c51ef7e50f07f4ff0804ef1814df1834cf2844bf3854bf3874af48849f48948f58b47f58c46f68d45f68f44f79044f79143f79342f89441f89540f9973ff9983ef99a3efa9b3dfa9c3cfa9e3bfb9f3afba139fba238fca338fca537fca636fca835fca934fdab33fdac33fdae32fdaf31fdb130fdb22ffdb42ffdb52efeb72dfeb82cfeba2cfebb2bfebd2afebe2afec029fdc229fdc328fdc527fdc627fdc827fdca26fdcb26fccd25fcce25fcd025fcd225fbd324fbd524fbd724fad824fada24f9dc24f9dd25f8df25f8e125f7e225f7e425f6e626f6e826f5e926f5eb27f4ed27f3ee27f3f027f2f227f1f426f1f525f0f724f0f921"));
 
-},{"../colors.js":"7m9wq","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dTLqu":[function(require,module,exports) {
+},{"../colors.js":"7m9wq","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"b6kLj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "arc", ()=>_arcJsDefault.default
@@ -20576,7 +26915,7 @@ var _noneJsDefault1 = parcelHelpers.interopDefault(_noneJs1);
 var _reverseJs = require("./order/reverse.js");
 var _reverseJsDefault = parcelHelpers.interopDefault(_reverseJs);
 
-},{"./arc.js":"exU1H","./area.js":"gvvw5","./line.js":"bELRt","./pie.js":"cygYf","./areaRadial.js":"dJ9RA","./lineRadial.js":"9gVbr","./pointRadial.js":"l0dNC","./link/index.js":"cdFcN","./symbol.js":"5fI0H","./symbol/circle.js":"kJX1p","./symbol/cross.js":"csQ4j","./symbol/diamond.js":"cDzr1","./symbol/square.js":"gwOZl","./symbol/star.js":"cCUQj","./symbol/triangle.js":"lC5to","./symbol/wye.js":"gmetX","./curve/basisClosed.js":"3v0R7","./curve/basisOpen.js":"hhNWq","./curve/basis.js":"haiwm","./curve/bump.js":"5LMkN","./curve/bundle.js":"ejKn0","./curve/cardinalClosed.js":"2Lnb5","./curve/cardinalOpen.js":"imrN3","./curve/cardinal.js":"lY1cC","./curve/catmullRomClosed.js":"j5Vzy","./curve/catmullRomOpen.js":"fw3h3","./curve/catmullRom.js":"alELy","./curve/linearClosed.js":"6OXjp","./curve/linear.js":"dgYF5","./curve/monotone.js":"ej0HE","./curve/natural.js":"kU29F","./curve/step.js":"2h2VG","./stack.js":"8FoPn","./offset/expand.js":"kheNr","./offset/diverging.js":"ahsJE","./offset/none.js":"kmdsk","./offset/silhouette.js":"isPKf","./offset/wiggle.js":"eeem3","./order/appearance.js":"cq85r","./order/ascending.js":"02faF","./order/descending.js":"9HajE","./order/insideOut.js":"kFg22","./order/none.js":"7PXGK","./order/reverse.js":"6qcQw","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"exU1H":[function(require,module,exports) {
+},{"./arc.js":"2xZkP","./area.js":"fuE8k","./line.js":"eQT2L","./pie.js":"cyyck","./areaRadial.js":"3T70P","./lineRadial.js":"1cpYB","./pointRadial.js":"69zCa","./link/index.js":"1yc5P","./symbol.js":"k2KKS","./symbol/circle.js":"9wfxF","./symbol/cross.js":"jCaYc","./symbol/diamond.js":"2nnQq","./symbol/square.js":"asJEn","./symbol/star.js":"9j0o5","./symbol/triangle.js":"gLA5M","./symbol/wye.js":"2fOmf","./curve/basisClosed.js":"1jvfk","./curve/basisOpen.js":"czykd","./curve/basis.js":"74inP","./curve/bump.js":"i0qNk","./curve/bundle.js":"fgJPB","./curve/cardinalClosed.js":"aHZae","./curve/cardinalOpen.js":"iJEHl","./curve/cardinal.js":"ayIB9","./curve/catmullRomClosed.js":"7Qo1E","./curve/catmullRomOpen.js":"bpyjr","./curve/catmullRom.js":"lQRbD","./curve/linearClosed.js":"j1uKt","./curve/linear.js":"bDkdG","./curve/monotone.js":"cufDv","./curve/natural.js":"8fPei","./curve/step.js":"45Tu7","./stack.js":"2qaiX","./offset/expand.js":"7mjNn","./offset/diverging.js":"hLsfG","./offset/none.js":"9uEYv","./offset/silhouette.js":"8Jo5U","./offset/wiggle.js":"4qGVW","./order/appearance.js":"3QWEA","./order/ascending.js":"izSi0","./order/descending.js":"ibLgv","./order/insideOut.js":"5Wecb","./order/none.js":"7lwYs","./order/reverse.js":"cB4Fe","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2xZkP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Path = require("d3-path");
@@ -20727,7 +27066,7 @@ exports.default = function() {
     return arc;
 };
 
-},{"d3-path":"4S67G","./constant.js":"eKjAq","./math.js":"9EE85","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eKjAq":[function(require,module,exports) {
+},{"d3-path":"jvaAz","./constant.js":"7H4YB","./math.js":"fS9ae","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7H4YB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = function(x) {
@@ -20736,7 +27075,7 @@ exports.default = function(x) {
     };
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9EE85":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fS9ae":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "abs", ()=>abs
@@ -20783,7 +27122,7 @@ function asin(x) {
     return x >= 1 ? halfPi : x <= -1 ? -halfPi : Math.asin(x);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gvvw5":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fuE8k":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Path = require("d3-path");
@@ -20867,7 +27206,7 @@ exports.default = function(x0, y0, y1) {
     return area;
 };
 
-},{"d3-path":"4S67G","./array.js":"h9Y8M","./constant.js":"eKjAq","./curve/linear.js":"dgYF5","./line.js":"bELRt","./point.js":"cSKUZ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"h9Y8M":[function(require,module,exports) {
+},{"d3-path":"jvaAz","./array.js":"1KL1p","./constant.js":"7H4YB","./curve/linear.js":"bDkdG","./line.js":"eQT2L","./point.js":"cjdmb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1KL1p":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "slice", ()=>slice
@@ -20878,7 +27217,7 @@ exports.default = function(x) {
      : Array.from(x); // Map, Set, iterable, string, or anything else
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dgYF5":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bDkdG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function Linear(context) {
@@ -20906,7 +27245,7 @@ Linear.prototype = {
                 this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y);
                 break;
             case 1:
-                this._point = 2; // proceed
+                this._point = 2; // falls through
             default:
                 this._context.lineTo(x, y);
                 break;
@@ -20917,7 +27256,7 @@ exports.default = function(context) {
     return new Linear(context);
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bELRt":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eQT2L":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Path = require("d3-path");
@@ -20962,7 +27301,7 @@ exports.default = function(x, y) {
     return line;
 };
 
-},{"d3-path":"4S67G","./array.js":"h9Y8M","./constant.js":"eKjAq","./curve/linear.js":"dgYF5","./point.js":"cSKUZ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cSKUZ":[function(require,module,exports) {
+},{"d3-path":"jvaAz","./array.js":"1KL1p","./constant.js":"7H4YB","./curve/linear.js":"bDkdG","./point.js":"cjdmb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cjdmb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "x", ()=>x
@@ -20976,7 +27315,7 @@ function y(p) {
     return p[1];
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cygYf":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cyyck":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _arrayJs = require("./array.js");
@@ -21032,21 +27371,21 @@ exports.default = function() {
     return pie;
 };
 
-},{"./array.js":"h9Y8M","./constant.js":"eKjAq","./descending.js":"8OWRN","./identity.js":"kGDpH","./math.js":"9EE85","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8OWRN":[function(require,module,exports) {
+},{"./array.js":"1KL1p","./constant.js":"7H4YB","./descending.js":"4WByN","./identity.js":"kLkw6","./math.js":"fS9ae","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4WByN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = function(a, b) {
     return b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kGDpH":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kLkw6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = function(d) {
     return d;
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dJ9RA":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3T70P":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _radialJs = require("./curve/radial.js");
@@ -21080,7 +27419,7 @@ exports.default = function() {
     return a;
 };
 
-},{"./curve/radial.js":"4tTTY","./area.js":"gvvw5","./lineRadial.js":"9gVbr","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4tTTY":[function(require,module,exports) {
+},{"./curve/radial.js":"7rct9","./area.js":"fuE8k","./lineRadial.js":"1cpYB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7rct9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "curveRadialLinear", ()=>curveRadialLinear
@@ -21117,7 +27456,7 @@ function curveRadial(curve) {
 }
 exports.default = curveRadial;
 
-},{"./linear.js":"dgYF5","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9gVbr":[function(require,module,exports) {
+},{"./linear.js":"bDkdG","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1cpYB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "lineRadial", ()=>lineRadial
@@ -21139,7 +27478,7 @@ exports.default = function() {
     return lineRadial(_lineJsDefault.default().curve(_radialJs.curveRadialLinear));
 };
 
-},{"./curve/radial.js":"4tTTY","./line.js":"bELRt","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"l0dNC":[function(require,module,exports) {
+},{"./curve/radial.js":"7rct9","./line.js":"eQT2L","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"69zCa":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = function(x, y) {
@@ -21149,7 +27488,7 @@ exports.default = function(x, y) {
     ];
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cdFcN":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1yc5P":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "linkHorizontal", ()=>linkHorizontal
@@ -21222,7 +27561,7 @@ function linkRadial() {
     return l;
 }
 
-},{"d3-path":"4S67G","../array.js":"h9Y8M","../constant.js":"eKjAq","../point.js":"cSKUZ","../pointRadial.js":"l0dNC","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5fI0H":[function(require,module,exports) {
+},{"d3-path":"jvaAz","../array.js":"1KL1p","../constant.js":"7H4YB","../point.js":"cjdmb","../pointRadial.js":"69zCa","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"k2KKS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "symbols", ()=>symbols
@@ -21275,7 +27614,7 @@ exports.default = function(type, size) {
     return symbol;
 };
 
-},{"d3-path":"4S67G","./symbol/circle.js":"kJX1p","./symbol/cross.js":"csQ4j","./symbol/diamond.js":"cDzr1","./symbol/star.js":"cCUQj","./symbol/square.js":"gwOZl","./symbol/triangle.js":"lC5to","./symbol/wye.js":"gmetX","./constant.js":"eKjAq","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kJX1p":[function(require,module,exports) {
+},{"d3-path":"jvaAz","./symbol/circle.js":"9wfxF","./symbol/cross.js":"jCaYc","./symbol/diamond.js":"2nnQq","./symbol/star.js":"9j0o5","./symbol/square.js":"asJEn","./symbol/triangle.js":"gLA5M","./symbol/wye.js":"2fOmf","./constant.js":"7H4YB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9wfxF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _mathJs = require("../math.js");
@@ -21287,7 +27626,7 @@ exports.default = {
     }
 };
 
-},{"../math.js":"9EE85","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"csQ4j":[function(require,module,exports) {
+},{"../math.js":"fS9ae","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jCaYc":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = {
@@ -21309,7 +27648,7 @@ exports.default = {
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cDzr1":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2nnQq":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var tan30 = Math.sqrt(1 / 3), tan30_2 = tan30 * 2;
@@ -21324,7 +27663,7 @@ exports.default = {
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cCUQj":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9j0o5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _mathJs = require("../math.js");
@@ -21343,7 +27682,7 @@ exports.default = {
     }
 };
 
-},{"../math.js":"9EE85","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gwOZl":[function(require,module,exports) {
+},{"../math.js":"fS9ae","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"asJEn":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = {
@@ -21353,7 +27692,7 @@ exports.default = {
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lC5to":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gLA5M":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var sqrt3 = Math.sqrt(3);
@@ -21367,7 +27706,7 @@ exports.default = {
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gmetX":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2fOmf":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var c = -0.5, s = Math.sqrt(3) / 2, k = 1 / Math.sqrt(12), a = (k / 2 + 1) * 3;
@@ -21387,7 +27726,7 @@ exports.default = {
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3v0R7":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1jvfk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _noopJs = require("../noop.js");
@@ -21449,13 +27788,13 @@ exports.default = function(context) {
     return new BasisClosed(context);
 };
 
-},{"../noop.js":"l5hui","./basis.js":"haiwm","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"l5hui":[function(require,module,exports) {
+},{"../noop.js":"igUvB","./basis.js":"74inP","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"igUvB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = function() {
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"haiwm":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"74inP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "point", ()=>point
@@ -21482,7 +27821,7 @@ Basis.prototype = {
     lineEnd: function() {
         switch(this._point){
             case 3:
-                point(this, this._x1, this._y1); // proceed
+                point(this, this._x1, this._y1); // falls through
             case 2:
                 this._context.lineTo(this._x1, this._y1);
                 break;
@@ -21502,7 +27841,7 @@ Basis.prototype = {
                 break;
             case 2:
                 this._point = 3;
-                this._context.lineTo((5 * this._x0 + this._x1) / 6, (5 * this._y0 + this._y1) / 6); // proceed
+                this._context.lineTo((5 * this._x0 + this._x1) / 6, (5 * this._y0 + this._y1) / 6); // falls through
             default:
                 point(this, x, y);
                 break;
@@ -21515,7 +27854,7 @@ exports.default = function(context) {
     return new Basis(context);
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hhNWq":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"czykd":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _basisJs = require("./basis.js");
@@ -21552,7 +27891,7 @@ BasisOpen.prototype = {
                 this._line ? this._context.lineTo(x0, y0) : this._context.moveTo(x0, y0);
                 break;
             case 3:
-                this._point = 4; // proceed
+                this._point = 4; // falls through
             default:
                 _basisJs.point(this, x, y);
                 break;
@@ -21565,7 +27904,7 @@ exports.default = function(context) {
     return new BasisOpen(context);
 };
 
-},{"./basis.js":"haiwm","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5LMkN":[function(require,module,exports) {
+},{"./basis.js":"74inP","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i0qNk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "bumpX", ()=>bumpX
@@ -21599,7 +27938,7 @@ class Bump {
                 else this._context.moveTo(x1, y);
                 break;
             case 1:
-                this._point = 2; // proceed
+                this._point = 2; // falls through
             default:
                 if (this._x) this._context.bezierCurveTo(this._x0 = (this._x0 + x1) / 2, this._y0, this._x0, y, x1, y);
                 else this._context.bezierCurveTo(this._x0, this._y0 = (this._y0 + y) / 2, x1, this._y0, x1, y);
@@ -21615,7 +27954,7 @@ function bumpY(context) {
     return new Bump(context, false);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ejKn0":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fgJPB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _basisJs = require("./basis.js");
@@ -21656,7 +27995,7 @@ exports.default = (function custom(beta1) {
     return bundle;
 })(0.85);
 
-},{"./basis.js":"haiwm","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2Lnb5":[function(require,module,exports) {
+},{"./basis.js":"74inP","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aHZae":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CardinalClosed", ()=>CardinalClosed
@@ -21725,7 +28064,7 @@ exports.default = (function custom(tension1) {
     return cardinal;
 })(0);
 
-},{"../noop.js":"l5hui","./cardinal.js":"lY1cC","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lY1cC":[function(require,module,exports) {
+},{"../noop.js":"igUvB","./cardinal.js":"ayIB9","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ayIB9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "point", ()=>point
@@ -21774,7 +28113,7 @@ Cardinal.prototype = {
                 this._x1 = x, this._y1 = y;
                 break;
             case 2:
-                this._point = 3; // proceed
+                this._point = 3; // falls through
             default:
                 point(this, x, y);
                 break;
@@ -21793,7 +28132,7 @@ exports.default = (function custom(tension1) {
     return cardinal;
 })(0);
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"imrN3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iJEHl":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CardinalOpen", ()=>CardinalOpen
@@ -21832,7 +28171,7 @@ CardinalOpen.prototype = {
                 this._line ? this._context.lineTo(this._x2, this._y2) : this._context.moveTo(this._x2, this._y2);
                 break;
             case 3:
-                this._point = 4; // proceed
+                this._point = 4; // falls through
             default:
                 _cardinalJs.point(this, x, y);
                 break;
@@ -21851,7 +28190,7 @@ exports.default = (function custom(tension1) {
     return cardinal;
 })(0);
 
-},{"./cardinal.js":"lY1cC","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"j5Vzy":[function(require,module,exports) {
+},{"./cardinal.js":"ayIB9","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7Qo1E":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _cardinalClosedJs = require("./cardinalClosed.js");
@@ -21925,7 +28264,7 @@ exports.default = (function custom(alpha1) {
     return catmullRom;
 })(0.5);
 
-},{"./cardinalClosed.js":"2Lnb5","../noop.js":"l5hui","./catmullRom.js":"alELy","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"alELy":[function(require,module,exports) {
+},{"./cardinalClosed.js":"aHZae","../noop.js":"igUvB","./catmullRom.js":"lQRbD","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lQRbD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "point", ()=>point
@@ -21988,7 +28327,7 @@ CatmullRom.prototype = {
                 this._point = 2;
                 break;
             case 2:
-                this._point = 3; // proceed
+                this._point = 3; // falls through
             default:
                 point(this, x, y);
                 break;
@@ -22009,7 +28348,7 @@ exports.default = (function custom(alpha1) {
     return catmullRom;
 })(0.5);
 
-},{"../math.js":"9EE85","./cardinal.js":"lY1cC","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fw3h3":[function(require,module,exports) {
+},{"../math.js":"fS9ae","./cardinal.js":"ayIB9","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bpyjr":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _cardinalOpenJs = require("./cardinalOpen.js");
@@ -22051,7 +28390,7 @@ CatmullRomOpen.prototype = {
                 this._line ? this._context.lineTo(this._x2, this._y2) : this._context.moveTo(this._x2, this._y2);
                 break;
             case 3:
-                this._point = 4; // proceed
+                this._point = 4; // falls through
             default:
                 _catmullRomJs.point(this, x, y);
                 break;
@@ -22072,7 +28411,7 @@ exports.default = (function custom(alpha1) {
     return catmullRom;
 })(0.5);
 
-},{"./cardinalOpen.js":"imrN3","./catmullRom.js":"alELy","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6OXjp":[function(require,module,exports) {
+},{"./cardinalOpen.js":"iJEHl","./catmullRom.js":"lQRbD","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"j1uKt":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _noopJs = require("../noop.js");
@@ -22099,7 +28438,7 @@ exports.default = function(context) {
     return new LinearClosed(context);
 };
 
-},{"../noop.js":"l5hui","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ej0HE":[function(require,module,exports) {
+},{"../noop.js":"igUvB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cufDv":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "monotoneX", ()=>monotoneX
@@ -22210,7 +28549,7 @@ function monotoneY(context) {
     return new MonotoneY(context);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kU29F":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8fPei":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function Natural(context) {
@@ -22266,7 +28605,7 @@ exports.default = function(context) {
     return new Natural(context);
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2h2VG":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"45Tu7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "stepBefore", ()=>stepBefore
@@ -22301,7 +28640,7 @@ Step.prototype = {
                 this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y);
                 break;
             case 1:
-                this._point = 2; // proceed
+                this._point = 2; // falls through
             default:
                 if (this._t <= 0) {
                     this._context.lineTo(this._x, y);
@@ -22326,7 +28665,7 @@ function stepAfter(context) {
     return new Step(context, 1);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8FoPn":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2qaiX":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _arrayJs = require("./array.js");
@@ -22372,7 +28711,7 @@ exports.default = function() {
     return stack;
 };
 
-},{"./array.js":"h9Y8M","./constant.js":"eKjAq","./offset/none.js":"kmdsk","./order/none.js":"7PXGK","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kmdsk":[function(require,module,exports) {
+},{"./array.js":"1KL1p","./constant.js":"7H4YB","./offset/none.js":"9uEYv","./order/none.js":"7lwYs","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9uEYv":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = function(series, order) {
@@ -22383,7 +28722,7 @@ exports.default = function(series, order) {
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7PXGK":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7lwYs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = function(series) {
@@ -22392,7 +28731,7 @@ exports.default = function(series) {
     return o;
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kheNr":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7mjNn":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _noneJs = require("./none.js");
@@ -22406,7 +28745,7 @@ exports.default = function(series, order) {
     _noneJsDefault.default(series, order);
 };
 
-},{"./none.js":"kmdsk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ahsJE":[function(require,module,exports) {
+},{"./none.js":"9uEYv","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hLsfG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = function(series, order) {
@@ -22418,7 +28757,7 @@ exports.default = function(series, order) {
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"isPKf":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8Jo5U":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _noneJs = require("./none.js");
@@ -22432,7 +28771,7 @@ exports.default = function(series, order) {
     _noneJsDefault.default(series, order);
 };
 
-},{"./none.js":"kmdsk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eeem3":[function(require,module,exports) {
+},{"./none.js":"9uEYv","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4qGVW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _noneJs = require("./none.js");
@@ -22455,7 +28794,7 @@ exports.default = function(series, order) {
     _noneJsDefault.default(series, order);
 };
 
-},{"./none.js":"kmdsk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cq85r":[function(require,module,exports) {
+},{"./none.js":"9uEYv","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3QWEA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _noneJs = require("./none.js");
@@ -22472,7 +28811,7 @@ function peak(series) {
     return j;
 }
 
-},{"./none.js":"7PXGK","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"02faF":[function(require,module,exports) {
+},{"./none.js":"7lwYs","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"izSi0":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "sum", ()=>sum
@@ -22491,7 +28830,7 @@ function sum(series) {
     return s;
 }
 
-},{"./none.js":"7PXGK","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9HajE":[function(require,module,exports) {
+},{"./none.js":"7lwYs","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ibLgv":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _ascendingJs = require("./ascending.js");
@@ -22500,7 +28839,7 @@ exports.default = function(series) {
     return _ascendingJsDefault.default(series).reverse();
 };
 
-},{"./ascending.js":"02faF","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"kFg22":[function(require,module,exports) {
+},{"./ascending.js":"izSi0","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5Wecb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _appearanceJs = require("./appearance.js");
@@ -22521,7 +28860,7 @@ exports.default = function(series) {
     return bottoms.reverse().concat(tops);
 };
 
-},{"./appearance.js":"cq85r","./ascending.js":"02faF","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6qcQw":[function(require,module,exports) {
+},{"./appearance.js":"3QWEA","./ascending.js":"izSi0","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cB4Fe":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _noneJs = require("./none.js");
@@ -22530,7 +28869,1056 @@ exports.default = function(series) {
     return _noneJsDefault.default(series).reverse();
 };
 
-},{"./none.js":"7PXGK","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7E00u":[function(require,module,exports) {
+},{"./none.js":"7lwYs","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6ZY5Q":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "now", ()=>_timerJs.now
+);
+parcelHelpers.export(exports, "timer", ()=>_timerJs.timer
+);
+parcelHelpers.export(exports, "timerFlush", ()=>_timerJs.timerFlush
+);
+parcelHelpers.export(exports, "timeout", ()=>_timeoutJsDefault.default
+);
+parcelHelpers.export(exports, "interval", ()=>_intervalJsDefault.default
+);
+var _timerJs = require("./timer.js");
+var _timeoutJs = require("./timeout.js");
+var _timeoutJsDefault = parcelHelpers.interopDefault(_timeoutJs);
+var _intervalJs = require("./interval.js");
+var _intervalJsDefault = parcelHelpers.interopDefault(_intervalJs);
+
+},{"./timer.js":"8C0CC","./timeout.js":"18lu3","./interval.js":"iLAjw","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8C0CC":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "now", ()=>now1
+);
+parcelHelpers.export(exports, "Timer", ()=>Timer
+);
+parcelHelpers.export(exports, "timer", ()=>timer
+);
+parcelHelpers.export(exports, "timerFlush", ()=>timerFlush
+);
+var frame = 0, timeout = 0, interval = 0, pokeDelay = 1000, taskHead, taskTail, clockLast = 0, clockNow = 0, clockSkew = 0, clock = typeof performance === "object" && performance.now ? performance : Date, setFrame = typeof window === "object" && window.requestAnimationFrame ? window.requestAnimationFrame.bind(window) : function(f) {
+    setTimeout(f, 17);
+};
+function now1() {
+    return clockNow || (setFrame(clearNow), clockNow = clock.now() + clockSkew);
+}
+function clearNow() {
+    clockNow = 0;
+}
+function Timer() {
+    this._call = this._time = this._next = null;
+}
+Timer.prototype = timer.prototype = {
+    constructor: Timer,
+    restart: function(callback, delay, time) {
+        if (typeof callback !== "function") throw new TypeError("callback is not a function");
+        time = (time == null ? now1() : +time) + (delay == null ? 0 : +delay);
+        if (!this._next && taskTail !== this) {
+            if (taskTail) taskTail._next = this;
+            else taskHead = this;
+            taskTail = this;
+        }
+        this._call = callback;
+        this._time = time;
+        sleep();
+    },
+    stop: function() {
+        if (this._call) {
+            this._call = null;
+            this._time = Infinity;
+            sleep();
+        }
+    }
+};
+function timer(callback, delay, time) {
+    var t = new Timer;
+    t.restart(callback, delay, time);
+    return t;
+}
+function timerFlush() {
+    now1(); // Get the current time, if not already set.
+    ++frame; // Pretend we’ve set an alarm, if we haven’t already.
+    var t = taskHead, e;
+    while(t){
+        if ((e = clockNow - t._time) >= 0) t._call.call(undefined, e);
+        t = t._next;
+    }
+    --frame;
+}
+function wake() {
+    clockNow = (clockLast = clock.now()) + clockSkew;
+    frame = timeout = 0;
+    try {
+        timerFlush();
+    } finally{
+        frame = 0;
+        nap();
+        clockNow = 0;
+    }
+}
+function poke() {
+    var now = clock.now(), delay = now - clockLast;
+    if (delay > pokeDelay) clockSkew -= delay, clockLast = now;
+}
+function nap() {
+    var t0, t1 = taskHead, t2, time = Infinity;
+    while(t1)if (t1._call) {
+        if (time > t1._time) time = t1._time;
+        t0 = t1, t1 = t1._next;
+    } else {
+        t2 = t1._next, t1._next = null;
+        t1 = t0 ? t0._next = t2 : taskHead = t2;
+    }
+    taskTail = t0;
+    sleep(time);
+}
+function sleep(time) {
+    if (frame) return; // Soonest alarm already set, or will be.
+    if (timeout) timeout = clearTimeout(timeout);
+    var delay = time - clockNow; // Strictly less than if we recomputed clockNow.
+    if (delay > 24) {
+        if (time < Infinity) timeout = setTimeout(wake, time - clock.now() - clockSkew);
+        if (interval) interval = clearInterval(interval);
+    } else {
+        if (!interval) clockLast = clock.now(), interval = setInterval(poke, pokeDelay);
+        frame = 1, setFrame(wake);
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"18lu3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _timerJs = require("./timer.js");
+exports.default = function(callback, delay, time) {
+    var t = new _timerJs.Timer;
+    delay = delay == null ? 0 : +delay;
+    t.restart((elapsed)=>{
+        t.stop();
+        callback(elapsed + delay);
+    }, delay, time);
+    return t;
+};
+
+},{"./timer.js":"8C0CC","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iLAjw":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _timerJs = require("./timer.js");
+exports.default = function(callback1, delay1, time1) {
+    var t = new _timerJs.Timer, total = delay1;
+    if (delay1 == null) return t.restart(callback1, delay1, time1), t;
+    t._restart = t.restart;
+    t.restart = function(callback, delay, time) {
+        delay = +delay, time = time == null ? _timerJs.now() : +time;
+        t._restart(function tick(elapsed) {
+            elapsed += total;
+            t._restart(tick, total += delay, time);
+            callback(elapsed);
+        }, delay, time);
+    };
+    t.restart(callback1, delay1, time1);
+    return t;
+};
+
+},{"./timer.js":"8C0CC","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8yZNl":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "transition", ()=>_indexJsDefault.default
+);
+parcelHelpers.export(exports, "active", ()=>_activeJsDefault.default
+);
+parcelHelpers.export(exports, "interrupt", ()=>_interruptJsDefault.default
+);
+var _indexJs = require("./selection/index.js");
+var _indexJs1 = require("./transition/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs1);
+var _activeJs = require("./active.js");
+var _activeJsDefault = parcelHelpers.interopDefault(_activeJs);
+var _interruptJs = require("./interrupt.js");
+var _interruptJsDefault = parcelHelpers.interopDefault(_interruptJs);
+
+},{"./selection/index.js":"385ow","./transition/index.js":"2pj6I","./active.js":"lVACp","./interrupt.js":"6Tarb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"385ow":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _d3Selection = require("d3-selection");
+var _interruptJs = require("./interrupt.js");
+var _interruptJsDefault = parcelHelpers.interopDefault(_interruptJs);
+var _transitionJs = require("./transition.js");
+var _transitionJsDefault = parcelHelpers.interopDefault(_transitionJs);
+_d3Selection.selection.prototype.interrupt = _interruptJsDefault.default;
+_d3Selection.selection.prototype.transition = _transitionJsDefault.default;
+
+},{"d3-selection":"gUhVK","./interrupt.js":"2YcD2","./transition.js":"lIzIm","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2YcD2":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _interruptJs = require("../interrupt.js");
+var _interruptJsDefault = parcelHelpers.interopDefault(_interruptJs);
+exports.default = function(name) {
+    return this.each(function() {
+        _interruptJsDefault.default(this, name);
+    });
+};
+
+},{"../interrupt.js":"6Tarb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6Tarb":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _scheduleJs = require("./transition/schedule.js");
+exports.default = function(node, name) {
+    var schedules = node.__transition, schedule, active, empty = true, i;
+    if (!schedules) return;
+    name = name == null ? null : name + "";
+    for(i in schedules){
+        if ((schedule = schedules[i]).name !== name) {
+            empty = false;
+            continue;
+        }
+        active = schedule.state > _scheduleJs.STARTING && schedule.state < _scheduleJs.ENDING;
+        schedule.state = _scheduleJs.ENDED;
+        schedule.timer.stop();
+        schedule.on.call(active ? "interrupt" : "cancel", node, node.__data__, schedule.index, schedule.group);
+        delete schedules[i];
+    }
+    if (empty) delete node.__transition;
+};
+
+},{"./transition/schedule.js":"011xX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"011xX":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CREATED", ()=>CREATED
+);
+parcelHelpers.export(exports, "SCHEDULED", ()=>SCHEDULED
+);
+parcelHelpers.export(exports, "STARTING", ()=>STARTING
+);
+parcelHelpers.export(exports, "STARTED", ()=>STARTED
+);
+parcelHelpers.export(exports, "RUNNING", ()=>RUNNING
+);
+parcelHelpers.export(exports, "ENDING", ()=>ENDING
+);
+parcelHelpers.export(exports, "ENDED", ()=>ENDED
+);
+parcelHelpers.export(exports, "init", ()=>init
+);
+parcelHelpers.export(exports, "set", ()=>set
+);
+parcelHelpers.export(exports, "get", ()=>get
+);
+var _d3Dispatch = require("d3-dispatch");
+var _d3Timer = require("d3-timer");
+var emptyOn = _d3Dispatch.dispatch("start", "end", "cancel", "interrupt");
+var emptyTween = [];
+var CREATED = 0;
+var SCHEDULED = 1;
+var STARTING = 2;
+var STARTED = 3;
+var RUNNING = 4;
+var ENDING = 5;
+var ENDED = 6;
+exports.default = function(node, name, id, index, group, timing) {
+    var schedules = node.__transition;
+    if (!schedules) node.__transition = {
+    };
+    else if (id in schedules) return;
+    create(node, id, {
+        name: name,
+        index: index,
+        group: group,
+        on: emptyOn,
+        tween: emptyTween,
+        time: timing.time,
+        delay: timing.delay,
+        duration: timing.duration,
+        ease: timing.ease,
+        timer: null,
+        state: CREATED
+    });
+};
+function init(node, id) {
+    var schedule = get(node, id);
+    if (schedule.state > CREATED) throw new Error("too late; already scheduled");
+    return schedule;
+}
+function set(node, id) {
+    var schedule = get(node, id);
+    if (schedule.state > STARTED) throw new Error("too late; already running");
+    return schedule;
+}
+function get(node, id) {
+    var schedule = node.__transition;
+    if (!schedule || !(schedule = schedule[id])) throw new Error("transition not found");
+    return schedule;
+}
+function create(node, id, self) {
+    var schedules = node.__transition, tween;
+    // Initialize the self timer when the transition is created.
+    // Note the actual delay is not known until the first callback!
+    schedules[id] = self;
+    self.timer = _d3Timer.timer(schedule, 0, self.time);
+    function schedule(elapsed) {
+        self.state = SCHEDULED;
+        self.timer.restart(start, self.delay, self.time);
+        // If the elapsed delay is less than our first sleep, start immediately.
+        if (self.delay <= elapsed) start(elapsed - self.delay);
+    }
+    function start(elapsed) {
+        var i, j, n, o;
+        // If the state is not SCHEDULED, then we previously errored on start.
+        if (self.state !== SCHEDULED) return stop();
+        for(i in schedules){
+            o = schedules[i];
+            if (o.name !== self.name) continue;
+            // While this element already has a starting transition during this frame,
+            // defer starting an interrupting transition until that transition has a
+            // chance to tick (and possibly end); see d3/d3-transition#54!
+            if (o.state === STARTED) return _d3Timer.timeout(start);
+            // Interrupt the active transition, if any.
+            if (o.state === RUNNING) {
+                o.state = ENDED;
+                o.timer.stop();
+                o.on.call("interrupt", node, node.__data__, o.index, o.group);
+                delete schedules[i];
+            } else if (+i < id) {
+                o.state = ENDED;
+                o.timer.stop();
+                o.on.call("cancel", node, node.__data__, o.index, o.group);
+                delete schedules[i];
+            }
+        }
+        // Defer the first tick to end of the current frame; see d3/d3#1576.
+        // Note the transition may be canceled after start and before the first tick!
+        // Note this must be scheduled before the start event; see d3/d3-transition#16!
+        // Assuming this is successful, subsequent callbacks go straight to tick.
+        _d3Timer.timeout(function() {
+            if (self.state === STARTED) {
+                self.state = RUNNING;
+                self.timer.restart(tick, self.delay, self.time);
+                tick(elapsed);
+            }
+        });
+        // Dispatch the start event.
+        // Note this must be done before the tween are initialized.
+        self.state = STARTING;
+        self.on.call("start", node, node.__data__, self.index, self.group);
+        if (self.state !== STARTING) return; // interrupted
+        self.state = STARTED;
+        // Initialize the tween, deleting null tween.
+        tween = new Array(n = self.tween.length);
+        for(i = 0, j = -1; i < n; ++i)if (o = self.tween[i].value.call(node, node.__data__, self.index, self.group)) tween[++j] = o;
+        tween.length = j + 1;
+    }
+    function tick(elapsed) {
+        var t = elapsed < self.duration ? self.ease.call(null, elapsed / self.duration) : (self.timer.restart(stop), self.state = ENDING, 1), i = -1, n = tween.length;
+        while(++i < n)tween[i].call(node, t);
+        // Dispatch the end event.
+        if (self.state === ENDING) {
+            self.on.call("end", node, node.__data__, self.index, self.group);
+            stop();
+        }
+    }
+    function stop() {
+        self.state = ENDED;
+        self.timer.stop();
+        delete schedules[id];
+        for(var i in schedules)return; // eslint-disable-line no-unused-vars
+        delete node.__transition;
+    }
+}
+
+},{"d3-dispatch":"DdGrt","d3-timer":"6ZY5Q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lIzIm":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../transition/index.js");
+var _scheduleJs = require("../transition/schedule.js");
+var _scheduleJsDefault = parcelHelpers.interopDefault(_scheduleJs);
+var _d3Ease = require("d3-ease");
+var _d3Timer = require("d3-timer");
+var defaultTiming = {
+    time: null,
+    delay: 0,
+    duration: 250,
+    ease: _d3Ease.easeCubicInOut
+};
+function inherit(node, id) {
+    var timing;
+    while(!(timing = node.__transition) || !(timing = timing[id])){
+        if (!(node = node.parentNode)) throw new Error(`transition ${id} not found`);
+    }
+    return timing;
+}
+exports.default = function(name) {
+    var id, timing;
+    if (name instanceof _indexJs.Transition) id = name._id, name = name._name;
+    else id = _indexJs.newId(), (timing = defaultTiming).time = _d3Timer.now(), name = name == null ? null : name + "";
+    for(var groups = this._groups, m = groups.length, j = 0; j < m; ++j){
+        for(var group = groups[j], n = group.length, node, i = 0; i < n; ++i)if (node = group[i]) _scheduleJsDefault.default(node, name, id, i, group, timing || inherit(node, id));
+    }
+    return new _indexJs.Transition(groups, this._parents, name, id);
+};
+
+},{"../transition/index.js":"2pj6I","../transition/schedule.js":"011xX","d3-ease":"206iK","d3-timer":"6ZY5Q","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2pj6I":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Transition", ()=>Transition
+);
+parcelHelpers.export(exports, "newId", ()=>newId
+);
+var _d3Selection = require("d3-selection");
+var _attrJs = require("./attr.js");
+var _attrJsDefault = parcelHelpers.interopDefault(_attrJs);
+var _attrTweenJs = require("./attrTween.js");
+var _attrTweenJsDefault = parcelHelpers.interopDefault(_attrTweenJs);
+var _delayJs = require("./delay.js");
+var _delayJsDefault = parcelHelpers.interopDefault(_delayJs);
+var _durationJs = require("./duration.js");
+var _durationJsDefault = parcelHelpers.interopDefault(_durationJs);
+var _easeJs = require("./ease.js");
+var _easeJsDefault = parcelHelpers.interopDefault(_easeJs);
+var _easeVaryingJs = require("./easeVarying.js");
+var _easeVaryingJsDefault = parcelHelpers.interopDefault(_easeVaryingJs);
+var _filterJs = require("./filter.js");
+var _filterJsDefault = parcelHelpers.interopDefault(_filterJs);
+var _mergeJs = require("./merge.js");
+var _mergeJsDefault = parcelHelpers.interopDefault(_mergeJs);
+var _onJs = require("./on.js");
+var _onJsDefault = parcelHelpers.interopDefault(_onJs);
+var _removeJs = require("./remove.js");
+var _removeJsDefault = parcelHelpers.interopDefault(_removeJs);
+var _selectJs = require("./select.js");
+var _selectJsDefault = parcelHelpers.interopDefault(_selectJs);
+var _selectAllJs = require("./selectAll.js");
+var _selectAllJsDefault = parcelHelpers.interopDefault(_selectAllJs);
+var _selectionJs = require("./selection.js");
+var _selectionJsDefault = parcelHelpers.interopDefault(_selectionJs);
+var _styleJs = require("./style.js");
+var _styleJsDefault = parcelHelpers.interopDefault(_styleJs);
+var _styleTweenJs = require("./styleTween.js");
+var _styleTweenJsDefault = parcelHelpers.interopDefault(_styleTweenJs);
+var _textJs = require("./text.js");
+var _textJsDefault = parcelHelpers.interopDefault(_textJs);
+var _textTweenJs = require("./textTween.js");
+var _textTweenJsDefault = parcelHelpers.interopDefault(_textTweenJs);
+var _transitionJs = require("./transition.js");
+var _transitionJsDefault = parcelHelpers.interopDefault(_transitionJs);
+var _tweenJs = require("./tween.js");
+var _tweenJsDefault = parcelHelpers.interopDefault(_tweenJs);
+var _endJs = require("./end.js");
+var _endJsDefault = parcelHelpers.interopDefault(_endJs);
+var id1 = 0;
+function Transition(groups, parents, name, id) {
+    this._groups = groups;
+    this._parents = parents;
+    this._name = name;
+    this._id = id;
+}
+function transition(name) {
+    return _d3Selection.selection().transition(name);
+}
+exports.default = transition;
+function newId() {
+    return ++id1;
+}
+var selection_prototype = _d3Selection.selection.prototype;
+Transition.prototype = transition.prototype = {
+    constructor: Transition,
+    select: _selectJsDefault.default,
+    selectAll: _selectAllJsDefault.default,
+    selectChild: selection_prototype.selectChild,
+    selectChildren: selection_prototype.selectChildren,
+    filter: _filterJsDefault.default,
+    merge: _mergeJsDefault.default,
+    selection: _selectionJsDefault.default,
+    transition: _transitionJsDefault.default,
+    call: selection_prototype.call,
+    nodes: selection_prototype.nodes,
+    node: selection_prototype.node,
+    size: selection_prototype.size,
+    empty: selection_prototype.empty,
+    each: selection_prototype.each,
+    on: _onJsDefault.default,
+    attr: _attrJsDefault.default,
+    attrTween: _attrTweenJsDefault.default,
+    style: _styleJsDefault.default,
+    styleTween: _styleTweenJsDefault.default,
+    text: _textJsDefault.default,
+    textTween: _textTweenJsDefault.default,
+    remove: _removeJsDefault.default,
+    tween: _tweenJsDefault.default,
+    delay: _delayJsDefault.default,
+    duration: _durationJsDefault.default,
+    ease: _easeJsDefault.default,
+    easeVarying: _easeVaryingJsDefault.default,
+    end: _endJsDefault.default,
+    [Symbol.iterator]: selection_prototype[Symbol.iterator]
+};
+
+},{"d3-selection":"gUhVK","./attr.js":"5vi3B","./attrTween.js":"9SkCc","./delay.js":"gdNTM","./duration.js":"4MT4t","./ease.js":"fY9gI","./easeVarying.js":"8cWZc","./filter.js":"57SHl","./merge.js":"2QqsU","./on.js":"dBCVx","./remove.js":"6XxmO","./select.js":"cnpuV","./selectAll.js":"1BZm4","./selection.js":"dn03Y","./style.js":"dKWDw","./styleTween.js":"9TNF4","./text.js":"b8gxe","./textTween.js":"87Waq","./transition.js":"isb3l","./tween.js":"6O32N","./end.js":"9bbA6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5vi3B":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _d3Interpolate = require("d3-interpolate");
+var _d3Selection = require("d3-selection");
+var _tweenJs = require("./tween.js");
+var _interpolateJs = require("./interpolate.js");
+var _interpolateJsDefault = parcelHelpers.interopDefault(_interpolateJs);
+function attrRemove(name) {
+    return function() {
+        this.removeAttribute(name);
+    };
+}
+function attrRemoveNS(fullname) {
+    return function() {
+        this.removeAttributeNS(fullname.space, fullname.local);
+    };
+}
+function attrConstant(name, interpolate, value1) {
+    var string00, string1 = value1 + "", interpolate0;
+    return function() {
+        var string0 = this.getAttribute(name);
+        return string0 === string1 ? null : string0 === string00 ? interpolate0 : interpolate0 = interpolate(string00 = string0, value1);
+    };
+}
+function attrConstantNS(fullname, interpolate, value1) {
+    var string00, string1 = value1 + "", interpolate0;
+    return function() {
+        var string0 = this.getAttributeNS(fullname.space, fullname.local);
+        return string0 === string1 ? null : string0 === string00 ? interpolate0 : interpolate0 = interpolate(string00 = string0, value1);
+    };
+}
+function attrFunction(name, interpolate, value) {
+    var string00, string10, interpolate0;
+    return function() {
+        var string0, value1 = value(this), string1;
+        if (value1 == null) return void this.removeAttribute(name);
+        string0 = this.getAttribute(name);
+        string1 = value1 + "";
+        return string0 === string1 ? null : string0 === string00 && string1 === string10 ? interpolate0 : (string10 = string1, interpolate0 = interpolate(string00 = string0, value1));
+    };
+}
+function attrFunctionNS(fullname, interpolate, value) {
+    var string00, string10, interpolate0;
+    return function() {
+        var string0, value1 = value(this), string1;
+        if (value1 == null) return void this.removeAttributeNS(fullname.space, fullname.local);
+        string0 = this.getAttributeNS(fullname.space, fullname.local);
+        string1 = value1 + "";
+        return string0 === string1 ? null : string0 === string00 && string1 === string10 ? interpolate0 : (string10 = string1, interpolate0 = interpolate(string00 = string0, value1));
+    };
+}
+exports.default = function(name, value) {
+    var fullname = _d3Selection.namespace(name), i = fullname === "transform" ? _d3Interpolate.interpolateTransformSvg : _interpolateJsDefault.default;
+    return this.attrTween(name, typeof value === "function" ? (fullname.local ? attrFunctionNS : attrFunction)(fullname, i, _tweenJs.tweenValue(this, "attr." + name, value)) : value == null ? (fullname.local ? attrRemoveNS : attrRemove)(fullname) : (fullname.local ? attrConstantNS : attrConstant)(fullname, i, value));
+};
+
+},{"d3-interpolate":"gzaRD","d3-selection":"gUhVK","./tween.js":"6O32N","./interpolate.js":"71see","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6O32N":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "tweenValue", ()=>tweenValue
+);
+var _scheduleJs = require("./schedule.js");
+function tweenRemove(id, name) {
+    var tween0, tween1;
+    return function() {
+        var schedule = _scheduleJs.set(this, id), tween = schedule.tween;
+        // If this node shared tween with the previous node,
+        // just assign the updated shared tween and we’re done!
+        // Otherwise, copy-on-write.
+        if (tween !== tween0) {
+            tween1 = tween0 = tween;
+            for(var i = 0, n = tween1.length; i < n; ++i)if (tween1[i].name === name) {
+                tween1 = tween1.slice();
+                tween1.splice(i, 1);
+                break;
+            }
+        }
+        schedule.tween = tween1;
+    };
+}
+function tweenFunction(id, name, value) {
+    var tween0, tween1;
+    if (typeof value !== "function") throw new Error;
+    return function() {
+        var schedule = _scheduleJs.set(this, id), tween = schedule.tween;
+        // If this node shared tween with the previous node,
+        // just assign the updated shared tween and we’re done!
+        // Otherwise, copy-on-write.
+        if (tween !== tween0) {
+            tween1 = (tween0 = tween).slice();
+            for(var t = {
+                name: name,
+                value: value
+            }, i = 0, n = tween1.length; i < n; ++i)if (tween1[i].name === name) {
+                tween1[i] = t;
+                break;
+            }
+            if (i === n) tween1.push(t);
+        }
+        schedule.tween = tween1;
+    };
+}
+exports.default = function(name, value) {
+    var id = this._id;
+    name += "";
+    if (arguments.length < 2) {
+        var tween = _scheduleJs.get(this.node(), id).tween;
+        for(var i = 0, n = tween.length, t; i < n; ++i){
+            if ((t = tween[i]).name === name) return t.value;
+        }
+        return null;
+    }
+    return this.each((value == null ? tweenRemove : tweenFunction)(id, name, value));
+};
+function tweenValue(transition, name, value) {
+    var id = transition._id;
+    transition.each(function() {
+        var schedule = _scheduleJs.set(this, id);
+        (schedule.value || (schedule.value = {
+        }))[name] = value.apply(this, arguments);
+    });
+    return function(node) {
+        return _scheduleJs.get(node, id).value[name];
+    };
+}
+
+},{"./schedule.js":"011xX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"71see":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _d3Color = require("d3-color");
+var _d3Interpolate = require("d3-interpolate");
+exports.default = function(a, b) {
+    var c;
+    return (typeof b === "number" ? _d3Interpolate.interpolateNumber : b instanceof _d3Color.color ? _d3Interpolate.interpolateRgb : (c = _d3Color.color(b)) ? (b = c, _d3Interpolate.interpolateRgb) : _d3Interpolate.interpolateString)(a, b);
+};
+
+},{"d3-color":"jBVGV","d3-interpolate":"gzaRD","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9SkCc":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _d3Selection = require("d3-selection");
+function attrInterpolate(name, i) {
+    return function(t) {
+        this.setAttribute(name, i.call(this, t));
+    };
+}
+function attrInterpolateNS(fullname, i) {
+    return function(t) {
+        this.setAttributeNS(fullname.space, fullname.local, i.call(this, t));
+    };
+}
+function attrTweenNS(fullname, value) {
+    var t0, i0;
+    function tween() {
+        var i = value.apply(this, arguments);
+        if (i !== i0) t0 = (i0 = i) && attrInterpolateNS(fullname, i);
+        return t0;
+    }
+    tween._value = value;
+    return tween;
+}
+function attrTween(name, value) {
+    var t0, i0;
+    function tween() {
+        var i = value.apply(this, arguments);
+        if (i !== i0) t0 = (i0 = i) && attrInterpolate(name, i);
+        return t0;
+    }
+    tween._value = value;
+    return tween;
+}
+exports.default = function(name, value) {
+    var key = "attr." + name;
+    if (arguments.length < 2) return (key = this.tween(key)) && key._value;
+    if (value == null) return this.tween(key, null);
+    if (typeof value !== "function") throw new Error;
+    var fullname = _d3Selection.namespace(name);
+    return this.tween(key, (fullname.local ? attrTweenNS : attrTween)(fullname, value));
+};
+
+},{"d3-selection":"gUhVK","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gdNTM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _scheduleJs = require("./schedule.js");
+function delayFunction(id, value) {
+    return function() {
+        _scheduleJs.init(this, id).delay = +value.apply(this, arguments);
+    };
+}
+function delayConstant(id, value) {
+    return value = +value, function() {
+        _scheduleJs.init(this, id).delay = value;
+    };
+}
+exports.default = function(value) {
+    var id = this._id;
+    return arguments.length ? this.each((typeof value === "function" ? delayFunction : delayConstant)(id, value)) : _scheduleJs.get(this.node(), id).delay;
+};
+
+},{"./schedule.js":"011xX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4MT4t":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _scheduleJs = require("./schedule.js");
+function durationFunction(id, value) {
+    return function() {
+        _scheduleJs.set(this, id).duration = +value.apply(this, arguments);
+    };
+}
+function durationConstant(id, value) {
+    return value = +value, function() {
+        _scheduleJs.set(this, id).duration = value;
+    };
+}
+exports.default = function(value) {
+    var id = this._id;
+    return arguments.length ? this.each((typeof value === "function" ? durationFunction : durationConstant)(id, value)) : _scheduleJs.get(this.node(), id).duration;
+};
+
+},{"./schedule.js":"011xX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fY9gI":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _scheduleJs = require("./schedule.js");
+function easeConstant(id, value) {
+    if (typeof value !== "function") throw new Error;
+    return function() {
+        _scheduleJs.set(this, id).ease = value;
+    };
+}
+exports.default = function(value) {
+    var id = this._id;
+    return arguments.length ? this.each(easeConstant(id, value)) : _scheduleJs.get(this.node(), id).ease;
+};
+
+},{"./schedule.js":"011xX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8cWZc":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _scheduleJs = require("./schedule.js");
+function easeVarying(id, value) {
+    return function() {
+        var v = value.apply(this, arguments);
+        if (typeof v !== "function") throw new Error;
+        _scheduleJs.set(this, id).ease = v;
+    };
+}
+exports.default = function(value) {
+    if (typeof value !== "function") throw new Error;
+    return this.each(easeVarying(this._id, value));
+};
+
+},{"./schedule.js":"011xX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"57SHl":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _d3Selection = require("d3-selection");
+var _indexJs = require("./index.js");
+exports.default = function(match) {
+    if (typeof match !== "function") match = _d3Selection.matcher(match);
+    for(var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j){
+        for(var group = groups[j], n = group.length, subgroup = subgroups[j] = [], node, i = 0; i < n; ++i)if ((node = group[i]) && match.call(node, node.__data__, i, group)) subgroup.push(node);
+    }
+    return new _indexJs.Transition(subgroups, this._parents, this._name, this._id);
+};
+
+},{"d3-selection":"gUhVK","./index.js":"2pj6I","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2QqsU":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./index.js");
+exports.default = function(transition) {
+    if (transition._id !== this._id) throw new Error;
+    for(var groups0 = this._groups, groups1 = transition._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j){
+        for(var group0 = groups0[j], group1 = groups1[j], n = group0.length, merge = merges[j] = new Array(n), node, i = 0; i < n; ++i)if (node = group0[i] || group1[i]) merge[i] = node;
+    }
+    for(; j < m0; ++j)merges[j] = groups0[j];
+    return new _indexJs.Transition(merges, this._parents, this._name, this._id);
+};
+
+},{"./index.js":"2pj6I","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dBCVx":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _scheduleJs = require("./schedule.js");
+function start(name) {
+    return (name + "").trim().split(/^|\s+/).every(function(t) {
+        var i = t.indexOf(".");
+        if (i >= 0) t = t.slice(0, i);
+        return !t || t === "start";
+    });
+}
+function onFunction(id, name, listener) {
+    var on0, on1, sit = start(name) ? _scheduleJs.init : _scheduleJs.set;
+    return function() {
+        var schedule = sit(this, id), on = schedule.on;
+        // If this node shared a dispatch with the previous node,
+        // just assign the updated shared dispatch and we’re done!
+        // Otherwise, copy-on-write.
+        if (on !== on0) (on1 = (on0 = on).copy()).on(name, listener);
+        schedule.on = on1;
+    };
+}
+exports.default = function(name, listener) {
+    var id = this._id;
+    return arguments.length < 2 ? _scheduleJs.get(this.node(), id).on.on(name) : this.each(onFunction(id, name, listener));
+};
+
+},{"./schedule.js":"011xX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6XxmO":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function removeFunction(id) {
+    return function() {
+        var parent = this.parentNode;
+        for(var i in this.__transition)if (+i !== id) return;
+        if (parent) parent.removeChild(this);
+    };
+}
+exports.default = function() {
+    return this.on("end.remove", removeFunction(this._id));
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cnpuV":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _d3Selection = require("d3-selection");
+var _indexJs = require("./index.js");
+var _scheduleJs = require("./schedule.js");
+var _scheduleJsDefault = parcelHelpers.interopDefault(_scheduleJs);
+exports.default = function(select) {
+    var name = this._name, id = this._id;
+    if (typeof select !== "function") select = _d3Selection.selector(select);
+    for(var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j){
+        for(var group = groups[j], n = group.length, subgroup = subgroups[j] = new Array(n), node, subnode, i = 0; i < n; ++i)if ((node = group[i]) && (subnode = select.call(node, node.__data__, i, group))) {
+            if ("__data__" in node) subnode.__data__ = node.__data__;
+            subgroup[i] = subnode;
+            _scheduleJsDefault.default(subgroup[i], name, id, i, subgroup, _scheduleJs.get(node, id));
+        }
+    }
+    return new _indexJs.Transition(subgroups, this._parents, name, id);
+};
+
+},{"d3-selection":"gUhVK","./index.js":"2pj6I","./schedule.js":"011xX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1BZm4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _d3Selection = require("d3-selection");
+var _indexJs = require("./index.js");
+var _scheduleJs = require("./schedule.js");
+var _scheduleJsDefault = parcelHelpers.interopDefault(_scheduleJs);
+exports.default = function(select) {
+    var name = this._name, id = this._id;
+    if (typeof select !== "function") select = _d3Selection.selectorAll(select);
+    for(var groups = this._groups, m = groups.length, subgroups = [], parents = [], j = 0; j < m; ++j){
+        for(var group = groups[j], n = group.length, node, i = 0; i < n; ++i)if (node = group[i]) {
+            for(var children = select.call(node, node.__data__, i, group), child, inherit = _scheduleJs.get(node, id), k = 0, l = children.length; k < l; ++k)if (child = children[k]) _scheduleJsDefault.default(child, name, id, k, children, inherit);
+            subgroups.push(children);
+            parents.push(node);
+        }
+    }
+    return new _indexJs.Transition(subgroups, parents, name, id);
+};
+
+},{"d3-selection":"gUhVK","./index.js":"2pj6I","./schedule.js":"011xX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dn03Y":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _d3Selection = require("d3-selection");
+var Selection = _d3Selection.selection.prototype.constructor;
+exports.default = function() {
+    return new Selection(this._groups, this._parents);
+};
+
+},{"d3-selection":"gUhVK","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dKWDw":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _d3Interpolate = require("d3-interpolate");
+var _d3Selection = require("d3-selection");
+var _scheduleJs = require("./schedule.js");
+var _tweenJs = require("./tween.js");
+var _interpolateJs = require("./interpolate.js");
+var _interpolateJsDefault = parcelHelpers.interopDefault(_interpolateJs);
+function styleNull(name, interpolate) {
+    var string00, string10, interpolate0;
+    return function() {
+        var string0 = _d3Selection.style(this, name), string1 = (this.style.removeProperty(name), _d3Selection.style(this, name));
+        return string0 === string1 ? null : string0 === string00 && string1 === string10 ? interpolate0 : interpolate0 = interpolate(string00 = string0, string10 = string1);
+    };
+}
+function styleRemove(name) {
+    return function() {
+        this.style.removeProperty(name);
+    };
+}
+function styleConstant(name, interpolate, value1) {
+    var string00, string1 = value1 + "", interpolate0;
+    return function() {
+        var string0 = _d3Selection.style(this, name);
+        return string0 === string1 ? null : string0 === string00 ? interpolate0 : interpolate0 = interpolate(string00 = string0, value1);
+    };
+}
+function styleFunction(name, interpolate, value) {
+    var string00, string10, interpolate0;
+    return function() {
+        var string0 = _d3Selection.style(this, name), value1 = value(this), string1 = value1 + "";
+        if (value1 == null) string1 = value1 = (this.style.removeProperty(name), _d3Selection.style(this, name));
+        return string0 === string1 ? null : string0 === string00 && string1 === string10 ? interpolate0 : (string10 = string1, interpolate0 = interpolate(string00 = string0, value1));
+    };
+}
+function styleMaybeRemove(id, name) {
+    var on0, on1, listener0, key = "style." + name, event = "end." + key, remove;
+    return function() {
+        var schedule = _scheduleJs.set(this, id), on = schedule.on, listener = schedule.value[key] == null ? remove || (remove = styleRemove(name)) : undefined;
+        // If this node shared a dispatch with the previous node,
+        // just assign the updated shared dispatch and we’re done!
+        // Otherwise, copy-on-write.
+        if (on !== on0 || listener0 !== listener) (on1 = (on0 = on).copy()).on(event, listener0 = listener);
+        schedule.on = on1;
+    };
+}
+exports.default = function(name, value, priority) {
+    var i = (name += "") === "transform" ? _d3Interpolate.interpolateTransformCss : _interpolateJsDefault.default;
+    return value == null ? this.styleTween(name, styleNull(name, i)).on("end.style." + name, styleRemove(name)) : typeof value === "function" ? this.styleTween(name, styleFunction(name, i, _tweenJs.tweenValue(this, "style." + name, value))).each(styleMaybeRemove(this._id, name)) : this.styleTween(name, styleConstant(name, i, value), priority).on("end.style." + name, null);
+};
+
+},{"d3-interpolate":"gzaRD","d3-selection":"gUhVK","./schedule.js":"011xX","./tween.js":"6O32N","./interpolate.js":"71see","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9TNF4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function styleInterpolate(name, i, priority) {
+    return function(t) {
+        this.style.setProperty(name, i.call(this, t), priority);
+    };
+}
+function styleTween(name, value, priority) {
+    var t, i0;
+    function tween() {
+        var i = value.apply(this, arguments);
+        if (i !== i0) t = (i0 = i) && styleInterpolate(name, i, priority);
+        return t;
+    }
+    tween._value = value;
+    return tween;
+}
+exports.default = function(name, value, priority) {
+    var key = "style." + (name += "");
+    if (arguments.length < 2) return (key = this.tween(key)) && key._value;
+    if (value == null) return this.tween(key, null);
+    if (typeof value !== "function") throw new Error;
+    return this.tween(key, styleTween(name, value, priority == null ? "" : priority));
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"b8gxe":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _tweenJs = require("./tween.js");
+function textConstant(value) {
+    return function() {
+        this.textContent = value;
+    };
+}
+function textFunction(value) {
+    return function() {
+        var value1 = value(this);
+        this.textContent = value1 == null ? "" : value1;
+    };
+}
+exports.default = function(value) {
+    return this.tween("text", typeof value === "function" ? textFunction(_tweenJs.tweenValue(this, "text", value)) : textConstant(value == null ? "" : value + ""));
+};
+
+},{"./tween.js":"6O32N","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"87Waq":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function textInterpolate(i) {
+    return function(t) {
+        this.textContent = i.call(this, t);
+    };
+}
+function textTween(value) {
+    var t0, i0;
+    function tween() {
+        var i = value.apply(this, arguments);
+        if (i !== i0) t0 = (i0 = i) && textInterpolate(i);
+        return t0;
+    }
+    tween._value = value;
+    return tween;
+}
+exports.default = function(value) {
+    var key = "text";
+    if (arguments.length < 1) return (key = this.tween(key)) && key._value;
+    if (value == null) return this.tween(key, null);
+    if (typeof value !== "function") throw new Error;
+    return this.tween(key, textTween(value));
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"isb3l":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./index.js");
+var _scheduleJs = require("./schedule.js");
+var _scheduleJsDefault = parcelHelpers.interopDefault(_scheduleJs);
+exports.default = function() {
+    var name = this._name, id0 = this._id, id1 = _indexJs.newId();
+    for(var groups = this._groups, m = groups.length, j = 0; j < m; ++j){
+        for(var group = groups[j], n = group.length, node, i = 0; i < n; ++i)if (node = group[i]) {
+            var inherit = _scheduleJs.get(node, id0);
+            _scheduleJsDefault.default(node, name, id1, i, group, {
+                time: inherit.time + inherit.delay + inherit.duration,
+                delay: 0,
+                duration: inherit.duration,
+                ease: inherit.ease
+            });
+        }
+    }
+    return new _indexJs.Transition(groups, this._parents, name, id1);
+};
+
+},{"./index.js":"2pj6I","./schedule.js":"011xX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9bbA6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _scheduleJs = require("./schedule.js");
+exports.default = function() {
+    var on0, on1, that = this, id = that._id, size = that.size();
+    return new Promise(function(resolve, reject) {
+        var cancel = {
+            value: reject
+        }, end = {
+            value: function() {
+                if (--size === 0) resolve();
+            }
+        };
+        that.each(function() {
+            var schedule = _scheduleJs.set(this, id), on = schedule.on;
+            // If this node shared a dispatch with the previous node,
+            // just assign the updated shared dispatch and we’re done!
+            // Otherwise, copy-on-write.
+            if (on !== on0) {
+                on1 = (on0 = on).copy();
+                on1._.cancel.push(cancel);
+                on1._.interrupt.push(cancel);
+                on1._.end.push(end);
+            }
+            schedule.on = on1;
+        });
+        // The selection was empty, resolve end immediately
+        if (size === 0) resolve();
+    });
+};
+
+},{"./schedule.js":"011xX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lVACp":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("./transition/index.js");
+var _scheduleJs = require("./transition/schedule.js");
+var root = [
+    null
+];
+exports.default = function(node, name) {
+    var schedules = node.__transition, schedule, i;
+    if (schedules) {
+        name = name == null ? null : name + "";
+        for(i in schedules){
+            if ((schedule = schedules[i]).state > _scheduleJs.SCHEDULED && schedule.name === name) return new _indexJs.Transition([
+                [
+                    node
+                ]
+            ], root, name, +i);
+        }
+    }
+    return null;
+};
+
+},{"./transition/index.js":"2pj6I","./transition/schedule.js":"011xX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"9qptB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "zoom", ()=>_zoomJsDefault.default
@@ -22539,12 +29927,14 @@ parcelHelpers.export(exports, "zoomTransform", ()=>_transformJsDefault.default
 );
 parcelHelpers.export(exports, "zoomIdentity", ()=>_transformJs.identity
 );
+parcelHelpers.export(exports, "ZoomTransform", ()=>_transformJs.Transform
+);
 var _zoomJs = require("./zoom.js");
 var _zoomJsDefault = parcelHelpers.interopDefault(_zoomJs);
 var _transformJs = require("./transform.js");
 var _transformJsDefault = parcelHelpers.interopDefault(_transformJs);
 
-},{"./zoom.js":"lIHvw","./transform.js":"aPs4a","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lIHvw":[function(require,module,exports) {
+},{"./zoom.js":"bP1OS","./transform.js":"hLBpl","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bP1OS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Dispatch = require("d3-dispatch");
@@ -22631,7 +30021,9 @@ exports.default = function() {
         ]
     ], duration = 250, interpolate = _d3Interpolate.interpolateZoom, listeners = _d3Dispatch.dispatch("start", "zoom", "end"), touchstarting, touchfirst, touchending, touchDelay = 500, wheelDelay = 150, clickDistance2 = 0, tapDistance = 10;
     function zoom(selection) {
-        selection.property("__zoom", defaultTransform).on("wheel.zoom", wheeled).on("mousedown.zoom", mousedowned).on("dblclick.zoom", dblclicked).filter(touchable).on("touchstart.zoom", touchstarted).on("touchmove.zoom", touchmoved).on("touchend.zoom touchcancel.zoom", touchended).style("-webkit-tap-highlight-color", "rgba(0,0,0,0)");
+        selection.property("__zoom", defaultTransform).on("wheel.zoom", wheeled, {
+            passive: false
+        }).on("mousedown.zoom", mousedowned).on("dblclick.zoom", dblclicked).filter(touchable).on("touchstart.zoom", touchstarted).on("touchmove.zoom", touchmoved).on("touchend.zoom touchcancel.zoom", touchended).style("-webkit-tap-highlight-color", "rgba(0,0,0,0)");
     }
     zoom.transform = function(collection, transform, point, event) {
         var selection = collection.selection ? collection.selection() : collection;
@@ -22771,7 +30163,7 @@ exports.default = function() {
     }
     function mousedowned(event1, ...args) {
         if (touchending || !filter.apply(this, arguments)) return;
-        var g = gesture(this, args, true).event(event1), v = _d3Selection.select(event1.view).on("mousemove.zoom", mousemoved, true).on("mouseup.zoom", mouseupped, true), p = _d3Selection.pointer(event1, currentTarget), currentTarget = event1.currentTarget, x0 = event1.clientX, y0 = event1.clientY;
+        var currentTarget = event1.currentTarget, g = gesture(this, args, true).event(event1), v = _d3Selection.select(event1.view).on("mousemove.zoom", mousemoved, true).on("mouseup.zoom", mouseupped, true), p = _d3Selection.pointer(event1, currentTarget), x0 = event1.clientX, y0 = event1.clientY;
         _d3Drag.dragDisable(event1.view);
         _noeventJs.nopropagation(event1);
         g.mouse = [
@@ -22938,13 +30330,13 @@ exports.default = function() {
     return zoom;
 };
 
-},{"d3-dispatch":"9d2te","d3-drag":"dKCUo","d3-interpolate":"e7XwA","d3-selection":"hgWtk","d3-transition":"cRYyR","./constant.js":"5Itz2","./event.js":"bMq36","./transform.js":"aPs4a","./noevent.js":"cgyVb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5Itz2":[function(require,module,exports) {
+},{"d3-dispatch":"DdGrt","d3-drag":"4FQ3g","d3-interpolate":"gzaRD","d3-selection":"gUhVK","d3-transition":"8yZNl","./constant.js":"7dqqN","./event.js":"206HX","./transform.js":"hLBpl","./noevent.js":"b2UQN","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7dqqN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = (x)=>()=>x
 ;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bMq36":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"206HX":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function ZoomEvent(type, { sourceEvent , target , transform , dispatch  }) {
@@ -22976,7 +30368,7 @@ function ZoomEvent(type, { sourceEvent , target , transform , dispatch  }) {
 }
 exports.default = ZoomEvent;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aPs4a":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hLBpl":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Transform", ()=>Transform
@@ -23038,7 +30430,7 @@ function transform(node) {
 }
 exports.default = transform;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"cgyVb":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"b2UQN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "nopropagation", ()=>nopropagation
@@ -23672,7 +31064,26 @@ process.umask = function() {
     return 0;
 };
 
-},{}],"4PhqF":[function(require,module,exports) {
+},{}],"g2DKJ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+//  HIDE NAV ON SCROLL
+parcelHelpers.export(exports, "isMobileDevice", ()=>isMobileDevice
+);
+parcelHelpers.export(exports, "isSafari", ()=>isSafari
+);
+function isMobileDevice() {
+    let check = false;
+    (function(a) {
+        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od|ad)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(Browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+    })(navigator.userAgent || navigator.vendor || window.opera);
+    return check;
+}
+const isSafari = /constructor/i.test(window.HTMLElement) || function(p) {
+    return p.toString() === "[object SafariRemoteNotification]";
+}(!window['safari'] || typeof safari !== 'undefined' && window['safari'].pushNotification);
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4PhqF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "nodes", ()=>nodes
@@ -23684,13 +31095,13 @@ parcelHelpers.export(exports, "MANY_BODY_STRENGTH", ()=>MANY_BODY_STRENGTH
 var _colors = require("./colors");
 const nodes = [];
 const links = [];
-const MAIN_NODE_SIZE = 20;
-const CHILD_NODE_SIZE = 15;
-const LEAF_NODE_SIZE = 5;
-const DEFAULT_DISTANCE = 10;
-const MAIN_NODE_DISTANCE = 70;
-const LEAF_NODE_DISTANCE = 80;
-const MANY_BODY_STRENGTH = -20;
+const MAIN_NODE_SIZE = 15;
+const CHILD_NODE_SIZE = 10;
+const LEAF_NODE_SIZE = 2;
+const DEFAULT_DISTANCE = 112;
+const MAIN_NODE_DISTANCE = 250;
+const LEAF_NODE_DISTANCE = 25;
+const MANY_BODY_STRENGTH = -1;
 let i1 = 0;
 const addMainNode = (node)=>{
     node.size = MAIN_NODE_SIZE;
@@ -23708,7 +31119,7 @@ const addChildNode = (parentNode, childNode, size = CHILD_NODE_SIZE, distance = 
         color: parentNode.color
     });
 };
-const assembleChildNode = (parentNode, id, numLeaves = 10)=>{
+const assembleChildNode = (parentNode, id, numLeaves = 3)=>{
     const childNode = {
         id
     };
@@ -23732,7 +31143,7 @@ addMainNode(uno);
 assembleChildNode(uno, 'Materia');
 assembleChildNode(uno, 'Existencia');
 const cuatro = {
-    id: '4'
+    id: 'Cuatro'
 };
 addMainNode(cuatro);
 assembleChildNode(cuatro, 'Identidad');
@@ -23801,8842 +31212,6 @@ const colors = [
     ], 
 ];
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"g2DKJ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-//  HIDE NAV ON SCROLL
-parcelHelpers.export(exports, "isMobileDevice", ()=>isMobileDevice
-);
-parcelHelpers.export(exports, "isSafari", ()=>isSafari
-);
-function isMobileDevice() {
-    let check = false;
-    (function(a) {
-        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od|ad)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(Browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
-    })(navigator.userAgent || navigator.vendor || window.opera);
-    return check;
-}
-const isSafari = /constructor/i.test(window.HTMLElement) || function(p) {
-    return p.toString() === "[object SafariRemoteNotification]";
-}(!window['safari'] || typeof safari !== 'undefined' && window['safari'].pushNotification);
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"eZlUk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Canvas", ()=>Canvas1
-);
-parcelHelpers.export(exports, "EdgeSelection", ()=>EdgeSelection1
-);
-parcelHelpers.export(exports, "LabelSelection", ()=>LabelSelection1
-);
-parcelHelpers.export(exports, "NodeSelection", ()=>NodeSelection1
-);
-parcelHelpers.export(exports, "createCanvas", ()=>createCanvas
-);
-// https://github.com/algrx/algorithmx v2.0.2 Copyright 2021 Alex Socha
-var _webcola = require("webcola");
-var _d3Selection = require("d3-selection");
-var _d3Transition = require("d3-transition");
-var _d3Ease = require("d3-ease");
-var _d3Dispatch = require("d3-dispatch");
-var _d3Timer = require("d3-timer");
-var _d3Drag = require("d3-drag");
-var _d3Shape = require("d3-shape");
-var _d3Zoom = require("d3-zoom");
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */ /* global Reflect, Promise */ var extendStatics = function(d1, b1) {
-    extendStatics = Object.setPrototypeOf || ({
-        __proto__: []
-    }) instanceof Array && function(d, b) {
-        d.__proto__ = b;
-    } || function(d, b) {
-        for(var p in b)if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];
-    };
-    return extendStatics(d1, b1);
-};
-function __extends(d, b) {
-    extendStatics(d, b);
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-}
-var __assign = function() {
-    __assign = Object.assign || function __assign(t) {
-        for(var s, i = 1, n = arguments.length; i < n; i++){
-            s = arguments[i];
-            for(var p in s)if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-function __spreadArrays() {
-    for(var s = 0, i = 0, il = arguments.length; i < il; i++)s += arguments[i].length;
-    for(var r = Array(s), k = 0, i = 0; i < il; i++)for(var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)r[k] = a[j];
-    return r;
-}
-var dictValues = function(dict) {
-    return Object.values(dict);
-};
-var mapDict = function(dict, fn) {
-    var newDict = {
-    };
-    var keys = Object.keys(dict);
-    for(var i = 0; i < keys.length; i++){
-        var k = keys[i];
-        var v = fn(dict[k], k, i);
-        if (v !== undefined) newDict[k] = v;
-    }
-    return newDict;
-};
-var mapDictKeys = function(dict, fn) {
-    var newDict = {
-    };
-    var keys = Object.keys(dict);
-    for(var i = 0; i < keys.length; i++){
-        var prevK = keys[i];
-        var k = fn(dict[prevK], prevK, i);
-        if (k !== undefined) newDict[k] = dict[prevK];
-    }
-    return newDict;
-};
-var filterDict = function(dict, fn) {
-    var newDict = {
-    };
-    var keys = Object.keys(dict);
-    for(var i = 0; i < keys.length; i++){
-        var k = keys[i];
-        if (fn(dict[k], k, i)) newDict[k] = dict[k];
-    }
-    return newDict;
-};
-var dictFromArray = function(keys, fn) {
-    var dict = {
-    };
-    keys.forEach(function(k) {
-        var v = fn(k);
-        if (v !== undefined) dict[k] = v;
-    });
-    return dict;
-};
-var isObj = function(value) {
-    return typeof value === 'object' && !Array.isArray(value);
-};
-var isObjEmpty = function(value) {
-    return Object.keys(value).length === 0;
-};
-var isNumericalStr = function(value) {
-    return !isNaN(value) && value !== '';
-};
-var dashToUpperCamel = function(str) {
-    return str.split('-').map(function(s) {
-        return s.charAt(0).toUpperCase() + s.substr(1);
-    }).join('');
-};
-var mergeDiff = function(obj, diff) {
-    if (isObj(obj)) {
-        var newObj = {
-        };
-        var keys = Object.keys(obj);
-        for(var i = 0; i < keys.length; i++){
-            var k = keys[i];
-            newObj[k] = k in diff ? mergeDiff(obj[k], diff[k]) : obj[k];
-        }
-        return newObj;
-    }
-    return diff;
-};
-var initQueue = function(state) {
-    return {
-        events: [],
-        stopped: false,
-        paused: false
-    };
-};
-var initSchedulerState = {
-    queues: {
-    }
-};
-var getQueueState = function(state, queue) {
-    var _a;
-    return (_a = state.queues[queue]) !== null && _a !== void 0 ? _a : initQueue();
-};
-var updateQueueState = function(state, queue, changes) {
-    var _a;
-    return __assign(__assign({
-    }, state), {
-        queues: __assign(__assign({
-        }, state.queues), (_a = {
-        }, _a[queue] = __assign(__assign({
-        }, getQueueState(state, queue)), changes), _a))
-    });
-};
-var executeQueueEvent = function(state, unpauseQueue, queue, event) {
-    var _a;
-    if (event.pause !== undefined || event.clear === true || event.stopped === true) {
-        // clear the previous pause
-        var prevTimeout = (_a = state.queues[queue]) === null || _a === void 0 ? void 0 : _a.timeoutId;
-        if (prevTimeout !== undefined) clearTimeout(prevTimeout);
-    }
-    var stateWithPause = event.pause !== undefined && event.pause <= 0 ? updateQueueState(state, queue, {
-        paused: false
-    }) : event.pause !== undefined ? updateQueueState(state, queue, {
-        paused: true,
-        timeoutId: setTimeout(unpauseQueue, event.pause * 1000)
-    }) : state;
-    var stateWithStop = event.stopped === true ? updateQueueState(stateWithPause, queue, {
-        stopped: true,
-        paused: false
-    }) : event.stopped === false ? updateQueueState(stateWithPause, queue, {
-        stopped: false,
-        paused: false
-    }) : stateWithPause;
-    var newState = event.clear === true ? updateQueueState(stateWithStop, queue, {
-        events: [],
-        paused: false
-    }) : stateWithStop;
-    return newState;
-};
-var getNextEvent = function(state) {
-    return Object.entries(state.queues).reduce(function(_a, _b) {
-        var accState = _a[0], accElement = _a[1];
-        var k = _b[0], queueState = _b[1];
-        if (accElement !== undefined || queueState.stopped || queueState.paused || queueState.events.length === 0) return [
-            accState,
-            accElement
-        ];
-        else {
-            var event_1 = queueState.events[0];
-            var newState = updateQueueState(state, k, {
-                events: queueState.events.slice(1)
-            });
-            return [
-                newState,
-                event_1
-            ];
-        }
-    }, [
-        state,
-        undefined
-    ]);
-};
-var getQueueFromEvent = function(event) {
-    var _a;
-    return event.withQ === null ? null : String((_a = event.withQ) !== null && _a !== void 0 ? _a : 0);
-};
-var executeEvent = function(callbacks, event) {
-    var _a1;
-    var state = callbacks.getState();
-    var unpauseQueueFn = function(q) {
-        return function() {
-            var _a;
-            return scheduleEvent(callbacks, {
-                queues: (_a = {
-                }, _a[q] = {
-                    pause: 0
-                }, _a),
-                withQ: null
-            });
-        };
-    };
-    // update queues with start/stop/clear/pause actions
-    var queueEvents = Object.entries((_a1 = event.queues) !== null && _a1 !== void 0 ? _a1 : {
-    }).reduce(function(acc, _a) {
-        var _b;
-        var k = _a[0], q = _a[1];
-        return __assign(__assign({
-        }, acc), k === '*' ? mapDict(state.queues, function(_) {
-            return q;
-        }) : (_b = {
-        }, _b[k] = q, _b));
-    }, {
-    });
-    var newState = Object.keys(queueEvents).reduce(function(acc, k) {
-        return executeQueueEvent(acc, unpauseQueueFn(k), k, queueEvents[k]);
-    }, state);
-    callbacks.setState(newState);
-    callbacks.execute(event);
-};
-var scheduleEvent = function(callbacks, event) {
-    var withQ = getQueueFromEvent(event);
-    if (withQ === null) // execute the event immediately if no queue is specified
-    executeEvent(callbacks, event);
-    else {
-        // add the event to the queue
-        var state = callbacks.getState();
-        var stateWithEvent = updateQueueState(state, withQ, {
-            events: getQueueState(state, withQ).events.concat([
-                event
-            ])
-        });
-        callbacks.setState(stateWithEvent);
-    }
-    // execute all remaining events
-    while(true){
-        var _a = getNextEvent(callbacks.getState()), state = _a[0], nextEvent = _a[1];
-        if (nextEvent === undefined) break;
-        callbacks.setState(state);
-        executeEvent(callbacks, nextEvent);
-    }
-};
-// === Generic attribute specs ===
-var AttrType1;
-(function(AttrType) {
-    AttrType["Number"] = "number";
-    AttrType["String"] = "string";
-    AttrType["Boolean"] = "boolean";
-    AttrType["Tuple"] = "tuple";
-    AttrType["Array"] = "array";
-    AttrType["Record"] = "record";
-    AttrType["Dict"] = "lookup";
-})(AttrType1 || (AttrType1 = {
-}));
-var animEases = [
-    'linear',
-    'poly',
-    'poly-in',
-    'poly-out',
-    'poly-in-out',
-    'quad',
-    'quad-in',
-    'quad-out',
-    'quad-in-out',
-    'cubic',
-    'cubic-in',
-    'cubic-out',
-    'cubic-in-out',
-    'sin',
-    'sin-in',
-    'sin-out',
-    'sin-in-out',
-    'exp',
-    'exp-in',
-    'exp-out',
-    'exp-in-out',
-    'circle',
-    'circle-out',
-    'circle-out',
-    'circle-in-out',
-    'elastic',
-    'elastic-in',
-    'elastic-out',
-    'elastic-in-out',
-    'back',
-    'back-in',
-    'back-out',
-    'back-in-out',
-    'bounce',
-    'bounce-in',
-    'bounce-out',
-    'bounce-in-out', 
-];
-var animSpec = {
-    type: AttrType1.Record,
-    entries: {
-        duration: {
-            type: AttrType1.Number
-        },
-        ease: {
-            type: AttrType1.String,
-            validValues: animEases
-        },
-        highlight: {
-            type: AttrType1.Boolean
-        },
-        linger: {
-            type: AttrType1.Number
-        }
-    }
-};
-var animDefaults1 = {
-    duration: 0.5,
-    ease: 'poly',
-    highlight: false,
-    linger: 0.5
-};
-var withAnimSpec = function(valueSpec) {
-    return {
-        type: AttrType1.Record,
-        entries: __assign({
-            value: valueSpec
-        }, animSpec.entries)
-    };
-};
-var elementSpecEntries = {
-    visible: withAnimSpec({
-        type: AttrType1.Boolean
-    }),
-    svgattrs: {
-        type: AttrType1.Dict,
-        entry: withAnimSpec({
-            type: AttrType1.String
-        })
-    },
-    remove: {
-        type: AttrType1.Boolean
-    }
-};
-var elementDefaults = {
-    visible: __assign(__assign({
-    }, animDefaults1), {
-        value: true
-    }),
-    remove: false,
-    svgattrs: {
-        '*': __assign({
-            value: ''
-        }, animDefaults1)
-    }
-};
-var canvasVars1 = [
-    'cx',
-    'cy'
-];
-var nodeVars1 = __spreadArrays(canvasVars1, [
-    'x',
-    'y'
-]);
-var nodeLabelVars1 = __spreadArrays(nodeVars1, [
-    'r'
-]);
-var COLORS = {
-    navy: '#00229e',
-    blue: '#2957c4',
-    aqua: '#19c3d6',
-    teal: '#05827d',
-    olive: '#006333',
-    green: '#05914d',
-    lime: '#12bc6b',
-    yellow: '#cc9918',
-    orange: '#dd7d0f',
-    red: '#af1c1c',
-    pink: '#d14db0',
-    fuchsia: '#bc2990',
-    purple: '#a31578',
-    maroon: '#7c0606',
-    white: '#ffffff',
-    lightgray: '#b5b5b5',
-    lightgrey: '#b5b5b5',
-    gray: '#969696',
-    grey: '#969696',
-    darkgray: '#323232',
-    darkgrey: '#323232',
-    black: '#111111'
-};
-var angleToRad = function(angleDeg) {
-    return angleDeg * Math.PI / 180;
-};
-var angleToDeg = function(angleRad) {
-    return angleRad * 180 / Math.PI;
-};
-var restrictAngle = function(angle) {
-    return (angle < 0 ? Math.PI * 2 - -angle % (Math.PI * 2) : angle) % (Math.PI * 2);
-};
-var radiusAtAngleRect = function(angle, rx, ry) {
-    var a = restrictAngle(angle);
-    var cornerAngle = Math.atan2(ry, rx);
-    if (a >= 0 && a < cornerAngle) return rx / Math.cos(a);
-    else if (a >= cornerAngle && a < Math.PI - cornerAngle) return ry / Math.cos(a - Math.PI / 2);
-    else if (a >= Math.PI - cornerAngle && a < Math.PI + cornerAngle) return rx / Math.cos(a - Math.PI);
-    else if (a >= Math.PI + cornerAngle && a < Math.PI * 2 - cornerAngle) return ry / Math.cos(a - Math.PI * 3 / 2);
-    else return rx / Math.cos(Math.PI * 2 - a);
-};
-var rotate1 = function(_a, angle) {
-    var x = _a[0], y = _a[1];
-    return [
-        x * Math.cos(angle) - y * Math.sin(angle),
-        y * Math.cos(angle) + x * Math.sin(angle), 
-    ];
-};
-var translate1 = function(_a, _b) {
-    var x = _a[0], y = _a[1];
-    var tx = _b[0], ty = _b[1];
-    return [
-        x + tx,
-        y + ty
-    ];
-};
-var labelAlign = [
-    'top-left',
-    'top-middle',
-    'top-right',
-    'middle-left',
-    'middle',
-    'middle-right',
-    'bottom-left',
-    'bottom-middle',
-    'bottom-right',
-    'radial', 
-];
-var labelSpec1 = {
-    type: AttrType1.Record,
-    entries: __assign({
-        text: {
-            type: AttrType1.String
-        },
-        align: {
-            type: AttrType1.String,
-            validValues: labelAlign
-        },
-        pos: withAnimSpec({
-            type: AttrType1.Tuple,
-            entry: {
-                type: AttrType1.Number
-            }
-        }),
-        radius: withAnimSpec({
-            type: AttrType1.Number
-        }),
-        angle: withAnimSpec({
-            type: AttrType1.Number
-        }),
-        rotate: {
-            type: AttrType1.Boolean
-        },
-        color: withAnimSpec({
-            type: AttrType1.String
-        }),
-        font: {
-            type: AttrType1.String
-        },
-        size: withAnimSpec({
-            type: AttrType1.Number
-        })
-    }, elementSpecEntries)
-};
-var labelDefaults = __assign({
-    text: '',
-    align: 'bottom-middle',
-    pos: __assign(__assign({
-    }, animDefaults1), {
-        value: [
-            0,
-            0
-        ]
-    }),
-    radius: __assign(__assign({
-    }, animDefaults1), {
-        value: 0
-    }),
-    angle: __assign(__assign({
-    }, animDefaults1), {
-        value: 90
-    }),
-    rotate: false,
-    color: __assign(__assign({
-    }, animDefaults1), {
-        value: COLORS.gray
-    }),
-    font: 'Arial, Helvetica, sans-serif',
-    size: __assign(__assign({
-    }, animDefaults1), {
-        value: 12
-    })
-}, elementDefaults);
-var ALIGN_ANGLES = {
-    'top-left': Math.PI * 3 / 4,
-    'top-middle': Math.PI * 1 / 2,
-    'top-right': Math.PI * 1 / 4,
-    'middle-left': Math.PI,
-    middle: Math.PI * 3 / 2,
-    'middle-right': 0,
-    'bottom-left': Math.PI * 5 / 4,
-    'bottom-middle': Math.PI * 3 / 2,
-    'bottom-right': Math.PI * 7 / 4,
-    radial: 0
-};
-var alignFromAngle = function(angle, rotate) {
-    var _a;
-    if (rotate) return restrictAngle(angle) < Math.PI ? 'bottom-middle' : 'top-middle';
-    var testAngle = restrictAngle(angle + Math.PI);
-    var radialAligns = Object.keys(ALIGN_ANGLES).filter(function(v) {
-        return v !== 'middle' && v !== 'radial';
-    }).sort(function(a, b) {
-        return ALIGN_ANGLES[a] < ALIGN_ANGLES[b] ? -1 : 0;
-    });
-    return (_a = radialAligns.find(function(align, i) {
-        var prevAngle = i === 0 ? -ALIGN_ANGLES[radialAligns[1]] : ALIGN_ANGLES[radialAligns[i - 1]];
-        var curAngle = ALIGN_ANGLES[radialAligns[i]];
-        var nextAngle = i === radialAligns.length - 1 ? Math.PI * 2 : ALIGN_ANGLES[radialAligns[i + 1]];
-        return testAngle > (prevAngle + curAngle) / 2 && testAngle <= (curAngle + nextAngle) / 2;
-    })) !== null && _a !== void 0 ? _a : 'middle';
-};
-var createLabelDictDefaults = function(prevAttr, changes) {
-    var newLabels = mapDict(filterDict(changes, function(_, k) {
-        return !prevAttr || !(k in prevAttr);
-    }), function(_, k) {
-        return __assign(__assign({
-        }, labelDefaults), {
-            text: k
-        });
-    });
-    return __assign({
-        '*': labelDefaults
-    }, newLabels);
-};
-var isPrimitive = function(spec) {
-    return spec.type === AttrType1.Boolean || spec.type === AttrType1.Number || spec.type === AttrType1.String;
-};
-// the 'value' attribute only exists on endpoints
-var isEndpointSpec = function(spec) {
-    return spec.type === AttrType1.Record && 'value' in spec.entries;
-};
-var isElementSpec = function(spec) {
-    return spec.type === AttrType1.Record && 'visible' in spec.entries;
-};
-var nonEmpty = function(attr) {
-    if (typeof attr === 'object' && Object.keys(attr).length === 0) return undefined;
-    if (Array.isArray(attr) && attr.every(function(v) {
-        return v === undefined;
-    })) return undefined;
-    return attr;
-};
-function getAttrEntry(v, k) {
-    return v[k];
-}
-var getEntrySpec = function(spec, k) {
-    return spec.type === AttrType1.Tuple ? spec.entry : spec.type === AttrType1.Array ? spec.entry : spec.type === AttrType1.Dict ? spec.entry : spec.type === AttrType1.Record ? spec.entries[k] : spec;
-};
-function mapAttr(spec, attr, fn) {
-    if (spec.type === AttrType1.Record || spec.type === AttrType1.Dict) return mapDict(attr, function(v, k) {
-        return fn(v, k, getEntrySpec(spec, k));
-    });
-    if (spec.type === AttrType1.Array || spec.type === AttrType1.Tuple) return attr.map(function(v, i) {
-        return fn(v, i, getEntrySpec(spec, i));
-    });
-    return attr;
-}
-function combineAttrs(spec, // assume that at least one is not undefined
-prevAttr, newAttr, fn) {
-    if (prevAttr === undefined || newAttr === undefined || isPrimitive(spec) || spec.type === AttrType1.Array || spec.type === AttrType1.Tuple) {
-        // choose only one of prevAttr, newAttr
-        if (newAttr !== undefined && prevAttr !== undefined) return mapAttr(spec, newAttr, function(v, k, s) {
-            return fn(getAttrEntry(prevAttr, k), v, k, s);
-        });
-        else if (newAttr !== undefined) return mapAttr(spec, newAttr, function(v, k, s) {
-            return fn(undefined, v, k, s);
-        });
-        else return mapAttr(spec, prevAttr, function(v, k, s) {
-            return fn(v, undefined, k, s);
-        });
-    } else {
-        // combine based on keys
-        var sharedKeys = Array.from(new Set(Object.keys(prevAttr).concat(Object.keys(newAttr))));
-        return dictFromArray(sharedKeys, function(k) {
-            return fn(getAttrEntry(prevAttr, k), getAttrEntry(newAttr, k), k, getEntrySpec(spec, k));
-        });
-    }
-}
-var parseSingleTerm = function(term) {
-    var reverseVarIndex = term.split('').findIndex(function(c, i) {
-        return isNumericalStr(term.substring(0, term.length - i));
-    });
-    var varIndex = reverseVarIndex === -1 ? term[0] === '-' || term[0] === '+' ? 1 : 0 : term.length - reverseVarIndex;
-    var rawNumStr = term.substring(0, varIndex);
-    var varStr = term.substring(varIndex);
-    var numStr = rawNumStr === '' && varStr === '' ? '0' : rawNumStr === '' || rawNumStr === '+' ? '1' : rawNumStr === '-' ? '-1' : rawNumStr;
-    if (!isNumericalStr(numStr)) return new Error();
-    return __assign({
-        num: parseFloat(numStr)
-    }, varStr !== '' ? {
-        symbol: varStr
-    } : {
-    });
-};
-var validateExpr = function(expr, validVars, originalExprStr) {
-    if (!validVars.includes(expr.x)) {
-        var formattedExpr = originalExprStr || JSON.stringify(expr);
-        return new Error("expression '" + formattedExpr + "' uses invalid variable '" + expr.x + "'" + (" (valid variables are [" + validVars + "])"));
-    }
-    return expr;
-};
-var parseExprObj = function(rawValue, validVars) {
-    var partialExpr = rawValue;
-    if (partialExpr.m !== undefined && typeof partialExpr.m !== 'number' || partialExpr.c !== undefined && typeof partialExpr.c !== 'number' || partialExpr.x === undefined) return new Error("invalid expression '" + JSON.stringify(rawValue) + "'");
-    var expr = {
-        m: partialExpr.m !== undefined ? partialExpr.m : 1,
-        x: partialExpr.x,
-        c: partialExpr.c !== undefined ? partialExpr.c : 0
-    };
-    return validateExpr(expr, validVars);
-};
-var parseExprStr = function(rawValue, validVars) {
-    // e.g. parse '4.7r - 9' to { m: 4.7, x: 'r', c: -9 }
-    var errorText = "invalid expression '" + rawValue + "'";
-    var expression = rawValue.replace(/\s/g, ''); // remove whitespace
-    var opIndex = expression.lastIndexOf('+') > 0 ? expression.lastIndexOf('+') : expression.lastIndexOf('-') > 0 ? expression.lastIndexOf('-') : expression.length;
-    var term1 = parseSingleTerm(expression.substring(0, opIndex));
-    var term2 = parseSingleTerm(expression.substring(opIndex));
-    if (term1 instanceof Error) return new Error(errorText);
-    if (term2 instanceof Error) return new Error(errorText);
-    if (term1.symbol !== undefined && term2.symbol !== undefined) return new Error(errorText + ": too many variables");
-    if (term1.symbol === undefined && term2.symbol === undefined) return new Error(errorText + ": not enough variables");
-    var expr = term1.symbol !== undefined ? {
-        m: term1.num,
-        x: term1.symbol,
-        c: term2.num
-    } : {
-        m: term2.num,
-        x: term2.symbol,
-        c: term1.num
-    };
-    return validateExpr(expr, validVars, rawValue);
-};
-var isNumExpr = function(attr) {
-    return typeof attr === 'object';
-};
-var isExpr = function(spec, attr) {
-    return spec.type === AttrType1.Number && isNumExpr(attr);
-};
-var evalNum = function(expr, vars) {
-    // e.g. expressionDict = { value: 8, units: 'x' }, units = { x: 5 } => return 16
-    if (typeof expr !== 'object') return expr;
-    var m = expr.m !== undefined ? expr.m : 1;
-    var c = expr.c !== undefined ? expr.c : 0;
-    if (expr.x === undefined) return m + c;
-    else if (expr.x in vars) return m * vars[expr.x] + c;
-    else return 0;
-};
-var usesVars = function(expr, vars) {
-    if (isNumExpr(expr)) return vars.includes(expr.x);
-    return false;
-};
-var evalAnimAttr = function(vars, anim, // at least one of prevAttr, change must be defined
-_a, valueFn) {
-    var _b;
-    var prevAttr = _a[0], change = _a[1];
-    if (valueFn === void 0) valueFn = function(v) {
-        return v;
-    };
-    var varValues = mapDict(vars, function(v) {
-        return v.attr.value;
-    });
-    if (change !== undefined) {
-        // note that if the change is self-referential (e.g. node.size = 2x), the variable won't exist yet
-        if (!isNumExpr(change) || change.x in vars) return {
-            attr: __assign(__assign({
-            }, anim), {
-                value: valueFn(evalNum(change, varValues))
-            }),
-            changed: true
-        };
-    }
-    return {
-        attr: __assign(__assign({
-        }, prevAttr !== undefined && isNumExpr(prevAttr) ? (_b = vars[prevAttr.x]) === null || _b === void 0 ? void 0 : _b.attr : {
-        }), {
-            value: valueFn(evalNum(prevAttr !== null && prevAttr !== void 0 ? prevAttr : 0, varValues))
-        }),
-        changed: false
-    };
-};
-var evalDeepAux = function(spec, prevExprs, changes, vars) {
-    if (changes !== undefined && spec.type === AttrType1.Number && isNumExpr(changes)) {
-        // evaluate a changed expression
-        var varValues = mapDict(vars, function(v) {
-            return v.attr.value;
-        });
-        return evalNum(changes, varValues);
-    }
-    if (prevExprs !== undefined) {
-        // evaluate an existing animation
-        var exprValue = isEndpointSpec(spec) ? prevExprs.value : prevExprs;
-        if (exprValue && isNumExpr(exprValue) && exprValue.x in vars && vars[exprValue.x].changed) {
-            var evalValue = evalNum(exprValue, mapDict(vars, function(v) {
-                return v.attr.value;
-            }));
-            return isEndpointSpec(spec) ? __assign(__assign({
-            }, vars[exprValue.x].attr), {
-                value: evalValue
-            }) : evalValue;
-        }
-    }
-    // simply return the changes
-    if (isPrimitive(spec)) return changes;
-    // evaluate all children
-    return nonEmpty(combineAttrs(spec, prevExprs, changes, function(v1, v2, k, s) {
-        return evalDeepAux(s, v1, v2, vars);
-    }));
-};
-var evalDeep = function(spec, permExpr, changes, vars) {
-    var _a;
-    // optimisation: stop evaluating if there are no changed attributes or changed variables
-    if (!changes && dictValues(vars).every(function(v) {
-        return !v.changed;
-    })) return changes;
-    return (_a = evalDeepAux(spec, permExpr, changes, vars)) !== null && _a !== void 0 ? _a : changes;
-};
-var nodeShape = [
-    'circle',
-    'rect',
-    'ellipse'
-];
-var nodeSpec = {
-    type: AttrType1.Record,
-    entries: __assign({
-        labels: {
-            type: AttrType1.Dict,
-            entry: __assign(__assign({
-            }, labelSpec1), {
-                validVars: nodeLabelVars1
-            })
-        },
-        shape: {
-            type: AttrType1.String,
-            validValues: nodeShape
-        },
-        color: withAnimSpec({
-            type: AttrType1.String
-        }),
-        size: withAnimSpec({
-            type: AttrType1.Tuple,
-            entry: {
-                type: AttrType1.Number
-            }
-        }),
-        pos: withAnimSpec({
-            type: AttrType1.Tuple,
-            entry: {
-                type: AttrType1.Number
-            }
-        }),
-        fixed: {
-            type: AttrType1.Boolean
-        },
-        draggable: {
-            type: AttrType1.Boolean
-        },
-        listenclick: {
-            type: AttrType1.Boolean
-        },
-        listenhover: {
-            type: AttrType1.Boolean
-        }
-    }, elementSpecEntries),
-    validVars: nodeVars1
-};
-var VALUE_LABEL_ID = '0';
-var nodeDefaults = __assign({
-    labels: {
-    },
-    shape: 'circle',
-    color: __assign(__assign({
-    }, animDefaults1), {
-        value: COLORS.darkgray
-    }),
-    size: __assign(__assign({
-    }, animDefaults1), {
-        value: [
-            12,
-            12
-        ]
-    }),
-    pos: __assign(__assign({
-    }, animDefaults1), {
-        value: [
-            0,
-            0
-        ]
-    }),
-    fixed: false,
-    draggable: true,
-    listenclick: false,
-    listenhover: false
-}, elementDefaults);
-var radiusAtAngle = function(angle, rx, ry, shape) {
-    if (shape === 'rect' || shape === 'ellipse') return radiusAtAngleRect(angle, rx, ry);
-    else return rx;
-};
-var initPos = function(index, offset) {
-    // arrange nodes in a spiral pattern
-    var sqrtOffset = Math.floor(Math.sqrt(index));
-    var sizeInit = Math.pow(sqrtOffset, 2) !== index ? sqrtOffset + 1 : sqrtOffset;
-    var size = sizeInit % 2 === 0 ? sizeInit + 1 : sizeInit;
-    var halfSize = Math.floor(size / 2);
-    var difference = Math.pow(size, 2) - index;
-    var rawPos = difference <= size ? [
-        -halfSize + (size - difference),
-        -halfSize
-    ] : difference <= size * 2 - 1 ? [
-        -halfSize,
-        -halfSize + (difference - size)
-    ] : difference <= size * 3 - 2 ? [
-        -halfSize + (difference - size * 2) + 1,
-        halfSize
-    ] : [
-        halfSize,
-        -halfSize + (size - (difference - size * 3 + 3))
-    ];
-    return [
-        rawPos[0] * (offset + 1),
-        rawPos[1] * (offset + 1)
-    ];
-};
-var createNodeDefaults = function(prevAttrs, changes) {
-    var _a2, _b;
-    if (!changes.labels) return nodeDefaults;
-    var labelDictDefaults = createLabelDictDefaults(prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.labels, changes.labels);
-    // new labels with any key other than 'value' should be positioned
-    // radially around the node by default
-    var prevLabelKeys = Object.keys((_a2 = prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.labels) !== null && _a2 !== void 0 ? _a2 : {
-    });
-    var numPrevRadialLabels = prevLabelKeys.filter(function(k) {
-        return k !== VALUE_LABEL_ID;
-    }).length;
-    var newRadialLabels = mapDict(filterDict((_b = changes.labels) !== null && _b !== void 0 ? _b : {
-    }, function(_, k) {
-        return k !== VALUE_LABEL_ID && !prevLabelKeys.includes(k);
-    }), function(labelChanges, k, i) {
-        var _a;
-        // calculate an angle around the node
-        var radialIndex = numPrevRadialLabels + i;
-        var labelAngle = Math.PI * 3 / 4 - Math.PI / 2 * (radialIndex % 4) - Math.floor(radialIndex / 4) * (Math.PI / 4);
-        // apply label defaults
-        return mergeDiff((_a = labelDictDefaults[k]) !== null && _a !== void 0 ? _a : labelDictDefaults['*'], {
-            text: k,
-            radius: {
-                value: {
-                    m: 1,
-                    x: 'r',
-                    c: 3
-                }
-            },
-            angle: {
-                value: angleToDeg(labelAngle)
-            },
-            align: 'radial'
-        });
-    });
-    return __assign(__assign({
-    }, nodeDefaults), {
-        labels: __assign(__assign({
-        }, labelDictDefaults), newRadialLabels)
-    });
-};
-var createNodeDictDefaults = function(prevAttrs, changes) {
-    var numPrevNodes = Object.keys(prevAttrs !== null && prevAttrs !== void 0 ? prevAttrs : {
-    }).length;
-    var newNodes = mapDict(filterDict(changes, function(_, k) {
-        return !prevAttrs || !(k in prevAttrs);
-    }), function(_, k, i) {
-        var _a;
-        var valueLabel = mergeDiff(labelDefaults, {
-            text: k,
-            align: 'middle',
-            radius: {
-                value: 0
-            },
-            angle: {
-                value: 90
-            },
-            rotate: false,
-            color: {
-                value: COLORS.white
-            },
-            size: {
-                value: 12
-            }
-        });
-        var newNodeDefaults = createNodeDefaults(undefined, changes[k]);
-        return __assign(__assign({
-        }, newNodeDefaults), {
-            labels: __assign(__assign({
-            }, newNodeDefaults.labels), (_a = {
-            }, _a[VALUE_LABEL_ID] = valueLabel, _a)),
-            pos: __assign(__assign({
-            }, newNodeDefaults.pos), {
-                value: initPos(numPrevNodes + i, nodeDefaults.size.value[0] * 2)
-            })
-        });
-    });
-    return __assign({
-    }, mapDict(changes, function(nodeChanges, k) {
-        var _a;
-        return (_a = newNodes[k]) !== null && _a !== void 0 ? _a : createNodeDefaults(prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs[k], nodeChanges);
-    }));
-};
-var evalNodeLabelChanges = function(_a3) {
-    var prevAttrs = _a3.prevAttrs, prevExprs = _a3.prevExprs, changes = _a3.changes, parentVars = _a3.parentVars;
-    var labelDict = combineAttrs(nodeSpec.entries.labels, prevExprs.labels, changes.labels, function(prevLabelExprs, labelChanges, k, labelSpec) {
-        var _a, _b, _c, _d, _e;
-        // calculate the 'r' variable based on the angle of the label and the size of the node
-        var angleVar = evalAnimAttr(parentVars, labelChanges === null || labelChanges === void 0 ? void 0 : labelChanges.angle, [
-            (_b = (_a = prevLabelExprs === null || prevLabelExprs === void 0 ? void 0 : prevLabelExprs.angle) === null || _a === void 0 ? void 0 : _a.value) !== null && _b !== void 0 ? _b : (_c = prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.labels[k]) === null || _c === void 0 ? void 0 : _c.angle.value,
-            (_d = labelChanges === null || labelChanges === void 0 ? void 0 : labelChanges.angle) === null || _d === void 0 ? void 0 : _d.value, 
-        ]);
-        var nodeLabelVars = __assign(__assign({
-        }, parentVars), {
-            r: {
-                attr: __assign(__assign({
-                }, angleVar.changed && angleVar.attr || parentVars.x.changed && parentVars.x.attr || parentVars.y.changed && parentVars.y.attr || {
-                }), {
-                    value: radiusAtAngle(angleToRad(angleVar.attr.value), parentVars.x.attr.value, parentVars.y.attr.value, (_e = prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.shape) !== null && _e !== void 0 ? _e : changes.shape)
-                }),
-                changed: angleVar.changed || parentVars.x.changed || parentVars.y.changed || changes.shape !== undefined
-            }
-        });
-        return evalDeep(labelSpec, prevLabelExprs, labelChanges, nodeLabelVars);
-    });
-    return {
-        labels: isObjEmpty(labelDict) ? changes.labels : labelDict
-    };
-};
-var evalNodeChanges = function(_a4) {
-    var _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-    var prevAttrs = _a4.prevAttrs, prevExprs = _a4.prevExprs, changes = _a4.changes, selfRefOnly = _a4.selfRefOnly, parentVars = _a4.parentVars;
-    // get node variables from attributes
-    var nodeVars = __assign(__assign({
-    }, parentVars), {
-        x: evalAnimAttr(parentVars, changes.size, [
-            (_d = (_c = (_b = prevExprs.size) === null || _b === void 0 ? void 0 : _b.value) === null || _c === void 0 ? void 0 : _c[0]) !== null && _d !== void 0 ? _d : prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.size.value[0],
-            (_f = (_e = changes.size) === null || _e === void 0 ? void 0 : _e.value) === null || _f === void 0 ? void 0 : _f[0], 
-        ]),
-        y: evalAnimAttr(parentVars, changes.size, [
-            (_j = (_h = (_g = prevExprs.size) === null || _g === void 0 ? void 0 : _g.value) === null || _h === void 0 ? void 0 : _h[1]) !== null && _j !== void 0 ? _j : prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.size.value[1],
-            (_l = (_k = changes.size) === null || _k === void 0 ? void 0 : _k.value) === null || _l === void 0 ? void 0 : _l[1], 
-        ])
-    });
-    // evaluate child attributes
-    return combineAttrs(nodeSpec, prevExprs, changes, function(prevChildExprs, childChanges, childKey, childSpec) {
-        var _a;
-        if (selfRefOnly) {
-            // only evaluate self-referential attributes (e.g. size = '2x')
-            if (childKey === 'size' && ((_a = changes.size) === null || _a === void 0 ? void 0 : _a.value) !== undefined && (usesVars(changes.size.value[0], [
-                'x',
-                'y'
-            ]) || usesVars(changes.size.value[1], [
-                'x',
-                'y'
-            ]))) return evalDeep(childSpec, prevChildExprs, childChanges, nodeVars);
-            return childChanges;
-        }
-        if (childKey === 'labels') return evalNodeLabelChanges({
-            prevAttrs: prevAttrs,
-            prevExprs: prevExprs,
-            changes: changes,
-            selfRefOnly: selfRefOnly,
-            parentVars: nodeVars
-        }).labels;
-        return evalDeep(childSpec, prevChildExprs, childChanges, nodeVars);
-    });
-};
-var edgeCurve = [
-    'basis',
-    'bundle',
-    'cardinal',
-    'catmull-rom',
-    'linear',
-    'monotone-x',
-    'monotone-y',
-    'natural',
-    'step',
-    'step-before',
-    'step-after', 
-];
-var edgeSpec = {
-    type: AttrType1.Record,
-    entries: __assign({
-        labels: {
-            type: AttrType1.Dict,
-            entry: labelSpec1
-        },
-        source: {
-            type: AttrType1.String
-        },
-        target: {
-            type: AttrType1.String
-        },
-        directed: {
-            type: AttrType1.Boolean
-        },
-        length: {
-            type: AttrType1.Number
-        },
-        thickness: withAnimSpec({
-            type: AttrType1.Number
-        }),
-        flip: {
-            type: AttrType1.Boolean
-        },
-        color: {
-            type: AttrType1.Record,
-            entries: __assign(__assign({
-            }, withAnimSpec({
-                type: AttrType1.String
-            }).entries), {
-                animtype: {
-                    type: AttrType1.String,
-                    validValues: [
-                        'color',
-                        'traverse'
-                    ]
-                },
-                animsource: {
-                    type: AttrType1.String
-                }
-            })
-        },
-        curve: {
-            type: AttrType1.String,
-            validValues: edgeCurve
-        },
-        path: {
-            type: AttrType1.Array,
-            entry: {
-                type: AttrType1.Tuple,
-                entry: {
-                    type: AttrType1.Number
-                }
-            }
-        }
-    }, elementSpecEntries)
-};
-var edgeDefaults = __assign({
-    labels: {
-    },
-    source: '',
-    target: '',
-    directed: false,
-    length: 70,
-    thickness: __assign(__assign({
-    }, animDefaults1), {
-        value: 2.5
-    }),
-    color: __assign(__assign({
-    }, animDefaults1), {
-        value: COLORS.lightgray,
-        animtype: 'color',
-        animsource: ''
-    }),
-    flip: true,
-    curve: 'natural',
-    path: []
-}, elementDefaults);
-var createEdgeDefaults = function(prevAttrs, changes, path) {
-    var _a5, _b, _c;
-    if (!changes.labels) return edgeDefaults;
-    var labelDictDefaults = createLabelDictDefaults(prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.labels, changes.labels);
-    // new labels should be positioned radially around the center of the edge's path
-    var prevLabelKeys = Object.keys((_a5 = prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.labels) !== null && _a5 !== void 0 ? _a5 : {
-    });
-    var newLabels = mapDict(filterDict(changes.labels, function(_, k) {
-        return !(k in prevLabelKeys);
-    }), function(labelChanges, k, i) {
-        var _a;
-        var pathMidY = path.length === 0 ? 0 : path[Math.floor((path.length - 1) / 2)][1];
-        var pathMidYNum = typeof pathMidY === 'number' ? pathMidY : 0;
-        var index = prevLabelKeys.length + i;
-        var angle = index % 2 === 0 ? Math.PI / 2 : Math.PI * 3 / 2;
-        return mergeDiff((_a = labelDictDefaults[k]) !== null && _a !== void 0 ? _a : labelDictDefaults['*'], {
-            pos: {
-                value: [
-                    0,
-                    pathMidYNum
-                ]
-            },
-            angle: {
-                value: angleToDeg(angle)
-            },
-            align: 'radial',
-            rotate: true,
-            size: {
-                value: 11
-            },
-            radius: {
-                value: 3
-            }
-        });
-    });
-    return __assign(__assign({
-    }, edgeDefaults), {
-        color: __assign(__assign({
-        }, edgeDefaults.color), {
-            animsource: (_c = (_b = prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.source) !== null && _b !== void 0 ? _b : changes.source) !== null && _c !== void 0 ? _c : ''
-        }),
-        labels: __assign(__assign({
-        }, labelDictDefaults), newLabels)
-    });
-};
-var incrementMatrix = function(matrix, _a) {
-    var _b, _c, _d;
-    var _e, _f;
-    var source = _a[0], target = _a[1];
-    var sourceAdj = (_e = matrix[source]) !== null && _e !== void 0 ? _e : {
-    };
-    var newSourceAdj = __assign(__assign({
-    }, sourceAdj), (_b = {
-    }, _b[target] = sourceAdj[target] ? sourceAdj[target] + 1 : 1, _b));
-    var targetAdj = (_f = matrix[target]) !== null && _f !== void 0 ? _f : {
-    };
-    var newTargetAdj = __assign(__assign({
-    }, targetAdj), (_c = {
-    }, _c[source] = targetAdj[source] ? targetAdj[source] + 1 : 1, _c));
-    return __assign(__assign({
-    }, matrix), (_d = {
-    }, _d[source] = newSourceAdj, _d[target] = newTargetAdj, _d));
-};
-var createAdjMatrix = function(edges) {
-    return Object.values(edges).reduce(function(matrix, e) {
-        return incrementMatrix(matrix, [
-            e.source,
-            e.target
-        ]);
-    }, {
-    });
-};
-// "source-target(-ID)" to [source, target, ID?]
-var parseEdgeId = function(id) {
-    var split = id.split('-');
-    if (split.length < 2) return undefined;
-    if (split.length >= 3) return [
-        split[0],
-        split[1],
-        split.slice(2).join('-')
-    ];
-    else return [
-        split[0],
-        split[1]
-    ];
-};
-var createEdgeDictDefaults = function(prevAttrs, changes) {
-    var newEdges = Object.entries(changes).filter(function(_a) {
-        var k = _a[0];
-        return !prevAttrs || !(k in prevAttrs);
-    }).reduce(function(acc, _a, i1) {
-        var _b;
-        var _c, _d, _e, _f, _g;
-        var k = _a[0], edgeChanges = _a[1];
-        // e.g. parse "source->target" to { source, target, directed: true }
-        var parsedId = parseEdgeId(k);
-        // edges are expected to be provided with source and target attributes initially
-        var source = (_d = (_c = edgeChanges.source) !== null && _c !== void 0 ? _c : parsedId === null || parsedId === void 0 ? void 0 : parsedId[0]) !== null && _d !== void 0 ? _d : '';
-        var target = (_f = (_e = edgeChanges.target) !== null && _e !== void 0 ? _e : parsedId === null || parsedId === void 0 ? void 0 : parsedId[1]) !== null && _f !== void 0 ? _f : '';
-        var newMatrix = incrementMatrix(acc.matrix, [
-            source,
-            target
-        ]);
-        var index = newMatrix[source][target] - 1;
-        var loopingPath = function(i) {
-            return [
-                [
-                    -(i + 1) * 8,
-                    8
-                ],
-                [
-                    -(i + 1) * 10,
-                    14 + (i + 1) * 6
-                ],
-                [
-                    0,
-                    14 + (i + 1) * 14
-                ],
-                [
-                    (i + 1) * 10,
-                    14 + (i + 1) * 6
-                ],
-                [
-                    (i + 1) * 8,
-                    8
-                ], 
-            ];
-        };
-        var defaultPath = source === target ? loopingPath(index) : [
-            [
-                0,
-                Math.pow(-1, index + 1) * Math.ceil(index / 2) * 16
-            ]
-        ];
-        var newEdgeDefaults = mergeDiff(createEdgeDefaults(undefined, edgeChanges, (_g = edgeChanges.path) !== null && _g !== void 0 ? _g : defaultPath), {
-            source: source,
-            target: target,
-            path: defaultPath
-        });
-        return {
-            matrix: newMatrix,
-            edges: __assign(__assign({
-            }, acc.edges), (_b = {
-            }, _b[k] = newEdgeDefaults, _b))
-        };
-    }, {
-        matrix: createAdjMatrix(prevAttrs !== null && prevAttrs !== void 0 ? prevAttrs : {
-        }),
-        edges: {
-        }
-    }).edges;
-    return __assign({
-    }, mapDict(changes, function(edgeChanges, k) {
-        var _a, _b, _c;
-        var path = (_a = edgeChanges.path) !== null && _a !== void 0 ? _a : (_b = prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs[k]) === null || _b === void 0 ? void 0 : _b.path;
-        return (_c = newEdges[k]) !== null && _c !== void 0 ? _c : createEdgeDefaults(prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs[k], edgeChanges, path);
-    }));
-};
-var edgeLengthType = [
-    'individual',
-    'symmetric',
-    'jaccard'
-];
-var canvasSpec = {
-    type: AttrType1.Record,
-    entries: __assign({
-        nodes: {
-            type: AttrType1.Dict,
-            entry: nodeSpec
-        },
-        edges: {
-            type: AttrType1.Dict,
-            entry: edgeSpec
-        },
-        labels: {
-            type: AttrType1.Dict,
-            entry: labelSpec1
-        },
-        size: withAnimSpec({
-            type: AttrType1.Tuple,
-            entry: {
-                type: AttrType1.Number
-            }
-        }),
-        edgelayout: {
-            type: AttrType1.String,
-            validValues: edgeLengthType
-        },
-        edgelength: {
-            type: AttrType1.Number
-        },
-        pan: withAnimSpec({
-            type: AttrType1.Tuple,
-            entry: {
-                type: AttrType1.Number
-            }
-        }),
-        zoom: withAnimSpec({
-            type: AttrType1.Number
-        }),
-        panlimit: {
-            type: AttrType1.Tuple,
-            entry: {
-                type: AttrType1.Number
-            }
-        },
-        zoomlimit: {
-            type: AttrType1.Tuple,
-            entry: {
-                type: AttrType1.Number
-            }
-        },
-        zoomtoggle: {
-            type: AttrType1.Boolean
-        }
-    }, elementSpecEntries),
-    validVars: canvasVars1
-};
-var canvasDefaults = __assign({
-    nodes: {
-    },
-    edges: {
-    },
-    labels: {
-    },
-    size: __assign(__assign({
-    }, animDefaults1), {
-        value: [
-            100,
-            100
-        ],
-        duration: 0
-    }),
-    edgelayout: 'jaccard',
-    edgelength: 70,
-    pan: __assign(__assign({
-    }, animDefaults1), {
-        value: [
-            0,
-            0
-        ]
-    }),
-    zoom: __assign(__assign({
-    }, animDefaults1), {
-        value: 1
-    }),
-    panlimit: [
-        Infinity,
-        Infinity
-    ],
-    zoomlimit: [
-        0.1,
-        10
-    ],
-    zoomtoggle: false
-}, elementDefaults);
-var createCanvasDefaults = function(prevAttrs, changes) {
-    var _a, _b, _c;
-    return __assign(__assign({
-    }, canvasDefaults), {
-        nodes: createNodeDictDefaults(prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.nodes, (_a = changes.nodes) !== null && _a !== void 0 ? _a : {
-        }),
-        edges: createEdgeDictDefaults(prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.edges, (_b = changes.edges) !== null && _b !== void 0 ? _b : {
-        }),
-        labels: mapDict(createLabelDictDefaults(prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.labels, (_c = changes.labels) !== null && _c !== void 0 ? _c : {
-        }), function(label) {
-            return mergeDiff(label, {
-                align: 'middle',
-                pos: {
-                    value: [
-                        0,
-                        {
-                            m: 0.5,
-                            x: 'cy',
-                            c: 0
-                        }
-                    ]
-                },
-                rotate: true,
-                color: {
-                    value: COLORS.gray
-                },
-                size: {
-                    value: 20
-                }
-            });
-        }),
-        // don't animate visibility if the canvas is new
-        visible: prevAttrs === undefined ? __assign(__assign({
-        }, canvasDefaults.visible), {
-            duration: 0
-        }) : canvasDefaults.visible
-    });
-};
-var evalCanvasChanges = function(_a) {
-    var _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-    var prevAttrs = _a.prevAttrs, prevExprs = _a.prevExprs, changes = _a.changes, selfRefOnly = _a.selfRefOnly;
-    // get node variables from attributes
-    var canvasVars = {
-        cx: evalAnimAttr({
-        }, changes.size, [
-            (_d = (_c = (_b = prevExprs.size) === null || _b === void 0 ? void 0 : _b.value) === null || _c === void 0 ? void 0 : _c[0]) !== null && _d !== void 0 ? _d : prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.size.value[0],
-            (_f = (_e = changes.size) === null || _e === void 0 ? void 0 : _e.value) === null || _f === void 0 ? void 0 : _f[0]
-        ], function(v) {
-            return v / 2;
-        }),
-        cy: evalAnimAttr({
-        }, changes.size, [
-            (_j = (_h = (_g = prevExprs.size) === null || _g === void 0 ? void 0 : _g.value) === null || _h === void 0 ? void 0 : _h[1]) !== null && _j !== void 0 ? _j : prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.size.value[1],
-            (_l = (_k = changes.size) === null || _k === void 0 ? void 0 : _k.value) === null || _l === void 0 ? void 0 : _l[1]
-        ], function(v) {
-            return v / 2;
-        })
-    };
-    // evaluate child attributes
-    return combineAttrs(canvasSpec, prevExprs, changes, function(prevChildExprs, childChanges, childKey, childSpec) {
-        if (childKey === 'nodes') {
-            var nodeDict = combineAttrs(canvasSpec.entries.nodes, prevExprs.nodes, changes.nodes, function(prevNodeExprs, nodeChanges, k) {
-                if (nodeChanges) return evalNodeChanges({
-                    prevAttrs: prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.nodes[k],
-                    prevExprs: prevNodeExprs !== null && prevNodeExprs !== void 0 ? prevNodeExprs : {
-                    },
-                    changes: nodeChanges,
-                    selfRefOnly: selfRefOnly,
-                    parentVars: canvasVars
-                });
-                else if (!selfRefOnly) return evalDeep(nodeSpec, prevNodeExprs, nodeChanges, canvasVars);
-                else return undefined;
-            });
-            return isObjEmpty(nodeDict) ? childChanges : nodeDict;
-        }
-        if (selfRefOnly) {
-            // only evaluate self-referential attributes (e.g. size = '2cx')
-            if (childKey === 'size' && changes.size && changes.size.value && (usesVars(changes.size.value[0], [
-                'cx',
-                'cy'
-            ]) || usesVars(changes.size.value[1], [
-                'cx',
-                'cy'
-            ]))) return evalDeep(childSpec, prevChildExprs, childChanges, canvasVars);
-            return childChanges;
-        }
-        return evalDeep(childSpec, prevChildExprs, childChanges, canvasVars);
-    });
-};
-var formatPath = function(path) {
-    return path.reduce(function(result, _a, i) {
-        var name = _a[0];
-        if (i > 0) {
-            var prevType = path[i - 1][1];
-            return result + (prevType === AttrType1.Array || prevType === AttrType1.Tuple ? "[" + name + "]" : "." + name);
-        } else return name;
-    }, '');
-};
-var defaultValue = function(spec) {
-    if (spec.type === AttrType1.String) return '';
-    if (spec.type === AttrType1.Record) return {
-    };
-    return undefined;
-};
-var preprocessCompound = function(spec, info, attr) {
-    var newAttr = mapAttr(spec, attr, function(childAttr, childKey, childSpec) {
-        var newInfo = __assign(__assign({
-        }, info), {
-            path: info.path.concat([
-                [
-                    String(childKey),
-                    childSpec.type
-                ]
-            ])
-        });
-        return preprocess(childSpec, newInfo, childAttr);
-    });
-    var error = Object.values(newAttr).find(function(v) {
-        return v instanceof Error;
-    });
-    if (error !== undefined) return error;
-    return newAttr;
-};
-var preprocess = function(spec, info, attr) {
-    var _a;
-    // === boolean ===
-    if (spec.type === AttrType1.Boolean) {
-        if (typeof attr === 'boolean') return attr;
-        return new Error("attribute '" + formatPath(info.path) + "' must be a boolean");
-    }
-    // === number ===
-    if (spec.type === AttrType1.Number) {
-        if (typeof attr === 'number') return attr;
-        else if (typeof attr === 'string') return parseExprStr(attr, info.validVars);
-        else if (typeof attr === 'object') return parseExprObj(attr, info.validVars);
-        return new Error("attribute '" + formatPath(info.path) + "' must be a number");
-    }
-    // === string ===
-    if (spec.type === AttrType1.String) {
-        var exactStringSpec = spec;
-        if (exactStringSpec.validValues && !exactStringSpec.validValues.includes(attr)) return new Error("attribute '" + formatPath(info.path) + "' has invalid value '" + attr + "'" + (" (valid values are [" + exactStringSpec.validValues + "])"));
-        if (typeof attr === 'string') return attr;
-        else if (typeof attr === 'number') return String(attr);
-        return new Error("attribute '" + formatPath(info.path) + "' must be a string");
-    }
-    // === tuple ===
-    if (spec.type === AttrType1.Tuple) {
-        // single values will automatically be repeated twice
-        if (!Array.isArray(attr)) return preprocess(spec, info, [
-            attr,
-            attr
-        ]);
-        if (attr.length !== 2) return new Error("attribute '" + formatPath(info.path) + "' must be a tuple with exactly 2 items");
-        return preprocessCompound(spec, info, attr);
-    }
-    // === record ===
-    if (spec.type === AttrType1.Record) {
-        if (!isObj(attr)) {
-            if ('value' in spec.entries) // endpionts can be provided as a single value, or a { value, ... } object
-            return preprocessCompound(spec, info, {
-                value: attr
-            });
-            else return new Error("attribute '" + formatPath(info.path) + "' must be an object");
-        }
-        var invalidKey = Object.keys(attr).find(function(k) {
-            return !(k in spec.entries);
-        });
-        if (invalidKey) return new Error("attribute '" + formatPath(info.path) + "' has invalid key '" + invalidKey + "'");
-        var newInfo = __assign(__assign({
-        }, info), {
-            validVars: (_a = spec.validVars) !== null && _a !== void 0 ? _a : info.validVars
-        });
-        return preprocessCompound(spec, newInfo, attr);
-    }
-    // === array ===
-    if (spec.type === AttrType1.Array) {
-        if (!Array.isArray(attr)) return new Error("attribute '" + formatPath(info.path) + "' must be an array");
-        return preprocessCompound(spec, info, attr);
-    }
-    // === dict ===
-    if (spec.type === AttrType1.Dict) {
-        // allow dicts to be given as arrays, when just the keys are needed
-        if (Array.isArray(attr)) {
-            var dict = dictFromArray(attr, function(k) {
-                return defaultValue(spec.entry);
-            });
-            return preprocess(spec, info, dict);
-        }
-        if (typeof attr !== 'object') return new Error("attribute '" + formatPath(info.path) + "' must be an object");
-        return preprocessCompound(spec, info, attr);
-    }
-    return new Error();
-};
-var withAnim = function(spec, attrs, anim) {
-    if (spec.type === AttrType1.Record) {
-        // merge animation defaults
-        var validAnim = filterDict(anim, function(_, k) {
-            return k in spec.entries;
-        });
-        return __assign(__assign({
-        }, attrs), validAnim);
-    }
-    return attrs;
-};
-// apply defaults to all attributes which are new (e.g. when a new node is added)
-var applyDefaults = function(spec, prevAttrs, changes, _a6) {
-    var defaults = _a6[0], animDefaults = _a6[1];
-    // always fall back on the defaults
-    if (isPrimitive(spec)) return changes !== null && changes !== void 0 ? changes : defaults;
-    // merge defaults with animation defaults
-    var defaultsWithAnim = isEndpointSpec(spec) ? withAnim(spec, defaults, animDefaults) : defaults;
-    var getChildDefaults = function(k) {
-        var _a, _b;
-        if (spec.type === AttrType1.Array) // fall back on the first entry
-        return (_a = getAttrEntry(defaultsWithAnim, k)) !== null && _a !== void 0 ? _a : getAttrEntry(defaultsWithAnim, 0);
-        // fall back on the "*" entry
-        return (_b = getAttrEntry(defaultsWithAnim, k)) !== null && _b !== void 0 ? _b : getAttrEntry(defaultsWithAnim, '*');
-    };
-    if (prevAttrs === undefined || changes === undefined) // if the attributes are new, include all defaults
-    return combineAttrs(spec, defaultsWithAnim, changes, function(_, childChanges, k, childSpec) {
-        var childDefaults = getChildDefaults(k);
-        if (childDefaults === undefined) {
-            console.error('unexpected error: missing defaults');
-            return undefined;
-        }
-        if (k === '*') return undefined; // don't include "*" as an actual attribute
-        return applyDefaults(childSpec, undefined, childChanges, [
-            childDefaults,
-            animDefaults, 
-        ]);
-    });
-    // always include defaults on endpoints
-    var changesWithAnim = isEndpointSpec(spec) ? __assign(__assign({
-    }, defaultsWithAnim), changes) : changes;
-    return mapAttr(spec, changesWithAnim, function(childChanges, k, childSpec) {
-        return applyDefaults(childSpec, prevAttrs ? getAttrEntry(prevAttrs, k) : undefined, childChanges, [
-            getChildDefaults(k),
-            animDefaults
-        ]);
-    });
-};
-// add visible=true for new elements, visibl=false for elements being removed
-var addVisible = function(spec, prevAttrs, changes) {
-    var withVisible = function(visible) {
-        var visibleAttr = {
-            visible: {
-                value: visible
-            }
-        };
-        return __assign(__assign({
-        }, visibleAttr), changes);
-    };
-    var changesWithVisible = isElementSpec(spec) ? prevAttrs === undefined ? withVisible(true) : changes.remove === true ? withVisible(false) : changes : changes;
-    return mapAttr(spec, changesWithVisible, function(childChanges, k, childSpec) {
-        return addVisible(childSpec, prevAttrs ? getAttrEntry(prevAttrs, k) : undefined, childChanges);
-    });
-};
-// remove all animations
-var disableAnim = function(spec, attrs) {
-    if (spec.type === AttrType1.Record && 'duration' in spec.entries) {
-        var noAnim = {
-            duration: 0
-        };
-        return __assign(__assign({
-        }, attrs), noAnim);
-    }
-    return mapAttr(spec, attrs, function(childChanges, k, childSpec) {
-        return disableAnim(childSpec, childChanges);
-    });
-};
-// merge changes with full attributes
-var mergeChanges = function(spec, prevAttrs, changes) {
-    // remove elements with a 'remove=true' entry
-    if (isElementSpec(spec) && changes.remove === true) return undefined;
-    // ignore temporary changes
-    if (isEndpointSpec(spec) && changes.highlight === true) return prevAttrs;
-    // if the changes are completely new,
-    // assume that they have been initialized with full defaults
-    if (prevAttrs === undefined) return changes;
-    return combineAttrs(spec, prevAttrs, changes, function(prevChild, childChanges, _, childSpec) {
-        return childChanges === undefined ? prevChild : mergeChanges(childSpec, prevChild, childChanges);
-    });
-};
-// merge only expressions
-var mergeExprs = function(spec, prevExprs, changes) {
-    // remove elements with a 'remove=true' entry
-    if (isElementSpec(spec) && changes.remove === true) return undefined;
-    // ignore temporary changes
-    if (isEndpointSpec(spec) && changes.highlight === true) return undefined;
-    if (isPrimitive(spec)) {
-        if (isExpr(spec, changes)) return changes;
-        else if (prevExprs !== undefined && changes === undefined && isExpr(spec, prevExprs)) return prevExprs;
-        else return undefined;
-    }
-    return nonEmpty(combineAttrs(spec, prevExprs, changes, function(prevChildExprs, childChanges, _, childSpec) {
-        return childChanges === undefined ? prevChildExprs : mergeExprs(childSpec, prevChildExprs, childChanges);
-    }));
-};
-// replace the "*" key in dicts with all existing IDs
-var fillStarKeys = function(spec, prevAttrs, changes) {
-    return combineAttrs(spec, prevAttrs, changes, function(prevChild, childChanges, k, childSpec) {
-        // fall back on the "*" key
-        var newChildChanges = spec.type === AttrType1.Dict && childChanges === undefined && '*' in changes ? changes['*'] : childChanges;
-        // don't include "*" as an actual attribute
-        if (spec.type === AttrType1.Dict && k === '*') return undefined;
-        if (newChildChanges === undefined) return undefined;
-        return fillStarKeys(childSpec, prevChild, newChildChanges);
-    });
-};
-// change "target-source(-ID)" to "source-target(-ID)" for undirected edges
-var adjustEdgeIds = function(prevAttrs, changes) {
-    if (!changes.edges || !prevAttrs) return changes;
-    var edgeChanges = mapDictKeys(changes.edges, function(edge, k) {
-        if (k in prevAttrs.edges) return k; // leave the ID as-is if it already exists
-        if (edge.directed === true) return k; // leave the ID as-is if the edge is directed
-        var parsedId = parseEdgeId(k);
-        if (parsedId === undefined) return k; // leave the ID as-is if it's not in standard form
-        // return the new ID if it matches an existing, undirected edge
-        var newId = [
-            parsedId[1],
-            parsedId[0]
-        ].concat(parsedId.length === 3 ? [
-            parsedId[2]
-        ] : []).join('-');
-        if (newId in prevAttrs.edges && prevAttrs.edges[newId].directed === false) return newId;
-        return k;
-    });
-    return __assign(__assign({
-    }, changes), {
-        edges: edgeChanges
-    });
-};
-// remove edges connected to nodes which will be removed
-var removeEdgesWithNodes = function(prevAttrs, changes) {
-    var _a7;
-    var removedEdges = mapDict((_a7 = prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.edges) !== null && _a7 !== void 0 ? _a7 : {
-    }, function(e, k) {
-        var _a, _b, _c, _d, _e, _f;
-        // remove edges together with their source/target, and with the same visible animation
-        if (((_b = (_a = changes.nodes) === null || _a === void 0 ? void 0 : _a[e.source]) === null || _b === void 0 ? void 0 : _b.remove) === true) return {
-            remove: true,
-            visible: __assign({
-            }, (_c = changes.nodes) === null || _c === void 0 ? void 0 : _c[e.source].visible)
-        };
-        if (((_e = (_d = changes.nodes) === null || _d === void 0 ? void 0 : _d[e.target]) === null || _e === void 0 ? void 0 : _e.remove) === true) return {
-            remove: true,
-            visible: __assign({
-            }, (_f = changes.nodes) === null || _f === void 0 ? void 0 : _f[e.target].visible)
-        };
-        return undefined;
-    });
-    return __assign(__assign({
-    }, changes), isObjEmpty(removedEdges) ? {
-    } : {
-        edges: __assign(__assign({
-        }, changes.edges), removedEdges)
-    });
-};
-// check for edges connected to invalid nodes
-var checkInvalidEdges = function(prevAttrs, changes) {
-    var _a8;
-    return Object.entries((_a8 = changes.edges) !== null && _a8 !== void 0 ? _a8 : {
-    }).reduce(function(acc, _a) {
-        var _b, _c, _d, _e;
-        var k = _a[0], e = _a[1];
-        if (e.source !== undefined && !(e.source in ((_b = changes.nodes) !== null && _b !== void 0 ? _b : {
-        })) && !(e.source in ((_c = prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.nodes) !== null && _c !== void 0 ? _c : {
-        }))) return new Error("edge '" + k + "' has invalid source node '" + e.source + "'");
-        if (e.target !== undefined && !(e.target in ((_d = changes.nodes) !== null && _d !== void 0 ? _d : {
-        })) && !(e.target in ((_e = prevAttrs === null || prevAttrs === void 0 ? void 0 : prevAttrs.nodes) !== null && _e !== void 0 ? _e : {
-        }))) return new Error("edge '" + k + "' has invalid target node '" + e.source + "'");
-        return acc;
-    }, undefined);
-};
-var event1 = null;
-var d3 = /*#__PURE__*/ Object.freeze({
-    __proto__: null,
-    select: _d3Selection.select,
-    selectAll: _d3Selection.selectAll,
-    transition: _d3Transition.transition,
-    event: event1,
-    ease: _d3Ease,
-    dispatch: _d3Dispatch.dispatch,
-    timer: _d3Timer.timer,
-    drag: _d3Drag.drag,
-    shape: _d3Shape,
-    zoom: _d3Zoom.zoom,
-    zoomIdentity: _d3Zoom.zoomIdentity
-});
-var didUpdateNodes = function(changes) {
-    return Object.values(changes).some(function(n) {
-        return n.size !== undefined || n.pos !== undefined || n.fixed !== undefined || n.remove === true;
-    });
-};
-var updateNodeLayout = function(layoutState, attrs, changes) {
-    // check for updates
-    if (!didUpdateNodes(changes)) return layoutState;
-    // create a node layout diff
-    var layoutNodesDiff = mapDict(attrs, function(n, k) {
-        var _a;
-        var nodeChanges = (_a = changes[k]) !== null && _a !== void 0 ? _a : {
-        };
-        var nodeDiff = __assign(__assign(__assign({
-        }, nodeChanges.size ? {
-            width: n.size.value[0] * 2,
-            height: n.size.value[1] * 2
-        } : {
-        }), nodeChanges.pos ? {
-            x: n.pos.value[0],
-            y: n.pos.value[1]
-        } : {
-        }), nodeChanges.fixed ? {
-            fixed: n.fixed ? 1 : 0
-        } : {
-        });
-        return nodeDiff;
-    });
-    // merge diff with previous layout to preserve node positions and references
-    var layoutNodes = mapDict(layoutNodesDiff, function(nodeDiff, k) {
-        return !(k in layoutState.nodes) ? nodeDiff : Object.assign(layoutState.nodes[k], nodeDiff);
-    });
-    // cola doesn't work when you call .nodes() with a new array
-    var layoutNodeArray = layoutState.cola.nodes();
-    layoutNodeArray.splice.apply(layoutNodeArray, __spreadArrays([
-        0,
-        layoutNodeArray.length
-    ], Object.values(layoutNodes)));
-    return __assign(__assign({
-    }, layoutState), {
-        nodes: layoutNodes
-    });
-};
-var didUpdateEdges = function(changes) {
-    return Object.values(changes).some(function(e) {
-        return e.source !== undefined || e.target !== undefined || e.length !== undefined || e.remove === true;
-    });
-};
-var updateEdgeLayout = function(layoutState, attrs, changes) {
-    var _a;
-    // check for updates
-    if (!didUpdateEdges((_a = changes.edges) !== null && _a !== void 0 ? _a : {
-    }) && !changes.edgelayout && !(changes.edgelength === undefined)) return layoutState;
-    // re-add all edges
-    var layoutEdges = Object.values(attrs.edges).filter(function(e) {
-        return e.source in layoutState.nodes && e.target in layoutState.nodes && e.source !== e.target;
-    }).map(function(e) {
-        return {
-            source: layoutState.nodes[e.source],
-            target: layoutState.nodes[e.target],
-            length: e.length
-        };
-    });
-    // cola doesn't work when you call .links() with a new array
-    var layoutEdgeArray = layoutState.cola.links();
-    layoutEdgeArray.splice.apply(layoutEdgeArray, __spreadArrays([
-        0,
-        layoutEdgeArray.length
-    ], layoutEdges));
-    return layoutState;
-};
-var initLayout = function(tick) {
-    //.d3adaptor(d3)
-    var cola = _webcola.d3adaptor(d3).nodes([]).links([]).handleDisconnected(false).avoidOverlaps(true).on('tick', tick);
-    return {
-        cola: cola,
-        tick: tick,
-        nodes: {
-        },
-        adjList: {
-        }
-    };
-};
-var resetLayout = function(layoutState) {
-    // clear previous cola
-    layoutState.cola.links([]).nodes([]).stop().on('tick', function() {
-        return null;
-    });
-    return initLayout(layoutState.tick);
-};
-var createAdjList = function(attrs) {
-    var matrix = mapDict(attrs.nodes, function(n) {
-        return [];
-    });
-    Object.values(attrs.edges).forEach(function(edge) {
-        if (!(edge.source in matrix) || !(edge.target in matrix)) return;
-        matrix[edge.source].push(edge.target);
-        matrix[edge.target].push(edge.source);
-    });
-    return matrix;
-};
-var didUpdateLayout = function(changes) {
-    var _a, _b;
-    var didUpdateCanvas = changes.size !== undefined || changes.edgelayout !== undefined || changes.edgelength !== undefined;
-    return didUpdateCanvas || didUpdateNodes((_a = changes.nodes) !== null && _a !== void 0 ? _a : {
-    }) || didUpdateEdges((_b = changes.edges) !== null && _b !== void 0 ? _b : {
-    });
-};
-var updateCanvasLayout = function(layoutState, attrs, changes) {
-    // canvas size
-    if (changes.size && changes.size.value) layoutState.cola.size([
-        changes.size.value[0],
-        changes.size.value[1]
-    ]);
-    // edge lengths
-    if (changes.edgelayout || changes.edgelength !== undefined) {
-        if (attrs.edgelayout === 'individual') layoutState.cola.linkDistance(function(edge) {
-            return edge.length;
-        });
-        else if (attrs.edgelayout === 'jaccard') layoutState.cola.jaccardLinkLengths(attrs.edgelength, 1);
-        else if (attrs.edgelayout === 'symmetric') layoutState.cola.symmetricDiffLinkLengths(attrs.edgelength, 0.1);
-    }
-    // nodes and edges
-    var stateWithNodes = changes.nodes ? updateNodeLayout(layoutState, attrs.nodes, changes.nodes) : layoutState;
-    var newState = updateEdgeLayout(stateWithNodes, attrs, changes);
-    if (didUpdateLayout(changes)) {
-        // start the layout process
-        newState.cola.start();
-        return __assign(__assign({
-        }, newState), {
-            adjList: createAdjList(attrs)
-        });
-    }
-    return newState;
-};
-var isTransition = function(sel) {
-    return sel.duration !== undefined;
-};
-var getColor = function(color) {
-    var parsedColor = dashToUpperCamel(color.trim()).toLowerCase();
-    if (Object.keys(COLORS).includes(parsedColor)) return COLORS[parsedColor];
-    else return color;
-};
-var createRenderId = function(id) {
-    var hash = id.split('').reduce(function(h, c) {
-        var newHash = (h << 5) - h + c.charCodeAt(0);
-        return newHash & newHash;
-    }, 0);
-    return (hash >>> 0).toString(16);
-};
-var selectOrAdd = function(selection, selector, addFn) {
-    var selected = selection.select(selector);
-    if (selected.empty()) return addFn(selection);
-    else return selected;
-};
-var getEaseFn = function(name) {
-    // e.g. convert 'linear' to 'easeLinear'
-    return _d3Ease['ease' + dashToUpperCamel(name)];
-};
-var getCurveFn = function(name) {
-    // e.g. convert 'natural' to 'curveNatural'
-    return _d3Shape['curve' + dashToUpperCamel(name)];
-};
-var isSafari = function() {
-    return navigator && navigator.userAgent !== undefined && /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-};
-var isInBrowser = function() {
-    return true;
-};
-var canAnimate = function() {
-    // only browsers support animations
-    return isInBrowser();
-};
-var transition1 = function(selection, name, callback) {
-    if (!canAnimate()) return selection;
-    else return callback(selection.transition(name));
-};
-var newTransition = function(selection, callback) {
-    if (!canAnimate()) return selection;
-    else return callback(selection.transition());
-};
-var isAnimImmediate = function(animAttr) {
-    return animAttr.duration === undefined || animAttr.duration === 0;
-};
-var transAnimate = function(trans, animAttr) {
-    var _a;
-    if (isAnimImmediate(animAttr)) return trans.duration(0);
-    else return trans.duration(animAttr.duration ? animAttr.duration * 1000 : 0).ease(getEaseFn((_a = animAttr.ease) !== null && _a !== void 0 ? _a : 'poly'));
-};
-var animate = function(selection, animName, anim) {
-    if (isAnimImmediate(anim)) {
-        selection.interrupt(animName); // cancel previous transition
-        return selection;
-    } else return transition1(selection, animName, function(t) {
-        return transAnimate(t, anim);
-    });
-};
-var renderWithHighlight = function(selection, _a, _b) {
-    var anim = _a[0], animName = _a[1];
-    var renderIn = _b[0], renderOut = _b[1];
-    var highlightIn = renderIn(animate(selection, animName, anim));
-    var linger = anim.linger ? anim.linger * 1000 : 0;
-    return renderOut(newTransition(highlightIn, function(t) {
-        return transAnimate(t.delay(linger), anim);
-    }));
-};
-var renderWithAnim = function(selection, _a, _b, renderFn) {
-    var anim = _a[0], animName = _a[1];
-    var attr = _b[0], change = _b[1];
-    if (change === undefined) return selection;
-    if (anim.highlight === true) {
-        var renderIn = function(s) {
-            return renderFn(s, change);
-        };
-        var renderOut = function(s) {
-            return renderFn(s, attr);
-        };
-        return renderWithHighlight(selection, [
-            anim,
-            animName
-        ], [
-            renderIn,
-            renderOut
-        ]);
-    } else return renderFn(animate(selection, animName, anim), change);
-};
-var renderSvgAttr = function(selection, name, _a, valueFn) {
-    var attr = _a[0], change = _a[1];
-    if ((change === null || change === void 0 ? void 0 : change.value) === undefined) return selection;
-    var attrName = Array.isArray(name) ? name[0] : name;
-    var animName = Array.isArray(name) ? name[1] : name;
-    return renderWithAnim(selection, [
-        change,
-        animName
-    ], [
-        attr,
-        change
-    ], function(s, a) {
-        var v = valueFn ? valueFn(a.value) : a.value;
-        return v === '' ? s.attr(attrName, null) : s.attr(attrName, String(v));
-    });
-};
-var renderSvgDict = function(selection, attrs, changes) {
-    var select = function(s, k) {
-        return k.includes('@') ? [
-            s.selectAll(k.split('@')[1]),
-            k.split('@')[0]
-        ] : [
-            s,
-            k
-        ];
-    };
-    Object.entries(changes).forEach(function(_a) {
-        var baseKey = _a[0], v = _a[1];
-        var _b = select(selection, baseKey), k = _b[1];
-        renderSvgAttr(selection, k, [
-            attrs[k],
-            v
-        ]);
-    });
-    return selection;
-};
-var animateAdd = function(elementSel, visible) {
-    elementSel.attr('opacity', '0');
-    var transition = animate(elementSel, 'visible-fade', visible).attr('opacity', '1');
-    return newTransition(transition, function(t) {
-        return t;
-    }).attr('opacity', null);
-};
-var animateRemove = function(elementSel, visible) {
-    elementSel.attr('opacity', '1');
-    return animate(elementSel, 'visible-fade', visible).attr('opacity', '0');
-};
-var renderVisible = function(elementSel, visibleChange) {
-    if (visibleChange.value === true) return animateAdd(elementSel, visibleChange);
-    else return animateRemove(elementSel, visibleChange);
-};
-var renderVisRemove = function(elementSel, visibleChange, removeChange) {
-    if (removeChange === true || (visibleChange === null || visibleChange === void 0 ? void 0 : visibleChange.value) === false) {
-        renderVisible(elementSel, __assign(__assign({
-        }, visibleChange), {
-            value: false
-        }));
-        if (visibleChange === undefined || isAnimImmediate(visibleChange)) elementSel.remove();
-        else transition1(elementSel, 'remove', function(t) {
-            var _a;
-            return t.delay(((_a = visibleChange.duration) !== null && _a !== void 0 ? _a : 0) * 1000);
-        }).remove();
-    } else if ((visibleChange === null || visibleChange === void 0 ? void 0 : visibleChange.value) === true) {
-        elementSel.interrupt('remove'); // cancel remove
-        renderVisible(elementSel, visibleChange);
-    }
-};
-var getAllElementChanges = function(spec, attrs, changes) {
-    var _a;
-    if (attrs !== undefined && ((_a = changes.visible) === null || _a === void 0 ? void 0 : _a.value) === true) // if the element is new, render everything but only animate visibility
-    return __assign(__assign({
-    }, disableAnim(spec, attrs)), {
-        visible: changes.visible
-    });
-    return changes;
-};
-var getExactAlign = function(angle, rotate, align) {
-    if (align === 'radial') return alignFromAngle(angleToRad(angle), rotate);
-    else return align;
-};
-var renderPos = function(labelSel, attrs, changes) {
-    var _a9, _b1, _c1;
-    if (!(changes.pos || changes.radius || changes.angle || changes.rotate !== undefined || changes.align !== undefined)) return;
-    var anim = (_c1 = (_b1 = (_a9 = changes.pos) !== null && _a9 !== void 0 ? _a9 : changes.radius) !== null && _b1 !== void 0 ? _b1 : changes.angle) !== null && _c1 !== void 0 ? _c1 : {
-    };
-    renderWithAnim(labelSel, [
-        anim,
-        'pos'
-    ], [
-        attrs,
-        changes
-    ], function(s, a) {
-        var _a, _b, _c, _d, _e, _f;
-        var angle = (_b = (_a = a.angle) === null || _a === void 0 ? void 0 : _a.value) !== null && _b !== void 0 ? _b : attrs.angle.value;
-        var radius = (_d = (_c = a.radius) === null || _c === void 0 ? void 0 : _c.value) !== null && _d !== void 0 ? _d : attrs.radius.value;
-        var pos = (_f = (_e = a.pos) === null || _e === void 0 ? void 0 : _e.value) !== null && _f !== void 0 ? _f : attrs.pos.value;
-        var angleRad = angleToRad(angle);
-        var align = getExactAlign(angle, attrs.rotate, attrs.align);
-        var polarX = radius * Math.cos(angleRad);
-        var polarY = radius * Math.sin(angleRad);
-        var rotation = restrictAngle(-angleRad + ALIGN_ANGLES[align] + Math.PI);
-        var rotateStr = attrs.rotate ? "rotate(" + angleToDeg(rotation) + ")" : '';
-        return s.attr('transform', "translate(" + (pos[0] + polarX) + "," + -(pos[1] + polarY) + ")" + rotateStr);
-    });
-};
-var LINE_HEIGHT = 1.2;
-var isAlignTop = function(a) {
-    return a === 'top-left' || a === 'top-middle' || a === 'top-right';
-};
-var isAlignBottom = function(a) {
-    return a === 'bottom-left' || a === 'bottom-middle' || a === 'bottom-right';
-};
-var renderAlign = function(textSel, attrs, changes) {
-    var _a10, _b2;
-    var didChangeAlign = changes.align !== undefined || attrs.align === 'radial' && changes.radius || changes.angle;
-    var anim = attrs.align === 'radial' ? (_b2 = (_a10 = changes.radius) !== null && _a10 !== void 0 ? _a10 : changes.angle) !== null && _b2 !== void 0 ? _b2 : {
-    } : {
-    };
-    if (didChangeAlign) renderWithAnim(textSel, [
-        anim,
-        'align'
-    ], [
-        attrs,
-        changes
-    ], function(s, a) {
-        var _a, _b;
-        var align = getExactAlign((_b = (_a = a.angle) === null || _a === void 0 ? void 0 : _a.value) !== null && _b !== void 0 ? _b : attrs.angle.value, attrs.rotate, attrs.align);
-        return s.attr('y', isAlignTop(align) ? '0.75em' : isAlignBottom(align) ? '0em' : '0.25em').attr('text-anchor', align === 'top-left' || align === 'middle-left' || align === 'bottom-left' ? 'start' : align === 'top-right' || align === 'middle-right' || align === 'bottom-right' ? 'end' : 'middle');
-    });
-    if (didChangeAlign || changes.text !== undefined) renderWithAnim(textSel.select('tspan'), [
-        anim,
-        'align-text'
-    ], [
-        attrs,
-        changes
-    ], function(s, a) {
-        var _a, _b;
-        var align = getExactAlign((_b = (_a = a.angle) === null || _a === void 0 ? void 0 : _a.value) !== null && _b !== void 0 ? _b : attrs.angle.value, attrs.rotate, attrs.align);
-        var numTextLines = attrs.text.split('\n').length;
-        var textOffset = isAlignTop(align) ? 0 : isAlignBottom(align) ? (numTextLines - 1) * LINE_HEIGHT : (numTextLines - 1) / 2 * LINE_HEIGHT;
-        return s.attr('dy', "-" + textOffset + "em");
-    });
-};
-var renderText = function(textSel, text) {
-    var splitText = text.split('\n');
-    textSel.selectAll('tspan').remove();
-    splitText.forEach(function(line, i) {
-        textSel.append('tspan').attr('x', 0).attr('dy', i === 0 ? '0em' : LINE_HEIGHT + "em").text(line);
-    });
-};
-var renderLabelAttrs = function(labelSel, attrs, changes) {
-    var textSel = selectOrAdd(labelSel, 'text', function(s) {
-        return s.append('text').attr('pointer-events', 'none');
-    });
-    if (changes.text !== undefined) renderText(textSel, changes.text);
-    renderPos(labelSel, attrs, changes);
-    renderAlign(textSel, attrs, changes);
-    renderSvgAttr(textSel, 'fill', [
-        attrs.color,
-        changes.color
-    ], function(v) {
-        return getColor(v);
-    });
-    if (changes.font) textSel.attr('font-family', changes.font);
-    renderSvgAttr(textSel, 'font-size', [
-        attrs.size,
-        changes.size
-    ]);
-    if (changes.svgattrs) renderSvgDict(textSel, attrs.svgattrs, changes.svgattrs);
-};
-var renderLabel = function(labelSel, attrs, initChanges) {
-    var changes = getAllElementChanges(labelSpec1, attrs, initChanges);
-    renderVisRemove(labelSel, changes.visible, changes.remove);
-    if ((attrs === null || attrs === void 0 ? void 0 : attrs.visible.value) === true) renderLabelAttrs(labelSel, attrs, changes);
-};
-var selectCanvasContainer = function(canvasEl) {
-    return typeof canvasEl === 'string' ? _d3Selection.select("#" + canvasEl) : _d3Selection.select(canvasEl);
-};
-var selectCanvas = function(canvasEl) {
-    var container = selectCanvasContainer(canvasEl);
-    return selectOrAdd(container, '.algorithmx', function(s) {
-        return s.append('svg').classed('algorithmx', true);
-    });
-};
-var selectInnerCanvas = function(canvasSel) {
-    return selectOrAdd(canvasSel, 'g', function(s) {
-        return s.append('g');
-    });
-};
-var selectNodeGroup = function(canvasSel) {
-    return selectOrAdd(selectInnerCanvas(canvasSel), '.nodes', function(s) {
-        return s.append('g').classed('nodes', true);
-    });
-};
-var selectEdgeGroup = function(canvasSel) {
-    return selectOrAdd(selectInnerCanvas(canvasSel), '.edges', function(s) {
-        return s.append('g').classed('edges', true);
-    });
-};
-var selectNode = function(canvasSel, id) {
-    var renderId = createRenderId(id);
-    var nodeGroup = selectNodeGroup(canvasSel);
-    return selectOrAdd(nodeGroup, "#node-" + renderId, function(s) {
-        return s.append('g').attr('id', "node-" + renderId);
-    });
-};
-var selectEdge = function(canvasSel, id) {
-    var renderId = createRenderId(id);
-    var edgeGroup = selectEdgeGroup(canvasSel);
-    return selectOrAdd(edgeGroup, "#edge-" + renderId, function(s) {
-        return s.append('g').attr('id', "edge-" + renderId);
-    });
-};
-var updateDrag = function(_a, changes, context) {
-    var canvasSel = _a[0], nodeSel = _a[1], nodeId = _a[2];
-    if (changes.draggable === true) {
-        var nodeLayout_1 = context.layout.nodes[nodeId];
-        nodeSel.call(_d3Drag.drag().subject(function() {
-            var origin = _webcola.Layout.dragOrigin(nodeLayout_1);
-            return __assign(__assign({
-            }, origin), {
-                y: -origin.y
-            });
-        }).on('start', function() {
-            context.state.isDragging = true;
-            canvasSel.style('cursor', 'pointer');
-            _webcola.Layout.dragStart(nodeLayout_1);
-        }).on('drag', function(event) {
-            _webcola.Layout.drag(nodeLayout_1, {
-                x: event.x,
-                y: -event.y
-            });
-            context.layout.cola.resume();
-        }).on('end', function() {
-            context.state.isDragging = false;
-            if (!context.state.isMouseover) canvasSel.style('cursor', null);
-            _webcola.Layout.dragEnd(nodeLayout_1);
-        }));
-    }
-    if (changes.draggable === false) nodeSel.on('.drag', null);
-};
-var registerNodeListeners = function(_a11, changes, context) {
-    var canvasSel = _a11[0], nodeSel = _a11[1], nodeId = _a11[2];
-    if (changes.listenclick !== undefined) nodeSel.on('click', function(event) {
-        var _a;
-        if (event.defaultPrevented) return;
-        if (changes.listenclick === true) context.receive({
-            nodes: (_a = {
-            }, _a[nodeId] = {
-                click: true
-            }, _a)
-        });
-    });
-    if (changes.listenhover !== undefined) {
-        nodeSel.on('mouseover', function() {
-            var _a;
-            context.state.isMouseover = true;
-            if (!context.state.isDragging) {
-                canvasSel.style('cursor', 'pointer');
-                if (changes.listenhover) context.receive({
-                    nodes: (_a = {
-                    }, _a[nodeId] = {
-                        hoverin: true
-                    }, _a)
-                });
-            }
-        });
-        nodeSel.on('mouseout', function() {
-            var _a;
-            context.state.isMouseover = false;
-            if (!context.state.isDragging) {
-                canvasSel.style('cursor', null);
-                if (changes.listenhover) context.receive({
-                    nodes: (_a = {
-                    }, _a[nodeId] = {
-                        hoverout: true
-                    }, _a)
-                });
-            }
-        });
-    }
-    updateDrag([
-        canvasSel,
-        nodeSel,
-        nodeId
-    ], changes, context);
-};
-var selectLabel = function(nodeSel, id) {
-    var labelGroup = selectOrAdd(nodeSel, '.node-labels', function(s) {
-        return s.append('g').classed('node-labels', true);
-    });
-    var renderId = createRenderId(id);
-    return selectOrAdd(labelGroup, "#label-" + renderId, function(s) {
-        return s.append('g').attr('id', "label-" + renderId);
-    });
-};
-var renderShape = function(selection, shape) {
-    selection.select('.shape').remove();
-    var shapeSel = selection.insert(shape, ':first-child').classed('shape', true);
-    if (shape === 'rect') shapeSel.attr('rx', 4).attr('ry', 4);
-    return shapeSel;
-};
-var renderSize = function(nodeSel, attrs, changes) {
-    if (attrs.shape === 'circle') renderSvgAttr(nodeSel, 'r', [
-        attrs.size,
-        changes.size
-    ], function(v) {
-        return v[0];
-    });
-    else if (attrs.shape === 'rect') {
-        renderSvgAttr(nodeSel, 'width', [
-            attrs.size,
-            changes.size
-        ], function(v) {
-            return v[0] * 2;
-        });
-        renderSvgAttr(nodeSel, 'height', [
-            attrs.size,
-            changes.size
-        ], function(v) {
-            return v[1] * 2;
-        });
-        renderSvgAttr(nodeSel, [
-            'x',
-            'width-pos'
-        ], [
-            attrs.size,
-            changes.size
-        ], function(v) {
-            return -v[0];
-        });
-        renderSvgAttr(nodeSel, [
-            'y',
-            'height-pos'
-        ], [
-            attrs.size,
-            changes.size
-        ], function(v) {
-            return -v[1];
-        });
-    } else if (attrs.shape === 'ellipse') {
-        renderSvgAttr(nodeSel, 'rx', [
-            attrs.size,
-            changes.size
-        ], function(v) {
-            return v[0];
-        });
-        renderSvgAttr(nodeSel, 'ry', [
-            attrs.size,
-            changes.size
-        ], function(v) {
-            return v[1];
-        });
-    }
-};
-var renderNodeAttrs = function(nodeSel, attrs, initChanges) {
-    // if the node shape changes, re-render everything except visible/labels/pos
-    var changes = initChanges.shape !== undefined ? combineAttrs(nodeSpec, attrs, initChanges, function(a, c, k) {
-        return k !== 'visible' && k !== 'labels' && k !== 'pos' ? c !== null && c !== void 0 ? c : a : c;
-    }) : initChanges;
-    if (changes.shape) renderShape(nodeSel, changes.shape);
-    var shapeSel = nodeSel.select('.shape');
-    renderSvgAttr(shapeSel, 'fill', [
-        attrs.color,
-        changes.color
-    ], function(v) {
-        return getColor(v);
-    });
-    renderSize(shapeSel, attrs, changes);
-    if (changes.svgattrs) renderSvgDict(shapeSel, attrs.svgattrs, changes.svgattrs);
-};
-var renderWithTick = function(nodeSel, attrs, changes, tick) {
-    var _a;
-    // changing node size requires the tick function to be called continuously,
-    // so that connected edges are animated as well
-    if (((_a = changes.size) === null || _a === void 0 ? void 0 : _a.value) !== undefined) renderWithAnim(nodeSel, [
-        changes.size,
-        'live-size'
-    ], [
-        attrs.size,
-        changes.size
-    ], function(sel, v) {
-        var selWithSize = sel.attr('_width', v.value[0]).attr('_height', v.value[1]);
-        if (isTransition(selWithSize)) return selWithSize.tween('live-size-tick', function() {
-            return function() {
-                tick();
-            };
-        });
-        return sel;
-    });
-};
-var renderNode = function(_a12, attrs, initChanges, context) {
-    var _b;
-    var canvasSel = _a12[0], nodeId = _a12[1];
-    var nodeSel = selectNode(canvasSel, nodeId);
-    var changes = getAllElementChanges(nodeSpec, attrs, initChanges);
-    renderVisRemove(nodeSel, changes.visible, changes.remove);
-    if ((attrs === null || attrs === void 0 ? void 0 : attrs.visible.value) === true) renderNodeAttrs(nodeSel, attrs, changes);
-    else return;
-    Object.entries((_b = changes.labels) !== null && _b !== void 0 ? _b : {
-    }).forEach(function(_a) {
-        var k = _a[0], labelChanges = _a[1];
-        renderLabel(selectLabel(nodeSel, k), attrs.labels[k], labelChanges);
-    });
-    renderWithTick(nodeSel, attrs, changes, context.tick);
-    registerNodeListeners([
-        canvasSel,
-        nodeSel,
-        nodeId
-    ], changes, context);
-};
-var updatePanZoomBehaviour = function(canvasSel, attrs, changes, zoomBehaviour) {
-    var _a, _b, _c, _d, _e;
-    if (changes.size || changes.panlimit || changes.zoomlimit || changes.zoomtoggle || zoomBehaviour === undefined) {
-        var size = (_b = (_a = changes.size) === null || _a === void 0 ? void 0 : _a.value) !== null && _b !== void 0 ? _b : attrs.size.value;
-        var panlimit = (_c = changes.panlimit) !== null && _c !== void 0 ? _c : attrs.panlimit;
-        var zoomlimit = (_d = changes.zoomlimit) !== null && _d !== void 0 ? _d : attrs.zoomlimit;
-        var zoomtoggle_1 = (_e = changes.zoomtoggle) !== null && _e !== void 0 ? _e : attrs.zoomtoggle;
-        var newZoomBehaviour = _d3Zoom.zoom().extent([
-            [
-                0,
-                0
-            ],
-            [
-                size[0],
-                size[1]
-            ], 
-        ]).translateExtent([
-            [
-                -panlimit[0],
-                -panlimit[1]
-            ],
-            [
-                panlimit[0],
-                panlimit[1]
-            ], 
-        ]).scaleExtent([
-            zoomlimit[0],
-            zoomlimit[1]
-        ]).on('zoom', function(event) {
-            return selectInnerCanvas(canvasSel).attr('transform', event.transform);
-        }).filter(function(event) {
-            return zoomtoggle_1 && event.type === 'wheel' ? event.ctrlKey || event.metaKey : true;
-        });
-        canvasSel.call(newZoomBehaviour);
-        return newZoomBehaviour;
-    } else return zoomBehaviour;
-};
-var renderPanZoom = function(canvasSel, attrs, changes, zoomBehaviour) {
-    var _a13, _b3;
-    var panZoomAnim = (_b3 = (_a13 = changes.pan) !== null && _a13 !== void 0 ? _a13 : changes.zoom) !== null && _b3 !== void 0 ? _b3 : changes.size;
-    if (panZoomAnim !== undefined) renderWithAnim(canvasSel, [
-        panZoomAnim,
-        'pan-zoom'
-    ], [
-        attrs,
-        changes
-    ], function(s, a) {
-        var _a, _b, _c, _d, _e, _f;
-        var size = (_b = (_a = a.size) === null || _a === void 0 ? void 0 : _a.value) !== null && _b !== void 0 ? _b : attrs.size.value;
-        var pan = (_d = (_c = a.pan) === null || _c === void 0 ? void 0 : _c.value) !== null && _d !== void 0 ? _d : attrs.pan.value;
-        var zoom = (_f = (_e = a.zoom) === null || _e === void 0 ? void 0 : _e.value) !== null && _f !== void 0 ? _f : attrs.zoom.value;
-        var panCenter = [
-            size[0] / 2 - pan[0] * zoom,
-            size[1] / 2 + pan[1] * zoom, 
-        ];
-        var transform = _d3Zoom.zoomIdentity.translate(panCenter[0], panCenter[1]).scale(zoom);
-        return s.call(zoomBehaviour.transform, transform);
-    });
-};
-var MARKER_SIZE = 10;
-var ARROW_MARKER = {
-    path: 'M 0,0 m -5,-5 L 5,0 L -5,5 Z',
-    viewBox: '-5 -5 10 10',
-    size: MARKER_SIZE
-};
-var getEdgeMarkerId = function(edgeSel, markerType) {
-    var markerSel = edgeSel.select('defs').select(".marker-" + markerType);
-    if (!markerSel.empty()) return markerSel.attr('id');
-    else {
-        var randomId = Math.random().toString(36).substr(2, 9);
-        return "marker-" + randomId;
-    }
-};
-var selectEdgeMarker = function(edgeSel, markerId) {
-    var defsSel = selectOrAdd(edgeSel, 'defs', function(s) {
-        return s.insert('svg:defs', ':first-child');
-    });
-    var renderId = getEdgeMarkerId(edgeSel, markerId);
-    return selectOrAdd(defsSel, "#" + renderId, function(s) {
-        var marker = s.append('svg:marker').attr('id', renderId).classed("marker-" + markerId, true);
-        marker.append('path');
-        return marker;
-    });
-};
-var renderEdgeMarker = function(edgeSel, attrs, changes) {
-    if (changes.directed === true) {
-        var marketTarget = selectEdgeMarker(edgeSel, 'target');
-        var markerShape = ARROW_MARKER;
-        marketTarget.attr('viewBox', markerShape.viewBox).attr('markerWidth', markerShape.size).attr('markerHeight', markerShape.size).attr('markerUnits', 'userSpaceOnUse').attr('orient', 'auto').attr('refX', 0).attr('refY', 0);
-        marketTarget.select('path').attr('d', markerShape.path).attr('fill', getColor(attrs.color.value));
-    } else if (changes.directed === false) edgeSel.select('defs').remove();
-};
-var getPathLength = function(pathSel) {
-    return pathSel.node().getTotalLength();
-};
-var tweenOverlay = function(overlaySel, pathLengthFn, isReverse, isEntering) {
-    if (isTransition(overlaySel)) return overlaySel.attrTween('stroke-dashoffset', function() {
-        var pathLength = pathLengthFn();
-        if (isEntering) return function(t) {
-            return (pathLength - (isReverse ? -t : t) * pathLength).toString();
-        };
-        else return function(t) {
-            return (pathLength * 2 - (isReverse ? -t : t) * pathLength).toString();
-        };
-    });
-    else return overlaySel.attr('stroke-dashoffset', isEntering ? 0 : pathLengthFn());
-};
-var renderTraverse = function(_a, attrs, changes) {
-    var _b, _c;
-    var edgeSel = _a[0], pathSel = _a[1];
-    if (((_b = changes.color) === null || _b === void 0 ? void 0 : _b.value) === undefined) return;
-    edgeSel.select('.edge-path-overlay').remove();
-    var overlaySel = edgeSel.append('path').classed('edge-path-overlay', true).attr('fill', 'none').attr('stroke-linecap', 'butt');
-    if (attrs.directed) overlaySel.attr('marker-end', "url(#" + getEdgeMarkerId(edgeSel, 'target'));
-    var isReverse = !changes.color.animsource ? false : changes.color.animsource !== attrs.source;
-    var pathLengthInit = getPathLength(pathSel);
-    overlaySel.attr('stroke-dasharray', pathLengthInit).attr('stroke-dashoffset', pathLengthInit).attr('stroke', getColor(changes.color.value)).attr('stroke-width', attrs.thickness.value + 2);
-    var renderIn = function(s) {
-        var trans = s.attr('stroke-width', attrs.thickness.value);
-        return tweenOverlay(trans, function() {
-            return getPathLength(pathSel);
-        }, isReverse, true);
-    };
-    if (changes.color.highlight === true) {
-        var renderOut = function(sel) {
-            sel.on('start', function() {
-                var pathLength = getPathLength(pathSel);
-                overlaySel.attr('stroke-dasharray', pathLength);
-            });
-            var trans = tweenOverlay(sel, function() {
-                return getPathLength(pathSel);
-            }, isReverse, false);
-            return newTransition(trans, function(t) {
-                return t.duration(0);
-            }).remove();
-        };
-        renderWithHighlight(overlaySel, [
-            changes.color,
-            'color-traverse'
-        ], [
-            renderIn,
-            renderOut
-        ]);
-    } else {
-        renderIn(animate(overlaySel, 'color-traverse', changes.color));
-        var animDuration_1 = ((_c = changes.color.duration) !== null && _c !== void 0 ? _c : 0) * 1000;
-        var endDuration_1 = Math.min(330, animDuration_1 / 3);
-        newTransition(pathSel, function(t) {
-            return t.delay(animDuration_1 - endDuration_1).duration(endDuration_1);
-        }).attr('stroke', getColor(changes.color.value));
-        newTransition(overlaySel.attr('opacity', 1), function(t) {
-            return t.delay(animDuration_1 - endDuration_1).duration(endDuration_1);
-        }).attr('opacity', 0);
-        newTransition(overlaySel, function(t) {
-            return t.delay(animDuration_1).duration(0);
-        }).remove();
-    }
-};
-var renderEdgeColor = function(_a, attrs, changes) {
-    var _b;
-    var edgeSel = _a[0], pathSel = _a[1];
-    if (((_b = changes.color) === null || _b === void 0 ? void 0 : _b.value) === undefined) return;
-    if (changes.color.animtype === 'traverse') renderTraverse([
-        edgeSel,
-        pathSel
-    ], attrs, changes);
-    else renderSvgAttr(pathSel, 'stroke', [
-        attrs.color,
-        changes.color
-    ], function(v) {
-        return getColor(v);
-    });
-    if (attrs.directed) renderSvgAttr(selectEdgeMarker(edgeSel, 'target').select('path'), 'fill', [
-        attrs.color,
-        changes.color
-    ], function(v) {
-        return getColor(v);
-    });
-};
-var selectEdgeLabelGroup = function(edgeSel) {
-    return selectOrAdd(edgeSel, '.edge-labels', function(s) {
-        return s.append('g').classed('edge-labels', true);
-    });
-};
-var selectLabel$1 = function(edgeSel, id) {
-    var labelGroup = selectEdgeLabelGroup(edgeSel);
-    var renderId = createRenderId(id);
-    return selectOrAdd(labelGroup, "#label-" + renderId, function(s) {
-        return s.append('g').attr('id', "label-" + renderId);
-    });
-};
-var renderEdgeAttrs = function(edgeSel, attrs, changes) {
-    var pathSel = selectOrAdd(edgeSel, '.edge-path', function(s) {
-        return s.append('path').classed('edge-path', true).attr('fill', 'none').attr('stroke-linecap', 'round');
-    });
-    renderEdgeMarker(edgeSel, attrs, changes);
-    if (changes.directed === true) pathSel.attr('marker-end', "url(#" + getEdgeMarkerId(edgeSel, 'target') + ")");
-    if (changes.directed === false) pathSel.attr('marker-end', null);
-    renderSvgAttr(pathSel, 'stroke-width', [
-        attrs.thickness,
-        changes.thickness
-    ]);
-    renderEdgeColor([
-        edgeSel,
-        pathSel
-    ], attrs, changes);
-    if (changes.svgattrs) renderSvgDict(pathSel, attrs.svgattrs, changes.svgattrs);
-};
-var renderEdge = function(edgeSel, attrs, initChanges) {
-    var _a14;
-    var changes = getAllElementChanges(edgeSpec, attrs, initChanges);
-    renderVisRemove(edgeSel, changes.visible, changes.remove);
-    if ((attrs === null || attrs === void 0 ? void 0 : attrs.visible.value) === true) renderEdgeAttrs(edgeSel, attrs, changes);
-    else return;
-    Object.entries((_a14 = changes.labels) !== null && _a14 !== void 0 ? _a14 : {
-    }).forEach(function(_a) {
-        var k = _a[0], labelChanges = _a[1];
-        renderLabel(selectLabel$1(edgeSel, k), attrs.labels[k], labelChanges);
-    });
-};
-var getLiveNodeAttrs = function(nodeSel, nodeLayout, attrs) {
-    var livePos = [
-        nodeLayout.x,
-        nodeLayout.y
-    ];
-    if (attrs.visible) {
-        var liveWidth = nodeSel.attr('_width');
-        var liveHeight = nodeSel.attr('_height');
-        return {
-            size: liveWidth !== null && liveHeight !== null ? [
-                parseFloat(liveWidth),
-                parseFloat(liveHeight)
-            ] : [
-                nodeLayout.width / 2,
-                nodeLayout.height / 2
-            ],
-            pos: livePos
-        };
-    } else return {
-        size: [
-            nodeLayout.width / 2,
-            nodeLayout.height / 2
-        ],
-        pos: livePos
-    };
-};
-var getPointAtNodeBoundary = function(_a, angle, offset) {
-    var attrs = _a[0], liveAttrs = _a[1];
-    if (offset === void 0) offset = 0;
-    var fullOffset = radiusAtAngle(angle, liveAttrs.size[0], liveAttrs.size[1], attrs.shape) + offset;
-    return [
-        liveAttrs.pos[0] + fullOffset * Math.cos(angle),
-        liveAttrs.pos[1] + fullOffset * Math.sin(angle), 
-    ];
-};
-var renderLiveNodes = function(canvasSel, canvasAttrs, liveNodes) {
-    Object.entries(liveNodes).forEach(function(_a) {
-        var _b;
-        var k = _a[0], liveNode = _a[1];
-        if (!canvasAttrs.nodes[k].visible) return;
-        var nodeSel = selectNode(canvasSel, k);
-        var curTransform = (_b = nodeSel.attr('transform')) !== null && _b !== void 0 ? _b : '';
-        var splitIndex = curTransform.indexOf(')');
-        var translate = "translate(" + liveNode.pos[0] + "," + -liveNode.pos[1] + ")";
-        if (splitIndex >= 0) nodeSel.attr('transform', translate + curTransform.substring(splitIndex + 1));
-        else nodeSel.attr('transform', translate);
-    });
-};
-var getLoopAngle = function(canvasSel, layout, liveNodes, nodeId) {
-    var adjNodes = layout.adjList[nodeId].filter(function(n) {
-        return n !== nodeId;
-    });
-    if (adjNodes.length === 0) return Math.PI;
-    var sourcePos = liveNodes[nodeId].pos;
-    var anglesAbs = adjNodes.map(function(n) {
-        var pos = liveNodes[n].pos;
-        return restrictAngle(Math.atan2(pos[1] - sourcePos[1], pos[0] - sourcePos[0]));
-    });
-    var sortedAngles = anglesAbs.sort();
-    var angleDiffs = sortedAngles.map(function(a, i) {
-        if (i === sortedAngles.length - 1) return Math.PI * 2 - a + sortedAngles[0];
-        else return sortedAngles[i + 1] - a;
-    });
-    var maxDifIndex = angleDiffs.reduce(function(maxIndex, a, i) {
-        return a > angleDiffs[maxIndex] ? i : maxIndex;
-    }, 0);
-    return restrictAngle(anglesAbs[maxDifIndex] + angleDiffs[maxDifIndex] / 2 - Math.PI / 2);
-};
-var getLiveEdgeAttrs = function(canvasSel, layout, liveNodes, attrs) {
-    var liveSource = liveNodes[attrs.source];
-    var liveTarget = liveNodes[attrs.target];
-    var angle = attrs.source === attrs.target ? getLoopAngle(canvasSel, layout, liveNodes, attrs.source) : restrictAngle(Math.atan2(liveTarget.pos[1] - liveSource.pos[1], liveTarget.pos[0] - liveSource.pos[0]));
-    return {
-        angle: angle
-    };
-};
-var shouldFlip = function(attrs, liveAttrs) {
-    return attrs.flip && attrs.source !== attrs.target && liveAttrs.angle > Math.PI / 2 && liveAttrs.angle <= Math.PI * 3 / 2;
-};
-var getEdgeOrigin = function(_a, _b) {
-    var source = _a.source, target = _a.target, liveSource = _a.liveSource, liveTarget = _a.liveTarget;
-    var attrs = _b[0], liveAttrs = _b[1];
-    if (attrs.source === attrs.target) return getPointAtNodeBoundary([
-        source,
-        liveSource
-    ], liveAttrs.angle + Math.PI / 2);
-    else {
-        var sourcePoint = getPointAtNodeBoundary([
-            source,
-            liveSource
-        ], liveAttrs.angle);
-        var targetPoint = getPointAtNodeBoundary([
-            target,
-            liveTarget
-        ], liveAttrs.angle + Math.PI);
-        return [
-            (sourcePoint[0] + targetPoint[0]) / 2,
-            (sourcePoint[1] + targetPoint[1]) / 2
-        ];
-    }
-};
-var renderEdgePath = function(edgeSel, _a15, _b, origin) {
-    var source = _a15.source, target = _a15.target, liveSource = _a15.liveSource, liveTarget = _a15.liveTarget;
-    var attrs = _b[0], liveAttrs = _b[1];
-    var edgePath = shouldFlip(attrs, liveAttrs) ? attrs.path.map(function(_a) {
-        var x = _a[0], y = _a[1];
-        return [
-            x,
-            -y
-        ];
-    }) : attrs.path;
-    var pointBeforeSource = edgePath.length === 0 ? origin : translate1(rotate1(edgePath[0], liveAttrs.angle), origin);
-    var pointBeforeTarget = edgePath.length === 0 ? origin : translate1(rotate1(edgePath[edgePath.length - 1], liveAttrs.angle), origin);
-    var angleAtSource = Math.atan2(pointBeforeSource[1] - liveSource.pos[1], pointBeforeSource[0] - liveSource.pos[0]);
-    var angleAtTarget = Math.atan2(pointBeforeTarget[1] - liveTarget.pos[1], pointBeforeTarget[0] - liveTarget.pos[0]);
-    var targetOffset = attrs.directed ? MARKER_SIZE / 2 : 0;
-    var pointAtSource = getPointAtNodeBoundary([
-        source,
-        liveSource
-    ], angleAtSource, 0);
-    var pointAtTarget = getPointAtNodeBoundary([
-        target,
-        liveTarget
-    ], angleAtTarget, targetOffset);
-    var pointAtSourceRel = rotate1(translate1(pointAtSource, [
-        -origin[0],
-        -origin[1]
-    ]), -liveAttrs.angle);
-    var pointAtTargetRel = rotate1(translate1(pointAtTarget, [
-        -origin[0],
-        -origin[1]
-    ]), -liveAttrs.angle);
-    var lineFunction = _d3Shape.line().x(function(d) {
-        return d[0];
-    }).y(function(d) {
-        return -d[1];
-    }).curve(getCurveFn(attrs.curve));
-    var line$1 = lineFunction(__spreadArrays([
-        pointAtSourceRel
-    ], edgePath, [
-        pointAtTargetRel
-    ]));
-    edgeSel.select('.edge-path').attr('d', line$1);
-    var overlay = edgeSel.select('.edge-path-overlay');
-    if (!overlay.empty()) overlay.attr('d', line$1);
-};
-var renderLiveEdges = function(canvasSel, canvasAttrs, liveNodes, layout) {
-    Object.entries(canvasAttrs.edges).forEach(function(_a) {
-        var k = _a[0], attrs = _a[1];
-        if (!attrs.visible) return;
-        var edgeSel = selectEdge(canvasSel, k);
-        var source = canvasAttrs.nodes[attrs.source];
-        var target = canvasAttrs.nodes[attrs.target];
-        var liveSource = liveNodes[attrs.source];
-        var liveTarget = liveNodes[attrs.target];
-        var liveAttrs = getLiveEdgeAttrs(canvasSel, layout, liveNodes, attrs);
-        var origin = getEdgeOrigin({
-            source: source,
-            target: target,
-            liveSource: liveSource,
-            liveTarget: liveTarget
-        }, [
-            attrs,
-            liveAttrs, 
-        ]);
-        edgeSel.attr('transform', "translate(" + origin[0] + "," + -origin[1] + ")rotate(" + -angleToDeg(liveAttrs.angle) + ")");
-        var labelGroup = selectEdgeLabelGroup(edgeSel);
-        if (shouldFlip(attrs, liveAttrs)) labelGroup.attr('transform', 'scale(-1,-1)');
-        else labelGroup.attr('transform', null);
-        renderEdgePath(edgeSel, {
-            source: source,
-            target: target,
-            liveSource: liveSource,
-            liveTarget: liveTarget
-        }, [
-            attrs,
-            liveAttrs
-        ], origin);
-    });
-};
-var initRenderState = {
-    isDragging: false,
-    isMouseover: false
-};
-var selectLabelGroup = function(canvasSel) {
-    return selectOrAdd(selectInnerCanvas(canvasSel), '.labels', function(s) {
-        return s.append('g').classed('labels', true);
-    });
-};
-var selectLabel$2 = function(canvasSel, id) {
-    var renderId = createRenderId(id);
-    return selectOrAdd(selectLabelGroup(canvasSel), "#label-" + renderId, function(s) {
-        return s.append('g').attr('id', "label-" + renderId);
-    });
-};
-var renderCanvasAttrs = function(canvasSel, attrs, changes) {
-    if (!('width' in attrs.svgattrs)) renderSvgAttr(canvasSel, 'width', [
-        attrs.size,
-        changes.size
-    ], function(v) {
-        return v[0];
-    });
-    if (!('height' in attrs.svgattrs)) renderSvgAttr(canvasSel, 'height', [
-        attrs.size,
-        changes.size
-    ], function(v) {
-        return v[1];
-    });
-    // add an invisible rectangle to fix zooming in Safari
-    if (isSafari()) selectOrAdd(canvasSel, 'rect', function(rectSel) {
-        return rectSel.append('rect').classed('safari-fix', true).attr('width', '100%').attr('height', '100%').attr('fill', 'none');
-    });
-    if (changes.svgattrs) renderSvgDict(canvasSel, attrs.svgattrs, changes.svgattrs);
-};
-var renderLive = function(canvasEl, attrs, layout) {
-    var canvasSel = selectCanvas(canvasEl);
-    var liveNodes = mapDict(attrs.nodes, function(nodeAttrs, k) {
-        return getLiveNodeAttrs(selectNode(canvasSel, k), layout.nodes[k], nodeAttrs);
-    });
-    renderLiveNodes(canvasSel, attrs, liveNodes);
-    renderLiveEdges(canvasSel, attrs, liveNodes, layout);
-};
-var renderCanvas = function(canvasEl, context, attrs, initChanges) {
-    var _a16, _b, _c;
-    var canvasSel = selectCanvas(canvasEl);
-    var changes = getAllElementChanges(canvasSpec, attrs, initChanges);
-    renderVisRemove(canvasSel, changes.visible, changes.remove);
-    if ((attrs === null || attrs === void 0 ? void 0 : attrs.visible.value) === true) renderCanvasAttrs(canvasSel, attrs, changes);
-    else return initRenderState;
-    // ensure correct render order
-    selectLabelGroup(canvasSel);
-    selectEdgeGroup(canvasSel);
-    selectNodeGroup(canvasSel);
-    Object.entries((_a16 = changes.nodes) !== null && _a16 !== void 0 ? _a16 : {
-    }).forEach(function(_a) {
-        var k = _a[0], nodeChanges = _a[1];
-        renderNode([
-            canvasSel,
-            k
-        ], attrs.nodes[k], nodeChanges, context);
-    });
-    Object.entries((_b = changes.edges) !== null && _b !== void 0 ? _b : {
-    }).forEach(function(_a) {
-        var k = _a[0], edgeChanges = _a[1];
-        renderEdge(selectEdge(canvasSel, k), attrs.edges[k], edgeChanges);
-    });
-    Object.entries((_c = changes.labels) !== null && _c !== void 0 ? _c : {
-    }).forEach(function(_a) {
-        var k = _a[0], labelChanges = _a[1];
-        renderLabel(selectLabel$2(canvasSel, k), attrs.labels[k], labelChanges);
-    });
-    var newZoomBehaviour = updatePanZoomBehaviour(canvasSel, attrs, changes, context.state.zoomBehaviour);
-    renderPanZoom(canvasSel, attrs, changes, newZoomBehaviour);
-    return __assign(__assign({
-    }, context.state), {
-        zoomBehaviour: newZoomBehaviour
-    });
-};
-// after preprocess, before defaults
-var preTransformFns = [
-    function(p, c) {
-        return fillStarKeys(canvasSpec, p, c);
-    },
-    adjustEdgeIds,
-    function(p, c) {
-        return addVisible(canvasSpec, p, c);
-    }, 
-];
-// after defaults, before evaluation
-var postTransformFns = [
-    removeEdgesWithNodes
-];
-var updateAttrs = function(context, inputChanges, inputDefaults) {
-    var _a;
-    var state = context.state;
-    var prevAttrs = state.attributes;
-    // preprocess the attribute changes changes
-    var preprocChanges = preprocess(canvasSpec, {
-        path: [
-            [
-                'canvas',
-                AttrType1.Record
-            ]
-        ],
-        validVars: []
-    }, inputChanges);
-    if (preprocChanges instanceof Error) {
-        context.receive({
-            error: {
-                type: 'attribute',
-                message: preprocChanges.message
-            }
-        });
-        return state;
-    }
-    // preprocess the attribute animation defaults
-    var animation = preprocess(animSpec, {
-        path: [
-            [
-                'animation',
-                AttrType1.Record
-            ]
-        ],
-        validVars: []
-    }, inputDefaults !== null && inputDefaults !== void 0 ? inputDefaults : {
-    });
-    if (animation instanceof Error) {
-        context.receive({
-            error: {
-                type: 'attribute',
-                message: animation.message
-            }
-        });
-        return state;
-    }
-    // apply transformations
-    var preTransformedChanges = preTransformFns.reduce(function(acc, fn) {
-        return fn(prevAttrs, acc);
-    }, preprocChanges);
-    // apply defaults
-    var changesWithDefaults = applyDefaults(canvasSpec, prevAttrs, preTransformedChanges, [
-        createCanvasDefaults(prevAttrs, preTransformedChanges),
-        animation, 
-    ]);
-    // apply more transformations
-    var postTransformedChanges = postTransformFns.reduce(function(acc, fn) {
-        return fn(prevAttrs, acc);
-    }, changesWithDefaults);
-    // validate the changes
-    var validationError = checkInvalidEdges(prevAttrs, changesWithDefaults);
-    if (validationError !== undefined) {
-        context.receive({
-            error: {
-                type: 'validation',
-                message: validationError.message
-            }
-        });
-        return state;
-    }
-    // evaluate expressions
-    var changesWithoutSelfRef = evalCanvasChanges({
-        prevAttrs: prevAttrs,
-        prevExprs: state.expressions,
-        changes: postTransformedChanges,
-        selfRefOnly: true,
-        parentVars: {
-        }
-    });
-    var fullChanges = evalCanvasChanges({
-        prevAttrs: prevAttrs,
-        prevExprs: state.expressions,
-        changes: changesWithoutSelfRef,
-        selfRefOnly: false,
-        parentVars: {
-        }
-    });
-    // merge all changes with previous attributes
-    var newAttrs = mergeChanges(canvasSpec, prevAttrs, fullChanges);
-    var newExprs = (_a = mergeExprs(canvasSpec, state.expressions, changesWithoutSelfRef)) !== null && _a !== void 0 ? _a : {
-    };
-    // update layout
-    var newLayout = newAttrs ? updateCanvasLayout(state.layout, newAttrs, fullChanges) : resetLayout(state.layout);
-    // render the canvas
-    var newRenderState = renderCanvas(context.canvasEl, {
-        state: state.render,
-        layout: newLayout,
-        receive: context.receive,
-        tick: context.tick
-    }, newAttrs, fullChanges);
-    return __assign(__assign({
-    }, state), {
-        attributes: newAttrs,
-        expressions: newExprs,
-        layout: newLayout,
-        render: newRenderState
-    });
-};
-var executeEvent$1 = function(context, event) {
-    if (event.message !== undefined) context.receive({
-        message: event.message
-    });
-    var attrState = event.attrs !== undefined ? updateAttrs(context, event.attrs, event.animation) : context.state;
-    return attrState;
-};
-var initState = function(tick) {
-    return {
-        scheduler: initSchedulerState,
-        attributes: undefined,
-        expressions: {
-        },
-        layout: initLayout(tick),
-        render: initRenderState
-    };
-};
-var Client1 = function() {
-    function Client(canvas) {
-        this.canvas = canvas;
-        this.state = initState(this.tick.bind(this));
-        this.receive = function() {
-            return null;
-        };
-    }
-    Client.prototype.setState = function(state) {
-        this.state = state;
-    };
-    Client.prototype.onreceive = function(fn) {
-        this.receive = fn;
-    };
-    Client.prototype.execute = function(event) {
-        var newState = executeEvent$1({
-            state: this.state,
-            canvasEl: this.canvas,
-            receive: this.receive,
-            tick: this.tick.bind(this)
-        }, event);
-        // note that the scheduler state may have changed after executing the event
-        this.setState(__assign(__assign({
-        }, newState), {
-            scheduler: this.state.scheduler
-        }));
-        this.tick();
-    };
-    Client.prototype.dispatch = function(event) {
-        var _this = this;
-        scheduleEvent({
-            setState: function(s) {
-                return _this.setState(__assign(__assign({
-                }, _this.state), {
-                    scheduler: s
-                }));
-            },
-            getState: function() {
-                return _this.state.scheduler;
-            },
-            execute: this.execute.bind(this)
-        }, event);
-    };
-    Client.prototype.tick = function() {
-        var _a;
-        if (((_a = this.state.attributes) === null || _a === void 0 ? void 0 : _a.visible.value) === true) renderLive(this.canvas, this.state.attributes, this.state.layout);
-    };
-    return Client;
-}();
-var isElementFn = function(v) {
-    return typeof v === 'function';
-};
-var evalElementValue = function(value, data, index) {
-    if (isElementFn(value)) return value(data, index);
-    else return value;
-};
-var evalElementDict = function(dict, data, index) {
-    // evaluate the entire object as a function
-    if (isElementFn(dict)) return dict(data, index);
-    else {
-        if (Object.keys(dict).every(function(k) {
-            return !isElementFn(dict[k]);
-        })) // simply return the object if it has no function keys
-        return dict;
-        // evaluate each key which has a function
-        var newDict_1 = {
-        };
-        Object.keys(dict).forEach(function(k) {
-            newDict_1[k] = evalElementValue(dict[k], data, index);
-        });
-        return newDict_1;
-    }
-};
-var applyAttrs = function(context, attrFn) {
-    if (!context.parent) {
-        if (context.data !== undefined && context.callbacks.dispatch) {
-            // dispatch attributes
-            var attrs = attrFn(context.data[0], 0, 0);
-            context.callbacks.dispatch(__assign(__assign({
-                attrs: attrs
-            }, context.animation !== undefined ? {
-                animation: context.animation
-            } : {
-            }), context.withQ !== undefined ? {
-                withQ: context.withQ
-            } : {
-            }));
-        }
-        return;
-    }
-    var parentAttrFn = function(data, dataIndex) {
-        var _a;
-        var dict = {
-        };
-        context.ids.forEach(function(k, i) {
-            dict[k] = context.data !== undefined ? attrFn(context.data[i], i, i) // use current data
-             : attrFn(data, dataIndex, i); // use parent data
-        });
-        return _a = {
-        }, _a[context.parentkey] = dict, _a;
-    };
-    // apply attributes on the parent
-    applyAttrs(__assign(__assign({
-    }, context.parent), {
-        withQ: context.withQ,
-        animation: context.animation
-    }), parentAttrFn);
-};
-var addElementCallback = function(context, eventType, fn) {
-    var cbs = context.parent.callbacks;
-    var elementKey = context.parentkey;
-    var elementCbDict = __assign({
-    }, cbs[elementKey]);
-    context.ids.forEach(function(k, i) {
-        var _a;
-        elementCbDict[k] = __assign(__assign({
-        }, elementCbDict[k]), (_a = {
-        }, _a[eventType] = function() {
-            return evalElementValue(fn, context.data[i], i);
-        }, _a));
-    });
-    context.parent.callbacks[elementKey] = elementCbDict;
-};
-/**
- * A selection of elements. Inherited by nodes, edges, labels and the canvas itself.
- */ var ElementSelection1 = function() {
-    function ElementSelection(context) {
-        this._selection = context;
-    }
-    /**
-     * Applies a dictionary of attributes to all selected elements.
-     *
-     * All attributes correspond to the available methods. Most attribute endpoints can be provided
-     * either as a single value, or as partial dictionary in the form:
-     * - value: The attribute value.
-     * - duration: The duration of the animation, see [[ElementSelection.duration]].
-     * - ease: The animation ease, see [[ElementSelection.ease]].
-     * - highlight: Whether the change is temporary, see [[ElementSelection.highlight]].
-     * - linger: How long a highlight should last, see [[ElementSelection.highlight]].
-     * - (animtype, etc.): Additional attribute-specific properties.
-     *
-     * The whole dictionary, or any of its direct entries, can be provided as an [[ElementFn]].
-     *
-     * @example
-     * ```
-     * nodes.size([20, 30])
-     *     .pos((_, i) => [i * 10, 0])
-     *     .svgattr("stroke", "blue")
-     *     .duration(2.5).color("red")
-     *
-     * // is equivalent to
-     * node.attrs({
-     *    size: [20, 30],
-     *    pos: (_, i) => [i * 10, 0],
-     *    svgattrs: { stroke: "blue" },
-     *    color: {
-     *        value: "red",
-     *        duration: 2.5,
-     *    },
-     * })
-     * ```
-     *
-     * @param attrs - An attribute dictionary.
-     */ ElementSelection.prototype.attrs = function(attrs) {
-        applyAttrs(this._selection, function(d, i) {
-            return evalElementDict(attrs, d, i);
-        });
-        return this;
-    };
-    /**
-     * Adds all selected elements to the canvas with the given initial attributes.
-     *
-     * @param attrs - An attribute dictionary, see [[ElementSelection.attrs]].
-     *
-     * @return A new instance of the current selection with animations disabled, to allow for
-     * further attribute initialisation.
-     */ ElementSelection.prototype.add = function(attrs) {
-        return this.attrs(function(d, i) {
-            return attrs ? evalElementDict(attrs, d, i) : {
-            };
-        }).duration(0);
-    };
-    /**
-     * Removes all selected elements, resetting their attributes and layout state.
-     */ ElementSelection.prototype.remove = function() {
-        return this.attrs({
-            remove: true
-        });
-    };
-    /**
-     * Sets whether or not the selected elements should be visible. In contrast to removing,
-     * visibility will not reset attributes or layout state.
-     *
-     * @param value - Whether or not the selected elements should be visible.
-     */ ElementSelection.prototype.visible = function(visible) {
-        return this.attrs({
-            visible: visible
-        });
-    };
-    /**
-     * Sets a custom SVG attribute on the element. The root SVG tag is `<shape>` for nodes, `<path>`
-     * for edges, `<text>` for labels, and `<svg>` for the canvas.
-     *
-     * Note that when using [[ElementSelection.attrs]], SVG attributes should be provided as a
-     * dictionary under the key `svgattrs`.
-     *
-     * @param key - The name of the SVG attribute.
-     *
-     * @param value - The value of the SVG attribute.
-     */ ElementSelection.prototype.svgattr = function(key, value) {
-        return this.attrs(function(d, i) {
-            var _a;
-            return {
-                svgattrs: (_a = {
-                }, _a[key] = evalElementValue(value, d, i), _a)
-            };
-        });
-    };
-    /**
-     * Sets the event queue to use for all events triggered by the selection. Each queue handles
-     * events independently, and all queues execute in parallel, which enables multiple animations
-     * to run simultaneously.
-     *
-     * The `null` queue is special; all events added to it will execute immediately. The default
-     * queue has ID 0.
-     *
-     * @param queue - The name of the queue. This can be any string or number, or `null` for the
-     * immediate queue. Defaults to 0.
-     *
-     * @return A new instance of the current selection using the given queue.
-     */ ElementSelection.prototype.withQ = function(queue) {
-        if (queue === void 0) queue = 0;
-        return new this.constructor(__assign(__assign({
-        }, this._selection), {
-            withQ: queue === null ? null : String(queue)
-        }));
-    };
-    /**
-     * Configures the duration of all animations triggered by the selection. A duration of 0 will
-     * ensure that changes occur immediately. The default duration is usually 0.5.
-     *
-     * @param seconds - The animation duration, in seconds.
-     *
-     * @return A new instance of the current selection using the given animation duration.
-     */ ElementSelection.prototype.duration = function(seconds) {
-        return new this.constructor(__assign(__assign({
-        }, this._selection), {
-            animation: __assign(__assign({
-            }, this._selection.animation), {
-                duration: seconds
-            })
-        }));
-    };
-    /**
-     * Configures the ease function used in all animations triggered by the selection. This will
-     * affect the way attributes transition from one value to another. More information is available
-     * here: [[https://github.com/d3/d3-ease]].
-     *
-     * @param ease - The name of the ease function, based on the functions found in D3. The full
-     * list is below:
-     *
-     * "linear", "poly", "poly-in", "poly-out", "poly-in-out", "quad", "quad-in", "quad-out",
-     * "quad-in-out", "cubic", "cubic-in", "cubic-out", "cubic-in-out", "sin", "sin-in", "sin-out",
-     * "sin-in-out", "exp", "exp-in", "exp-out", "exp-in-out", "circle", "circle-in", "circle-out",
-     * "circle-in-out", "elastic", "elastic-in", "elastic-out", "elastic-in-out", "back", "back-in",
-     * "back-out", "back-in-out", "bounce", "bounce-in", "bounce-out", "bounce-in-out".
-     *
-     * @return A new instance of the current selection using the given animation ease.
-     */ ElementSelection.prototype.ease = function(ease) {
-        return new this.constructor(__assign(__assign({
-        }, this._selection), {
-            animation: __assign(__assign({
-            }, this._selection.animation), {
-                ease: ease
-            })
-        }));
-    };
-    /**
-     * Returns a new selection through which all attribute changes are temporary. This is typically
-     * used to draw attention to a certain element without permanently changing its attributes.
-     *
-     * @param seconds - The amount of time attributes should remain 'highlighted', in seconds,
-     * before changing back to their original values. Defaults to 0.5.
-     *
-     * @return A new instance of the current selection, where all attribute changes are temporary.
-     */ ElementSelection.prototype.highlight = function(seconds) {
-        return new this.constructor(__assign(__assign({
-        }, this._selection), {
-            animation: __assign(__assign(__assign({
-            }, this._selection.animation), {
-                highlight: true
-            }), seconds !== undefined ? {
-                linger: seconds
-            } : {
-            })
-        }));
-    };
-    /**
-     * Adds a pause to the current event queue. The pause will only start once all previous pauses
-     * have finished. This is a shortcut for [[QueueSelection.pause]].
-     *
-     * @param seconds - The duration of the pause, in seconds.
-     */ ElementSelection.prototype.pause = function(seconds) {
-        var _a;
-        var _b, _c;
-        if (this._selection.withQ !== null && this._selection.callbacks.dispatch) this._selection.callbacks.dispatch({
-            queues: (_a = {
-            }, _a[(_b = this._selection.withQ) !== null && _b !== void 0 ? _b : 0] = {
-                pause: seconds
-            }, _a),
-            withQ: (_c = this._selection.withQ) !== null && _c !== void 0 ? _c : 0
-        });
-        return this;
-    };
-    /**
-     * Binds the selection to a list of data values. This will determine the data argument to
-     * provide whenever an [[ElementFn]] is used.
-     *
-     * You can also provide a function to map the current data list to a new one.
-     *
-     * @param data - Either a list of data values (which must have the same length as the number of
-     * elements in the selection), or a function which maps the current data list.
-     *
-     * @return A new instance of the current selection bound to the given data.
-     */ ElementSelection.prototype.data = function(data) {
-        return new this.constructor(__assign(__assign({
-        }, this._selection), {
-            data: Array.isArray(data) ? data : this._selection.data && this._selection.data.map(function(d, i) {
-                return evalElementValue(data, d, i);
-            })
-        }));
-    };
-    return ElementSelection;
-}();
-/**
- * A selection of labels.
- */ var LabelSelection1 = function(_super) {
-    __extends(LabelSelection, _super);
-    function LabelSelection() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /**
-     * Sets the text displayed by the label.
-     *
-     * The newline character ("\n") can be used to break the text into multiple lines.
-     *
-     * @param text - The text displayed by the label.
-     */ LabelSelection.prototype.text = function(text) {
-        return this.attrs({
-            text: text
-        });
-    };
-    /**
-     * Sets alignment of the label's text.
-     *
-     * This will affect the direction in which text is appended, as well as its positioning relative
-     * to the label's base position. For example, an alignment of "top-left" will ensure that the
-     * top left corner of the label is located at the base position.
-     *
-     * A special "radial" alignment can be used to dynamically calculate the label's alignment based
-     * on its [[LabelSelection.angle]] and [[LabelSelection.rotate]] attributes, such that text is
-     * optimally positioned around an element.
-     *
-     * @param align - A string describing the alignment, typically in the form
-     * "vertical-horizontal". The full list is below:
-     *
-     * "top-left", "top-middle", "top-right", "middle-left", "middle", "middle-right",
-     * "bottom-left", "bottom-middle", "bottom-right", "radial"
-     */ LabelSelection.prototype.align = function(align) {
-        return this.attrs({
-            align: align
-        });
-    };
-    /**
-     * Sets the position of the label relative to its parent element.
-     *
-     * If the parent is a node, (0,0) will be the node's center. If the parent is an edge connecting
-     * two nodes, (0,0) will be the midpoint between the two nodes. If the parent is a looping edge
-     * connecting one node, (0,0) will be a point on the node's boundary.
-     *
-     * @param pos - An (x, y) tuple describing the position of the label.
-     */ LabelSelection.prototype.pos = function(pos) {
-        return this.attrs({
-            pos: pos
-        });
-    };
-    /**
-     * Positions the label using polar coordinates, together with [[LabelSelection.angle]]. This
-     * will specify the distance from the label's base position (see [[LabelSelection.pos]]).
-     *
-     * @param radius - The polar radius, defined as the distance from the label's base position.
-     */ LabelSelection.prototype.radius = function(radius) {
-        return this.attrs({
-            radius: radius
-        });
-    };
-    /**
-     * Allows the label to be positioned using polar coordinates, together with the
-     * [[LabelSelection.radius]] attribute. This will specify the angle, in degrees, along a
-     * standard unit circle centered at the label's base position (see [[LabelSelection.pos]]).
-     *
-     * This will also affect the rotation of the label if [[LabelSelection.rotate]]) is enabled.
-     *
-     * @param angle - The polar angle, in degrees, increasing counter-clockwise from the x-axis.
-     */ LabelSelection.prototype.angle = function(angle) {
-        return this.attrs({
-            angle: angle
-        });
-    };
-    /**
-     * Sets whether the label should be rotated by [[LabelSelection.angle]] degrees.
-     *
-     * The exact rotation will also depend on the label's alignment. For example, an alignment of
-     * "top-center" together with an angle of 90 degrees will result in the text being upside-down.
-     *
-     * @param rotate - True if the label should be rotated.
-     */ LabelSelection.prototype.rotate = function(rotate) {
-        return this.attrs({
-            rotate: rotate
-        });
-    };
-    /**
-     * Sets the color of the label's text.
-     *
-     * The default color is "gray" in most cases.
-     *
-     * @param color - A CSS color string.
-     */ LabelSelection.prototype.color = function(color) {
-        return this.attrs({
-            color: color
-        });
-    };
-    /**
-     * Sets the font of the label's text.
-     *
-     * @param font - A CSS font-family string.
-     */ LabelSelection.prototype.font = function(font) {
-        return this.attrs({
-            font: font
-        });
-    };
-    /**
-     * Sets the size of the label's text.
-     *
-     * @param size - The size of the label's text, in pixels.
-     */ LabelSelection.prototype.size = function(size) {
-        return this.attrs({
-            size: size
-        });
-    };
-    LabelSelection.prototype.data = function(data) {
-        return _super.prototype.data.call(this, data);
-    };
-    return LabelSelection;
-}(ElementSelection1);
-/**
- * A selection of nodes.
- */ var NodeSelection1 = function(_super) {
-    __extends(NodeSelection, _super);
-    function NodeSelection() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /**
-     * Removes all selected nodes nodes, and any edges connected to the nodes.
-     */ NodeSelection.prototype.remove = function() {
-        return _super.prototype.remove.call(this);
-    };
-    /**
-     * Selects a single node label by its ID. The node's default 'value label' has ID 0. Use "*" to
-     * select all existing labels.
-     *
-     * @param id - A label ID. Defaults to 0.
-     *
-     * @return A new selection corresponding to the given label, with the same data as the current
-     * selection.
-     */ NodeSelection.prototype.label = function(id) {
-        if (id === void 0) id = 0;
-        return this.labels([
-            id
-        ]);
-    };
-    /**
-     * Selects multiple node labels using a list of ID values. If no list is provided, all existing
-     * labels will be selected.
-     *
-     * @param ids - A list of label IDs.
-     *
-     * @return A new selection corresponding to the given labels, with the same data as the current
-     * selection.
-     */ NodeSelection.prototype.labels = function(ids) {
-        if (ids === void 0) ids = [
-            '*'
-        ];
-        return new LabelSelection1(__assign(__assign({
-        }, this._selection), {
-            ids: ids.map(function(id) {
-                return String(id);
-            }),
-            data: undefined,
-            parentkey: 'labels',
-            parent: this._selection
-        }));
-    };
-    /**
-     * Sets the shape of the node.
-     *
-     * @param shape - One of the following strings:
-     * - "circle" (default): Circular node with a single radius dimension.
-     * - "rect": Rectangular node with separate width and height dimensions, and corner rounding.
-     * - "ellipse": Elliptical node with separate width and height dimensions.
-     */ NodeSelection.prototype.shape = function(shape) {
-        return this.attrs({
-            shape: shape
-        });
-    };
-    /**
-     * Sets the color of the node. The default color is "dark-gray".
-     *
-     * @param color - A CSS color string.
-     */ NodeSelection.prototype.color = function(color) {
-        return this.attrs({
-            color: color
-        });
-    };
-    /**
-     * Sets the size of the node using a (width/2, height/2) tuple.
-     *
-     * If a single value is provided, it will be used for both dimensions. If the node is a circle,
-     * width/2 is the radius and height is ignored.
-     *
-     * Note that size can be set relative to the node's current size using string expressions, e.g.
-     * "1.5x" for circles or ("1.5x", "1.5y") for rectangles.
-     *
-     * The default size is (12, 12).
-     *
-     * @param size - A single radius, or a (width/2, height/2) tuple.
-     */ NodeSelection.prototype.size = function(size) {
-        return this.attrs({
-            size: size
-        });
-    };
-    /**
-     * Sets the position of the node. The canvas uses a Cartesian coordinate system with (0,0) at
-     * the center.
-     *
-     * @param pos - An (x, y) tuple describing the new position of the node.
-     */ NodeSelection.prototype.pos = function(pos) {
-        return this.attrs({
-            pos: pos
-        });
-    };
-    /**
-     * When set to true, this prevents the node from being automatically moved during the layout
-     * process. This does not affect manual dragging.
-     *
-     * @param fixed - True if the position of the node should be fixed, false otherwise.
-     */ NodeSelection.prototype.fixed = function(fixed) {
-        return this.attrs({
-            fixed: fixed
-        });
-    };
-    /**
-     * Sets whether the node can be manually dragged around.
-     *
-     * @param draggable - True if the node should be draggable, false otherwise.
-     */ NodeSelection.prototype.draggable = function(draggable) {
-        return this.attrs({
-            draggable: draggable
-        });
-    };
-    /**
-     * Registers a callback function to listen for node click events.
-     *
-     * This will override any previous callback.
-     *
-     * @param fn - A callback function taking the node's data and, optionally, index.
-     */ NodeSelection.prototype.onclick = function(fn) {
-        addElementCallback(this._selection, 'click', fn);
-        return this.attrs({
-            listenclick: true
-        });
-    };
-    /**
-     * Registers a callback function to listen for node mouse-over events, triggered when the mouse
-     * enters the node.
-     *
-     * This will override any previous callback.
-     *
-     * @param fn - A callback function taking the node's data and, optionally, index.
-     */ NodeSelection.prototype.onhoverin = function(fn) {
-        addElementCallback(this._selection, 'hoverin', fn);
-        return this.attrs({
-            listenhover: true
-        });
-    };
-    /**
-     * Registers a callback function to listen for node mouse-over events, triggered when the mouse
-     * leaves the node.
-     *
-     * This will override any previous callback.
-     *
-     * @param fn - A callback function taking the node's data and, optionally, index.
-     */ NodeSelection.prototype.onhoverout = function(fn) {
-        addElementCallback(this._selection, 'hoverout', fn);
-        return this.attrs({
-            listenhover: true
-        });
-    };
-    NodeSelection.prototype.data = function(data) {
-        return _super.prototype.data.call(this, data);
-    };
-    return NodeSelection;
-}(ElementSelection1);
-/**
- * A selection of edges.
- */ var EdgeSelection1 = function(_super) {
-    __extends(EdgeSelection, _super);
-    function EdgeSelection(context) {
-        var _this = _super.call(this, context) || this;
-        _this._selection = context;
-        return _this;
-    }
-    EdgeSelection.prototype.add = function(attrs) {
-        var _this = this;
-        applyAttrs(this._selection, function(data, dataIndex, elementIndex) {
-            var attrObj = attrs ? evalElementDict(attrs, data, dataIndex) : {
-            };
-            return _this._selection.edges ? __assign({
-                source: String(_this._selection.edges[elementIndex][0]),
-                target: String(_this._selection.edges[elementIndex][1])
-            }, attrObj) : attrObj;
-        });
-        return this.duration(0);
-    };
-    /**
-     * Selects a single edge label by its ID. Use "*" to select all existing labels.
-     *
-     * @param id - A label ID. Defaults to 0.
-     *
-     * @return A new selection corresponding to the given label, with the same data as the current
-     * selection.
-     */ EdgeSelection.prototype.label = function(id) {
-        if (id === void 0) id = 0;
-        return this.labels([
-            id
-        ]);
-    };
-    /**
-     * Selects multiple edge labels using a list of ID values. If no list is provided, all existing
-     * labels will be selected.
-     *
-     * @param ids - A list of label IDs.
-     *
-     * @return A new selection corresponding to the given labels, with the same data as the current
-     * selection.
-     */ EdgeSelection.prototype.labels = function(ids) {
-        if (ids === void 0) ids = [
-            '*'
-        ];
-        return new LabelSelection1(__assign(__assign({
-        }, this._selection), {
-            ids: ids.map(function(id) {
-                return String(id);
-            }),
-            data: undefined,
-            parent: this._selection,
-            parentkey: 'labels'
-        }));
-    };
-    /**
-     * Sets whether or not the edge should include an arrow pointing towards its target node.
-     *
-     * @param directed - True if the edge should be directed, false otherwise.
-     */ EdgeSelection.prototype.directed = function(directed) {
-        return this.attrs({
-            directed: directed
-        });
-    };
-    /**
-     * Sets the length of the edge. This will only take effect when [[CanvasSelection.edgelayout]]
-     * is set to "individual".
-     *
-     * @param length - The length of the edge.
-     */ EdgeSelection.prototype.length = function(length) {
-        return this.attrs({
-            length: length
-        });
-    };
-    /**
-     * Sets the thickness of the edge.
-     *
-     * @param thickness - The thickness of the edge, in pixels.
-     */ EdgeSelection.prototype.thickness = function(thickness) {
-        return this.attrs({
-            thickness: thickness
-        });
-    };
-    /**
-     * Sets the color of the edge. The default color is "light-gray".
-     *
-     * @param color - A CSS color string.
-     */ EdgeSelection.prototype.color = function(color) {
-        return this.attrs({
-            color: color
-        });
-    };
-    /**
-     * Sets the color of the edge using a traversal animation.
-     *
-     * If no source is provided, the first element in each edge tuple will be used.
-     *
-     * @param color - A CSS color string.
-     * @param source - The ID of the node from which the traversal animation should originate.
-     */ EdgeSelection.prototype.traverse = function(color, source) {
-        var _this = this;
-        applyAttrs(this._selection, function(data, dataIndex, i) {
-            var animsource = source ? String(evalElementValue(source, data, dataIndex)) : _this._selection.edges ? String(_this._selection.edges[i][0]) : undefined;
-            return {
-                color: __assign({
-                    animtype: 'traverse',
-                    value: evalElementValue(color, data, dataIndex)
-                }, animsource !== undefined ? {
-                    animsource: animsource
-                } : {
-                })
-            };
-        });
-        return this;
-    };
-    /**
-     * Sets whether or not the edge should be 'flipped' after exceeding a certain angle, such that
-     * it is never rendered upside-down. This does not apply to looping edges.
-     *
-     * @param flip - True if the edge should flip automatically, false otherwise.
-     */ EdgeSelection.prototype.flip = function(flip) {
-        return this.attrs({
-            flip: flip
-        });
-    };
-    /**
-     * Sets the curve function used to interpolate the edge's path.
-     *
-     * The default setting is "cardinal". More information is available here:
-     * [[https://github.com/d3/d3-shape#curves]].
-     *
-     * @param curve - The name of the curve function, based on the functions found in D3. The full
-     * list is below:
-     *
-     * "basis", "bundle", "cardinal", "catmull-rom", "linear", "monotone-x", "monotone-y",
-     * "natural", "step", "step-before", "step-after"
-     */ EdgeSelection.prototype.curve = function(curve) {
-        return this.attrs({
-            curve: curve
-        });
-    };
-    /**
-     * Sets a custom path for the edge. The path is a list of (x, y) tuples, which will
-     * automatically connect to the boundaries of the source and target nodes.
-     *
-     * If the edge connects two nodes, (0,0) will be the midpoint between the two nodes. If edge is
-     * a loop, (0,0) will be a point on the node's boundary.
-     *
-     * @param path - A list of (x, y) tuples.
-     */ EdgeSelection.prototype.path = function(path) {
-        return this.attrs({
-            path: path
-        });
-    };
-    EdgeSelection.prototype.data = function(data) {
-        return _super.prototype.data.call(this, data);
-    };
-    return EdgeSelection;
-}(ElementSelection1);
-var dispatchQueueEvent = function(context, queueEvent) {
-    if (context.callbacks.dispatch) context.callbacks.dispatch(__assign(__assign({
-    }, context.withQ !== undefined ? {
-        withQ: context.withQ
-    } : {
-    }), {
-        queues: context.ids.reduce(function(acc, q) {
-            var _a;
-            return __assign(__assign({
-            }, acc), (_a = {
-            }, _a[q] = queueEvent, _a));
-        }, {
-        })
-    }));
-};
-/**
- * A selection of event queues.
- */ var QueueSelection1 = function() {
-    function QueueSelection(context) {
-        this._selection = context;
-    }
-    /**
-     * Pauses the queue for the given number of seconds.
-     *
-     * @param seconds - The duration of the pause, in seconds.
-     */ QueueSelection.prototype.pause = function(seconds) {
-        dispatchQueueEvent(this._selection, {
-            pause: seconds
-        });
-        return this;
-    };
-    /**
-     * Stops the execution of all scheduled events in the queue.
-     */ QueueSelection.prototype.stop = function() {
-        dispatchQueueEvent(this._selection, {
-            stopped: true
-        });
-        return this;
-    };
-    /**
-     * Starts/resumes the execution of all scheduled events in the queue.
-     */ QueueSelection.prototype.start = function() {
-        dispatchQueueEvent(this._selection, {
-            stopped: false
-        });
-        return this;
-    };
-    /**
-     * Clears all scheduled events in the queue.
-     */ QueueSelection.prototype.clear = function() {
-        dispatchQueueEvent(this._selection, {
-            clear: true
-        });
-        return this;
-    };
-    return QueueSelection;
-}();
-/**
- * An object responsible for rendering the network, storing application state, and
- * dispatching/receiving events.
- */ var Canvas1 = function(_super) {
-    __extends(Canvas, _super);
-    function Canvas(context) {
-        var _this = _super.call(this, __assign({
-            ids: [
-                'canvas'
-            ],
-            data: [
-                null
-            ],
-            callbacks: {
-            }
-        }, context)) || this;
-        _this._selection.callbacks.dispatch = function(event) {
-            if (context.client) context.client.dispatch(event);
-        };
-        if (context.client) context.client.onreceive(_this.receive.bind(_this));
-        return _this;
-    }
-    /**
-     * Selects a node by its ID. Use "*" to select all existing nodes.
-     *
-     * @param id - A node ID. Avoid using the "-" character.
-     *
-     * @return A new selection corresponding to the given node.
-     */ Canvas.prototype.node = function(id) {
-        return this.nodes([
-            id
-        ]);
-    };
-    /**
-     * Selects multiple nodes using an list of ID values. If no list is provided, all existing nodes
-     * will be selected.
-     *
-     * @param ids - A list of node IDs. Avoid using the "-" character.
-     *
-     * @return A new selection corresponding to the given nodes.
-     */ Canvas.prototype.nodes = function(ids) {
-        if (ids === void 0) ids = [
-            '*'
-        ];
-        return new NodeSelection1(__assign(__assign({
-        }, this._selection), {
-            ids: ids.map(function(id) {
-                return String(id);
-            }),
-            data: ids,
-            parentkey: 'nodes',
-            parent: this._selection
-        }));
-    };
-    /**
-     * Selects a single edge using a (source, target, optional ID) tuple.
-     *
-     * The optional ID is used to distinguish multi-edges. The full string ID of the edge will take
-     * the form "source-target(-ID)". If the edge has `directed` set to false, 'source' and 'target'
-     * can be provided in any order, as long as they do not contain the "-" character.
-     *
-     * When accessing edges using string IDs, e.g. through [[Canvas.attrs]], the following rules
-     * apply:
-     * - New edges with IDs in the form "source-target(-ID)" will automatically initialize their
-     * `source`/`target` attributes.
-     * - For edges with `directed` set to false, "target-source(-ID)" will fall back to
-     * "source-target(-ID)".
-     *
-     * @param tuple - A (source, target) or (source, target, ID) tuple.
-     *
-     * @return A new selection corresponding to the given edge.
-     */ Canvas.prototype.edge = function(id) {
-        return this.edges([
-            id
-        ]);
-    };
-    /**
-     * Selects multiple edges using a list of (source, target, optional ID) tuples, see
-     * [[Canvas.edge]].
-     *
-     * If no list is provided, all existing edges will be selected.
-     *
-     * @param ids - A list of (source, target) or (source, target, ID) tuples.
-     *
-     * @return A new selection corresponding to the given edges.
-     */ Canvas.prototype.edges = function(ids) {
-        return new EdgeSelection1(__assign(__assign({
-        }, this._selection), {
-            ids: ids === undefined ? [
-                '*'
-            ] : ids.map(function(id) {
-                return String(id[0]) + '-' + String(id[1]) + (id.length > 2 ? '-' + String(id[2]) : '');
-            }),
-            data: ids !== null && ids !== void 0 ? ids : [
-                [
-                    '*',
-                    '*'
-                ]
-            ],
-            edges: ids,
-            parentkey: 'edges',
-            parent: this._selection
-        }));
-    };
-    /**
-     * Selects a single canvas label by its ID. Use "*" to select all existing labels.
-     *
-     * @param id - A label ID.
-     *
-     * @return A new selection corresponding to the given label.
-     */ Canvas.prototype.label = function(id) {
-        return this.labels([
-            id
-        ]);
-    };
-    /**
-     * Selects multiple canvas labels using a list of ID values. If no list is provided, all
-     * existing labels will be selected.
-     *
-     * @param ids - A list of label IDs.
-     *
-     * @return A new selection corresponding to the given labels.
-     */ Canvas.prototype.labels = function(ids) {
-        if (ids === void 0) ids = [
-            '*'
-        ];
-        return new LabelSelection1(__assign(__assign({
-        }, this._selection), {
-            ids: ids.map(function(id) {
-                return String(id);
-            }),
-            data: ids,
-            parentkey: 'labels',
-            parent: this._selection
-        }));
-    };
-    /**
-     * Sets the width and height of the canvas.
-     *
-     * This will determine the coordinate system, and will update the `width` and `height`
-     * attributes of the main SVG element, unless otherwise specified with
-     * [[ElementSelection.svgattr]]. Size is not animated by default.
-     *
-     * @param value - A (width, height) tuple.
-     */ Canvas.prototype.size = function(size) {
-        return this.attrs({
-            size: size
-        });
-    };
-    /**
-     * Sets strategy used to calculate edge lengths. Edges can either specify individual length
-     * values (see [[EdgeSelection.length]]), or have their lengths dynamically calculated with the
-     * given strategy, and with an average of [[Canvas.edgelength]].
-     *
-     * More information is available at [[https://github.com/tgdwyer/WebCola/wiki/link-lengths]].
-     *
-     * @param edgelayout - The edge length calculation strategy:
-     * - "individual": Uses each edge's `length` attribute individually.
-     * - "jaccard" (default): Dynamic calculation based on [[Canvas.edgelength]].
-     * - "symmetric": Dynamic calculation based on [[Canvas.edgelength]].
-     */ Canvas.prototype.edgelayout = function(edgelayout) {
-        return this.attrs({
-            edgelayout: edgelayout
-        });
-    };
-    /**
-     * Sets the average length of all edges. This only applies if [[Canvas.edgelayout]] is not
-     * "individual". The default average edge length is 70.
-     *
-     * @param edgelength - The average edge length.
-     */ Canvas.prototype.edgelength = function(edgelength) {
-        return this.attrs({
-            edgelength: edgelength
-        });
-    };
-    /**
-     * Sets the location of the canvas camera. The canvas uses a Cartesian coordinate system with
-     * (0,0) at the center.
-     *
-     * @param pan - An (x, y) tuple describing the new pan location.
-     */ Canvas.prototype.pan = function(pan) {
-        return this.attrs({
-            pan: pan
-        });
-    };
-    /**
-     * Sets the zoom level of the canvas camera. A zoom level of 2.0 will make objects appear twice
-     * as large, 0.5 will make them half as large, etc.
-     *
-     * @param zoom - The new zoom level.
-     */ Canvas.prototype.zoom = function(zoom) {
-        return this.attrs({
-            zoom: zoom
-        });
-    };
-    /**
-     * Restricts the movement of the canvas camera to the given bounding box, centered at (0,0).
-     *
-     * The default pan limit is (-Infinity, Infinity).
-     *
-     * @param panlimit - A (width/2, height/2) tuple describing the bounding box.
-     */ Canvas.prototype.panlimit = function(panlimit) {
-        return this.attrs({
-            panlimit: panlimit
-        });
-    };
-    /**
-     * Restricts the zoom level of the canvas camera to the given range. The lower bound describes
-     * how far out the camera can zoom, while the upper bound describes the maximum enlarging zoom.
-     *
-     * The default zoom limit is (0.1, 10).
-     *
-     * @param zoomlimit - A (min, max) tuple describing the zoom limit.
-     */ Canvas.prototype.zoomlimit = function(zoomlimit) {
-        return this.attrs({
-            zoomlimit: zoomlimit
-        });
-    };
-    /**
-     * Sets whether or not zooming requires the `ctrl`/`cmd` key to be held down. Disabled by
-     * default.
-     *
-     * @param zoomtoggle - True if the `ctrl`/`cmd` key is required, false otherwise.
-     */ Canvas.prototype.zoomtoggle = function(zoomtoggle) {
-        return this.attrs({
-            zoomtoggle: zoomtoggle
-        });
-    };
-    /**
-     * Selects a single event queue by its ID. The default queue has ID 0. Use "*" to select all
-     * existing queues.
-     *
-     * By default, any changes made to the queue (e.g. start/stop) will take place immediately.
-     * However, if [[ElementSelection.withQ]] was previously called, the changes themselves will be
-     * added as events onto the current queue.
-     *
-     * @param id - A queue ID. Defaults to 0.
-     *
-     * @return A new selection corresponding to the given queue.
-     */ Canvas.prototype.queue = function(id) {
-        if (id === void 0) id = 0;
-        return this.queues([
-            id
-        ]);
-    };
-    /**
-     * Selects multiple event queues using an list of ID values, see [[Canvas.queue]].
-     *
-     * If no list is provided, all existing queues will be selected.
-     *
-     * @param ids - A list of queue IDs.
-     *
-     * @return A new selection corresponding to the given queues.
-     */ Canvas.prototype.queues = function(ids) {
-        var _a;
-        if (ids === void 0) ids = [
-            '*'
-        ];
-        return new QueueSelection1({
-            ids: ids.map(function(id) {
-                return String(id);
-            }),
-            callbacks: this._selection.callbacks,
-            withQ: (_a = this._selection.withQ) !== null && _a !== void 0 ? _a : null
-        });
-    };
-    /**
-     * Adds a message to the current event queue. Together with [[Canvas.onmessage]], this can be
-     * used to detect when a queue reaches a certain point in execution.
-     *
-     * @param message - A message string.
-     */ Canvas.prototype.message = function(message) {
-        return this.dispatch(__assign({
-            message: message
-        }, this._selection.withQ !== undefined ? {
-            withQ: this._selection.withQ
-        } : {
-        }));
-    };
-    /**
-     * Registers a callback function for messages sent by [[Canvas.message]]. Use "*" to listen for
-     * all messages.
-     *
-     * @param message - The message to listen for, or "*" to listen for all messages.
-     * @param fn - A callback function. When using "*", the exact message will be provided as an
-     * argument.
-     */ Canvas.prototype.onmessage = function(message, fn) {
-        var _a;
-        this._selection.callbacks.messages = __assign(__assign({
-        }, this._selection.callbacks.messages), (_a = {
-        }, _a[message] = fn, _a));
-        return this;
-    };
-    /**
-     * Sends an event to the client, in the form:
-     * - attrs: An attribute dictionary, see [[ElementSelection.attrs]].
-     * - animation: A partial animation dictionary which will apply to all provided attributes, see
-     * [[ElementSelection.attrs]].
-     * - message: A message, as sent by [[Canvas.message]].
-     * - withQ: The event queue to which the event will be added, see [[ElementSelection.withQ]].
-     * - queues:
-     *     - [id]:
-     *         - stop: True if the queue should be stopped, see [[QueueSelection.stop]].
-     *         - start: True if the queue should be started, see [[QueueSelection.start]].
-     *         - clear: True if all events should be cleared from the queue, see
-     *         [[QueueSelection.clear]].
-     *         - pause: The number of seconds the queue should be paused for, see
-     *         [[QueueSelection.pause]].
-     *
-     * @param event - A partial event object.
-     */ Canvas.prototype.dispatch = function(event) {
-        if (this._selection.callbacks.dispatch) this._selection.callbacks.dispatch(event);
-        return this;
-    };
-    /**
-     * Registers a callback function to listen for all dispatched events, see [[Canvas.dispatch]].
-     *
-     * This will override the default event handler.
-     *
-     * @param fn - A callback function which receives a partial event object.
-     */ Canvas.prototype.ondispatch = function(fn) {
-        this._selection.callbacks.dispatch = fn;
-        return this;
-    };
-    /**
-     * Simulates an event being received from the client, see [[Canvas.onreceive]].
-     *
-     * @param event - A partial event object.
-     */ Canvas.prototype.receive = function(event) {
-        var cbs = this._selection.callbacks;
-        // event callback
-        if (cbs.receive) cbs.receive(event);
-        // error callbacks
-        if (event.error) console.error(event.error.type + " error: " + event.error.message);
-        // message callbacks
-        if (event.message !== undefined && cbs.messages) {
-            if ('*' in cbs.messages) cbs.messages['*'](event.message);
-            if (event.message in cbs.messages) cbs.messages[event.message]();
-        }
-        // click/hover callbacks
-        [
-            'nodes'
-        ].forEach(function(elementType) {
-            if (!(elementType in event)) return;
-            Object.entries(event[elementType]).forEach(function(_a17) {
-                var k = _a17[0], elementEvents = _a17[1];
-                Object.keys(elementEvents).forEach(function(eventType) {
-                    var _a;
-                    var elementCbDict = (_a = cbs[elementType]) !== null && _a !== void 0 ? _a : {
-                    };
-                    if (k in elementCbDict && eventType in elementCbDict[k]) elementCbDict[k][eventType]();
-                });
-            });
-        });
-        return this;
-    };
-    /**
-     * Registers a callback function for all events sent back by the client, in the form:
-     * - error:
-     *    - type: "attribute" (invalid attributes), "unknown".
-     *    - message: The error message.
-     * - message: A message, as sent by [[Canvas.message]].
-     * - nodes:
-     *     - [id]:
-     *         - click: True if the node was clicked.
-     *         - hoverin: True if the mouse hovered over the node.
-     *         - hoverout: True if the mouse exited the node.
-     *
-     * @param fn - A callback function which receives a partial event object.
-     */ Canvas.prototype.onreceive = function(fn) {
-        this._selection.callbacks.receive = fn;
-    };
-    return Canvas;
-}(ElementSelection1);
-/**
- * Creates a new [[Canvas]]. The canvas can be rendered in any HTML element on the page (preferably
- * a `div`), or in an `Element` object.
- *
- * @param output - The HTML `id` attribute of an existing element on the page, or an `Element` object.
- *
- * @return A new [[Canvas]].
- */ var createCanvas = function(output) {
-    var client = new Client1(output);
-    var canvas = new Canvas1({
-        client: client
-    });
-    return canvas;
-};
-
-},{"webcola":"2lsD1","d3-selection":"hgWtk","d3-transition":"cRYyR","d3-ease":"elZFc","d3-dispatch":"9d2te","d3-timer":"82ygz","d3-drag":"dKCUo","d3-shape":"dTLqu","d3-zoom":"7E00u","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2lsD1":[function(require,module,exports) {
-"use strict";
-function __export(m) {
-    for(var p in m)if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-__export(require("./src/adaptor"));
-__export(require("./src/d3adaptor"));
-__export(require("./src/descent"));
-__export(require("./src/geom"));
-__export(require("./src/gridrouter"));
-__export(require("./src/handledisconnected"));
-__export(require("./src/layout"));
-__export(require("./src/layout3d"));
-__export(require("./src/linklengths"));
-__export(require("./src/powergraph"));
-__export(require("./src/pqueue"));
-__export(require("./src/rbtree"));
-__export(require("./src/rectangle"));
-__export(require("./src/shortestpaths"));
-__export(require("./src/vpsc"));
-__export(require("./src/batch"));
-
-},{"./src/adaptor":"9CRJ0","./src/d3adaptor":"jIcvx","./src/descent":"inMal","./src/geom":"k3BZk","./src/gridrouter":"8OixU","./src/handledisconnected":"4mQWm","./src/layout":"3jcMK","./src/layout3d":"e4atI","./src/linklengths":"7MQVC","./src/powergraph":"fWOuG","./src/pqueue":"dgNnR","./src/rbtree":"gV5Al","./src/rectangle":"fyhUG","./src/shortestpaths":"h6FRB","./src/vpsc":"gPRzs","./src/batch":"fXcmX"}],"9CRJ0":[function(require,module,exports) {
-"use strict";
-var __extends = this && this.__extends || function() {
-    var extendStatics = function(d1, b1) {
-        extendStatics = Object.setPrototypeOf || ({
-            __proto__: []
-        }) instanceof Array && function(d, b) {
-            d.__proto__ = b;
-        } || function(d, b) {
-            for(var p in b)if (b.hasOwnProperty(p)) d[p] = b[p];
-        };
-        return extendStatics(d1, b1);
-    };
-    return function(d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var layout_1 = require("./layout");
-var LayoutAdaptor1 = function(_super) {
-    __extends(LayoutAdaptor, _super);
-    function LayoutAdaptor(options) {
-        var _this = _super.call(this) || this;
-        var self = _this;
-        var o = options;
-        if (o.trigger) _this.trigger = o.trigger;
-        if (o.kick) _this.kick = o.kick;
-        if (o.drag) _this.drag = o.drag;
-        if (o.on) _this.on = o.on;
-        _this.dragstart = _this.dragStart = layout_1.Layout.dragStart;
-        _this.dragend = _this.dragEnd = layout_1.Layout.dragEnd;
-        return _this;
-    }
-    LayoutAdaptor.prototype.trigger = function(e) {
-    };
-    LayoutAdaptor.prototype.kick = function() {
-    };
-    LayoutAdaptor.prototype.drag = function() {
-    };
-    LayoutAdaptor.prototype.on = function(eventType, listener) {
-        return this;
-    };
-    return LayoutAdaptor;
-}(layout_1.Layout);
-exports.LayoutAdaptor = LayoutAdaptor1;
-function adaptor(options) {
-    return new LayoutAdaptor1(options);
-}
-exports.adaptor = adaptor;
-
-},{"./layout":"3jcMK"}],"3jcMK":[function(require,module,exports) {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var powergraph = require("./powergraph");
-var linklengths_1 = require("./linklengths");
-var descent_1 = require("./descent");
-var rectangle_1 = require("./rectangle");
-var shortestpaths_1 = require("./shortestpaths");
-var geom_1 = require("./geom");
-var handledisconnected_1 = require("./handledisconnected");
-var EventType1;
-(function(EventType) {
-    EventType[EventType["start"] = 0] = "start";
-    EventType[EventType["tick"] = 1] = "tick";
-    EventType[EventType["end"] = 2] = "end";
-})(EventType1 = exports.EventType || (exports.EventType = {
-}));
-function isGroup(g) {
-    return typeof g.leaves !== 'undefined' || typeof g.groups !== 'undefined';
-}
-var Layout1 = function() {
-    function Layout() {
-        var _this = this;
-        this._canvasSize = [
-            1,
-            1
-        ];
-        this._linkDistance = 20;
-        this._defaultNodeSize = 10;
-        this._linkLengthCalculator = null;
-        this._linkType = null;
-        this._avoidOverlaps = false;
-        this._handleDisconnected = true;
-        this._running = false;
-        this._nodes = [];
-        this._groups = [];
-        this._rootGroup = null;
-        this._links = [];
-        this._constraints = [];
-        this._distanceMatrix = null;
-        this._descent = null;
-        this._directedLinkConstraints = null;
-        this._threshold = 0.01;
-        this._visibilityGraph = null;
-        this._groupCompactness = 0.000001;
-        this.event = null;
-        this.linkAccessor = {
-            getSourceIndex: Layout.getSourceIndex,
-            getTargetIndex: Layout.getTargetIndex,
-            setLength: Layout.setLinkLength,
-            getType: function(l) {
-                return typeof _this._linkType === "function" ? _this._linkType(l) : 0;
-            }
-        };
-    }
-    Layout.prototype.on = function(e, listener) {
-        if (!this.event) this.event = {
-        };
-        if (typeof e === 'string') this.event[EventType1[e]] = listener;
-        else this.event[e] = listener;
-        return this;
-    };
-    Layout.prototype.trigger = function(e) {
-        if (this.event && typeof this.event[e.type] !== 'undefined') this.event[e.type](e);
-    };
-    Layout.prototype.kick = function() {
-        while(!this.tick());
-    };
-    Layout.prototype.tick = function() {
-        if (this._alpha < this._threshold) {
-            this._running = false;
-            this.trigger({
-                type: EventType1.end,
-                alpha: this._alpha = 0,
-                stress: this._lastStress
-            });
-            return true;
-        }
-        var n = this._nodes.length, m = this._links.length;
-        var o, i;
-        this._descent.locks.clear();
-        for(i = 0; i < n; ++i){
-            o = this._nodes[i];
-            if (o.fixed) {
-                if (typeof o.px === 'undefined' || typeof o.py === 'undefined') {
-                    o.px = o.x;
-                    o.py = o.y;
-                }
-                var p = [
-                    o.px,
-                    o.py
-                ];
-                this._descent.locks.add(i, p);
-            }
-        }
-        var s1 = this._descent.rungeKutta();
-        if (s1 === 0) this._alpha = 0;
-        else if (typeof this._lastStress !== 'undefined') this._alpha = s1;
-        this._lastStress = s1;
-        this.updateNodePositions();
-        this.trigger({
-            type: EventType1.tick,
-            alpha: this._alpha,
-            stress: this._lastStress
-        });
-        return false;
-    };
-    Layout.prototype.updateNodePositions = function() {
-        var x = this._descent.x[0], y = this._descent.x[1];
-        var o, i = this._nodes.length;
-        while(i--){
-            o = this._nodes[i];
-            o.x = x[i];
-            o.y = y[i];
-        }
-    };
-    Layout.prototype.nodes = function(v) {
-        if (!v) {
-            if (this._nodes.length === 0 && this._links.length > 0) {
-                var n = 0;
-                this._links.forEach(function(l) {
-                    n = Math.max(n, l.source, l.target);
-                });
-                this._nodes = new Array(++n);
-                for(var i = 0; i < n; ++i)this._nodes[i] = {
-                };
-            }
-            return this._nodes;
-        }
-        this._nodes = v;
-        return this;
-    };
-    Layout.prototype.groups = function(x) {
-        var _this = this;
-        if (!x) return this._groups;
-        this._groups = x;
-        this._rootGroup = {
-        };
-        this._groups.forEach(function(g) {
-            if (typeof g.padding === "undefined") g.padding = 1;
-            if (typeof g.leaves !== "undefined") g.leaves.forEach(function(v, i) {
-                if (typeof v === 'number') (g.leaves[i] = _this._nodes[v]).parent = g;
-            });
-            if (typeof g.groups !== "undefined") g.groups.forEach(function(gi, i) {
-                if (typeof gi === 'number') (g.groups[i] = _this._groups[gi]).parent = g;
-            });
-        });
-        this._rootGroup.leaves = this._nodes.filter(function(v) {
-            return typeof v.parent === 'undefined';
-        });
-        this._rootGroup.groups = this._groups.filter(function(g) {
-            return typeof g.parent === 'undefined';
-        });
-        return this;
-    };
-    Layout.prototype.powerGraphGroups = function(f) {
-        var g = powergraph.getGroups(this._nodes, this._links, this.linkAccessor, this._rootGroup);
-        this.groups(g.groups);
-        f(g);
-        return this;
-    };
-    Layout.prototype.avoidOverlaps = function(v) {
-        if (!arguments.length) return this._avoidOverlaps;
-        this._avoidOverlaps = v;
-        return this;
-    };
-    Layout.prototype.handleDisconnected = function(v) {
-        if (!arguments.length) return this._handleDisconnected;
-        this._handleDisconnected = v;
-        return this;
-    };
-    Layout.prototype.flowLayout = function(axis, minSeparation) {
-        if (!arguments.length) axis = 'y';
-        this._directedLinkConstraints = {
-            axis: axis,
-            getMinSeparation: typeof minSeparation === 'number' ? function() {
-                return minSeparation;
-            } : minSeparation
-        };
-        return this;
-    };
-    Layout.prototype.links = function(x) {
-        if (!arguments.length) return this._links;
-        this._links = x;
-        return this;
-    };
-    Layout.prototype.constraints = function(c) {
-        if (!arguments.length) return this._constraints;
-        this._constraints = c;
-        return this;
-    };
-    Layout.prototype.distanceMatrix = function(d) {
-        if (!arguments.length) return this._distanceMatrix;
-        this._distanceMatrix = d;
-        return this;
-    };
-    Layout.prototype.size = function(x) {
-        if (!x) return this._canvasSize;
-        this._canvasSize = x;
-        return this;
-    };
-    Layout.prototype.defaultNodeSize = function(x) {
-        if (!x) return this._defaultNodeSize;
-        this._defaultNodeSize = x;
-        return this;
-    };
-    Layout.prototype.groupCompactness = function(x) {
-        if (!x) return this._groupCompactness;
-        this._groupCompactness = x;
-        return this;
-    };
-    Layout.prototype.linkDistance = function(x) {
-        if (!x) return this._linkDistance;
-        this._linkDistance = typeof x === "function" ? x : +x;
-        this._linkLengthCalculator = null;
-        return this;
-    };
-    Layout.prototype.linkType = function(f) {
-        this._linkType = f;
-        return this;
-    };
-    Layout.prototype.convergenceThreshold = function(x) {
-        if (!x) return this._threshold;
-        this._threshold = typeof x === "function" ? x : +x;
-        return this;
-    };
-    Layout.prototype.alpha = function(x) {
-        if (!arguments.length) return this._alpha;
-        else {
-            x = +x;
-            if (this._alpha) {
-                if (x > 0) this._alpha = x;
-                else this._alpha = 0;
-            } else if (x > 0) {
-                if (!this._running) {
-                    this._running = true;
-                    this.trigger({
-                        type: EventType1.start,
-                        alpha: this._alpha = x
-                    });
-                    this.kick();
-                }
-            }
-            return this;
-        }
-    };
-    Layout.prototype.getLinkLength = function(link) {
-        return typeof this._linkDistance === "function" ? +this._linkDistance(link) : this._linkDistance;
-    };
-    Layout.setLinkLength = function(link, length) {
-        link.length = length;
-    };
-    Layout.prototype.getLinkType = function(link) {
-        return typeof this._linkType === "function" ? this._linkType(link) : 0;
-    };
-    Layout.prototype.symmetricDiffLinkLengths = function(idealLength, w) {
-        var _this = this;
-        if (w === void 0) w = 1;
-        this.linkDistance(function(l) {
-            return idealLength * l.length;
-        });
-        this._linkLengthCalculator = function() {
-            return linklengths_1.symmetricDiffLinkLengths(_this._links, _this.linkAccessor, w);
-        };
-        return this;
-    };
-    Layout.prototype.jaccardLinkLengths = function(idealLength, w) {
-        var _this = this;
-        if (w === void 0) w = 1;
-        this.linkDistance(function(l) {
-            return idealLength * l.length;
-        });
-        this._linkLengthCalculator = function() {
-            return linklengths_1.jaccardLinkLengths(_this._links, _this.linkAccessor, w);
-        };
-        return this;
-    };
-    Layout.prototype.start = function(initialUnconstrainedIterations, initialUserConstraintIterations, initialAllConstraintsIterations, gridSnapIterations, keepRunning, centerGraph) {
-        var _this = this;
-        if (initialUnconstrainedIterations === void 0) initialUnconstrainedIterations = 0;
-        if (initialUserConstraintIterations === void 0) initialUserConstraintIterations = 0;
-        if (initialAllConstraintsIterations === void 0) initialAllConstraintsIterations = 0;
-        if (gridSnapIterations === void 0) gridSnapIterations = 0;
-        if (keepRunning === void 0) keepRunning = true;
-        if (centerGraph === void 0) centerGraph = true;
-        var i1, j1, n = this.nodes().length, N = n + 2 * this._groups.length, m = this._links.length, w = this._canvasSize[0], h = this._canvasSize[1];
-        var x = new Array(N), y = new Array(N);
-        var G = null;
-        var ao = this._avoidOverlaps;
-        this._nodes.forEach(function(v, i) {
-            v.index = i;
-            if (typeof v.x === 'undefined') v.x = w / 2, v.y = h / 2;
-            x[i] = v.x, y[i] = v.y;
-        });
-        if (this._linkLengthCalculator) this._linkLengthCalculator();
-        var distances;
-        if (this._distanceMatrix) distances = this._distanceMatrix;
-        else {
-            distances = new shortestpaths_1.Calculator(N, this._links, Layout.getSourceIndex, Layout.getTargetIndex, function(l) {
-                return _this.getLinkLength(l);
-            }).DistanceMatrix();
-            G = descent_1.Descent.createSquareMatrix(N, function() {
-                return 2;
-            });
-            this._links.forEach(function(l) {
-                if (typeof l.source == "number") l.source = _this._nodes[l.source];
-                if (typeof l.target == "number") l.target = _this._nodes[l.target];
-            });
-            this._links.forEach(function(e) {
-                var u = Layout.getSourceIndex(e), v = Layout.getTargetIndex(e);
-                G[u][v] = G[v][u] = e.weight || 1;
-            });
-        }
-        var D = descent_1.Descent.createSquareMatrix(N, function(i, j) {
-            return distances[i][j];
-        });
-        if (this._rootGroup && typeof this._rootGroup.groups !== 'undefined') {
-            var i1 = n;
-            var addAttraction = function(i, j, strength, idealDistance) {
-                G[i][j] = G[j][i] = strength;
-                D[i][j] = D[j][i] = idealDistance;
-            };
-            this._groups.forEach(function(g) {
-                addAttraction(i1, i1 + 1, _this._groupCompactness, 0.1);
-                x[i1] = 0, y[i1++] = 0;
-                x[i1] = 0, y[i1++] = 0;
-            });
-        } else this._rootGroup = {
-            leaves: this._nodes,
-            groups: []
-        };
-        var curConstraints = this._constraints || [];
-        if (this._directedLinkConstraints) {
-            this.linkAccessor.getMinSeparation = this._directedLinkConstraints.getMinSeparation;
-            curConstraints = curConstraints.concat(linklengths_1.generateDirectedEdgeConstraints(n, this._links, this._directedLinkConstraints.axis, this.linkAccessor));
-        }
-        this.avoidOverlaps(false);
-        this._descent = new descent_1.Descent([
-            x,
-            y
-        ], D);
-        this._descent.locks.clear();
-        for(var i1 = 0; i1 < n; ++i1){
-            var o = this._nodes[i1];
-            if (o.fixed) {
-                o.px = o.x;
-                o.py = o.y;
-                var p = [
-                    o.x,
-                    o.y
-                ];
-                this._descent.locks.add(i1, p);
-            }
-        }
-        this._descent.threshold = this._threshold;
-        this.initialLayout(initialUnconstrainedIterations, x, y);
-        if (curConstraints.length > 0) this._descent.project = new rectangle_1.Projection(this._nodes, this._groups, this._rootGroup, curConstraints).projectFunctions();
-        this._descent.run(initialUserConstraintIterations);
-        this.separateOverlappingComponents(w, h, centerGraph);
-        this.avoidOverlaps(ao);
-        if (ao) {
-            this._nodes.forEach(function(v, i) {
-                v.x = x[i], v.y = y[i];
-            });
-            this._descent.project = new rectangle_1.Projection(this._nodes, this._groups, this._rootGroup, curConstraints, true).projectFunctions();
-            this._nodes.forEach(function(v, i) {
-                x[i] = v.x, y[i] = v.y;
-            });
-        }
-        this._descent.G = G;
-        this._descent.run(initialAllConstraintsIterations);
-        if (gridSnapIterations) {
-            this._descent.snapStrength = 1000;
-            this._descent.snapGridSize = this._nodes[0].width;
-            this._descent.numGridSnapNodes = n;
-            this._descent.scaleSnapByMaxH = n != N;
-            var G0 = descent_1.Descent.createSquareMatrix(N, function(i, j) {
-                if (i >= n || j >= n) return G[i][j];
-                return 0;
-            });
-            this._descent.G = G0;
-            this._descent.run(gridSnapIterations);
-        }
-        this.updateNodePositions();
-        this.separateOverlappingComponents(w, h, centerGraph);
-        return keepRunning ? this.resume() : this;
-    };
-    Layout.prototype.initialLayout = function(iterations, x, y) {
-        if (this._groups.length > 0 && iterations > 0) {
-            var n = this._nodes.length;
-            var edges = this._links.map(function(e) {
-                return {
-                    source: e.source.index,
-                    target: e.target.index
-                };
-            });
-            var vs = this._nodes.map(function(v) {
-                return {
-                    index: v.index
-                };
-            });
-            this._groups.forEach(function(g, i) {
-                vs.push({
-                    index: g.index = n + i
-                });
-            });
-            this._groups.forEach(function(g, i) {
-                if (typeof g.leaves !== 'undefined') g.leaves.forEach(function(v) {
-                    return edges.push({
-                        source: g.index,
-                        target: v.index
-                    });
-                });
-                if (typeof g.groups !== 'undefined') g.groups.forEach(function(gg) {
-                    return edges.push({
-                        source: g.index,
-                        target: gg.index
-                    });
-                });
-            });
-            new Layout().size(this.size()).nodes(vs).links(edges).avoidOverlaps(false).linkDistance(this.linkDistance()).symmetricDiffLinkLengths(5).convergenceThreshold(0.0001).start(iterations, 0, 0, 0, false);
-            this._nodes.forEach(function(v) {
-                x[v.index] = vs[v.index].x;
-                y[v.index] = vs[v.index].y;
-            });
-        } else this._descent.run(iterations);
-    };
-    Layout.prototype.separateOverlappingComponents = function(width, height, centerGraph) {
-        var _this = this;
-        if (centerGraph === void 0) centerGraph = true;
-        if (!this._distanceMatrix && this._handleDisconnected) {
-            var x_1 = this._descent.x[0], y_1 = this._descent.x[1];
-            this._nodes.forEach(function(v, i) {
-                v.x = x_1[i], v.y = y_1[i];
-            });
-            var graphs = handledisconnected_1.separateGraphs(this._nodes, this._links);
-            handledisconnected_1.applyPacking(graphs, width, height, this._defaultNodeSize, 1, centerGraph);
-            this._nodes.forEach(function(v, i) {
-                _this._descent.x[0][i] = v.x, _this._descent.x[1][i] = v.y;
-                if (v.bounds) {
-                    v.bounds.setXCentre(v.x);
-                    v.bounds.setYCentre(v.y);
-                }
-            });
-        }
-    };
-    Layout.prototype.resume = function() {
-        return this.alpha(0.1);
-    };
-    Layout.prototype.stop = function() {
-        return this.alpha(0);
-    };
-    Layout.prototype.prepareEdgeRouting = function(nodeMargin) {
-        if (nodeMargin === void 0) nodeMargin = 0;
-        this._visibilityGraph = new geom_1.TangentVisibilityGraph(this._nodes.map(function(v) {
-            return v.bounds.inflate(-nodeMargin).vertices();
-        }));
-    };
-    Layout.prototype.routeEdge = function(edge, ah, draw) {
-        if (ah === void 0) ah = 5;
-        var lineData = [];
-        var vg2 = new geom_1.TangentVisibilityGraph(this._visibilityGraph.P, {
-            V: this._visibilityGraph.V,
-            E: this._visibilityGraph.E
-        }), port1 = {
-            x: edge.source.x,
-            y: edge.source.y
-        }, port2 = {
-            x: edge.target.x,
-            y: edge.target.y
-        }, start = vg2.addPoint(port1, edge.source.index), end = vg2.addPoint(port2, edge.target.index);
-        vg2.addEdgeIfVisible(port1, port2, edge.source.index, edge.target.index);
-        if (typeof draw !== 'undefined') draw(vg2);
-        var sourceInd = function(e) {
-            return e.source.id;
-        }, targetInd = function(e) {
-            return e.target.id;
-        }, length = function(e) {
-            return e.length();
-        }, spCalc = new shortestpaths_1.Calculator(vg2.V.length, vg2.E, sourceInd, targetInd, length), shortestPath = spCalc.PathFromNodeToNode(start.id, end.id);
-        if (shortestPath.length === 1 || shortestPath.length === vg2.V.length) {
-            var route = rectangle_1.makeEdgeBetween(edge.source.innerBounds, edge.target.innerBounds, ah);
-            lineData = [
-                route.sourceIntersection,
-                route.arrowStart
-            ];
-        } else {
-            var n = shortestPath.length - 2, p = vg2.V[shortestPath[n]].p, q = vg2.V[shortestPath[0]].p, lineData = [
-                edge.source.innerBounds.rayIntersection(p.x, p.y)
-            ];
-            for(var i = n; i >= 0; --i)lineData.push(vg2.V[shortestPath[i]].p);
-            lineData.push(rectangle_1.makeEdgeTo(q, edge.target.innerBounds, ah));
-        }
-        return lineData;
-    };
-    Layout.getSourceIndex = function(e) {
-        return typeof e.source === 'number' ? e.source : e.source.index;
-    };
-    Layout.getTargetIndex = function(e) {
-        return typeof e.target === 'number' ? e.target : e.target.index;
-    };
-    Layout.linkId = function(e) {
-        return Layout.getSourceIndex(e) + "-" + Layout.getTargetIndex(e);
-    };
-    Layout.dragStart = function(d) {
-        if (isGroup(d)) Layout.storeOffset(d, Layout.dragOrigin(d));
-        else {
-            Layout.stopNode(d);
-            d.fixed |= 2;
-        }
-    };
-    Layout.stopNode = function(v) {
-        v.px = v.x;
-        v.py = v.y;
-    };
-    Layout.storeOffset = function(d, origin) {
-        if (typeof d.leaves !== 'undefined') d.leaves.forEach(function(v) {
-            v.fixed |= 2;
-            Layout.stopNode(v);
-            v._dragGroupOffsetX = v.x - origin.x;
-            v._dragGroupOffsetY = v.y - origin.y;
-        });
-        if (typeof d.groups !== 'undefined') d.groups.forEach(function(g) {
-            return Layout.storeOffset(g, origin);
-        });
-    };
-    Layout.dragOrigin = function(d) {
-        if (isGroup(d)) return {
-            x: d.bounds.cx(),
-            y: d.bounds.cy()
-        };
-        else return d;
-    };
-    Layout.drag = function(d, position) {
-        if (isGroup(d)) {
-            if (typeof d.leaves !== 'undefined') d.leaves.forEach(function(v) {
-                d.bounds.setXCentre(position.x);
-                d.bounds.setYCentre(position.y);
-                v.px = v._dragGroupOffsetX + position.x;
-                v.py = v._dragGroupOffsetY + position.y;
-            });
-            if (typeof d.groups !== 'undefined') d.groups.forEach(function(g) {
-                return Layout.drag(g, position);
-            });
-        } else {
-            d.px = position.x;
-            d.py = position.y;
-        }
-    };
-    Layout.dragEnd = function(d) {
-        if (isGroup(d)) {
-            if (typeof d.leaves !== 'undefined') d.leaves.forEach(function(v) {
-                Layout.dragEnd(v);
-                delete v._dragGroupOffsetX;
-                delete v._dragGroupOffsetY;
-            });
-            if (typeof d.groups !== 'undefined') d.groups.forEach(Layout.dragEnd);
-        } else d.fixed &= -7;
-    };
-    Layout.mouseOver = function(d) {
-        d.fixed |= 4;
-        d.px = d.x, d.py = d.y;
-    };
-    Layout.mouseOut = function(d) {
-        d.fixed &= -5;
-    };
-    return Layout;
-}();
-exports.Layout = Layout1;
-
-},{"./powergraph":"fWOuG","./linklengths":"7MQVC","./descent":"inMal","./rectangle":"fyhUG","./shortestpaths":"h6FRB","./geom":"k3BZk","./handledisconnected":"4mQWm"}],"fWOuG":[function(require,module,exports) {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var PowerEdge1 = function() {
-    function PowerEdge(source, target, type) {
-        this.source = source;
-        this.target = target;
-        this.type = type;
-    }
-    return PowerEdge;
-}();
-exports.PowerEdge = PowerEdge1;
-var Configuration1 = function() {
-    function Configuration(n, edges, linkAccessor, rootGroup) {
-        var _this = this;
-        this.linkAccessor = linkAccessor;
-        this.modules = new Array(n);
-        this.roots = [];
-        if (rootGroup) this.initModulesFromGroup(rootGroup);
-        else {
-            this.roots.push(new ModuleSet1());
-            for(var i = 0; i < n; ++i)this.roots[0].add(this.modules[i] = new Module1(i));
-        }
-        this.R = edges.length;
-        edges.forEach(function(e) {
-            var s = _this.modules[linkAccessor.getSourceIndex(e)], t = _this.modules[linkAccessor.getTargetIndex(e)], type = linkAccessor.getType(e);
-            s.outgoing.add(type, t);
-            t.incoming.add(type, s);
-        });
-    }
-    Configuration.prototype.initModulesFromGroup = function(group) {
-        var moduleSet = new ModuleSet1();
-        this.roots.push(moduleSet);
-        for(var i = 0; i < group.leaves.length; ++i){
-            var node = group.leaves[i];
-            var module = new Module1(node.id);
-            this.modules[node.id] = module;
-            moduleSet.add(module);
-        }
-        if (group.groups) for(var j = 0; j < group.groups.length; ++j){
-            var child = group.groups[j];
-            var definition = {
-            };
-            for(var prop in child)if (prop !== "leaves" && prop !== "groups" && child.hasOwnProperty(prop)) definition[prop] = child[prop];
-            moduleSet.add(new Module1(-1 - j, new LinkSets1(), new LinkSets1(), this.initModulesFromGroup(child), definition));
-        }
-        return moduleSet;
-    };
-    Configuration.prototype.merge = function(a, b, k) {
-        if (k === void 0) k = 0;
-        var inInt = a.incoming.intersection(b.incoming), outInt = a.outgoing.intersection(b.outgoing);
-        var children = new ModuleSet1();
-        children.add(a);
-        children.add(b);
-        var m = new Module1(this.modules.length, outInt, inInt, children);
-        this.modules.push(m);
-        var update = function(s, i, o) {
-            s.forAll(function(ms, linktype) {
-                ms.forAll(function(n) {
-                    var nls = n[i];
-                    nls.add(linktype, m);
-                    nls.remove(linktype, a);
-                    nls.remove(linktype, b);
-                    a[o].remove(linktype, n);
-                    b[o].remove(linktype, n);
-                });
-            });
-        };
-        update(outInt, "incoming", "outgoing");
-        update(inInt, "outgoing", "incoming");
-        this.R -= inInt.count() + outInt.count();
-        this.roots[k].remove(a);
-        this.roots[k].remove(b);
-        this.roots[k].add(m);
-        return m;
-    };
-    Configuration.prototype.rootMerges = function(k) {
-        if (k === void 0) k = 0;
-        var rs = this.roots[k].modules();
-        var n = rs.length;
-        var merges = new Array(n * (n - 1));
-        var ctr = 0;
-        for(var i = 0, i_ = n - 1; i < i_; ++i)for(var j = i + 1; j < n; ++j){
-            var a = rs[i], b = rs[j];
-            merges[ctr] = {
-                id: ctr,
-                nEdges: this.nEdges(a, b),
-                a: a,
-                b: b
-            };
-            ctr++;
-        }
-        return merges;
-    };
-    Configuration.prototype.greedyMerge = function() {
-        for(var i = 0; i < this.roots.length; ++i){
-            if (this.roots[i].modules().length < 2) continue;
-            var ms = this.rootMerges(i).sort(function(a, b) {
-                return a.nEdges == b.nEdges ? a.id - b.id : a.nEdges - b.nEdges;
-            });
-            var m = ms[0];
-            if (m.nEdges >= this.R) continue;
-            this.merge(m.a, m.b, i);
-            return true;
-        }
-    };
-    Configuration.prototype.nEdges = function(a, b) {
-        var inInt = a.incoming.intersection(b.incoming), outInt = a.outgoing.intersection(b.outgoing);
-        return this.R - inInt.count() - outInt.count();
-    };
-    Configuration.prototype.getGroupHierarchy = function(retargetedEdges) {
-        var _this = this;
-        var groups = [];
-        var root = {
-        };
-        toGroups(this.roots[0], root, groups);
-        var es = this.allEdges();
-        es.forEach(function(e) {
-            var a = _this.modules[e.source];
-            var b = _this.modules[e.target];
-            retargetedEdges.push(new PowerEdge1(typeof a.gid === "undefined" ? e.source : groups[a.gid], typeof b.gid === "undefined" ? e.target : groups[b.gid], e.type));
-        });
-        return groups;
-    };
-    Configuration.prototype.allEdges = function() {
-        var es = [];
-        Configuration.getEdges(this.roots[0], es);
-        return es;
-    };
-    Configuration.getEdges = function(modules, es) {
-        modules.forAll(function(m) {
-            m.getEdges(es);
-            Configuration.getEdges(m.children, es);
-        });
-    };
-    return Configuration;
-}();
-exports.Configuration = Configuration1;
-function toGroups(modules, group, groups) {
-    modules.forAll(function(m) {
-        if (m.isLeaf()) {
-            if (!group.leaves) group.leaves = [];
-            group.leaves.push(m.id);
-        } else {
-            var g = group;
-            m.gid = groups.length;
-            if (!m.isIsland() || m.isPredefined()) {
-                g = {
-                    id: m.gid
-                };
-                if (m.isPredefined()) for(var prop in m.definition)g[prop] = m.definition[prop];
-                if (!group.groups) group.groups = [];
-                group.groups.push(m.gid);
-                groups.push(g);
-            }
-            toGroups(m.children, g, groups);
-        }
-    });
-}
-var Module1 = function() {
-    function Module(id, outgoing, incoming, children, definition) {
-        if (outgoing === void 0) outgoing = new LinkSets1();
-        if (incoming === void 0) incoming = new LinkSets1();
-        if (children === void 0) children = new ModuleSet1();
-        this.id = id;
-        this.outgoing = outgoing;
-        this.incoming = incoming;
-        this.children = children;
-        this.definition = definition;
-    }
-    Module.prototype.getEdges = function(es) {
-        var _this = this;
-        this.outgoing.forAll(function(ms, edgetype) {
-            ms.forAll(function(target) {
-                es.push(new PowerEdge1(_this.id, target.id, edgetype));
-            });
-        });
-    };
-    Module.prototype.isLeaf = function() {
-        return this.children.count() === 0;
-    };
-    Module.prototype.isIsland = function() {
-        return this.outgoing.count() === 0 && this.incoming.count() === 0;
-    };
-    Module.prototype.isPredefined = function() {
-        return typeof this.definition !== "undefined";
-    };
-    return Module;
-}();
-exports.Module = Module1;
-function intersection(m, n) {
-    var i = {
-    };
-    for(var v in m)if (v in n) i[v] = m[v];
-    return i;
-}
-var ModuleSet1 = function() {
-    function ModuleSet() {
-        this.table = {
-        };
-    }
-    ModuleSet.prototype.count = function() {
-        return Object.keys(this.table).length;
-    };
-    ModuleSet.prototype.intersection = function(other) {
-        var result = new ModuleSet();
-        result.table = intersection(this.table, other.table);
-        return result;
-    };
-    ModuleSet.prototype.intersectionCount = function(other) {
-        return this.intersection(other).count();
-    };
-    ModuleSet.prototype.contains = function(id) {
-        return id in this.table;
-    };
-    ModuleSet.prototype.add = function(m) {
-        this.table[m.id] = m;
-    };
-    ModuleSet.prototype.remove = function(m) {
-        delete this.table[m.id];
-    };
-    ModuleSet.prototype.forAll = function(f) {
-        for(var mid in this.table)f(this.table[mid]);
-    };
-    ModuleSet.prototype.modules = function() {
-        var vs = [];
-        this.forAll(function(m) {
-            if (!m.isPredefined()) vs.push(m);
-        });
-        return vs;
-    };
-    return ModuleSet;
-}();
-exports.ModuleSet = ModuleSet1;
-var LinkSets1 = function() {
-    function LinkSets() {
-        this.sets = {
-        };
-        this.n = 0;
-    }
-    LinkSets.prototype.count = function() {
-        return this.n;
-    };
-    LinkSets.prototype.contains = function(id) {
-        var result = false;
-        this.forAllModules(function(m) {
-            if (!result && m.id == id) result = true;
-        });
-        return result;
-    };
-    LinkSets.prototype.add = function(linktype, m) {
-        var s = linktype in this.sets ? this.sets[linktype] : this.sets[linktype] = new ModuleSet1();
-        s.add(m);
-        ++this.n;
-    };
-    LinkSets.prototype.remove = function(linktype, m) {
-        var ms = this.sets[linktype];
-        ms.remove(m);
-        if (ms.count() === 0) delete this.sets[linktype];
-        --this.n;
-    };
-    LinkSets.prototype.forAll = function(f) {
-        for(var linktype in this.sets)f(this.sets[linktype], Number(linktype));
-    };
-    LinkSets.prototype.forAllModules = function(f) {
-        this.forAll(function(ms, lt) {
-            return ms.forAll(f);
-        });
-    };
-    LinkSets.prototype.intersection = function(other) {
-        var result = new LinkSets();
-        this.forAll(function(ms, lt) {
-            if (lt in other.sets) {
-                var i = ms.intersection(other.sets[lt]), n = i.count();
-                if (n > 0) {
-                    result.sets[lt] = i;
-                    result.n += n;
-                }
-            }
-        });
-        return result;
-    };
-    return LinkSets;
-}();
-exports.LinkSets = LinkSets1;
-function intersectionCount(m, n) {
-    return Object.keys(intersection(m, n)).length;
-}
-function getGroups(nodes, links, la, rootGroup) {
-    var n = nodes.length, c = new Configuration1(n, links, la, rootGroup);
-    while(c.greedyMerge());
-    var powerEdges = [];
-    var g1 = c.getGroupHierarchy(powerEdges);
-    powerEdges.forEach(function(e) {
-        var f = function(end) {
-            var g = e[end];
-            if (typeof g == "number") e[end] = nodes[g];
-        };
-        f("source");
-        f("target");
-    });
-    return {
-        groups: g1,
-        powerEdges: powerEdges
-    };
-}
-exports.getGroups = getGroups;
-
-},{}],"7MQVC":[function(require,module,exports) {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-function unionCount(a, b) {
-    var u = {
-    };
-    for(var i in a)u[i] = {
-    };
-    for(var i in b)u[i] = {
-    };
-    return Object.keys(u).length;
-}
-function intersectionCount(a, b) {
-    var n = 0;
-    for(var i in a)if (typeof b[i] !== 'undefined') ++n;
-    return n;
-}
-function getNeighbours(links, la) {
-    var neighbours = {
-    };
-    var addNeighbours = function(u, v) {
-        if (typeof neighbours[u] === 'undefined') neighbours[u] = {
-        };
-        neighbours[u][v] = {
-        };
-    };
-    links.forEach(function(e) {
-        var u = la.getSourceIndex(e), v = la.getTargetIndex(e);
-        addNeighbours(u, v);
-        addNeighbours(v, u);
-    });
-    return neighbours;
-}
-function computeLinkLengths(links, w, f, la) {
-    var neighbours = getNeighbours(links, la);
-    links.forEach(function(l) {
-        var a = neighbours[la.getSourceIndex(l)];
-        var b = neighbours[la.getTargetIndex(l)];
-        la.setLength(l, 1 + w * f(a, b));
-    });
-}
-function symmetricDiffLinkLengths(links, la, w) {
-    if (w === void 0) w = 1;
-    computeLinkLengths(links, w, function(a, b) {
-        return Math.sqrt(unionCount(a, b) - intersectionCount(a, b));
-    }, la);
-}
-exports.symmetricDiffLinkLengths = symmetricDiffLinkLengths;
-function jaccardLinkLengths(links, la, w) {
-    if (w === void 0) w = 1;
-    computeLinkLengths(links, w, function(a, b) {
-        return Math.min(Object.keys(a).length, Object.keys(b).length) < 1.1 ? 0 : intersectionCount(a, b) / unionCount(a, b);
-    }, la);
-}
-exports.jaccardLinkLengths = jaccardLinkLengths;
-function generateDirectedEdgeConstraints(n, links, axis, la) {
-    var components = stronglyConnectedComponents(n, links, la);
-    var nodes = {
-    };
-    components.forEach(function(c, i) {
-        return c.forEach(function(v) {
-            return nodes[v] = i;
-        });
-    });
-    var constraints = [];
-    links.forEach(function(l) {
-        var ui = la.getSourceIndex(l), vi = la.getTargetIndex(l), u = nodes[ui], v = nodes[vi];
-        if (u !== v) constraints.push({
-            axis: axis,
-            left: ui,
-            right: vi,
-            gap: la.getMinSeparation(l)
-        });
-    });
-    return constraints;
-}
-exports.generateDirectedEdgeConstraints = generateDirectedEdgeConstraints;
-function stronglyConnectedComponents(numVertices, edges, la) {
-    var nodes = [];
-    var index = 0;
-    var stack = [];
-    var components = [];
-    function strongConnect(v2) {
-        v2.index = v2.lowlink = index++;
-        stack.push(v2);
-        v2.onStack = true;
-        for(var _i = 0, _a = v2.out; _i < _a.length; _i++){
-            var w = _a[_i];
-            if (typeof w.index === 'undefined') {
-                strongConnect(w);
-                v2.lowlink = Math.min(v2.lowlink, w.lowlink);
-            } else if (w.onStack) v2.lowlink = Math.min(v2.lowlink, w.index);
-        }
-        if (v2.lowlink === v2.index) {
-            var component = [];
-            while(stack.length){
-                w = stack.pop();
-                w.onStack = false;
-                component.push(w);
-                if (w === v2) break;
-            }
-            components.push(component.map(function(v) {
-                return v.id;
-            }));
-        }
-    }
-    for(var i = 0; i < numVertices; i++)nodes.push({
-        id: i,
-        out: []
-    });
-    for(var _i1 = 0, edges_1 = edges; _i1 < edges_1.length; _i1++){
-        var e = edges_1[_i1];
-        var v_1 = nodes[la.getSourceIndex(e)], w1 = nodes[la.getTargetIndex(e)];
-        v_1.out.push(w1);
-    }
-    for(var _a1 = 0, nodes_1 = nodes; _a1 < nodes_1.length; _a1++){
-        var v1 = nodes_1[_a1];
-        if (typeof v1.index === 'undefined') strongConnect(v1);
-    }
-    return components;
-}
-exports.stronglyConnectedComponents = stronglyConnectedComponents;
-
-},{}],"inMal":[function(require,module,exports) {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var Locks1 = function() {
-    function Locks() {
-        this.locks = {
-        };
-    }
-    Locks.prototype.add = function(id, x) {
-        this.locks[id] = x;
-    };
-    Locks.prototype.clear = function() {
-        this.locks = {
-        };
-    };
-    Locks.prototype.isEmpty = function() {
-        for(var l in this.locks)return false;
-        return true;
-    };
-    Locks.prototype.apply = function(f) {
-        for(var l in this.locks)f(Number(l), this.locks[l]);
-    };
-    return Locks;
-}();
-exports.Locks = Locks1;
-var Descent1 = function() {
-    function Descent(x, D, G) {
-        if (G === void 0) G = null;
-        this.D = D;
-        this.G = G;
-        this.threshold = 0.0001;
-        this.numGridSnapNodes = 0;
-        this.snapGridSize = 100;
-        this.snapStrength = 1000;
-        this.scaleSnapByMaxH = false;
-        this.random = new PseudoRandom1();
-        this.project = null;
-        this.x = x;
-        this.k = x.length;
-        var n = this.n = x[0].length;
-        this.H = new Array(this.k);
-        this.g = new Array(this.k);
-        this.Hd = new Array(this.k);
-        this.a = new Array(this.k);
-        this.b = new Array(this.k);
-        this.c = new Array(this.k);
-        this.d = new Array(this.k);
-        this.e = new Array(this.k);
-        this.ia = new Array(this.k);
-        this.ib = new Array(this.k);
-        this.xtmp = new Array(this.k);
-        this.locks = new Locks1();
-        this.minD = Number.MAX_VALUE;
-        var i = n, j;
-        while(i--){
-            j = n;
-            while(--j > i){
-                var d = D[i][j];
-                if (d > 0 && d < this.minD) this.minD = d;
-            }
-        }
-        if (this.minD === Number.MAX_VALUE) this.minD = 1;
-        i = this.k;
-        while(i--){
-            this.g[i] = new Array(n);
-            this.H[i] = new Array(n);
-            j = n;
-            while(j--)this.H[i][j] = new Array(n);
-            this.Hd[i] = new Array(n);
-            this.a[i] = new Array(n);
-            this.b[i] = new Array(n);
-            this.c[i] = new Array(n);
-            this.d[i] = new Array(n);
-            this.e[i] = new Array(n);
-            this.ia[i] = new Array(n);
-            this.ib[i] = new Array(n);
-            this.xtmp[i] = new Array(n);
-        }
-    }
-    Descent.createSquareMatrix = function(n, f) {
-        var M = new Array(n);
-        for(var i = 0; i < n; ++i){
-            M[i] = new Array(n);
-            for(var j = 0; j < n; ++j)M[i][j] = f(i, j);
-        }
-        return M;
-    };
-    Descent.prototype.offsetDir = function() {
-        var _this = this;
-        var u = new Array(this.k);
-        var l = 0;
-        for(var i = 0; i < this.k; ++i){
-            var x = u[i] = this.random.getNextBetween(0.01, 1) - 0.5;
-            l += x * x;
-        }
-        l = Math.sqrt(l);
-        return u.map(function(x) {
-            return x *= _this.minD / l;
-        });
-    };
-    Descent.prototype.computeDerivatives = function(x) {
-        var _this = this;
-        var n = this.n;
-        if (n < 1) return;
-        var i;
-        var d = new Array(this.k);
-        var d2 = new Array(this.k);
-        var Huu = new Array(this.k);
-        var maxH = 0;
-        for(var u = 0; u < n; ++u){
-            for(i = 0; i < this.k; ++i)Huu[i] = this.g[i][u] = 0;
-            for(var v = 0; v < n; ++v){
-                if (u === v) continue;
-                var maxDisplaces = n;
-                while(maxDisplaces--){
-                    var sd2 = 0;
-                    for(i = 0; i < this.k; ++i){
-                        var dx = d[i] = x[i][u] - x[i][v];
-                        sd2 += d2[i] = dx * dx;
-                    }
-                    if (sd2 > 0.000000001) break;
-                    var rd = this.offsetDir();
-                    for(i = 0; i < this.k; ++i)x[i][v] += rd[i];
-                }
-                var l = Math.sqrt(sd2);
-                var D = this.D[u][v];
-                var weight = this.G != null ? this.G[u][v] : 1;
-                if (weight > 1 && l > D || !isFinite(D)) {
-                    for(i = 0; i < this.k; ++i)this.H[i][u][v] = 0;
-                    continue;
-                }
-                if (weight > 1) weight = 1;
-                var D2 = D * D;
-                var gs = 2 * weight * (l - D) / (D2 * l);
-                var l3 = l * l * l;
-                var hs = 2 * -weight / (D2 * l3);
-                if (!isFinite(gs)) console.log(gs);
-                for(i = 0; i < this.k; ++i){
-                    this.g[i][u] += d[i] * gs;
-                    Huu[i] -= this.H[i][u][v] = hs * (l3 + D * (d2[i] - sd2) + l * sd2);
-                }
-            }
-            for(i = 0; i < this.k; ++i)maxH = Math.max(maxH, this.H[i][u][u] = Huu[i]);
-        }
-        var r = this.snapGridSize / 2;
-        var g = this.snapGridSize;
-        var w = this.snapStrength;
-        var k = w / (r * r);
-        var numNodes = this.numGridSnapNodes;
-        for(var u = 0; u < numNodes; ++u)for(i = 0; i < this.k; ++i){
-            var xiu = this.x[i][u];
-            var m = xiu / g;
-            var f = m % 1;
-            var q = m - f;
-            var a = Math.abs(f);
-            var dx = a <= 0.5 ? xiu - q * g : xiu > 0 ? xiu - (q + 1) * g : xiu - (q - 1) * g;
-            if (-r < dx && dx <= r) {
-                if (this.scaleSnapByMaxH) {
-                    this.g[i][u] += maxH * k * dx;
-                    this.H[i][u][u] += maxH * k;
-                } else {
-                    this.g[i][u] += k * dx;
-                    this.H[i][u][u] += k;
-                }
-            }
-        }
-        if (!this.locks.isEmpty()) this.locks.apply(function(u, p) {
-            for(i = 0; i < _this.k; ++i){
-                _this.H[i][u][u] += maxH;
-                _this.g[i][u] -= maxH * (p[i] - x[i][u]);
-            }
-        });
-    };
-    Descent.dotProd = function(a, b) {
-        var x = 0, i = a.length;
-        while(i--)x += a[i] * b[i];
-        return x;
-    };
-    Descent.rightMultiply = function(m, v, r) {
-        var i = m.length;
-        while(i--)r[i] = Descent.dotProd(m[i], v);
-    };
-    Descent.prototype.computeStepSize = function(d) {
-        var numerator = 0, denominator = 0;
-        for(var i = 0; i < this.k; ++i){
-            numerator += Descent.dotProd(this.g[i], d[i]);
-            Descent.rightMultiply(this.H[i], d[i], this.Hd[i]);
-            denominator += Descent.dotProd(d[i], this.Hd[i]);
-        }
-        if (denominator === 0 || !isFinite(denominator)) return 0;
-        return 1 * numerator / denominator;
-    };
-    Descent.prototype.reduceStress = function() {
-        this.computeDerivatives(this.x);
-        var alpha = this.computeStepSize(this.g);
-        for(var i = 0; i < this.k; ++i)this.takeDescentStep(this.x[i], this.g[i], alpha);
-        return this.computeStress();
-    };
-    Descent.copy = function(a, b) {
-        var m = a.length, n = b[0].length;
-        for(var i = 0; i < m; ++i)for(var j = 0; j < n; ++j)b[i][j] = a[i][j];
-    };
-    Descent.prototype.stepAndProject = function(x0, r, d, stepSize) {
-        Descent.copy(x0, r);
-        this.takeDescentStep(r[0], d[0], stepSize);
-        if (this.project) this.project[0](x0[0], x0[1], r[0]);
-        this.takeDescentStep(r[1], d[1], stepSize);
-        if (this.project) this.project[1](r[0], x0[1], r[1]);
-        for(var i = 2; i < this.k; i++)this.takeDescentStep(r[i], d[i], stepSize);
-    };
-    Descent.mApply = function(m, n, f) {
-        var i = m;
-        while(i-- > 0){
-            var j = n;
-            while(j-- > 0)f(i, j);
-        }
-    };
-    Descent.prototype.matrixApply = function(f) {
-        Descent.mApply(this.k, this.n, f);
-    };
-    Descent.prototype.computeNextPosition = function(x0, r) {
-        var _this = this;
-        this.computeDerivatives(x0);
-        var alpha = this.computeStepSize(this.g);
-        this.stepAndProject(x0, r, this.g, alpha);
-        if (this.project) {
-            this.matrixApply(function(i, j) {
-                return _this.e[i][j] = x0[i][j] - r[i][j];
-            });
-            var beta = this.computeStepSize(this.e);
-            beta = Math.max(0.2, Math.min(beta, 1));
-            this.stepAndProject(x0, r, this.e, beta);
-        }
-    };
-    Descent.prototype.run = function(iterations) {
-        var stress = Number.MAX_VALUE, converged = false;
-        while(!converged && iterations-- > 0){
-            var s = this.rungeKutta();
-            converged = Math.abs(stress / s - 1) < this.threshold;
-            stress = s;
-        }
-        return stress;
-    };
-    Descent.prototype.rungeKutta = function() {
-        var _this = this;
-        this.computeNextPosition(this.x, this.a);
-        Descent.mid(this.x, this.a, this.ia);
-        this.computeNextPosition(this.ia, this.b);
-        Descent.mid(this.x, this.b, this.ib);
-        this.computeNextPosition(this.ib, this.c);
-        this.computeNextPosition(this.c, this.d);
-        var disp = 0;
-        this.matrixApply(function(i, j) {
-            var x = (_this.a[i][j] + 2 * _this.b[i][j] + 2 * _this.c[i][j] + _this.d[i][j]) / 6, d = _this.x[i][j] - x;
-            disp += d * d;
-            _this.x[i][j] = x;
-        });
-        return disp;
-    };
-    Descent.mid = function(a, b, m) {
-        Descent.mApply(a.length, a[0].length, function(i, j) {
-            return m[i][j] = a[i][j] + (b[i][j] - a[i][j]) / 2;
-        });
-    };
-    Descent.prototype.takeDescentStep = function(x, d, stepSize) {
-        for(var i = 0; i < this.n; ++i)x[i] = x[i] - stepSize * d[i];
-    };
-    Descent.prototype.computeStress = function() {
-        var stress = 0;
-        for(var u = 0, nMinus1 = this.n - 1; u < nMinus1; ++u)for(var v = u + 1, n = this.n; v < n; ++v){
-            var l = 0;
-            for(var i = 0; i < this.k; ++i){
-                var dx = this.x[i][u] - this.x[i][v];
-                l += dx * dx;
-            }
-            l = Math.sqrt(l);
-            var d = this.D[u][v];
-            if (!isFinite(d)) continue;
-            var rl = d - l;
-            var d2 = d * d;
-            stress += rl * rl / d2;
-        }
-        return stress;
-    };
-    Descent.zeroDistance = 0.0000000001;
-    return Descent;
-}();
-exports.Descent = Descent1;
-var PseudoRandom1 = function() {
-    function PseudoRandom(seed) {
-        if (seed === void 0) seed = 1;
-        this.seed = seed;
-        this.a = 214013;
-        this.c = 2531011;
-        this.m = 2147483648;
-        this.range = 32767;
-    }
-    PseudoRandom.prototype.getNext = function() {
-        this.seed = (this.seed * this.a + this.c) % this.m;
-        return (this.seed >> 16) / this.range;
-    };
-    PseudoRandom.prototype.getNextBetween = function(min, max) {
-        return min + this.getNext() * (max - min);
-    };
-    return PseudoRandom;
-}();
-exports.PseudoRandom = PseudoRandom1;
-
-},{}],"fyhUG":[function(require,module,exports) {
-"use strict";
-var __extends = this && this.__extends || function() {
-    var extendStatics = function(d1, b1) {
-        extendStatics = Object.setPrototypeOf || ({
-            __proto__: []
-        }) instanceof Array && function(d, b) {
-            d.__proto__ = b;
-        } || function(d, b) {
-            for(var p in b)if (b.hasOwnProperty(p)) d[p] = b[p];
-        };
-        return extendStatics(d1, b1);
-    };
-    return function(d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var vpsc_1 = require("./vpsc");
-var rbtree_1 = require("./rbtree");
-function computeGroupBounds(g) {
-    g.bounds = typeof g.leaves !== "undefined" ? g.leaves.reduce(function(r, c) {
-        return c.bounds.union(r);
-    }, Rectangle1.empty()) : Rectangle1.empty();
-    if (typeof g.groups !== "undefined") g.bounds = g.groups.reduce(function(r, c) {
-        return computeGroupBounds(c).union(r);
-    }, g.bounds);
-    g.bounds = g.bounds.inflate(g.padding);
-    return g.bounds;
-}
-exports.computeGroupBounds = computeGroupBounds;
-var Rectangle1 = function() {
-    function Rectangle(x, X, y, Y) {
-        this.x = x;
-        this.X = X;
-        this.y = y;
-        this.Y = Y;
-    }
-    Rectangle.empty = function() {
-        return new Rectangle(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY);
-    };
-    Rectangle.prototype.cx = function() {
-        return (this.x + this.X) / 2;
-    };
-    Rectangle.prototype.cy = function() {
-        return (this.y + this.Y) / 2;
-    };
-    Rectangle.prototype.overlapX = function(r) {
-        var ux = this.cx(), vx = r.cx();
-        if (ux <= vx && r.x < this.X) return this.X - r.x;
-        if (vx <= ux && this.x < r.X) return r.X - this.x;
-        return 0;
-    };
-    Rectangle.prototype.overlapY = function(r) {
-        var uy = this.cy(), vy = r.cy();
-        if (uy <= vy && r.y < this.Y) return this.Y - r.y;
-        if (vy <= uy && this.y < r.Y) return r.Y - this.y;
-        return 0;
-    };
-    Rectangle.prototype.setXCentre = function(cx) {
-        var dx = cx - this.cx();
-        this.x += dx;
-        this.X += dx;
-    };
-    Rectangle.prototype.setYCentre = function(cy) {
-        var dy = cy - this.cy();
-        this.y += dy;
-        this.Y += dy;
-    };
-    Rectangle.prototype.width = function() {
-        return this.X - this.x;
-    };
-    Rectangle.prototype.height = function() {
-        return this.Y - this.y;
-    };
-    Rectangle.prototype.union = function(r) {
-        return new Rectangle(Math.min(this.x, r.x), Math.max(this.X, r.X), Math.min(this.y, r.y), Math.max(this.Y, r.Y));
-    };
-    Rectangle.prototype.lineIntersections = function(x1, y1, x2, y2) {
-        var sides = [
-            [
-                this.x,
-                this.y,
-                this.X,
-                this.y
-            ],
-            [
-                this.X,
-                this.y,
-                this.X,
-                this.Y
-            ],
-            [
-                this.X,
-                this.Y,
-                this.x,
-                this.Y
-            ],
-            [
-                this.x,
-                this.Y,
-                this.x,
-                this.y
-            ]
-        ];
-        var intersections = [];
-        for(var i = 0; i < 4; ++i){
-            var r = Rectangle.lineIntersection(x1, y1, x2, y2, sides[i][0], sides[i][1], sides[i][2], sides[i][3]);
-            if (r !== null) intersections.push({
-                x: r.x,
-                y: r.y
-            });
-        }
-        return intersections;
-    };
-    Rectangle.prototype.rayIntersection = function(x2, y2) {
-        var ints = this.lineIntersections(this.cx(), this.cy(), x2, y2);
-        return ints.length > 0 ? ints[0] : null;
-    };
-    Rectangle.prototype.vertices = function() {
-        return [
-            {
-                x: this.x,
-                y: this.y
-            },
-            {
-                x: this.X,
-                y: this.y
-            },
-            {
-                x: this.X,
-                y: this.Y
-            },
-            {
-                x: this.x,
-                y: this.Y
-            }
-        ];
-    };
-    Rectangle.lineIntersection = function(x1, y1, x2, y2, x3, y3, x4, y4) {
-        var dx12 = x2 - x1, dx34 = x4 - x3, dy12 = y2 - y1, dy34 = y4 - y3, denominator = dy34 * dx12 - dx34 * dy12;
-        if (denominator == 0) return null;
-        var dx31 = x1 - x3, dy31 = y1 - y3, numa = dx34 * dy31 - dy34 * dx31, a = numa / denominator, numb = dx12 * dy31 - dy12 * dx31, b = numb / denominator;
-        if (a >= 0 && a <= 1 && b >= 0 && b <= 1) return {
-            x: x1 + a * dx12,
-            y: y1 + a * dy12
-        };
-        return null;
-    };
-    Rectangle.prototype.inflate = function(pad) {
-        return new Rectangle(this.x - pad, this.X + pad, this.y - pad, this.Y + pad);
-    };
-    return Rectangle;
-}();
-exports.Rectangle = Rectangle1;
-function makeEdgeBetween(source, target, ah) {
-    var si = source.rayIntersection(target.cx(), target.cy()) || {
-        x: source.cx(),
-        y: source.cy()
-    }, ti = target.rayIntersection(source.cx(), source.cy()) || {
-        x: target.cx(),
-        y: target.cy()
-    }, dx = ti.x - si.x, dy = ti.y - si.y, l = Math.sqrt(dx * dx + dy * dy), al = l - ah;
-    return {
-        sourceIntersection: si,
-        targetIntersection: ti,
-        arrowStart: {
-            x: si.x + al * dx / l,
-            y: si.y + al * dy / l
-        }
-    };
-}
-exports.makeEdgeBetween = makeEdgeBetween;
-function makeEdgeTo(s, target, ah) {
-    var ti = target.rayIntersection(s.x, s.y);
-    if (!ti) ti = {
-        x: target.cx(),
-        y: target.cy()
-    };
-    var dx = ti.x - s.x, dy = ti.y - s.y, l = Math.sqrt(dx * dx + dy * dy);
-    return {
-        x: ti.x - ah * dx / l,
-        y: ti.y - ah * dy / l
-    };
-}
-exports.makeEdgeTo = makeEdgeTo;
-var Node1 = function() {
-    function Node(v, r, pos) {
-        this.v = v;
-        this.r = r;
-        this.pos = pos;
-        this.prev = makeRBTree();
-        this.next = makeRBTree();
-    }
-    return Node;
-}();
-var Event1 = function() {
-    function Event(isOpen, v, pos) {
-        this.isOpen = isOpen;
-        this.v = v;
-        this.pos = pos;
-    }
-    return Event;
-}();
-function compareEvents(a, b) {
-    if (a.pos > b.pos) return 1;
-    if (a.pos < b.pos) return -1;
-    if (a.isOpen) return -1;
-    if (b.isOpen) return 1;
-    return 0;
-}
-function makeRBTree() {
-    return new rbtree_1.RBTree(function(a, b) {
-        return a.pos - b.pos;
-    });
-}
-var xRect = {
-    getCentre: function(r) {
-        return r.cx();
-    },
-    getOpen: function(r) {
-        return r.y;
-    },
-    getClose: function(r) {
-        return r.Y;
-    },
-    getSize: function(r) {
-        return r.width();
-    },
-    makeRect: function(open, close, center, size) {
-        return new Rectangle1(center - size / 2, center + size / 2, open, close);
-    },
-    findNeighbours: findXNeighbours
-};
-var yRect = {
-    getCentre: function(r) {
-        return r.cy();
-    },
-    getOpen: function(r) {
-        return r.x;
-    },
-    getClose: function(r) {
-        return r.X;
-    },
-    getSize: function(r) {
-        return r.height();
-    },
-    makeRect: function(open, close, center, size) {
-        return new Rectangle1(open, close, center - size / 2, center + size / 2);
-    },
-    findNeighbours: findYNeighbours
-};
-function generateGroupConstraints(root, f, minSep, isContained) {
-    if (isContained === void 0) isContained = false;
-    var padding = root.padding, gn = typeof root.groups !== 'undefined' ? root.groups.length : 0, ln = typeof root.leaves !== 'undefined' ? root.leaves.length : 0, childConstraints = !gn ? [] : root.groups.reduce(function(ccs, g) {
-        return ccs.concat(generateGroupConstraints(g, f, minSep, true));
-    }, []), n = (isContained ? 2 : 0) + ln + gn, vs = new Array(n), rs = new Array(n), i = 0, add = function(r, v) {
-        rs[i] = r;
-        vs[i++] = v;
-    };
-    if (isContained) {
-        var b = root.bounds, c = f.getCentre(b), s = f.getSize(b) / 2, open = f.getOpen(b), close = f.getClose(b), min = c - s + padding / 2, max = c + s - padding / 2;
-        root.minVar.desiredPosition = min;
-        add(f.makeRect(open, close, min, padding), root.minVar);
-        root.maxVar.desiredPosition = max;
-        add(f.makeRect(open, close, max, padding), root.maxVar);
-    }
-    if (ln) root.leaves.forEach(function(l) {
-        return add(l.bounds, l.variable);
-    });
-    if (gn) root.groups.forEach(function(g) {
-        var b = g.bounds;
-        add(f.makeRect(f.getOpen(b), f.getClose(b), f.getCentre(b), f.getSize(b)), g.minVar);
-    });
-    var cs = generateConstraints1(rs, vs, f, minSep);
-    if (gn) {
-        vs.forEach(function(v) {
-            v.cOut = [], v.cIn = [];
-        });
-        cs.forEach(function(c) {
-            c.left.cOut.push(c), c.right.cIn.push(c);
-        });
-        root.groups.forEach(function(g) {
-            var gapAdjustment = (g.padding - f.getSize(g.bounds)) / 2;
-            g.minVar.cIn.forEach(function(c) {
-                return c.gap += gapAdjustment;
-            });
-            g.minVar.cOut.forEach(function(c) {
-                c.left = g.maxVar;
-                c.gap += gapAdjustment;
-            });
-        });
-    }
-    return childConstraints.concat(cs);
-}
-function generateConstraints1(rs, vars, rect, minSep) {
-    var i, n = rs.length;
-    var N = 2 * n;
-    console.assert(vars.length >= n);
-    var events = new Array(N);
-    for(i = 0; i < n; ++i){
-        var r = rs[i];
-        var v1 = new Node1(vars[i], r, rect.getCentre(r));
-        events[i] = new Event1(true, v1, rect.getOpen(r));
-        events[i + n] = new Event1(false, v1, rect.getClose(r));
-    }
-    events.sort(compareEvents);
-    var cs = new Array();
-    var scanline = makeRBTree();
-    for(i = 0; i < N; ++i){
-        var e = events[i];
-        var v1 = e.v;
-        if (e.isOpen) {
-            scanline.insert(v1);
-            rect.findNeighbours(v1, scanline);
-        } else {
-            scanline.remove(v1);
-            var makeConstraint = function(l, r) {
-                var sep = (rect.getSize(l.r) + rect.getSize(r.r)) / 2 + minSep;
-                cs.push(new vpsc_1.Constraint(l.v, r.v, sep));
-            };
-            var visitNeighbours = function(forward, reverse, mkcon) {
-                var u, it = v1[forward].iterator();
-                while((u = it[forward]()) !== null){
-                    mkcon(u, v1);
-                    u[reverse].remove(v1);
-                }
-            };
-            visitNeighbours("prev", "next", function(u, v) {
-                return makeConstraint(u, v);
-            });
-            visitNeighbours("next", "prev", function(u, v) {
-                return makeConstraint(v, u);
-            });
-        }
-    }
-    console.assert(scanline.size === 0);
-    return cs;
-}
-function findXNeighbours(v, scanline) {
-    var f = function(forward, reverse) {
-        var it = scanline.findIter(v);
-        var u;
-        while((u = it[forward]()) !== null){
-            var uovervX = u.r.overlapX(v.r);
-            if (uovervX <= 0 || uovervX <= u.r.overlapY(v.r)) {
-                v[forward].insert(u);
-                u[reverse].insert(v);
-            }
-            if (uovervX <= 0) break;
-        }
-    };
-    f("next", "prev");
-    f("prev", "next");
-}
-function findYNeighbours(v, scanline) {
-    var f = function(forward, reverse) {
-        var u = scanline.findIter(v)[forward]();
-        if (u !== null && u.r.overlapX(v.r) > 0) {
-            v[forward].insert(u);
-            u[reverse].insert(v);
-        }
-    };
-    f("next", "prev");
-    f("prev", "next");
-}
-function generateXConstraints(rs, vars) {
-    return generateConstraints1(rs, vars, xRect, 0.000001);
-}
-exports.generateXConstraints = generateXConstraints;
-function generateYConstraints(rs, vars) {
-    return generateConstraints1(rs, vars, yRect, 0.000001);
-}
-exports.generateYConstraints = generateYConstraints;
-function generateXGroupConstraints(root) {
-    return generateGroupConstraints(root, xRect, 0.000001);
-}
-exports.generateXGroupConstraints = generateXGroupConstraints;
-function generateYGroupConstraints(root) {
-    return generateGroupConstraints(root, yRect, 0.000001);
-}
-exports.generateYGroupConstraints = generateYGroupConstraints;
-function removeOverlaps(rs) {
-    var vs = rs.map(function(r) {
-        return new vpsc_1.Variable(r.cx());
-    });
-    var cs = generateXConstraints(rs, vs);
-    var solver = new vpsc_1.Solver(vs, cs);
-    solver.solve();
-    vs.forEach(function(v, i) {
-        return rs[i].setXCentre(v.position());
-    });
-    vs = rs.map(function(r) {
-        return new vpsc_1.Variable(r.cy());
-    });
-    cs = generateYConstraints(rs, vs);
-    solver = new vpsc_1.Solver(vs, cs);
-    solver.solve();
-    vs.forEach(function(v, i) {
-        return rs[i].setYCentre(v.position());
-    });
-}
-exports.removeOverlaps = removeOverlaps;
-var IndexedVariable1 = function(_super) {
-    __extends(IndexedVariable, _super);
-    function IndexedVariable(index, w) {
-        var _this = _super.call(this, 0, w) || this;
-        _this.index = index;
-        return _this;
-    }
-    return IndexedVariable;
-}(vpsc_1.Variable);
-exports.IndexedVariable = IndexedVariable1;
-var Projection1 = function() {
-    function Projection(nodes, groups, rootGroup, constraints, avoidOverlaps) {
-        var _this = this;
-        if (rootGroup === void 0) rootGroup = null;
-        if (constraints === void 0) constraints = null;
-        if (avoidOverlaps === void 0) avoidOverlaps = false;
-        this.nodes = nodes;
-        this.groups = groups;
-        this.rootGroup = rootGroup;
-        this.avoidOverlaps = avoidOverlaps;
-        this.variables = nodes.map(function(v, i) {
-            return v.variable = new IndexedVariable1(i, 1);
-        });
-        if (constraints) this.createConstraints(constraints);
-        if (avoidOverlaps && rootGroup && typeof rootGroup.groups !== 'undefined') {
-            nodes.forEach(function(v) {
-                if (!v.width || !v.height) {
-                    v.bounds = new Rectangle1(v.x, v.x, v.y, v.y);
-                    return;
-                }
-                var w2 = v.width / 2, h2 = v.height / 2;
-                v.bounds = new Rectangle1(v.x - w2, v.x + w2, v.y - h2, v.y + h2);
-            });
-            computeGroupBounds(rootGroup);
-            var i1 = nodes.length;
-            groups.forEach(function(g) {
-                _this.variables[i1] = g.minVar = new IndexedVariable1(i1++, typeof g.stiffness !== "undefined" ? g.stiffness : 0.01);
-                _this.variables[i1] = g.maxVar = new IndexedVariable1(i1++, typeof g.stiffness !== "undefined" ? g.stiffness : 0.01);
-            });
-        }
-    }
-    Projection.prototype.createSeparation = function(c) {
-        return new vpsc_1.Constraint(this.nodes[c.left].variable, this.nodes[c.right].variable, c.gap, typeof c.equality !== "undefined" ? c.equality : false);
-    };
-    Projection.prototype.makeFeasible = function(c) {
-        var _this = this;
-        if (!this.avoidOverlaps) return;
-        var axis = 'x', dim = 'width';
-        if (c.axis === 'x') axis = 'y', dim = 'height';
-        var vs = c.offsets.map(function(o) {
-            return _this.nodes[o.node];
-        }).sort(function(a, b) {
-            return a[axis] - b[axis];
-        });
-        var p = null;
-        vs.forEach(function(v) {
-            if (p) {
-                var nextPos = p[axis] + p[dim];
-                if (nextPos > v[axis]) v[axis] = nextPos;
-            }
-            p = v;
-        });
-    };
-    Projection.prototype.createAlignment = function(c) {
-        var _this = this;
-        var u = this.nodes[c.offsets[0].node].variable;
-        this.makeFeasible(c);
-        var cs = c.axis === 'x' ? this.xConstraints : this.yConstraints;
-        c.offsets.slice(1).forEach(function(o) {
-            var v = _this.nodes[o.node].variable;
-            cs.push(new vpsc_1.Constraint(u, v, o.offset, true));
-        });
-    };
-    Projection.prototype.createConstraints = function(constraints) {
-        var _this = this;
-        var isSep = function(c) {
-            return typeof c.type === 'undefined' || c.type === 'separation';
-        };
-        this.xConstraints = constraints.filter(function(c) {
-            return c.axis === "x" && isSep(c);
-        }).map(function(c) {
-            return _this.createSeparation(c);
-        });
-        this.yConstraints = constraints.filter(function(c) {
-            return c.axis === "y" && isSep(c);
-        }).map(function(c) {
-            return _this.createSeparation(c);
-        });
-        constraints.filter(function(c) {
-            return c.type === 'alignment';
-        }).forEach(function(c) {
-            return _this.createAlignment(c);
-        });
-    };
-    Projection.prototype.setupVariablesAndBounds = function(x0, y0, desired, getDesired) {
-        this.nodes.forEach(function(v, i) {
-            if (v.fixed) {
-                v.variable.weight = v.fixedWeight ? v.fixedWeight : 1000;
-                desired[i] = getDesired(v);
-            } else v.variable.weight = 1;
-            var w = (v.width || 0) / 2, h = (v.height || 0) / 2;
-            var ix = x0[i], iy = y0[i];
-            v.bounds = new Rectangle1(ix - w, ix + w, iy - h, iy + h);
-        });
-    };
-    Projection.prototype.xProject = function(x0, y0, x) {
-        if (!this.rootGroup && !(this.avoidOverlaps || this.xConstraints)) return;
-        this.project(x0, y0, x0, x, function(v) {
-            return v.px;
-        }, this.xConstraints, generateXGroupConstraints, function(v) {
-            return v.bounds.setXCentre(x[v.variable.index] = v.variable.position());
-        }, function(g) {
-            var xmin = x[g.minVar.index] = g.minVar.position();
-            var xmax = x[g.maxVar.index] = g.maxVar.position();
-            var p2 = g.padding / 2;
-            g.bounds.x = xmin - p2;
-            g.bounds.X = xmax + p2;
-        });
-    };
-    Projection.prototype.yProject = function(x0, y0, y) {
-        if (!this.rootGroup && !this.yConstraints) return;
-        this.project(x0, y0, y0, y, function(v) {
-            return v.py;
-        }, this.yConstraints, generateYGroupConstraints, function(v) {
-            return v.bounds.setYCentre(y[v.variable.index] = v.variable.position());
-        }, function(g) {
-            var ymin = y[g.minVar.index] = g.minVar.position();
-            var ymax = y[g.maxVar.index] = g.maxVar.position();
-            var p2 = g.padding / 2;
-            g.bounds.y = ymin - p2;
-            g.bounds.Y = ymax + p2;
-        });
-    };
-    Projection.prototype.projectFunctions = function() {
-        var _this = this;
-        return [
-            function(x0, y0, x) {
-                return _this.xProject(x0, y0, x);
-            },
-            function(x0, y0, y) {
-                return _this.yProject(x0, y0, y);
-            }
-        ];
-    };
-    Projection.prototype.project = function(x0, y0, start, desired, getDesired, cs, generateConstraints, updateNodeBounds, updateGroupBounds) {
-        this.setupVariablesAndBounds(x0, y0, desired, getDesired);
-        if (this.rootGroup && this.avoidOverlaps) {
-            computeGroupBounds(this.rootGroup);
-            cs = cs.concat(generateConstraints(this.rootGroup));
-        }
-        this.solve(this.variables, cs, start, desired);
-        this.nodes.forEach(updateNodeBounds);
-        if (this.rootGroup && this.avoidOverlaps) {
-            this.groups.forEach(updateGroupBounds);
-            computeGroupBounds(this.rootGroup);
-        }
-    };
-    Projection.prototype.solve = function(vs, cs, starting, desired) {
-        var solver = new vpsc_1.Solver(vs, cs);
-        solver.setStartingPositions(starting);
-        solver.setDesiredPositions(desired);
-        solver.solve();
-    };
-    return Projection;
-}();
-exports.Projection = Projection1;
-
-},{"./vpsc":"gPRzs","./rbtree":"gV5Al"}],"gPRzs":[function(require,module,exports) {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var PositionStats1 = function() {
-    function PositionStats(scale) {
-        this.scale = scale;
-        this.AB = 0;
-        this.AD = 0;
-        this.A2 = 0;
-    }
-    PositionStats.prototype.addVariable = function(v) {
-        var ai = this.scale / v.scale;
-        var bi = v.offset / v.scale;
-        var wi = v.weight;
-        this.AB += wi * ai * bi;
-        this.AD += wi * ai * v.desiredPosition;
-        this.A2 += wi * ai * ai;
-    };
-    PositionStats.prototype.getPosn = function() {
-        return (this.AD - this.AB) / this.A2;
-    };
-    return PositionStats;
-}();
-exports.PositionStats = PositionStats1;
-var Constraint1 = function() {
-    function Constraint(left, right, gap, equality) {
-        if (equality === void 0) equality = false;
-        this.left = left;
-        this.right = right;
-        this.gap = gap;
-        this.equality = equality;
-        this.active = false;
-        this.unsatisfiable = false;
-        this.left = left;
-        this.right = right;
-        this.gap = gap;
-        this.equality = equality;
-    }
-    Constraint.prototype.slack = function() {
-        return this.unsatisfiable ? Number.MAX_VALUE : this.right.scale * this.right.position() - this.gap - this.left.scale * this.left.position();
-    };
-    return Constraint;
-}();
-exports.Constraint = Constraint1;
-var Variable1 = function() {
-    function Variable(desiredPosition, weight, scale) {
-        if (weight === void 0) weight = 1;
-        if (scale === void 0) scale = 1;
-        this.desiredPosition = desiredPosition;
-        this.weight = weight;
-        this.scale = scale;
-        this.offset = 0;
-    }
-    Variable.prototype.dfdv = function() {
-        return 2 * this.weight * (this.position() - this.desiredPosition);
-    };
-    Variable.prototype.position = function() {
-        return (this.block.ps.scale * this.block.posn + this.offset) / this.scale;
-    };
-    Variable.prototype.visitNeighbours = function(prev, f) {
-        var ff = function(c, next) {
-            return c.active && prev !== next && f(c, next);
-        };
-        this.cOut.forEach(function(c) {
-            return ff(c, c.right);
-        });
-        this.cIn.forEach(function(c) {
-            return ff(c, c.left);
-        });
-    };
-    return Variable;
-}();
-exports.Variable = Variable1;
-var Block1 = function() {
-    function Block(v) {
-        this.vars = [];
-        v.offset = 0;
-        this.ps = new PositionStats1(v.scale);
-        this.addVariable(v);
-    }
-    Block.prototype.addVariable = function(v) {
-        v.block = this;
-        this.vars.push(v);
-        this.ps.addVariable(v);
-        this.posn = this.ps.getPosn();
-    };
-    Block.prototype.updateWeightedPosition = function() {
-        this.ps.AB = this.ps.AD = this.ps.A2 = 0;
-        for(var i = 0, n = this.vars.length; i < n; ++i)this.ps.addVariable(this.vars[i]);
-        this.posn = this.ps.getPosn();
-    };
-    Block.prototype.compute_lm = function(v, u, postAction) {
-        var _this = this;
-        var dfdv = v.dfdv();
-        v.visitNeighbours(u, function(c, next) {
-            var _dfdv = _this.compute_lm(next, v, postAction);
-            if (next === c.right) {
-                dfdv += _dfdv * c.left.scale;
-                c.lm = _dfdv;
-            } else {
-                dfdv += _dfdv * c.right.scale;
-                c.lm = -_dfdv;
-            }
-            postAction(c);
-        });
-        return dfdv / v.scale;
-    };
-    Block.prototype.populateSplitBlock = function(v, prev) {
-        var _this = this;
-        v.visitNeighbours(prev, function(c, next) {
-            next.offset = v.offset + (next === c.right ? c.gap : -c.gap);
-            _this.addVariable(next);
-            _this.populateSplitBlock(next, v);
-        });
-    };
-    Block.prototype.traverse = function(visit, acc, v, prev) {
-        var _this = this;
-        if (v === void 0) v = this.vars[0];
-        if (prev === void 0) prev = null;
-        v.visitNeighbours(prev, function(c, next) {
-            acc.push(visit(c));
-            _this.traverse(visit, acc, next, v);
-        });
-    };
-    Block.prototype.findMinLM = function() {
-        var m = null;
-        this.compute_lm(this.vars[0], null, function(c) {
-            if (!c.equality && (m === null || c.lm < m.lm)) m = c;
-        });
-        return m;
-    };
-    Block.prototype.findMinLMBetween = function(lv, rv) {
-        this.compute_lm(lv, null, function() {
-        });
-        var m = null;
-        this.findPath(lv, null, rv, function(c, next) {
-            if (!c.equality && c.right === next && (m === null || c.lm < m.lm)) m = c;
-        });
-        return m;
-    };
-    Block.prototype.findPath = function(v, prev, to, visit) {
-        var _this = this;
-        var endFound = false;
-        v.visitNeighbours(prev, function(c, next) {
-            if (!endFound && (next === to || _this.findPath(next, v, to, visit))) {
-                endFound = true;
-                visit(c, next);
-            }
-        });
-        return endFound;
-    };
-    Block.prototype.isActiveDirectedPathBetween = function(u, v) {
-        if (u === v) return true;
-        var i = u.cOut.length;
-        while(i--){
-            var c = u.cOut[i];
-            if (c.active && this.isActiveDirectedPathBetween(c.right, v)) return true;
-        }
-        return false;
-    };
-    Block.split = function(c) {
-        c.active = false;
-        return [
-            Block.createSplitBlock(c.left),
-            Block.createSplitBlock(c.right)
-        ];
-    };
-    Block.createSplitBlock = function(startVar) {
-        var b = new Block(startVar);
-        b.populateSplitBlock(startVar, null);
-        return b;
-    };
-    Block.prototype.splitBetween = function(vl, vr) {
-        var c = this.findMinLMBetween(vl, vr);
-        if (c !== null) {
-            var bs = Block.split(c);
-            return {
-                constraint: c,
-                lb: bs[0],
-                rb: bs[1]
-            };
-        }
-        return null;
-    };
-    Block.prototype.mergeAcross = function(b, c, dist) {
-        c.active = true;
-        for(var i = 0, n = b.vars.length; i < n; ++i){
-            var v = b.vars[i];
-            v.offset += dist;
-            this.addVariable(v);
-        }
-        this.posn = this.ps.getPosn();
-    };
-    Block.prototype.cost = function() {
-        var sum = 0, i = this.vars.length;
-        while(i--){
-            var v = this.vars[i], d = v.position() - v.desiredPosition;
-            sum += d * d * v.weight;
-        }
-        return sum;
-    };
-    return Block;
-}();
-exports.Block = Block1;
-var Blocks1 = function() {
-    function Blocks(vs) {
-        this.vs = vs;
-        var n = vs.length;
-        this.list = new Array(n);
-        while(n--){
-            var b = new Block1(vs[n]);
-            this.list[n] = b;
-            b.blockInd = n;
-        }
-    }
-    Blocks.prototype.cost = function() {
-        var sum = 0, i = this.list.length;
-        while(i--)sum += this.list[i].cost();
-        return sum;
-    };
-    Blocks.prototype.insert = function(b) {
-        b.blockInd = this.list.length;
-        this.list.push(b);
-    };
-    Blocks.prototype.remove = function(b) {
-        var last = this.list.length - 1;
-        var swapBlock = this.list[last];
-        this.list.length = last;
-        if (b !== swapBlock) {
-            this.list[b.blockInd] = swapBlock;
-            swapBlock.blockInd = b.blockInd;
-        }
-    };
-    Blocks.prototype.merge = function(c) {
-        var l = c.left.block, r = c.right.block;
-        var dist = c.right.offset - c.left.offset - c.gap;
-        if (l.vars.length < r.vars.length) {
-            r.mergeAcross(l, c, dist);
-            this.remove(l);
-        } else {
-            l.mergeAcross(r, c, -dist);
-            this.remove(r);
-        }
-    };
-    Blocks.prototype.forEach = function(f) {
-        this.list.forEach(f);
-    };
-    Blocks.prototype.updateBlockPositions = function() {
-        this.list.forEach(function(b) {
-            return b.updateWeightedPosition();
-        });
-    };
-    Blocks.prototype.split = function(inactive) {
-        var _this = this;
-        this.updateBlockPositions();
-        this.list.forEach(function(b) {
-            var v = b.findMinLM();
-            if (v !== null && v.lm < Solver1.LAGRANGIAN_TOLERANCE) {
-                b = v.left.block;
-                Block1.split(v).forEach(function(nb) {
-                    return _this.insert(nb);
-                });
-                _this.remove(b);
-                inactive.push(v);
-            }
-        });
-    };
-    return Blocks;
-}();
-exports.Blocks = Blocks1;
-var Solver1 = function() {
-    function Solver(vs, cs) {
-        this.vs = vs;
-        this.cs = cs;
-        this.vs = vs;
-        vs.forEach(function(v) {
-            v.cIn = [], v.cOut = [];
-        });
-        this.cs = cs;
-        cs.forEach(function(c) {
-            c.left.cOut.push(c);
-            c.right.cIn.push(c);
-        });
-        this.inactive = cs.map(function(c) {
-            c.active = false;
-            return c;
-        });
-        this.bs = null;
-    }
-    Solver.prototype.cost = function() {
-        return this.bs.cost();
-    };
-    Solver.prototype.setStartingPositions = function(ps) {
-        this.inactive = this.cs.map(function(c) {
-            c.active = false;
-            return c;
-        });
-        this.bs = new Blocks1(this.vs);
-        this.bs.forEach(function(b, i) {
-            return b.posn = ps[i];
-        });
-    };
-    Solver.prototype.setDesiredPositions = function(ps) {
-        this.vs.forEach(function(v, i) {
-            return v.desiredPosition = ps[i];
-        });
-    };
-    Solver.prototype.mostViolated = function() {
-        var minSlack = Number.MAX_VALUE, v = null, l = this.inactive, n = l.length, deletePoint = n;
-        for(var i = 0; i < n; ++i){
-            var c = l[i];
-            if (c.unsatisfiable) continue;
-            var slack = c.slack();
-            if (c.equality || slack < minSlack) {
-                minSlack = slack;
-                v = c;
-                deletePoint = i;
-                if (c.equality) break;
-            }
-        }
-        if (deletePoint !== n && (minSlack < Solver.ZERO_UPPERBOUND && !v.active || v.equality)) {
-            l[deletePoint] = l[n - 1];
-            l.length = n - 1;
-        }
-        return v;
-    };
-    Solver.prototype.satisfy = function() {
-        if (this.bs == null) this.bs = new Blocks1(this.vs);
-        this.bs.split(this.inactive);
-        var v = null;
-        while((v = this.mostViolated()) && (v.equality || v.slack() < Solver.ZERO_UPPERBOUND && !v.active)){
-            var lb = v.left.block, rb = v.right.block;
-            if (lb !== rb) this.bs.merge(v);
-            else {
-                if (lb.isActiveDirectedPathBetween(v.right, v.left)) {
-                    v.unsatisfiable = true;
-                    continue;
-                }
-                var split = lb.splitBetween(v.left, v.right);
-                if (split !== null) {
-                    this.bs.insert(split.lb);
-                    this.bs.insert(split.rb);
-                    this.bs.remove(lb);
-                    this.inactive.push(split.constraint);
-                } else {
-                    v.unsatisfiable = true;
-                    continue;
-                }
-                if (v.slack() >= 0) this.inactive.push(v);
-                else this.bs.merge(v);
-            }
-        }
-    };
-    Solver.prototype.solve = function() {
-        this.satisfy();
-        var lastcost = Number.MAX_VALUE, cost = this.bs.cost();
-        while(Math.abs(lastcost - cost) > 0.0001){
-            this.satisfy();
-            lastcost = cost;
-            cost = this.bs.cost();
-        }
-        return cost;
-    };
-    Solver.LAGRANGIAN_TOLERANCE = -0.0001;
-    Solver.ZERO_UPPERBOUND = -0.0000000001;
-    return Solver;
-}();
-exports.Solver = Solver1;
-function removeOverlapInOneDimension(spans, lowerBound, upperBound) {
-    var vs = spans.map(function(s) {
-        return new Variable1(s.desiredCenter);
-    });
-    var cs = [];
-    var n = spans.length;
-    for(var i = 0; i < n - 1; i++){
-        var left = spans[i], right = spans[i + 1];
-        cs.push(new Constraint1(vs[i], vs[i + 1], (left.size + right.size) / 2));
-    }
-    var leftMost = vs[0], rightMost = vs[n - 1], leftMostSize = spans[0].size / 2, rightMostSize = spans[n - 1].size / 2;
-    var vLower = null, vUpper = null;
-    if (lowerBound) {
-        vLower = new Variable1(lowerBound, leftMost.weight * 1000);
-        vs.push(vLower);
-        cs.push(new Constraint1(vLower, leftMost, leftMostSize));
-    }
-    if (upperBound) {
-        vUpper = new Variable1(upperBound, rightMost.weight * 1000);
-        vs.push(vUpper);
-        cs.push(new Constraint1(rightMost, vUpper, rightMostSize));
-    }
-    var solver = new Solver1(vs, cs);
-    solver.solve();
-    return {
-        newCenters: vs.slice(0, spans.length).map(function(v) {
-            return v.position();
-        }),
-        lowerBound: vLower ? vLower.position() : leftMost.position() - leftMostSize,
-        upperBound: vUpper ? vUpper.position() : rightMost.position() + rightMostSize
-    };
-}
-exports.removeOverlapInOneDimension = removeOverlapInOneDimension;
-
-},{}],"gV5Al":[function(require,module,exports) {
-"use strict";
-var __extends = this && this.__extends || function() {
-    var extendStatics = function(d1, b1) {
-        extendStatics = Object.setPrototypeOf || ({
-            __proto__: []
-        }) instanceof Array && function(d, b) {
-            d.__proto__ = b;
-        } || function(d, b) {
-            for(var p in b)if (b.hasOwnProperty(p)) d[p] = b[p];
-        };
-        return extendStatics(d1, b1);
-    };
-    return function(d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var TreeBase1 = function() {
-    function TreeBase() {
-        this.findIter = function(data) {
-            var res = this._root;
-            var iter = this.iterator();
-            while(res !== null){
-                var c = this._comparator(data, res.data);
-                if (c === 0) {
-                    iter._cursor = res;
-                    return iter;
-                } else {
-                    iter._ancestors.push(res);
-                    res = res.get_child(c > 0);
-                }
-            }
-            return null;
-        };
-    }
-    TreeBase.prototype.clear = function() {
-        this._root = null;
-        this.size = 0;
-    };
-    TreeBase.prototype.find = function(data) {
-        var res = this._root;
-        while(res !== null){
-            var c = this._comparator(data, res.data);
-            if (c === 0) return res.data;
-            else res = res.get_child(c > 0);
-        }
-        return null;
-    };
-    TreeBase.prototype.lowerBound = function(data) {
-        return this._bound(data, this._comparator);
-    };
-    TreeBase.prototype.upperBound = function(data) {
-        var cmp = this._comparator;
-        function reverse_cmp(a, b) {
-            return cmp(b, a);
-        }
-        return this._bound(data, reverse_cmp);
-    };
-    TreeBase.prototype.min = function() {
-        var res = this._root;
-        if (res === null) return null;
-        while(res.left !== null)res = res.left;
-        return res.data;
-    };
-    TreeBase.prototype.max = function() {
-        var res = this._root;
-        if (res === null) return null;
-        while(res.right !== null)res = res.right;
-        return res.data;
-    };
-    TreeBase.prototype.iterator = function() {
-        return new Iterator1(this);
-    };
-    TreeBase.prototype.each = function(cb) {
-        var it = this.iterator(), data;
-        while((data = it.next()) !== null)cb(data);
-    };
-    TreeBase.prototype.reach = function(cb) {
-        var it = this.iterator(), data;
-        while((data = it.prev()) !== null)cb(data);
-    };
-    TreeBase.prototype._bound = function(data, cmp) {
-        var cur = this._root;
-        var iter = this.iterator();
-        while(cur !== null){
-            var c = this._comparator(data, cur.data);
-            if (c === 0) {
-                iter._cursor = cur;
-                return iter;
-            }
-            iter._ancestors.push(cur);
-            cur = cur.get_child(c > 0);
-        }
-        for(var i = iter._ancestors.length - 1; i >= 0; --i){
-            cur = iter._ancestors[i];
-            if (cmp(data, cur.data) > 0) {
-                iter._cursor = cur;
-                iter._ancestors.length = i;
-                return iter;
-            }
-        }
-        iter._ancestors.length = 0;
-        return iter;
-    };
-    return TreeBase;
-}();
-exports.TreeBase = TreeBase1;
-var Iterator1 = function() {
-    function Iterator(tree) {
-        this._tree = tree;
-        this._ancestors = [];
-        this._cursor = null;
-    }
-    Iterator.prototype.data = function() {
-        return this._cursor !== null ? this._cursor.data : null;
-    };
-    Iterator.prototype.next = function() {
-        if (this._cursor === null) {
-            var root = this._tree._root;
-            if (root !== null) this._minNode(root);
-        } else if (this._cursor.right === null) {
-            var save;
-            do {
-                save = this._cursor;
-                if (this._ancestors.length) this._cursor = this._ancestors.pop();
-                else {
-                    this._cursor = null;
-                    break;
-                }
-            }while (this._cursor.right === save)
-        } else {
-            this._ancestors.push(this._cursor);
-            this._minNode(this._cursor.right);
-        }
-        return this._cursor !== null ? this._cursor.data : null;
-    };
-    Iterator.prototype.prev = function() {
-        if (this._cursor === null) {
-            var root = this._tree._root;
-            if (root !== null) this._maxNode(root);
-        } else if (this._cursor.left === null) {
-            var save;
-            do {
-                save = this._cursor;
-                if (this._ancestors.length) this._cursor = this._ancestors.pop();
-                else {
-                    this._cursor = null;
-                    break;
-                }
-            }while (this._cursor.left === save)
-        } else {
-            this._ancestors.push(this._cursor);
-            this._maxNode(this._cursor.left);
-        }
-        return this._cursor !== null ? this._cursor.data : null;
-    };
-    Iterator.prototype._minNode = function(start) {
-        while(start.left !== null){
-            this._ancestors.push(start);
-            start = start.left;
-        }
-        this._cursor = start;
-    };
-    Iterator.prototype._maxNode = function(start) {
-        while(start.right !== null){
-            this._ancestors.push(start);
-            start = start.right;
-        }
-        this._cursor = start;
-    };
-    return Iterator;
-}();
-exports.Iterator = Iterator1;
-var Node1 = function() {
-    function Node(data) {
-        this.data = data;
-        this.left = null;
-        this.right = null;
-        this.red = true;
-    }
-    Node.prototype.get_child = function(dir) {
-        return dir ? this.right : this.left;
-    };
-    Node.prototype.set_child = function(dir, val) {
-        if (dir) this.right = val;
-        else this.left = val;
-    };
-    return Node;
-}();
-var RBTree1 = function(_super) {
-    __extends(RBTree, _super);
-    function RBTree(comparator) {
-        var _this = _super.call(this) || this;
-        _this._root = null;
-        _this._comparator = comparator;
-        _this.size = 0;
-        return _this;
-    }
-    RBTree.prototype.insert = function(data) {
-        var ret = false;
-        if (this._root === null) {
-            this._root = new Node1(data);
-            ret = true;
-            this.size++;
-        } else {
-            var head = new Node1(undefined);
-            var dir = false;
-            var last = false;
-            var gp = null;
-            var ggp = head;
-            var p = null;
-            var node = this._root;
-            ggp.right = this._root;
-            while(true){
-                if (node === null) {
-                    node = new Node1(data);
-                    p.set_child(dir, node);
-                    ret = true;
-                    this.size++;
-                } else if (RBTree.is_red(node.left) && RBTree.is_red(node.right)) {
-                    node.red = true;
-                    node.left.red = false;
-                    node.right.red = false;
-                }
-                if (RBTree.is_red(node) && RBTree.is_red(p)) {
-                    var dir2 = ggp.right === gp;
-                    if (node === p.get_child(last)) ggp.set_child(dir2, RBTree.single_rotate(gp, !last));
-                    else ggp.set_child(dir2, RBTree.double_rotate(gp, !last));
-                }
-                var cmp = this._comparator(node.data, data);
-                if (cmp === 0) break;
-                last = dir;
-                dir = cmp < 0;
-                if (gp !== null) ggp = gp;
-                gp = p;
-                p = node;
-                node = node.get_child(dir);
-            }
-            this._root = head.right;
-        }
-        this._root.red = false;
-        return ret;
-    };
-    RBTree.prototype.remove = function(data) {
-        if (this._root === null) return false;
-        var head = new Node1(undefined);
-        var node = head;
-        node.right = this._root;
-        var p = null;
-        var gp = null;
-        var found = null;
-        var dir = true;
-        while(node.get_child(dir) !== null){
-            var last = dir;
-            gp = p;
-            p = node;
-            node = node.get_child(dir);
-            var cmp = this._comparator(data, node.data);
-            dir = cmp > 0;
-            if (cmp === 0) found = node;
-            if (!RBTree.is_red(node) && !RBTree.is_red(node.get_child(dir))) {
-                if (RBTree.is_red(node.get_child(!dir))) {
-                    var sr = RBTree.single_rotate(node, dir);
-                    p.set_child(last, sr);
-                    p = sr;
-                } else if (!RBTree.is_red(node.get_child(!dir))) {
-                    var sibling = p.get_child(!last);
-                    if (sibling !== null) {
-                        if (!RBTree.is_red(sibling.get_child(!last)) && !RBTree.is_red(sibling.get_child(last))) {
-                            p.red = false;
-                            sibling.red = true;
-                            node.red = true;
-                        } else {
-                            var dir2 = gp.right === p;
-                            if (RBTree.is_red(sibling.get_child(last))) gp.set_child(dir2, RBTree.double_rotate(p, last));
-                            else if (RBTree.is_red(sibling.get_child(!last))) gp.set_child(dir2, RBTree.single_rotate(p, last));
-                            var gpc = gp.get_child(dir2);
-                            gpc.red = true;
-                            node.red = true;
-                            gpc.left.red = false;
-                            gpc.right.red = false;
-                        }
-                    }
-                }
-            }
-        }
-        if (found !== null) {
-            found.data = node.data;
-            p.set_child(p.right === node, node.get_child(node.left === null));
-            this.size--;
-        }
-        this._root = head.right;
-        if (this._root !== null) this._root.red = false;
-        return found !== null;
-    };
-    RBTree.is_red = function(node) {
-        return node !== null && node.red;
-    };
-    RBTree.single_rotate = function(root, dir) {
-        var save = root.get_child(!dir);
-        root.set_child(!dir, save.get_child(dir));
-        save.set_child(dir, root);
-        root.red = true;
-        save.red = false;
-        return save;
-    };
-    RBTree.double_rotate = function(root, dir) {
-        root.set_child(!dir, RBTree.single_rotate(root.get_child(!dir), !dir));
-        return RBTree.single_rotate(root, dir);
-    };
-    return RBTree;
-}(TreeBase1);
-exports.RBTree = RBTree1;
-
-},{}],"h6FRB":[function(require,module,exports) {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var pqueue_1 = require("./pqueue");
-var Neighbour1 = function() {
-    function Neighbour(id, distance) {
-        this.id = id;
-        this.distance = distance;
-    }
-    return Neighbour;
-}();
-var Node1 = function() {
-    function Node(id) {
-        this.id = id;
-        this.neighbours = [];
-    }
-    return Node;
-}();
-var QueueEntry1 = function() {
-    function QueueEntry(node, prev, d) {
-        this.node = node;
-        this.prev = prev;
-        this.d = d;
-    }
-    return QueueEntry;
-}();
-var Calculator1 = function() {
-    function Calculator(n, es, getSourceIndex, getTargetIndex, getLength) {
-        this.n = n;
-        this.es = es;
-        this.neighbours = new Array(this.n);
-        var i = this.n;
-        while(i--)this.neighbours[i] = new Node1(i);
-        i = this.es.length;
-        while(i--){
-            var e = this.es[i];
-            var u = getSourceIndex(e), v = getTargetIndex(e);
-            var d = getLength(e);
-            this.neighbours[u].neighbours.push(new Neighbour1(v, d));
-            this.neighbours[v].neighbours.push(new Neighbour1(u, d));
-        }
-    }
-    Calculator.prototype.DistanceMatrix = function() {
-        var D = new Array(this.n);
-        for(var i = 0; i < this.n; ++i)D[i] = this.dijkstraNeighbours(i);
-        return D;
-    };
-    Calculator.prototype.DistancesFromNode = function(start) {
-        return this.dijkstraNeighbours(start);
-    };
-    Calculator.prototype.PathFromNodeToNode = function(start, end) {
-        return this.dijkstraNeighbours(start, end);
-    };
-    Calculator.prototype.PathFromNodeToNodeWithPrevCost = function(start, end, prevCost) {
-        var q = new pqueue_1.PriorityQueue(function(a, b) {
-            return a.d <= b.d;
-        }), u = this.neighbours[start], qu = new QueueEntry1(u, null, 0), visitedFrom = {
-        };
-        q.push(qu);
-        while(!q.empty()){
-            qu = q.pop();
-            u = qu.node;
-            if (u.id === end) break;
-            var i = u.neighbours.length;
-            while(i--){
-                var neighbour = u.neighbours[i], v = this.neighbours[neighbour.id];
-                if (qu.prev && v.id === qu.prev.node.id) continue;
-                var viduid = v.id + ',' + u.id;
-                if (viduid in visitedFrom && visitedFrom[viduid] <= qu.d) continue;
-                var cc = qu.prev ? prevCost(qu.prev.node.id, u.id, v.id) : 0, t = qu.d + neighbour.distance + cc;
-                visitedFrom[viduid] = t;
-                q.push(new QueueEntry1(v, qu, t));
-            }
-        }
-        var path = [];
-        while(qu.prev){
-            qu = qu.prev;
-            path.push(qu.node.id);
-        }
-        return path;
-    };
-    Calculator.prototype.dijkstraNeighbours = function(start, dest) {
-        if (dest === void 0) dest = -1;
-        var q1 = new pqueue_1.PriorityQueue(function(a, b) {
-            return a.d <= b.d;
-        }), i = this.neighbours.length, d = new Array(i);
-        while(i--){
-            var node = this.neighbours[i];
-            node.d = i === start ? 0 : Number.POSITIVE_INFINITY;
-            node.q = q1.push(node);
-        }
-        while(!q1.empty()){
-            var u = q1.pop();
-            d[u.id] = u.d;
-            if (u.id === dest) {
-                var path = [];
-                var v = u;
-                while(typeof v.prev !== 'undefined'){
-                    path.push(v.prev.id);
-                    v = v.prev;
-                }
-                return path;
-            }
-            i = u.neighbours.length;
-            while(i--){
-                var neighbour = u.neighbours[i];
-                var v = this.neighbours[neighbour.id];
-                var t = u.d + neighbour.distance;
-                if (u.d !== Number.MAX_VALUE && v.d > t) {
-                    v.d = t;
-                    v.prev = u;
-                    q1.reduceKey(v.q, v, function(e, q) {
-                        return e.q = q;
-                    });
-                }
-            }
-        }
-        return d;
-    };
-    return Calculator;
-}();
-exports.Calculator = Calculator1;
-
-},{"./pqueue":"dgNnR"}],"dgNnR":[function(require,module,exports) {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var PairingHeap1 = function() {
-    function PairingHeap(elem) {
-        this.elem = elem;
-        this.subheaps = [];
-    }
-    PairingHeap.prototype.toString = function(selector) {
-        var str = "", needComma = false;
-        for(var i = 0; i < this.subheaps.length; ++i){
-            var subheap = this.subheaps[i];
-            if (!subheap.elem) {
-                needComma = false;
-                continue;
-            }
-            if (needComma) str = str + ",";
-            str = str + subheap.toString(selector);
-            needComma = true;
-        }
-        if (str !== "") str = "(" + str + ")";
-        return (this.elem ? selector(this.elem) : "") + str;
-    };
-    PairingHeap.prototype.forEach = function(f) {
-        if (!this.empty()) {
-            f(this.elem, this);
-            this.subheaps.forEach(function(s) {
-                return s.forEach(f);
-            });
-        }
-    };
-    PairingHeap.prototype.count = function() {
-        return this.empty() ? 0 : 1 + this.subheaps.reduce(function(n, h) {
-            return n + h.count();
-        }, 0);
-    };
-    PairingHeap.prototype.min = function() {
-        return this.elem;
-    };
-    PairingHeap.prototype.empty = function() {
-        return this.elem == null;
-    };
-    PairingHeap.prototype.contains = function(h) {
-        if (this === h) return true;
-        for(var i = 0; i < this.subheaps.length; i++){
-            if (this.subheaps[i].contains(h)) return true;
-        }
-        return false;
-    };
-    PairingHeap.prototype.isHeap = function(lessThan) {
-        var _this = this;
-        return this.subheaps.every(function(h) {
-            return lessThan(_this.elem, h.elem) && h.isHeap(lessThan);
-        });
-    };
-    PairingHeap.prototype.insert = function(obj, lessThan) {
-        return this.merge(new PairingHeap(obj), lessThan);
-    };
-    PairingHeap.prototype.merge = function(heap2, lessThan) {
-        if (this.empty()) return heap2;
-        else if (heap2.empty()) return this;
-        else if (lessThan(this.elem, heap2.elem)) {
-            this.subheaps.push(heap2);
-            return this;
-        } else {
-            heap2.subheaps.push(this);
-            return heap2;
-        }
-    };
-    PairingHeap.prototype.removeMin = function(lessThan) {
-        if (this.empty()) return null;
-        else return this.mergePairs(lessThan);
-    };
-    PairingHeap.prototype.mergePairs = function(lessThan) {
-        if (this.subheaps.length == 0) return new PairingHeap(null);
-        else if (this.subheaps.length == 1) return this.subheaps[0];
-        else {
-            var firstPair = this.subheaps.pop().merge(this.subheaps.pop(), lessThan);
-            var remaining = this.mergePairs(lessThan);
-            return firstPair.merge(remaining, lessThan);
-        }
-    };
-    PairingHeap.prototype.decreaseKey = function(subheap, newValue, setHeapNode, lessThan) {
-        var newHeap = subheap.removeMin(lessThan);
-        subheap.elem = newHeap.elem;
-        subheap.subheaps = newHeap.subheaps;
-        if (setHeapNode !== null && newHeap.elem !== null) setHeapNode(subheap.elem, subheap);
-        var pairingNode = new PairingHeap(newValue);
-        if (setHeapNode !== null) setHeapNode(newValue, pairingNode);
-        return this.merge(pairingNode, lessThan);
-    };
-    return PairingHeap;
-}();
-exports.PairingHeap = PairingHeap1;
-var PriorityQueue1 = function() {
-    function PriorityQueue(lessThan) {
-        this.lessThan = lessThan;
-    }
-    PriorityQueue.prototype.top = function() {
-        if (this.empty()) return null;
-        return this.root.elem;
-    };
-    PriorityQueue.prototype.push = function() {
-        var args = [];
-        for(var _i = 0; _i < arguments.length; _i++)args[_i] = arguments[_i];
-        var pairingNode;
-        for(var i = 0, arg; arg = args[i]; ++i){
-            pairingNode = new PairingHeap1(arg);
-            this.root = this.empty() ? pairingNode : this.root.merge(pairingNode, this.lessThan);
-        }
-        return pairingNode;
-    };
-    PriorityQueue.prototype.empty = function() {
-        return !this.root || !this.root.elem;
-    };
-    PriorityQueue.prototype.isHeap = function() {
-        return this.root.isHeap(this.lessThan);
-    };
-    PriorityQueue.prototype.forEach = function(f) {
-        this.root.forEach(f);
-    };
-    PriorityQueue.prototype.pop = function() {
-        if (this.empty()) return null;
-        var obj = this.root.min();
-        this.root = this.root.removeMin(this.lessThan);
-        return obj;
-    };
-    PriorityQueue.prototype.reduceKey = function(heapNode, newKey, setHeapNode) {
-        if (setHeapNode === void 0) setHeapNode = null;
-        this.root = this.root.decreaseKey(heapNode, newKey, setHeapNode, this.lessThan);
-    };
-    PriorityQueue.prototype.toString = function(selector) {
-        return this.root.toString(selector);
-    };
-    PriorityQueue.prototype.count = function() {
-        return this.root.count();
-    };
-    return PriorityQueue;
-}();
-exports.PriorityQueue = PriorityQueue1;
-
-},{}],"k3BZk":[function(require,module,exports) {
-"use strict";
-var __extends = this && this.__extends || function() {
-    var extendStatics = function(d1, b1) {
-        extendStatics = Object.setPrototypeOf || ({
-            __proto__: []
-        }) instanceof Array && function(d, b) {
-            d.__proto__ = b;
-        } || function(d, b) {
-            for(var p in b)if (b.hasOwnProperty(p)) d[p] = b[p];
-        };
-        return extendStatics(d1, b1);
-    };
-    return function(d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var rectangle_1 = require("./rectangle");
-var Point1 = function() {
-    function Point() {
-    }
-    return Point;
-}();
-exports.Point = Point1;
-var LineSegment1 = function() {
-    function LineSegment(x1, y1, x2, y2) {
-        this.x1 = x1;
-        this.y1 = y1;
-        this.x2 = x2;
-        this.y2 = y2;
-    }
-    return LineSegment;
-}();
-exports.LineSegment = LineSegment1;
-var PolyPoint1 = function(_super) {
-    __extends(PolyPoint, _super);
-    function PolyPoint() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return PolyPoint;
-}(Point1);
-exports.PolyPoint = PolyPoint1;
-function isLeft(P0, P1, P2) {
-    return (P1.x - P0.x) * (P2.y - P0.y) - (P2.x - P0.x) * (P1.y - P0.y);
-}
-exports.isLeft = isLeft;
-function above(p, vi, vj) {
-    return isLeft(p, vi, vj) > 0;
-}
-function below(p, vi, vj) {
-    return isLeft(p, vi, vj) < 0;
-}
-function ConvexHull(S) {
-    var P = S.slice(0).sort(function(a, b) {
-        return a.x !== b.x ? b.x - a.x : b.y - a.y;
-    });
-    var n = S.length, i;
-    var minmin = 0;
-    var xmin = P[0].x;
-    for(i = 1; i < n; ++i){
-        if (P[i].x !== xmin) break;
-    }
-    var minmax = i - 1;
-    var H = [];
-    H.push(P[minmin]);
-    if (minmax === n - 1) {
-        if (P[minmax].y !== P[minmin].y) H.push(P[minmax]);
-    } else {
-        var maxmin, maxmax = n - 1;
-        var xmax = P[n - 1].x;
-        for(i = n - 2; i >= 0; i--)if (P[i].x !== xmax) break;
-        maxmin = i + 1;
-        i = minmax;
-        while(++i <= maxmin){
-            if (isLeft(P[minmin], P[maxmin], P[i]) >= 0 && i < maxmin) continue;
-            while(H.length > 1){
-                if (isLeft(H[H.length - 2], H[H.length - 1], P[i]) > 0) break;
-                else H.length -= 1;
-            }
-            if (i != minmin) H.push(P[i]);
-        }
-        if (maxmax != maxmin) H.push(P[maxmax]);
-        var bot = H.length;
-        i = maxmin;
-        while(--i >= minmax){
-            if (isLeft(P[maxmax], P[minmax], P[i]) >= 0 && i > minmax) continue;
-            while(H.length > bot){
-                if (isLeft(H[H.length - 2], H[H.length - 1], P[i]) > 0) break;
-                else H.length -= 1;
-            }
-            if (i != minmin) H.push(P[i]);
-        }
-    }
-    return H;
-}
-exports.ConvexHull = ConvexHull;
-function clockwiseRadialSweep(p, P, f) {
-    P.slice(0).sort(function(a, b) {
-        return Math.atan2(a.y - p.y, a.x - p.x) - Math.atan2(b.y - p.y, b.x - p.x);
-    }).forEach(f);
-}
-exports.clockwiseRadialSweep = clockwiseRadialSweep;
-function nextPolyPoint(p, ps) {
-    if (p.polyIndex === ps.length - 1) return ps[0];
-    return ps[p.polyIndex + 1];
-}
-function prevPolyPoint(p, ps) {
-    if (p.polyIndex === 0) return ps[ps.length - 1];
-    return ps[p.polyIndex - 1];
-}
-function tangent_PointPolyC(P, V) {
-    var Vclosed = V.slice(0);
-    Vclosed.push(V[0]);
-    return {
-        rtan: Rtangent_PointPolyC(P, Vclosed),
-        ltan: Ltangent_PointPolyC(P, Vclosed)
-    };
-}
-function Rtangent_PointPolyC(P, V) {
-    var n = V.length - 1;
-    var a, b, c;
-    var upA, dnC;
-    if (below(P, V[1], V[0]) && !above(P, V[n - 1], V[0])) return 0;
-    for(a = 0, b = n;;){
-        if (b - a === 1) {
-            if (above(P, V[a], V[b])) return a;
-            else return b;
-        }
-        c = Math.floor((a + b) / 2);
-        dnC = below(P, V[c + 1], V[c]);
-        if (dnC && !above(P, V[c - 1], V[c])) return c;
-        upA = above(P, V[a + 1], V[a]);
-        if (upA) {
-            if (dnC) b = c;
-            else if (above(P, V[a], V[c])) b = c;
-            else a = c;
-        } else {
-            if (!dnC) a = c;
-            else if (below(P, V[a], V[c])) b = c;
-            else a = c;
-        }
-    }
-}
-function Ltangent_PointPolyC(P, V) {
-    var n = V.length - 1;
-    var a, b, c;
-    var dnA, dnC;
-    if (above(P, V[n - 1], V[0]) && !below(P, V[1], V[0])) return 0;
-    for(a = 0, b = n;;){
-        if (b - a === 1) {
-            if (below(P, V[a], V[b])) return a;
-            else return b;
-        }
-        c = Math.floor((a + b) / 2);
-        dnC = below(P, V[c + 1], V[c]);
-        if (above(P, V[c - 1], V[c]) && !dnC) return c;
-        dnA = below(P, V[a + 1], V[a]);
-        if (dnA) {
-            if (!dnC) b = c;
-            else if (below(P, V[a], V[c])) b = c;
-            else a = c;
-        } else {
-            if (dnC) a = c;
-            else if (above(P, V[a], V[c])) b = c;
-            else a = c;
-        }
-    }
-}
-function tangent_PolyPolyC(V, W, t1, t2, cmp1, cmp2) {
-    var ix1, ix2;
-    ix1 = t1(W[0], V);
-    ix2 = t2(V[ix1], W);
-    var done = false;
-    while(!done){
-        done = true;
-        while(true){
-            if (ix1 === V.length - 1) ix1 = 0;
-            if (cmp1(W[ix2], V[ix1], V[ix1 + 1])) break;
-            ++ix1;
-        }
-        while(true){
-            if (ix2 === 0) ix2 = W.length - 1;
-            if (cmp2(V[ix1], W[ix2], W[ix2 - 1])) break;
-            --ix2;
-            done = false;
-        }
-    }
-    return {
-        t1: ix1,
-        t2: ix2
-    };
-}
-exports.tangent_PolyPolyC = tangent_PolyPolyC;
-function LRtangent_PolyPolyC(V, W) {
-    var rl = RLtangent_PolyPolyC(W, V);
-    return {
-        t1: rl.t2,
-        t2: rl.t1
-    };
-}
-exports.LRtangent_PolyPolyC = LRtangent_PolyPolyC;
-function RLtangent_PolyPolyC(V, W) {
-    return tangent_PolyPolyC(V, W, Rtangent_PointPolyC, Ltangent_PointPolyC, above, below);
-}
-exports.RLtangent_PolyPolyC = RLtangent_PolyPolyC;
-function LLtangent_PolyPolyC(V, W) {
-    return tangent_PolyPolyC(V, W, Ltangent_PointPolyC, Ltangent_PointPolyC, below, below);
-}
-exports.LLtangent_PolyPolyC = LLtangent_PolyPolyC;
-function RRtangent_PolyPolyC(V, W) {
-    return tangent_PolyPolyC(V, W, Rtangent_PointPolyC, Rtangent_PointPolyC, above, above);
-}
-exports.RRtangent_PolyPolyC = RRtangent_PolyPolyC;
-var BiTangent1 = function() {
-    function BiTangent(t1, t2) {
-        this.t1 = t1;
-        this.t2 = t2;
-    }
-    return BiTangent;
-}();
-exports.BiTangent = BiTangent1;
-var BiTangents1 = function() {
-    function BiTangents() {
-    }
-    return BiTangents;
-}();
-exports.BiTangents = BiTangents1;
-var TVGPoint1 = function(_super) {
-    __extends(TVGPoint, _super);
-    function TVGPoint() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return TVGPoint;
-}(Point1);
-exports.TVGPoint = TVGPoint1;
-var VisibilityVertex1 = function() {
-    function VisibilityVertex(id, polyid, polyvertid, p) {
-        this.id = id;
-        this.polyid = polyid;
-        this.polyvertid = polyvertid;
-        this.p = p;
-        p.vv = this;
-    }
-    return VisibilityVertex;
-}();
-exports.VisibilityVertex = VisibilityVertex1;
-var VisibilityEdge1 = function() {
-    function VisibilityEdge(source, target) {
-        this.source = source;
-        this.target = target;
-    }
-    VisibilityEdge.prototype.length = function() {
-        var dx = this.source.p.x - this.target.p.x;
-        var dy = this.source.p.y - this.target.p.y;
-        return Math.sqrt(dx * dx + dy * dy);
-    };
-    return VisibilityEdge;
-}();
-exports.VisibilityEdge = VisibilityEdge1;
-var TangentVisibilityGraph1 = function() {
-    function TangentVisibilityGraph(P, g0) {
-        this.P = P;
-        this.V = [];
-        this.E = [];
-        if (!g0) {
-            var n = P.length;
-            for(var i = 0; i < n; i++){
-                var p = P[i];
-                for(var j = 0; j < p.length; ++j){
-                    var pj = p[j], vv = new VisibilityVertex1(this.V.length, i, j, pj);
-                    this.V.push(vv);
-                    if (j > 0) this.E.push(new VisibilityEdge1(p[j - 1].vv, vv));
-                }
-                if (p.length > 1) this.E.push(new VisibilityEdge1(p[0].vv, p[p.length - 1].vv));
-            }
-            for(var i = 0; i < n - 1; i++){
-                var Pi = P[i];
-                for(var j = i + 1; j < n; j++){
-                    var Pj = P[j], t = tangents(Pi, Pj);
-                    for(var q in t){
-                        var c = t[q], source = Pi[c.t1], target = Pj[c.t2];
-                        this.addEdgeIfVisible(source, target, i, j);
-                    }
-                }
-            }
-        } else {
-            this.V = g0.V.slice(0);
-            this.E = g0.E.slice(0);
-        }
-    }
-    TangentVisibilityGraph.prototype.addEdgeIfVisible = function(u, v, i1, i2) {
-        if (!this.intersectsPolys(new LineSegment1(u.x, u.y, v.x, v.y), i1, i2)) this.E.push(new VisibilityEdge1(u.vv, v.vv));
-    };
-    TangentVisibilityGraph.prototype.addPoint = function(p, i1) {
-        var n = this.P.length;
-        this.V.push(new VisibilityVertex1(this.V.length, n, 0, p));
-        for(var i = 0; i < n; ++i){
-            if (i === i1) continue;
-            var poly = this.P[i], t = tangent_PointPolyC(p, poly);
-            this.addEdgeIfVisible(p, poly[t.ltan], i1, i);
-            this.addEdgeIfVisible(p, poly[t.rtan], i1, i);
-        }
-        return p.vv;
-    };
-    TangentVisibilityGraph.prototype.intersectsPolys = function(l, i1, i2) {
-        for(var i = 0, n = this.P.length; i < n; ++i){
-            if (i != i1 && i != i2 && intersects(l, this.P[i]).length > 0) return true;
-        }
-        return false;
-    };
-    return TangentVisibilityGraph;
-}();
-exports.TangentVisibilityGraph = TangentVisibilityGraph1;
-function intersects(l, P) {
-    var ints = [];
-    for(var i = 1, n = P.length; i < n; ++i){
-        var int = rectangle_1.Rectangle.lineIntersection(l.x1, l.y1, l.x2, l.y2, P[i - 1].x, P[i - 1].y, P[i].x, P[i].y);
-        if (int) ints.push(int);
-    }
-    return ints;
-}
-function tangents(V, W) {
-    var m = V.length - 1, n = W.length - 1;
-    var bt = new BiTangents1();
-    for(var i = 0; i < m; ++i)for(var j = 0; j < n; ++j){
-        var v1 = V[i == 0 ? m - 1 : i - 1];
-        var v2 = V[i];
-        var v3 = V[i + 1];
-        var w1 = W[j == 0 ? n - 1 : j - 1];
-        var w2 = W[j];
-        var w3 = W[j + 1];
-        var v1v2w2 = isLeft(v1, v2, w2);
-        var v2w1w2 = isLeft(v2, w1, w2);
-        var v2w2w3 = isLeft(v2, w2, w3);
-        var w1w2v2 = isLeft(w1, w2, v2);
-        var w2v1v2 = isLeft(w2, v1, v2);
-        var w2v2v3 = isLeft(w2, v2, v3);
-        if (v1v2w2 >= 0 && v2w1w2 >= 0 && v2w2w3 < 0 && w1w2v2 >= 0 && w2v1v2 >= 0 && w2v2v3 < 0) bt.ll = new BiTangent1(i, j);
-        else if (v1v2w2 <= 0 && v2w1w2 <= 0 && v2w2w3 > 0 && w1w2v2 <= 0 && w2v1v2 <= 0 && w2v2v3 > 0) bt.rr = new BiTangent1(i, j);
-        else if (v1v2w2 <= 0 && v2w1w2 > 0 && v2w2w3 <= 0 && w1w2v2 >= 0 && w2v1v2 < 0 && w2v2v3 >= 0) bt.rl = new BiTangent1(i, j);
-        else if (v1v2w2 >= 0 && v2w1w2 < 0 && v2w2w3 >= 0 && w1w2v2 <= 0 && w2v1v2 > 0 && w2v2v3 <= 0) bt.lr = new BiTangent1(i, j);
-    }
-    return bt;
-}
-exports.tangents = tangents;
-function isPointInsidePoly(p, poly) {
-    for(var i = 1, n = poly.length; i < n; ++i)if (below(poly[i - 1], poly[i], p)) return false;
-    return true;
-}
-function isAnyPInQ(p, q) {
-    return !p.every(function(v) {
-        return !isPointInsidePoly(v, q);
-    });
-}
-function polysOverlap(p, q) {
-    if (isAnyPInQ(p, q)) return true;
-    if (isAnyPInQ(q, p)) return true;
-    for(var i = 1, n = p.length; i < n; ++i){
-        var v = p[i], u = p[i - 1];
-        if (intersects(new LineSegment1(u.x, u.y, v.x, v.y), q).length > 0) return true;
-    }
-    return false;
-}
-exports.polysOverlap = polysOverlap;
-
-},{"./rectangle":"fyhUG"}],"4mQWm":[function(require,module,exports) {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var packingOptions = {
-    PADDING: 10,
-    GOLDEN_SECTION: (1 + Math.sqrt(5)) / 2,
-    FLOAT_EPSILON: 0.0001,
-    MAX_INERATIONS: 100
-};
-function applyPacking(graphs1, w1, h1, node_size, desired_ratio, centerGraph) {
-    if (desired_ratio === void 0) desired_ratio = 1;
-    if (centerGraph === void 0) centerGraph = true;
-    var init_x = 0, init_y = 0, svg_width = w1, svg_height = h1, desired_ratio = typeof desired_ratio !== 'undefined' ? desired_ratio : 1, node_size = typeof node_size !== 'undefined' ? node_size : 0, real_width = 0, real_height = 0, min_width = 0, global_bottom = 0, line = [];
-    if (graphs1.length == 0) return;
-    calculate_bb(graphs1);
-    apply(graphs1, desired_ratio);
-    if (centerGraph) put_nodes_to_right_positions(graphs1);
-    function calculate_bb(graphs) {
-        graphs.forEach(function(g) {
-            calculate_single_bb(g);
-        });
-        function calculate_single_bb(graph) {
-            var min_x = Number.MAX_VALUE, min_y = Number.MAX_VALUE, max_x = 0, max_y = 0;
-            graph.array.forEach(function(v) {
-                var w = typeof v.width !== 'undefined' ? v.width : node_size;
-                var h = typeof v.height !== 'undefined' ? v.height : node_size;
-                w /= 2;
-                h /= 2;
-                max_x = Math.max(v.x + w, max_x);
-                min_x = Math.min(v.x - w, min_x);
-                max_y = Math.max(v.y + h, max_y);
-                min_y = Math.min(v.y - h, min_y);
-            });
-            graph.width = max_x - min_x;
-            graph.height = max_y - min_y;
-        }
-    }
-    function put_nodes_to_right_positions(graphs) {
-        graphs.forEach(function(g) {
-            var center = {
-                x: 0,
-                y: 0
-            };
-            g.array.forEach(function(node) {
-                center.x += node.x;
-                center.y += node.y;
-            });
-            center.x /= g.array.length;
-            center.y /= g.array.length;
-            var corner = {
-                x: center.x - g.width / 2,
-                y: center.y - g.height / 2
-            };
-            var offset = {
-                x: g.x - corner.x + svg_width / 2 - real_width / 2,
-                y: g.y - corner.y + svg_height / 2 - real_height / 2
-            };
-            g.array.forEach(function(node) {
-                node.x += offset.x;
-                node.y += offset.y;
-            });
-        });
-    }
-    function apply(data, desired_ratio) {
-        var curr_best_f = Number.POSITIVE_INFINITY;
-        var curr_best = 0;
-        data.sort(function(a, b) {
-            return b.height - a.height;
-        });
-        min_width = data.reduce(function(a, b) {
-            return a.width < b.width ? a.width : b.width;
-        });
-        var left = x1 = min_width;
-        var right = x2 = get_entire_width(data);
-        var iterationCounter = 0;
-        var f_x1 = Number.MAX_VALUE;
-        var f_x2 = Number.MAX_VALUE;
-        var flag = -1;
-        var dx = Number.MAX_VALUE;
-        var df = Number.MAX_VALUE;
-        while(dx > min_width || df > packingOptions.FLOAT_EPSILON){
-            if (flag != 1) {
-                var x1 = right - (right - left) / packingOptions.GOLDEN_SECTION;
-                var f_x1 = step(data, x1);
-            }
-            if (flag != 0) {
-                var x2 = left + (right - left) / packingOptions.GOLDEN_SECTION;
-                var f_x2 = step(data, x2);
-            }
-            dx = Math.abs(x1 - x2);
-            df = Math.abs(f_x1 - f_x2);
-            if (f_x1 < curr_best_f) {
-                curr_best_f = f_x1;
-                curr_best = x1;
-            }
-            if (f_x2 < curr_best_f) {
-                curr_best_f = f_x2;
-                curr_best = x2;
-            }
-            if (f_x1 > f_x2) {
-                left = x1;
-                x1 = x2;
-                f_x1 = f_x2;
-                flag = 1;
-            } else {
-                right = x2;
-                x2 = x1;
-                f_x2 = f_x1;
-                flag = 0;
-            }
-            if (iterationCounter++ > 100) break;
-        }
-        step(data, curr_best);
-    }
-    function step(data, max_width) {
-        line = [];
-        real_width = 0;
-        real_height = 0;
-        global_bottom = init_y;
-        for(var i = 0; i < data.length; i++){
-            var o = data[i];
-            put_rect(o, max_width);
-        }
-        return Math.abs(get_real_ratio() - desired_ratio);
-    }
-    function put_rect(rect, max_width) {
-        var parent = undefined;
-        for(var i = 0; i < line.length; i++)if (line[i].space_left >= rect.height && line[i].x + line[i].width + rect.width + packingOptions.PADDING - max_width <= packingOptions.FLOAT_EPSILON) {
-            parent = line[i];
-            break;
-        }
-        line.push(rect);
-        if (parent !== undefined) {
-            rect.x = parent.x + parent.width + packingOptions.PADDING;
-            rect.y = parent.bottom;
-            rect.space_left = rect.height;
-            rect.bottom = rect.y;
-            parent.space_left -= rect.height + packingOptions.PADDING;
-            parent.bottom += rect.height + packingOptions.PADDING;
-        } else {
-            rect.y = global_bottom;
-            global_bottom += rect.height + packingOptions.PADDING;
-            rect.x = init_x;
-            rect.bottom = rect.y;
-            rect.space_left = rect.height;
-        }
-        if (rect.y + rect.height - real_height > -packingOptions.FLOAT_EPSILON) real_height = rect.y + rect.height - init_y;
-        if (rect.x + rect.width - real_width > -packingOptions.FLOAT_EPSILON) real_width = rect.x + rect.width - init_x;
-    }
-    function get_entire_width(data) {
-        var width = 0;
-        data.forEach(function(d) {
-            return width += d.width + packingOptions.PADDING;
-        });
-        return width;
-    }
-    function get_real_ratio() {
-        return real_width / real_height;
-    }
-}
-exports.applyPacking = applyPacking;
-function separateGraphs(nodes, links) {
-    var marks = {
-    };
-    var ways = {
-    };
-    var graphs = [];
-    var clusters = 0;
-    for(var i = 0; i < links.length; i++){
-        var link = links[i];
-        var n1 = link.source;
-        var n2 = link.target;
-        if (ways[n1.index]) ways[n1.index].push(n2);
-        else ways[n1.index] = [
-            n2
-        ];
-        if (ways[n2.index]) ways[n2.index].push(n1);
-        else ways[n2.index] = [
-            n1
-        ];
-    }
-    for(var i = 0; i < nodes.length; i++){
-        var node = nodes[i];
-        if (marks[node.index]) continue;
-        explore_node(node, true);
-    }
-    function explore_node(n, is_new) {
-        if (marks[n.index] !== undefined) return;
-        if (is_new) {
-            clusters++;
-            graphs.push({
-                array: []
-            });
-        }
-        marks[n.index] = clusters;
-        graphs[clusters - 1].array.push(n);
-        var adjacent = ways[n.index];
-        if (!adjacent) return;
-        for(var j = 0; j < adjacent.length; j++)explore_node(adjacent[j], false);
-    }
-    return graphs;
-}
-exports.separateGraphs = separateGraphs;
-
-},{}],"jIcvx":[function(require,module,exports) {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var d3v3 = require("./d3v3adaptor");
-var d3v4 = require("./d3v4adaptor");
-function d3adaptor(d3Context) {
-    if (!d3Context || isD3V3(d3Context)) return new d3v3.D3StyleLayoutAdaptor();
-    return new d3v4.D3StyleLayoutAdaptor(d3Context);
-}
-exports.d3adaptor = d3adaptor;
-function isD3V3(d3Context) {
-    var v3exp = /^3\./;
-    return d3Context.version && d3Context.version.match(v3exp) !== null;
-}
-
-},{"./d3v3adaptor":"czftO","./d3v4adaptor":"3SnFH"}],"czftO":[function(require,module,exports) {
-"use strict";
-var __extends = this && this.__extends || function() {
-    var extendStatics = function(d1, b1) {
-        extendStatics = Object.setPrototypeOf || ({
-            __proto__: []
-        }) instanceof Array && function(d, b) {
-            d.__proto__ = b;
-        } || function(d, b) {
-            for(var p in b)if (b.hasOwnProperty(p)) d[p] = b[p];
-        };
-        return extendStatics(d1, b1);
-    };
-    return function(d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var layout_1 = require("./layout");
-var D3StyleLayoutAdaptor1 = function(_super) {
-    __extends(D3StyleLayoutAdaptor, _super);
-    function D3StyleLayoutAdaptor() {
-        var _this = _super.call(this) || this;
-        _this.event = d3.dispatch(layout_1.EventType[layout_1.EventType.start], layout_1.EventType[layout_1.EventType.tick], layout_1.EventType[layout_1.EventType.end]);
-        var d3layout = _this;
-        var drag1;
-        _this.drag = function() {
-            if (!drag) var drag = d3.behavior.drag().origin(layout_1.Layout.dragOrigin).on("dragstart.d3adaptor", layout_1.Layout.dragStart).on("drag.d3adaptor", function(d) {
-                layout_1.Layout.drag(d, d3.event);
-                d3layout.resume();
-            }).on("dragend.d3adaptor", layout_1.Layout.dragEnd);
-            if (!arguments.length) return drag;
-            this.call(drag);
-        };
-        return _this;
-    }
-    D3StyleLayoutAdaptor.prototype.trigger = function(e) {
-        var d3event = {
-            type: layout_1.EventType[e.type],
-            alpha: e.alpha,
-            stress: e.stress
-        };
-        this.event[d3event.type](d3event);
-    };
-    D3StyleLayoutAdaptor.prototype.kick = function() {
-        var _this = this;
-        d3.timer(function() {
-            return _super.prototype.tick.call(_this);
-        });
-    };
-    D3StyleLayoutAdaptor.prototype.on = function(eventType, listener) {
-        if (typeof eventType === 'string') this.event.on(eventType, listener);
-        else this.event.on(layout_1.EventType[eventType], listener);
-        return this;
-    };
-    return D3StyleLayoutAdaptor;
-}(layout_1.Layout);
-exports.D3StyleLayoutAdaptor = D3StyleLayoutAdaptor1;
-function d3adaptor() {
-    return new D3StyleLayoutAdaptor1();
-}
-exports.d3adaptor = d3adaptor;
-
-},{"./layout":"3jcMK"}],"3SnFH":[function(require,module,exports) {
-"use strict";
-var __extends = this && this.__extends || function() {
-    var extendStatics = function(d1, b1) {
-        extendStatics = Object.setPrototypeOf || ({
-            __proto__: []
-        }) instanceof Array && function(d, b) {
-            d.__proto__ = b;
-        } || function(d, b) {
-            for(var p in b)if (b.hasOwnProperty(p)) d[p] = b[p];
-        };
-        return extendStatics(d1, b1);
-    };
-    return function(d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var layout_1 = require("./layout");
-var D3StyleLayoutAdaptor1 = function(_super) {
-    __extends(D3StyleLayoutAdaptor, _super);
-    function D3StyleLayoutAdaptor(d3Context) {
-        var _this = _super.call(this) || this;
-        _this.d3Context = d3Context;
-        _this.event = d3Context.dispatch(layout_1.EventType[layout_1.EventType.start], layout_1.EventType[layout_1.EventType.tick], layout_1.EventType[layout_1.EventType.end]);
-        var d3layout = _this;
-        var drag1;
-        _this.drag = function() {
-            if (!drag) var drag = d3Context.drag().subject(layout_1.Layout.dragOrigin).on("start.d3adaptor", layout_1.Layout.dragStart).on("drag.d3adaptor", function(d) {
-                layout_1.Layout.drag(d, d3Context.event);
-                d3layout.resume();
-            }).on("end.d3adaptor", layout_1.Layout.dragEnd);
-            if (!arguments.length) return drag;
-            arguments[0].call(drag);
-        };
-        return _this;
-    }
-    D3StyleLayoutAdaptor.prototype.trigger = function(e) {
-        var d3event = {
-            type: layout_1.EventType[e.type],
-            alpha: e.alpha,
-            stress: e.stress
-        };
-        this.event.call(d3event.type, d3event);
-    };
-    D3StyleLayoutAdaptor.prototype.kick = function() {
-        var _this = this;
-        var t = this.d3Context.timer(function() {
-            return _super.prototype.tick.call(_this) && t.stop();
-        });
-    };
-    D3StyleLayoutAdaptor.prototype.on = function(eventType, listener) {
-        if (typeof eventType === 'string') this.event.on(eventType, listener);
-        else this.event.on(layout_1.EventType[eventType], listener);
-        return this;
-    };
-    return D3StyleLayoutAdaptor;
-}(layout_1.Layout);
-exports.D3StyleLayoutAdaptor = D3StyleLayoutAdaptor1;
-
-},{"./layout":"3jcMK"}],"8OixU":[function(require,module,exports) {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var rectangle_1 = require("./rectangle");
-var vpsc_1 = require("./vpsc");
-var shortestpaths_1 = require("./shortestpaths");
-var NodeWrapper1 = function() {
-    function NodeWrapper(id, rect, children) {
-        this.id = id;
-        this.rect = rect;
-        this.children = children;
-        this.leaf = typeof children === 'undefined' || children.length === 0;
-    }
-    return NodeWrapper;
-}();
-exports.NodeWrapper = NodeWrapper1;
-var Vert1 = function() {
-    function Vert(id, x, y, node, line) {
-        if (node === void 0) node = null;
-        if (line === void 0) line = null;
-        this.id = id;
-        this.x = x;
-        this.y = y;
-        this.node = node;
-        this.line = line;
-    }
-    return Vert;
-}();
-exports.Vert = Vert1;
-var LongestCommonSubsequence1 = function() {
-    function LongestCommonSubsequence(s, t) {
-        this.s = s;
-        this.t = t;
-        var mf = LongestCommonSubsequence.findMatch(s, t);
-        var tr = t.slice(0).reverse();
-        var mr = LongestCommonSubsequence.findMatch(s, tr);
-        if (mf.length >= mr.length) {
-            this.length = mf.length;
-            this.si = mf.si;
-            this.ti = mf.ti;
-            this.reversed = false;
-        } else {
-            this.length = mr.length;
-            this.si = mr.si;
-            this.ti = t.length - mr.ti - mr.length;
-            this.reversed = true;
-        }
-    }
-    LongestCommonSubsequence.findMatch = function(s, t) {
-        var m = s.length;
-        var n = t.length;
-        var match = {
-            length: 0,
-            si: -1,
-            ti: -1
-        };
-        var l = new Array(m);
-        for(var i = 0; i < m; i++){
-            l[i] = new Array(n);
-            for(var j = 0; j < n; j++)if (s[i] === t[j]) {
-                var v = l[i][j] = i === 0 || j === 0 ? 1 : l[i - 1][j - 1] + 1;
-                if (v > match.length) {
-                    match.length = v;
-                    match.si = i - v + 1;
-                    match.ti = j - v + 1;
-                }
-            } else l[i][j] = 0;
-        }
-        return match;
-    };
-    LongestCommonSubsequence.prototype.getSequence = function() {
-        return this.length >= 0 ? this.s.slice(this.si, this.si + this.length) : [];
-    };
-    return LongestCommonSubsequence;
-}();
-exports.LongestCommonSubsequence = LongestCommonSubsequence1;
-var GridRouter1 = function() {
-    function GridRouter(originalnodes, accessor, groupPadding) {
-        var _this = this;
-        if (groupPadding === void 0) groupPadding = 12;
-        this.originalnodes = originalnodes;
-        this.groupPadding = groupPadding;
-        this.leaves = null;
-        this.nodes = originalnodes.map(function(v, i) {
-            return new NodeWrapper1(i, accessor.getBounds(v), accessor.getChildren(v));
-        });
-        this.leaves = this.nodes.filter(function(v) {
-            return v.leaf;
-        });
-        this.groups = this.nodes.filter(function(g) {
-            return !g.leaf;
-        });
-        this.cols = this.getGridLines('x');
-        this.rows = this.getGridLines('y');
-        this.groups.forEach(function(v) {
-            return v.children.forEach(function(c) {
-                return _this.nodes[c].parent = v;
-            });
-        });
-        this.root = {
-            children: []
-        };
-        this.nodes.forEach(function(v) {
-            if (typeof v.parent === 'undefined') {
-                v.parent = _this.root;
-                _this.root.children.push(v.id);
-            }
-            v.ports = [];
-        });
-        this.backToFront = this.nodes.slice(0);
-        this.backToFront.sort(function(x, y) {
-            return _this.getDepth(x) - _this.getDepth(y);
-        });
-        var frontToBackGroups = this.backToFront.slice(0).reverse().filter(function(g) {
-            return !g.leaf;
-        });
-        frontToBackGroups.forEach(function(v) {
-            var r = rectangle_1.Rectangle.empty();
-            v.children.forEach(function(c) {
-                return r = r.union(_this.nodes[c].rect);
-            });
-            v.rect = r.inflate(_this.groupPadding);
-        });
-        var colMids = this.midPoints(this.cols.map(function(r) {
-            return r.pos;
-        }));
-        var rowMids = this.midPoints(this.rows.map(function(r) {
-            return r.pos;
-        }));
-        var rowx = colMids[0], rowX = colMids[colMids.length - 1];
-        var coly = rowMids[0], colY = rowMids[rowMids.length - 1];
-        var hlines = this.rows.map(function(r) {
-            return {
-                x1: rowx,
-                x2: rowX,
-                y1: r.pos,
-                y2: r.pos
-            };
-        }).concat(rowMids.map(function(m) {
-            return {
-                x1: rowx,
-                x2: rowX,
-                y1: m,
-                y2: m
-            };
-        }));
-        var vlines = this.cols.map(function(c) {
-            return {
-                x1: c.pos,
-                x2: c.pos,
-                y1: coly,
-                y2: colY
-            };
-        }).concat(colMids.map(function(m) {
-            return {
-                x1: m,
-                x2: m,
-                y1: coly,
-                y2: colY
-            };
-        }));
-        var lines = hlines.concat(vlines);
-        lines.forEach(function(l) {
-            return l.verts = [];
-        });
-        this.verts = [];
-        this.edges = [];
-        hlines.forEach(function(h) {
-            return vlines.forEach(function(v) {
-                var p = new Vert1(_this.verts.length, v.x1, h.y1);
-                h.verts.push(p);
-                v.verts.push(p);
-                _this.verts.push(p);
-                var i = _this.backToFront.length;
-                while(i-- > 0){
-                    var node = _this.backToFront[i], r = node.rect;
-                    var dx = Math.abs(p.x - r.cx()), dy = Math.abs(p.y - r.cy());
-                    if (dx < r.width() / 2 && dy < r.height() / 2) {
-                        p.node = node;
-                        break;
-                    }
-                }
-            });
-        });
-        lines.forEach(function(l, li) {
-            _this.nodes.forEach(function(v, i) {
-                v.rect.lineIntersections(l.x1, l.y1, l.x2, l.y2).forEach(function(intersect, j) {
-                    var p = new Vert1(_this.verts.length, intersect.x, intersect.y, v, l);
-                    _this.verts.push(p);
-                    l.verts.push(p);
-                    v.ports.push(p);
-                });
-            });
-            var isHoriz = Math.abs(l.y1 - l.y2) < 0.1;
-            var delta = function(a, b) {
-                return isHoriz ? b.x - a.x : b.y - a.y;
-            };
-            l.verts.sort(delta);
-            for(var i = 1; i < l.verts.length; i++){
-                var u = l.verts[i - 1], v1 = l.verts[i];
-                if (u.node && u.node === v1.node && u.node.leaf) continue;
-                _this.edges.push({
-                    source: u.id,
-                    target: v1.id,
-                    length: Math.abs(delta(u, v1))
-                });
-            }
-        });
-    }
-    GridRouter.prototype.avg = function(a) {
-        return a.reduce(function(x, y) {
-            return x + y;
-        }) / a.length;
-    };
-    GridRouter.prototype.getGridLines = function(axis) {
-        var columns = [];
-        var ls = this.leaves.slice(0, this.leaves.length);
-        while(ls.length > 0){
-            var overlapping = ls.filter(function(v) {
-                return v.rect['overlap' + axis.toUpperCase()](ls[0].rect);
-            });
-            var col = {
-                nodes: overlapping,
-                pos: this.avg(overlapping.map(function(v) {
-                    return v.rect['c' + axis]();
-                }))
-            };
-            columns.push(col);
-            col.nodes.forEach(function(v) {
-                return ls.splice(ls.indexOf(v), 1);
-            });
-        }
-        columns.sort(function(a, b) {
-            return a.pos - b.pos;
-        });
-        return columns;
-    };
-    GridRouter.prototype.getDepth = function(v) {
-        var depth = 0;
-        while(v.parent !== this.root){
-            depth++;
-            v = v.parent;
-        }
-        return depth;
-    };
-    GridRouter.prototype.midPoints = function(a) {
-        var gap = a[1] - a[0];
-        var mids = [
-            a[0] - gap / 2
-        ];
-        for(var i = 1; i < a.length; i++)mids.push((a[i] + a[i - 1]) / 2);
-        mids.push(a[a.length - 1] + gap / 2);
-        return mids;
-    };
-    GridRouter.prototype.findLineage = function(v) {
-        var lineage = [
-            v
-        ];
-        do {
-            v = v.parent;
-            lineage.push(v);
-        }while (v !== this.root)
-        return lineage.reverse();
-    };
-    GridRouter.prototype.findAncestorPathBetween = function(a, b) {
-        var aa = this.findLineage(a), ba = this.findLineage(b), i = 0;
-        while(aa[i] === ba[i])i++;
-        return {
-            commonAncestor: aa[i - 1],
-            lineages: aa.slice(i).concat(ba.slice(i))
-        };
-    };
-    GridRouter.prototype.siblingObstacles = function(a, b) {
-        var _this = this;
-        var path = this.findAncestorPathBetween(a, b);
-        var lineageLookup = {
-        };
-        path.lineages.forEach(function(v) {
-            return lineageLookup[v.id] = {
-            };
-        });
-        var obstacles = path.commonAncestor.children.filter(function(v) {
-            return !(v in lineageLookup);
-        });
-        path.lineages.filter(function(v) {
-            return v.parent !== path.commonAncestor;
-        }).forEach(function(v) {
-            return obstacles = obstacles.concat(v.parent.children.filter(function(c) {
-                return c !== v.id;
-            }));
-        });
-        return obstacles.map(function(v) {
-            return _this.nodes[v];
-        });
-    };
-    GridRouter.getSegmentSets = function(routes, x, y) {
-        var vsegments = [];
-        for(var ei = 0; ei < routes.length; ei++){
-            var route = routes[ei];
-            for(var si = 0; si < route.length; si++){
-                var s = route[si];
-                s.edgeid = ei;
-                s.i = si;
-                var sdx = s[1][x] - s[0][x];
-                if (Math.abs(sdx) < 0.1) vsegments.push(s);
-            }
-        }
-        vsegments.sort(function(a, b) {
-            return a[0][x] - b[0][x];
-        });
-        var vsegmentsets = [];
-        var segmentset = null;
-        for(var i = 0; i < vsegments.length; i++){
-            var s = vsegments[i];
-            if (!segmentset || Math.abs(s[0][x] - segmentset.pos) > 0.1) {
-                segmentset = {
-                    pos: s[0][x],
-                    segments: []
-                };
-                vsegmentsets.push(segmentset);
-            }
-            segmentset.segments.push(s);
-        }
-        return vsegmentsets;
-    };
-    GridRouter.nudgeSegs = function(x, y, routes, segments, leftOf, gap) {
-        var n = segments.length;
-        if (n <= 1) return;
-        var vs = segments.map(function(s) {
-            return new vpsc_1.Variable(s[0][x]);
-        });
-        var cs = [];
-        for(var i = 0; i < n; i++)for(var j = 0; j < n; j++){
-            if (i === j) continue;
-            var s1 = segments[i], s2 = segments[j], e1 = s1.edgeid, e2 = s2.edgeid, lind = -1, rind = -1;
-            if (x == 'x') {
-                if (leftOf(e1, e2)) {
-                    if (s1[0][y] < s1[1][y]) lind = j, rind = i;
-                    else lind = i, rind = j;
-                }
-            } else if (leftOf(e1, e2)) {
-                if (s1[0][y] < s1[1][y]) lind = i, rind = j;
-                else lind = j, rind = i;
-            }
-            if (lind >= 0) cs.push(new vpsc_1.Constraint(vs[lind], vs[rind], gap));
-        }
-        var solver = new vpsc_1.Solver(vs, cs);
-        solver.solve();
-        vs.forEach(function(v, i) {
-            var s = segments[i];
-            var pos = v.position();
-            s[0][x] = s[1][x] = pos;
-            var route = routes[s.edgeid];
-            if (s.i > 0) route[s.i - 1][1][x] = pos;
-            if (s.i < route.length - 1) route[s.i + 1][0][x] = pos;
-        });
-    };
-    GridRouter.nudgeSegments = function(routes, x, y, leftOf, gap) {
-        var vsegmentsets = GridRouter.getSegmentSets(routes, x, y);
-        for(var i = 0; i < vsegmentsets.length; i++){
-            var ss = vsegmentsets[i];
-            var events = [];
-            for(var j = 0; j < ss.segments.length; j++){
-                var s = ss.segments[j];
-                events.push({
-                    type: 0,
-                    s: s,
-                    pos: Math.min(s[0][y], s[1][y])
-                });
-                events.push({
-                    type: 1,
-                    s: s,
-                    pos: Math.max(s[0][y], s[1][y])
-                });
-            }
-            events.sort(function(a, b) {
-                return a.pos - b.pos + a.type - b.type;
-            });
-            var open = [];
-            var openCount = 0;
-            events.forEach(function(e) {
-                if (e.type === 0) {
-                    open.push(e.s);
-                    openCount++;
-                } else openCount--;
-                if (openCount == 0) {
-                    GridRouter.nudgeSegs(x, y, routes, open, leftOf, gap);
-                    open = [];
-                }
-            });
-        }
-    };
-    GridRouter.prototype.routeEdges = function(edges, nudgeGap, source, target) {
-        var _this = this;
-        var routePaths = edges.map(function(e) {
-            return _this.route(source(e), target(e));
-        });
-        var order = GridRouter.orderEdges(routePaths);
-        var routes = routePaths.map(function(e) {
-            return GridRouter.makeSegments(e);
-        });
-        GridRouter.nudgeSegments(routes, 'x', 'y', order, nudgeGap);
-        GridRouter.nudgeSegments(routes, 'y', 'x', order, nudgeGap);
-        GridRouter.unreverseEdges(routes, routePaths);
-        return routes;
-    };
-    GridRouter.unreverseEdges = function(routes, routePaths) {
-        routes.forEach(function(segments, i) {
-            var path = routePaths[i];
-            if (path.reversed) {
-                segments.reverse();
-                segments.forEach(function(segment) {
-                    segment.reverse();
-                });
-            }
-        });
-    };
-    GridRouter.angleBetween2Lines = function(line1, line2) {
-        var angle1 = Math.atan2(line1[0].y - line1[1].y, line1[0].x - line1[1].x);
-        var angle2 = Math.atan2(line2[0].y - line2[1].y, line2[0].x - line2[1].x);
-        var diff = angle1 - angle2;
-        if (diff > Math.PI || diff < -Math.PI) diff = angle2 - angle1;
-        return diff;
-    };
-    GridRouter.isLeft = function(a, b, c) {
-        return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x) <= 0;
-    };
-    GridRouter.getOrder = function(pairs) {
-        var outgoing = {
-        };
-        for(var i = 0; i < pairs.length; i++){
-            var p = pairs[i];
-            if (typeof outgoing[p.l] === 'undefined') outgoing[p.l] = {
-            };
-            outgoing[p.l][p.r] = true;
-        }
-        return function(l, r) {
-            return typeof outgoing[l] !== 'undefined' && outgoing[l][r];
-        };
-    };
-    GridRouter.orderEdges = function(edges) {
-        var edgeOrder = [];
-        for(var i = 0; i < edges.length - 1; i++)for(var j = i + 1; j < edges.length; j++){
-            var e = edges[i], f = edges[j], lcs = new LongestCommonSubsequence1(e, f);
-            var u, vi, vj;
-            if (lcs.length === 0) continue;
-            if (lcs.reversed) {
-                f.reverse();
-                f.reversed = true;
-                lcs = new LongestCommonSubsequence1(e, f);
-            }
-            if ((lcs.si <= 0 || lcs.ti <= 0) && (lcs.si + lcs.length >= e.length || lcs.ti + lcs.length >= f.length)) {
-                edgeOrder.push({
-                    l: i,
-                    r: j
-                });
-                continue;
-            }
-            if (lcs.si + lcs.length >= e.length || lcs.ti + lcs.length >= f.length) {
-                u = e[lcs.si + 1];
-                vj = e[lcs.si - 1];
-                vi = f[lcs.ti - 1];
-            } else {
-                u = e[lcs.si + lcs.length - 2];
-                vi = e[lcs.si + lcs.length];
-                vj = f[lcs.ti + lcs.length];
-            }
-            if (GridRouter.isLeft(u, vi, vj)) edgeOrder.push({
-                l: j,
-                r: i
-            });
-            else edgeOrder.push({
-                l: i,
-                r: j
-            });
-        }
-        return GridRouter.getOrder(edgeOrder);
-    };
-    GridRouter.makeSegments = function(path) {
-        function copyPoint(p) {
-            return {
-                x: p.x,
-                y: p.y
-            };
-        }
-        var isStraight = function(a, b, c) {
-            return Math.abs((b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x)) < 0.001;
-        };
-        var segments = [];
-        var a1 = copyPoint(path[0]);
-        for(var i = 1; i < path.length; i++){
-            var b1 = copyPoint(path[i]), c1 = i < path.length - 1 ? path[i + 1] : null;
-            if (!c1 || !isStraight(a1, b1, c1)) {
-                segments.push([
-                    a1,
-                    b1
-                ]);
-                a1 = b1;
-            }
-        }
-        return segments;
-    };
-    GridRouter.prototype.route = function(s, t) {
-        var _this = this;
-        var source = this.nodes[s], target = this.nodes[t];
-        this.obstacles = this.siblingObstacles(source, target);
-        var obstacleLookup = {
-        };
-        this.obstacles.forEach(function(o) {
-            return obstacleLookup[o.id] = o;
-        });
-        this.passableEdges = this.edges.filter(function(e) {
-            var u = _this.verts[e.source], v = _this.verts[e.target];
-            return !(u.node && u.node.id in obstacleLookup || v.node && v.node.id in obstacleLookup);
-        });
-        for(var i1 = 1; i1 < source.ports.length; i1++){
-            var u1 = source.ports[0].id;
-            var v2 = source.ports[i1].id;
-            this.passableEdges.push({
-                source: u1,
-                target: v2,
-                length: 0
-            });
-        }
-        for(var i1 = 1; i1 < target.ports.length; i1++){
-            var u1 = target.ports[0].id;
-            var v2 = target.ports[i1].id;
-            this.passableEdges.push({
-                source: u1,
-                target: v2,
-                length: 0
-            });
-        }
-        var getSource = function(e) {
-            return e.source;
-        }, getTarget = function(e) {
-            return e.target;
-        }, getLength = function(e) {
-            return e.length;
-        };
-        var shortestPathCalculator = new shortestpaths_1.Calculator(this.verts.length, this.passableEdges, getSource, getTarget, getLength);
-        var bendPenalty = function(u, v, w) {
-            var a = _this.verts[u], b = _this.verts[v], c = _this.verts[w];
-            var dx = Math.abs(c.x - a.x), dy = Math.abs(c.y - a.y);
-            if (a.node === source && a.node === b.node || b.node === target && b.node === c.node) return 0;
-            return dx > 1 && dy > 1 ? 1000 : 0;
-        };
-        var shortestPath = shortestPathCalculator.PathFromNodeToNodeWithPrevCost(source.ports[0].id, target.ports[0].id, bendPenalty);
-        var pathPoints = shortestPath.reverse().map(function(vi) {
-            return _this.verts[vi];
-        });
-        pathPoints.push(this.nodes[target.id].ports[0]);
-        return pathPoints.filter(function(v, i) {
-            return !(i < pathPoints.length - 1 && pathPoints[i + 1].node === source && v.node === source || i > 0 && v.node === target && pathPoints[i - 1].node === target);
-        });
-    };
-    GridRouter.getRoutePath = function(route, cornerradius, arrowwidth, arrowheight) {
-        var result = {
-            routepath: 'M ' + route[0][0].x + ' ' + route[0][0].y + ' ',
-            arrowpath: ''
-        };
-        if (route.length > 1) for(var i = 0; i < route.length; i++){
-            var li = route[i];
-            var x = li[1].x, y = li[1].y;
-            var dx = x - li[0].x;
-            var dy = y - li[0].y;
-            if (i < route.length - 1) {
-                if (Math.abs(dx) > 0) x -= dx / Math.abs(dx) * cornerradius;
-                else y -= dy / Math.abs(dy) * cornerradius;
-                result.routepath += 'L ' + x + ' ' + y + ' ';
-                var l = route[i + 1];
-                var x0 = l[0].x, y0 = l[0].y;
-                var x1 = l[1].x;
-                var y1 = l[1].y;
-                dx = x1 - x0;
-                dy = y1 - y0;
-                var angle = GridRouter.angleBetween2Lines(li, l) < 0 ? 1 : 0;
-                var x2, y2;
-                if (Math.abs(dx) > 0) {
-                    x2 = x0 + dx / Math.abs(dx) * cornerradius;
-                    y2 = y0;
-                } else {
-                    x2 = x0;
-                    y2 = y0 + dy / Math.abs(dy) * cornerradius;
-                }
-                var cx = Math.abs(x2 - x);
-                var cy = Math.abs(y2 - y);
-                result.routepath += 'A ' + cx + ' ' + cy + ' 0 0 ' + angle + ' ' + x2 + ' ' + y2 + ' ';
-            } else {
-                var arrowtip = [
-                    x,
-                    y
-                ];
-                var arrowcorner1, arrowcorner2;
-                if (Math.abs(dx) > 0) {
-                    x -= dx / Math.abs(dx) * arrowheight;
-                    arrowcorner1 = [
-                        x,
-                        y + arrowwidth
-                    ];
-                    arrowcorner2 = [
-                        x,
-                        y - arrowwidth
-                    ];
-                } else {
-                    y -= dy / Math.abs(dy) * arrowheight;
-                    arrowcorner1 = [
-                        x + arrowwidth,
-                        y
-                    ];
-                    arrowcorner2 = [
-                        x - arrowwidth,
-                        y
-                    ];
-                }
-                result.routepath += 'L ' + x + ' ' + y + ' ';
-                if (arrowheight > 0) result.arrowpath = 'M ' + arrowtip[0] + ' ' + arrowtip[1] + ' L ' + arrowcorner1[0] + ' ' + arrowcorner1[1] + ' L ' + arrowcorner2[0] + ' ' + arrowcorner2[1];
-            }
-        }
-        else {
-            var li = route[0];
-            var x = li[1].x, y = li[1].y;
-            var dx = x - li[0].x;
-            var dy = y - li[0].y;
-            var arrowtip = [
-                x,
-                y
-            ];
-            var arrowcorner1, arrowcorner2;
-            if (Math.abs(dx) > 0) {
-                x -= dx / Math.abs(dx) * arrowheight;
-                arrowcorner1 = [
-                    x,
-                    y + arrowwidth
-                ];
-                arrowcorner2 = [
-                    x,
-                    y - arrowwidth
-                ];
-            } else {
-                y -= dy / Math.abs(dy) * arrowheight;
-                arrowcorner1 = [
-                    x + arrowwidth,
-                    y
-                ];
-                arrowcorner2 = [
-                    x - arrowwidth,
-                    y
-                ];
-            }
-            result.routepath += 'L ' + x + ' ' + y + ' ';
-            if (arrowheight > 0) result.arrowpath = 'M ' + arrowtip[0] + ' ' + arrowtip[1] + ' L ' + arrowcorner1[0] + ' ' + arrowcorner1[1] + ' L ' + arrowcorner2[0] + ' ' + arrowcorner2[1];
-        }
-        return result;
-    };
-    return GridRouter;
-}();
-exports.GridRouter = GridRouter1;
-
-},{"./rectangle":"fyhUG","./vpsc":"gPRzs","./shortestpaths":"h6FRB"}],"e4atI":[function(require,module,exports) {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var shortestpaths_1 = require("./shortestpaths");
-var descent_1 = require("./descent");
-var rectangle_1 = require("./rectangle");
-var linklengths_1 = require("./linklengths");
-var Link3D1 = function() {
-    function Link3D(source, target) {
-        this.source = source;
-        this.target = target;
-    }
-    Link3D.prototype.actualLength = function(x) {
-        var _this = this;
-        return Math.sqrt(x.reduce(function(c, v) {
-            var dx = v[_this.target] - v[_this.source];
-            return c + dx * dx;
-        }, 0));
-    };
-    return Link3D;
-}();
-exports.Link3D = Link3D1;
-var Node3D1 = function() {
-    function Node3D(x, y, z) {
-        if (x === void 0) x = 0;
-        if (y === void 0) y = 0;
-        if (z === void 0) z = 0;
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-    return Node3D;
-}();
-exports.Node3D = Node3D1;
-var Layout3D1 = function() {
-    function Layout3D(nodes, links, idealLinkLength) {
-        var _this = this;
-        if (idealLinkLength === void 0) idealLinkLength = 1;
-        this.nodes = nodes;
-        this.links = links;
-        this.idealLinkLength = idealLinkLength;
-        this.constraints = null;
-        this.useJaccardLinkLengths = true;
-        this.result = new Array(Layout3D.k);
-        for(var i = 0; i < Layout3D.k; ++i)this.result[i] = new Array(nodes.length);
-        nodes.forEach(function(v, i) {
-            for(var _i = 0, _a = Layout3D.dims; _i < _a.length; _i++){
-                var dim = _a[_i];
-                if (typeof v[dim] == 'undefined') v[dim] = Math.random();
-            }
-            _this.result[0][i] = v.x;
-            _this.result[1][i] = v.y;
-            _this.result[2][i] = v.z;
-        });
-    }
-    Layout3D.prototype.linkLength = function(l) {
-        return l.actualLength(this.result);
-    };
-    Layout3D.prototype.start = function(iterations) {
-        var _this = this;
-        if (iterations === void 0) iterations = 100;
-        var n = this.nodes.length;
-        var linkAccessor = new LinkAccessor1();
-        if (this.useJaccardLinkLengths) linklengths_1.jaccardLinkLengths(this.links, linkAccessor, 1.5);
-        this.links.forEach(function(e) {
-            return e.length *= _this.idealLinkLength;
-        });
-        var distanceMatrix = new shortestpaths_1.Calculator(n, this.links, function(e) {
-            return e.source;
-        }, function(e) {
-            return e.target;
-        }, function(e) {
-            return e.length;
-        }).DistanceMatrix();
-        var D = descent_1.Descent.createSquareMatrix(n, function(i, j) {
-            return distanceMatrix[i][j];
-        });
-        var G = descent_1.Descent.createSquareMatrix(n, function() {
-            return 2;
-        });
-        this.links.forEach(function(_a) {
-            var source = _a.source, target = _a.target;
-            return G[source][target] = G[target][source] = 1;
-        });
-        this.descent = new descent_1.Descent(this.result, D);
-        this.descent.threshold = 0.001;
-        this.descent.G = G;
-        if (this.constraints) this.descent.project = new rectangle_1.Projection(this.nodes, null, null, this.constraints).projectFunctions();
-        for(var i = 0; i < this.nodes.length; i++){
-            var v = this.nodes[i];
-            if (v.fixed) this.descent.locks.add(i, [
-                v.x,
-                v.y,
-                v.z
-            ]);
-        }
-        this.descent.run(iterations);
-        return this;
-    };
-    Layout3D.prototype.tick = function() {
-        this.descent.locks.clear();
-        for(var i = 0; i < this.nodes.length; i++){
-            var v = this.nodes[i];
-            if (v.fixed) this.descent.locks.add(i, [
-                v.x,
-                v.y,
-                v.z
-            ]);
-        }
-        return this.descent.rungeKutta();
-    };
-    Layout3D.dims = [
-        'x',
-        'y',
-        'z'
-    ];
-    Layout3D.k = Layout3D.dims.length;
-    return Layout3D;
-}();
-exports.Layout3D = Layout3D1;
-var LinkAccessor1 = function() {
-    function LinkAccessor() {
-    }
-    LinkAccessor.prototype.getSourceIndex = function(e) {
-        return e.source;
-    };
-    LinkAccessor.prototype.getTargetIndex = function(e) {
-        return e.target;
-    };
-    LinkAccessor.prototype.getLength = function(e) {
-        return e.length;
-    };
-    LinkAccessor.prototype.setLength = function(e, l) {
-        e.length = l;
-    };
-    return LinkAccessor;
-}();
-
-},{"./shortestpaths":"h6FRB","./descent":"inMal","./rectangle":"fyhUG","./linklengths":"7MQVC"}],"fXcmX":[function(require,module,exports) {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var layout_1 = require("./layout");
-var gridrouter_1 = require("./gridrouter");
-function gridify(pgLayout, nudgeGap, margin, groupMargin) {
-    pgLayout.cola.start(0, 0, 0, 10, false);
-    var gridrouter = route(pgLayout.cola.nodes(), pgLayout.cola.groups(), margin, groupMargin);
-    return gridrouter.routeEdges(pgLayout.powerGraph.powerEdges, nudgeGap, function(e) {
-        return e.source.routerNode.id;
-    }, function(e) {
-        return e.target.routerNode.id;
-    });
-}
-exports.gridify = gridify;
-function route(nodes, groups, margin, groupMargin) {
-    nodes.forEach(function(d) {
-        d.routerNode = {
-            name: d.name,
-            bounds: d.bounds.inflate(-margin)
-        };
-    });
-    groups.forEach(function(d) {
-        d.routerNode = {
-            bounds: d.bounds.inflate(-groupMargin),
-            children: (typeof d.groups !== 'undefined' ? d.groups.map(function(c) {
-                return nodes.length + c.id;
-            }) : []).concat(typeof d.leaves !== 'undefined' ? d.leaves.map(function(c) {
-                return c.index;
-            }) : [])
-        };
-    });
-    var gridRouterNodes = nodes.concat(groups).map(function(d, i) {
-        d.routerNode.id = i;
-        return d.routerNode;
-    });
-    return new gridrouter_1.GridRouter(gridRouterNodes, {
-        getChildren: function(v) {
-            return v.children;
-        },
-        getBounds: function(v) {
-            return v.bounds;
-        }
-    }, margin - groupMargin);
-}
-function powerGraphGridLayout(graph, size, grouppadding) {
-    var powerGraph;
-    graph.nodes.forEach(function(v, i) {
-        return v.index = i;
-    });
-    new layout_1.Layout().avoidOverlaps(false).nodes(graph.nodes).links(graph.links).powerGraphGroups(function(d) {
-        powerGraph = d;
-        powerGraph.groups.forEach(function(v) {
-            return v.padding = grouppadding;
-        });
-    });
-    var n = graph.nodes.length;
-    var edges = [];
-    var vs = graph.nodes.slice(0);
-    vs.forEach(function(v, i) {
-        return v.index = i;
-    });
-    powerGraph.groups.forEach(function(g) {
-        var sourceInd = g.index = g.id + n;
-        vs.push(g);
-        if (typeof g.leaves !== 'undefined') g.leaves.forEach(function(v) {
-            return edges.push({
-                source: sourceInd,
-                target: v.index
-            });
-        });
-        if (typeof g.groups !== 'undefined') g.groups.forEach(function(gg) {
-            return edges.push({
-                source: sourceInd,
-                target: gg.id + n
-            });
-        });
-    });
-    powerGraph.powerEdges.forEach(function(e) {
-        edges.push({
-            source: e.source.index,
-            target: e.target.index
-        });
-    });
-    new layout_1.Layout().size(size).nodes(vs).links(edges).avoidOverlaps(false).linkDistance(30).symmetricDiffLinkLengths(5).convergenceThreshold(0.0001).start(100, 0, 0, 0, false);
-    return {
-        cola: new layout_1.Layout().convergenceThreshold(0.001).size(size).avoidOverlaps(true).nodes(graph.nodes).links(graph.links).groupCompactness(0.0001).linkDistance(30).symmetricDiffLinkLengths(5).powerGraphGroups(function(d) {
-            powerGraph = d;
-            powerGraph.groups.forEach(function(v) {
-                v.padding = grouppadding;
-            });
-        }).start(50, 0, 100, 0, false),
-        powerGraph: powerGraph
-    };
-}
-exports.powerGraphGridLayout = powerGraphGridLayout;
-
-},{"./layout":"3jcMK","./gridrouter":"8OixU"}]},["grPCQ","cdtrO"], "cdtrO", "parcelRequirece68")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["grPCQ","cdtrO"], "cdtrO", "parcelRequirece68")
 
 //# sourceMappingURL=lab.66a7346f.js.map

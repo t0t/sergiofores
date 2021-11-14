@@ -523,8 +523,12 @@ svg.grafica {
 #container {
   text {
     font-size: $size-0;
+    font-family: Montserrat;
     font-weight: $medium;
     fill: white;
+  }
+  #Cuatro {
+    fill: $black-color;
   }
 }
 

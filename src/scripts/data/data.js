@@ -3,13 +3,13 @@ import { colors } from './colors';
 export const nodes = [];
 export const links = [];
 
-const MAIN_NODE_SIZE = 20;
-const CHILD_NODE_SIZE = 15;
-const LEAF_NODE_SIZE = 5;
-const DEFAULT_DISTANCE = 10;
-const MAIN_NODE_DISTANCE = 70;
-const LEAF_NODE_DISTANCE = 80;
-export const MANY_BODY_STRENGTH = -20;
+const MAIN_NODE_SIZE = 15;
+const CHILD_NODE_SIZE = 10;
+const LEAF_NODE_SIZE = 2;
+const DEFAULT_DISTANCE = 112;
+const MAIN_NODE_DISTANCE = 250;
+const LEAF_NODE_DISTANCE = 25;
+export const MANY_BODY_STRENGTH = -1;
 
 let i = 0;
 
@@ -36,7 +36,7 @@ const addChildNode = (
   });
 };
 
-const assembleChildNode = (parentNode, id, numLeaves = 10) => {
+const assembleChildNode = (parentNode, id, numLeaves = 3) => {
   const childNode = { id };
   addChildNode(parentNode, childNode);
 
@@ -59,7 +59,7 @@ addMainNode(uno);
 assembleChildNode(uno, 'Materia');
 assembleChildNode(uno, 'Existencia');
 
-const cuatro = { id: '4' };
+const cuatro = { id: 'Cuatro' };
 addMainNode(cuatro);
 assembleChildNode(cuatro, 'Identidad');
 assembleChildNode(cuatro, 'Mundo');
