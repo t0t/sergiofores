@@ -567,7 +567,7 @@ canvas.size([window.innerWidth, window.innerHeight])
 
 // Mapa
 const canvas2 = canvas;
-canvas2.edgelayout('symmetric').edgelength(25).zoom(5.5)
+canvas2.edgelayout('symmetric').edgelength(25).zoom(4.5)
 
 const nodes2 = [0,1,2,3,4,5,6,7,8,9,"diez"]
 canvas2.nodes(nodes2).add().size('0.4x')
@@ -593,6 +593,29 @@ canvas2.edges(edges2a).thickness(1).color('#9F9FFF')
 canvas2.edges(edges2b).thickness(0.5).color('#e2777a')
 canvas2.edges(edges2c).thickness(1).color('#9F9FFF')
 canvas2.edges(edges2d).add().thickness(1.5).color('#FFFF9F')
-canvas2.edges(edges2e).add({ directed: true, path: [[-25, 25], [25, -25]] }).thickness(0.4).color('#6f6f6f')
+canvas2.edges(edges2e).add({ directed: true, path: [[-25, 25], [25, -25]] }).thickness(0.1).color('#6f6f6f')
 // canvas2.edge(edges2e).add({ path: [[-25, 5], [5, -25]] })
 
+// canvas2.edgelength(45).zoom(0.5)
+
+canvas2.nodes(["a", "b", "c", "d", "e"]).add({
+  pos: (_, i) => [(i - 2) * 80, 0]
+})
+
+canvas2.edge(["a", "b"]).add({ path: [[-5, 5], [5, -5]] }).thickness(0.4)
+canvas2.edge(["b", "c"]).add({ path: [[-2, 10], [2, -10]] }).thickness(0.5)
+
+canvas2.edge(["c", "d"]).add({
+  path: [[-5, -10], [5, 10], [-5, 10], [5, -10]]
+})
+
+canvas2.edge(["d", "e"]).add({
+  path: Array(10).fill(0).map((k, i) =>
+      [(i - 4.5) * 4, Math.pow(-1, i) * 4])
+})
+
+canvas2.pause(0.5)
+for (let i = 1; i < 5; i++) {
+  canvas2.edge([i, i + 1]).duration(1).traverse('blue')
+  canvas2.pause(0.75)
+}
