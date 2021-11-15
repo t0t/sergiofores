@@ -176,10 +176,10 @@ h4 {
   z-index: 2;
   
   &--home {
-    position: absolute;
+    // position: absolute;
     max-width: $size-8;
-    top: $size-6;
-    left: 0;
+    // top: $size-6;
+    // left: 0;
     text-align: center;
   }
   // top: 50%;
@@ -520,17 +520,7 @@ svg.grafica {
     font-size: 3px;
   }
 }
-#container {
-  text {
-    font-size: $size-0;
-    font-family: Montserrat;
-    font-weight: $medium;
-    fill: white;
-  }
-  #Cuatro {
-    fill: $black-color;
-  }
-}
+
 
 .overlay {
   @media screen and (min-width: $bp1) {
@@ -1212,7 +1202,7 @@ img.hover-shadow {
 
 .section--cover {
   // padding-top: 0;
-  position: relative;
+  // position: relative;
 
   @media screen and (min-width: $bp3) {
     display: grid;
@@ -1528,22 +1518,25 @@ img.hover-shadow {
 /* Animacion svg en cover */
 
 #grafica {
-  background-color: $grey-color-5;
-  position: relative;
+  // background-color: $grey-color;
 
-  circle {
-    stroke: white;
+  svg {
   }
-
-  g path {
+  
+  circle {
+    stroke: none;
+  }
+  
+  path {
     fill: $primary-color;
     fill-opacity: 0.8;
     transform-box: fill-box;
   }
-
-  g text {
+  
+  text {
+    // fill: white;
     stroke: none;
-    font-size: $size-1;
+    font-size: $size-0;
   }
 }
 .my_dataviz {

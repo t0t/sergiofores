@@ -471,10 +471,7 @@ h4 {
   z-index: 2;
 }
 .titlePage--home {
-  position: absolute;
   max-width: 28rem;
-  top: 10.7rem;
-  left: 0;
   text-align: center;
 }
 .subTitlePage {
@@ -765,15 +762,6 @@ svg.grafica rect {
 svg.grafica text {
   fill: black;
   font-size: 3px;
-}
-#container text {
-  font-size: 0.61rem;
-  font-family: Montserrat;
-  font-weight: 500;
-  fill: white;
-}
-#container #Cuatro {
-  fill: black;
 }
 @media screen and (min-width: 373px) {
   .overlay {
@@ -1345,9 +1333,6 @@ img.hover-shadow {
 .nav-posts li:nth-child(2) a::before {
   content: "→";
 }
-.section--cover {
-  position: relative;
-}
 @media screen and (min-width: 766px) {
   .section--cover {
     display: grid;
@@ -1630,21 +1615,17 @@ ul {
   }
 }
 /* Animacion svg en cover */
-#grafica {
-  background-color: #262626;
-  position: relative;
-}
 #grafica circle {
-  stroke: white;
+  stroke: none;
 }
-#grafica g path {
+#grafica path {
   fill: #e2777a;
   fill-opacity: 0.8;
   transform-box: fill-box;
 }
-#grafica g text {
+#grafica text {
   stroke: none;
-  font-size: 1rem;
+  font-size: 0.61rem;
 }
 #animcover {
   border-radius: 50%;

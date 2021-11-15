@@ -475,19 +475,20 @@ var _coreDefault = parcelHelpers.interopDefault(_core);
 // let pPath = `M 0,0 C -${sz2},-${sz2}, -${sz2},-${sz3} 0,-${sz1} C ${sz2},-${sz3} ${sz2},-${sz2} 0,0`;
 // 1. Muestra efecto navbar-scroll si no es mobil NI Safari
 // 2. CSS Bug fix para Apple devices en bagground-attachment: fixed
-// import {
-//   // select,
-//   forceSimulation,
-//   forceManyBody,
-//   forceLink,
-//   forceCenter,
-//   drag,
-// } from 'd3';
+// Calcula FIBBO
+// import calculaFibonacci from "./utils/utils"
+// let btn = document.getElementById("btn")
+// let valor = document.getElementById("input")
+// let getValor = valor.value;
+// valor.addEventListener("change", calculaFibonacci(getValor), false);
+// btn.addEventListener("click", calculaFibonacci(getValor), false);
 var _dataJs = require("./data/data.js");
+// const width = +window.innerWidth;
+// const height = +window.innerHeight;
+var _inicializargraficas = require("./utils/inicializargraficas");
 var _deviceDetection = require("./utils/device-detection");
 // const moment = require("moment");
 const d3 = require('d3');
-console.log(d3);
 const hambutton = document.getElementById('hambutton');
 hambutton.addEventListener('click', _sidenav.openNav);
 const closesidenav = document.getElementById('closesidenav');
@@ -629,8 +630,6 @@ if (btnGenerar) {
     let output = document.querySelector('.output');
     let fechaNacimiento = document.getElementById('fechanacimiento');
     let fechaNacimientoUsuario = 10, entradaTexto = '', frnegativa, frpositiva, diasfinanyo, diahoy, agnio1, frpalabras = 10, radi;
-    let widthApp = window.innerWidth;
-    let heightApp = window.innerHeight / 2;
     const datos = [
         {
             id: 0,
@@ -724,15 +723,14 @@ if (btnGenerar) {
         }
     ];
     radi = height / 2;
-    const container = d3.select('#grafica').append('svg').attr('width', widthApp).attr('height', heightApp);
-    const group = container.append('g').attr('transform', `translate(${widthApp / 2},${heightApp / 2})`).attr('id', 'grafic');
+    // crearGraficaSVG("grafica")
     // Ajusta svg y g a window
-    d3.select(window).on('resize', (e)=>{
-        let iw = e.target.innerWidth;
-        let ih = e.target.innerHeight;
-        container.attr('width', iw).attr('height', ih / 2);
-        group.attr('transform', `translate(${iw / 2},${ih / 4})`);
-    });
+    // d3.select(window).on('resize', e => {
+    //   let iw = e.target.innerWidth
+    //   let ih = e.target.innerHeight
+    //   container.attr('width', iw).attr('height', ih / 2)
+    //   group.attr('transform', `translate(${iw / 2},${ih / 4})`)
+    // })
     // Circulo grande
     group.append('circle').attr('r', radi / 1.5).attr('cx', radi / 2 - radi / 2).attr('strokeWidth', '1px').attr('fill', 'none');
     // Circulo grande2
@@ -858,30 +856,23 @@ if (btnGenerar) {
         return esAgnioBisiesto(agnio) ? 366 : 365;
     }
 } // fin App
-const width = +window.innerWidth;
-const height = +window.innerHeight;
-const contenedor = d3.select('#container').attr("width", width).attr("height", height);
-console.log(contenedor);
-// const width = window.innerWidth;
-// const height = window.innerHeight;
-// const width = +contenedor.attr('width');
-// const height = +contenedor.attr('height');
-const centerX = width / 2;
-const centerY = height / 2;
+// crearSVG("grafica2","circle", [1,2])
 const simulation = d3.forceSimulation(_dataJs.nodes).force('charge', d3.forceManyBody().strength(_dataJs.MANY_BODY_STRENGTH)).force('link', d3.forceLink(_dataJs.links).distance((link)=>link.distance
-)).force('center', d3.forceCenter(centerX, centerY));
+)).force('center', d3.forceCenter(_inicializargraficas.centerX, _inicializargraficas.centerY));
 const dragInteraction = d3.drag().on('drag', (event, node)=>{
     node.fx = event.x;
     node.fy = event.y;
     simulation.alpha(1);
     simulation.restart();
 });
-const lines = contenedor.selectAll('line').data(_dataJs.links).enter().append('line').attr('stroke', (link)=>link.color || 'black'
+// --- Grafica
+const grafica1 = d3.select("#grafica").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp * 1.5).append('g').attr('transform', `translate(-${_inicializargraficas.centerX / 2.5},${_inicializargraficas.centerY / 2})`).attr('class', "group");
+const lines = grafica1.selectAll('line').data(_dataJs.links).enter().append('line').attr('stroke', (link)=>link.color || 'black'
 );
-const circles = contenedor.selectAll('circle').data(_dataJs.nodes).enter().append('circle').attr('fill', (node)=>node.color || 'gray'
-).attr('r', (node)=>node.size * 2
+const circles = grafica1.selectAll('circle').data(_dataJs.nodes).enter().append('circle').attr('fill', (node)=>node.color || 'gray'
+).attr('r', (node)=>node.size
 ).call(dragInteraction);
-const text = contenedor.selectAll('text').data(_dataJs.nodes).enter().append('text').attr('id', (node)=>node.id
+const text = grafica1.selectAll('text').data(_dataJs.nodes).enter().append('text').attr('id', (node)=>node.id
 ).attr('text-anchor', 'middle').attr('alignment-baseline', 'middle').style('pointer-events', 'none').text((node)=>node.id
 );
 simulation.on('tick', ()=>{
@@ -983,7 +974,7 @@ if (!_deviceDetection.isSafari && !_deviceDetection.isMobileDevice()) {
  //   }
  // })
 
-},{"../estilos/main.scss":"hGvuj","d3":"97vK6","./sidenav":"9MwHJ","../../node_modules/typewriter-effect/dist/core":"hXq0y","./utils/device-detection":"g2DKJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./data/data.js":"4PhqF"}],"hGvuj":[function() {},{}],"97vK6":[function(require,module,exports) {
+},{"../estilos/main.scss":"hGvuj","d3":"97vK6","./sidenav":"9MwHJ","../../node_modules/typewriter-effect/dist/core":"hXq0y","./data/data.js":"4PhqF","./utils/inicializargraficas":"jhWEh","./utils/device-detection":"g2DKJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hGvuj":[function() {},{}],"97vK6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Array = require("d3-array");
@@ -31064,26 +31055,7 @@ process.umask = function() {
     return 0;
 };
 
-},{}],"g2DKJ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-//  HIDE NAV ON SCROLL
-parcelHelpers.export(exports, "isMobileDevice", ()=>isMobileDevice
-);
-parcelHelpers.export(exports, "isSafari", ()=>isSafari
-);
-function isMobileDevice() {
-    let check = false;
-    (function(a) {
-        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od|ad)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(Browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
-    })(navigator.userAgent || navigator.vendor || window.opera);
-    return check;
-}
-const isSafari = /constructor/i.test(window.HTMLElement) || function(p) {
-    return p.toString() === "[object SafariRemoteNotification]";
-}(!window['safari'] || typeof safari !== 'undefined' && window['safari'].pushNotification);
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4PhqF":[function(require,module,exports) {
+},{}],"4PhqF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "nodes", ()=>nodes
@@ -31095,13 +31067,13 @@ parcelHelpers.export(exports, "MANY_BODY_STRENGTH", ()=>MANY_BODY_STRENGTH
 var _colors = require("./colors");
 const nodes = [];
 const links = [];
-const MAIN_NODE_SIZE = 15;
-const CHILD_NODE_SIZE = 10;
-const LEAF_NODE_SIZE = 2;
+const MAIN_NODE_SIZE = 35;
+const CHILD_NODE_SIZE = 20;
+const LEAF_NODE_SIZE = 5;
 const DEFAULT_DISTANCE = 112;
 const MAIN_NODE_DISTANCE = 250;
-const LEAF_NODE_DISTANCE = 25;
-const MANY_BODY_STRENGTH = -1;
+const LEAF_NODE_DISTANCE = 45;
+const MANY_BODY_STRENGTH = -10;
 let i1 = 0;
 const addMainNode = (node)=>{
     node.size = MAIN_NODE_SIZE;
@@ -31211,6 +31183,62 @@ const colors = [
         '#9F9FFF'
     ], 
 ];
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jhWEh":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "widthApp", ()=>widthApp
+);
+parcelHelpers.export(exports, "heightApp", ()=>heightApp
+);
+parcelHelpers.export(exports, "centerX", ()=>centerX
+);
+parcelHelpers.export(exports, "centerY", ()=>centerY
+);
+parcelHelpers.export(exports, "crearSVG", ()=>crearSVG
+) // export function crearLineas(el, data) {
+ //   const line = crearSVG(canvasname, el, data)
+ //     .selectAll(`${el}`)
+ //     .data(data)
+ //     .enter()
+ //     return line;
+ // }
+;
+// import {d3} from "node_modules/d3/dist/d3.min.js"
+const d3 = require('d3');
+let widthApp = window.innerWidth;
+let heightApp = window.innerHeight / 2;
+const centerX = widthApp / 2;
+const centerY = heightApp / 2;
+// Inicializa cualquier svgs
+function crearGraficaSVG(nombre) {
+    const container = d3.select(`#${nombre}`).append('svg').attr('width', widthApp).attr('height', heightApp);
+    group = container.append('g').attr('transform', `translate(${widthApp / 2},${heightApp / 2})`).attr('class', `${nombre}`);
+    return group;
+}
+function crearSVG(canvasname, el, data) {
+    const elemento = crearGraficaSVG(`${canvasname}`).select(`${el}`).data(data).enter();
+    return elemento;
+}
+
+},{"d3":"97vK6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"g2DKJ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+//  HIDE NAV ON SCROLL
+parcelHelpers.export(exports, "isMobileDevice", ()=>isMobileDevice
+);
+parcelHelpers.export(exports, "isSafari", ()=>isSafari
+);
+function isMobileDevice() {
+    let check = false;
+    (function(a) {
+        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od|ad)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(Browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+    })(navigator.userAgent || navigator.vendor || window.opera);
+    return check;
+}
+const isSafari = /constructor/i.test(window.HTMLElement) || function(p) {
+    return p.toString() === "[object SafariRemoteNotification]";
+}(!window['safari'] || typeof safari !== 'undefined' && window['safari'].pushNotification);
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["grPCQ","cdtrO"], "cdtrO", "parcelRequirece68")
 

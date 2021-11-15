@@ -1,7 +1,7 @@
 import '../estilos/main.scss'
 // const moment = require("moment");
 const d3 = require('d3')
-console.log(d3)
+
 // SIDENAV open-close
 import { openNav, closeNav } from './sidenav'
 const hambutton = document.getElementById('hambutton')
@@ -168,6 +168,9 @@ let fundidoPagina = () => {
   document.querySelector('#theSite').classList.add('fade-page-on')
 }
 
+
+
+
 // APP
 let btnGenerar = document.getElementById('lanza')
 // Ejecuta App sólo si existe el boton #lanza
@@ -184,8 +187,7 @@ if (btnGenerar) {
     agnio,
     frpalabras = 10,
     radi
-  let widthApp = window.innerWidth
-  let heightApp = window.innerHeight / 2
+  
 
   const datos = [
     {
@@ -282,24 +284,17 @@ if (btnGenerar) {
 
   radi = height / 2
 
-  const container = d3
-    .select('#grafica')
-    .append('svg')
-    .attr('width', widthApp)
-    .attr('height', heightApp)
 
-  const group = container
-    .append('g')
-    .attr('transform', `translate(${widthApp / 2},${heightApp / 2})`)
-    .attr('id', 'grafic')
+ 
+  // crearGraficaSVG("grafica")
 
   // Ajusta svg y g a window
-  d3.select(window).on('resize', e => {
-    let iw = e.target.innerWidth
-    let ih = e.target.innerHeight
-    container.attr('width', iw).attr('height', ih / 2)
-    group.attr('transform', `translate(${iw / 2},${ih / 4})`)
-  })
+  // d3.select(window).on('resize', e => {
+  //   let iw = e.target.innerWidth
+  //   let ih = e.target.innerHeight
+  //   container.attr('width', iw).attr('height', ih / 2)
+  //   group.attr('transform', `translate(${iw / 2},${ih / 4})`)
+  // })
 
   // Circulo grande
   group
@@ -531,32 +526,23 @@ if (btnGenerar) {
 // 1. Muestra efecto navbar-scroll si no es mobil NI Safari
 // 2. CSS Bug fix para Apple devices en bagground-attachment: fixed
 
+// Calcula FIBBO
+// import calculaFibonacci from "./utils/utils"
+// let btn = document.getElementById("btn")
+// let valor = document.getElementById("input")
+// let getValor = valor.value;
+// valor.addEventListener("change", calculaFibonacci(getValor), false);
+// btn.addEventListener("click", calculaFibonacci(getValor), false);
 
-
-// import {
-//   // select,
-//   forceSimulation,
-//   forceManyBody,
-//   forceLink,
-//   forceCenter,
-//   drag,
-// } from 'd3';
 
 import { nodes, links, MANY_BODY_STRENGTH } from './data/data.js';
 
-const width = +window.innerWidth;
-const height = +window.innerHeight;
+// const width = +window.innerWidth;
+// const height = +window.innerHeight;
 
-const contenedor = d3.select('#container')
-  .attr("width", width)
-  .attr("height", height);
-console.log(contenedor)
-// const width = window.innerWidth;
-// const height = window.innerHeight;
-// const width = +contenedor.attr('width');
-// const height = +contenedor.attr('height');
-const centerX = width / 2;
-const centerY = height / 2;
+import { crearSVG, widthApp, heightApp, centerX, centerY, elemento } from "./utils/inicializargraficas"
+
+// crearSVG("grafica2","circle", [1,2])
 
 const simulation = d3.forceSimulation(nodes)
   .force('charge', d3.forceManyBody().strength(MANY_BODY_STRENGTH))
@@ -570,48 +556,53 @@ const dragInteraction = d3.drag().on('drag', (event, node) => {
   simulation.restart();
 });
 
-
-const lines = contenedor
-  .selectAll('line')
-  .data(links)
-  .enter()
-  .append('line')
-  .attr('stroke', (link) => link.color || 'black');
-
-
-const circles = contenedor
-  .selectAll('circle')
-  .data(nodes)
-  .enter()
-  .append('circle')
-  .attr('fill', (node) => node.color || 'gray')
-  .attr('r', (node) => node.size*2)
-  .call(dragInteraction);
-
-const text = contenedor
-  .selectAll('text')
-  .data(nodes)
-  .enter()
-  .append('text')
-  .attr('id', (node) => node.id)
-  .attr('text-anchor', 'middle')
-  .attr('alignment-baseline', 'middle')
-  .style('pointer-events', 'none')
-  .text((node) => node.id);
+// --- Grafica
+const grafica = d3.select("#grafica")
+                  .append('svg')
+                  .attr('width', widthApp)
+                  .attr('height', heightApp*1.5)
+                  .append('g')
+                  .attr('transform', `translate(-${centerX/2.5},${centerY/2})`)
+                  .attr('class', "group")
+const lines = grafica
+                  .selectAll('line')
+                  .data(links)
+                  .enter()
+                  .append('line')
+                  .attr('stroke', (link) => link.color || 'black');
+const circles = grafica
+                  .selectAll('circle')
+                  .data(nodes)
+                  .enter()
+                  .append('circle')
+                  .attr('fill', (node) => node.color || 'gray')
+                  .attr('r', (node) => node.size)
+                  .call(dragInteraction);
+const text = grafica
+                  .selectAll('text')
+                  .data(nodes)
+                  .enter()
+                  .append('text')
+                  .attr('id', (node) => node.id)
+                  .attr('text-anchor', 'middle')
+                  .attr('alignment-baseline', 'middle')
+                  .style('pointer-events', 'none')
+                  .text((node) => node.id);
 
 simulation.on('tick', () => {
-  circles
-    .attr('cx', (node) => node.x)
-    .attr('cy', (node) => node.y);
-  text
-    .attr('x', (node) => node.x)
-    .attr('y', (node) => node.y)
-    .attr('id', (node) => node.id)
-  lines
-    .attr('x1', (link) => link.source.x)
-    .attr('y1', (link) => link.source.y)
-    .attr('x2', (link) => link.target.x)
-    .attr('y2', (link) => link.target.y);
+
+            circles
+                  .attr('cx', (node) => node.x)
+                  .attr('cy', (node) => node.y);
+            text
+                  .attr('x', (node) => node.x)
+                  .attr('y', (node) => node.y)
+                  .attr('id', (node) => node.id)
+            lines
+                  .attr('x1', (link) => link.source.x)
+                  .attr('y1', (link) => link.source.y)
+                  .attr('x2', (link) => link.target.x)
+                  .attr('y2', (link) => link.target.y);
 });
 
 

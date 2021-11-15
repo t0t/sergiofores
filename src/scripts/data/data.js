@@ -3,13 +3,13 @@ import { colors } from './colors';
 export const nodes = [];
 export const links = [];
 
-const MAIN_NODE_SIZE = 15;
-const CHILD_NODE_SIZE = 10;
-const LEAF_NODE_SIZE = 2;
+const MAIN_NODE_SIZE = 35;
+const CHILD_NODE_SIZE = 20;
+const LEAF_NODE_SIZE = 5;
 const DEFAULT_DISTANCE = 112;
 const MAIN_NODE_DISTANCE = 250;
-const LEAF_NODE_DISTANCE = 25;
-export const MANY_BODY_STRENGTH = -1;
+const LEAF_NODE_DISTANCE = 45;
+export const MANY_BODY_STRENGTH = -10;
 
 let i = 0;
 
