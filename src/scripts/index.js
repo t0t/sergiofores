@@ -286,27 +286,29 @@ if (btnGenerar) {
     }
   ]
 
-  radi = heightApp / 2
-
+  
   // Ajusta svg y g a window
   d3.select(window).on('resize', e => {
     let iw = e.target.innerWidth
     let ih = e.target.innerHeight
-    container.attr('width', iw).attr('height', ih / 2)
-    group.attr('transform', `translate(${iw / 2},${ih / 4})`)
+    grafica2
+      .attr('width', iw)
+      .attr('height', ih / 2)
+      .attr('transform', `translate(${iw / 2},${ih / 4})`)
   })
-
+  
   // --- APP
   const grafica2 = d3.select("#graficaApp")
-    .append('svg')
-    .attr('width', widthApp)
-    .attr('height', heightApp)
-    .append('g')
-    .attr('fill', "red")
-    .attr('transform', `translate(${centerX},${centerY})`)
-    .attr('class', "group")
-
+  .append('svg')
+  .attr('width', widthApp)
+  .attr('height', heightApp)
+  .append('g')
+  .attr('fill', "red")
+  .attr('transform', `translate(${centerX},${centerY})`)
+  .attr('class', "group")
+  
   // Circulo grande
+  radi = heightApp / 2
   grafica2
     .append('circle')
     .attr('r', radi / 1.5)
@@ -514,13 +516,8 @@ if (btnGenerar) {
 
 
 
-// const width = +window.innerWidth;
-// const height = +window.innerHeight;
 
-
-
-// crearSVG("grafica2","circle", [1,2])
-
+// --- Grafica
 const simulation = d3.forceSimulation(nodes)
   .force('charge', d3.forceManyBody().strength(MANY_BODY_STRENGTH))
   .force('link', d3.forceLink(links).distance((link) => link.distance))
@@ -533,13 +530,11 @@ const dragInteraction = d3.drag().on('drag', (event, node) => {
   simulation.restart();
 });
 
-// --- Grafica
 const grafica = d3.select("#grafica")
                   .append('svg')
                   .attr('width', widthApp)
                   .attr('height', heightApp*1.5)
                   .append('g')
-                  .attr("transform", `translate(${widthApp}px, ${heightApp}px)`)
                   .attr('class', "group")
 const lines = grafica
                   .selectAll('line')

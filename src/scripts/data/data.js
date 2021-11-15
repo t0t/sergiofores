@@ -4,12 +4,12 @@ export const nodes = [];
 export const links = [];
 
 const MAIN_NODE_SIZE = 35;
-const CHILD_NODE_SIZE = 20;
+const CHILD_NODE_SIZE = 15;
 const LEAF_NODE_SIZE = 4;
-const DEFAULT_DISTANCE = 112;
-const MAIN_NODE_DISTANCE = 350;
+const DEFAULT_DISTANCE = 100;
+const MAIN_NODE_DISTANCE = 300;
 const LEAF_NODE_DISTANCE = 25;
-export const MANY_BODY_STRENGTH = -10;
+export const MANY_BODY_STRENGTH = -1;
 
 let i = 0;
 

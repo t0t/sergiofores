@@ -707,17 +707,16 @@ if (btnGenerar) {
             nombre: '9'
         }
     ];
-    radi = _inicializargraficas.heightApp / 2;
     // Ajusta svg y g a window
     d3.select(window).on('resize', (e)=>{
         let iw = e.target.innerWidth;
         let ih = e.target.innerHeight;
-        container.attr('width', iw).attr('height', ih / 2);
-        group.attr('transform', `translate(${iw / 2},${ih / 4})`);
+        grafica2.attr('width', iw).attr('height', ih / 2).attr('transform', `translate(${iw / 2},${ih / 4})`);
     });
     // --- APP
     const grafica2 = d3.select("#graficaApp").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp).append('g').attr('fill', "red").attr('transform', `translate(${_inicializargraficas.centerX},${_inicializargraficas.centerY})`).attr('class', "group");
     // Circulo grande
+    radi = _inicializargraficas.heightApp / 2;
     grafica2.append('circle').attr('r', radi / 1.5).attr('cx', radi / 2 - radi / 2).attr('strokeWidth', '1px').attr('fill', 'none');
     // Circulo grande2
     grafica2.append('circle').attr('r', radi / 1.5).attr('cx', radi / 1.5);
@@ -848,9 +847,7 @@ if (btnGenerar) {
 // let getValor = valor.value;
 // valor.addEventListener("change", calculaFibonacci(getValor), false);
 // btn.addEventListener("click", calculaFibonacci(getValor), false);
-// const width = +window.innerWidth;
-// const height = +window.innerHeight;
-// crearSVG("grafica2","circle", [1,2])
+// --- Grafica
 const simulation = d3.forceSimulation(_dataJs.nodes).force('charge', d3.forceManyBody().strength(_dataJs.MANY_BODY_STRENGTH)).force('link', d3.forceLink(_dataJs.links).distance((link)=>link.distance
 )).force('center', d3.forceCenter(_inicializargraficas.centerX, _inicializargraficas.centerY));
 const dragInteraction = d3.drag().on('drag', (event, node)=>{
@@ -859,8 +856,7 @@ const dragInteraction = d3.drag().on('drag', (event, node)=>{
     simulation.alpha(1);
     simulation.restart();
 });
-// --- Grafica
-const grafica1 = d3.select("#grafica").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp * 1.5).append('g').attr("transform", `translate(${_inicializargraficas.widthApp}px, ${_inicializargraficas.heightApp}px)`).attr('class', "group");
+const grafica1 = d3.select("#grafica").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp * 1.5).append('g').attr('class', "group");
 const lines = grafica1.selectAll('line').data(_dataJs.links).enter().append('line').attr('stroke', (link)=>link.color || 'black'
 );
 const circles = grafica1.selectAll('circle').data(_dataJs.nodes).enter().append('circle').attr('fill', (node)=>node.color || 'gray'
@@ -968,7 +964,7 @@ if (!_deviceDetection.isSafari && !_deviceDetection.isMobileDevice()) {
  //   }
  // })
 
-},{"../estilos/main.scss":"hGvuj","d3":"97vK6","./sidenav":"9MwHJ","../../node_modules/typewriter-effect/dist/core":"hXq0y","./data/data.js":"4PhqF","./utils/inicializargraficas":"jhWEh","./utils/device-detection":"g2DKJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hGvuj":[function() {},{}],"97vK6":[function(require,module,exports) {
+},{"../estilos/main.scss":"hGvuj","d3":"97vK6","./sidenav":"9MwHJ","./data/data.js":"4PhqF","./utils/inicializargraficas":"jhWEh","../../node_modules/typewriter-effect/dist/core":"hXq0y","./utils/device-detection":"g2DKJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hGvuj":[function() {},{}],"97vK6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Array = require("d3-array");
@@ -30450,7 +30446,173 @@ function closeNav() {
     document.body.style.overflow = "inherit";
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hXq0y":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4PhqF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "nodes", ()=>nodes
+);
+parcelHelpers.export(exports, "links", ()=>links
+);
+parcelHelpers.export(exports, "MANY_BODY_STRENGTH", ()=>MANY_BODY_STRENGTH
+);
+var _colors = require("./colors");
+const nodes = [];
+const links = [];
+const MAIN_NODE_SIZE = 35;
+const CHILD_NODE_SIZE = 15;
+const LEAF_NODE_SIZE = 4;
+const DEFAULT_DISTANCE = 100;
+const MAIN_NODE_DISTANCE = 300;
+const LEAF_NODE_DISTANCE = 25;
+const MANY_BODY_STRENGTH = -1;
+let i1 = 0;
+const addMainNode = (node)=>{
+    node.size = MAIN_NODE_SIZE;
+    node.color = _colors.colors[i1++][1];
+    nodes.push(node);
+};
+const addChildNode = (parentNode, childNode, size = CHILD_NODE_SIZE, distance = DEFAULT_DISTANCE)=>{
+    childNode.size = size;
+    childNode.color = parentNode.color;
+    nodes.push(childNode);
+    links.push({
+        source: parentNode,
+        target: childNode,
+        distance,
+        color: parentNode.color
+    });
+};
+const assembleChildNode = (parentNode, id, numLeaves = 3)=>{
+    const childNode = {
+        id
+    };
+    addChildNode(parentNode, childNode);
+    for(let i = 0; i < numLeaves; i++)addChildNode(childNode, {
+        id: ''
+    }, LEAF_NODE_SIZE, LEAF_NODE_DISTANCE);
+};
+const connectMainNodes = (source, target)=>{
+    links.push({
+        source,
+        target,
+        distance: MAIN_NODE_DISTANCE,
+        color: source.color
+    });
+};
+const uno = {
+    id: '1'
+};
+addMainNode(uno);
+assembleChildNode(uno, 'Materia');
+assembleChildNode(uno, 'Existencia');
+const cuatro = {
+    id: '4'
+};
+addMainNode(cuatro);
+assembleChildNode(cuatro, 'Identidad');
+assembleChildNode(cuatro, 'Mundo');
+assembleChildNode(cuatro, 'Techo');
+assembleChildNode(cuatro, 'Fuego');
+const dos = {
+    id: '2'
+};
+addMainNode(dos);
+assembleChildNode(dos, 'Separacion');
+assembleChildNode(dos, 'Reshimo');
+assembleChildNode(dos, 'Sentir');
+assembleChildNode(dos, 'Emocion', 5);
+assembleChildNode(dos, 'Agua');
+const tres = {
+    id: '3'
+};
+addMainNode(tres);
+assembleChildNode(tres, 'Aire');
+assembleChildNode(tres, 'Analogía', 3);
+assembleChildNode(tres, 'Simbolo', 3);
+assembleChildNode(tres, 'Decir', 3);
+assembleChildNode(tres, 'Transmitir', 3);
+assembleChildNode(tres, 'Trascender', 3);
+connectMainNodes(uno, cuatro);
+connectMainNodes(uno, dos);
+connectMainNodes(cuatro, dos);
+connectMainNodes(tres, dos);
+connectMainNodes(tres, cuatro);
+connectMainNodes(tres, uno);
+
+},{"./colors":"fj2eq","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fj2eq":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "colors", ()=>colors
+);
+const colors = [
+    [
+        '#2BC4A9',
+        '#2BC4A9',
+        '#2BC4A9',
+        '#2BC4A9',
+        '#2BC4A9'
+    ],
+    [
+        '#FFFF9F',
+        'black',
+        '#FFFF9F',
+        '#FFFF9F',
+        '#FFFF9F'
+    ],
+    [
+        '#e2777a',
+        '#e2777a',
+        '#e2777a',
+        '#e2777a',
+        '#e2777a'
+    ],
+    [
+        '#9F9FFF',
+        '#9F9FFF',
+        '#9F9FFF',
+        '#9F9FFF',
+        '#9F9FFF'
+    ], 
+];
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jhWEh":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "widthApp", ()=>widthApp
+);
+parcelHelpers.export(exports, "heightApp", ()=>heightApp
+);
+parcelHelpers.export(exports, "centerX", ()=>centerX
+);
+parcelHelpers.export(exports, "centerY", ()=>centerY
+);
+parcelHelpers.export(exports, "crearSVG", ()=>crearSVG
+) // export function crearLineas(el, data) {
+ //   const line = crearSVG(canvasname, el, data)
+ //     .selectAll(`${el}`)
+ //     .data(data)
+ //     .enter()
+ //     return line;
+ // }
+;
+// import {d3} from "node_modules/d3/dist/d3.min.js"
+const d3 = require('d3');
+let widthApp = window.innerWidth;
+let heightApp = window.innerHeight / 2;
+const centerX = widthApp / 2;
+const centerY = heightApp / 2;
+// Inicializa cualquier svgs
+function crearGraficaSVG(nombre) {
+    const container = d3.select(`#${nombre}`).append('svg').attr('width', widthApp).attr('height', heightApp);
+    group = container.append('g').attr('transform', `translate(${widthApp / 2},${heightApp / 2})`).attr('class', `${nombre}`);
+    return group;
+}
+function crearSVG(canvasname, el, data) {
+    const elemento = crearGraficaSVG(`${canvasname}`).select(`${el}`).data(data).enter();
+    return elemento;
+}
+
+},{"d3":"97vK6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hXq0y":[function(require,module,exports) {
 var process = require("process");
 !function(e, t) {
     "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define("Typewriter", [], t) : "object" == typeof exports ? exports.Typewriter = t() : e.Typewriter = t();
@@ -31049,173 +31211,7 @@ process.umask = function() {
     return 0;
 };
 
-},{}],"4PhqF":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "nodes", ()=>nodes
-);
-parcelHelpers.export(exports, "links", ()=>links
-);
-parcelHelpers.export(exports, "MANY_BODY_STRENGTH", ()=>MANY_BODY_STRENGTH
-);
-var _colors = require("./colors");
-const nodes = [];
-const links = [];
-const MAIN_NODE_SIZE = 35;
-const CHILD_NODE_SIZE = 20;
-const LEAF_NODE_SIZE = 4;
-const DEFAULT_DISTANCE = 112;
-const MAIN_NODE_DISTANCE = 350;
-const LEAF_NODE_DISTANCE = 25;
-const MANY_BODY_STRENGTH = -10;
-let i1 = 0;
-const addMainNode = (node)=>{
-    node.size = MAIN_NODE_SIZE;
-    node.color = _colors.colors[i1++][1];
-    nodes.push(node);
-};
-const addChildNode = (parentNode, childNode, size = CHILD_NODE_SIZE, distance = DEFAULT_DISTANCE)=>{
-    childNode.size = size;
-    childNode.color = parentNode.color;
-    nodes.push(childNode);
-    links.push({
-        source: parentNode,
-        target: childNode,
-        distance,
-        color: parentNode.color
-    });
-};
-const assembleChildNode = (parentNode, id, numLeaves = 3)=>{
-    const childNode = {
-        id
-    };
-    addChildNode(parentNode, childNode);
-    for(let i = 0; i < numLeaves; i++)addChildNode(childNode, {
-        id: ''
-    }, LEAF_NODE_SIZE, LEAF_NODE_DISTANCE);
-};
-const connectMainNodes = (source, target)=>{
-    links.push({
-        source,
-        target,
-        distance: MAIN_NODE_DISTANCE,
-        color: source.color
-    });
-};
-const uno = {
-    id: '1'
-};
-addMainNode(uno);
-assembleChildNode(uno, 'Materia');
-assembleChildNode(uno, 'Existencia');
-const cuatro = {
-    id: '4'
-};
-addMainNode(cuatro);
-assembleChildNode(cuatro, 'Identidad');
-assembleChildNode(cuatro, 'Mundo');
-assembleChildNode(cuatro, 'Techo');
-assembleChildNode(cuatro, 'Fuego');
-const dos = {
-    id: '2'
-};
-addMainNode(dos);
-assembleChildNode(dos, 'Separacion');
-assembleChildNode(dos, 'Reshimo');
-assembleChildNode(dos, 'Sentir');
-assembleChildNode(dos, 'Emocion', 5);
-assembleChildNode(dos, 'Agua');
-const tres = {
-    id: '3'
-};
-addMainNode(tres);
-assembleChildNode(tres, 'Aire');
-assembleChildNode(tres, 'Analogía', 3);
-assembleChildNode(tres, 'Simbolo', 3);
-assembleChildNode(tres, 'Decir', 3);
-assembleChildNode(tres, 'Transmitir', 3);
-assembleChildNode(tres, 'Trascender', 3);
-connectMainNodes(uno, cuatro);
-connectMainNodes(uno, dos);
-connectMainNodes(cuatro, dos);
-connectMainNodes(tres, dos);
-connectMainNodes(tres, cuatro);
-connectMainNodes(tres, uno);
-
-},{"./colors":"fj2eq","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fj2eq":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "colors", ()=>colors
-);
-const colors = [
-    [
-        '#2BC4A9',
-        '#2BC4A9',
-        '#2BC4A9',
-        '#2BC4A9',
-        '#2BC4A9'
-    ],
-    [
-        '#FFFF9F',
-        'black',
-        '#FFFF9F',
-        '#FFFF9F',
-        '#FFFF9F'
-    ],
-    [
-        '#e2777a',
-        '#e2777a',
-        '#e2777a',
-        '#e2777a',
-        '#e2777a'
-    ],
-    [
-        '#9F9FFF',
-        '#9F9FFF',
-        '#9F9FFF',
-        '#9F9FFF',
-        '#9F9FFF'
-    ], 
-];
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jhWEh":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "widthApp", ()=>widthApp
-);
-parcelHelpers.export(exports, "heightApp", ()=>heightApp
-);
-parcelHelpers.export(exports, "centerX", ()=>centerX
-);
-parcelHelpers.export(exports, "centerY", ()=>centerY
-);
-parcelHelpers.export(exports, "crearSVG", ()=>crearSVG
-) // export function crearLineas(el, data) {
- //   const line = crearSVG(canvasname, el, data)
- //     .selectAll(`${el}`)
- //     .data(data)
- //     .enter()
- //     return line;
- // }
-;
-// import {d3} from "node_modules/d3/dist/d3.min.js"
-const d3 = require('d3');
-let widthApp = window.innerWidth;
-let heightApp = window.innerHeight / 2;
-const centerX = widthApp / 2;
-const centerY = heightApp / 2;
-// Inicializa cualquier svgs
-function crearGraficaSVG(nombre) {
-    const container = d3.select(`#${nombre}`).append('svg').attr('width', widthApp).attr('height', heightApp);
-    group = container.append('g').attr('transform', `translate(${widthApp / 2},${heightApp / 2})`).attr('class', `${nombre}`);
-    return group;
-}
-function crearSVG(canvasname, el, data) {
-    const elemento = crearGraficaSVG(`${canvasname}`).select(`${el}`).data(data).enter();
-    return elemento;
-}
-
-},{"d3":"97vK6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"g2DKJ":[function(require,module,exports) {
+},{}],"g2DKJ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 //  HIDE NAV ON SCROLL
