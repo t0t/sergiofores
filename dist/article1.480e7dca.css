@@ -1624,8 +1624,11 @@ ul {
   transform-box: fill-box;
 }
 #grafica text {
+  fill: white;
   stroke: none;
-  font-size: 0.61rem;
+  font-size: 1rem;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-weight: 400;
 }
 #animcover {
   border-radius: 50%;

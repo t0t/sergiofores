@@ -31115,7 +31115,7 @@ addMainNode(uno);
 assembleChildNode(uno, 'Materia');
 assembleChildNode(uno, 'Existencia');
 const cuatro = {
-    id: 'Cuatro'
+    id: '4'
 };
 addMainNode(cuatro);
 assembleChildNode(cuatro, 'Identidad');
@@ -31163,7 +31163,7 @@ const colors = [
     ],
     [
         '#FFFF9F',
-        '#FFFF9F',
+        'black',
         '#FFFF9F',
         '#FFFF9F',
         '#FFFF9F'

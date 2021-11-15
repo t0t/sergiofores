@@ -1534,9 +1534,11 @@ img.hover-shadow {
   }
   
   text {
-    // fill: white;
+    fill: white;
     stroke: none;
-    font-size: $size-0;
+    font-size: $size-1;
+    font-family: $mainff;
+    font-weight: $normal;
   }
 }
 .my_dataviz {

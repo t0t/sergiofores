@@ -59,7 +59,7 @@ addMainNode(uno);
 assembleChildNode(uno, 'Materia');
 assembleChildNode(uno, 'Existencia');
 
-const cuatro = { id: 'Cuatro' };
+const cuatro = { id: '4' };
 addMainNode(cuatro);
 assembleChildNode(cuatro, 'Identidad');
 assembleChildNode(cuatro, 'Mundo');
