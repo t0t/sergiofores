@@ -373,12 +373,6 @@ if (btnGenerar) {
     .attr('d', arco)
     .attr('stroke', 'none')
 
-  // grafica2
-  //   .append('path')
-  //   .attr('d', arco2)
-  //   .attr('transform', `rotate(360) translate(-${radi * 1.345} 0)`)
-  //   .attr('stroke', 'none')
-
   // Uno
   grafica2
     .append('circle')
@@ -387,33 +381,6 @@ if (btnGenerar) {
     .attr('stroke', datos[0].color)
     .attr('strokeWidth', '1px')
     .attr('fill', 'none')
-
-  // // Dos
-  // grafica2
-  //   .append('circle')
-  //   .attr('r', radi / 3)
-  //   .attr('cx', radi / 3 - radi / 1.5)
-  //   .attr('stroke', datos[0].color)
-  //   .attr('fill', 'none')
-  //   .attr('strokeWidth', '1px')
-
-  // // Tres
-  // grafica2
-  //   .append('circle')
-  //   .attr('r', radi / 3)
-  //   .attr('cx', 0)
-  //   .attr('stroke', datos[0].color)
-  //   .attr('fill', 'none')
-  //   .attr('strokeWidth', '1px')
-
-  // // Cuatro
-  // grafica2
-  //   .append('circle')
-  //   .attr('r', radi / 3)
-  //   .attr('cx', radi - radi / 3)
-  //   .attr('stroke', datos[0].color)
-  //   .attr('fill', 'none')
-  //   .attr('strokeWidth', '1px')
 
   // Input fecha
   fechaNacimiento.addEventListener('change', e => {
@@ -572,7 +539,7 @@ const grafica = d3.select("#grafica")
                   .attr('width', widthApp)
                   .attr('height', heightApp*1.5)
                   .append('g')
-                  .attr('transform', `translate(-${centerX/2.5},${centerY/2})`)
+                  .attr("transform", `translate(${widthApp}px, ${heightApp}px)`)
                   .attr('class', "group")
 const lines = grafica
                   .selectAll('line')

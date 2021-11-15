@@ -740,37 +740,8 @@ if (btnGenerar) {
     const arco2 = d3.arc().innerRadius(129).outerRadius(135).startAngle(Math.PI * 2).endAngle(10);
     // Arcos
     grafica2.append('path').attr('d', arco).attr('stroke', 'none');
-    // grafica2
-    //   .append('path')
-    //   .attr('d', arco2)
-    //   .attr('transform', `rotate(360) translate(-${radi * 1.345} 0)`)
-    //   .attr('stroke', 'none')
     // Uno
     grafica2.append('circle').attr('r', radi / 3).attr('cx', radi / 3).attr('stroke', datos[0].color).attr('strokeWidth', '1px').attr('fill', 'none');
-    // // Dos
-    // grafica2
-    //   .append('circle')
-    //   .attr('r', radi / 3)
-    //   .attr('cx', radi / 3 - radi / 1.5)
-    //   .attr('stroke', datos[0].color)
-    //   .attr('fill', 'none')
-    //   .attr('strokeWidth', '1px')
-    // // Tres
-    // grafica2
-    //   .append('circle')
-    //   .attr('r', radi / 3)
-    //   .attr('cx', 0)
-    //   .attr('stroke', datos[0].color)
-    //   .attr('fill', 'none')
-    //   .attr('strokeWidth', '1px')
-    // // Cuatro
-    // grafica2
-    //   .append('circle')
-    //   .attr('r', radi / 3)
-    //   .attr('cx', radi - radi / 3)
-    //   .attr('stroke', datos[0].color)
-    //   .attr('fill', 'none')
-    //   .attr('strokeWidth', '1px')
     // Input fecha
     fechaNacimiento.addEventListener('change', (e)=>{
         fechaNacimientoUsuario = e.target.value;
@@ -889,7 +860,7 @@ const dragInteraction = d3.drag().on('drag', (event, node)=>{
     simulation.restart();
 });
 // --- Grafica
-const grafica1 = d3.select("#grafica").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp * 1.5).append('g').attr('transform', `translate(-${_inicializargraficas.centerX / 2.5},${_inicializargraficas.centerY / 2})`).attr('class', "group");
+const grafica1 = d3.select("#grafica").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp * 1.5).append('g').attr("transform", `translate(${_inicializargraficas.widthApp}px, ${_inicializargraficas.heightApp}px)`).attr('class', "group");
 const lines = grafica1.selectAll('line').data(_dataJs.links).enter().append('line').attr('stroke', (link)=>link.color || 'black'
 );
 const circles = grafica1.selectAll('circle').data(_dataJs.nodes).enter().append('circle').attr('fill', (node)=>node.color || 'gray'
@@ -31092,10 +31063,10 @@ const nodes = [];
 const links = [];
 const MAIN_NODE_SIZE = 35;
 const CHILD_NODE_SIZE = 20;
-const LEAF_NODE_SIZE = 5;
+const LEAF_NODE_SIZE = 4;
 const DEFAULT_DISTANCE = 112;
-const MAIN_NODE_DISTANCE = 250;
-const LEAF_NODE_DISTANCE = 45;
+const MAIN_NODE_DISTANCE = 350;
+const LEAF_NODE_DISTANCE = 25;
 const MANY_BODY_STRENGTH = -10;
 let i1 = 0;
 const addMainNode = (node)=>{

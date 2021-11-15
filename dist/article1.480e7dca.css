@@ -789,6 +789,9 @@ svg.grafica text {
   transform: translate(1.6rem, 1.6rem) scale(1) rotate(0deg);
   background-color: transparent;
 }
+.output.resultado h2 {
+  padding: 0;
+}
 .codigos-ejemplo {
   text-align: center;
   padding: 0 2.59rem 1.6rem;
@@ -1626,9 +1629,10 @@ ul {
 #grafica text {
   fill: white;
   stroke: none;
-  font-size: 1rem;
-  font-family: "Montserrat", Arial, Helvetica, sans-serif;
-  font-weight: 400;
+  font-size: 0.61rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 #graficaApp circle {
   stroke: black;
