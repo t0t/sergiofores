@@ -1459,7 +1459,7 @@ img.hover-shadow {
   }
 
   .mainContent {
-    background-color: #262626;
+    background-color: #323232;
     overflow: auto;
   }
 
@@ -1629,6 +1629,12 @@ ul {
   font-size: 1rem;
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
   font-weight: 400;
+}
+#graficaApp circle {
+  stroke: black;
+}
+#graficaApp text {
+  font-size: 1.6rem;
 }
 #animcover {
   border-radius: 50%;

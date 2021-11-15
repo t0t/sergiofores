@@ -463,29 +463,14 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _mainScss = require("../estilos/main.scss");
 // SIDENAV open-close
 var _sidenav = require("./sidenav");
+var _dataJs = require("./data/data.js");
+var _inicializargraficas = require("./utils/inicializargraficas");
 // import datablog from './data/datablog.json';
 // console.log(datablog);
 // => "world"
 // TYPEWRITTER EFFECT
 var _core = require("../../node_modules/typewriter-effect/dist/core");
 var _coreDefault = parcelHelpers.interopDefault(_core);
-// let sz1 = 50;
-// let sz2 = 20;
-// let sz3 = 30;
-// let pPath = `M 0,0 C -${sz2},-${sz2}, -${sz2},-${sz3} 0,-${sz1} C ${sz2},-${sz3} ${sz2},-${sz2} 0,0`;
-// 1. Muestra efecto navbar-scroll si no es mobil NI Safari
-// 2. CSS Bug fix para Apple devices en bagground-attachment: fixed
-// Calcula FIBBO
-// import calculaFibonacci from "./utils/utils"
-// let btn = document.getElementById("btn")
-// let valor = document.getElementById("input")
-// let getValor = valor.value;
-// valor.addEventListener("change", calculaFibonacci(getValor), false);
-// btn.addEventListener("click", calculaFibonacci(getValor), false);
-var _dataJs = require("./data/data.js");
-// const width = +window.innerWidth;
-// const height = +window.innerHeight;
-var _inicializargraficas = require("./utils/inicializargraficas");
 var _deviceDetection = require("./utils/device-detection");
 // const moment = require("moment");
 const d3 = require('d3');
@@ -624,7 +609,7 @@ let fundidoPagina = ()=>{
 };
 // APP
 let btnGenerar = document.getElementById('lanza');
-// Ejecuta App sólo si existe el boton #lanza
+// Ejecuta App sólo si existe el boton #lanza App
 if (btnGenerar) {
     let input = document.getElementById('entrada');
     let output = document.querySelector('.output');
@@ -634,7 +619,7 @@ if (btnGenerar) {
         {
             id: 0,
             angle: 0,
-            x: -60,
+            x: -260,
             y: 0,
             lupa: 3,
             color: 'black',
@@ -722,28 +707,29 @@ if (btnGenerar) {
             nombre: '9'
         }
     ];
-    radi = height / 2;
-    // crearGraficaSVG("grafica")
+    radi = _inicializargraficas.heightApp / 2;
     // Ajusta svg y g a window
-    // d3.select(window).on('resize', e => {
-    //   let iw = e.target.innerWidth
-    //   let ih = e.target.innerHeight
-    //   container.attr('width', iw).attr('height', ih / 2)
-    //   group.attr('transform', `translate(${iw / 2},${ih / 4})`)
-    // })
+    d3.select(window).on('resize', (e)=>{
+        let iw = e.target.innerWidth;
+        let ih = e.target.innerHeight;
+        container.attr('width', iw).attr('height', ih / 2);
+        group.attr('transform', `translate(${iw / 2},${ih / 4})`);
+    });
+    // --- APP
+    const grafica2 = d3.select("#graficaApp").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp).append('g').attr('fill', "red").attr('transform', `translate(${_inicializargraficas.centerX},${_inicializargraficas.centerY})`).attr('class', "group");
     // Circulo grande
-    group.append('circle').attr('r', radi / 1.5).attr('cx', radi / 2 - radi / 2).attr('strokeWidth', '1px').attr('fill', 'none');
+    grafica2.append('circle').attr('r', radi / 1.5).attr('cx', radi / 2 - radi / 2).attr('strokeWidth', '1px').attr('fill', 'none');
     // Circulo grande2
-    group.append('circle').attr('r', radi / 1.5).attr('cx', radi / 1.5);
-    group.attr('stroke', datos[0].color).attr('strokeWidth', '1px').attr('fill', 'none');
+    grafica2.append('circle').attr('r', radi / 1.5).attr('cx', radi / 1.5);
+    grafica2.attr('stroke', datos[0].color).attr('strokeWidth', '1px').attr('fill', 'none');
     // Circulo grande2
-    group.append('circle').attr('r', radi / 1.5).attr('cx', -(radi / 1.5)).attr('stroke', datos[0].color).on('mouseover', (e)=>{
+    grafica2.append('circle').attr('r', radi / 1.5).attr('cx', -(radi / 1.5)).attr('stroke', datos[0].color).on('mouseover', (e)=>{
         e.target.style.fill = datos[0].color;
     }).on('mouseout', (e)=>{
         e.target.style.fill = datos[1].color;
     });
     // https://bl.ocks.org/mbostock/3151228
-    group.selectAll('text').data(datos).enter().append('text').attr('x', (d)=>d.x * Math.PI
+    grafica2.selectAll('text').data(datos).enter().append('text').attr('x', (d)=>d.x * Math.PI
     ).attr('y', (d)=>d.y
     ).attr('transform', (d)=>{
         return `translate(${d.x}, ${d.y})`;
@@ -753,16 +739,38 @@ if (btnGenerar) {
     const arco = d3.arc().innerRadius(129).outerRadius(131).startAngle(Math.PI / 2).endAngle(Math.PI * 3 / 2);
     const arco2 = d3.arc().innerRadius(129).outerRadius(135).startAngle(Math.PI * 2).endAngle(10);
     // Arcos
-    group.append('path').attr('d', arco).attr('stroke', 'none');
-    group.append('path').attr('d', arco2).attr('transform', `rotate(360) translate(-${radi * 1.345} 0)`).attr('stroke', 'none');
+    grafica2.append('path').attr('d', arco).attr('stroke', 'none');
+    // grafica2
+    //   .append('path')
+    //   .attr('d', arco2)
+    //   .attr('transform', `rotate(360) translate(-${radi * 1.345} 0)`)
+    //   .attr('stroke', 'none')
     // Uno
-    group.append('circle').attr('r', radi / 3).attr('cx', radi / 3).attr('stroke', datos[0].color).attr('strokeWidth', '1px').attr('fill', 'none');
-    // Dos
-    group.append('circle').attr('r', radi / 3).attr('cx', radi / 3 - radi / 1.5).attr('stroke', datos[0].color).attr('fill', 'none').attr('strokeWidth', '1px');
-    // Tres
-    group.append('circle').attr('r', radi / 3).attr('cx', 0).attr('stroke', datos[0].color).attr('fill', 'none').attr('strokeWidth', '1px');
-    // Cuatro
-    group.append('circle').attr('r', radi / 3).attr('cx', radi - radi / 3).attr('stroke', datos[0].color).attr('fill', 'none').attr('strokeWidth', '1px');
+    grafica2.append('circle').attr('r', radi / 3).attr('cx', radi / 3).attr('stroke', datos[0].color).attr('strokeWidth', '1px').attr('fill', 'none');
+    // // Dos
+    // grafica2
+    //   .append('circle')
+    //   .attr('r', radi / 3)
+    //   .attr('cx', radi / 3 - radi / 1.5)
+    //   .attr('stroke', datos[0].color)
+    //   .attr('fill', 'none')
+    //   .attr('strokeWidth', '1px')
+    // // Tres
+    // grafica2
+    //   .append('circle')
+    //   .attr('r', radi / 3)
+    //   .attr('cx', 0)
+    //   .attr('stroke', datos[0].color)
+    //   .attr('fill', 'none')
+    //   .attr('strokeWidth', '1px')
+    // // Cuatro
+    // grafica2
+    //   .append('circle')
+    //   .attr('r', radi / 3)
+    //   .attr('cx', radi - radi / 3)
+    //   .attr('stroke', datos[0].color)
+    //   .attr('fill', 'none')
+    //   .attr('strokeWidth', '1px')
     // Input fecha
     fechaNacimiento.addEventListener('change', (e)=>{
         fechaNacimientoUsuario = e.target.value;
@@ -791,7 +799,7 @@ if (btnGenerar) {
             frnegativa
         ];
         // grafica lineas output
-        group.selectAll('line').data(grafica).enter().append('line').attr('stroke', datos[3].color).attr('stroke-width', '10px').attr('x1', '0').attr('y1', '0').attr('x2', (d)=>d
+        grafica2.selectAll('line').data(grafica).enter().append('line').attr('stroke', datos[3].color).attr('stroke-width', '2px').attr('stroke-dasharray', '4 4').attr('x1', '0').attr('y1', '0').attr('x2', (d)=>d
         ).attr('y2', '100').exit();
         output.classList.add('resultado');
         output.innerHTML = `
@@ -856,6 +864,21 @@ if (btnGenerar) {
         return esAgnioBisiesto(agnio) ? 366 : 365;
     }
 } // fin App
+// let sz1 = 50;
+// let sz2 = 20;
+// let sz3 = 30;
+// let pPath = `M 0,0 C -${sz2},-${sz2}, -${sz2},-${sz3} 0,-${sz1} C ${sz2},-${sz3} ${sz2},-${sz2} 0,0`;
+// 1. Muestra efecto navbar-scroll si no es mobil NI Safari
+// 2. CSS Bug fix para Apple devices en bagground-attachment: fixed
+// Calcula FIBBO
+// import calculaFibonacci from "./utils/utils"
+// let btn = document.getElementById("btn")
+// let valor = document.getElementById("input")
+// let getValor = valor.value;
+// valor.addEventListener("change", calculaFibonacci(getValor), false);
+// btn.addEventListener("click", calculaFibonacci(getValor), false);
+// const width = +window.innerWidth;
+// const height = +window.innerHeight;
 // crearSVG("grafica2","circle", [1,2])
 const simulation = d3.forceSimulation(_dataJs.nodes).force('charge', d3.forceManyBody().strength(_dataJs.MANY_BODY_STRENGTH)).force('link', d3.forceLink(_dataJs.links).distance((link)=>link.distance
 )).force('center', d3.forceCenter(_inicializargraficas.centerX, _inicializargraficas.centerY));

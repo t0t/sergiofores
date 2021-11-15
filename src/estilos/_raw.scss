@@ -1541,12 +1541,16 @@ img.hover-shadow {
     font-weight: $normal;
   }
 }
-.my_dataviz {
-  // width: 50vw;
-  // height: 50vh;
-  // background-color: #00000050;
-  // padding: $size-3;
+
+#graficaApp {
+  circle {
+    stroke: $black-color;
+  }
+  text {
+    font-size: $size-2;
+  }
 }
+
 #animcover {
   border-radius: 50%;
   overflow: hidden;

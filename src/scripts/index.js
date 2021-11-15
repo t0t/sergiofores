@@ -9,6 +9,9 @@ hambutton.addEventListener('click', openNav)
 const closesidenav = document.getElementById('closesidenav')
 closesidenav.addEventListener('click', closeNav)
 
+import { nodes, links, MANY_BODY_STRENGTH } from './data/data.js';
+import { crearSVG, widthApp, heightApp, centerX, centerY, elemento } from "./utils/inicializargraficas"
+
 // import datablog from './data/datablog.json';
 // console.log(datablog);
 // => "world"
@@ -173,7 +176,8 @@ let fundidoPagina = () => {
 
 // APP
 let btnGenerar = document.getElementById('lanza')
-// Ejecuta App sólo si existe el boton #lanza
+
+// Ejecuta App sólo si existe el boton #lanza App
 if (btnGenerar) {
   let input = document.getElementById('entrada')
   let output = document.querySelector('.output')
@@ -193,7 +197,7 @@ if (btnGenerar) {
     {
       id: 0,
       angle: 0,
-      x: -60,
+      x: -260,
       y: 0,
       lupa: 3,
       color: 'black',
@@ -282,22 +286,28 @@ if (btnGenerar) {
     }
   ]
 
-  radi = height / 2
-
-
- 
-  // crearGraficaSVG("grafica")
+  radi = heightApp / 2
 
   // Ajusta svg y g a window
-  // d3.select(window).on('resize', e => {
-  //   let iw = e.target.innerWidth
-  //   let ih = e.target.innerHeight
-  //   container.attr('width', iw).attr('height', ih / 2)
-  //   group.attr('transform', `translate(${iw / 2},${ih / 4})`)
-  // })
+  d3.select(window).on('resize', e => {
+    let iw = e.target.innerWidth
+    let ih = e.target.innerHeight
+    container.attr('width', iw).attr('height', ih / 2)
+    group.attr('transform', `translate(${iw / 2},${ih / 4})`)
+  })
+
+  // --- APP
+  const grafica2 = d3.select("#graficaApp")
+    .append('svg')
+    .attr('width', widthApp)
+    .attr('height', heightApp)
+    .append('g')
+    .attr('fill', "red")
+    .attr('transform', `translate(${centerX},${centerY})`)
+    .attr('class', "group")
 
   // Circulo grande
-  group
+  grafica2
     .append('circle')
     .attr('r', radi / 1.5)
     .attr('cx', radi / 2 - radi / 2)
@@ -305,18 +315,18 @@ if (btnGenerar) {
     .attr('fill', 'none')
 
   // Circulo grande2
-  group
+  grafica2
     .append('circle')
     .attr('r', radi / 1.5)
     .attr('cx', radi / 1.5)
 
-  group
+  grafica2
     .attr('stroke', datos[0].color)
     .attr('strokeWidth', '1px')
     .attr('fill', 'none')
 
   // Circulo grande2
-  group
+  grafica2
     .append('circle')
     .attr('r', radi / 1.5)
     .attr('cx', -(radi / 1.5))
@@ -330,7 +340,7 @@ if (btnGenerar) {
 
   // https://bl.ocks.org/mbostock/3151228
 
-  group
+  grafica2
     .selectAll('text')
     .data(datos)
     .enter()
@@ -358,19 +368,19 @@ if (btnGenerar) {
     .endAngle(10)
 
   // Arcos
-  group
+  grafica2
     .append('path')
     .attr('d', arco)
     .attr('stroke', 'none')
 
-  group
-    .append('path')
-    .attr('d', arco2)
-    .attr('transform', `rotate(360) translate(-${radi * 1.345} 0)`)
-    .attr('stroke', 'none')
+  // grafica2
+  //   .append('path')
+  //   .attr('d', arco2)
+  //   .attr('transform', `rotate(360) translate(-${radi * 1.345} 0)`)
+  //   .attr('stroke', 'none')
 
   // Uno
-  group
+  grafica2
     .append('circle')
     .attr('r', radi / 3)
     .attr('cx', radi / 3)
@@ -378,32 +388,32 @@ if (btnGenerar) {
     .attr('strokeWidth', '1px')
     .attr('fill', 'none')
 
-  // Dos
-  group
-    .append('circle')
-    .attr('r', radi / 3)
-    .attr('cx', radi / 3 - radi / 1.5)
-    .attr('stroke', datos[0].color)
-    .attr('fill', 'none')
-    .attr('strokeWidth', '1px')
+  // // Dos
+  // grafica2
+  //   .append('circle')
+  //   .attr('r', radi / 3)
+  //   .attr('cx', radi / 3 - radi / 1.5)
+  //   .attr('stroke', datos[0].color)
+  //   .attr('fill', 'none')
+  //   .attr('strokeWidth', '1px')
 
-  // Tres
-  group
-    .append('circle')
-    .attr('r', radi / 3)
-    .attr('cx', 0)
-    .attr('stroke', datos[0].color)
-    .attr('fill', 'none')
-    .attr('strokeWidth', '1px')
+  // // Tres
+  // grafica2
+  //   .append('circle')
+  //   .attr('r', radi / 3)
+  //   .attr('cx', 0)
+  //   .attr('stroke', datos[0].color)
+  //   .attr('fill', 'none')
+  //   .attr('strokeWidth', '1px')
 
-  // Cuatro
-  group
-    .append('circle')
-    .attr('r', radi / 3)
-    .attr('cx', radi - radi / 3)
-    .attr('stroke', datos[0].color)
-    .attr('fill', 'none')
-    .attr('strokeWidth', '1px')
+  // // Cuatro
+  // grafica2
+  //   .append('circle')
+  //   .attr('r', radi / 3)
+  //   .attr('cx', radi - radi / 3)
+  //   .attr('stroke', datos[0].color)
+  //   .attr('fill', 'none')
+  //   .attr('strokeWidth', '1px')
 
   // Input fecha
   fechaNacimiento.addEventListener('change', e => {
@@ -432,13 +442,14 @@ if (btnGenerar) {
     let grafica = [frpalabras, diahoy, diasfinanyo, frpositiva, frnegativa]
 
     // grafica lineas output
-    group
+    grafica2
       .selectAll('line')
       .data(grafica)
       .enter()
       .append('line')
       .attr('stroke', datos[3].color)
-      .attr('stroke-width', '10px')
+      .attr('stroke-width', '2px')
+      .attr('stroke-dasharray', '4 4')
       .attr('x1', '0')
       .attr('y1', '0')
       .attr('x2', d => d)
@@ -535,12 +546,11 @@ if (btnGenerar) {
 // btn.addEventListener("click", calculaFibonacci(getValor), false);
 
 
-import { nodes, links, MANY_BODY_STRENGTH } from './data/data.js';
 
 // const width = +window.innerWidth;
 // const height = +window.innerHeight;
 
-import { crearSVG, widthApp, heightApp, centerX, centerY, elemento } from "./utils/inicializargraficas"
+
 
 // crearSVG("grafica2","circle", [1,2])
 
