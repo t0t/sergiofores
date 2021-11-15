@@ -471,6 +471,8 @@ var _inicializargraficas = require("./utils/inicializargraficas");
 // TYPEWRITTER EFFECT
 var _core = require("../../node_modules/typewriter-effect/dist/core");
 var _coreDefault = parcelHelpers.interopDefault(_core);
+// APP
+var _gematriaap = require("./utils/gematriaap");
 var _deviceDetection = require("./utils/device-detection");
 // const moment = require("moment");
 const d3 = require('d3');
@@ -607,145 +609,140 @@ window.addEventListener('load', ()=>{
 let fundidoPagina = ()=>{
     document.querySelector('#theSite').classList.add('fade-page-on');
 };
-// APP
 let btnGenerar = document.getElementById('lanza');
 // Ejecuta App sólo si existe el boton #lanza App
 if (btnGenerar) {
-    let input = document.getElementById('entrada');
-    let output = document.querySelector('.output');
-    let fechaNacimiento = document.getElementById('fechanacimiento');
-    let fechaNacimientoUsuario = 10, entradaTexto = '', frnegativa, frpositiva, diasfinanyo, diahoy, agnio1, frpalabras = 10, radi;
+    let input = document.getElementById('entrada'), output = document.querySelector('.output'), fechaNacimiento = document.getElementById('fechanacimiento'), fechaNacimientoUsuario, entradaTexto = '', frnegativa, frpositiva, diasfinanyo, diahoy, agnio, frpalabras;
+    // centra g automaticamente on resize window
+    d3.select(window).on('resize', (e)=>{
+        let iw = e.target.innerWidth;
+        let ih = e.target.innerHeight;
+        gematriApp.attr('width', iw).attr('height', ih / 2).attr('transform', `translate(${iw / 2},${ih / 4})`);
+    });
     const datos = [
         {
             id: 0,
-            angle: 0,
-            x: -260,
+            x: 17,
             y: 0,
-            lupa: 3,
+            r: 5,
+            lupa: 30,
             color: 'black',
             nombre: '0'
         },
         {
             id: 1,
-            angle: 0,
             x: 35,
-            y: 0,
+            y: 43,
+            r: 10,
             lupa: 24,
             color: '#2BC4A9',
             nombre: '1'
         },
         {
             id: 2,
-            angle: 0,
             x: 15,
             y: 50,
+            r: 20,
             lupa: 13,
             color: '#FF6874',
             nombre: '2'
         },
         {
             id: 3,
-            angle: 0,
             x: 15,
             y: -45,
-            lupa: 4,
+            r: 30,
+            lupa: 55,
             color: '#9F9FFF',
             nombre: '3'
         },
         {
             id: 4,
-            angle: 0,
             x: 0,
-            y: 0,
-            lupa: 3,
+            y: 76,
+            r: 40,
+            lupa: 212,
             color: '#FFFF9F',
             nombre: '4'
         },
         {
             id: 5,
-            angle: 0,
             x: -17,
-            y: 50,
-            lupa: 3,
+            y: 59,
+            r: 50,
+            lupa: 365,
             color: 'grey',
             nombre: '5'
         },
         {
             id: 6,
-            angle: 0,
-            x: -17,
+            x: -12,
             y: -45,
-            lupa: 3,
+            r: 60,
+            lupa: 153,
             color: 'grey',
             nombre: '6'
         },
         {
             id: 7,
-            angle: 0,
             x: -38,
-            y: 0,
-            lupa: 3,
+            y: 13,
+            r: 70,
+            lupa: 319,
             color: 'grey',
             nombre: '7'
         },
         {
             id: 8,
-            angle: 0,
             x: -50,
-            y: 50,
+            y: 72,
+            r: 80,
             lupa: 3,
             color: 'grey',
             nombre: '8'
         },
         {
             id: 9,
-            angle: 0,
-            x: -50,
+            x: -74,
             y: -45,
-            lupa: 3,
+            r: 90,
+            lupa: 46,
             color: 'grey',
             nombre: '9'
         }
     ];
-    // Ajusta svg y g a window
-    d3.select(window).on('resize', (e)=>{
-        let iw = e.target.innerWidth;
-        let ih = e.target.innerHeight;
-        grafica2.attr('width', iw).attr('height', ih / 2).attr('transform', `translate(${iw / 2},${ih / 4})`);
-    });
-    // --- APP
-    const grafica2 = d3.select("#graficaApp").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp).append('g').attr('fill', "red").attr('transform', `translate(${_inicializargraficas.centerX},${_inicializargraficas.centerY})`).attr('class', "group");
-    // Circulo grande
-    radi = _inicializargraficas.heightApp / 2;
-    grafica2.append('circle').attr('r', radi / 1.5).attr('cx', radi / 2 - radi / 2).attr('strokeWidth', '1px').attr('fill', 'none');
-    // Circulo grande2
-    grafica2.append('circle').attr('r', radi / 1.5).attr('cx', radi / 1.5);
-    grafica2.attr('stroke', datos[0].color).attr('strokeWidth', '1px').attr('fill', 'none');
-    // Circulo grande2
-    grafica2.append('circle').attr('r', radi / 1.5).attr('cx', -(radi / 1.5)).attr('stroke', datos[0].color).on('mouseover', (e)=>{
-        e.target.style.fill = datos[0].color;
-    }).on('mouseout', (e)=>{
-        e.target.style.fill = datos[1].color;
-    });
-    // https://bl.ocks.org/mbostock/3151228
-    grafica2.selectAll('text').data(datos).enter().append('text').attr('x', (d)=>d.x * Math.PI
-    ).attr('y', (d)=>d.y
-    ).attr('transform', (d)=>{
-        return `translate(${d.x}, ${d.y})`;
-    }).text((d)=>d.nombre
-    ).attr('fill', (d)=>d.color
+    const gematriApp = d3.select("#gematriApp").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp).append('g').attr('transform', `translate(${_inicializargraficas.centerX}, ${_inicializargraficas.centerY})`);
+    // Escalar
+    const x = d3.scaleLinear().domain([
+        0,
+        d3.max(datos, (d)=>d.x
+        )
+    ]).range([
+        0,
+        innerHeight / 4
+    ]);
+    const y = d3.scaleLinear().domain([
+        0,
+        d3.max(datos, (d)=>d.y
+        )
+    ]).range([
+        -0,
+        innerHeight / 8
+    ]);
+    const xAxisCall = d3.axisBottom(x);
+    const reglas = gematriApp.append("g").attr("class", "x axis").attr('transform', `translate(${-_inicializargraficas.centerX}, ${-_inicializargraficas.centerY})`).call(xAxisCall);
+    reglas.selectAll("rect").data(datos);
+    const circulos = gematriApp.selectAll("circle").data(datos);
+    circulos.enter().append("circle").attr("cx", (d)=>x(d.x)
+    ).attr("cy", (d)=>y(d.y)
+    ).attr("r", (d)=>d.r
+    ).attr("fill", (d)=>d.color
     );
-    const arco = d3.arc().innerRadius(129).outerRadius(131).startAngle(Math.PI / 2).endAngle(Math.PI * 3 / 2);
-    const arco2 = d3.arc().innerRadius(129).outerRadius(135).startAngle(Math.PI * 2).endAngle(10);
-    // Arcos
-    grafica2.append('path').attr('d', arco).attr('stroke', 'none');
-    // Uno
-    grafica2.append('circle').attr('r', radi / 3).attr('cx', radi / 3).attr('stroke', datos[0].color).attr('strokeWidth', '1px').attr('fill', 'none');
     // Input fecha
     fechaNacimiento.addEventListener('change', (e)=>{
         fechaNacimientoUsuario = e.target.value;
-        frpositiva = parseInt(inputFecha(fechaNacimientoUsuario));
-        frnegativa = parseInt(frpositiva - obtenerCantidadDias(agnio1));
+        frpositiva = parseInt(_gematriaap.inputFecha(fechaNacimientoUsuario));
+        frnegativa = parseInt(frpositiva - _gematriaap.obtenerCantidadDias(agnio));
     });
     // BTN Generar Grafica
     btnGenerar.addEventListener('click', ()=>{
@@ -756,11 +753,8 @@ if (btnGenerar) {
             return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         };
         let textoIntroducido = removeAccents(normaliza);
-        frpalabras = extraeValoresLetras(textoIntroducido).reduce((a, v)=>(a += v, +a)
+        frpalabras = _gematriaap.extraeValoresLetras(textoIntroducido).reduce((a, v)=>(a += v, +a)
         , 0);
-        let fechaActual = new Date();
-        diahoy = diasTranscurridos(fechaActual);
-        diasfinanyo = obtenerCantidadDias(agnio1) - diahoy;
         let grafica = [
             frpalabras,
             diahoy,
@@ -768,71 +762,23 @@ if (btnGenerar) {
             frpositiva,
             frnegativa
         ];
-        // grafica lineas output
-        grafica2.selectAll('line').data(grafica).enter().append('line').attr('stroke', datos[3].color).attr('stroke-width', '2px').attr('stroke-dasharray', '4 4').attr('x1', '0').attr('y1', '0').attr('x2', (d)=>d
-        ).attr('y2', '100').exit();
+        let fechaActual = new Date();
+        diahoy = _gematriaap.diasTranscurridos(fechaActual);
+        diasfinanyo = _gematriaap.obtenerCantidadDias(agnio) - diahoy;
+        console.log(grafica) // [170, 319, 46, 197, -168]
+        ;
         output.classList.add('resultado');
         output.innerHTML = `
-        <h2>${frpalabras}</h2>
-        <h2>${diahoy}-${diasfinanyo}</h2>
-        <h2>${frpositiva}${frnegativa}</h2>
-        `;
+      <dl class="codigos-ejemplo">
+        <dt>"${textoIntroducido}" <span>${frpalabras}</span></dt>
+        <dd>Código de palabra/s</dd>
+        <dt>${frpositiva} <span>${frnegativa}</span></dt>
+        <dd>Frecuencia de una fecha especial</dd>
+        <dt>${diahoy} - <span>${diasfinanyo}</span></dt>
+        <dd>Dias de este año transcurridos y restantes hasta el siguiente</dd>
+      </dl>
+      `;
     });
-    function inputFecha(f1) {
-        var aFecha1 = f1.split('-') // ['1975', '10', '15']
-        ;
-        var fFecha1 = Date.UTC(aFecha1[0], aFecha1[1] - 1, aFecha1[2]);
-        var fFecha2 = Date.UTC(aFecha1[0], -0, 0);
-        agnio1 = aFecha1[0];
-        var dif = (fFecha1 - fFecha2) / 86400000;
-        return Math.floor(dif);
-    }
-    // dias del año transcurridos hasta hoy
-    function diasTranscurridos(fechaactual) {
-        let previo = new Date(fechaactual.getFullYear(), 0, 1);
-        let actual = new Date(fechaactual.getTime());
-        return Math.ceil((actual - previo + 1) / 86400000);
-    }
-    // Codigo nombre
-    function extraeValoresLetras(cadenaTexto) {
-        const diccionario = {
-            a: 1,
-            b: 2,
-            c: 3,
-            d: 4,
-            e: 5,
-            f: 6,
-            g: 7,
-            h: 8,
-            i: 9,
-            j: 10,
-            k: 11,
-            l: 12,
-            m: 13,
-            n: 14,
-            ñ: 15,
-            o: 16,
-            p: 17,
-            q: 18,
-            r: 19,
-            s: 20,
-            t: 21,
-            u: 22,
-            v: 23,
-            w: 24,
-            x: 25,
-            y: 26,
-            z: 27
-        };
-        if (cadenaTexto.length == 1) return diccionario[cadenaTexto] || ' ';
-        return cadenaTexto.split('').map(extraeValoresLetras);
-    }
-    function esAgnioBisiesto(agnio) {
-        return agnio % 400 == 0 || agnio % 100 != 0 && agnio % 4 == 0;
-    }
-    function obtenerCantidadDias(agnio) {
-        return esAgnioBisiesto(agnio) ? 366 : 365;
-    }
 } // fin App
 // let sz1 = 50;
 // let sz2 = 20;
@@ -964,7 +910,7 @@ if (!_deviceDetection.isSafari && !_deviceDetection.isMobileDevice()) {
  //   }
  // })
 
-},{"../estilos/main.scss":"hGvuj","d3":"97vK6","./sidenav":"9MwHJ","./data/data.js":"4PhqF","./utils/inicializargraficas":"jhWEh","../../node_modules/typewriter-effect/dist/core":"hXq0y","./utils/device-detection":"g2DKJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hGvuj":[function() {},{}],"97vK6":[function(require,module,exports) {
+},{"../estilos/main.scss":"hGvuj","d3":"97vK6","./sidenav":"9MwHJ","./data/data.js":"4PhqF","./utils/inicializargraficas":"jhWEh","../../node_modules/typewriter-effect/dist/core":"hXq0y","./utils/gematriaap":"3Ngm5","./utils/device-detection":"g2DKJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hGvuj":[function() {},{}],"97vK6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Array = require("d3-array");
@@ -31211,7 +31157,74 @@ process.umask = function() {
     return 0;
 };
 
-},{}],"g2DKJ":[function(require,module,exports) {
+},{}],"3Ngm5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "inputFecha", ()=>inputFecha
+);
+// dias del año transcurridos hasta hoy
+parcelHelpers.export(exports, "diasTranscurridos", ()=>diasTranscurridos
+);
+// Codigo nombre
+parcelHelpers.export(exports, "extraeValoresLetras", ()=>extraeValoresLetras
+);
+parcelHelpers.export(exports, "obtenerCantidadDias", ()=>obtenerCantidadDias
+);
+function inputFecha(f1) {
+    var aFecha1 = f1.split('-') // ['1975', '10', '15']
+    ;
+    var fFecha1 = Date.UTC(aFecha1[0], aFecha1[1] - 1, aFecha1[2]);
+    var fFecha2 = Date.UTC(aFecha1[0], -0, 0);
+    agnio = aFecha1[0];
+    var dif = (fFecha1 - fFecha2) / 86400000;
+    return Math.floor(dif);
+}
+function diasTranscurridos(fechaactual) {
+    let previo = new Date(fechaactual.getFullYear(), 0, 1);
+    let actual = new Date(fechaactual.getTime());
+    return Math.ceil((actual - previo + 1) / 86400000);
+}
+function extraeValoresLetras(cadenaTexto) {
+    const diccionario = {
+        a: 1,
+        b: 2,
+        c: 3,
+        d: 4,
+        e: 5,
+        f: 6,
+        g: 7,
+        h: 8,
+        i: 9,
+        j: 10,
+        k: 11,
+        l: 12,
+        m: 13,
+        n: 14,
+        ñ: 15,
+        o: 16,
+        p: 17,
+        q: 18,
+        r: 19,
+        s: 20,
+        t: 21,
+        u: 22,
+        v: 23,
+        w: 24,
+        x: 25,
+        y: 26,
+        z: 27
+    };
+    if (cadenaTexto.length == 1) return diccionario[cadenaTexto] || ' ';
+    return cadenaTexto.split('').map(extraeValoresLetras);
+}
+function esAgnioBisiesto(agnio) {
+    return agnio % 400 == 0 || agnio % 100 != 0 && agnio % 4 == 0;
+}
+function obtenerCantidadDias(agnio) {
+    return esAgnioBisiesto(agnio) ? 366 : 365;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"g2DKJ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 //  HIDE NAV ON SCROLL

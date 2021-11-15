@@ -1547,9 +1547,17 @@ img.hover-shadow {
   }
 }
 
-#graficaApp {
+#gematriApp {
+  svg {
+    background-color: $black-color-alpha-0;
+  }
   circle {
     stroke: $black-color;
+    // mix-blend-mode: color-dodge;
+    opacity: 0.5;
+  }
+  line {
+    stroke: $quaternary-color;
   }
   text {
     font-size: $size-2;
@@ -1562,7 +1570,6 @@ img.hover-shadow {
   width: 450px;
   height: 450px;
   border: 1px solid $secondary-color;
-  // background-color: $secondary-color;
 
   circle:hover {
     cursor: grab;

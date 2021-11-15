@@ -1634,10 +1634,17 @@ ul {
   font-weight: 500;
   letter-spacing: 1px;
 }
-#graficaApp circle {
-  stroke: black;
+#gematriApp svg {
+  background-color: #00000056;
 }
-#graficaApp text {
+#gematriApp circle {
+  stroke: black;
+  opacity: 0.5;
+}
+#gematriApp line {
+  stroke: #FFFF9F;
+}
+#gematriApp text {
   font-size: 1.6rem;
 }
 #animcover {

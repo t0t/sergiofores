@@ -1,18 +1,18 @@
 .section--form
 
-  #graficaApp
+  #gematriApp.pb-3
     .output
 
   .form-group
     .form-group__item
-      label(for='entrada') Traduce palabras /nombres o frases:
-      input#entrada(type='text' placeholder='Escribe algo...' value='' onfocus=`this.placeholder="";this.value=""`)
+      label(for='entrada') Palabras, nombres, frases:
+      input#entrada(type='text' placeholder='Escribe algo...' value='GematriApp' onfocus=`this.placeholder="Escribe algo";this.value=""`)
 
     .form-group__item
-      label(for='fechanacimiento') Frecuencia fecha nacimiento:
+      label(for='fechanacimiento') Una fecha significativa:
       input#fechanacimiento(type='date' min='1930-12-12' max='2100-12-12' value="1975-07-16")
       
-    input#lanza(type='submit' value='Generar')
+    input#lanza(type='submit' value='Decodificar')
 
   section
 
