@@ -182,15 +182,13 @@ let fundidoPagina = () => {
 // APP
 import {inputFecha, obtenerCantidadDias, extraeValoresLetras, diasTranscurridos} from "./utils/gematriaap"
 
-let btnGenerar = document.getElementById('lanza')
+// let btnGenerar = document.getElementById('lanza')
 
 // Ejecuta App sólo si existe el boton #lanza App
-if (btnGenerar) {
 
   let input = document.getElementById('entrada'),
       output = document.querySelector('.output'),
-      fechaNacimiento = document.getElementById('fechanacimiento'),
-      fechaNacimientoUsuario, entradaTexto = '', frnegativa, frpositiva, diasfinanyo, diahoy, agnio, frpalabras  
+      entradaTexto = '', frnegativa, frpositiva, diasfinanyo, diahoy, agnio, frpalabras  
 
   // centra g automaticamente on resize window
   d3.select(window).on('resize', e => {
@@ -280,62 +278,49 @@ if (btnGenerar) {
               .attr("cy", (d) => y(d.y))
               .attr("r", d => d.r)
               .attr("stroke", d => d.color)
-
-  // const dropdownButton = d3.select("#gematriApp").append('select')
-
-  // dropdownButton
-  //   .on("change", (e) => {
-  //     let selectedOption = e.target.value
-  //     codeWord.attr("stroke", selectedOption)
-  //   })  
+    
   // Input fecha
-  fechaNacimiento.addEventListener('change', e => {
-    fechaNacimientoUsuario = e.target.value
-    frpositiva = parseInt(inputFecha(fechaNacimientoUsuario))
-    frnegativa = parseInt(frpositiva - obtenerCantidadDias(agnio))
-  })
+  d3.select("#fechanacimiento")
+    .on("change", (e) => {
+      let fechaNacimientoUsuario = e.target.value
+      frpositiva = parseInt(inputFecha(fechaNacimientoUsuario))
+      frnegativa = parseInt(frpositiva - obtenerCantidadDias(agnio))
+      console.log(fechaNacimientoUsuario, frnegativa, frpositiva)
+    })
   
   // BTN Generar Grafica
-  btnGenerar.addEventListener('click', () => {
-
-    entradaTexto = input.value //inserta input texto
-    let normaliza = entradaTexto.toLowerCase()
-    const removeAccents = str => {
-      return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    }
-    let textoIntroducido = removeAccents(normaliza)
+  d3.select("#lanza")
+    .on('click', () => {
+      entradaTexto = input.value //inserta input texto
+      let normaliza = entradaTexto.toLowerCase()
+      const removeAccents = str => {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      }
+      let textoIntroducido = removeAccents(normaliza)
     
-    frpalabras = extraeValoresLetras(textoIntroducido).reduce(
-      (a, v) => ((a += v), +a),
-      0
-    )
+      frpalabras = extraeValoresLetras(textoIntroducido).reduce(
+        (a, v) => ((a += v), +a), 0)
 
-    let grafica = [frpalabras, diahoy, diasfinanyo, frpositiva, frnegativa]
+      let fechaActual = new Date()
+      diahoy = diasTranscurridos(fechaActual)
+      diasfinanyo = obtenerCantidadDias(agnio) - diahoy
+      output.classList.add('resultado')
 
-    let fechaActual = new Date()
-    
-    diahoy = diasTranscurridos(fechaActual)
-    
-    diasfinanyo = obtenerCantidadDias(agnio) - diahoy
-    
-    console.log(grafica) // [170, 319, 46, 197, -168]
-
-    output.classList.add('resultado')
-
-    output.innerHTML = `
-      <dl class="codigos-ejemplo">
-        <dt>"${textoIntroducido}" <span>${frpalabras}</span></dt>
-        <dd>Código de palabra/s</dd>
-        <dt>${frpositiva} <span>${frnegativa}</span></dt>
-        <dd>Frecuencia de una fecha especial</dd>
-        <dt>${diahoy} - <span>${diasfinanyo}</span></dt>
-        <dd>Dias de este año transcurridos y restantes hasta el siguiente</dd>
-      </dl>
-      `
+      output.innerHTML = `
+        <dl class="codigos-ejemplo">
+          <dt>"${textoIntroducido}" <span>${frpalabras}</span></dt>
+          <dd>Código de palabra/s</dd>
+          <dt>${frpositiva} <span>${frnegativa}</span></dt>
+          <dd>Frecuencia de una fecha especial</dd>
+          <dt>${diahoy} - <span>${diasfinanyo}</span></dt>
+          <dd>Dias de este año transcurridos y restantes hasta el siguiente</dd>
+        </dl>`
   })
 
   
-} // fin App
+
+
+
 
 // let sz1 = 50;
 // let sz2 = 20;

@@ -611,118 +611,101 @@ window.addEventListener('load', ()=>{
 let fundidoPagina = ()=>{
     document.querySelector('#theSite').classList.add('fade-page-on');
 };
-let btnGenerar = document.getElementById('lanza');
+// let btnGenerar = document.getElementById('lanza')
 // Ejecuta App sólo si existe el boton #lanza App
-if (btnGenerar) {
-    let input = document.getElementById('entrada'), output = document.querySelector('.output'), fechaNacimiento = document.getElementById('fechanacimiento'), fechaNacimientoUsuario, entradaTexto = '', frnegativa, frpositiva, diasfinanyo, diahoy, agnio, frpalabras;
-    // centra g automaticamente on resize window
-    d3.select(window).on('resize', (e)=>{
-        let iw = e.target.innerWidth;
-        let ih = e.target.innerHeight;
-        gematriApp.attr('width', iw).attr('height', ih / 2).attr('transform', `translate(${iw / 2},${ih / 4})`);
-    });
-    const gematriAppData = require("./data/datos.json");
-    const datos = gematriAppData.datos;
-    const gematriApp = d3.select("#gematriApp").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp).append('g').attr('transform', `translate(${_inicializargraficas.centerX}, ${_inicializargraficas.centerY})`);
-    const textos = gematriApp.selectAll("text").data(datos);
-    textos.enter().append("text").text((d)=>`${d.title}`
-    ).attr("x", (d)=>`${d.x}`
-    ).attr("y", (d)=>`${d.y}`
-    ).attr("fill", (d)=>`${d.color}`
-    );
-    const dropdownButton = d3.select("#gematriApp").append('select');
-    dropdownButton // Add a button
-    .selectAll('myOptions') // Next 4 lines add 6 options = 6 colors
-    .data(datos).enter().append('option').text((d)=>d.title
-    ) // text showed in the menu
-    .attr("value", (d)=>d.color
-    );
-    let codeWord = gematriApp.append("circle").attr("cx", 100).attr("cy", 70).attr("stroke", "black").style("fill", "#69b3a2").attr("r", 1);
-    function updateInput() {
-        codeWord.attr("r", this.value);
-    }
-    // Botones App
-    d3.select("#tufrecuencia").on("input", updateInput);
-    dropdownButton.on("change", (e)=>{
-        let selectedOption = e.target.value;
-        codeWord.attr("stroke", selectedOption);
-    });
-    // Escalas
-    const x = d3.scaleLinear().domain([
-        0,
-        d3.max(datos, (d)=>d.x
-        )
-    ]).range([
-        0,
-        innerHeight
-    ]);
-    const y = d3.scaleLinear().domain([
-        0,
-        d3.max(datos, (d)=>d.y
-        )
-    ]).range([
-        -0,
-        innerHeight / 8
-    ]);
-    const xAxisCall = d3.axisBottom(x);
-    // Regla
-    const reglas = gematriApp.append("g").attr("class", "x axis").attr('transform', `translate(${-_inicializargraficas.centerX}, ${-_inicializargraficas.centerY})`).call(xAxisCall);
-    reglas.selectAll("rect").data(datos);
-    // Todos los circulos
-    const circulos = gematriApp.selectAll("circle").data(datos);
-    circulos.enter().append("circle").attr("cx", (d)=>x(d.x)
-    ).attr("cy", (d)=>y(d.y)
-    ).attr("r", (d)=>d.r
-    ).attr("stroke", (d)=>d.color
-    );
-    // const dropdownButton = d3.select("#gematriApp").append('select')
-    // dropdownButton
-    //   .on("change", (e) => {
-    //     let selectedOption = e.target.value
-    //     codeWord.attr("stroke", selectedOption)
-    //   })  
-    // Input fecha
-    fechaNacimiento.addEventListener('change', (e)=>{
-        fechaNacimientoUsuario = e.target.value;
-        frpositiva = parseInt(_gematriaap.inputFecha(fechaNacimientoUsuario));
-        frnegativa = parseInt(frpositiva - _gematriaap.obtenerCantidadDias(agnio));
-    });
-    // BTN Generar Grafica
-    btnGenerar.addEventListener('click', ()=>{
-        entradaTexto = input.value //inserta input texto
-        ;
-        let normaliza = entradaTexto.toLowerCase();
-        const removeAccents = (str)=>{
-            return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        };
-        let textoIntroducido = removeAccents(normaliza);
-        frpalabras = _gematriaap.extraeValoresLetras(textoIntroducido).reduce((a, v)=>(a += v, +a)
-        , 0);
-        let grafica = [
-            frpalabras,
-            diahoy,
-            diasfinanyo,
-            frpositiva,
-            frnegativa
-        ];
-        let fechaActual = new Date();
-        diahoy = _gematriaap.diasTranscurridos(fechaActual);
-        diasfinanyo = _gematriaap.obtenerCantidadDias(agnio) - diahoy;
-        console.log(grafica) // [170, 319, 46, 197, -168]
-        ;
-        output.classList.add('resultado');
-        output.innerHTML = `
-      <dl class="codigos-ejemplo">
-        <dt>"${textoIntroducido}" <span>${frpalabras}</span></dt>
-        <dd>Código de palabra/s</dd>
-        <dt>${frpositiva} <span>${frnegativa}</span></dt>
-        <dd>Frecuencia de una fecha especial</dd>
-        <dt>${diahoy} - <span>${diasfinanyo}</span></dt>
-        <dd>Dias de este año transcurridos y restantes hasta el siguiente</dd>
-      </dl>
-      `;
-    });
-} // fin App
+let input = document.getElementById('entrada'), output = document.querySelector('.output'), entradaTexto = '', frnegativa, frpositiva, diasfinanyo, diahoy, agnio, frpalabras;
+// centra g automaticamente on resize window
+d3.select(window).on('resize', (e)=>{
+    let iw = e.target.innerWidth;
+    let ih = e.target.innerHeight;
+    gematriApp.attr('width', iw).attr('height', ih / 2).attr('transform', `translate(${iw / 2},${ih / 4})`);
+});
+const gematriAppData = require("./data/datos.json");
+const datos = gematriAppData.datos;
+const gematriApp = d3.select("#gematriApp").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp).append('g').attr('transform', `translate(${_inicializargraficas.centerX}, ${_inicializargraficas.centerY})`);
+const textos = gematriApp.selectAll("text").data(datos);
+textos.enter().append("text").text((d)=>`${d.title}`
+).attr("x", (d)=>`${d.x}`
+).attr("y", (d)=>`${d.y}`
+).attr("fill", (d)=>`${d.color}`
+);
+const dropdownButton = d3.select("#gematriApp").append('select');
+dropdownButton // Add a button
+.selectAll('myOptions') // Next 4 lines add 6 options = 6 colors
+.data(datos).enter().append('option').text((d)=>d.title
+) // text showed in the menu
+.attr("value", (d)=>d.color
+);
+let codeWord = gematriApp.append("circle").attr("cx", 100).attr("cy", 70).attr("stroke", "black").style("fill", "#69b3a2").attr("r", 1);
+function updateInput() {
+    codeWord.attr("r", this.value);
+}
+// Botones App
+d3.select("#tufrecuencia").on("input", updateInput);
+dropdownButton.on("change", (e)=>{
+    let selectedOption = e.target.value;
+    codeWord.attr("stroke", selectedOption);
+});
+// Escalas
+const x = d3.scaleLinear().domain([
+    0,
+    d3.max(datos, (d)=>d.x
+    )
+]).range([
+    0,
+    innerHeight
+]);
+const y = d3.scaleLinear().domain([
+    0,
+    d3.max(datos, (d)=>d.y
+    )
+]).range([
+    -0,
+    innerHeight / 8
+]);
+const xAxisCall = d3.axisBottom(x);
+// Regla
+const reglas = gematriApp.append("g").attr("class", "x axis").attr('transform', `translate(${-_inicializargraficas.centerX}, ${-_inicializargraficas.centerY})`).call(xAxisCall);
+reglas.selectAll("rect").data(datos);
+// Todos los circulos
+const circulos = gematriApp.selectAll("circle").data(datos);
+circulos.enter().append("circle").attr("cx", (d)=>x(d.x)
+).attr("cy", (d)=>y(d.y)
+).attr("r", (d)=>d.r
+).attr("stroke", (d)=>d.color
+);
+// Input fecha
+d3.select("#fechanacimiento").on("change", (e)=>{
+    let fechaNacimientoUsuario = e.target.value;
+    frpositiva = parseInt(_gematriaap.inputFecha(fechaNacimientoUsuario));
+    frnegativa = parseInt(frpositiva - _gematriaap.obtenerCantidadDias(agnio));
+    console.log(fechaNacimientoUsuario, frnegativa, frpositiva);
+});
+// BTN Generar Grafica
+d3.select("#lanza").on('click', ()=>{
+    entradaTexto = input.value //inserta input texto
+    ;
+    let normaliza = entradaTexto.toLowerCase();
+    const removeAccents = (str)=>{
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    };
+    let textoIntroducido = removeAccents(normaliza);
+    frpalabras = _gematriaap.extraeValoresLetras(textoIntroducido).reduce((a, v)=>(a += v, +a)
+    , 0);
+    let fechaActual = new Date();
+    diahoy = _gematriaap.diasTranscurridos(fechaActual);
+    diasfinanyo = _gematriaap.obtenerCantidadDias(agnio) - diahoy;
+    output.classList.add('resultado');
+    output.innerHTML = `
+        <dl class="codigos-ejemplo">
+          <dt>"${textoIntroducido}" <span>${frpalabras}</span></dt>
+          <dd>Código de palabra/s</dd>
+          <dt>${frpositiva} <span>${frnegativa}</span></dt>
+          <dd>Frecuencia de una fecha especial</dd>
+          <dt>${diahoy} - <span>${diasfinanyo}</span></dt>
+          <dd>Dias de este año transcurridos y restantes hasta el siguiente</dd>
+        </dl>`;
+});
 // let sz1 = 50;
 // let sz2 = 20;
 // let sz3 = 30;
@@ -745,13 +728,13 @@ const dragInteraction = d3.drag().on('drag', (event, node)=>{
     simulation.alpha(1);
     simulation.restart();
 });
-const grafica1 = d3.select("#grafica").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp * 1.5).append('g').attr('class', "group");
-const lines = grafica1.selectAll('line').data(_dataJs.links).enter().append('line').attr('stroke', (link)=>link.color || 'black'
+const grafica = d3.select("#grafica").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp * 1.5).append('g').attr('class', "group");
+const lines = grafica.selectAll('line').data(_dataJs.links).enter().append('line').attr('stroke', (link)=>link.color || 'black'
 );
-const circles = grafica1.selectAll('circle').data(_dataJs.nodes).enter().append('circle').attr('fill', (node)=>node.color || 'gray'
+const circles = grafica.selectAll('circle').data(_dataJs.nodes).enter().append('circle').attr('fill', (node)=>node.color || 'gray'
 ).attr('r', (node)=>node.size
 ).call(dragInteraction);
-const text = grafica1.selectAll('text').data(_dataJs.nodes).enter().append('text').attr('id', (node)=>node.id
+const text = grafica.selectAll('text').data(_dataJs.nodes).enter().append('text').attr('id', (node)=>node.id
 ).attr('text-anchor', 'middle').attr('alignment-baseline', 'middle').style('pointer-events', 'none').text((node)=>node.id
 );
 simulation.on('tick', ()=>{
