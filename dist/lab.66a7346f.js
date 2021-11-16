@@ -611,15 +611,14 @@ window.addEventListener('load', ()=>{
 let fundidoPagina = ()=>{
     document.querySelector('#theSite').classList.add('fade-page-on');
 };
-// let btnGenerar = document.getElementById('lanza')
-// Ejecuta App sólo si existe el boton #lanza App
-let input = document.getElementById('entrada'), output = document.querySelector('.output'), entradaTexto = '', frnegativa, frpositiva, diasfinanyo, diahoy, agnio, frpalabras;
+let frnegativa, frpositiva, diasfinanyo, diahoy, agnio;
 // centra g automaticamente on resize window
 d3.select(window).on('resize', (e)=>{
     let iw = e.target.innerWidth;
     let ih = e.target.innerHeight;
     gematriApp.attr('width', iw).attr('height', ih / 2).attr('transform', `translate(${iw / 2},${ih / 4})`);
 });
+// DB datos
 const gematriAppData = require("./data/datos.json");
 const datos = gematriAppData.datos;
 const gematriApp = d3.select("#gematriApp").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp).append('g').attr('transform', `translate(${_inicializargraficas.centerX}, ${_inicializargraficas.centerY})`);
@@ -637,15 +636,6 @@ dropdownButton // Add a button
 .attr("value", (d)=>d.color
 );
 let codeWord = gematriApp.append("circle").attr("cx", 100).attr("cy", 70).attr("stroke", "black").style("fill", "#69b3a2").attr("r", 1);
-function updateInput() {
-    codeWord.attr("r", this.value);
-}
-// Botones App
-d3.select("#tufrecuencia").on("input", updateInput);
-dropdownButton.on("change", (e)=>{
-    let selectedOption = e.target.value;
-    codeWord.attr("stroke", selectedOption);
-});
 // Escalas
 const x = d3.scaleLinear().domain([
     0,
@@ -674,6 +664,15 @@ circulos.enter().append("circle").attr("cx", (d)=>x(d.x)
 ).attr("r", (d)=>d.r
 ).attr("stroke", (d)=>d.color
 );
+// Input Pon tu frecuencia a mano
+d3.select("#tufrecuencia").on("input", updateInput);
+function updateInput() {
+    codeWord.attr("r", this.value);
+}
+// Dropdown
+dropdownButton.on("change", (e)=>{
+    codeWord.attr("stroke", e.target.value);
+});
 // Input fecha
 d3.select("#fechanacimiento").on("change", (e)=>{
     let fechaNacimientoUsuario = e.target.value;
@@ -681,30 +680,24 @@ d3.select("#fechanacimiento").on("change", (e)=>{
     frnegativa = parseInt(frpositiva - _gematriaap.obtenerCantidadDias(agnio));
     console.log(fechaNacimientoUsuario, frnegativa, frpositiva);
 });
+// Entrada texto
+// d3.select("#entrada")
+//   .on('keyup', (e) => {
+//     let entradaTexto = e.target.value
+//     result = traduceTexto(entradaTexto)
+//   })
+let fr = gematriApp.append("text").attr("x", -30).attr("y", 70).classed("frecuencia", true);
+d3.select("#entrada").on("keyup", updateFrecuencia);
+function updateFrecuencia(e) {
+    let entradaTexto = e.target.value;
+    let result = _gematriaap.traduceTexto(entradaTexto);
+    fr.text(result);
+}
 // BTN Generar Grafica
-d3.select("#lanza").on('click', ()=>{
-    entradaTexto = input.value //inserta input texto
-    ;
-    let normaliza = entradaTexto.toLowerCase();
-    const removeAccents = (str)=>{
-        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    };
-    let textoIntroducido = removeAccents(normaliza);
-    frpalabras = _gematriaap.extraeValoresLetras(textoIntroducido).reduce((a, v)=>(a += v, +a)
-    , 0);
-    let fechaActual = new Date();
-    diahoy = _gematriaap.diasTranscurridos(fechaActual);
+gematriApp.append("text").attr("x", 100).attr("y", 70).style("fill", "white").text(()=>{
+    diahoy = _gematriaap.diasTranscurridos(new Date());
     diasfinanyo = _gematriaap.obtenerCantidadDias(agnio) - diahoy;
-    output.classList.add('resultado');
-    output.innerHTML = `
-        <dl class="codigos-ejemplo">
-          <dt>"${textoIntroducido}" <span>${frpalabras}</span></dt>
-          <dd>Código de palabra/s</dd>
-          <dt>${frpositiva} <span>${frnegativa}</span></dt>
-          <dd>Frecuencia de una fecha especial</dd>
-          <dt>${diahoy} - <span>${diasfinanyo}</span></dt>
-          <dd>Dias de este año transcurridos y restantes hasta el siguiente</dd>
-        </dl>`;
+    return `Hoy es: ${diahoy}, ${diasfinanyo}`;
 });
 // let sz1 = 50;
 // let sz2 = 20;
@@ -31086,6 +31079,8 @@ process.umask = function() {
 },{}],"3Ngm5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "traduceTexto", ()=>traduceTexto
+);
 parcelHelpers.export(exports, "inputFecha", ()=>inputFecha
 );
 // dias del año transcurridos hasta hoy
@@ -31096,6 +31091,15 @@ parcelHelpers.export(exports, "extraeValoresLetras", ()=>extraeValoresLetras
 );
 parcelHelpers.export(exports, "obtenerCantidadDias", ()=>obtenerCantidadDias
 );
+function traduceTexto(inputtxt) {
+    let normaliza = inputtxt.toLowerCase();
+    const removeAccents = (str)=>{
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    };
+    let textoIntroducido = removeAccents(normaliza);
+    return extraeValoresLetras(textoIntroducido).reduce((a, v)=>(a += v, +a)
+    , 0);
+}
 function inputFecha(f1) {
     var aFecha1 = f1.split('-') // ['1975', '10', '15']
     ;

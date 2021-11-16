@@ -1641,6 +1641,10 @@ ul {
   fill: none;
   mix-blend-mode: color-dodge;
 }
+#gematriApp .frecuencia {
+  font-size: 4.1rem;
+  fill: #e2777a;
+}
 #gematriApp line {
   stroke: #FFFF9F;
 }

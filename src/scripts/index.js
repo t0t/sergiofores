@@ -180,45 +180,37 @@ let fundidoPagina = () => {
 
 
 // APP
-import {inputFecha, obtenerCantidadDias, extraeValoresLetras, diasTranscurridos} from "./utils/gematriaap"
+import {inputFecha, obtenerCantidadDias, traduceTexto, diasTranscurridos} from "./utils/gematriaap"
 
-// let btnGenerar = document.getElementById('lanza')
+let frnegativa, frpositiva, diasfinanyo, diahoy, agnio  
 
-// Ejecuta App sólo si existe el boton #lanza App
+// centra g automaticamente on resize window
+d3.select(window).on('resize', e => {
+  let iw = e.target.innerWidth
+  let ih = e.target.innerHeight
+  gematriApp
+    .attr('width', iw)
+    .attr('height', ih / 2)
+    .attr('transform', `translate(${iw / 2},${ih / 4})`)
+})
 
-  let input = document.getElementById('entrada'),
-      output = document.querySelector('.output'),
-      entradaTexto = '', frnegativa, frpositiva, diasfinanyo, diahoy, agnio, frpalabras  
+// DB datos
+const gematriAppData = require("./data/datos.json")
+const datos = gematriAppData.datos
 
-  // centra g automaticamente on resize window
-  d3.select(window).on('resize', e => {
-    let iw = e.target.innerWidth
-    let ih = e.target.innerHeight
-    gematriApp
-      .attr('width', iw)
-      .attr('height', ih / 2)
-      .attr('transform', `translate(${iw / 2},${ih / 4})`)
-  })
-
+const gematriApp = d3.select("#gematriApp")
+  .append('svg')
+  .attr('width', widthApp)
+  .attr('height', heightApp)
+  .append('g')
+  .attr('transform', `translate(${centerX}, ${centerY})`)
   
-  const gematriAppData = require("./data/datos.json")
-  const datos = gematriAppData.datos
-
-  
-
-  const gematriApp = d3.select("#gematriApp")
-    .append('svg')
-    .attr('width', widthApp)
-    .attr('height', heightApp)
-    .append('g')
-    .attr('transform', `translate(${centerX}, ${centerY})`)
-  
-  const textos = gematriApp.selectAll("text").data(datos)
+const textos = gematriApp.selectAll("text").data(datos)
   textos.enter().append("text")
-    .text(d=>`${d.title}`)
-    .attr("x",(d)=>`${d.x}`)
-    .attr("y",(d)=>`${d.y}`)
-    .attr("fill",(d)=>`${d.color}`)
+    .text( d => `${d.title}`)
+    .attr("x", (d) => `${d.x}`)
+    .attr("y", (d) => `${d.y}`)
+    .attr("fill", (d) =>`${d.color}`)
 
   const dropdownButton = d3.select("#gematriApp").append('select')
   dropdownButton // Add a button
@@ -236,21 +228,6 @@ import {inputFecha, obtenerCantidadDias, extraeValoresLetras, diasTranscurridos}
       .attr("stroke", "black")
       .style("fill", "#69b3a2")
       .attr("r", 1)
-
-  function updateInput() {
-    codeWord
-      .attr("r", this.value)
-  }
-  
-  // Botones App
-  d3.select("#tufrecuencia")
-    .on("input", updateInput )
-    
-  dropdownButton
-    .on("change", (e) => {
-      let selectedOption = e.target.value
-      codeWord.attr("stroke", selectedOption)
-    })
 
   // Escalas
   const x = d3.scaleLinear()
@@ -278,7 +255,19 @@ import {inputFecha, obtenerCantidadDias, extraeValoresLetras, diasTranscurridos}
               .attr("cy", (d) => y(d.y))
               .attr("r", d => d.r)
               .attr("stroke", d => d.color)
-    
+  
+  // Input Pon tu frecuencia a mano
+  d3.select("#tufrecuencia").on("input", updateInput )
+  function updateInput() {
+    codeWord.attr("r", this.value)
+  }
+  
+  // Dropdown
+  dropdownButton
+    .on("change", (e) => {
+      codeWord.attr("stroke", e.target.value)
+    })
+  
   // Input fecha
   d3.select("#fechanacimiento")
     .on("change", (e) => {
@@ -287,36 +276,37 @@ import {inputFecha, obtenerCantidadDias, extraeValoresLetras, diasTranscurridos}
       frnegativa = parseInt(frpositiva - obtenerCantidadDias(agnio))
       console.log(fechaNacimientoUsuario, frnegativa, frpositiva)
     })
-  
+
+  // Entrada texto
+  // d3.select("#entrada")
+  //   .on('keyup', (e) => {
+  //     let entradaTexto = e.target.value
+  //     result = traduceTexto(entradaTexto)
+  //   })
+
+  let fr = gematriApp
+    .append("text")
+    .attr("x", -30)
+    .attr("y", 70)
+    .classed("frecuencia", true)
+
+    d3.select("#entrada").on("keyup", updateFrecuencia )
+    function updateFrecuencia(e) {
+      let entradaTexto = e.target.value
+      let result = traduceTexto(entradaTexto)
+      fr.text(result)
+    }
+
   // BTN Generar Grafica
-  d3.select("#lanza")
-    .on('click', () => {
-      entradaTexto = input.value //inserta input texto
-      let normaliza = entradaTexto.toLowerCase()
-      const removeAccents = str => {
-        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      }
-      let textoIntroducido = removeAccents(normaliza)
-    
-      frpalabras = extraeValoresLetras(textoIntroducido).reduce(
-        (a, v) => ((a += v), +a), 0)
-
-      let fechaActual = new Date()
-      diahoy = diasTranscurridos(fechaActual)
+  gematriApp
+    .append("text")
+    .attr("x", 100)
+    .attr("y", 70)
+    .style("fill", "white")
+    .text(() => {
+      diahoy = diasTranscurridos(new Date())
       diasfinanyo = obtenerCantidadDias(agnio) - diahoy
-      output.classList.add('resultado')
-
-      output.innerHTML = `
-        <dl class="codigos-ejemplo">
-          <dt>"${textoIntroducido}" <span>${frpalabras}</span></dt>
-          <dd>Código de palabra/s</dd>
-          <dt>${frpositiva} <span>${frnegativa}</span></dt>
-          <dd>Frecuencia de una fecha especial</dd>
-          <dt>${diahoy} - <span>${diasfinanyo}</span></dt>
-          <dd>Dias de este año transcurridos y restantes hasta el siguiente</dd>
-        </dl>`
-  })
-
+      return `Hoy es: ${diahoy}, ${diasfinanyo}`})
   
 
 

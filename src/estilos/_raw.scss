@@ -1557,6 +1557,10 @@ img.hover-shadow {
     mix-blend-mode: color-dodge;
     // opacity: 0.5;
   }
+  .frecuencia {
+    font-size: $size-4;
+    fill: $primary-color;
+  }
   line {
     stroke: $quaternary-color;
   }

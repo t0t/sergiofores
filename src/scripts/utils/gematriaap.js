@@ -1,3 +1,13 @@
+export function traduceTexto(inputtxt) {
+  let normaliza = inputtxt.toLowerCase()
+  const removeAccents = str => {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  }
+  let textoIntroducido = removeAccents(normaliza)
+  return extraeValoresLetras(textoIntroducido).reduce(
+    (a, v) => ((a += v), +a), 0)
+}
+
 export function inputFecha (f1) {
   var aFecha1 = f1.split('-') // ['1975', '10', '15']
   var fFecha1 = Date.UTC(aFecha1[0], aFecha1[1] - 1, aFecha1[2])
