@@ -686,18 +686,21 @@ d3.select("#fechanacimiento").on("change", (e)=>{
 //     let entradaTexto = e.target.value
 //     result = traduceTexto(entradaTexto)
 //   })
-let fr = gematriApp.append("text").attr("x", -30).attr("y", 70).classed("frecuencia", true);
+let fr = gematriApp.append("text").attr("x", -_inicializargraficas.centerX / 2 + 25).attr("y", 30);
 d3.select("#entrada").on("keyup", updateFrecuencia);
 function updateFrecuencia(e) {
     let entradaTexto = e.target.value;
     let result = _gematriaap.traduceTexto(entradaTexto);
-    fr.text(result);
+    fr.text(result).classed("result result--anim", true);
 }
 // BTN Generar Grafica
-gematriApp.append("text").attr("x", 100).attr("y", 70).style("fill", "white").text(()=>{
+gematriApp.append("text").attr("x", -_inicializargraficas.centerX / 2 + 25).attr("y", 60).classed("result result--anim", true).text(()=>{
     diahoy = _gematriaap.diasTranscurridos(new Date());
     diasfinanyo = _gematriaap.obtenerCantidadDias(agnio) - diahoy;
-    return `Hoy es: ${diahoy}, ${diasfinanyo}`;
+    return `${diahoy}-${diasfinanyo}`;
+});
+d3.select("#download").on("click", ()=>{
+    d3.select(undefined).attr("href", 'data:application/octet-stream;base64,' + btoa(d3.select("#line").html())).attr("download", "viz.svg");
 });
 // let sz1 = 50;
 // let sz2 = 20;

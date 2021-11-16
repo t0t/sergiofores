@@ -1557,10 +1557,17 @@ img.hover-shadow {
     mix-blend-mode: color-dodge;
     // opacity: 0.5;
   }
-  .frecuencia {
-    font-size: $size-4;
+  .result {
+    font-size: $size-1;
     fill: $primary-color;
+    // transform: scale(1);
+    // transition: transform cubic-bezier(0.215, 0.610, 0.355, 1 2s);
+    &--anim {
+      transition: transform 2s cubic-bezier(0.215, 0.610, 0.355, 1);
+      transform: scale(2);
+    }
   }
+
   line {
     stroke: $quaternary-color;
   }
