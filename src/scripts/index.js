@@ -10,7 +10,7 @@ const closesidenav = document.getElementById('closesidenav')
 closesidenav.addEventListener('click', closeNav)
 
 import { nodes, links, MANY_BODY_STRENGTH } from './data/data.js';
-import { crearSVG, widthApp, heightApp, centerX, centerY, elemento } from "./utils/inicializargraficas"
+import { widthApp, heightApp, centerX, centerY } from "./utils/inicializargraficas"
 
 // import datablog from './data/datablog.json';
 // console.log(datablog);
@@ -202,6 +202,7 @@ const gematriApp = d3.select("#gematriApp")
   .append('svg')
   .attr('width', widthApp)
   .attr('height', heightApp)
+  .attr('id', "download")
   .append('g')
   .attr('transform', `translate(${centerX}, ${centerY})`)
   
@@ -308,12 +309,21 @@ const textos = gematriApp.selectAll("text").data(datos)
         diahoy = diasTranscurridos(new Date())
         diasfinanyo = obtenerCantidadDias(agnio) - diahoy
         return `${diahoy}-${diasfinanyo}`})
-  
-    d3.select("#download").on("click", () => {
-      d3.select(this)
-        .attr("href", 'data:application/octet-stream;base64,' + btoa(d3.select("#line").html()))
-        .attr("download", "viz.svg") 
-    })
+
+
+
+
+
+
+
+
+
+// DOWNLOAD SVG
+const downloadAs = require('./utils/dowloadassvg.js')
+d3.select('#savesvg').on('click', () => {
+  downloadAs.svg('svg#download', 'gematriapp.svg')
+})
+
 
 
 

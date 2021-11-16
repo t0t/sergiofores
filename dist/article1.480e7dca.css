@@ -645,6 +645,8 @@ button {
   text-transform: uppercase;
   padding: 1rem;
   background-color: transparent;
+  border: none;
+  color: #6f6f6f;
 }
 button:hover {
   color: #e2777a;

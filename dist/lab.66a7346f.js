@@ -621,7 +621,7 @@ d3.select(window).on('resize', (e)=>{
 // DB datos
 const gematriAppData = require("./data/datos.json");
 const datos = gematriAppData.datos;
-const gematriApp = d3.select("#gematriApp").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp).append('g').attr('transform', `translate(${_inicializargraficas.centerX}, ${_inicializargraficas.centerY})`);
+const gematriApp = d3.select("#gematriApp").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp).attr('id', "download").append('g').attr('transform', `translate(${_inicializargraficas.centerX}, ${_inicializargraficas.centerY})`);
 const textos = gematriApp.selectAll("text").data(datos);
 textos.enter().append("text").text((d)=>`${d.title}`
 ).attr("x", (d)=>`${d.x}`
@@ -699,8 +699,10 @@ gematriApp.append("text").attr("x", -_inicializargraficas.centerX / 2 + 25).attr
     diasfinanyo = _gematriaap.obtenerCantidadDias(agnio) - diahoy;
     return `${diahoy}-${diasfinanyo}`;
 });
-d3.select("#download").on("click", ()=>{
-    d3.select(undefined).attr("href", 'data:application/octet-stream;base64,' + btoa(d3.select("#line").html())).attr("download", "viz.svg");
+// DOWNLOAD SVG
+const downloadAs = require('./utils/dowloadassvg.js');
+d3.select('#savesvg').on('click', ()=>{
+    downloadAs.svg('svg#download', 'gematriapp.svg');
 });
 // let sz1 = 50;
 // let sz2 = 20;
@@ -832,7 +834,7 @@ if (!_deviceDetection.isSafari && !_deviceDetection.isMobileDevice()) {
  //   }
  // })
 
-},{"../estilos/main.scss":"hGvuj","d3":"97vK6","./sidenav":"9MwHJ","./data/data.js":"4PhqF","./utils/inicializargraficas":"jhWEh","../../node_modules/typewriter-effect/dist/core":"hXq0y","./utils/gematriaap":"3Ngm5","./utils/device-detection":"g2DKJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./data/datos.json":"i2wOf"}],"hGvuj":[function() {},{}],"97vK6":[function(require,module,exports) {
+},{"../estilos/main.scss":"hGvuj","d3":"97vK6","./sidenav":"9MwHJ","./data/data.js":"4PhqF","./utils/inicializargraficas":"jhWEh","../../node_modules/typewriter-effect/dist/core":"hXq0y","./utils/gematriaap":"3Ngm5","./utils/device-detection":"g2DKJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./data/datos.json":"i2wOf","./utils/dowloadassvg.js":"7uRyG"}],"hGvuj":[function() {},{}],"97vK6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Array = require("d3-array");
@@ -31178,6 +31180,99 @@ const isSafari = /constructor/i.test(window.HTMLElement) || function(p) {
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i2wOf":[function(require,module,exports) {
 module.exports = JSON.parse("{\"datos\":[{\"id\":0,\"x\":17,\"cx\":17,\"y\":0,\"cy\":0,\"r\":5,\"lupa\":30,\"color\":\"black\",\"title\":\"Cero\",\"nombre\":\"0\",\"tags\":[\"infinito\",\"vacio\",\"actualización\"]},{\"id\":1,\"x\":35,\"cx\":35,\"y\":43,\"cy\":43,\"r\":10,\"lupa\":24,\"color\":\"#2BC4A9\",\"title\":\"Uno\",\"nombre\":\"1\",\"tags\":[\"Tierra\",\"Materia\",\"Vida\"]},{\"id\":2,\"x\":15,\"cx\":15,\"y\":50,\"cy\":50,\"r\":20,\"lupa\":13,\"color\":\"#FF6874\",\"title\":\"Dos\",\"nombre\":\"2\",\"tags\":[\"agua\",\"separación\",\"emocion\",\"proteccion\"]},{\"id\":3,\"x\":19,\"cx\":19,\"y\":-45,\"cy\":-45,\"r\":30,\"lupa\":55,\"color\":\"#9F9FFF\",\"title\":\"Tres\",\"nombre\":\"3\",\"tags\":[\"aire\",\"simbolo\",\"encuentro\",\"analogia\"]},{\"id\":4,\"x\":0,\"cx\":0,\"y\":76,\"cy\":76,\"r\":40,\"lupa\":212,\"color\":\"#FFFF9F\",\"title\":\"Cuatro\",\"nombre\":\"4\",\"tags\":[\"fuego\",\"identidad\",\"mundo\",\"techo\"]},{\"id\":5,\"x\":17,\"cx\":17,\"y\":59,\"cy\":59,\"r\":50,\"lupa\":365,\"color\":\"grey\",\"title\":\"Cinco\",\"nombre\":\"5\",\"tags\":[\"matriz\",\"lógica\",\"arjé\"]},{\"id\":6,\"x\":12,\"cx\":12,\"y\":-45,\"cy\":-45,\"r\":60,\"lupa\":153,\"color\":\"grey\",\"title\":\"Seis\",\"nombre\":\"6\",\"tags\":[\"posibilidades\",\"universos\",\"oportunidad\"]},{\"id\":7,\"x\":38,\"cx\":38,\"y\":13,\"cy\":13,\"r\":70,\"lupa\":319,\"color\":\"grey\",\"title\":\"Siete\",\"nombre\":\"7\",\"tags\":[\"origen\",\"tzimtzum\",\"genuino\"]},{\"id\":8,\"x\":50,\"cx\":50,\"y\":72,\"cy\":72,\"r\":80,\"lupa\":3,\"color\":\"grey\",\"title\":\"Ocho\",\"nombre\":\"8\",\"tags\":[\"red\",\"circuitos globales\",\"secuencia completa\"]},{\"id\":9,\"x\":74,\"cx\":74,\"y\":-45,\"cy\":-45,\"r\":90,\"lupa\":46,\"color\":\"grey\",\"title\":\"Nueve\",\"nombre\":\"9\",\"tags\":[\"propósito\",\"discernimiento\",\"foco\"]}]}");
+
+},{}],"7uRyG":[function(require,module,exports) {
+!function(e, t) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.downloadAs = t() : e.downloadAs = t();
+}(window, function() {
+    return (function(e1) {
+        var t1 = {
+        };
+        function n(o) {
+            if (t1[o]) return t1[o].exports;
+            var r = t1[o] = {
+                i: o,
+                l: !1,
+                exports: {
+                }
+            };
+            return e1[o].call(r.exports, r, r.exports, n), r.l = !0, r.exports;
+        }
+        return n.m = e1, n.c = t1, n.d = function(e, t, o) {
+            n.o(e, t) || Object.defineProperty(e, t, {
+                enumerable: !0,
+                get: o
+            });
+        }, n.r = function(e) {
+            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+                value: "Module"
+            }), Object.defineProperty(e, "__esModule", {
+                value: !0
+            });
+        }, n.t = function(e, t) {
+            if (1 & t && (e = n(e)), 8 & t) return e;
+            if (4 & t && "object" == typeof e && e && e.__esModule) return e;
+            var o = Object.create(null);
+            if (n.r(o), Object.defineProperty(o, "default", {
+                enumerable: !0,
+                value: e
+            }), 2 & t && "string" != typeof e) for(var r in e)n.d(o, r, (function(t) {
+                return e[t];
+            }).bind(null, r));
+            return o;
+        }, n.n = function(e) {
+            var t = e && e.__esModule ? function() {
+                return e.default;
+            } : function() {
+                return e;
+            };
+            return n.d(t, "a", t), t;
+        }, n.o = function(e, t) {
+            return Object.prototype.hasOwnProperty.call(e, t);
+        }, n.p = "", n(n.s = 0);
+    })([
+        function(e2, t2, n1) {
+            "use strict";
+            n1.r(t2);
+            let o1 = null;
+            const r1 = "TRIGGER__" + Math.random();
+            var u1 = {
+                download (e, t) {
+                    document.getElementById(r1) ? o1 = document.getElementById(r1) : ((o1 = document.createElement("a")).id = r1, o1.target = "_blank", document.body.appendChild(o1)), o1.download = t, o1.href = e, o1.click();
+                }
+            }, c1 = (e, t)=>{
+                const n = "data:image/svg+xml;utf8," + document.querySelector(e).outerHTML.replace(/"/g, "'").replace(/[\r\n%#()<>?\[\\\]^`{|}]/g, encodeURIComponent);
+                u1.download(n, t);
+            }, d1 = (e, t)=>{
+                var n = "data:text/plain;charset=utf-8," + encodeURIComponent(e);
+                u1.download(n, t);
+            }, a = (e3, t, n2 = "png")=>{
+                e3.toBlob(function(e) {
+                    var n = document.createElement("img"), o = URL.createObjectURL(e);
+                    n.onload = function() {
+                        URL.revokeObjectURL(o);
+                    }, u1.download(o, t);
+                }, `image/${n2}`, 1);
+            }, i = (e, t)=>{
+                const n = document.querySelector(e), o = (new XMLSerializer).serializeToString(n), r = "data:image/svg+xml;base64," + btoa(o), u = document.createElement("canvas");
+                u.width = 200, u.height = 200;
+                const c = u.getContext("2d"), d = new Image;
+                d.onload = function() {
+                    c.drawImage(d, 0, 0), a(u, t);
+                }, d.src = r;
+            };
+            n1.d(t2, "svg", function() {
+                return c1;
+            }), n1.d(t2, "txt", function() {
+                return d1;
+            }), n1.d(t2, "cnv", function() {
+                return a;
+            }), n1.d(t2, "svgpng", function() {
+                return i;
+            });
+        }
+    ]);
+});
 
 },{}]},["grPCQ","cdtrO"], "cdtrO", "parcelRequirece68")
 

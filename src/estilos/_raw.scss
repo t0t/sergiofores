@@ -394,16 +394,17 @@ text {
 }
 
 // /* FORMS */
-
 button {
   cursor: pointer;
   text-transform: uppercase;
   padding: $size-1;
   background-color: transparent;
-}
-
-button:hover {
-  color: $primary-color;
+  border: none;
+  color: $grey-color-3;
+  
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 label {

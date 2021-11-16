@@ -1,9 +1,6 @@
 .section--form
 
   #gematriApp.pb-3
-    .output
-    a(id="download" href="#") Download SVG
-
 
   .form-group
     .form-group__item
@@ -17,6 +14,10 @@
     .form-group__item
       label(for='fechanacimiento') Una fecha significativa:
       input#fechanacimiento(type='date' min='1930-12-12' max='2100-12-12' value="1975-07-16")
+    
+    .form-group__item
+      button(id="savesvg") Save as svg
+  
   section
 
   dl.codigos-ejemplo
