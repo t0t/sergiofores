@@ -1552,15 +1552,18 @@ img.hover-shadow {
     background-color: $black-color-alpha-0;
   }
   circle {
-    stroke: $black-color;
-    // mix-blend-mode: color-dodge;
-    opacity: 0.5;
+    fill: none;
+    // stroke: $white-color;
+    mix-blend-mode: color-dodge;
+    // opacity: 0.5;
   }
   line {
     stroke: $quaternary-color;
   }
   text {
-    font-size: $size-2;
+    font-size: $size-0;
+    // fill: $quaternary-color;
+    z-index: 10000;
   }
 }
 

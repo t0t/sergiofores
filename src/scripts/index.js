@@ -173,6 +173,11 @@ let fundidoPagina = () => {
 
 
 
+// THREEJS
+// import * as "three"
+
+
+
 
 // APP
 import {inputFecha, obtenerCantidadDias, extraeValoresLetras, diasTranscurridos} from "./utils/gematriaap"
@@ -197,18 +202,12 @@ if (btnGenerar) {
       .attr('transform', `translate(${iw / 2},${ih / 4})`)
   })
 
-  const datos = [
-    { id: 0, x: 17, y: 0,  r: 5, lupa: 30,  color: 'black', nombre: '0' },
-    { id: 1, x: 35,  y: 43,  r: 10, lupa: 24, color: '#2BC4A9', nombre: '1' },
-    { id: 2, x: 15,  y: 50, r: 20, lupa: 13, color: '#FF6874', nombre: '2' },
-    { id: 3, x: 15,  y: -45, r: 30, lupa: 55,  color: '#9F9FFF', nombre: '3' },
-    { id: 4, x: 0,   y: 76,  r: 40, lupa: 212,  color: '#FFFF9F', nombre: '4' },
-    { id: 5, x: -17, y: 59, r: 50, lupa: 365,color: 'grey',  nombre: '5' },
-    { id: 6, x: -12, y: -45, r: 60, lupa: 153,  color: 'grey',  nombre: '6' },
-    { id: 7, x: -38, y: 13,  r: 70, lupa: 319,  color: 'grey',  nombre: '7' },
-    { id: 8, x: -50, y: 72, r: 80, lupa: 3,  color: 'grey',  nombre: '8' },
-    { id: 9, x: -74, y: -45, r: 90, lupa: 46,  color: 'grey',  nombre: '9' }
-  ]
+  
+  const gematriAppData = require("./data/datos.json")
+  const datos = gematriAppData.datos
+
+  
+
   const gematriApp = d3.select("#gematriApp")
     .append('svg')
     .attr('width', widthApp)
@@ -216,38 +215,79 @@ if (btnGenerar) {
     .append('g')
     .attr('transform', `translate(${centerX}, ${centerY})`)
   
-  // Escalar
+  const textos = gematriApp.selectAll("text").data(datos)
+  textos.enter().append("text")
+    .text(d=>`${d.title}`)
+    .attr("x",(d)=>`${d.x}`)
+    .attr("y",(d)=>`${d.y}`)
+    .attr("fill",(d)=>`${d.color}`)
+
+  const dropdownButton = d3.select("#gematriApp").append('select')
+  dropdownButton // Add a button
+    .selectAll('myOptions') // Next 4 lines add 6 options = 6 colors
+    .data(datos)
+    .enter()
+    .append('option')
+    .text( d => d.title ) // text showed in the menu
+    .attr("value", d => d.color ) 
   
+  let codeWord = gematriApp
+    .append("circle")
+      .attr("cx", 100)
+      .attr("cy", 70)
+      .attr("stroke", "black")
+      .style("fill", "#69b3a2")
+      .attr("r", 1)
+
+  function updateInput() {
+    codeWord
+      .attr("r", this.value)
+  }
+  
+  // Botones App
+  d3.select("#tufrecuencia")
+    .on("input", updateInput )
+    
+  dropdownButton
+    .on("change", (e) => {
+      let selectedOption = e.target.value
+      codeWord.attr("stroke", selectedOption)
+    })
+
+  // Escalas
   const x = d3.scaleLinear()
               .domain([0, d3.max(datos, d => d.x)])
-              .range([0,innerHeight/4])
- 
+              .range([0,innerHeight])
   const y = d3.scaleLinear()
               .domain([0, d3.max(datos, d => d.y)])
               .range([-0,innerHeight/8])
-
   const xAxisCall = d3.axisBottom(x)
   
+  // Regla
   const reglas = gematriApp.append("g")
-            .attr("class", "x axis")
-            .attr('transform', `translate(${-centerX}, ${-centerY})`)
-            .call(xAxisCall)
-
+              .attr("class", "x axis")
+              .attr('transform', `translate(${-centerX}, ${-centerY})`)
+              .call(xAxisCall)
   reglas.selectAll("rect")
-        .data(datos)
-  
-  const circulos = gematriApp.selectAll("circle")
               .data(datos)
   
+  // Todos los circulos
+  const circulos = gematriApp.selectAll("circle").data(datos)
   circulos
-    .enter()
-    .append("circle")
-    .attr("cx", (d) => x(d.x))
-    .attr("cy", (d) => y(d.y))
-    .attr("r", d => d.r)
-    .attr("fill", d => d.color)
-  
+              .enter()
+              .append("circle")
+              .attr("cx", (d) => x(d.x))
+              .attr("cy", (d) => y(d.y))
+              .attr("r", d => d.r)
+              .attr("stroke", d => d.color)
 
+  // const dropdownButton = d3.select("#gematriApp").append('select')
+
+  // dropdownButton
+  //   .on("change", (e) => {
+  //     let selectedOption = e.target.value
+  //     codeWord.attr("stroke", selectedOption)
+  //   })  
   // Input fecha
   fechaNacimiento.addEventListener('change', e => {
     fechaNacimientoUsuario = e.target.value

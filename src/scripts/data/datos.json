@@ -1,0 +1,154 @@
+{
+  "datos": [
+    {
+      "id": 0,
+      "x": 17,
+      "cx": 17,
+      "y": 0,
+      "cy": 0,
+      "r": 5,
+      "lupa": 30,
+      "color": "black",
+      "title": "Cero",
+      "nombre": "0",
+      "tags": [
+        "infinito","vacio","actualización"
+      ]
+    },
+    {
+      "id": 1,
+      "x": 35,
+      "cx": 35,
+      "y": 43,
+      "cy": 43,
+      "r": 10,
+      "lupa": 24,
+      "color": "#2BC4A9",
+      "title": "Uno",
+      "nombre": "1",
+      "tags": [
+        "Tierra","Materia","Vida"
+      ]
+    },
+    {
+      "id": 2,
+      "x": 15,
+      "cx": 15,
+      "y": 50,
+      "cy": 50,
+      "r": 20,
+      "lupa": 13,
+      "color": "#FF6874",
+      "title": "Dos",
+      "nombre": "2",
+      "tags": [
+        "agua","separación","emocion","proteccion"
+      ]
+    },
+    {
+      "id": 3,
+      "x": 19,
+      "cx": 19,
+      "y": -45,
+      "cy": -45,
+      "r": 30,
+      "lupa": 55,
+      "color": "#9F9FFF",
+      "title": "Tres",
+      "nombre": "3",
+      "tags": [
+        "aire","simbolo","encuentro","analogia"
+      ]
+    },
+    {
+      "id": 4,
+      "x": 0,
+      "cx": 0,
+      "y": 76,
+      "cy": 76,
+      "r": 40,
+      "lupa": 212,
+      "color": "#FFFF9F",
+      "title": "Cuatro",
+      "nombre": "4",
+      "tags": [
+        "fuego","identidad","mundo","techo"
+      ]
+    },
+    {
+      "id": 5,
+      "x": 17,
+      "cx": 17,
+      "y": 59,
+      "cy": 59,
+      "r": 50,
+      "lupa": 365,
+      "color": "grey",
+      "title": "Cinco",
+      "nombre": "5",
+      "tags": [
+        "matriz","lógica","arjé"
+      ]
+    },
+    {
+      "id": 6,
+      "x": 12,
+      "cx": 12,
+      "y": -45,
+      "cy": -45,
+      "r": 60,
+      "lupa": 153,
+      "color": "grey",
+      "title": "Seis",
+      "nombre": "6",
+      "tags": [
+        "posibilidades","universos","oportunidad"
+      ]
+    },
+    {
+      "id": 7,
+      "x": 38,
+      "cx": 38,
+      "y": 13,
+      "cy": 13,
+      "r": 70,
+      "lupa": 319,
+      "color": "grey",
+      "title": "Siete",
+      "nombre": "7",
+      "tags": [
+        "origen","tzimtzum","genuino"
+      ]
+    },
+    {
+      "id": 8,
+      "x": 50,
+      "cx": 50,
+      "y": 72,
+      "cy": 72,
+      "r": 80,
+      "lupa": 3,
+      "color": "grey",
+      "title": "Ocho",
+      "nombre": "8",
+      "tags": [
+        "red","circuitos globales","secuencia completa"
+      ]
+    },
+    {
+      "id": 9,
+      "x": 74,
+      "cx": 74,
+      "y": -45,
+      "cy": -45,
+      "r": 90,
+      "lupa": 46,
+      "color": "grey",
+      "title": "Nueve",
+      "nombre": "9",
+      "tags": [
+        "propósito","discernimiento","foco"
+      ]
+    }
+  ]
+}

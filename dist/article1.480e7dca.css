@@ -1638,14 +1638,15 @@ ul {
   background-color: #00000056;
 }
 #gematriApp circle {
-  stroke: black;
-  opacity: 0.5;
+  fill: none;
+  mix-blend-mode: color-dodge;
 }
 #gematriApp line {
   stroke: #FFFF9F;
 }
 #gematriApp text {
-  font-size: 1.6rem;
+  font-size: 0.61rem;
+  z-index: 10000;
 }
 #animcover {
   border-radius: 50%;
