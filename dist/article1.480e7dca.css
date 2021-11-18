@@ -334,6 +334,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   background-color: #E8E8E8;
+  overflow-x: hidden;
 }
 ::-moz-selection {
   background: #FFFF9F;

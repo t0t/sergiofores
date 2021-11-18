@@ -173,12 +173,6 @@ let fundidoPagina = () => {
 
 
 
-// THREEJS
-// import * as "three"
-
-
-
-
 // APP
 import {inputFecha, obtenerCantidadDias, traduceTexto, diasTranscurridos} from "./utils/gematriaap"
 
@@ -278,13 +272,6 @@ const textos = gematriApp.selectAll("text").data(datos)
       console.log(fechaNacimientoUsuario, frnegativa, frpositiva)
     })
 
-  // Entrada texto
-  // d3.select("#entrada")
-  //   .on('keyup', (e) => {
-  //     let entradaTexto = e.target.value
-  //     result = traduceTexto(entradaTexto)
-  //   })
-
   let fr = gematriApp
     .append("text")
     .attr("x", -centerX/2+25)
@@ -311,11 +298,23 @@ const textos = gematriApp.selectAll("text").data(datos)
         return `${diahoy}-${diasfinanyo}`})
 
 
+let dataset = []
+for (let i = 0; i < 10; i++) {
+  let randomNum = Math.round(Math.random() * 10));
+  dataset.push(randomNum)
+}
+console.log(dataset)
 
-
-
-
-
+gematriApp.selectAll("rect")
+  .data(datos)
+  .enter()
+  .append("rect")
+  .attr("x", (d,i)=> i * (widthApp/4 / datos.length))
+  .attr("y", (d)=> d.y)
+  .attr("stroke","white")
+  .attr("fill","white")
+  .attr("height", (d,i) => d.x+i*5)
+  .attr("width", "3px")
 
 
 // DOWNLOAD SVG
@@ -415,6 +414,7 @@ simulation.on('tick', () => {
 
 
 import { isMobileDevice, isSafari } from './utils/device-detection'
+import { WebGLBufferRenderer } from 'three'
 
 if (!isSafari && !isMobileDevice()) {
   let prevScrollpos = window.pageYOffset

@@ -8,12 +8,14 @@ block content
   - var thispage = '/'
   header.headerContent
     include includes/cover.pug
-  
+
+  canvas.modelo3d
+
   include includes/features.pug
   
   footer.blockquote--pie(style="background-image: url('./img/bg2.jpg');")
     blockquote.
       &ldquo;... y cuando el Todo hubo comenzado a ordenarse, todos los elementos recibieron de Dios sus figuras por acción de las ideas y de los números.&rdquo; <br> &mdash; Platón
 
-  block append scripts
-    //- script(src="./scripts/animintro.js", type="module")
+block append scripts
+  script(src="./scripts/modelo3d.js", type="module")
