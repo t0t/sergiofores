@@ -1642,7 +1642,6 @@ ul {
 }
 #gematriApp circle {
   fill: none;
-  mix-blend-mode: color-dodge;
 }
 #gematriApp .result {
   font-size: 1rem;

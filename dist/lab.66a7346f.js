@@ -611,6 +611,7 @@ let fundidoPagina = ()=>{
     document.querySelector('#theSite').classList.add('fade-page-on');
 };
 let frnegativa, frpositiva, diasfinanyo, diahoy, agnio;
+let arjesArray = [];
 // DB datos
 const gematriAppData = require("./data/datos.json");
 const datos = gematriAppData.datos;
@@ -623,9 +624,11 @@ function updateWindow(e) {
     let ih = e.target.innerHeight;
     gematriApp.attr('width', iw).attr('height', ih / 2);
     gematriAppG.attr('transform', `translate(${iw / 2}, ${ih / 4})`);
+    if (iw < 964) outputTexts.attr('transform', `translate(${iw / 2}, 0)`);
 }
-const textos = gematriAppG.selectAll("text").data(datos);
-textos.enter().append("text").text((d)=>`${d.title}`
+//Arjés: Uno, Dos, Tres....
+const arjes = gematriAppG.selectAll("text").data(datos);
+arjes.enter().append("text").text((d)=>`${d.title}`
 ).attr("x", (d)=>`${d.x}`
 ).attr("y", (d)=>`${d.y}`
 ).attr("fill", (d)=>`${d.color}`
@@ -656,7 +659,7 @@ const xAxisCall = d3.axisTop(x);
 const reglas = gematriAppG.append("g").attr("class", "x axis").attr('transform', `translate(${-_inicializargraficas.centerX}, ${_inicializargraficas.centerY})`).call(xAxisCall);
 reglas.selectAll("rect").data(datos);
 // Todos los circulos
-const circulos = gematriAppG.selectAll("circle").data(datos);
+const circulos = gematriAppG.selectAll("circle").data(arjesArray);
 circulos.enter().append("circle").attr("cx", (d)=>x(d.x)
 ).attr("cy", (d)=>y(d.y)
 ).attr("r", (d)=>d.r
@@ -672,38 +675,52 @@ function updateInput() {
 dropdownButton.on("change", (e)=>{
     areaFrecuencia.style("stroke", e.target.value);
 });
-// Input fecha
-// d3.select("#fechanacimiento")
-//   .on("change", (e) => {
-//   })
 d3.select("#fechanacimiento").on("change", updateFecha);
 function updateFecha(e) {
     let fechaNacimientoUsuario = e.target.value;
     frpositiva = parseInt(_gematriaap.inputFecha(fechaNacimientoUsuario));
     frnegativa = parseInt(frpositiva - _gematriaap.obtenerCantidadDias(agnio));
-    console.log(frnegativa, frpositiva);
     fecha.text(`${frpositiva} ${frnegativa}`).classed("result result--anim", true);
 }
-let fecha = gematriAppG.append("text").attr("x", -_inicializargraficas.centerX / 2 + 25).attr("y", -5);
-let fr = gematriAppG.append("text").attr("x", -_inicializargraficas.centerX / 2 + 25).attr("y", 30);
+let outputTexts = gematriAppG.append("g");
+let fecha = outputTexts.append("text").attr("x", -_inicializargraficas.centerX / 2 + 25).attr("y", -5);
+let fr = outputTexts.append("text").attr("x", -_inicializargraficas.centerX / 2 + 25).attr("y", 30);
 d3.select("#entrada").on("keyup", updateFrecuencia);
 function updateFrecuencia(e) {
     let entradaTexto = e.target.value;
     let result = _gematriaap.traduceTexto(entradaTexto);
+    updateArjesArray(result);
     fr.text(result).classed("result result--anim", true);
 }
-// BTN Generar Grafica
-gematriAppG.append("text").attr("x", -_inicializargraficas.centerX / 2 + 25).attr("y", 60).classed("result result--anim", true).text(()=>{
+// Dias que quedan y transcurridos
+outputTexts.append("text").attr("x", -_inicializargraficas.centerX / 2 + 25).attr("y", 60).classed("result result--anim", true).text(()=>{
     diahoy = _gematriaap.diasTranscurridos(new Date());
     diasfinanyo = _gematriaap.obtenerCantidadDias(agnio) - diahoy;
     return `${diahoy}-${diasfinanyo}`;
 });
-// let dataset = []
-// for (let i = 0; i < 10; i++) {
-//   let randomNum = Math.round(Math.random() * 10));
-//   dataset.push(randomNum)
-// }
-// console.log(dataset)
+// arjesArray.push(diahoy,diasfinanyo)
+function decimalToRgb(decimal) {
+    return {
+        red: decimal >> 16 & 255,
+        green: decimal >> 8 & 255,
+        blue: decimal & 255
+    };
+}
+function updateArjesArray(dato) {
+    arjesArray.push(dato);
+    for(let i = 0; i < arjesArray.length; i++){
+        let string = arjesArray.join("");
+        let newArray = string.split('').map(Number);
+        console.log(newArray);
+        outputTexts.selectAll("circle").data(newArray).enter().append("circle").attr("r", (d)=>d * 10
+        ).attr("cx", (d)=>-_inicializargraficas.centerX + d * 10
+        ).attr("cy", (d)=>d * d
+        ).attr("stroke-width", "1").attr("stroke", (d, i)=>{
+            return `rgb(${arjesArray[0] + d * 10},${arjesArray[1] + d * 10},${arjesArray[2] + d * 10})`;
+        });
+    }
+    console.log(outputTexts);
+}
 gematriAppG.selectAll("rect").data(datos).enter().append("rect").attr("x", (d, i)=>i * (_inicializargraficas.widthApp / 4 / datos.length)
 ).attr("y", (d)=>_inicializargraficas.heightApp / 2 - d.y
 ).attr("stroke", "white").attr("fill", "white").attr("height", (d, i)=>d.x + i * 5
@@ -31169,7 +31186,7 @@ function obtenerCantidadDias(agnio) {
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i2wOf":[function(require,module,exports) {
-module.exports = JSON.parse("{\"datos\":[{\"id\":0,\"x\":17,\"cx\":17,\"y\":0,\"cy\":0,\"r\":5,\"lupa\":30,\"color\":\"black\",\"title\":\"Cero\",\"nombre\":\"0\",\"tags\":[\"infinito\",\"vacio\",\"actualización\"]},{\"id\":1,\"x\":35,\"cx\":35,\"y\":43,\"cy\":43,\"r\":10,\"lupa\":24,\"color\":\"#2BC4A9\",\"title\":\"Uno\",\"nombre\":\"1\",\"tags\":[\"Tierra\",\"Materia\",\"Vida\"]},{\"id\":2,\"x\":365,\"cx\":15,\"y\":50,\"cy\":50,\"r\":20,\"lupa\":13,\"color\":\"#FF6874\",\"title\":\"Dos\",\"nombre\":\"2\",\"tags\":[\"agua\",\"separación\",\"emocion\",\"proteccion\"]},{\"id\":3,\"x\":19,\"cx\":19,\"y\":-45,\"cy\":-45,\"r\":30,\"lupa\":55,\"color\":\"#9F9FFF\",\"title\":\"Tres\",\"nombre\":\"3\",\"tags\":[\"aire\",\"simbolo\",\"encuentro\",\"analogia\"]},{\"id\":4,\"x\":0,\"cx\":0,\"y\":76,\"cy\":76,\"r\":40,\"lupa\":212,\"color\":\"#FFFF9F\",\"title\":\"Cuatro\",\"nombre\":\"4\",\"tags\":[\"fuego\",\"identidad\",\"mundo\",\"techo\"]},{\"id\":5,\"x\":17,\"cx\":17,\"y\":59,\"cy\":59,\"r\":50,\"lupa\":365,\"color\":\"grey\",\"title\":\"Cinco\",\"nombre\":\"5\",\"tags\":[\"matriz\",\"lógica\",\"arjé\"]},{\"id\":6,\"x\":12,\"cx\":12,\"y\":-45,\"cy\":-45,\"r\":60,\"lupa\":153,\"color\":\"grey\",\"title\":\"Seis\",\"nombre\":\"6\",\"tags\":[\"posibilidades\",\"universos\",\"oportunidad\"]},{\"id\":7,\"x\":38,\"cx\":38,\"y\":13,\"cy\":13,\"r\":70,\"lupa\":319,\"color\":\"grey\",\"title\":\"Siete\",\"nombre\":\"7\",\"tags\":[\"origen\",\"tzimtzum\",\"genuino\"]},{\"id\":8,\"x\":50,\"cx\":50,\"y\":72,\"cy\":72,\"r\":80,\"lupa\":3,\"color\":\"grey\",\"title\":\"Ocho\",\"nombre\":\"8\",\"tags\":[\"red\",\"circuitos globales\",\"secuencia completa\"]},{\"id\":9,\"x\":74,\"cx\":74,\"y\":-45,\"cy\":-45,\"r\":90,\"lupa\":46,\"color\":\"grey\",\"title\":\"Nueve\",\"nombre\":\"9\",\"tags\":[\"propósito\",\"discernimiento\",\"foco\"]}]}");
+module.exports = JSON.parse("{\"datos\":[{\"id\":0,\"x\":0,\"cx\":17,\"y\":0,\"cy\":0,\"r\":50,\"lupa\":30,\"color\":\"white\",\"title\":\"Cero\",\"nombre\":\"0\",\"tags\":[\"infinito\",\"vacio\",\"actualización\"]},{\"id\":1,\"x\":100,\"cx\":100,\"y\":0,\"cy\":-50,\"r\":50,\"lupa\":24,\"color\":\"#2BC4A9\",\"title\":\"Uno\",\"nombre\":\"1\",\"tags\":[\"Tierra\",\"Materia\",\"Vida\"]},{\"id\":2,\"x\":365,\"cx\":15,\"y\":50,\"cy\":50,\"r\":20,\"lupa\":13,\"color\":\"#FF6874\",\"title\":\"Dos\",\"nombre\":\"2\",\"tags\":[\"agua\",\"separación\",\"emocion\",\"proteccion\"]},{\"id\":3,\"x\":19,\"cx\":19,\"y\":-45,\"cy\":-45,\"r\":30,\"lupa\":55,\"color\":\"#9F9FFF\",\"title\":\"Tres\",\"nombre\":\"3\",\"tags\":[\"aire\",\"simbolo\",\"encuentro\",\"analogia\"]},{\"id\":4,\"x\":0,\"cx\":0,\"y\":76,\"cy\":76,\"r\":40,\"lupa\":212,\"color\":\"#FFFF9F\",\"title\":\"Cuatro\",\"nombre\":\"4\",\"tags\":[\"fuego\",\"identidad\",\"mundo\",\"techo\"]},{\"id\":5,\"x\":17,\"cx\":17,\"y\":59,\"cy\":59,\"r\":50,\"lupa\":365,\"color\":\"grey\",\"title\":\"Cinco\",\"nombre\":\"5\",\"tags\":[\"matriz\",\"lógica\",\"arjé\"]},{\"id\":6,\"x\":12,\"cx\":12,\"y\":-45,\"cy\":-45,\"r\":60,\"lupa\":153,\"color\":\"grey\",\"title\":\"Seis\",\"nombre\":\"6\",\"tags\":[\"posibilidades\",\"universos\",\"oportunidad\"]},{\"id\":7,\"x\":25,\"cx\":38,\"y\":0,\"cy\":13,\"r\":50,\"lupa\":319,\"color\":\"red\",\"title\":\"Siete\",\"nombre\":\"7\",\"tags\":[\"origen\",\"tzimtzum\",\"genuino\"]},{\"id\":8,\"x\":50,\"cx\":50,\"y\":72,\"cy\":72,\"r\":80,\"lupa\":3,\"color\":\"grey\",\"title\":\"Ocho\",\"nombre\":\"8\",\"tags\":[\"red\",\"circuitos globales\",\"secuencia completa\"]},{\"id\":9,\"x\":74,\"cx\":74,\"y\":-45,\"cy\":-45,\"r\":90,\"lupa\":46,\"color\":\"grey\",\"title\":\"Nueve\",\"nombre\":\"9\",\"tags\":[\"propósito\",\"discernimiento\",\"foco\"]}]}");
 
 },{}],"7uRyG":[function(require,module,exports) {
 !function(e, t) {

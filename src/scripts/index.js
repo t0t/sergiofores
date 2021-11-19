@@ -177,6 +177,7 @@ let fundidoPagina = () => {
 import {inputFecha, obtenerCantidadDias, traduceTexto, diasTranscurridos} from "./utils/gematriaap"
 
 let frnegativa, frpositiva, diasfinanyo, diahoy, agnio
+let arjesArray = []
 
 // DB datos
 const gematriAppData = require("./data/datos.json")
@@ -202,10 +203,14 @@ function updateWindow(e) {
     .attr('height', ih / 2)
   gematriAppG
     .attr('transform', `translate(${iw/2}, ${ih/4})`)
+  if(iw < 964) {
+    outputTexts
+      .attr('transform', `translate(${iw/2}, 0)`)
+  }
 }
-
-const textos = gematriAppG.selectAll("text").data(datos)
-  textos.enter().append("text")
+//Arjés: Uno, Dos, Tres....
+const arjes = gematriAppG.selectAll("text").data(datos)
+  arjes.enter().append("text")
     .text( d => `${d.title}`)
     .attr("x", d => `${d.x}`)
     .attr("y", d => `${d.y}`)
@@ -240,7 +245,7 @@ const reglas = gematriAppG.append("g")
     .data(datos)
   
 // Todos los circulos
-const circulos = gematriAppG.selectAll("circle").data(datos)
+const circulos = gematriAppG.selectAll("circle").data(arjesArray)
 circulos
   .enter()
   .append("circle")
@@ -268,45 +273,42 @@ circulos
     .on("change", (e) => {
       areaFrecuencia.style("stroke", e.target.value)
     })
-  
-  // Input fecha
-  // d3.select("#fechanacimiento")
-  //   .on("change", (e) => {
-      
-  //   })
 
   d3.select("#fechanacimiento").on("change", updateFecha )
   function updateFecha(e) {
     let fechaNacimientoUsuario = e.target.value
       frpositiva = parseInt(inputFecha(fechaNacimientoUsuario))
       frnegativa = parseInt(frpositiva - obtenerCantidadDias(agnio))
-      console.log(frnegativa, frpositiva)
     fecha
       .text(`${frpositiva} ${frnegativa}`)
       .classed("result result--anim", true)
     }
-
-  let fecha = gematriAppG
+  
+  let outputTexts = gematriAppG.append("g")
+  
+  let fecha = outputTexts
     .append("text")
     .attr("x", -centerX/2+25)
     .attr("y", -5)
 
-  let fr = gematriAppG
+  let fr = outputTexts
     .append("text")
     .attr("x", -centerX/2+25)
     .attr("y", 30)
-    
+  
+  
     d3.select("#entrada").on("keyup", updateFrecuencia )
     function updateFrecuencia(e) {
       let entradaTexto = e.target.value
       let result = traduceTexto(entradaTexto)
+      updateArjesArray(result)
       fr
         .text(result)
         .classed("result result--anim", true)
       }
       
-    // BTN Generar Grafica
-    gematriAppG
+    // Dias que quedan y transcurridos
+    outputTexts
       .append("text")
       .attr("x", -centerX/2+25)
       .attr("y", 60)
@@ -316,12 +318,34 @@ circulos
         diasfinanyo = obtenerCantidadDias(agnio) - diahoy
         return `${diahoy}-${diasfinanyo}`})
 
-// let dataset = []
-// for (let i = 0; i < 10; i++) {
-//   let randomNum = Math.round(Math.random() * 10));
-//   dataset.push(randomNum)
-// }
-// console.log(dataset)
+// arjesArray.push(diahoy,diasfinanyo)
+function decimalToRgb(decimal) {
+  return {
+    red: (decimal >> 16) & 0xff,
+    green: (decimal >> 8) & 0xff,
+    blue: decimal & 0xff,
+  };
+}
+function updateArjesArray(dato) {
+  arjesArray.push(dato)
+  for (let i = 0; i < arjesArray.length; i++) {
+    let string = arjesArray.join("")
+    let newArray = string.split('').map(Number)
+    console.log(newArray)
+    outputTexts.selectAll("circle")
+    .data(newArray).enter()
+    .append("circle")
+    .attr("r",(d) => d*10)
+    .attr("cx",d => -centerX+d*10)
+    .attr("cy",d => d*d)
+    .attr("stroke-width", "1")
+    .attr("stroke", (d, i)=> {
+        return `rgb(${arjesArray[0]+d*10},${arjesArray[1]+d*10},${arjesArray[2]+d*10})`        
+    })
+  }
+
+  console.log(outputTexts)
+}
 
 gematriAppG.selectAll("rect")
   .data(datos)
