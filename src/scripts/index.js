@@ -245,7 +245,7 @@ const reglas = gematriAppG.append("g")
     .data(datos)
   
 // Todos los circulos
-const circulos = gematriAppG.selectAll("circle").data(arjesArray)
+const circulos = gematriAppG.selectAll("circle").data(datos)
 circulos
   .enter()
   .append("circle")
@@ -302,10 +302,11 @@ circulos
       let entradaTexto = e.target.value
       let result = traduceTexto(entradaTexto)
       updateArjesArray(result)
+      mapaGenerado.frecuencia = result
       fr
         .text(result)
         .classed("result result--anim", true)
-      }
+    }
       
     // Dias que quedan y transcurridos
     outputTexts
@@ -316,16 +317,22 @@ circulos
       .text(() => {
         diahoy = diasTranscurridos(new Date())
         diasfinanyo = obtenerCantidadDias(agnio) - diahoy
-        return `${diahoy}-${diasfinanyo}`})
+        return `${diahoy}-${diasfinanyo}`
+      })
 
-// arjesArray.push(diahoy,diasfinanyo)
-function decimalToRgb(decimal) {
-  return {
-    red: (decimal >> 16) & 0xff,
-    green: (decimal >> 8) & 0xff,
-    blue: decimal & 0xff,
-  };
+let mapaGenerado = {
+  color: "",
+  x: 10,
+  y: 10,
+  text: "arje",
+  r: 10,
+  diahoy: diahoy,
+  diasfinanyo: diasfinanyo,
+  frecuencia: frpositiva,
+  cadenanums: arjesArray
 }
+console.log(mapaGenerado)
+
 function updateArjesArray(dato) {
   arjesArray.push(dato)
   for (let i = 0; i < arjesArray.length; i++) {

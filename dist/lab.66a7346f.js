@@ -659,7 +659,7 @@ const xAxisCall = d3.axisTop(x);
 const reglas = gematriAppG.append("g").attr("class", "x axis").attr('transform', `translate(${-_inicializargraficas.centerX}, ${_inicializargraficas.centerY})`).call(xAxisCall);
 reglas.selectAll("rect").data(datos);
 // Todos los circulos
-const circulos = gematriAppG.selectAll("circle").data(arjesArray);
+const circulos = gematriAppG.selectAll("circle").data(datos);
 circulos.enter().append("circle").attr("cx", (d)=>x(d.x)
 ).attr("cy", (d)=>y(d.y)
 ).attr("r", (d)=>d.r
@@ -690,6 +690,7 @@ function updateFrecuencia(e) {
     let entradaTexto = e.target.value;
     let result = _gematriaap.traduceTexto(entradaTexto);
     updateArjesArray(result);
+    mapaGenerado.frecuencia = result;
     fr.text(result).classed("result result--anim", true);
 }
 // Dias que quedan y transcurridos
@@ -698,14 +699,18 @@ outputTexts.append("text").attr("x", -_inicializargraficas.centerX / 2 + 25).att
     diasfinanyo = _gematriaap.obtenerCantidadDias(agnio) - diahoy;
     return `${diahoy}-${diasfinanyo}`;
 });
-// arjesArray.push(diahoy,diasfinanyo)
-function decimalToRgb(decimal) {
-    return {
-        red: decimal >> 16 & 255,
-        green: decimal >> 8 & 255,
-        blue: decimal & 255
-    };
-}
+let mapaGenerado = {
+    color: "",
+    x: 10,
+    y: 10,
+    text: "arje",
+    r: 10,
+    diahoy: diahoy,
+    diasfinanyo: diasfinanyo,
+    frecuencia: frpositiva,
+    cadenanums: arjesArray
+};
+console.log(mapaGenerado);
 function updateArjesArray(dato) {
     arjesArray.push(dato);
     for(let i = 0; i < arjesArray.length; i++){
