@@ -179,6 +179,32 @@ import {inputFecha, obtenerCantidadDias, traduceTexto, diasTranscurridos} from "
 let frnegativa, frpositiva, diasfinanyo, diahoy, agnio
 let arjesArray = []
 
+class Mapa {
+  constructor (x, y=10, text, r, diasfinanyo, cadenanums, frnegativa) {
+    this.colors = ["#2BC4A9","#FF6874","#9F9FFF","#FFFF9F"]
+    this.x = x
+    this.y = y
+    this.text = text
+    this.r = r
+    this.diasfinanyo = diasfinanyo
+    this.frpositiva = frpositiva
+    this.frnegativa = frnegativa
+    this.cadenanums = cadenanums
+  }
+  getDia () {
+    return diahoy
+  }
+  getFrecPositiva () {
+    return frpositiva
+  }
+  cadenanums () {}
+  pintacolors () {}
+  diasfinanyo () {}
+  diasfinanyo () {}
+}
+let newMapa = new Mapa()
+console.log(newMapa)
+
 // DB datos
 const gematriAppData = require("./data/datos.json")
 const datos = gematriAppData.datos
@@ -302,7 +328,7 @@ circulos
       let entradaTexto = e.target.value
       let result = traduceTexto(entradaTexto)
       updateArjesArray(result)
-      mapaGenerado.frecuencia = result
+      Mapa.frpositiva = result
       fr
         .text(result)
         .classed("result result--anim", true)
@@ -320,25 +346,13 @@ circulos
         return `${diahoy}-${diasfinanyo}`
       })
 
-let mapaGenerado = {
-  color: "",
-  x: 10,
-  y: 10,
-  text: "arje",
-  r: 10,
-  diahoy: diahoy,
-  diasfinanyo: diasfinanyo,
-  frecuencia: frpositiva,
-  cadenanums: arjesArray
-}
-console.log(mapaGenerado)
+
 
 function updateArjesArray(dato) {
   arjesArray.push(dato)
   for (let i = 0; i < arjesArray.length; i++) {
     let string = arjesArray.join("")
     let newArray = string.split('').map(Number)
-    console.log(newArray)
     outputTexts.selectAll("circle")
     .data(newArray).enter()
     .append("circle")
@@ -347,11 +361,9 @@ function updateArjesArray(dato) {
     .attr("cy",d => d*d)
     .attr("stroke-width", "1")
     .attr("stroke", (d, i)=> {
-        return `rgb(${arjesArray[0]+d*10},${arjesArray[1]+d*10},${arjesArray[2]+d*10})`        
+        return `rgb(${arjesArray[1]+d*10},${arjesArray[2]+d*10},${arjesArray[3]+d*10})`        
     })
   }
-
-  console.log(outputTexts)
 }
 
 gematriAppG.selectAll("rect")

@@ -612,6 +612,40 @@ let fundidoPagina = ()=>{
 };
 let frnegativa, frpositiva, diasfinanyo, diahoy, agnio;
 let arjesArray = [];
+class Mapa {
+    constructor(x1, y1 = 10, text1, r, diasfinanyo1, cadenanums, frnegativa1){
+        this.colors = [
+            "#2BC4A9",
+            "#FF6874",
+            "#9F9FFF",
+            "#FFFF9F"
+        ];
+        this.x = x1;
+        this.y = y1;
+        this.text = text1;
+        this.r = r;
+        this.diasfinanyo = diasfinanyo1;
+        this.frpositiva = frpositiva;
+        this.frnegativa = frnegativa1;
+        this.cadenanums = cadenanums;
+    }
+    getDia() {
+        return diahoy;
+    }
+    getFrecPositiva() {
+        return frpositiva;
+    }
+    cadenanums() {
+    }
+    pintacolors() {
+    }
+    diasfinanyo() {
+    }
+    diasfinanyo() {
+    }
+}
+let newMapa = new Mapa();
+console.log(newMapa);
 // DB datos
 const gematriAppData = require("./data/datos.json");
 const datos = gematriAppData.datos;
@@ -690,7 +724,7 @@ function updateFrecuencia(e) {
     let entradaTexto = e.target.value;
     let result = _gematriaap.traduceTexto(entradaTexto);
     updateArjesArray(result);
-    mapaGenerado.frecuencia = result;
+    Mapa.frpositiva = result;
     fr.text(result).classed("result result--anim", true);
 }
 // Dias que quedan y transcurridos
@@ -699,32 +733,18 @@ outputTexts.append("text").attr("x", -_inicializargraficas.centerX / 2 + 25).att
     diasfinanyo = _gematriaap.obtenerCantidadDias(agnio) - diahoy;
     return `${diahoy}-${diasfinanyo}`;
 });
-let mapaGenerado = {
-    color: "",
-    x: 10,
-    y: 10,
-    text: "arje",
-    r: 10,
-    diahoy: diahoy,
-    diasfinanyo: diasfinanyo,
-    frecuencia: frpositiva,
-    cadenanums: arjesArray
-};
-console.log(mapaGenerado);
 function updateArjesArray(dato) {
     arjesArray.push(dato);
     for(let i = 0; i < arjesArray.length; i++){
         let string = arjesArray.join("");
         let newArray = string.split('').map(Number);
-        console.log(newArray);
         outputTexts.selectAll("circle").data(newArray).enter().append("circle").attr("r", (d)=>d * 10
         ).attr("cx", (d)=>-_inicializargraficas.centerX + d * 10
         ).attr("cy", (d)=>d * d
         ).attr("stroke-width", "1").attr("stroke", (d, i)=>{
-            return `rgb(${arjesArray[0] + d * 10},${arjesArray[1] + d * 10},${arjesArray[2] + d * 10})`;
+            return `rgb(${arjesArray[1] + d * 10},${arjesArray[2] + d * 10},${arjesArray[3] + d * 10})`;
         });
     }
-    console.log(outputTexts);
 }
 gematriAppG.selectAll("rect").data(datos).enter().append("rect").attr("x", (d, i)=>i * (_inicializargraficas.widthApp / 4 / datos.length)
 ).attr("y", (d)=>_inicializargraficas.heightApp / 2 - d.y
