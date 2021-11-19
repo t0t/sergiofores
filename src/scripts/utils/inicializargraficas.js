@@ -2,7 +2,7 @@
 const d3 = require('d3')
 export let widthApp = window.innerWidth
 export let heightApp = window.innerHeight / 2
-export const centerX = widthApp /2;
+export const centerX = widthApp / 2;
 export const centerY = heightApp / 2;
 
 // Inicializa cualquier svgs

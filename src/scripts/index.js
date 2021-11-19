@@ -176,17 +176,7 @@ let fundidoPagina = () => {
 // APP
 import {inputFecha, obtenerCantidadDias, traduceTexto, diasTranscurridos} from "./utils/gematriaap"
 
-let frnegativa, frpositiva, diasfinanyo, diahoy, agnio  
-
-// centra g automaticamente on resize window
-d3.select(window).on('resize', e => {
-  let iw = e.target.innerWidth
-  let ih = e.target.innerHeight
-  gematriApp
-    .attr('width', iw)
-    .attr('height', ih / 2)
-    .attr('transform', `translate(${iw / 2},${ih / 4})`)
-})
+let frnegativa, frpositiva, diasfinanyo, diahoy, agnio
 
 // DB datos
 const gematriAppData = require("./data/datos.json")
@@ -196,83 +186,112 @@ const gematriApp = d3.select("#gematriApp")
   .append('svg')
   .attr('width', widthApp)
   .attr('height', heightApp)
-  .attr('id', "download")
+  .attr('id', "main-svg")
+
+const gematriAppG = gematriApp
   .append('g')
   .attr('transform', `translate(${centerX}, ${centerY})`)
-  
-const textos = gematriApp.selectAll("text").data(datos)
+
+// centra g on resize window
+d3.select(window).on('resize', updateWindow)
+function updateWindow(e) {
+  let iw = e.target.innerWidth
+  let ih = e.target.innerHeight
+  gematriApp
+    .attr('width', iw)
+    .attr('height', ih / 2)
+  gematriAppG
+    .attr('transform', `translate(${iw/2}, ${ih/4})`)
+}
+
+const textos = gematriAppG.selectAll("text").data(datos)
   textos.enter().append("text")
     .text( d => `${d.title}`)
-    .attr("x", (d) => `${d.x}`)
-    .attr("y", (d) => `${d.y}`)
-    .attr("fill", (d) =>`${d.color}`)
+    .attr("x", d => `${d.x}`)
+    .attr("y", d => `${d.y}`)
+    .attr("fill", d =>`${d.color}`)
 
-  const dropdownButton = d3.select("#gematriApp").append('select')
-  dropdownButton // Add a button
-    .selectAll('myOptions') // Next 4 lines add 6 options = 6 colors
-    .data(datos)
-    .enter()
-    .append('option')
-    .text( d => d.title ) // text showed in the menu
-    .attr("value", d => d.color ) 
-  
-  let codeWord = gematriApp
-    .append("circle")
-      .attr("cx", 100)
-      .attr("cy", 70)
-      .attr("stroke", "black")
-      .style("fill", "#69b3a2")
-      .attr("r", 1)
+const dropdownButton = d3.select("#gematriApp")
+  .append('select')
+  .selectAll('option')
+  .data(datos)
+  .enter()
+  .append('option')
+  .text( d => d.title ) // text showed in the menu
+  .attr("value", d => d.color ) 
 
-  // Escalas
-  const x = d3.scaleLinear()
-              .domain([0, d3.max(datos, d => d.x)])
-              .range([0,innerHeight])
-  const y = d3.scaleLinear()
-              .domain([0, d3.max(datos, d => d.y)])
-              .range([-0,innerHeight/8])
-  const xAxisCall = d3.axisBottom(x)
+// Escalas
+const x = d3.scaleLinear()
+  .domain([0, d3.max(datos, d => d.x)])
+  .range([0,innerWidth])
+
+const y = d3.scaleLinear()
+  .domain([0, d3.max(datos, d => d.y)])
+  .range([-0,innerHeight/8])
+
+const xAxisCall = d3.axisTop(x)
   
-  // Regla
-  const reglas = gematriApp.append("g")
-              .attr("class", "x axis")
-              .attr('transform', `translate(${-centerX}, ${-centerY})`)
-              .call(xAxisCall)
+// Regla
+const reglas = gematriAppG.append("g")
+  .attr("class", "x axis")
+  .attr('transform', `translate(${-centerX}, ${centerY})`)
+  .call(xAxisCall)
   reglas.selectAll("rect")
-              .data(datos)
+    .data(datos)
   
-  // Todos los circulos
-  const circulos = gematriApp.selectAll("circle").data(datos)
-  circulos
-              .enter()
-              .append("circle")
-              .attr("cx", (d) => x(d.x))
-              .attr("cy", (d) => y(d.y))
-              .attr("r", d => d.r)
-              .attr("stroke", d => d.color)
+// Todos los circulos
+const circulos = gematriAppG.selectAll("circle").data(datos)
+circulos
+  .enter()
+  .append("circle")
+  .attr("cx", (d) => x(d.x))
+  .attr("cy", (d) => y(d.y))
+  .attr("r", d => d.r)
+  .attr("stroke", d => d.color)
+  
+  let areaFrecuencia = gematriAppG
+  .append("circle")
+  .attr("cx", centerX/2.5)
+  .attr("cy", 70)
+  .style("fill", "white")
+  .style("opacity", 0.05)
+  .attr("r", 1)
   
   // Input Pon tu frecuencia a mano
-  d3.select("#tufrecuencia").on("input", updateInput )
+  d3.select("#inputfrecuencia").on("input", updateInput )
   function updateInput() {
-    codeWord.attr("r", this.value)
+    areaFrecuencia.attr("r", this.value)
   }
   
   // Dropdown
   dropdownButton
     .on("change", (e) => {
-      codeWord.attr("stroke", e.target.value)
+      areaFrecuencia.style("stroke", e.target.value)
     })
   
   // Input fecha
-  d3.select("#fechanacimiento")
-    .on("change", (e) => {
-      let fechaNacimientoUsuario = e.target.value
+  // d3.select("#fechanacimiento")
+  //   .on("change", (e) => {
+      
+  //   })
+
+  d3.select("#fechanacimiento").on("change", updateFecha )
+  function updateFecha(e) {
+    let fechaNacimientoUsuario = e.target.value
       frpositiva = parseInt(inputFecha(fechaNacimientoUsuario))
       frnegativa = parseInt(frpositiva - obtenerCantidadDias(agnio))
-      console.log(fechaNacimientoUsuario, frnegativa, frpositiva)
-    })
+      console.log(frnegativa, frpositiva)
+    fecha
+      .text(`${frpositiva} ${frnegativa}`)
+      .classed("result result--anim", true)
+    }
 
-  let fr = gematriApp
+  let fecha = gematriAppG
+    .append("text")
+    .attr("x", -centerX/2+25)
+    .attr("y", -5)
+
+  let fr = gematriAppG
     .append("text")
     .attr("x", -centerX/2+25)
     .attr("y", 30)
@@ -287,7 +306,7 @@ const textos = gematriApp.selectAll("text").data(datos)
       }
       
     // BTN Generar Grafica
-    gematriApp
+    gematriAppG
       .append("text")
       .attr("x", -centerX/2+25)
       .attr("y", 60)
@@ -297,20 +316,19 @@ const textos = gematriApp.selectAll("text").data(datos)
         diasfinanyo = obtenerCantidadDias(agnio) - diahoy
         return `${diahoy}-${diasfinanyo}`})
 
+// let dataset = []
+// for (let i = 0; i < 10; i++) {
+//   let randomNum = Math.round(Math.random() * 10));
+//   dataset.push(randomNum)
+// }
+// console.log(dataset)
 
-let dataset = []
-for (let i = 0; i < 10; i++) {
-  let randomNum = Math.round(Math.random() * 10));
-  dataset.push(randomNum)
-}
-console.log(dataset)
-
-gematriApp.selectAll("rect")
+gematriAppG.selectAll("rect")
   .data(datos)
   .enter()
   .append("rect")
   .attr("x", (d,i)=> i * (widthApp/4 / datos.length))
-  .attr("y", (d)=> d.y)
+  .attr("y", d=> heightApp/2 - d.y)
   .attr("stroke","white")
   .attr("fill","white")
   .attr("height", (d,i) => d.x+i*5)
@@ -320,7 +338,7 @@ gematriApp.selectAll("rect")
 // DOWNLOAD SVG
 const downloadAs = require('./utils/dowloadassvg.js')
 d3.select('#savesvg').on('click', () => {
-  downloadAs.svg('svg#download', 'gematriapp.svg')
+  downloadAs.svg('svg#main-svg', 'gematriapp.svg')
 })
 
 

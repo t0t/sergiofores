@@ -9,7 +9,7 @@
     
     .form-group__item
       label(for='tufrecuencia') Tu frecuencia:
-      input#tufrecuencia(type='number' value='179' onfocus=`this.placeholder="números";this.value=""`)
+      input#inputfrecuencia(type='number' min="1" max="365" value='179' onfocus=`this.placeholder="números";this.value=""; this.max="365"`)
 
     .form-group__item
       label(for='fechanacimiento') Una fecha significativa:
