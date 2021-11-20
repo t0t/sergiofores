@@ -9,8 +9,7 @@ hambutton.addEventListener('click', openNav)
 const closesidenav = document.getElementById('closesidenav')
 closesidenav.addEventListener('click', closeNav)
 
-import { nodes, links, MANY_BODY_STRENGTH } from './data/data.js';
-import { widthApp, heightApp, centerX, centerY } from "./utils/inicializargraficas"
+
 
 // import datablog from './data/datablog.json';
 // console.log(datablog);
@@ -180,12 +179,9 @@ let frnegativa, frpositiva, diasfinanyo, diahoy, agnio
 let arjesArray = []
 
 class Mapa {
-  constructor (x, y=10, text, r, diasfinanyo, cadenanums, frnegativa) {
+  constructor (text, diasfinanyo, cadenanums, frnegativa) {
     this.colors = ["#2BC4A9","#FF6874","#9F9FFF","#FFFF9F"]
-    this.x = x
-    this.y = y
     this.text = text
-    this.r = r
     this.diasfinanyo = diasfinanyo
     this.frpositiva = frpositiva
     this.frnegativa = frnegativa
@@ -197,13 +193,18 @@ class Mapa {
   getFrecPositiva () {
     return frpositiva
   }
+  getColors() {
+    this.colors.forEach(color => {
+      console.log(color)
+    })
+  }
   cadenanums () {}
   pintacolors () {}
   diasfinanyo () {}
   diasfinanyo () {}
 }
-let newMapa = new Mapa()
-console.log(newMapa)
+let newMap = new Mapa()
+console.log(newMap.getColors())
 
 // DB datos
 const gematriAppData = require("./data/datos.json")
@@ -407,6 +408,9 @@ d3.select('#savesvg').on('click', () => {
 
 
 // --- Grafica
+import { nodes, links, MANY_BODY_STRENGTH } from './data/data.js';
+import { widthApp, heightApp, centerX, centerY } from "./utils/inicializargraficas"
+
 const simulation = d3.forceSimulation(nodes)
   .force('charge', d3.forceManyBody().strength(MANY_BODY_STRENGTH))
   .force('link', d3.forceLink(links).distance((link) => link.distance))
@@ -430,13 +434,15 @@ const lines = grafica
                   .data(links)
                   .enter()
                   .append('line')
-                  .attr('stroke', (link) => link.color || 'black');
+                  .attr('stroke', 'black');
+                  // .attr('stroke', (link) => link.color || 'black');
 const circles = grafica
                   .selectAll('circle')
                   .data(nodes)
                   .enter()
                   .append('circle')
-                  .attr('fill', (node) => node.color || 'gray')
+                  .attr('fill', 'black')
+                  // .attr('fill', (node) => node.color || 'gray')
                   .attr('r', (node) => node.size)
                   .call(dragInteraction);
 const text = grafica
@@ -475,7 +481,6 @@ simulation.on('tick', () => {
 
 
 import { isMobileDevice, isSafari } from './utils/device-detection'
-import { WebGLBufferRenderer } from 'three'
 
 if (!isSafari && !isMobileDevice()) {
   let prevScrollpos = window.pageYOffset

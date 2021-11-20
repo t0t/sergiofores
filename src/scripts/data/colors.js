@@ -5,3 +5,9 @@ export const colors = [
   ['#e2777a', '#e2777a', '#e2777a', '#e2777a', '#e2777a'],
   ['#9F9FFF', '#9F9FFF', '#9F9FFF', '#9F9FFF', '#9F9FFF'],
 ];
+// export const colors = [
+//   ['#2BC4A9', '#2BC4A9', '#2BC4A9', '#2BC4A9', '#2BC4A9'],
+//   ['#FFFF9F', 'black', '#FFFF9F', '#FFFF9F', '#FFFF9F'],
+//   ['#e2777a', '#e2777a', '#e2777a', '#e2777a', '#e2777a'],
+//   ['#9F9FFF', '#9F9FFF', '#9F9FFF', '#9F9FFF', '#9F9FFF'],
+// ];

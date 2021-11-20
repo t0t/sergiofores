@@ -7,9 +7,9 @@ const MAIN_NODE_SIZE = 35;
 const CHILD_NODE_SIZE = 15;
 const LEAF_NODE_SIZE = 4;
 const DEFAULT_DISTANCE = 100;
-const MAIN_NODE_DISTANCE = 300;
+const MAIN_NODE_DISTANCE = 100;
 const LEAF_NODE_DISTANCE = 25;
-export const MANY_BODY_STRENGTH = -1;
+export const MANY_BODY_STRENGTH = -10;
 
 let i = 0;
 
@@ -54,29 +54,44 @@ const connectMainNodes = (source, target) => {
   });
 };
 
-const uno = { id: '1' };
-addMainNode(uno);
-assembleChildNode(uno, 'Materia');
-assembleChildNode(uno, 'Existencia');
-
 const cuatro = { id: '4' };
 addMainNode(cuatro);
-assembleChildNode(cuatro, 'Identidad');
-assembleChildNode(cuatro, 'Mundo');
-assembleChildNode(cuatro, 'Techo');
-assembleChildNode(cuatro, 'Fuego');
+assembleChildNode(cuatro, 'Materia');
+assembleChildNode(cuatro, 'Existencia');
+assembleChildNode(cuatro, 'Tiempo');
+assembleChildNode(cuatro, 'Estructura');
+assembleChildNode(cuatro, 'Vida');
+assembleChildNode(cuatro, 'tierra');
+assembleChildNode(cuatro, 'hacer');
+assembleChildNode(cuatro, 'Ritmo');
+
+const uno = { id: '1' };
+addMainNode(uno);
+assembleChildNode(uno, 'Identidad');
+assembleChildNode(uno, 'Mundo');
+assembleChildNode(uno, 'Techo');
+assembleChildNode(uno, 'Foco');
+assembleChildNode(uno, 'Fuego');
+assembleChildNode(uno, 'Discernimiento');
+assembleChildNode(uno, 'Voluntad');
+assembleChildNode(uno, 'Diseño');
+assembleChildNode(uno, 'Ser');
 
 const dos = { id: '2' };
 addMainNode(dos);
 assembleChildNode(dos, 'Separacion');
 assembleChildNode(dos, 'Reshimo');
+assembleChildNode(dos, 'Membranas');
+assembleChildNode(dos, 'Memoria');
 assembleChildNode(dos, 'Sentir');
 assembleChildNode(dos, 'Emocion', 5);
+assembleChildNode(dos, 'Psique', 1);
 assembleChildNode(dos, 'Agua');
 
 const tres = { id: '3' };
 addMainNode(tres);
 assembleChildNode(tres, 'Aire');
+assembleChildNode(tres, 'Encuentro');
 assembleChildNode(tres, 'Analogía', 3);
 assembleChildNode(tres, 'Simbolo', 3);
 assembleChildNode(tres, 'Decir', 3);

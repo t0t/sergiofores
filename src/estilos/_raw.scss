@@ -123,6 +123,7 @@ section {
 .sectionResaltadaClara {
   background-color: $secondary-color;
   color: $black-color;
+  // scroll-snap-align: center;
 }
 
 .sectionResaltadaOscura {
@@ -498,7 +499,7 @@ svg.grafica {
   g {
     fill: none;
     stroke: $black-color;
-    transform: scale(7);
+    transform: scale(2);
   }
 
   path {
@@ -519,7 +520,7 @@ svg.grafica {
 
   text {
     fill: $black-color;
-    font-size: 3px;
+    font-size: 2px;
   }
 }
 
@@ -1355,9 +1356,11 @@ img.hover-shadow {
 
   .mainContent {
     background-color: $grey-color-5;
-    overflow: auto;
+    overflow-y: scroll;
+    scroll-snap-type: y proximity;
+    // height: 100vh;
   }
-
+  
   #main {
     transition: margin-left .3s;
     padding: $size-2;
@@ -1543,9 +1546,9 @@ img.hover-shadow {
     stroke: none;
     font-size: $size-0;
     // font-family: $mainff;
-    text-transform: uppercase;
+    // text-transform: uppercase;
     font-weight: $medium;
-    letter-spacing: 1px;
+    // letter-spacing: 1px;
   }
 }
 

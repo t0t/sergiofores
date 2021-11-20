@@ -418,6 +418,7 @@ section {
 .sectionResaltadaClara {
   background-color: #2BC4A9;
   color: black;
+  scroll-snap-align: center;
 }
 .sectionResaltadaOscura {
   color: #dad9d9;
@@ -742,7 +743,7 @@ svg.grafica {
 svg.grafica g {
   fill: none;
   stroke: black;
-  transform: scale(7);
+  transform: scale(2);
 }
 svg.grafica path {
   fill: #FFFF9F;
@@ -764,7 +765,7 @@ svg.grafica rect {
 }
 svg.grafica text {
   fill: black;
-  font-size: 3px;
+  font-size: 2px;
 }
 @media screen and (min-width: 373px) {
   .overlay {
@@ -1466,7 +1467,9 @@ img.hover-shadow {
 
   .mainContent {
     background-color: #323232;
-    overflow: auto;
+    overflow-y: scroll;
+    -ms-scroll-snap-type: y proximity;
+        scroll-snap-type: y proximity;
   }
 
   #main {
@@ -1633,9 +1636,7 @@ ul {
   fill: white;
   stroke: none;
   font-size: 0.61rem;
-  text-transform: uppercase;
   font-weight: 500;
-  letter-spacing: 1px;
 }
 #gematriApp svg {
   background-color: #00000056;
