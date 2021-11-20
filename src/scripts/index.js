@@ -25,13 +25,9 @@ let typewriter = new Typewriter(typeHeading, {
 })
 
 typewriter
-  .pauseFor(1500)
-  .typeString('Descifrar toda la Vida')
-  .pauseFor(2000)
   .deleteChars(13)
-  .typeString(' La Creación para encontrArte')
   .typeString('<span style="color: #2BC4A9;"> desde Cero.</span>')
-  .pauseFor(4000)
+  .pauseFor(500)
   .start()
 
 // ANIMINTRO
@@ -404,6 +400,18 @@ d3.select('#savesvg').on('click', () => {
 // valor.addEventListener("change", calculaFibonacci(getValor), false);
 // btn.addEventListener("click", calculaFibonacci(getValor), false);
 
+const container = document.querySelector(".section--cover")
+const typew = document.querySelector("#typewritter")
+
+const cursormove = (e) => {
+  let xPos = e.layerY
+  typew.style.pointerEvents = "none"
+  typew.style.display = "block"
+  typew.style.transform = `
+    rotate(${-xPos/100}deg)
+  `
+}
+container.addEventListener("mousemove", cursormove)
 
 
 

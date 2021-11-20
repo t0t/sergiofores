@@ -360,7 +360,7 @@ body {
 @media screen and (min-width: 1022px) {
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.6rem;
+    gap: 6.64rem;
   }
 }
 @media screen and (min-width: 1438px) {
@@ -398,14 +398,15 @@ video {
 }
 section {
   width: 100%;
+  min-height: 75vh;
   padding: 1.6rem;
 }
-@media screen and (min-width: 766px) {
+@media screen and (min-width: 423px) {
   section {
     padding-top: 4.1rem;
-    padding-right: 1.6rem;
+    padding-right: 6.64rem;
     padding-bottom: 4.1rem;
-    padding-left: 1.6rem;
+    padding-left: 6.64rem;
   }
 }
 .section--video {
@@ -418,16 +419,12 @@ section {
 .sectionResaltadaClara {
   background-color: #2BC4A9;
   color: black;
-  scroll-snap-align: center;
 }
 .sectionResaltadaOscura {
   color: #dad9d9;
   background-color: #00000056;
-  border-top-left-radius: 100%;
-  border-bottom-right-radius: 100%;
 }
 h1 {
-  font-size: 2.59rem;
   font-weight: 700;
   text-align: center;
   margin: 0 2.59rem;
@@ -438,7 +435,7 @@ h1 {
     font-size: 1.6rem;
   }
 }
-@media screen and (min-width: 1438px) {
+@media screen and (min-width: 766px) {
   h1 {
     font-size: 4.1rem;
   }
@@ -473,7 +470,7 @@ h4 {
   z-index: 2;
 }
 .titlePage--home {
-  max-width: 28rem;
+  color: #c0c0c0;
   text-align: center;
 }
 .subTitlePage {
@@ -560,7 +557,7 @@ ul {
   padding-right: 1.6rem;
   padding-left: 1.6rem;
   border-left: none;
-  height: 50vh;
+  height: 100vh;
   place-items: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1342,9 +1339,9 @@ img.hover-shadow {
 }
 @media screen and (min-width: 766px) {
   .section--cover {
+    height: 100vh;
     display: grid;
     place-items: center;
-    grid-template-columns: 1fr 1fr;
   }
 }
 .txt-wrap {
@@ -1467,9 +1464,6 @@ img.hover-shadow {
 
   .mainContent {
     background-color: #323232;
-    overflow-y: scroll;
-    -ms-scroll-snap-type: y proximity;
-        scroll-snap-type: y proximity;
   }
 
   #main {
@@ -1534,10 +1528,6 @@ img.hover-shadow {
     max-height: 50vh;
   }
 
-  h1 {
-    font-size: 2.59rem;
-  }
-
   .nav {
     display: inline-flex;
     position: fixed;
@@ -1592,10 +1582,6 @@ img.hover-shadow {
   }
 }
 @media screen and (min-width: 2558px) {
-  h1 {
-    font-size: 4.1rem;
-  }
-
   small {
     font-size: 1.6rem;
   }
@@ -1624,6 +1610,9 @@ ul {
   }
 }
 /* Animacion svg en cover */
+#grafica {
+  background-color: grey;
+}
 #grafica circle {
   stroke: none;
 }

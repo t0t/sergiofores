@@ -6,8 +6,8 @@ export const links = [];
 const MAIN_NODE_SIZE = 35;
 const CHILD_NODE_SIZE = 15;
 const LEAF_NODE_SIZE = 4;
-const DEFAULT_DISTANCE = 100;
-const MAIN_NODE_DISTANCE = 100;
+const DEFAULT_DISTANCE = 50;
+const MAIN_NODE_DISTANCE = 50;
 const LEAF_NODE_DISTANCE = 25;
 export const MANY_BODY_STRENGTH = -10;
 
@@ -53,6 +53,7 @@ const connectMainNodes = (source, target) => {
     color: source.color
   });
 };
+
 
 const cuatro = { id: '4' };
 addMainNode(cuatro);
