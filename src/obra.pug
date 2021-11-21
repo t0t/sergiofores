@@ -7,7 +7,7 @@ block append head
   - let current = "Obra";
 
 block content
-  header.headerContent.bgImg(style="background-image: url('./img/bg4.jpg');")
+  header.headerContent(style="background-image: url('./img/bg4.jpg');")
     h1.titlePage La poesía de la materia
     p.subTitlePage
       | Mis pinturas, al ser tridimensionales, son esculpidas por una luz que es de verdad.
@@ -84,5 +84,7 @@ block content
     blockquote.
       &ldquo;Las obras de arte también son formas simbólicas en sí mismas y, como tales, cumplen una función mediadora capaz de abrirle lo real a la conciencia.&rdquo; <br> &mdash; Gadamer
 
-  script( src="./scripts/lightbox.js")
-  script( src="./scripts/videoplayer.js")
+  block append scripts
+    script( src="./scripts/lightbox.js")
+    script( src="./scripts/videoplayer.js")
+    //- script( src="./scripts/gsapanims.js", type="module")

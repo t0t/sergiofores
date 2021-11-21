@@ -1,49 +1,25 @@
 // APP
 const d3 = require('d3')
-
-import {inputFecha, obtenerCantidadDias, traduceTexto, diasTranscurridos} from "./utils/gematriaap"
-
-let frnegativa, frpositiva, diasfinanyo, diahoy, agnio
-let arjesArray = []
-
-class Mapa {
-  constructor (text, diasfinanyo, cadenanums, frnegativa) {
-    this.colors = ["#2BC4A9","#FF6874","#9F9FFF","#FFFF9F"]
-    this.text = text
-    this.diasfinanyo = diasfinanyo
-    this.frpositiva = frpositiva
-    this.frnegativa = frnegativa
-    this.cadenanums = cadenanums
-  }
-  getDia () {
-    return diahoy
-  }
-  getFrecPositiva () {
-    return frpositiva
-  }
-  getColors() {
-    this.colors.forEach(color => {
-      console.log(color)
-    })
-  }
-  cadenanums () {}
-  pintacolors () {}
-  diasfinanyo () {}
-  diasfinanyo () {}
-}
-let newMap = new Mapa()
-console.log(newMap.getColors())
-
 // DB datos
 const gematriAppData = require("./data/datos.json")
+
 const datos = gematriAppData.datos
+
+let frnegativa, frpositiva, diasfinanyo, diahoy, agnio
+
+let arjesArray = []
+
+console.log("APP")
+
+import {inputFecha, obtenerCantidadDias, traduceTexto, diasTranscurridos} from "./utils/gematriaap"
+import { widthApp, heightApp, centerX, centerY } from "./utils/inicializargraficas"
 
 const gematriApp = d3.select("#gematriApp")
   .append('svg')
   .attr('width', widthApp)
   .attr('height', heightApp)
   .attr('id', "main-svg")
-
+console.log(gematriApp)
 const gematriAppG = gematriApp
   .append('g')
   .attr('transform', `translate(${centerX}, ${centerY})`)
@@ -157,7 +133,6 @@ circulos
       let entradaTexto = e.target.value
       let result = traduceTexto(entradaTexto)
       updateArjesArray(result)
-      Mapa.frpositiva = result
       fr
         .text(result)
         .classed("result result--anim", true)

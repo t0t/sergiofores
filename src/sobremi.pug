@@ -5,9 +5,8 @@ block append head
   meta(name="description" content="Cosas sobre arte, visión holística, crisis creativa, desarrollo de procesos creativos, Códigos, Traduciendo realidad")
 
   - let current = "Sobre mi";
-
 block content
-  header.headerContent.bgImg(style="background-image: url(./img/bg3.jpg)")
+  header.headerContent(style="background-image: url(./img/bg3.jpg)")
     h1.titlePage.
       Sergio Forés
     p.subTitlePage.
@@ -90,3 +89,6 @@ block content
   footer.blockquote--pie(style="background-image: url('./img/img3.jpg');")
     blockquote.
       "Sólo cuando bajamos al abismo recuperamos los auténticos tesoros de la vida." <br> &mdash; Joseph Campbell
+
+  block append scripts
+    //- script(type="module", src="./scripts/gsapanims.js")
