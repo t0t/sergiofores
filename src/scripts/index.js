@@ -381,6 +381,22 @@ d3.select('#savesvg').on('click', () => {
   downloadAs.svg('svg#main-svg', 'gematriapp.svg')
 })
 
+//  GSAP
+import { gsap } from "gsap";
+
+// Anim header
+const tl = gsap.timeline({defaults: {ease: "power1.out"}})
+tl.from(".titlePage--home", {y:"-50%", opacity:0, duration:2})
+tl.to(".titlePage--home", {y:"0%", duration:5}, "-=5")
+
+// Anim header
+const tl2 = gsap.timeline()
+tl2.to(".bgImg", {clipPath: "polygon(0 0, 0 100%, 100% 50%, 0 0)"})
+tl2.to(".bgImg", {clipPath: "polygon(0 0, 0 100%, 100% 100%, 100% 0)"})
+
+// bgImage.addEventListener("mouseover", () => {
+//   tl2.play()
+// })
 
 
 

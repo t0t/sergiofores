@@ -27,5 +27,8 @@
   "staticFiles": {
     "staticPath": "estatic",
     "watcherGlog": "**"
+  },
+  "dependencies": {
+    "gsap": "^3.8.0"
   }
 }

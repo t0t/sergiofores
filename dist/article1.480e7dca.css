@@ -326,6 +326,11 @@ pre[class*=language-] {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  -webkit-clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
+          clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
+  transition: -webkit-clip-path 1s;
+  transition: clip-path 1s;
+  transition: clip-path 1s, -webkit-clip-path 1s;
 }
 body {
   margin: 0;
@@ -471,6 +476,9 @@ h4 {
 }
 .titlePage--home {
   color: #c0c0c0;
+  top: 2.59rem;
+  position: -webkit-sticky;
+  position: sticky;
   text-align: center;
 }
 .subTitlePage {
@@ -598,6 +606,7 @@ hr {
   align-content: center;
   justify-items: center;
   color: black;
+  height: 100vh;
   background-color: #c0c0c0;
 }
 .footer-site .contact-me {
@@ -1311,6 +1320,7 @@ img.hover-shadow {
   position: fixed;
   top: 1.6rem;
   right: 1.6rem;
+  z-index: 1;
 }
 .nav-posts {
   list-style: none;

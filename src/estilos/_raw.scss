@@ -16,6 +16,8 @@
   display: grid;
   place-items: center;
   align-content: center;
+  // position: fixed;
+  // top: 50vh;
 }
 
 .bgImg {
@@ -23,6 +25,11 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
+  transition: clip-path 1s;
+  // &:hover {
+  //   clip-path: polygon(4% 7%, 96% 4%, 95% 92%, 8% 93%);
+  // }
 }
 
 body {
@@ -188,8 +195,9 @@ h4 {
     color: $grey-color-2;
     // position: absolute;
     // max-width: $size-8;
-    // top: $size-6;
+    top: $size-3;
     // left: 0;
+    position: sticky;
     text-align: center;
   }
   // top: 50%;
@@ -347,6 +355,7 @@ hr {
   align-content: center;
   justify-items: center;
   color: $black-color;
+  height: 100vh;
   background-color: $grey-color-2;
   // background-repeat: no-repeat;
   // background-size: $size-5;
@@ -1181,7 +1190,7 @@ img.hover-shadow {
   position: fixed;
   top: $size-2;
   right: $size-2;
-  // z-index: 98;
+  z-index: 1;
 }
 
 .nav-posts {
