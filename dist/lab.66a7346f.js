@@ -761,35 +761,6 @@ d3.select('#savesvg').on('click', ()=>{
     downloadAs.svg('svg#main-svg', 'gematriapp.svg');
 });
 _gsap.gsap.registerPlugin(_scrollTrigger.ScrollTrigger);
-let tl3 = _gsap.gsap.timeline({
-    // yes, we can add it to an entire timeline!
-    scrollTrigger: {
-        trigger: ".grid",
-        pin: true,
-        start: "top top",
-        end: "+=500",
-        scrub: 1,
-        snap: {
-            snapTo: "labels",
-            duration: {
-                min: 0.2,
-                max: 3
-            },
-            delay: 0.2,
-            ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
-        }
-    }
-});
-// add animations and labels to the timeline
-tl3.addLabel("start").from(".grid > img", {
-    scale: 0.3,
-    rotation: 45,
-    autoAlpha: 0
-}).addLabel("color").from(".grid .grid__item", {
-    backgroundColor: "#28a92b"
-}).addLabel("spin").to(".grid > img", {
-    rotation: 360
-}).addLabel("end");
 // Anim header
 const tl = _gsap.gsap.timeline({
     defaults: {
