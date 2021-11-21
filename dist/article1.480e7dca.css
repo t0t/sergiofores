@@ -121,7 +121,7 @@ pre[class*=language-] {
 .token.regex,
 .token.string,
 .token.variable {
-  color: #2BC4A9;
+  color: #4AECC1;
 }
 .token.entity,
 .token.operator,
@@ -139,7 +139,7 @@ pre[class*=language-] {
   cursor: help;
 }
 .token.inserted {
-  color: #2BC4A9;
+  color: #4AECC1;
 }
 /* ANIMACIONES */
 @-webkit-keyframes parpadea {
@@ -396,7 +396,7 @@ figure figcaption {
   font-size: 0.61rem;
   line-height: 1rem;
   padding-left: 1rem;
-  border-left: 1px solid #2BC4A9;
+  border-left: 1px solid #4AECC1;
 }
 video {
   width: 100%;
@@ -422,7 +422,7 @@ section {
   gap: 2.59rem;
 }
 .sectionResaltadaClara {
-  background-color: #2BC4A9;
+  background-color: #4AECC1;
   color: black;
 }
 .sectionResaltadaOscura {
@@ -490,7 +490,7 @@ h4 {
 @media screen and (min-width: 766px) {
   .subTitlePage {
     font-size: inherit;
-    color: #2BC4A9;
+    color: #4AECC1;
   }
 }
 p,
@@ -579,10 +579,10 @@ ul {
   padding-bottom: 0.61rem;
 }
 blockquote {
-  color: #2BC4A9;
+  color: #4AECC1;
   border-left: 1rem;
   border-left-width: 0.37rem;
-  border-left-color: #2BC4A9;
+  border-left-color: #4AECC1;
   border-left-style: solid;
   padding-left: 2.59rem;
   padding-top: 1.6rem;
@@ -595,7 +595,7 @@ blockquote {
 }
 hr {
   width: 4.1rem;
-  background-color: #2BC4A9;
+  background-color: #4AECC1;
   padding: 0.5px;
   border: none;
   margin-top: 6.64rem;
@@ -663,7 +663,7 @@ label {
   font-size: 0.61rem;
 }
 input {
-  background-color: #2BC4A9;
+  background-color: #4AECC1;
   border: none;
   border-radius: 1rem;
   padding: 1rem;
@@ -767,7 +767,7 @@ svg.grafica path {
   stroke: #e2777a;
 }
 svg.grafica rect {
-  fill: #2BC4A9;
+  fill: #4AECC1;
 }
 svg.grafica text {
   fill: black;
@@ -975,7 +975,7 @@ img {
   background-color: rgba(69, 69, 69, 0.8);
 }
 .highlight-line-add {
-  background-color: #2BC4A9;
+  background-color: #4AECC1;
 }
 .highlight-line-remove {
   background-color: #902f2f;
@@ -1024,8 +1024,8 @@ img {
   text-underline-position: from-font;
   text-underline-offset: 0;
   text-decoration-thickness: 5px;
-  -webkit-text-decoration-color: #2BC4A9;
-          text-decoration-color: #2BC4A9;
+  -webkit-text-decoration-color: #4AECC1;
+          text-decoration-color: #4AECC1;
   font-weight: 700;
   line-height: 1.6rem;
 }
@@ -1040,8 +1040,8 @@ img {
 }
 .postlist-link:hover {
   color: #e2777a;
-  -webkit-text-decoration-color: #2BC4A9;
-          text-decoration-color: #2BC4A9;
+  -webkit-text-decoration-color: #4AECC1;
+          text-decoration-color: #4AECC1;
 }
 .postlist-item-active .postlist-link {
   font-weight: 400;
@@ -1201,7 +1201,7 @@ img.hover-shadow {
 .hover-shadow:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   cursor: alias;
-  border: 1px solid #2BC4A9;
+  border: 1px solid #4AECC1;
 }
 .close {
   color: #e2777a;
@@ -1213,7 +1213,7 @@ img.hover-shadow {
 }
 .close:hover,
 .close:focus {
-  color: #2BC4A9;
+  color: #4AECC1;
   text-decoration: none;
   cursor: pointer;
 }
@@ -1279,7 +1279,7 @@ img.hover-shadow {
   background-color: #e2777a;
 }
 #Oslo {
-  background-color: #2BC4A9;
+  background-color: #4AECC1;
 }
 /* ACCORDION */
 .accordion {
@@ -1418,7 +1418,7 @@ img.hover-shadow {
     fill: #2e2e2e;
   }
   #metodosvg #uno {
-    fill: #2BC4A9;
+    fill: #4AECC1;
   }
   #metodosvg #dos {
     fill: #e2777a;
@@ -1565,7 +1565,7 @@ img.hover-shadow {
 
   .nav-item-active a {
     color: black;
-    background-color: #2BC4A9;
+    background-color: #4AECC1;
   }
 
   .nav-item-active a:hover {
@@ -1663,7 +1663,7 @@ ul {
   overflow: hidden;
   width: 450px;
   height: 450px;
-  border: 1px solid #2BC4A9;
+  border: 1px solid #4AECC1;
 }
 #animcover circle:hover {
   cursor: -webkit-grab;
@@ -1679,7 +1679,7 @@ ul {
   stroke: black;
 }
 #animcover circle:nth-child(2) {
-  fill: #2BC4A9;
+  fill: #4AECC1;
   stroke: black;
 }
 #animcover circle:nth-child(3) {
@@ -1749,7 +1749,7 @@ ul {
   stroke: none;
 }
 #coversvg #uno {
-  fill: #2BC4A9;
+  fill: #4AECC1;
   -webkit-animation-delay: 1s;
           animation-delay: 1s;
 }
@@ -1897,7 +1897,7 @@ ul {
   color: #e2777a;
 }
 .color-secondary {
-  color: #2BC4A9;
+  color: #4AECC1;
 }
 .color-tertiary {
   color: #9F9FFF;
@@ -1927,7 +1927,7 @@ ul {
   background-color: #e2777a;
 }
 .bgcolor-secondary {
-  background-color: #2BC4A9;
+  background-color: #4AECC1;
 }
 .bgcolor-tertiary {
   background-color: #9F9FFF;
