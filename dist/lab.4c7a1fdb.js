@@ -576,7 +576,7 @@ d3.select('#savesvg').on('click', ()=>{
     downloadAs.svg('svg#main-svg', 'gematriapp.svg');
 });
 
-},{"d3":"97vK6","./data/datos.json":"i2wOf","./utils/inicializargraficas":"jhWEh","./utils/gematriaap":"3Ngm5","./utils/dowloadassvg.js":"7uRyG"}],"97vK6":[function(require,module,exports) {
+},{"d3":"97vK6","./data/datos.json":"i2wOf","./utils/gematriaap":"3Ngm5","./utils/inicializargraficas":"jhWEh","./utils/dowloadassvg.js":"7uRyG"}],"97vK6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Array = require("d3-array");
@@ -30009,44 +30009,7 @@ exports.default = function(event) {
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i2wOf":[function(require,module,exports) {
 module.exports = JSON.parse("{\"datos\":[{\"id\":0,\"x\":0,\"cx\":17,\"y\":0,\"cy\":0,\"r\":50,\"lupa\":30,\"color\":\"white\",\"title\":\"Cero\",\"nombre\":\"0\",\"tags\":[\"infinito\",\"vacio\",\"actualización\"]},{\"id\":1,\"x\":100,\"cx\":100,\"y\":0,\"cy\":-50,\"r\":50,\"lupa\":24,\"color\":\"#2BC4A9\",\"title\":\"Uno\",\"nombre\":\"1\",\"tags\":[\"Tierra\",\"Materia\",\"Vida\"]},{\"id\":2,\"x\":365,\"cx\":15,\"y\":50,\"cy\":50,\"r\":20,\"lupa\":13,\"color\":\"#FF6874\",\"title\":\"Dos\",\"nombre\":\"2\",\"tags\":[\"agua\",\"separación\",\"emocion\",\"proteccion\"]},{\"id\":3,\"x\":19,\"cx\":19,\"y\":-45,\"cy\":-45,\"r\":30,\"lupa\":55,\"color\":\"#9F9FFF\",\"title\":\"Tres\",\"nombre\":\"3\",\"tags\":[\"aire\",\"simbolo\",\"encuentro\",\"analogia\"]},{\"id\":4,\"x\":0,\"cx\":0,\"y\":76,\"cy\":76,\"r\":40,\"lupa\":212,\"color\":\"#FFFF9F\",\"title\":\"Cuatro\",\"nombre\":\"4\",\"tags\":[\"fuego\",\"identidad\",\"mundo\",\"techo\"]},{\"id\":5,\"x\":17,\"cx\":17,\"y\":59,\"cy\":59,\"r\":50,\"lupa\":365,\"color\":\"grey\",\"title\":\"Cinco\",\"nombre\":\"5\",\"tags\":[\"matriz\",\"lógica\",\"arjé\"]},{\"id\":6,\"x\":12,\"cx\":12,\"y\":-45,\"cy\":-45,\"r\":60,\"lupa\":153,\"color\":\"grey\",\"title\":\"Seis\",\"nombre\":\"6\",\"tags\":[\"posibilidades\",\"universos\",\"oportunidad\"]},{\"id\":7,\"x\":25,\"cx\":38,\"y\":0,\"cy\":13,\"r\":50,\"lupa\":319,\"color\":\"red\",\"title\":\"Siete\",\"nombre\":\"7\",\"tags\":[\"origen\",\"tzimtzum\",\"genuino\"]},{\"id\":8,\"x\":50,\"cx\":50,\"y\":72,\"cy\":72,\"r\":80,\"lupa\":3,\"color\":\"grey\",\"title\":\"Ocho\",\"nombre\":\"8\",\"tags\":[\"red\",\"circuitos globales\",\"secuencia completa\"]},{\"id\":9,\"x\":74,\"cx\":74,\"y\":-45,\"cy\":-45,\"r\":90,\"lupa\":46,\"color\":\"grey\",\"title\":\"Nueve\",\"nombre\":\"9\",\"tags\":[\"propósito\",\"discernimiento\",\"foco\"]}]}");
 
-},{}],"jhWEh":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "widthApp", ()=>widthApp
-);
-parcelHelpers.export(exports, "heightApp", ()=>heightApp
-);
-parcelHelpers.export(exports, "centerX", ()=>centerX
-);
-parcelHelpers.export(exports, "centerY", ()=>centerY
-);
-parcelHelpers.export(exports, "crearSVG", ()=>crearSVG
-) // export function crearLineas(el, data) {
- //   const line = crearSVG(canvasname, el, data)
- //     .selectAll(`${el}`)
- //     .data(data)
- //     .enter()
- //     return line;
- // }
-;
-// import {d3} from "node_modules/d3/dist/d3.min.js"
-const d3 = require('d3');
-let widthApp = window.innerWidth;
-let heightApp = window.innerHeight / 2;
-const centerX = widthApp / 2;
-const centerY = heightApp / 2;
-// Inicializa cualquier svgs
-function crearGraficaSVG(nombre) {
-    const container = d3.select(`#${nombre}`).append('svg').attr('width', widthApp).attr('height', heightApp);
-    group = container.append('g').attr('transform', `translate(${widthApp / 2},${heightApp / 2})`).attr('class', `${nombre}`);
-    return group;
-}
-function crearSVG(canvasname, el, data) {
-    const elemento = crearGraficaSVG(`${canvasname}`).select(`${el}`).data(data).enter();
-    return elemento;
-}
-
-},{"d3":"97vK6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"3Ngm5":[function(require,module,exports) {
+},{}],"3Ngm5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "traduceTexto", ()=>traduceTexto
@@ -30124,7 +30087,44 @@ function obtenerCantidadDias(agnio) {
     return esAgnioBisiesto(agnio) ? 366 : 365;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7uRyG":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jhWEh":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "widthApp", ()=>widthApp
+);
+parcelHelpers.export(exports, "heightApp", ()=>heightApp
+);
+parcelHelpers.export(exports, "centerX", ()=>centerX
+);
+parcelHelpers.export(exports, "centerY", ()=>centerY
+);
+parcelHelpers.export(exports, "crearSVG", ()=>crearSVG
+) // export function crearLineas(el, data) {
+ //   const line = crearSVG(canvasname, el, data)
+ //     .selectAll(`${el}`)
+ //     .data(data)
+ //     .enter()
+ //     return line;
+ // }
+;
+// import {d3} from "node_modules/d3/dist/d3.min.js"
+const d3 = require('d3');
+let widthApp = window.innerWidth;
+let heightApp = window.innerHeight / 2;
+const centerX = widthApp / 2;
+const centerY = heightApp / 2;
+// Inicializa cualquier svgs
+function crearGraficaSVG(nombre) {
+    const container = d3.select(`#${nombre}`).append('svg').attr('width', widthApp).attr('height', heightApp);
+    group = container.append('g').attr('transform', `translate(${widthApp / 2},${heightApp / 2})`).attr('class', `${nombre}`);
+    return group;
+}
+function crearSVG(canvasname, el, data) {
+    const elemento = crearGraficaSVG(`${canvasname}`).select(`${el}`).data(data).enter();
+    return elemento;
+}
+
+},{"d3":"97vK6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7uRyG":[function(require,module,exports) {
 !function(e, t) {
     "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.downloadAs = t() : e.downloadAs = t();
 }(window, function() {

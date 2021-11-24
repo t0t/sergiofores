@@ -442,7 +442,7 @@ h1 {
 }
 @media screen and (min-width: 766px) {
   h1 {
-    font-size: 4.1rem;
+    font-size: 5vw;
   }
 }
 h2,
