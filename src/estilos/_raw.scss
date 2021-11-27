@@ -918,6 +918,12 @@ img {
   // &:last-child {
   //   padding-bottom: $size-5;
   // }
+  blockquote {
+    margin-top: $size-3;
+    margin-bottom: $size-3;
+    color: $secondary-color;
+  }
+
   @media screen and (min-width: $bp3) {
     padding-left: inherit;
     padding-right: inherit;

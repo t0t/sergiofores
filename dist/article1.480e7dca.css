@@ -1067,6 +1067,11 @@ img {
   padding-left: 1.6rem;
   padding-right: 1.6rem;
 }
+.blog blockquote {
+  margin-top: 2.59rem;
+  margin-bottom: 2.59rem;
+  color: #4AECC1;
+}
 @media screen and (min-width: 766px) {
   .blog {
     padding-left: inherit;
