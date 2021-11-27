@@ -21,10 +21,12 @@
 }
 
 .bgImg {
-  background-position: 0 0;
+  width: 100%;
+  height: 100vh;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
+  // background-attachment: fixed;
   clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
   transition: clip-path 1s;
   // &:hover {
@@ -38,7 +40,7 @@ body {
   font-family: $mainff;
   font-size: $size-1;
   font-weight: $normal;
-  background-color: $grey-color-0;
+  background-color: $grey-color-4;
   overflow-x: hidden;
 }
 
@@ -46,6 +48,13 @@ body {
   background: $quaternary-color;
 }
 
+.section {
+  padding: $size-5;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  min-height: 100vh;
+}
 .section-videogallery {
   display: grid;
   place-items: center;
@@ -53,6 +62,7 @@ body {
 }
 
 // GRID
+
 .grid {
   display: grid;
   gap: $size-0;
@@ -74,7 +84,24 @@ body {
   }
 }
 
+.grid--img {
+  // display: grid;
+  gap: 0px;
+  padding: 0px;
+  min-height: 50vh;
+  // grid-template-columns: 1fr;
+  // grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  .grid__item {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
 .grid__item {
+  // background-color: red;
+  min-height: 50vh;
+  width: 100%;
   img {
     max-height: 50vh;
   }
@@ -109,14 +136,11 @@ video {
 
 section {
   width: 100%;
-  min-height: 75vh;
+  min-height: 100vh;
   padding: $size-2;
 
   @media screen and (min-width: $bp2) {
-    padding-top: $size-4;
-    padding-right: $size-5;
-    padding-bottom: $size-4;
-    padding-left: $size-5;
+    padding: 0;
   }
 }
 
@@ -172,7 +196,6 @@ h3 {
   // font-weight: $normal;
 
   @media screen and (min-width: $bp3) {
-    padding-top: $size-4;
     padding-bottom: $size-4;
   }
 
@@ -223,7 +246,7 @@ h3,
 blockquote {
   // line-height: $size-2;
   line-height: 2rem;
-  letter-spacing: 0.2px;
+  letter-spacing: 1px;
   word-spacing: 0.5px;
 }
 
@@ -354,9 +377,9 @@ hr {
   display: grid;
   align-content: center;
   justify-items: center;
-  color: $black-color;
-  height: 100vh;
-  background-color: $grey-color-2;
+  color: $grey-color-2;
+  // height: 100vh;
+  // background-color: $grey-color-2;
   // background-repeat: no-repeat;
   // background-size: $size-5;
   // background-attachment: fixed;
@@ -383,7 +406,7 @@ hr {
   }
 
   .followme {
-    margin-top: $size-3;
+    // margin-top: $size-3;
     text-align: center;
   }
 }
@@ -396,6 +419,9 @@ hr {
   grid-template-columns: repeat(2, 1fr);
   place-items: center;
   background-color: $grey-color-3;
+  min-height: 50vh;
+  // position: fixed;
+  // bottom: 0;
 }
 
 /* Nav */
@@ -689,14 +715,14 @@ img {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: $size-1;
-  padding: 0 $size-2 $size-2;
+  // padding: 0 $size-2 $size-2;
   max-width: 600px;
   margin: 0 auto;
 }
 
 .social-links path,
 .social-links circle {
-  fill: $grey-color-3;
+  fill: $grey-color-4;
 }
 
 .social-links a:hover path {
@@ -1388,10 +1414,6 @@ img.hover-shadow {
   .tmpl-page,
   .tmpl-post {
     padding-top: $size-5;
-  }
-
-  .footer-site__item {
-    padding: $size-1;
   }
 
   .gallery {

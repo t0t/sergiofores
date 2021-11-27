@@ -9,17 +9,28 @@ block content
   header.headerContent
     include includes/cover.pug
 
-  canvas.modelo3d
-
-  #grafica
+  //- canvas.modelo3d
+  //- #grafica
 
   include includes/features.pug
   
-  footer.blockquote--pie(style="background-image: url('./img/bg2.jpg');")
+  section.grid.grid--img
+    article.grid__item(style="background-image: url('./img/bg11.jpg');")
+    article.grid__item(style="background-image: url('./img/bg2.jpg');")
+    article.grid__item(style="background-image: url('./img/bg9.jpg');")
+    article.grid__item(style="background-image: url('./img/bg10.jpg');")
+
+  section.bgImg(style="background-image: url('./img/bg1.jpg');")
+
+  section.grid.grid--img
+    article.bgImg(style="background-image: url('./img/bg7.jpg');")
+    article.bgImg(style="background-image: url('./img/bg6.jpg');")
+  
+  footer.blockquote--pie.bgImg(style="background-image: url('./img/bg13.jpg');")
     blockquote.
       &ldquo;... y cuando el Todo hubo comenzado a ordenarse, todos los elementos recibieron de Dios sus figuras por acción de las ideas y de los números.&rdquo; <br> &mdash; Platón
 
 block append scripts
-  script(src="./scripts/grafica.js", type="module")
-  script(src="./scripts/modelo3d.js", type="module")
+  //- script(src="./scripts/grafica.js", type="module")
+  //- script(src="./scripts/modelo3d.js", type="module")
   script(src="./scripts/gsapanims.js", type="module")

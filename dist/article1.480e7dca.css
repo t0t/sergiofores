@@ -322,10 +322,11 @@ pre[class*=language-] {
   align-content: center;
 }
 .bgImg {
-  background-position: 0 0;
+  width: 100%;
+  height: 100vh;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
   -webkit-clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
           clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
   transition: -webkit-clip-path 1s;
@@ -338,7 +339,7 @@ body {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  background-color: #E8E8E8;
+  background-color: #2e2e2e;
   overflow-x: hidden;
 }
 ::-moz-selection {
@@ -346,6 +347,13 @@ body {
 }
 ::selection {
   background: #FFFF9F;
+}
+.section {
+  padding: 6.64rem;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  min-height: 100vh;
 }
 .section-videogallery {
   display: grid;
@@ -373,6 +381,20 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(17.3rem, 1fr));
     gap: 4.1rem;
   }
+}
+.grid--img {
+  gap: 0px;
+  padding: 0px;
+  min-height: 50vh;
+}
+.grid--img .grid__item {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.grid__item {
+  min-height: 50vh;
+  width: 100%;
 }
 .grid__item img {
   max-height: 50vh;
@@ -403,15 +425,12 @@ video {
 }
 section {
   width: 100%;
-  min-height: 75vh;
+  min-height: 100vh;
   padding: 1.6rem;
 }
 @media screen and (min-width: 423px) {
   section {
-    padding-top: 4.1rem;
-    padding-right: 6.64rem;
-    padding-bottom: 4.1rem;
-    padding-left: 6.64rem;
+    padding: 0;
   }
 }
 .section--video {
@@ -455,7 +474,6 @@ h3 {
 @media screen and (min-width: 766px) {
   h2,
 h3 {
-    padding-top: 4.1rem;
     padding-bottom: 4.1rem;
   }
 }
@@ -500,7 +518,7 @@ p strong,
 h3,
 blockquote {
   line-height: 2rem;
-  letter-spacing: 0.2px;
+  letter-spacing: 1px;
   word-spacing: 0.5px;
 }
 em {
@@ -605,9 +623,7 @@ hr {
   display: grid;
   align-content: center;
   justify-items: center;
-  color: black;
-  height: 100vh;
-  background-color: #c0c0c0;
+  color: #c0c0c0;
 }
 .footer-site .contact-me {
   flex-direction: column;
@@ -624,7 +640,6 @@ hr {
   color: #c0c0c0;
 }
 .footer-site .followme {
-  margin-top: 2.59rem;
   text-align: center;
 }
 .franjapie {
@@ -635,6 +650,7 @@ hr {
   grid-template-columns: repeat(2, 1fr);
   place-items: center;
   background-color: #6f6f6f;
+  min-height: 50vh;
 }
 /* Nav */
 .nav {
@@ -901,13 +917,12 @@ img {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 1rem;
-  padding: 0 1.6rem 1.6rem;
   max-width: 600px;
   margin: 0 auto;
 }
 .social-links path,
 .social-links circle {
-  fill: #6f6f6f;
+  fill: #2e2e2e;
 }
 .social-links a:hover path {
   fill: black;
@@ -1485,10 +1500,6 @@ img.hover-shadow {
 .tmpl-page,
 .tmpl-post {
     padding-top: 6.64rem;
-  }
-
-  .footer-site__item {
-    padding: 1rem;
   }
 
   .gallery {
