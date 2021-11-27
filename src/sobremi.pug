@@ -5,14 +5,15 @@ block append head
   meta(name="description" content="Cosas sobre arte, visión holística, crisis creativa, desarrollo de procesos creativos, Códigos, Traduciendo realidad")
 
   - let current = "Sobre mi";
+
 block content
+
   header.headerContent(style="background-image: url(./img/bg3.jpg)")
-    h1.titlePage.
-      Sergio Forés
+    h1.titlePage Sergio Forés
     p.subTitlePage.
       "El Arte de experimentar y comprender la lógica de estar vivo"
 
-  section.grid.sectionResaltadaOscura
+  section.grid.section.sectionResaltadaOscura
     figure.grid__item
       img.rounded(src='./img/img1.jpg')
       figcaption.
@@ -28,7 +29,7 @@ block content
 
         Y ahí, a solas, en lo más profundo del pozo pasé de estar en modo interferencia a modo puente. Por primera vez en mi vida, en medio del caos pude ver el orden.
 
-  section.grid
+  section.section.grid
     p.grid__item.
       Para mí fue un descubrimiento tan grande que quise materializarlo, aterrizarlo y, sobretodo, compartirlo con otros.
 
@@ -59,8 +60,8 @@ block content
         Algo cambió en mi cerebro la primera vez que diseñé una web, era increible que haciendo click en un enlace sucedieran cosas. &iquest;Que brujería era esa? era como hacer magia, tenía que aprender más... Buscando sentar las bases para un oficio menos bohemio y más acorde con el modelo de sociedad en el que me habia criado me puse a estudiar Arte Electrónico y
         | Diseño Digital en una escuela dirigida por Claudia Giannetti.
       p.
-        Luego, por el año 2000 inicio mi carrera profesional como diseñador web (html y css), diseño gráfico, y diseñando stands en 3D para ferias.
-        | A lo largo de los años siguientes seguí aprendiendo y profundizando en un surtido de diferentes áreas como el diseño editorial o la creación de temas en Wordpress, luego me fui especializando en diseño de interfaces de usuario y prototipado en el navegador.
+        Luego, por el año 2000 inicio mi carrera profesional como diseñador web (html y css), diseño gráfico, y diseñando stands en 3D para ferias. <br>
+        A lo largo de los años siguientes seguí aprendiendo y profundizando en un surtido de diferentes áreas como el diseño editorial o la creación de temas en Wordpress, luego me fui especializando en diseño de interfaces de usuario y prototipado en el navegador.
       p.
         A la edad de 40 años tenía una familia con dos hijos maravillosos, estudios, trabajaba en remoto para una multinacional, coche, casa, capacidades, conocimientos y entonces llegó la pregunta: &iquest;Y todo esto para qué?. La vida seguia siendo imposible de comprender del todo, los años pasaban y todavía no había encontrado el sentido de mi existencia, seguía siendo ese niño que se sentía vacío por dentro y que se anestesiaba del mundo frente a un lapiz y un papel. En mi escondite todo era fantástico pero irreal. Hasta que se rompió la fantasía.
       p.
@@ -74,9 +75,7 @@ block content
 
     section
       
-      h2 Lo qué quiero que sepas de mí
-      
-      dl.grid
+      dl.grid.section
         dd.grid__item.
           No soy ningún maestro, ni sabio, ni gurú pero tampoco un "vendehumos". No estoy por encima pero tampoco por debajo de nadie. Mi único superpoder es darme cuenta de cosas que son obvias y puedo ayudar a otros que quieran verlas.
         dd.
@@ -87,8 +86,8 @@ block content
           La vida me ha puesto aquí para servir a otros de catalizador, aunque no a todo el mundo, y mi aporte es una percepción multidimensional de lo que la Creación Es, con todas las implicaciones que ello tiene, para acompañArte y estimulArte en el desarrollo de cualquier proceso creativo.
 
   footer.blockquote--pie(style="background-image: url('./img/img3.jpg');")
-    blockquote.
-      "Sólo cuando bajamos al abismo recuperamos los auténticos tesoros de la vida." <br> &mdash; Joseph Campbell
+    blockquote.highlight.
+      &ldquo; Sólo cuando bajamos al abismo recuperamos los auténticos tesoros de la vida.&rdquo; <br> &mdash; Joseph Campbell
 
   block append scripts
     //- script(type="module", src="./scripts/gsapanims.js")

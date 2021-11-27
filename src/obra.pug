@@ -30,7 +30,7 @@ block content
     img(src='./img/pieza.jpg' alt='')
   
   section
-    
+  
     h3 En exposición
     
     .gallery
@@ -57,7 +57,7 @@ block content
         each obra in obras
           img.modal-preview.hover-shadow(src= obra.preview alt= obra.title onclick=`toSlide( ${obra.id })`)
 
-  section
+  section.grid
     
     h3 Proceso
     
@@ -84,8 +84,7 @@ block content
           img(src='./img/bg7.png' alt='Imagen del proceso')
   
   footer.blockquote--pie(style="background-image: url('./img/bg3.jpg');")
-    
-    blockquote.
+    blockquote.highlight.
       &ldquo;Las obras de arte también son formas simbólicas en sí mismas y, como tales, cumplen una función mediadora capaz de abrirle lo real a la conciencia.&rdquo; <br> &mdash; Gadamer
 
   block append scripts

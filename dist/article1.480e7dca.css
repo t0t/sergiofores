@@ -425,8 +425,6 @@ video {
 }
 section {
   width: 100%;
-  min-height: 100vh;
-  padding: 1.6rem;
 }
 @media screen and (min-width: 423px) {
   section {
@@ -449,7 +447,7 @@ section {
   background-color: #00000056;
 }
 h1 {
-  font-weight: 700;
+  font-weight: 400;
   text-align: center;
   margin: 0 2.59rem;
   letter-spacing: 1.5px;
@@ -561,6 +559,7 @@ ul {
 img,
 pre,
 ul {
+    margin-top: 0;
     margin-left: auto;
     margin-right: auto;
     max-width: 45.5rem;
@@ -592,21 +591,14 @@ ul {
 }
 .blockquote--pie blockquote {
   border-left: 0px;
-  padding-left: 0px;
-  padding-top: 0.61rem;
-  padding-bottom: 0.61rem;
 }
 blockquote {
-  color: #4AECC1;
+  color: black;
   border-left: 1rem;
   border-left-width: 0.37rem;
   border-left-color: #4AECC1;
   border-left-style: solid;
-  padding-left: 2.59rem;
-  padding-top: 1.6rem;
-  padding-bottom: 1.6rem;
-  margin-top: 4.1rem;
-  margin-bottom: 4.1rem;
+  padding: 4.1rem;
   max-width: 45.5rem;
   margin-left: auto;
   margin-right: auto;
@@ -1009,7 +1001,7 @@ img {
 }
 .postlist {
   display: grid;
-  gap: 1.6rem;
+  gap: 0px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   list-style: none;
   margin-top: 0;
@@ -1025,10 +1017,8 @@ img {
   align-content: center;
   counter-increment: start-from -1;
   background-color: #E8E8E8;
-  border-top-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
-  box-shadow: 7px 7px 0px -3px rgba(0, 0, 0, 0.1);
   padding: 1rem;
+  margin-bottom: 0px;
 }
 .postlist-date {
   word-spacing: -0.5px;
@@ -1076,9 +1066,6 @@ img {
 .blog {
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-}
-.blog:last-child {
-  padding-bottom: 6.64rem;
 }
 @media screen and (min-width: 766px) {
   .blog {
@@ -1969,5 +1956,8 @@ ul {
 }
 .bgcolor-alpha-1 {
   background-color: #ffffff77;
+}
+.highlight {
+  background-color: #4AECC1;
 }
 /*# sourceMappingURL=article1.480e7dca.css.map */
