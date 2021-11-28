@@ -150,6 +150,7 @@ body {
   display: grid;
   place-items: center;
   min-height: 100vh;
+  padding: $size-2;
   
   @media screen and (min-width: $bp3) {
     padding: $size-5;
@@ -186,12 +187,11 @@ body {
 }
 
 .grid--img {
-  // display: grid;
   gap: 0px;
   padding: 0px;
   min-height: 50vh;
   // grid-template-columns: 1fr;
-  // grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
   .grid__item {
     background-position: center;
     background-size: cover;

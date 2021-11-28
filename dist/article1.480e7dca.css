@@ -443,6 +443,7 @@ body {
   display: grid;
   place-items: center;
   min-height: 100vh;
+  padding: 1.6rem;
 }
 @media screen and (min-width: 766px) {
   .section {
@@ -480,6 +481,7 @@ body {
   gap: 0px;
   padding: 0px;
   min-height: 50vh;
+  grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
 }
 .grid--img .grid__item {
   background-position: center;
