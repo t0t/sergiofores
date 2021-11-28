@@ -7,7 +7,11 @@ block append head
 block content
   - var thispage = '/'
   header.headerContent
-    include includes/cover.pug
+    .section.section--cover.bgImg(style="background-image: url('./img/bg14.jpg');")
+      h1.titlePage--home.
+        descifrar la Creación <br> para encontrArte <span id="typewritter">desde cero</span>
+
+  //- include includes/cover.pug
 
   //- canvas.modelo3d
   //- #grafica

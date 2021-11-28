@@ -322,7 +322,7 @@ h4 {
     color: $grey-color-2;
     // position: absolute;
     // max-width: $size-8;
-    top: $size-3;
+    top: 42%;
     // left: 0;
     position: sticky;
     text-align: center;
@@ -733,12 +733,15 @@ svg.grafica {
   background-color: $white-color;
   padding: $size-4;
   justify-self: start;
-  max-width: 50vw;
   background-size: cover;
   color: $black-color;
-
+  
   &Bottom {
     margin-top: $size-6;
+  }
+  
+  @media screen and (min-width: $bp3) {
+    max-width: 50vw;
   }
 }
 

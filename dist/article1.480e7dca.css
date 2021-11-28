@@ -627,7 +627,7 @@ h4 {
 }
 .titlePage--home {
   color: #c0c0c0;
-  top: 2.59rem;
+  top: 42%;
   position: -webkit-sticky;
   position: sticky;
   text-align: center;
@@ -980,12 +980,16 @@ svg.grafica text {
   background-color: white;
   padding: 4.1rem;
   justify-self: start;
-  max-width: 50vw;
   background-size: cover;
   color: black;
 }
 .cardBottom {
   margin-top: 10.7rem;
+}
+@media screen and (min-width: 766px) {
+  .card {
+    max-width: 50vw;
+  }
 }
 .menu3d {
   display: grid;
