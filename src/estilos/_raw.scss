@@ -1,15 +1,113 @@
 /* Global stylesheet */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;700&display=swap');
 
-.nav-item {
-  text-decoration: none;
+/* SIDE NAV */
+
+.sidenav {
+  display: inherit;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  background-color: $grey-color-4;
+  overflow-x: hidden;
+  transition: 0.2s;
+  padding-top: $size-5;
+
+  li {
+    list-style: none;
+    text-align: center;
+  }
+
+  a {
+    padding: $size-2 $size-1;
+    text-decoration: none;
+    font-size: $size-2;
+    font-weight: $medium;
+    color: $black-color;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .closebtn {
+    position: absolute;
+    top: 0;
+    right: $size-1;
+    font-size: $size-3;
+  }
 }
 
-// .content {
-//   padding-bottom: $size-4;
-//   padding-left: $size-2;
-//   padding-right: $size-2;
-// }
+
+.nav-item {
+  text-decoration: none;
+
+  @media screen and (min-width:$bp3) {
+    a {
+      color: $primary-color;
+    }
+    a:hover {
+      color: $white-color;
+      background-color: $black-color;
+    }
+  }
+}
+
+/* Nav */
+.nav {
+  display: none;
+  @media screen and (min-width: $bp3) {
+    display: inline-flex;
+    position: fixed;
+    list-style: none;
+    transition: top 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    z-index: 1;
+    margin: 0;
+    padding-right: $size-3;
+    text-align: center;
+    height: $size-4;
+    align-items: center;
+    font-weight: $medium;
+    height: $size-5;
+    top: inherit;
+    right: 0;
+  }
+}
+
+.nav a {
+  text-decoration: none;
+  padding: $size-0 $size-1;
+  justify-self: end;
+  border-radius: 25px;
+  margin-left: $size-1;
+}
+
+.nav-item-active {
+  a {
+    color: $black-color;
+    background-color: $secondary-color;
+  }
+  
+  a:hover {
+    cursor: pointer;
+  }
+}
+
+/* hambutton */
+.hambutton {
+  display: block;
+  position: fixed;
+  top: $size-2;
+  right: $size-2;
+  z-index: 1;
+
+  @media screen and (min-width: $bp3) {
+    display: none;
+  }
+}
+
+
 
 .headerContent {
   height: 100vh;
@@ -49,12 +147,15 @@ body {
 }
 
 .section {
-  padding: $size-5;
-  display: flex;
-  align-items: center;
-  justify-items: center;
+  display: grid;
+  place-items: center;
   min-height: 100vh;
+  
+  @media screen and (min-width: $bp3) {
+    padding: $size-5;
+  }
 }
+
 .section-videogallery {
   display: grid;
   place-items: center;
@@ -425,10 +526,7 @@ hr {
   // bottom: 0;
 }
 
-/* Nav */
-.nav {
-  display: none;
-}
+
 
 text {
   font-size: 0.4rem;
@@ -1220,13 +1318,7 @@ img.hover-shadow {
   transition: max-height 0.2s ease-out;
 }
 
-.hambutton {
-  display: block;
-  position: fixed;
-  top: $size-2;
-  right: $size-2;
-  z-index: 1;
-}
+
 
 .nav-posts {
   list-style: none;
@@ -1370,42 +1462,7 @@ img.hover-shadow {
     fill: $grey-color-2;
   }
 
-  /* SIDE NAV */
-
-  .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 99;
-    top: 0;
-    right: 0;
-    background-color: $grey-color-3;
-    overflow-x: hidden;
-    transition: 0.2s;
-    padding-top: $size-5;
-
-    li {
-      list-style: none;
-      text-align: center;
-    }
-
-    a {
-      padding: $size-2 $size-1;
-      text-decoration: none;
-      font-size: $size-2;
-      font-weight: $medium;
-      color: $black-color;
-      display: block;
-      transition: 0.3s;
-    }
-  }
-
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: $size-1;
-    font-size: $size-3;
-  }
+  
 
   .mainContent {
     background-color: $grey-color-5;
@@ -1440,15 +1497,6 @@ img.hover-shadow {
 
 @media screen and (min-width: $bp3) {
 
-  .nav-item a {
-    color: $primary-color;
-  }
-
-  .nav-item a:hover {
-    color: $white-color;
-    background-color: $black-color;
-  }
-
   .section--video {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "video texto";
@@ -1475,49 +1523,6 @@ img.hover-shadow {
 @media screen and (min-width: $bp4) {
   #metodosvg {
     max-height: 50vh;
-  }
-
-  .nav {
-    display: inline-flex;
-    position: fixed;
-    list-style: none;
-    transition: top 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-    z-index: 1;
-    margin: 0;
-    padding-right: $size-3;
-    text-align: center;
-    height: $size-4;
-    align-items: center;
-    font-weight: $medium;
-    height: $size-5;
-    top: inherit;
-    right: 0;
-  }
-
-  .nav a {
-    text-decoration: none;
-    padding: $size-0 $size-1;
-    justify-self: end;
-    border-radius: 25px;
-    margin-left: $size-1;
-  }
-
-  .nav-item-active a {
-    color: $black-color;
-    background-color: $secondary-color;
-  }
-
-  .nav-item-active a:hover {
-    cursor: pointer;
-  }
-
-  /* hambutton */
-  .hambutton {
-    display: none;
-  }
-
-  .sidenav {
-    display: inherit;
   }
 
   .txt--cero {

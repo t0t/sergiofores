@@ -312,8 +312,99 @@ pre[class*=language-] {
   fill: none;
 }
 /* Global stylesheet */
+/* SIDE NAV */
+.sidenav {
+  display: inherit;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  background-color: #2e2e2e;
+  overflow-x: hidden;
+  transition: 0.2s;
+  padding-top: 6.64rem;
+}
+.sidenav li {
+  list-style: none;
+  text-align: center;
+}
+.sidenav a {
+  padding: 1.6rem 1rem;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  font-size: 2.59rem;
+}
 .nav-item {
   text-decoration: none;
+}
+@media screen and (min-width: 766px) {
+  .nav-item a {
+    color: #e2777a;
+  }
+  .nav-item a:hover {
+    color: white;
+    background-color: black;
+  }
+}
+/* Nav */
+.nav {
+  display: none;
+}
+@media screen and (min-width: 766px) {
+  .nav {
+    display: inline-flex;
+    position: fixed;
+    list-style: none;
+    transition: top 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    z-index: 1;
+    margin: 0;
+    padding-right: 2.59rem;
+    text-align: center;
+    height: 4.1rem;
+    align-items: center;
+    font-weight: 500;
+    height: 6.64rem;
+    top: inherit;
+    right: 0;
+  }
+}
+.nav a {
+  text-decoration: none;
+  padding: 0.61rem 1rem;
+  justify-self: end;
+  border-radius: 25px;
+  margin-left: 1rem;
+}
+.nav-item-active a {
+  color: black;
+  background-color: #4AECC1;
+}
+.nav-item-active a:hover {
+  cursor: pointer;
+}
+/* hambutton */
+.hambutton {
+  display: block;
+  position: fixed;
+  top: 1.6rem;
+  right: 1.6rem;
+  z-index: 1;
+}
+@media screen and (min-width: 766px) {
+  .hambutton {
+    display: none;
+  }
 }
 .headerContent {
   height: 100vh;
@@ -349,11 +440,14 @@ body {
   background: #FFFF9F;
 }
 .section {
-  padding: 6.64rem;
-  display: flex;
-  align-items: center;
-  justify-items: center;
+  display: grid;
+  place-items: center;
   min-height: 100vh;
+}
+@media screen and (min-width: 766px) {
+  .section {
+    padding: 6.64rem;
+  }
 }
 .section-videogallery {
   display: grid;
@@ -643,10 +737,6 @@ hr {
   place-items: center;
   background-color: #6f6f6f;
   min-height: 50vh;
-}
-/* Nav */
-.nav {
-  display: none;
 }
 text {
   font-size: 0.4rem;
@@ -1322,13 +1412,6 @@ img.hover-shadow {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
 }
-.hambutton {
-  display: block;
-  position: fixed;
-  top: 1.6rem;
-  right: 1.6rem;
-  z-index: 1;
-}
 .nav-posts {
   list-style: none;
   background-color: #e2777a;
@@ -1445,40 +1528,6 @@ img.hover-shadow {
     fill: #c0c0c0;
   }
 
-  /* SIDE NAV */
-  .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 99;
-    top: 0;
-    right: 0;
-    background-color: #6f6f6f;
-    overflow-x: hidden;
-    transition: 0.2s;
-    padding-top: 6.64rem;
-  }
-  .sidenav li {
-    list-style: none;
-    text-align: center;
-  }
-  .sidenav a {
-    padding: 1.6rem 1rem;
-    text-decoration: none;
-    font-size: 1.6rem;
-    font-weight: 500;
-    color: black;
-    display: block;
-    transition: 0.3s;
-  }
-
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 1rem;
-    font-size: 2.59rem;
-  }
-
   .mainContent {
     background-color: #323232;
   }
@@ -1506,15 +1555,6 @@ img.hover-shadow {
   }
 }
 @media screen and (min-width: 766px) {
-  .nav-item a {
-    color: #e2777a;
-  }
-
-  .nav-item a:hover {
-    color: white;
-    background-color: black;
-  }
-
   .section--video {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "video texto";
@@ -1539,49 +1579,6 @@ img.hover-shadow {
 @media screen and (min-width: 1022px) {
   #metodosvg {
     max-height: 50vh;
-  }
-
-  .nav {
-    display: inline-flex;
-    position: fixed;
-    list-style: none;
-    transition: top 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-    z-index: 1;
-    margin: 0;
-    padding-right: 2.59rem;
-    text-align: center;
-    height: 4.1rem;
-    align-items: center;
-    font-weight: 500;
-    height: 6.64rem;
-    top: inherit;
-    right: 0;
-  }
-
-  .nav a {
-    text-decoration: none;
-    padding: 0.61rem 1rem;
-    justify-self: end;
-    border-radius: 25px;
-    margin-left: 1rem;
-  }
-
-  .nav-item-active a {
-    color: black;
-    background-color: #4AECC1;
-  }
-
-  .nav-item-active a:hover {
-    cursor: pointer;
-  }
-
-  /* hambutton */
-  .hambutton {
-    display: none;
-  }
-
-  .sidenav {
-    display: inherit;
   }
 
   .txt--cero {
