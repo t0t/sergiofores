@@ -24,12 +24,12 @@ gsap.to("article:nth-child(1)", {
   duration: 1,
   scrollTrigger: {
     trigger: ".card",
-    start: "top 80%",
+    start: "top 50%",
     end: "top 30%",
     // scrub: true,
     toggleActions: "restart reverse restart reverse",
     // onEnter/onLeave/onEnterBack/onLeaveBack
-    markers: true
+    markers: false
   }
 })
 
