@@ -332,7 +332,7 @@ pre[class*=language-] {
   display: inline-block;
 }
 .btn--default,
-.btn-telegram {
+.btn--primary {
   text-decoration: none;
   padding: 1rem 1.6rem;
   background-color: transparent;
@@ -342,7 +342,7 @@ pre[class*=language-] {
   background-color: #9F9FFF;
   border-color: #9F9FFF;
 }
-.btn-telegram:hover {
+.btn--primary:hover {
   background-color: #e2777a;
   border-color: #e2777a;
 }
@@ -1070,7 +1070,6 @@ img {
   grid-template-columns: 1fr 1fr;
   justify-content: center;
   gap: 0.61rem;
-  padding-top: 1.6rem;
 }
 .highlight-line {
   display: block;

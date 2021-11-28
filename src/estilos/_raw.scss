@@ -820,6 +820,12 @@ img {
 	cursor: grab;
    } */
 
+// #typewritter {
+//   background-color: transparent;
+//   // box-shadow: 0 0 $size-1 $secondary-color;
+//   box-shadow: -20px 0px 0px red, 20px 0px 0px blue;
+// }
+
 // /* Helpers */
 .rounded {
   border-radius: 50%;
@@ -858,7 +864,6 @@ img {
   grid-template-columns: 1fr 1fr;
   justify-content: center;
   gap: $size-0;
-  padding-top: $size-2;
 }
 
 .highlight-line {
