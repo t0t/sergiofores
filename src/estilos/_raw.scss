@@ -107,13 +107,14 @@
   }
 }
 
-
-
 .headerContent {
   height: 100vh;
   display: grid;
   place-items: center;
   align-content: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   // position: fixed;
   // top: 50vh;
 }
@@ -262,7 +263,7 @@ section {
 
 .sectionResaltadaOscura {
   color: $bodytextcolor;
-  background-color: $black-color-alpha-0;
+  // background-color: $black-color-alpha-0;
   // border-top-left-radius: 100%;
   // border-bottom-right-radius: 100%;
 }
@@ -295,6 +296,7 @@ h3 {
   line-height: $size-1;
   margin-bottom: $size-0;
   text-align: center;
+  letter-spacing: 2px;
   // font-weight: $normal;
 
   @media screen and (min-width: $bp3) {
@@ -358,15 +360,8 @@ em {
 }
 
 p {
-  // line-height: 1.8;
   font-size: $size-1;
   margin-bottom: $size-2;
-
-  @media screen and (min-width: $bp5) {
-    // font-size: $size-2;
-    // line-height: $size-2;
-    // font-size: $size-1;
-  }
 }
 
 p>a {
@@ -1044,11 +1039,11 @@ img {
   align-self: center;
 }
 
-.videoPanel {
-  padding-left: $size-2;
-  padding-right: $size-2;
-  padding-bottom: $size-2;
-}
+// .videoPanel {
+//   padding-left: $size-2;
+//   padding-right: $size-2;
+//   padding-bottom: $size-2;
+// }
 
 /* Web components */
 model-viewer {

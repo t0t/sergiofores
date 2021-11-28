@@ -446,6 +446,9 @@ pre[class*=language-] {
   display: grid;
   place-items: center;
   align-content: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .bgImg {
   width: 100%;
@@ -576,7 +579,6 @@ section {
 }
 .sectionResaltadaOscura {
   color: #dad9d9;
-  background-color: #00000056;
 }
 h1 {
   font-weight: 400;
@@ -600,6 +602,7 @@ h3 {
   line-height: 1rem;
   margin-bottom: 0.61rem;
   text-align: center;
+  letter-spacing: 2px;
 }
 @media screen and (min-width: 766px) {
   h2,
@@ -1214,11 +1217,6 @@ img {
 }
 .postlist-item > .post-tag {
   align-self: center;
-}
-.videoPanel {
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
-  padding-bottom: 1.6rem;
 }
 /* Web components */
 model-viewer {
