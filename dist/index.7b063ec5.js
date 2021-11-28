@@ -486,6 +486,20 @@ tl2.to(".bgImg", {
 tl2.to(".bgImg", {
     clipPath: "polygon(0 0, 0 100%, 100% 100%, 100% 0)"
 });
+// Anim sections
+_gsap.gsap.to("article:nth-child(1)", {
+    x: 400,
+    duration: 1,
+    scrollTrigger: {
+        trigger: ".card",
+        start: "top 80%",
+        end: "top 30%",
+        // scrub: true,
+        toggleActions: "restart reverse restart reverse",
+        // onEnter/onLeave/onEnterBack/onLeaveBack
+        markers: true
+    }
+});
 const container = document.querySelector(".section--cover");
 const typew = document.querySelector("#typewritter");
 const cursormove = (e)=>{
