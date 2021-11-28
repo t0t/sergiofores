@@ -12,23 +12,30 @@ block content
   //- canvas.modelo3d
   //- #grafica
 
-  include includes/features.pug
+  //- include includes/features.pug
+  section.grid.grid--img
+    img.section(src='./img/1234.svg' alt='')
+    .section 
+      p Aplicación para descifrar el código de la Creación
+      a.btn--white.btn--default.btn-telegram.m-2(href="lab.pug") GematriApp
   
   section.grid.grid--img
-    article.grid__item(style="background-image: url('./img/bg11.jpg');")
-    article.grid__item(style="background-image: url('./img/bg2.jpg');")
-    article.grid__item(style="background-image: url('./img/bg9.jpg');")
     article.grid__item(style="background-image: url('./img/bg10.jpg');")
+    article.section.card
+      p El arte como símbolo sagrado
+      p La luz revelando corrientes de formas, cristalizando el tiempo.
+    article.grid__item(style="background-image: url('./img/bg9.jpg');")
+    article.grid__item(style="background-image: url('./img/bg2.jpg');")
 
   section.grid.grid--img.color-black(style="background-image: url('./img/bg1.jpg');")
-    article.section.card
+    article.section.card.cardBottom
       p Somos vibración
       p Me interesa el proceso de lo abstracto cristalizando en la forma y cómo la totalidad de la existencia se materializa de una manera coherente.
-      a(class="btn--default  btn--black" href="#") obra plástica
+      a(class="btn--default  btn--black" href="obra.pug") obra plástica
 
   section.grid.grid--img
-    article.bgImg(style="background-image: url('./img/bg7.jpg');")
-    article.bgImg(style="background-image: url('./img/bg6.jpg');")
+    article.section.card(style="background-image: url('./img/bg7.jpg');")
+    article.section.card(style="background-image: url('./img/bg6.jpg');")
   
   footer.blockquote--pie.bgImg(style="background-image: url('./img/bg13.jpg');")
     blockquote.highlight.

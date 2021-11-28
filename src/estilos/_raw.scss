@@ -149,6 +149,7 @@ body {
 .section {
   place-items: center;
   min-height: 50vh;
+  width: 100%;
   padding: $size-2;
   
   @media screen and (min-width: $bp3) {
@@ -738,6 +739,12 @@ svg.grafica {
   padding: $size-4;
   justify-self: start;
   max-width: 50vw;
+  background-size: cover;
+  color: $black-color;
+
+  &Bottom {
+    margin-top: $size-6;
+  }
 }
 
 .menu3d {
@@ -1325,14 +1332,11 @@ img.hover-shadow {
 }
 
 .section--cover {
-  // padding-top: 0;
-  // position: relative;
   
   @media screen and (min-width: $bp3) {
     height: 100vh;
     display: grid;
     place-items: center;
-    // grid-template-columns: 1fr 1fr;
   }
 }
 

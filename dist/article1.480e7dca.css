@@ -477,6 +477,7 @@ body {
 .section {
   place-items: center;
   min-height: 50vh;
+  width: 100%;
   padding: 1.6rem;
 }
 @media screen and (min-width: 766px) {
@@ -977,6 +978,11 @@ svg.grafica text {
   padding: 4.1rem;
   justify-self: start;
   max-width: 50vw;
+  background-size: cover;
+  color: black;
+}
+.cardBottom {
+  margin-top: 10.7rem;
 }
 .menu3d {
   display: grid;
