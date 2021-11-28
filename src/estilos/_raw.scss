@@ -147,9 +147,8 @@ body {
 }
 
 .section {
-  display: grid;
   place-items: center;
-  min-height: 100vh;
+  min-height: 50vh;
   padding: $size-2;
   
   @media screen and (min-width: $bp3) {
@@ -192,6 +191,7 @@ body {
   min-height: 50vh;
   // grid-template-columns: 1fr;
   grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+  background-size: cover;
   .grid__item {
     background-position: center;
     background-size: cover;
@@ -340,6 +340,7 @@ h4 {
 }
 
 p,
+a,
 ul,
 dl,
 p strong,
@@ -517,7 +518,7 @@ hr {
   padding: $size-1;
   color: $black-color;
   display: grid;
-  font-weight: $medium;
+  // font-weight: $medium;
   grid-template-columns: repeat(2, 1fr);
   place-items: center;
   background-color: $grey-color-3;
@@ -541,7 +542,7 @@ text {
 button {
   cursor: pointer;
   text-transform: uppercase;
-  padding: $size-1;
+  padding: $size-2;
   background-color: transparent;
   border: none;
   color: $grey-color-3;
@@ -731,6 +732,14 @@ svg.grafica {
   }
 }
 
+.card {
+  align-self: center;
+  background-color: $white-color;
+  padding: $size-4;
+  justify-self: start;
+  max-width: 50vw;
+}
+
 .menu3d {
   display: grid;
   padding-bottom: $size-1;
@@ -843,41 +852,6 @@ img {
   justify-content: center;
   gap: $size-0;
   padding-top: $size-2;
-}
-
-.btn--white {
-  color: white;
-  border: 2px solid $white-color;
-}
-
-.btn--black {
-  color: $black-color;
-  border: 2px solid $black-color;
-}
-
-.btn--black:hover {
-  color: $grey-color-0;
-  background-color: $black-color;
-  border: 2px solid $black-color;
-}
-
-.btn--default,
-.btn-telegram {
-  text-decoration: none;
-  padding: $size-0 $size-1;
-  background-color: transparent;
-  border: 2px solid $black-color;
-  margin: 0;
-}
-
-.btn--default:hover {
-  background-color: $tertiary-color;
-  border-color: $tertiary-color;
-}
-
-.btn-telegram:hover {
-  background-color: $primary-color;
-  border-color: $primary-color;
 }
 
 .highlight-line {
