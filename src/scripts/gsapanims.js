@@ -19,19 +19,20 @@ tl2.to(".bgImg", {clipPath: "polygon(0 0, 0 100%, 100% 100%, 100% 0)"})
 
 
 // Anim sections
-gsap.to("article:nth-child(1)", {
-  x: 400,
-  duration: 1,
-  scrollTrigger: {
-    trigger: ".card",
-    start: "top 50%",
-    end: "top 30%",
-    // scrub: true,
-    toggleActions: "restart reverse restart reverse",
-    // onEnter/onLeave/onEnterBack/onLeaveBack
-    markers: false
-  }
-})
+// gsap.to(".card", {
+//   opacity: 0.5,
+//   duration: 1,
+//   scrollTrigger: {
+//     trigger: ".card",
+//     opacity: 1,
+//     start: "top center",
+//     end: "bottom 30%",
+//     // scrub: true,
+//     toggleActions: "restart reverse restart reverse",
+//     // onEnter/onLeave/onEnterBack/onLeaveBack
+//     markers: false
+//   }
+// })
 
 
 
