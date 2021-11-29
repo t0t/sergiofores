@@ -574,10 +574,14 @@ const downloadAs = require('./utils/dowloadassvg.js');
 d3.select('#savesvg').on('click', ()=>{
     downloadAs.svg('svg#main-svg', 'gematriapp.svg');
 });
+// MAPA INTERACTIVO SVG BASEDIEZ
 const botones = d3.selectAll("#mapabasediez > #botones > circle").data(datos);
 d3.selectAll("#mapabasediez > #botones > text").classed("avoid-clicks", true);
 const p = d3.select(".descripcion").append("p");
 botones.on("click", (d, t)=>{
+    // const este = d3.select(this);
+    // d3.select(this).attr("fill","red")
+    // console.log(d.srcElement)
     const tags = t.tags.join(", ");
     p.text(tags).style("display", "block");
 });
