@@ -468,7 +468,6 @@ const gematriAppData = require("./data/datos.json");
 const datos = gematriAppData.datos;
 let frnegativa, frpositiva, diasfinanyo, diahoy, agnio;
 let arjesArray = [];
-console.log("APP");
 const gematriApp = d3.select("#gematriApp").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp).attr('id', "main-svg");
 console.log(gematriApp);
 const gematriAppG = gematriApp.append('g').attr('transform', `translate(${_inicializargraficas.centerX}, ${_inicializargraficas.centerY})`);
@@ -574,6 +573,13 @@ gematriAppG.selectAll("rect").data(datos).enter().append("rect").attr("x", (d, i
 const downloadAs = require('./utils/dowloadassvg.js');
 d3.select('#savesvg').on('click', ()=>{
     downloadAs.svg('svg#main-svg', 'gematriapp.svg');
+});
+const botones = d3.selectAll("#mapabasediez > #botones > circle").data(datos);
+d3.selectAll("#mapabasediez > #botones > text").classed("avoid-clicks", true);
+const p = d3.select(".descripcion").append("p");
+botones.on("click", (d, t)=>{
+    const tags = t.tags.join(", ");
+    p.text(tags).style("display", "block");
 });
 
 },{"d3":"97vK6","./data/datos.json":"i2wOf","./utils/gematriaap":"3Ngm5","./utils/inicializargraficas":"jhWEh","./utils/dowloadassvg.js":"7uRyG"}],"97vK6":[function(require,module,exports) {

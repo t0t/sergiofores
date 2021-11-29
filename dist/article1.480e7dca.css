@@ -1471,6 +1471,35 @@ img.hover-shadow {
   padding-top: 1.6rem;
   padding-bottom: 1.6rem;
 }
+svg#mapabasediez {
+  transform-box: fill-box;
+}
+svg#mapabasediez #cero, svg#mapabasediez #uno, svg#mapabasediez #dos, svg#mapabasediez #tres, svg#mapabasediez #cuatro {
+  fill: #c0c0c0;
+}
+svg#mapabasediez #cinco, svg#mapabasediez #seis, svg#mapabasediez #siete, svg#mapabasediez #ocho, svg#mapabasediez #nueve {
+  fill: #6f6f6f;
+}
+svg#mapabasediez #cero, svg#mapabasediez #uno, svg#mapabasediez #dos, svg#mapabasediez #tres, svg#mapabasediez #cuatro, svg#mapabasediez #cinco, svg#mapabasediez #seis, svg#mapabasediez #siete, svg#mapabasediez #ocho, svg#mapabasediez #nueve {
+  stroke: none;
+}
+svg#mapabasediez #cero:hover, svg#mapabasediez #uno:hover, svg#mapabasediez #dos:hover, svg#mapabasediez #tres:hover, svg#mapabasediez #cuatro:hover, svg#mapabasediez #cinco:hover, svg#mapabasediez #seis:hover, svg#mapabasediez #siete:hover, svg#mapabasediez #ocho:hover, svg#mapabasediez #nueve:hover {
+  cursor: help;
+  fill: #4AECC1;
+}
+svg#mapabasediez text {
+  fill: black;
+  transform: translate(-1%, 2%);
+}
+svg#mapabasediez + .descripcion p {
+  display: none;
+  text-align: center;
+  transform: translateY(1em);
+  color: #4AECC1;
+}
+svg#mapabasediez #adicionales {
+  stroke: black;
+}
 /* MEDIAQUERIES */
 @media screen and (min-width: 318px) {
   #metodosvg {
@@ -1983,5 +2012,8 @@ ul {
 }
 .highlight {
   background-color: #4AECC1;
+}
+.avoid-clicks {
+  pointer-events: none;
 }
 /*# sourceMappingURL=article1.480e7dca.css.map */

@@ -226,3 +226,8 @@
   // background-color: $grey-color-4;
   // border-radius: $size-2;
 }
+
+
+.avoid-clicks {
+  pointer-events: none;
+}

@@ -64,6 +64,3 @@ if (!isSafari && !isMobileDevice()) {
   quitaBgFixed.style.backgroundPosition = 'bottom left'
   quitaBgFixed.style.backgroundSize = 'inherit'
 }
-
-
-console.log("lab")

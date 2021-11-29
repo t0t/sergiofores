@@ -9,8 +9,6 @@ let frnegativa, frpositiva, diasfinanyo, diahoy, agnio
 
 let arjesArray = []
 
-console.log("APP")
-
 import {inputFecha, obtenerCantidadDias, traduceTexto, diasTranscurridos} from "./utils/gematriaap"
 import { widthApp, heightApp, centerX, centerY } from "./utils/inicializargraficas"
 
@@ -186,4 +184,14 @@ gematriAppG.selectAll("rect")
 const downloadAs = require('./utils/dowloadassvg.js')
 d3.select('#savesvg').on('click', () => {
   downloadAs.svg('svg#main-svg', 'gematriapp.svg')
+})
+
+
+const botones = d3.selectAll("#mapabasediez > #botones > circle").data(datos)
+d3.selectAll("#mapabasediez > #botones > text").classed("avoid-clicks", true)
+
+const p = d3.select(".descripcion").append("p")
+botones.on("click", (d,t)=> {
+  const tags = t.tags.join(", ")
+  p.text(tags).style("display", "block")
 })

@@ -505,7 +505,6 @@ if (!_deviceDetection.isSafari && !_deviceDetection.isMobileDevice()) {
     quitaBgFixed.style.backgroundPosition = 'bottom left';
     quitaBgFixed.style.backgroundSize = 'inherit';
 }
-console.log("lab");
 
 },{"./sidenav":"9MwHJ","./utils/device-detection":"g2DKJ"}],"9MwHJ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");

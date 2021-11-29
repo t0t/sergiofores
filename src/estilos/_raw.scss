@@ -1349,6 +1349,43 @@ img.hover-shadow {
   padding-bottom: $size-2;
 }
 
+
+
+svg#mapabasediez {
+  transform-box: fill-box;
+
+  #cero, #uno, #dos, #tres, #cuatro {
+    fill: $grey-color-2;
+  }
+  #cinco, #seis, #siete, #ocho, #nueve {
+    fill: $grey-color-3;
+  }
+  #cero, #uno, #dos, #tres, #cuatro, #cinco, #seis, #siete, #ocho, #nueve {
+    stroke: none;
+    &:hover {
+      cursor: help;
+      fill: $secondary-color;
+    }
+  } 
+  text {
+    fill: $black-color;
+    transform: translate(-1%, 2%);
+  }
+
+  + .descripcion p {
+    display: none;
+    text-align: center;
+    transform: translateY(1em);
+    color: $secondary-color;
+    // background-color: #fff;
+  }
+
+  #adicionales {
+    stroke: $black-color;
+  }
+}
+
+
 /* MEDIAQUERIES */
 
 @media screen and (min-width: $bp0) {
