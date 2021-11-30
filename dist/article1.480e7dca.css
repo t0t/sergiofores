@@ -370,9 +370,10 @@ pre[class*=language-] {
   text-decoration: none;
   font-size: 1.6rem;
   font-weight: 500;
-  color: black;
+  color: white;
   display: block;
   transition: 0.3s;
+  mix-blend-mode: difference;
 }
 .sidenav .closebtn {
   position: absolute;
@@ -380,24 +381,23 @@ pre[class*=language-] {
   right: 1rem;
   font-size: 2.59rem;
 }
-.nav-item {
+.nav-item a {
   text-decoration: none;
-}
-@media screen and (min-width: 766px) {
-  .nav-item a {
-    color: #e2777a;
-  }
-  .nav-item a:hover {
-    color: white;
-    background-color: black;
-  }
+  color: white;
 }
 /* Nav */
 .nav {
   display: none;
 }
+.nav a {
+  text-decoration: none;
+  padding: 0.61rem 1rem;
+  justify-self: end;
+  margin-left: 1rem;
+}
 @media screen and (min-width: 766px) {
   .nav {
+    mix-blend-mode: difference;
     display: inline-flex;
     position: fixed;
     list-style: none;
@@ -414,19 +414,9 @@ pre[class*=language-] {
     right: 0;
   }
 }
-.nav a {
-  text-decoration: none;
-  padding: 0.61rem 1rem;
-  justify-self: end;
-  border-radius: 25px;
-  margin-left: 1rem;
-}
 .nav-item-active a {
   color: black;
-  background-color: #4AECC1;
-}
-.nav-item-active a:hover {
-  cursor: pointer;
+  background-color: white;
 }
 /* hambutton */
 .hambutton {
@@ -435,6 +425,7 @@ pre[class*=language-] {
   top: 1.6rem;
   right: 1.6rem;
   z-index: 1;
+  mix-blend-mode: difference;
 }
 @media screen and (min-width: 766px) {
   .hambutton {
@@ -1032,14 +1023,15 @@ svg.grafica text {
   left: 1.59rem;
   position: fixed;
   z-index: 10000;
+  mix-blend-mode: difference;
 }
 .logo:hover {
   transform: rotate(360deg) scale(1.1);
-  transition: transform 1s;
+  transition: transform 0.8s;
 }
 .logo circle {
-  stroke: black;
-  stroke-width: 2px;
+  stroke: white;
+  stroke-width: 1px;
   fill: none;
 }
 img {

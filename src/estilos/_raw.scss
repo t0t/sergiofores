@@ -26,9 +26,10 @@
     text-decoration: none;
     font-size: $size-2;
     font-weight: $medium;
-    color: $black-color;
+    color: $white-color;
     display: block;
     transition: 0.3s;
+    mix-blend-mode: difference;
   }
   
   .closebtn {
@@ -40,24 +41,27 @@
 }
 
 
-.nav-item {
+.nav-item a {
   text-decoration: none;
-
-  @media screen and (min-width:$bp3) {
-    a {
-      color: $primary-color;
-    }
-    a:hover {
-      color: $white-color;
-      background-color: $black-color;
-    }
-  }
+  color: $grey-color-2;
+  
+  // @media screen and (min-width:$bp3) {
+  //   color: $white-color;
+  // }
 }
 
 /* Nav */
 .nav {
   display: none;
+  a {
+    text-decoration: none;
+    padding: $size-0 $size-1;
+    justify-self: end;
+    margin-left: $size-1;
+  }
+
   @media screen and (min-width: $bp3) {
+    mix-blend-mode: difference;
     display: inline-flex;
     position: fixed;
     list-style: none;
@@ -75,24 +79,12 @@
   }
 }
 
-.nav a {
-  text-decoration: none;
-  padding: $size-0 $size-1;
-  justify-self: end;
-  border-radius: 25px;
-  margin-left: $size-1;
+
+.nav-item-active a {
+  color: $black-color;
+  background-color: $white-color;
 }
 
-.nav-item-active {
-  a {
-    color: $black-color;
-    background-color: $secondary-color;
-  }
-  
-  a:hover {
-    cursor: pointer;
-  }
-}
 
 /* hambutton */
 .hambutton {
@@ -101,6 +93,7 @@
   top: $size-2;
   right: $size-2;
   z-index: 1;
+  mix-blend-mode: difference;
 
   @media screen and (min-width: $bp3) {
     display: none;
@@ -796,16 +789,17 @@ svg.grafica {
   left: calc($size-3 - $size-1);
   position: fixed;
   z-index: 10000;
-}
+  mix-blend-mode: difference;
 
-.logo:hover {
-  transform: rotate(360deg) scale(1.1);
-  transition: transform 1s;
+  &:hover {
+    transform: rotate(360deg) scale(1.1);
+    transition: transform .8s;
+  }
 }
 
 .logo circle {
-  stroke: $black-color;
-  stroke-width: 2px;
+  stroke: $white-color;
+  stroke-width: 1px;
   fill: none;
 }
 
