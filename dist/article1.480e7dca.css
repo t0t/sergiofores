@@ -381,10 +381,6 @@ pre[class*=language-] {
   right: 1rem;
   font-size: 2.59rem;
 }
-.nav-item a {
-  text-decoration: none;
-  color: white;
-}
 /* Nav */
 .nav {
   display: none;
@@ -414,6 +410,10 @@ pre[class*=language-] {
     right: 0;
   }
 }
+.nav-item a {
+  text-decoration: none;
+  color: #c0c0c0;
+}
 .nav-item-active a {
   color: black;
   background-color: white;
@@ -433,10 +433,6 @@ pre[class*=language-] {
   }
 }
 .headerContent {
-  height: 100vh;
-  display: grid;
-  place-items: center;
-  align-content: center;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -447,8 +443,6 @@ pre[class*=language-] {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  -webkit-clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
-          clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
   transition: -webkit-clip-path 1s;
   transition: clip-path 1s;
   transition: clip-path 1s, -webkit-clip-path 1s;
@@ -457,7 +451,6 @@ body {
   margin: 0;
   color: #dad9d9;
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
-  font-size: 1rem;
   font-weight: 400;
   background-color: #2e2e2e;
   overflow-x: hidden;
@@ -551,6 +544,7 @@ video {
 }
 section {
   width: 100%;
+  position: relative;
 }
 @media screen and (min-width: 423px) {
   section {
@@ -618,9 +612,9 @@ h4 {
 }
 .titlePage--home {
   color: #c0c0c0;
-  top: 42%;
   position: -webkit-sticky;
   position: sticky;
+  top: 12vh;
   text-align: center;
 }
 .subTitlePage {
@@ -771,10 +765,8 @@ hr {
   min-height: 50vh;
 }
 text {
-  font-size: 0.4rem;
   letter-spacing: 1px;
   stroke: none;
-  font-size: 0.24rem;
   font-weight: bold;
   letter-spacing: 0.1px;
 }
@@ -1495,8 +1487,6 @@ svg#mapabasediez #adicionales {
 /* MEDIAQUERIES */
 @media screen and (min-width: 318px) {
   #metodosvg {
-    /* width y height vienen por js */
-    /* que superponga a otros elementos de la pagina no se si tiene sentido*/
     z-index: 3;
   }
 
@@ -1571,8 +1561,28 @@ svg#mapabasediez #adicionales {
     fill: #c0c0c0;
   }
 
+  svg#scrollanim {
+    transform-box: fill-box;
+    z-index: 1;
+  }
+  svg#scrollanim #cinco, svg#scrollanim #seis, svg#scrollanim #siete, svg#scrollanim #ocho, svg#scrollanim #nueve {
+    fill: #6f6f6f;
+  }
+  svg#scrollanim #cero, svg#scrollanim #uno, svg#scrollanim #dos, svg#scrollanim #tres, svg#scrollanim #cuatro, svg#scrollanim #cinco, svg#scrollanim #seis, svg#scrollanim #siete, svg#scrollanim #ocho, svg#scrollanim #nueve {
+    mix-blend-mode: soft-light;
+  }
+  svg#scrollanim text {
+    pointer-events: none;
+    font-size: 0.61rem;
+    fill: #4AECC1;
+  }
+  svg#scrollanim #adicionales path, svg#scrollanim #adicionales circle {
+    stroke: #ffffff77;
+  }
+
   .mainContent {
     background-color: #323232;
+    position: relative;
   }
 
   #main {

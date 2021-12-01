@@ -40,16 +40,6 @@
   }
 }
 
-
-.nav-item a {
-  text-decoration: none;
-  color: $grey-color-2;
-  
-  // @media screen and (min-width:$bp3) {
-  //   color: $white-color;
-  // }
-}
-
 /* Nav */
 .nav {
   display: none;
@@ -79,7 +69,14 @@
   }
 }
 
-
+.nav-item a {
+  text-decoration: none;
+  color: $grey-color-2;
+  
+  // @media screen and (min-width:$bp3) {
+  //   color: $white-color;
+  // }
+}
 .nav-item-active a {
   color: $black-color;
   background-color: $white-color;
@@ -101,10 +98,10 @@
 }
 
 .headerContent {
-  height: 100vh;
-  display: grid;
-  place-items: center;
-  align-content: center;
+  // height: 100vh;
+  // display: grid;
+  // place-items: center;
+  // align-content: center;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -119,7 +116,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   // background-attachment: fixed;
-  clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
+  // clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
   transition: clip-path 1s;
   // &:hover {
   //   clip-path: polygon(4% 7%, 96% 4%, 95% 92%, 8% 93%);
@@ -130,7 +127,7 @@ body {
   margin: 0;
   color: $bodytextcolor;
   font-family: $mainff;
-  font-size: $size-1;
+  // font-size: $size-1;
   font-weight: $normal;
   background-color: $grey-color-4;
   overflow-x: hidden;
@@ -232,6 +229,7 @@ video {
 
 section {
   width: 100%;
+  position: relative;
   // min-height: 100vh;
   // padding: $size-2;
 
@@ -239,6 +237,7 @@ section {
     padding: 0;
   }
 }
+
 
 .section--video {
   display: grid;
@@ -313,11 +312,11 @@ h4 {
   
   &--home {
     color: $grey-color-2;
-    // position: absolute;
-    // max-width: $size-8;
-    top: 42%;
-    // left: 0;
     position: sticky;
+    // max-width: $size-8;
+    top: 12vh;
+    // left: 0;
+    // position: sticky;
     text-align: center;
   }
   // top: 50%;
@@ -519,10 +518,10 @@ hr {
 
 
 text {
-  font-size: 0.4rem;
+  // font-size: 0.4rem;
   letter-spacing: 1px;
   stroke: none;
-  font-size: 0.24rem;
+  // font-size: 0.24rem;
   font-weight: bold;
   letter-spacing: 0.1px;
 }
@@ -1384,16 +1383,7 @@ svg#mapabasediez {
 
 @media screen and (min-width: $bp0) {
 
-  // .section--metodo {
-  //     padding-top: $size-3;
-  //     background-color: $grey-color-1;
-
-  //     text-align: center;
-  // }
-
   #metodosvg {
-    /* width y height vienen por js */
-    /* que superponga a otros elementos de la pagina no se si tiene sentido*/
     z-index: 3;
   }
 
@@ -1474,10 +1464,38 @@ svg#mapabasediez {
     fill: $grey-color-2;
   }
 
-  
+  // gsapanim
+  svg#scrollanim {
+    // width: 100vw;
+    transform-box: fill-box;
+    // position: fixed;
+    // top:0;
+    // left: 50vw;
+    z-index: 1;
+    // #cero, #uno, #dos, #tres, #cuatro {}
+    #cinco, #seis, #siete, #ocho, #nueve {
+      fill: $grey-color-3;
+    }
+    #cero, #uno, #dos, #tres, #cuatro, #cinco, #seis, #siete, #ocho, #nueve {
+      mix-blend-mode: soft-light;
+    } 
+    text {
+      pointer-events: none;
+      font-size: $size-0;
+      fill: $secondary-color;
+    }
+
+    #adicionales {
+      path,circle {
+        stroke: $white-color-alpha-1;
+      }
+    }
+    
+  }
 
   .mainContent {
     background-color: $grey-color-5;
+    position: relative;
     // overflow-y: scroll;
     // scroll-snap-type: y proximity;
     // height: 200vh;
