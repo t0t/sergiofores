@@ -499,7 +499,7 @@ const scrollanim = _gsap.gsap.timeline({
         start: "top center",
         end: "+=100vh 30%",
         scrub: true,
-        markers: true,
+        markers: false,
         toggleActions: "play reverse play reverse"
     }
 }).add("anim").to("#scrollanim", {

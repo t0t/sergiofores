@@ -43,7 +43,7 @@ const scrollanim = gsap
       start: "top center",
       end: "+=100vh 30%",
       scrub: true,
-      markers: true,
+      markers: false,
       toggleActions: "play reverse play reverse",
     },
   })
