@@ -141,7 +141,7 @@ body {
   place-items: center;
   min-height: 50vh;
   width: 100%;
-  padding: $size-2;
+  // padding: $size-2;
   
   @media screen and (min-width: $bp3) {
     padding: $size-5;
@@ -722,7 +722,7 @@ svg.grafica {
 .card {
   align-self: center;
   background-color: $white-color;
-  padding: $size-4;
+  // padding: $size-4;
   justify-self: start;
   background-size: cover;
   color: $black-color;

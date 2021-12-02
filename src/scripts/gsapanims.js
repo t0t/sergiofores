@@ -1,113 +1,107 @@
 //  GSAP
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 
 // Anim header
 const header = gsap.timeline({
   scrollTrigger: {
-    trigger: ".titlePage--home",
-    start: "top center",
-    end: "+=200vh center",
+    trigger: '.titlePage',
+    start: 'top center',
+    end: '+=200vh center',
     scrub: true,
     markers: false,
-    toggleActions: "play reverse play reverse",
-  },
-});
+    toggleActions: 'play reverse play reverse'
+  }
+})
 
-gsap.fromTo(".bgImg", {
-    clipPath: "polygon(0 10%, 0 100%, 100% 50%, 10% 0)",
+gsap.fromTo(
+  '.bgImg',
+  {
+    clipPath: 'polygon(0 10%, 0 100%, 100% 50%, 10% 0)'
   },
   {
-    clipPath: "polygon(0 0, 0 100%, 100% 100%, 100% 0)",
+    clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)'
   }
-);
-header.to(".titlePage--home", {
+)
+header.to('.titlePage', {
   rotate: -6,
-  // y: "-20vh",
   scale: 1.3,
-  ease: "elastic",
-  duration: 1.5,
-});
-header.to(".titlePage--home", {
+  ease: 'elastic',
+  duration: 1.5
+})
+header.to('.titlePage', {
   scale: 1,
-  rotate: 0,
-  // y: "30vh"
-});
+  rotate: 0
+})
 
-gsap.set("#scrollanim", { scale: 0.6 });
+// SVG 
+gsap.set('#scrollanim', { scale: 0.6 })
 const scrollanim = gsap
   .timeline({
     scrollTrigger: {
-      trigger: "#scrollanim",
-      start: "top 80%",
-      end: "+=100vh 30%",
+      trigger: '#scrollanim',
+      start: 'top 90%',
+      end: '+=100px 30%',
       scrub: true,
       markers: false,
-      toggleActions: "play reverse play reverse",
-    },
+      toggleActions: 'play reverse play reverse'
+    }
   })
-  .add("anim")
-  .to("#scrollanim", {
+  .add('anim')
+  .to('#scrollanim', {
     scale: 1,
-    transformOrigin: "center",
+    transformOrigin: 'center'
   })
-  .to("#adicionales circle", {
+  .fromTo('#adicionales circle', {
     opacity: 0,
-    stagger: 0.1,
-  })
-  .to("#adicionales circle", {
-    opacity: 1,
-    stagger: 0.1,
-  })
+    stagger: 0.1
+  },{ opacity: 1 })
   .fromTo(
-    "#botones circle", {
+    '#botones circle',
+    {
       opacity: 0,
-      fill: "#4AECC1",
-      scale: 1.3,
+      fill: '#4AECC1',
+      scale: 1.3
     },
     {
       scale: 1,
       stagger: 0.1,
-      ease: "elastic",
-      opacity: 1,
+      ease: 'elastic',
+      opacity: 1
     }
   )
   .fromTo(
-    "#botones text", { opacity: 0, x: -2, y: 2 },
-    { opacity: 1, fill: "black", x: -3, y: 3 }
-  );
+    '#botones text',
+    { opacity: 0, x: -2, y: 2 },
+    { opacity: 1, fill: 'black', x: -3, y: 3 }
+  )
 
-const circulos = document.querySelectorAll("#botones circle");
-circulos.forEach((el) => {
-  el.onclick = () => scrollanim.play("anim");
-});
+const circulos = document.querySelectorAll('#botones circle')
+circulos.forEach(el => {
+  el.onclick = () => scrollanim.play('anim')
+})
 
 
-
-
-let secciones = document.querySelectorAll("section")
+// Anims
+let secciones = document.querySelectorAll('.animContainer')
 secciones.forEach(element => {
-  const article = element.querySelector("article")
-  let tl = gsap.timeline()
-    .from(article, {x:-100,y: -30,ease: "back",duration:1.5})
-  
+  const article = element.querySelector('.animItem')
+  let tl = gsap
+    .timeline()
+    .fromTo(
+      article,
+      { x: -100, y: -30, opacity: 0, ease: 'back', duration: 1.5 },
+      { x: 0, y: 0, opacity: 1 }
+    )
+
   ScrollTrigger.create({
     trigger: element,
-    start: "top 80%",
-    toggleActions: "play none none reverse",
+    start: 'top 80%',
+    toggleActions: 'play none none reverse',
     animation: tl
   })
-
-  console.log(element)
-});
-
-
-
-
-
-
-
+})
 
 // mueve elemento dependiendo del cursor
 // const container = document.querySelector('.section--cover')

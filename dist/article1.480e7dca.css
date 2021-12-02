@@ -469,7 +469,6 @@ body {
   place-items: center;
   min-height: 50vh;
   width: 100%;
-  padding: 1.6rem;
 }
 @media screen and (min-width: 766px) {
   .section {
@@ -964,7 +963,6 @@ svg.grafica text {
 .card {
   align-self: center;
   background-color: white;
-  padding: 4.1rem;
   justify-self: start;
   background-size: cover;
   color: black;
