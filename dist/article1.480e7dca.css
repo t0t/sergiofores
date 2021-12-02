@@ -437,10 +437,7 @@ pre[class*=language-] {
   height: 100vh;
   display: grid;
   place-items: center;
-  align-content: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  align-content: end;
 }
 .bgImg {
   width: 100%;
@@ -453,8 +450,8 @@ pre[class*=language-] {
   transition: clip-path 1s, -webkit-clip-path 1s;
 }
 .animCrop {
-  -webkit-clip-path: polygon(28% 3%, 89% 11%, 100% 73%, 0 57%);
-          clip-path: polygon(28% 3%, 89% 11%, 100% 73%, 0 57%);
+  -webkit-clip-path: polygon(0 0, 100% 100%, 100% 0);
+          clip-path: polygon(0 0, 100% 100%, 100% 0);
 }
 body {
   margin: 0;
@@ -1468,7 +1465,8 @@ svg#mapabasediez #cero:hover, svg#mapabasediez #uno:hover, svg#mapabasediez #dos
 }
 svg#mapabasediez text {
   fill: black;
-  transform: translate(-1%, 2%);
+  font-size: 0.61rem;
+  transform: translate(-0.32em, 0.35em);
 }
 svg#mapabasediez + .descripcion p {
   display: none;

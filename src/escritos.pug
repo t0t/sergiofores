@@ -6,9 +6,8 @@ block append head
 
   - let current = "Escritos";
 
-block pageheader
-  header.headerContent(style="background-image: url('./img/bg8.png');")
-    h1.titlePage.
-      Artículos
-    p.subTitlePage.
-      "En ocasiones escribo cosas"
+block pageheader  
+  header.headerContent
+    h1.titlePage Artículos: 
+      span.subTitlePage "en ocasiones escribo cosas"
+    .section.section--cover.bgImg.animCrop(style="background-image: url('./img/bg8.png');")

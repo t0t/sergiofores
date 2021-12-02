@@ -7,11 +7,11 @@ block append head
   - let current = "Sobre mi";
 
 block content
-
-  header.headerContent(style="background-image: url(./img/bg3.jpg)")
-    h1.titlePage Sergio Forés
-    p.subTitlePage.
-      Decodificando el proceso de La Creación
+  header.headerContent
+    h1.titlePage Sergio Forés, 
+      span.subTitlePage.
+        decodificando el proceso de La Creación
+    .section.section--cover.bgImg.animCrop(style="background-image: url('./img/bg4.jpg');")
 
   section.grid.section.sectionResaltadaOscura
     figure.grid__item
@@ -94,5 +94,5 @@ block content
     blockquote.highlight.
       "Sólo cuando bajamos al abismo recuperamos los auténticos tesoros de la vida." <br> &mdash; Joseph Campbell
 
-  block append scripts
-    //- script(type="module", src="./scripts/gsapanims.js")
+block append scripts
+  script(type="module", src="./scripts/anims.js")

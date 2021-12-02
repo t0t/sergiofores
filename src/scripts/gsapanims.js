@@ -13,8 +13,7 @@ let animCrop = gsap.timeline({
     toggleActions: 'play none none reverse'
   }
 })
-animCrop.to('.animCrop', {clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)"})
-animCrop.to('.animCrop', {clipPath: "polygon(0 10%, 100% 0, 100% 87%, 0 100%)"})
+animCrop.to('.animCrop', {clipPath: "polygon(0 20%, 100% 61%, 100% 100%, 0 50%)"})
 
 // Anim header
 const header = gsap.timeline({

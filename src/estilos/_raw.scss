@@ -102,10 +102,10 @@
   height: 100vh;
   display: grid;
   place-items: center;
-  align-content: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  align-content: end;
+  // background-size: contain;
+  // background-repeat: no-repeat;
+  // background-position: center;
   // position: fixed;
   // top: 50vh;
 }
@@ -120,8 +120,9 @@
 }
 
 .animCrop {
-  clip-path: polygon(28% 3%, 89% 11%, 100% 73%, 0 57%)
+  clip-path: polygon(0 0, 100% 100%, 100% 0)
 }
+
 body {
   margin: 0;
   color: $bodytextcolor;
@@ -1347,7 +1348,8 @@ svg#mapabasediez {
   } 
   text {
     fill: $black-color;
-    transform: translate(-1%, 2%);
+    font-size: $size-0;
+    transform: translate(-0.32em, .35em);
   }
 
   + .descripcion p {
@@ -1355,7 +1357,6 @@ svg#mapabasediez {
     text-align: center;
     transform: translateY(1em);
     color: $secondary-color;
-    // background-color: #fff;
   }
 
   #adicionales {

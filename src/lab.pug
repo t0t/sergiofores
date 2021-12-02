@@ -6,11 +6,11 @@ block append head
 
   - let current = "Lab";
 
-block content
+block content      
   header.headerContent
-    h1.titlePage +0+1234
-    p.subTitlePage.
-      Una herramienta viva para descifrar realidad y verle la lógica a este momento
+    h1.titlePage +0+1234, 
+      span.subTitlePage una herramienta viva para descifrar realidad y verle la lógica a este momento
+    .section.section--cover.bgImg.animCrop(style="background-image: url('./img/bg4.jpg');")
 
   .section(style="position: relative")
     include includes/mapabasediez.svg
@@ -25,5 +25,6 @@ block content
     blockquote.highlight.
       &ldquo;Sólo cuando bajamos al abismo recuperamos los auténticos tesoros de la vida.&rdquo; <br> &mdash; Joseph Campbell
   
-  block append scripts
+block append scripts
+  script( type="module", src="./scripts/anims.js")
     
