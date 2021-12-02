@@ -534,6 +534,23 @@ const circulos = document.querySelectorAll("#botones circle");
 circulos.forEach((el)=>{
     el.onclick = ()=>scrollanim.play("anim")
     ;
+});
+let secciones = document.querySelectorAll("section");
+secciones.forEach((element)=>{
+    const article = element.querySelector("article");
+    let tl = _gsap.gsap.timeline().from(article, {
+        x: -100,
+        y: -30,
+        ease: "back",
+        duration: 1
+    });
+    _scrollTrigger.ScrollTrigger.create({
+        trigger: element,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+        animation: tl
+    });
+    console.log(element);
 }); // mueve elemento dependiendo del cursor
  // const container = document.querySelector('.section--cover')
  // const typew = document.querySelector('#typewritter')

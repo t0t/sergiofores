@@ -183,8 +183,8 @@ body {
   min-height: 50vh;
   // grid-template-columns: 1fr;
   grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
-  background-size: cover;
   .grid__item {
+    filter: brightness(1);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
