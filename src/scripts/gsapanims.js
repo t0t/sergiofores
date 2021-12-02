@@ -40,7 +40,7 @@ const scrollanim = gsap
   .timeline({
     scrollTrigger: {
       trigger: "#scrollanim",
-      start: "top center",
+      start: "top 80%",
       end: "+=100vh 30%",
       scrub: true,
       markers: false,
@@ -61,26 +61,20 @@ const scrollanim = gsap
     stagger: 0.1,
   })
   .fromTo(
-    "#botones circle",
-    {
+    "#botones circle", {
       opacity: 0,
       fill: "#4AECC1",
       scale: 1.3,
     },
     {
       scale: 1,
-      stagger: 0.2,
+      stagger: 0.1,
       ease: "elastic",
       opacity: 1,
     }
   )
   .fromTo(
-    "#botones text",
-    {
-      opacity: 0,
-      x: -2,
-      y: 2,
-    },
+    "#botones text", { opacity: 0, x: -2, y: 2 },
     { opacity: 1, fill: "black", x: -3, y: 3 }
   );
 
@@ -96,7 +90,7 @@ let secciones = document.querySelectorAll("section")
 secciones.forEach(element => {
   const article = element.querySelector("article")
   let tl = gsap.timeline()
-    .from(article, {x:-100,y: -30,ease: "back",duration:1})
+    .from(article, {x:-100,y: -30,ease: "back",duration:1.5})
   
   ScrollTrigger.create({
     trigger: element,

@@ -510,7 +510,6 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
 }
 .grid--img .grid__item {
-  filter: brightness(1);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -618,7 +617,7 @@ h4 {
   color: #c0c0c0;
   position: -webkit-sticky;
   position: sticky;
-  top: 12vh;
+  top: 12%;
   text-align: center;
 }
 .subTitlePage {
@@ -1227,11 +1226,6 @@ model-viewer {
 .tmpl-post {
   padding-top: 8.11rem;
 }
-.tmpl-home .titlePage {
-  margin-left: 0;
-  margin-right: 0;
-  text-align: left;
-}
 .img--25vw,
 .img--50vw,
 .img--100vw {
@@ -1447,12 +1441,10 @@ img.hover-shadow {
 .nav-posts li:nth-child(2) a::before {
   content: "→";
 }
-@media screen and (min-width: 766px) {
-  .section--cover {
-    height: 100vh;
-    display: grid;
-    place-items: center;
-  }
+.section--cover {
+  height: 100vh;
+  display: grid;
+  place-items: center;
 }
 .txt-wrap {
   display: block;

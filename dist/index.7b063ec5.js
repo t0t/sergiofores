@@ -496,7 +496,7 @@ _gsap.gsap.set("#scrollanim", {
 const scrollanim = _gsap.gsap.timeline({
     scrollTrigger: {
         trigger: "#scrollanim",
-        start: "top center",
+        start: "top 80%",
         end: "+=100vh 30%",
         scrub: true,
         markers: false,
@@ -517,7 +517,7 @@ const scrollanim = _gsap.gsap.timeline({
     scale: 1.3
 }, {
     scale: 1,
-    stagger: 0.2,
+    stagger: 0.1,
     ease: "elastic",
     opacity: 1
 }).fromTo("#botones text", {
@@ -542,7 +542,7 @@ secciones.forEach((element)=>{
         x: -100,
         y: -30,
         ease: "back",
-        duration: 1
+        duration: 1.5
     });
     _scrollTrigger.ScrollTrigger.create({
         trigger: element,
