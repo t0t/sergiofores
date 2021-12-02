@@ -98,6 +98,7 @@
 }
 
 .headerContent {
+  position: relative;
   height: 100vh;
   display: grid;
   place-items: center;
@@ -115,14 +116,12 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  // background-attachment: fixed;
-  // clip-path: polygon(0 0, 0 100%, 0 100%, 0 0);
   transition: clip-path 1s;
-  // &:hover {
-  //   clip-path: polygon(4% 7%, 96% 4%, 95% 92%, 8% 93%);
-  // }
 }
 
+.animCrop {
+  clip-path: polygon(28% 3%, 89% 11%, 100% 73%, 0 57%)
+}
 body {
   margin: 0;
   color: $bodytextcolor;
@@ -307,19 +306,9 @@ h4 {
 .titlePage {
   text-align: center;
   margin-bottom: $size-0;
-  z-index: 2;
-  
-  &--home {
-    color: $grey-color-2;
-    position: sticky;
-    // max-width: $size-8;
-    top: 12%;
-    // left: 0;
-    // position: sticky;
-    text-align: center;
-  }
-  // top: 50%;
-  // right: 1%;
+  z-index: 1;
+  position: sticky;
+  top: 40%;
 }
 
 .subTitlePage {

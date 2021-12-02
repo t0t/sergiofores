@@ -7,9 +7,9 @@ block append head
 block content
   - var thispage = '/'
   header.headerContent
-    .section.section--cover.bgImg(style="background-image: url('./img/bg14.jpg');")
-      h1.titlePage.
-        descifrar la Creación <br> para encontrArte desde cero
+    h1.titlePage.
+      descifrar la Creación <br> para encontrArte desde cero
+    .section.section--cover.bgImg.animCrop(style="background-image: url('./img/bg14.jpg');")
 
   section.grid.grid--img
     svg#scrollanim(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 101 66')
@@ -54,7 +54,7 @@ block content
   
   section.grid.grid--img.animContainer
     article.grid__item.animItem(style="background-image: url('./img/bg10.jpg');")
-    article.section.card
+    article.section.card.animItem
       p Realizo esculturas plásticas que son símbolos vivos de lo sagrado, y sobre las cuales la luz revela corrientes de formas que cristalizan en el tiempo.
       a(class="btn--default  btn--black" href="obra.pug") obra plástica
     article.grid__item(style="background-image: url('./img/bg9.jpg');")
@@ -65,9 +65,9 @@ block content
       p Durante mi trayectoria laboral desde 1999 me he movido en distintos mundos: prototipando interfaces de usuario, creando temas en Wordpress, maquetando aplicaciones web, revistas, identidad corporativa, etc. todo esto me ha dado un poso técnico de conocimientos que he terminado vinculando a cuestiones vocacionales, artísticas y holísticas.
       a(class="btn--default  btn--black" href="sobremi.pug") sobre mí
 
-  section.grid.grid--img.animContainer
-    article.section.card.animItem(style="background-image: url('./img/bg7.jpg');")
-    article.section.card.animItem(style="background-image: url('./img/bg6.jpg');")
+  section.grid.grid--img
+    article.section.card(style="background-image: url('./img/bg7.jpg');")
+    article.section.card(style="background-image: url('./img/bg6.jpg');")
   
   footer.blockquote--pie.bgImg(style="background-image: url('./img/bg13.jpg');")
     blockquote.highlight.

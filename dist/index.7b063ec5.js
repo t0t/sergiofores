@@ -463,6 +463,21 @@ function hmrAcceptRun(bundle, id) {
 var _gsap = require("gsap");
 var _scrollTrigger = require("gsap/ScrollTrigger");
 _gsap.gsap.registerPlugin(_scrollTrigger.ScrollTrigger);
+// Anim crop
+let animCrop = _gsap.gsap.timeline({
+    scrollTrigger: {
+        trigger: ".animCrop",
+        start: "top 100vw",
+        scrub: true,
+        toggleActions: 'play none none reverse'
+    }
+});
+animCrop.to('.animCrop', {
+    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
+});
+animCrop.to('.animCrop', {
+    clipPath: "polygon(0 10%, 100% 0, 100% 87%, 0 100%)"
+});
 // Anim header
 const header = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -473,11 +488,6 @@ const header = _gsap.gsap.timeline({
         markers: false,
         toggleActions: 'play reverse play reverse'
     }
-});
-_gsap.gsap.fromTo('.bgImg', {
-    clipPath: 'polygon(0 10%, 0 100%, 100% 50%, 10% 0)'
-}, {
-    clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0)'
 });
 header.to('.titlePage', {
     rotate: -6,
@@ -496,18 +506,17 @@ _gsap.gsap.set('#scrollanim', {
 const scrollanim = _gsap.gsap.timeline({
     scrollTrigger: {
         trigger: '#scrollanim',
-        start: 'top 90%',
-        end: '+=100px 30%',
+        start: 'top 80%',
+        end: 'bottom 80%',
         scrub: true,
         markers: false,
         toggleActions: 'play reverse play reverse'
     }
 }).add('anim').to('#scrollanim', {
-    scale: 1,
+    scale: 0.9,
     transformOrigin: 'center'
 }).fromTo('#adicionales circle', {
-    opacity: 0,
-    stagger: 0.1
+    opacity: 0
 }, {
     opacity: 1
 }).fromTo('#botones circle', {
@@ -516,42 +525,40 @@ const scrollanim = _gsap.gsap.timeline({
     scale: 1.3
 }, {
     scale: 1,
-    stagger: 0.1,
+    stagger: {
+        amount: 2
+    },
     ease: 'elastic',
     opacity: 1
 }).fromTo('#botones text', {
-    opacity: 0,
-    x: -2,
-    y: 2
+    opacity: 0
 }, {
     opacity: 1,
     fill: 'black',
     x: -3,
     y: 3
-});
+}, "+=10");
 const circulos = document.querySelectorAll('#botones circle');
 circulos.forEach((el)=>{
     el.onclick = ()=>scrollanim.play('anim')
     ;
 });
 // Anims
-let secciones = document.querySelectorAll('.animContainer');
-secciones.forEach((element)=>{
-    const article = element.querySelector('.animItem');
-    let tl = _gsap.gsap.timeline().fromTo(article, {
-        x: -100,
-        y: -30,
-        opacity: 0,
-        ease: 'back',
-        duration: 1.5
+let animContainer = document.querySelectorAll('.animContainer');
+animContainer.forEach((element)=>{
+    const animItem = element.querySelector('.animItem');
+    let tl = _gsap.gsap.timeline().fromTo(animItem, {
+        width: "0%",
+        opacity: 0
     }, {
-        x: 0,
-        y: 0,
-        opacity: 1
+        width: "100%",
+        opacity: 1,
+        ease: 'back',
+        duration: 2
     });
     _scrollTrigger.ScrollTrigger.create({
         trigger: element,
-        start: 'top 80%',
+        start: 'top 60%',
         toggleActions: 'play none none reverse',
         animation: tl
     });

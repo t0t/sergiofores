@@ -433,6 +433,7 @@ pre[class*=language-] {
   }
 }
 .headerContent {
+  position: relative;
   height: 100vh;
   display: grid;
   place-items: center;
@@ -450,6 +451,10 @@ pre[class*=language-] {
   transition: -webkit-clip-path 1s;
   transition: clip-path 1s;
   transition: clip-path 1s, -webkit-clip-path 1s;
+}
+.animCrop {
+  -webkit-clip-path: polygon(28% 3%, 89% 11%, 100% 73%, 0 57%);
+          clip-path: polygon(28% 3%, 89% 11%, 100% 73%, 0 57%);
 }
 body {
   margin: 0;
@@ -610,14 +615,10 @@ h4 {
 .titlePage {
   text-align: center;
   margin-bottom: 0.61rem;
-  z-index: 2;
-}
-.titlePage--home {
-  color: #c0c0c0;
+  z-index: 1;
   position: -webkit-sticky;
   position: sticky;
-  top: 12%;
-  text-align: center;
+  top: 40%;
 }
 .subTitlePage {
   font-size: 1.6rem;
