@@ -422,10 +422,19 @@ pre[class*=language-] {
 .hambutton {
   display: block;
   position: fixed;
-  top: 1.6rem;
-  right: 1.6rem;
+  top: 1rem;
+  right: 1rem;
+  width: 2.59rem;
   z-index: 1;
   mix-blend-mode: difference;
+  background-color: black;
+}
+.hambutton:hover {
+  cursor: pointer;
+}
+.hambutton line {
+  stroke-width: 4px;
+  stroke: white;
 }
 @media screen and (min-width: 766px) {
   .hambutton {

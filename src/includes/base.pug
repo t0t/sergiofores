@@ -15,7 +15,7 @@ html(lang='es')
 
   body(style="overflow: hidden")
     #wrap-preloader(style='display: grid; place-items: center; width: 100vw; height: 100vh; background-color: #2e2e2e;')
-      svg#preloader.animintro(viewbox='-0 -0 110 110' xmlns='http://www.w3.org/2000/svg')
+      svg#preloader.animintro(viewbox='-0 -0 110 110' xmlns='http://www.w3.org/2000/svg' style="width: 80%")
         circle.grande(cx='50%' cy='50%' r='50' vector-effect='non-scaling-stroke')
         circle.mediano(cx='27.5%' cy='50%' r='25' vector-effect='non-scaling-stroke')
         circle.mediano(cx='72.5%' cy='50%' r='25' vector-effect='non-scaling-stroke')
@@ -29,7 +29,7 @@ html(lang='es')
         include brand
         include navbar
         include sidenav
-        span#hambutton.hambutton(style="font-size:30px;cursor:pointer") &#9776;
+        include hambutton.svg
 
       main#maincontent.mainContent
         block pageheader 
@@ -41,6 +41,7 @@ html(lang='es')
 
     script(type="module", src="./scripts/prism.js")
     script(type="module", src="./scripts/index.js")
+    script(type="module", src="./scripts/animhambutton.js")
     script(type="module", src="./scripts/gematriapp.js")
     
     block scripts

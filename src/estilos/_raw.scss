@@ -87,10 +87,21 @@
 .hambutton {
   display: block;
   position: fixed;
-  top: $size-2;
-  right: $size-2;
+  top: $size-1;
+  right: $size-1;
+  width: $size-3;
   z-index: 1;
   mix-blend-mode: difference;
+  background-color: black;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  line {
+    stroke-width: 4px;
+    stroke: $white-color;
+  }
 
   @media screen and (min-width: $bp3) {
     display: none;
@@ -103,11 +114,6 @@
   display: grid;
   place-items: center;
   align-content: end;
-  // background-size: contain;
-  // background-repeat: no-repeat;
-  // background-position: center;
-  // position: fixed;
-  // top: 50vh;
 }
 
 .bgImg {
