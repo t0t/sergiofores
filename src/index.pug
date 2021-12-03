@@ -4,11 +4,11 @@ block append head
   title #{sitename} - Sergio Forés, arte, desarrollo web y conciencia holistica
   meta(name="description" content="Aporto una perspectiva multidimensional, transdisciplinar y holistica de la Creación para encontrarnos a nosotros mismos en el contexto desde el vacío.")
 
-block content
   - var thispage = '/'
+
+block content
   header.headerContent
-    h1.titlePage.
-      descifrar la Creación <br> para encontrArte desde cero
+    h1.titlePage descifrar la Creación <br> para encontrArte desde cero
     .bgImg.animCrop(style="background-image: url('./img/bg5.jpg');")
 
   section.grid.grid--img
@@ -74,6 +74,7 @@ block content
       &ldquo;... y cuando el Todo hubo comenzado a ordenarse, todos los elementos recibieron de Dios sus figuras por acción de las ideas y de los números.&rdquo; <br> &mdash; Platón
 
 block append scripts
+  script(type="module", src="./scripts/anims.js")
+  script(src="./scripts/gsapanims.js", type="module")
   //- script(src="./scripts/grafica.js", type="module")
   //- script(src="./scripts/modelo3d.js", type="module")
-  script(src="./scripts/gsapanims.js", type="module")
