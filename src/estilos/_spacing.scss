@@ -94,7 +94,7 @@ blockquote {
   margin-left: auto;
   margin-right: auto;
   
-  @media screen and (min-width: $bp4) {
+  @media screen and (min-width: $bp6) {
     max-width: $size-10;
     margin-left: auto;
     margin-right: auto;
@@ -107,7 +107,8 @@ button {
 }
 
 .titlePage {
-  margin-bottom: $size-0;
+  margin-top: $size-3;
+  margin-bottom: $size-3;
   top: 40%;
 }
 

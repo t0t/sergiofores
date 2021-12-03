@@ -11,27 +11,28 @@ block content
     h1.titlePage Corrientes de formas, 
       mark.subTitlePage obras tridimensionales esculpidas por una luz que es de verdad.
     .bgImg.animCrop(style="background-image: url('./img/bg8.png');")
-  
+
   .grid.sectionResaltadaOscura  
     .grid__item
       video#video1(poster='./img/arte3d.jpeg')
         source(src='./videos/desdelapoesiadelamateria.mp4' type='video/mp4')
         source(src='./videos/desdelapoesiadelamateria.webm' type='video/webm')
         | Your browser does not support the video tag.
-    
-    .grid__item.pr-3
+
+    .card
       p.
         Fluidos en un espacio etérico reaccionan a dinámicas vibracionales e inercias sinérgicas que fraguan en un no-tiempo donde se palpa el pálpito del tiempo detenido y se vive el instante como símbolo.
-      
+
       button.btn--white(onclick='playPause()') Play/Stop Video presentación
-  
+
   figure.p-0
     img(src='./img/pieza.jpg' alt='')
-  
+
   section
-  
+
+    hr
     h3 En exposición
-    
+
     .gallery
       each obra in obras
         .gallery__item
@@ -51,38 +52,42 @@ block content
 
       a.previous(onclick=`changeSlide(-1)`) &#x276E;
       a.next(onclick=`changeSlide(1)`) &#x276F;
-      
+
       .dots
         each obra in obras
           img.modal-preview.hover-shadow(src= obra.preview alt= obra.title onclick=`toSlide( ${obra.id })`)
 
-  section.grid
-    
+  section
+
+    hr
+
     h3 Proceso
-    
+
     .grid
 
-      .grid__item
+      .card.grid__item
+
         video#video2(controls='false' loop='true' autoplay)
           source(src='./videos/proceso.webm' type='video/webm')
           source(src='./videos/proceso.mp4' type='video/mp4')
           | Your browser does not support the video tag.
-        
+
         p.
           Las piezas parten de un entorno digital donde se generan mallas 3D que son transformadas por los efectos de determinadas físicas de vibración. Luego se lleva a producción, se imprimen en gran formato y se le dan los acabados con resinas, arenas y pigmentos.
-      
-      .grid__item.aligselftop
-        
+
+      .card.grid__item
+
         figure
           img(src='./img/bg4.jpg' alt='Imagen del proceso')
-        
+
         p.
           Diferentes longitudes de onda en el espectro. La luz, el color y la perspectiva, desde donde se observa, generan la conexión con todo lo que integra el instante.
-    
-    .grid 
-      figure
+
+      .card.grid__item
+
+        figure
           img(src='./img/bg7.png' alt='Imagen del proceso')
-  
+
   footer.blockquote--pie(style="background-image: url('./img/bg3.jpg');")
     blockquote.highlight.
       &ldquo;Las obras de arte también son formas simbólicas en sí mismas y, como tales, cumplen una función mediadora capaz de abrirle lo real a la conciencia.&rdquo; <br> &mdash; Gadamer

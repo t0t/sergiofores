@@ -98,7 +98,7 @@
     stroke-width: 4px;
   }
 
-  // @media screen and (min-width: $bp3) {
-  //   display: none;
-  // }
+  @media screen and (min-width: $bp3) {
+    display: none;
+  }
 }

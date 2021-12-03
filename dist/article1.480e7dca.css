@@ -403,7 +403,7 @@ blockquote {
   margin-left: auto;
   margin-right: auto;
 }
-@media screen and (min-width: 1022px) {
+@media screen and (min-width: 2558px) {
   blockquote {
     max-width: 73.7rem;
     margin-left: auto;
@@ -414,7 +414,8 @@ button {
   padding: 1.6rem;
 }
 .titlePage {
-  margin-bottom: 0.61rem;
+  margin-top: 2.59rem;
+  margin-bottom: 2.59rem;
   top: 40%;
 }
 .mainContent {
@@ -1014,10 +1015,16 @@ body {
     gap: 1rem;
   }
 }
+@media screen and (min-width: 766px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.6rem;
+  }
+}
 @media screen and (min-width: 1022px) {
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 6.64rem;
+    gap: 1.6rem;
   }
 }
 @media screen and (min-width: 1438px) {
@@ -1944,6 +1951,11 @@ pre {
 }
 .hambutton line {
   stroke-width: 4px;
+}
+@media screen and (min-width: 766px) {
+  .hambutton {
+    display: none;
+  }
 }
 .nomargin {
   margin: 0px;

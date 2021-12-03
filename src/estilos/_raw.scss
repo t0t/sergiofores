@@ -49,9 +49,14 @@ body {
     gap: $size-1;
   }
 
+  @media screen and (min-width: $bp3) {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: $size-2;
+  }
+  
   @media screen and (min-width: $bp4) {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: $size-5;
+    gap: $size-2;
   }
 
   @media screen and (min-width: $bp5) {
