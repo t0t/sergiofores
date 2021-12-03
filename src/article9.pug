@@ -6,13 +6,13 @@ block head
 
 block pageheader
   header.headerContent
-    h1.titlePage.
-      #{articles[8].title}
-    p.subTitlePage.
-      #{articles[8].description}
+    h1.titlePage #{articles[8].title} 
+      span.subTitlePage <mark>#{articles[8].description}</mark>
+
+    .bgImg.animCrop(style="background-image: url('./img/bg13.jpg')")
 
 block blog
-  
+
   ul
     li.
       Cerramos los ojos, no vemos nada, nuestra visión, que es mental, se expande porque ya no “tropieza” con cosas.

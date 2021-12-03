@@ -126,7 +126,8 @@
 }
 
 .animCrop {
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)
+  mix-blend-mode: exclusion;
+  // clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)
 }
 
 body {
@@ -135,12 +136,13 @@ body {
   font-family: $mainff;
   // font-size: $size-1;
   font-weight: $normal;
-  background-color: $grey-color-4;
+  // background-color: $grey-color-4;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: $quaternary-color;
+  color: $black-color;
+  background: $secondary-color;
 }
 
 .section {
@@ -235,14 +237,11 @@ video {
 section {
   width: 100%;
   position: relative;
-  // min-height: 100vh;
-  // padding: $size-2;
 
   @media screen and (min-width: $bp2) {
     padding: 0;
   }
 }
-
 
 .section--video {
   display: grid;
@@ -255,18 +254,13 @@ section {
 .sectionResaltadaClara {
   background-color: $secondary-color;
   color: $black-color;
-  // scroll-snap-align: center;
 }
 
 .sectionResaltadaOscura {
   color: $bodytextcolor;
-  // background-color: $black-color-alpha-0;
-  // border-top-left-radius: 100%;
-  // border-bottom-right-radius: 100%;
 }
 
 h1 {
-  // font-size: $size-2;
   font-weight: $normal;
   text-align: center;
   margin: 0 $size-3;
@@ -277,14 +271,8 @@ h1 {
   }
   @media screen and (min-width: $bp3) {
     font-size: 5vw;
-    // letter-spacing: 1px;
-    // font-weight: $medium;
-    // color: red;
   }
 
-  // @media screen and (min-width: $bp5) {
-  //   font-size: $size-4;
-  // }
 }
 
 h2,
@@ -294,7 +282,6 @@ h3 {
   margin-bottom: $size-0;
   text-align: center;
   letter-spacing: 2px;
-  // font-weight: $normal;
 
   @media screen and (min-width: $bp3) {
     padding-bottom: $size-4;
@@ -321,11 +308,10 @@ h4 {
 .subTitlePage {
   font-size: $size-2;
   text-align: center;
-  margin-top: 0;
-  margin-bottom: $size-4;
+
   @media screen and (min-width: $bp3) {
     font-size: inherit;
-    color: $secondary-color;
+    // color: $secondary-color;
   }
 }
 
@@ -336,7 +322,6 @@ dl,
 p strong,
 h3,
 blockquote {
-  // line-height: $size-2;
   line-height: 2rem;
   letter-spacing: 1px;
   word-spacing: 0.5px;
@@ -349,6 +334,7 @@ em {
 p {
   font-size: $size-1;
   margin-bottom: $size-2;
+  font-weight: $medium;
 }
 
 p>a {
@@ -439,12 +425,8 @@ blockquote {
   border-left-width: $size--1;
   border-left-color: $secondary-color;
   border-left-style: solid;
-  // padding-left: $size-4;
+  font-weight: $medium;
   padding: $size-4;
-  // padding-bottom: $size-4;
-  // font-weight: $bold;
-  // margin-top: $size-4;
-  // margin-bottom: $size-4;
   max-width: $size-9;
   margin-left: auto;
   margin-right: auto;
@@ -463,13 +445,9 @@ hr {
   display: grid;
   align-content: center;
   justify-items: center;
-  color: $grey-color-2;
-  // height: 100vh;
-  // background-color: $grey-color-2;
-  // background-repeat: no-repeat;
-  // background-size: $size-5;
-  // background-attachment: fixed;
-  // background-position: center $size-5;
+  font-weight: $medium;
+  // color: $black-color;
+  background-color: $grey-color;
 }
 
 .footer-site .contact-me {
@@ -717,7 +695,7 @@ svg.grafica {
 
 .card {
   align-self: center;
-  background-color: $white-color;
+  // background-color: $white-color;
   // padding: $size-4;
   justify-self: start;
   background-size: cover;
@@ -785,16 +763,15 @@ svg.grafica {
   z-index: 10000;
   mix-blend-mode: difference;
 
+  circle {
+    stroke: $grey-color;
+    stroke-width: 1px;
+    fill: none;
+  }
   &:hover {
     transform: rotate(360deg) scale(1.1);
     transition: transform .8s;
   }
-}
-
-.logo circle {
-  stroke: $white-color;
-  stroke-width: 1px;
-  fill: none;
 }
 
 img {
@@ -1486,7 +1463,7 @@ svg#mapabasediez {
   }
 
   .mainContent {
-    background-color: $grey-color-5;
+    background-color: $grey-color-2;
     position: relative;
     // overflow-y: scroll;
     // scroll-snap-type: y proximity;

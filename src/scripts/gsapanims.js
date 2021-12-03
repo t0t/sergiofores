@@ -3,18 +3,6 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
-
-// Anim crop
-let animCrop = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".animCrop",
-    start: "top 100vw",
-    scrub: true,
-    toggleActions: 'play none none reverse'
-  }
-})
-animCrop.to('.animCrop', {clipPath: "polygon(0 20%, 100% 61%, 100% 100%, 0 50%)"})
-
 // Anim header
 const header = gsap.timeline({
   scrollTrigger: {
@@ -35,7 +23,8 @@ header.to('.titlePage', {
 })
 header.to('.titlePage', {
   scale: 1,
-  rotate: 0
+  rotate: 0,
+  y: -55
 })
 
 // SVG 

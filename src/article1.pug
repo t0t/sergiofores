@@ -1,27 +1,26 @@
 extends includes/baseblog
 
 block head
-	title #{sitename} - #{articles[0].title}
-	meta(name="description" content=articles[0].description)
+  title #{sitename} - #{articles[0].title}
+  meta(name="description" content=articles[0].description)
 
 block pageheader
-	header.headerContent
-		h1.titlePage
-			| #{articles[0].title}
-		p.subTitlePage
-			| #{articles[0].description}
+  header.headerContent
+    h1.titlePage #{articles[0].title} 
+      span.subTitlePage <mark>#{articles[0].description}</mark>
+
+    .bgImg.animCrop(style="background-image: url('./img/bg13.jpg')")
 
 block blog
-	figure
-		img(src="./img/bg2.jpg", alt="sostener el vacio existencial")
-		figcaption
+  figure
+    img(src="./img/bg2.jpg", alt="sostener el vacio existencial")
 
-	h2 ¿Te ocurre que pierdes repentinamente el interés por tus proyectos?
-	p Si es así esto puede ayudarte:
-	p Tu proyecto se veía genial en tu cabeza, todo era perfecto, ¿porque ahora que te has puesto manos a la obra tu estímulo y tu satisfacción se han desinflado como un globo?
-	p La razón es bien sencilla; en el plano de las ideas todo puede sonar genial pero siempre estará incompleto si esas ideas no se aterrizan en la realidad coherentemente.
-	p Hay que transitarlas, masticarlas para que adquieran una identidad propia (4),
-	p Un GPS natural en el proceso de despertar y expansión de conciencia.
+  h2 ¿Te ocurre que pierdes repentinamente el interés por tus proyectos?
+  p Si es así esto puede ayudarte:
+  p Tu proyecto se veía genial en tu cabeza, todo era perfecto, ¿porque ahora que te has puesto manos a la obra tu estímulo y tu satisfacción se han desinflado como un globo?
+  p La razón es bien sencilla; en el plano de las ideas todo puede sonar genial pero siempre estará incompleto si esas ideas no se aterrizan en la realidad coherentemente.
+  p Hay que transitarlas, masticarlas para que adquieran una identidad propia (4),
+  p Un GPS natural en el proceso de despertar y expansión de conciencia.
 
-	blockquote.
-		Conocer la estructura lógica de la realidad y de nuestro “sueño de percepción”, permite habilitar el MAPA con el que cada cual puede recorrer y sincronizar su propia ruta en este retornar a la percepción original.
+  blockquote.
+    Conocer la estructura lógica de la realidad y de nuestro “sueño de percepción”, permite habilitar el MAPA con el que cada cual puede recorrer y sincronizar su propia ruta en este retornar a la percepción original.

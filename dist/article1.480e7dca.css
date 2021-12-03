@@ -323,7 +323,6 @@ pre[class*=language-] {
   border: 2px solid black;
 }
 .btn--black:hover {
-  color: #E8E8E8;
   background-color: black;
   border: 2px solid black;
 }
@@ -331,16 +330,16 @@ pre[class*=language-] {
   margin-top: 2.59rem;
   display: inline-block;
 }
+.btn--default:hover {
+  background-color: #4AECC1;
+  border-color: #4AECC1;
+}
 .btn--default,
 .btn--primary {
   text-decoration: none;
   padding: 1rem 1.6rem;
   background-color: transparent;
   margin: 0;
-}
-.btn--default:hover {
-  background-color: #9F9FFF;
-  border-color: #9F9FFF;
 }
 .btn--primary:hover {
   background-color: #e2777a;
@@ -459,22 +458,22 @@ pre[class*=language-] {
   transition: clip-path 1s, -webkit-clip-path 1s;
 }
 .animCrop {
-  -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-          clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  mix-blend-mode: exclusion;
 }
 body {
   margin: 0;
-  color: #dad9d9;
+  color: black;
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
   font-weight: 400;
-  background-color: #2e2e2e;
   overflow-x: hidden;
 }
 ::-moz-selection {
-  background: #FFFF9F;
+  color: black;
+  background: #4AECC1;
 }
 ::selection {
-  background: #FFFF9F;
+  color: black;
+  background: #4AECC1;
 }
 .section {
   place-items: center;
@@ -576,7 +575,7 @@ section {
   color: black;
 }
 .sectionResaltadaOscura {
-  color: #dad9d9;
+  color: black;
 }
 h1 {
   font-weight: 400;
@@ -629,13 +628,10 @@ h4 {
 .subTitlePage {
   font-size: 1.6rem;
   text-align: center;
-  margin-top: 0;
-  margin-bottom: 4.1rem;
 }
 @media screen and (min-width: 766px) {
   .subTitlePage {
     font-size: inherit;
-    color: #4AECC1;
   }
 }
 p,
@@ -655,6 +651,7 @@ em {
 p {
   font-size: 1rem;
   margin-bottom: 1.6rem;
+  font-weight: 500;
 }
 p > a {
   padding-bottom: 1rem;
@@ -728,6 +725,7 @@ blockquote {
   border-left-width: 0.37rem;
   border-left-color: #4AECC1;
   border-left-style: solid;
+  font-weight: 500;
   padding: 4.1rem;
   max-width: 45.5rem;
   margin-left: auto;
@@ -745,7 +743,8 @@ hr {
   display: grid;
   align-content: center;
   justify-items: center;
-  color: #c0c0c0;
+  font-weight: 500;
+  background-color: grey;
 }
 .footer-site .contact-me {
   flex-direction: column;
@@ -969,7 +968,6 @@ svg.grafica text {
 }
 .card {
   align-self: center;
-  background-color: white;
   justify-self: start;
   background-size: cover;
   color: black;
@@ -1025,14 +1023,14 @@ svg.grafica text {
   z-index: 10000;
   mix-blend-mode: difference;
 }
+.logo circle {
+  stroke: grey;
+  stroke-width: 1px;
+  fill: none;
+}
 .logo:hover {
   transform: rotate(360deg) scale(1.1);
   transition: transform 0.8s;
-}
-.logo circle {
-  stroke: white;
-  stroke-width: 1px;
-  fill: none;
 }
 img {
   max-width: 100%;
@@ -1583,7 +1581,7 @@ svg#mapabasediez #adicionales {
   }
 
   .mainContent {
-    background-color: #323232;
+    background-color: #c0c0c0;
     position: relative;
   }
 
@@ -2013,6 +2011,10 @@ ul {
 }
 .bgcolor-alpha-1 {
   background-color: #ffffff77;
+}
+mark {
+  background-color: #4AECC1;
+  color: black;
 }
 .highlight {
   background-color: #4AECC1;

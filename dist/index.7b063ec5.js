@@ -463,18 +463,6 @@ function hmrAcceptRun(bundle, id) {
 var _gsap = require("gsap");
 var _scrollTrigger = require("gsap/ScrollTrigger");
 _gsap.gsap.registerPlugin(_scrollTrigger.ScrollTrigger);
-// Anim crop
-let animCrop = _gsap.gsap.timeline({
-    scrollTrigger: {
-        trigger: ".animCrop",
-        start: "top 100vw",
-        scrub: true,
-        toggleActions: 'play none none reverse'
-    }
-});
-animCrop.to('.animCrop', {
-    clipPath: "polygon(0 20%, 100% 61%, 100% 100%, 0 50%)"
-});
 // Anim header
 const header = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -494,7 +482,8 @@ header.to('.titlePage', {
 });
 header.to('.titlePage', {
     scale: 1,
-    rotate: 0
+    rotate: 0,
+    y: -55
 });
 // SVG 
 _gsap.gsap.set('#scrollanim', {

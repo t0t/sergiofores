@@ -469,7 +469,6 @@ const datos = gematriAppData.datos;
 let frnegativa, frpositiva, diasfinanyo, diahoy, agnio;
 let arjesArray = [];
 const gematriApp = d3.select("#gematriApp").append('svg').attr('width', _inicializargraficas.widthApp).attr('height', _inicializargraficas.heightApp).attr('id', "main-svg");
-console.log(gematriApp);
 const gematriAppG = gematriApp.append('g').attr('transform', `translate(${_inicializargraficas.centerX}, ${_inicializargraficas.centerY})`);
 // centra g on resize window
 d3.select(window).on('resize', updateWindow);

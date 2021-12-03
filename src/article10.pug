@@ -6,10 +6,10 @@ block head
 
 block pageheader
   header.headerContent
-    h1.titlePage.
-      #{articles[9].title}
-    p.subTitlePage.
-      #{articles[9].description}
+    h1.titlePage #{articles[9].title} 
+      span.subTitlePage <mark>#{articles[9].description}</mark>
+
+    .bgImg.animCrop(style="background-image: url('./img/bg13.jpg')")
 
 block blog
   blockquote.

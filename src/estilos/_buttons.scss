@@ -12,7 +12,6 @@
   border: 2px solid $black-color;
 
   &:hover {
-    color: $grey-color-0;
     background-color: $black-color;
     border: 2px solid $black-color;
   }
@@ -22,6 +21,10 @@
 .btn--default {
   margin-top: $size-3;
   display: inline-block;
+  &:hover {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+  }
 }
 
 .btn--default,
@@ -30,11 +33,6 @@
   padding: $size-1 $size-2;
   background-color: transparent;
   margin: 0;
-}
-
-.btn--default:hover {
-  background-color: $tertiary-color;
-  border-color: $tertiary-color;
 }
 
 .btn--primary:hover {

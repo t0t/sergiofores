@@ -17,7 +17,7 @@ const gematriApp = d3.select("#gematriApp")
   .attr('width', widthApp)
   .attr('height', heightApp)
   .attr('id', "main-svg")
-console.log(gematriApp)
+
 const gematriAppG = gematriApp
   .append('g')
   .attr('transform', `translate(${centerX}, ${centerY})`)

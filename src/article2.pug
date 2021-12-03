@@ -1,65 +1,65 @@
 extends includes/baseblog
 
 block head
-	title #{sitename} - #{articles[1].title}
-	meta(name="description" content=articles[1].description)
+  title #{sitename} - #{articles[1].title}
+  meta(name="description" content=articles[1].description)
 
 block pageheader
-	header.headerContent
-		h1.titlePage
-			| #{articles[1].title}
-		p.subTitlePage
-			| #{articles[1].description}
+  header.headerContent
+    h1.titlePage #{articles[1].title} 
+      span.subTitlePage <mark>#{articles[1].description}</mark>
+
+    .bgImg.animCrop(style="background-image: url('./img/bg13.jpg')")
 
 block blog
-	p Este es el resumen de una mini charla de Jaime Buhigas sobre la creatividad. Una charla en su día muy reveladora para mí. Tengo en gran estima por todo lo que este hombre cuenta y por la manera tan cercana que tiene de hacerlo.
-	p He aquí la fusión gráfica entre lo que él dice y mi experiencia.
+  p Este es el resumen de una mini charla de Jaime Buhigas sobre la creatividad. Una charla en su día muy reveladora para mí. Tengo en gran estima por todo lo que este hombre cuenta y por la manera tan cercana que tiene de hacerlo.
+  p He aquí la fusión gráfica entre lo que él dice y mi experiencia.
 
-	<img src="./img/blog/creatividad-universal.svg" class="img--25vw img--fr">
+  <img src="./img/blog/creatividad-universal.svg" class="img--25vw img--fr">
 
-	p.
-		<strong>Transcripción retocada y resumida:</strong>
+  p.
+    <strong>Transcripción retocada y resumida:</strong>
 
-	p.
-		La creatividad está relacionada con todas las facetas del ser humano. Ser creativo es necesario para vivir. La creatividad es vivir las cosas, no sólo decirlas. No existe un libro de instrucciones para ser creativo pero sí una arquitectura lógica que está disponible para todos.
+  p.
+    La creatividad está relacionada con todas las facetas del ser humano. Ser creativo es necesario para vivir. La creatividad es vivir las cosas, no sólo decirlas. No existe un libro de instrucciones para ser creativo pero sí una arquitectura lógica que está disponible para todos.
 
-	p.
-		Los alquimistas ya hablaban de esto. No se puede ser creativo si no se atraviesan 3 zonas de transformación:
-	
-	h2 Fase Negra
-	
-	ul
-		li
-			| En esta fase nos encontramos con algo que ya no sirve, aquello que ya no va y por tanto tiene que morir, acabarse y ser destruido. Si la fase negra no muere, no puede producirse el resto de fases.
-		li
-			| No se es creativo sino se detectan cuales son los límites. La creatividad es móvil, transformable, mutable y en continuo movimiento. Si no cambiamos y nos adaptamos con ella, no estamos siendo creativos, estamos en CRISIS.
-		li
-			| Quien se queda en la fase negra se aburre.
+  p.
+    Los alquimistas ya hablaban de esto. No se puede ser creativo si no se atraviesan 3 zonas de transformación:
 
-	h2 Fase Blanca
+  h2 Fase Negra
 
-	ul
-		li.
-			Es la fase de los registros, del proceso creativo donde todo es posible. Es una fase de libertad donde el juicio no existe. Todo es posible y válido.
-		li.
-			Cuando acepto que algo ya no vale, inmediatamente la sensibilidad empieza a aflorar.
+  ul
+    li
+      | En esta fase nos encontramos con algo que ya no sirve, aquello que ya no va y por tanto tiene que morir, acabarse y ser destruido. Si la fase negra no muere, no puede producirse el resto de fases.
+    li
+      | No se es creativo sino se detectan cuales son los límites. La creatividad es móvil, transformable, mutable y en continuo movimiento. Si no cambiamos y nos adaptamos con ella, no estamos siendo creativos, estamos en CRISIS.
+    li
+      | Quien se queda en la fase negra se aburre.
 
-	p Quien se queda en la fase roja, a priori, son interesantes. Pasado un tiempo sólo estas deseando que se calle.
+  h2 Fase Blanca
 
-	h2 Fase Roja
-	
-	ul
-		li.
-			Es la fase vinculada con el oficio. No se puede ser creativo sino se tiene un oficio. La creatividad acaba en una cosa concreta que hay que descubrir y construir. Es la concreción. Si un creativo no tiene los pies en la tierra no es un creativo.
-		li.
-			Quien llega a la fase roja no tiene nada que decir porque su obra habla por ellos.
-	p
-		strong Los 2 enemigos de la creatividad:
+  ul
+    li.
+      Es la fase de los registros, del proceso creativo donde todo es posible. Es una fase de libertad donde el juicio no existe. Todo es posible y válido.
+    li.
+      Cuando acepto que algo ya no vale, inmediatamente la sensibilidad empieza a aflorar.
 
-	ul
-		li.
-			Quedarse en lo podrido, no cambiar y seguir haciendo siempre lo mismo
-		li.
-			Empezar muchas cosas y no acabar ninguna, dejándose llevar
-	p
-		a(href="https://www.youtube.com/watch?v=kIWu5KxEGVs", target='_blank') Video original de Jaime Buhigas en Youtube
+  p Quien se queda en la fase roja, a priori, son interesantes. Pasado un tiempo sólo estas deseando que se calle.
+
+  h2 Fase Roja
+
+  ul
+    li.
+      Es la fase vinculada con el oficio. No se puede ser creativo sino se tiene un oficio. La creatividad acaba en una cosa concreta que hay que descubrir y construir. Es la concreción. Si un creativo no tiene los pies en la tierra no es un creativo.
+    li.
+      Quien llega a la fase roja no tiene nada que decir porque su obra habla por ellos.
+  p
+    strong Los 2 enemigos de la creatividad:
+
+  ul
+    li.
+      Quedarse en lo podrido, no cambiar y seguir haciendo siempre lo mismo
+    li.
+      Empezar muchas cosas y no acabar ninguna, dejándose llevar
+  p
+    a(href="https://www.youtube.com/watch?v=kIWu5KxEGVs", target='_blank') Video original de Jaime Buhigas en Youtube

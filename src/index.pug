@@ -8,8 +8,8 @@ block append head
 
 block content
   header.headerContent
-    h1.titlePage descifrar la Creación <br> para encontrArte desde cero
-    .bgImg.animCrop(style="background-image: url('./img/bg5.jpg');")
+    h1.titlePage descifrar la Creación <br> para encontrArte  <mark>desde cero</mark>
+    .bgImg.animCrop(style="background-image: url('./img/bg13.jpg');")
 
   section.grid.grid--img
     svg#scrollanim(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 101 66')
@@ -50,13 +50,15 @@ block content
         text(x='20.59' y='7.056') 9
     .section 
       p Observo un Mapa Universal del proceso de toda la Creación. Facilito a artistas, diseñadores y buscadores un método sencillo para descifrar, desbloquear y trascender el vacío existencial y los bloqueos creativos.
-      a.btn--white.btn--default.btn--primary(href="lab.pug") Descubre +0+1234
+      a.btn--default.btn--black(href="lab.pug") Descubre +0+1234
   
   section.grid.grid--img.animContainer
     article.grid__item.animItem(style="background-image: url('./img/bg10.jpg');")
+
     article.section.card.animItem
       p Realizo esculturas plásticas que son símbolos vivos de lo sagrado, y sobre las cuales la luz revela corrientes de formas que cristalizan en el tiempo.
-      a(class="btn--default  btn--black" href="obra.pug") obra plástica
+      a.btn--default.btn--black(href="obra.pug") obra plástica
+
     article.grid__item(style="background-image: url('./img/bg9.jpg');")
     article.grid__item(style="background-image: url('./img/bg2.jpg');")
 
@@ -75,6 +77,6 @@ block content
 
 block append scripts
   script(type="module", src="./scripts/anims.js")
-  script(src="./scripts/gsapanims.js", type="module")
+  script(type="module", src="./scripts/gsapanims.js")
   //- script(src="./scripts/grafica.js", type="module")
   //- script(src="./scripts/modelo3d.js", type="module")

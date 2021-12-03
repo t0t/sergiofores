@@ -6,10 +6,10 @@ block head
 
 block pageheader
   header.headerContent
-    h1.titlePage.
-      #{articles[7].title}
-    p.subTitlePage.
-      #{articles[7].description}
+    h1.titlePage #{articles[7].title} 
+      span.subTitlePage <mark>#{articles[7].description}</mark>
+
+    .bgImg.animCrop(style="background-image: url('./img/bg13.jpg')")
 
 block blog
 
@@ -35,35 +35,35 @@ block blog
     El <em>programador</em> está tan presente como el programa. La vida y la programación son tan "parecidos" porque están hechos de la misma sustancia.
 
   section 
-    
+
     p.
       <strong>CSS</strong> se encargará de dar visibilidad, sensibilidad, tocar, rozar... Aquí es la separación, el olvido... Aquí es cómo es que las cosas lucen, son vistas. Gracias a la separación tiene valor el encuentro. Tiene que ver con el arquetipo 2. Aquí la mediación es hacia dentro, una de las partes absorviendo otras partes.
-    
+
     pre.language-scss
       code.
         // Define qué se ve cuando algo me toca, qué tamaño tengo,
         // a cuanta distancia estoy del resto de elementos, la interfaz...
         :root {
-        	--mi-color-de-piel: pink;
+          --mi-color-de-piel: pink;
         }
-        
+
         .miPiel {
-        	background-color: var(--mi-color-de-piel);
+          background-color: var(--mi-color-de-piel);
         }
     hr
     p.
       <strong>Javascript</strong> se encargará de ejecutar acciones, desempeñar funciones, discernir comportamientos, hacer promesas, convocar los eventos... Aquí es la lógica, y tiene que ver con los arquetipos 3, 5, 9.
-    
+
     pre.language-javascript
       code.
         // Escoge un elemento del DOM
         let quiensoy = document.getelementById("yo")
-        
+
         // Realiza una acción
         function miAccion() {
-        	Alert("me han dado una identidad")
+          Alert("me han dado una identidad")
         }
-        
+
         // Muestra por consola
         console.log('quien soy');
 
@@ -80,7 +80,7 @@ block blog
             div Lo que hay aquí es lo que soy yo
             div Este eres tú
           footer Esta es la realidad, el plano 1
-    
+
     hr
     p. 
       <strong>Git/Servidor</strong> se encargará de generar nuevas versiones de Universos y multiversos, desplegarlos en red... y tendrá que ver con los arquetipos 6, 8. Si en 5 tenemos la matriz lógica de la realidad es aquí, en el 6 donde se fabrica esa matriz, es una dimensión previa, abstracta, fría, ilimitada repleta de ramificaciones donde no existe el tiempo.
