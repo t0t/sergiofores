@@ -151,8 +151,10 @@ p > a {
   color: grey;
 }
 blockquote {
-  color: #6f6f6f;
   border-left-color: #4AECC1;
+}
+.blockquote--pie blockquote {
+  color: black;
 }
 hr {
   background-color: #e2777a;
@@ -212,7 +214,7 @@ button:hover {
 }
 /* hambutton */
 .hambutton line {
-  stroke: black;
+  stroke: white;
 }
 .close:hover,
 .close:focus {
@@ -255,7 +257,7 @@ button:hover {
   fill: #e2777a;
 }
 .footer-site {
-  background-color: grey;
+  background-color: #c0c0c0;
 }
 .social-links path,
 .social-links circle {
@@ -416,7 +418,7 @@ button {
 .titlePage {
   margin-top: 2.59rem;
   margin-bottom: 2.59rem;
-  top: 40%;
+  top: 30vw;
 }
 .mainContent {
   min-height: 125vh;
@@ -500,16 +502,14 @@ model-viewer {
   width: 100%;
   height: 500px;
 }
-.blog {
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
-}
 .blog:last-child {
   padding-bottom: 6.64rem;
 }
 .blog blockquote {
   margin-top: 2.59rem;
   margin-bottom: 2.59rem;
+  padding-left: 2.59rem;
+  margin-left: 2.59rem;
 }
 .blog pre {
   margin-bottom: 1.6rem;
@@ -976,6 +976,9 @@ figure figcaption {
 /* Global stylesheet */
 #main {
   transition: margin-left 0.3s;
+}
+.mainContent {
+  overflow-x: hidden;
 }
 .headerContent {
   position: relative;
@@ -1943,8 +1946,9 @@ pre {
   display: block;
   position: fixed;
   top: 1rem;
-  left: 90vw;
+  left: 85vw;
   width: 2.59rem;
+  mix-blend-mode: difference;
 }
 .hambutton:hover {
   cursor: pointer;

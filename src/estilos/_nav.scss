@@ -86,9 +86,9 @@
   display: block;
   position: fixed;
   top: $size-1;
-  left: 90vw;
+  left: 85vw;
   width: $size-3;
-  // mix-blend-mode: difference;
+  mix-blend-mode: difference;
 
   &:hover {
     cursor: pointer;

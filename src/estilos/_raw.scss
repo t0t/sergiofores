@@ -5,6 +5,10 @@
   transition: margin-left .3s;
 }
 
+.mainContent {
+  overflow-x: hidden;
+}
+
 .headerContent {
   position: relative;
   display: grid;

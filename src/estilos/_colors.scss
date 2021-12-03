@@ -11,9 +11,13 @@ p > a {
 }
 
 blockquote {
-  color: $grey-color-3;
+  // color: $grey-color-3;
   border-left-color: $secondary-color;
   // border-right-color: $primary-color;
+}
+
+.blockquote--pie blockquote {
+  color: $black-color;
 }
 
 hr {
@@ -90,7 +94,7 @@ button {
 /* hambutton */
 .hambutton {
   line {
-    stroke: $black-color;
+    stroke: $white-color;
   }
 }
 
@@ -147,7 +151,7 @@ button {
 
 .footer-site {
   // color: $black-color;
-  background-color: $grey-color;
+  background-color: $grey-color-2;
 }
 
 .social-links path,

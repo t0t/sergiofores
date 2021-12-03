@@ -109,7 +109,7 @@ button {
 .titlePage {
   margin-top: $size-3;
   margin-bottom: $size-3;
-  top: 40%;
+  top: 30vw;
 }
 
 .mainContent {
@@ -209,8 +209,8 @@ model-viewer {
 }
 
 .blog {
-  padding-left: $size-2;
-  padding-right: $size-2;
+  // padding-left: $size-2;
+  // padding-right: $size-2;
   &:last-child {
     padding-bottom: $size-5;
   }
@@ -218,6 +218,8 @@ model-viewer {
   blockquote {
     margin-top: $size-3;
     margin-bottom: $size-3;
+    padding-left: $size-3;
+    margin-left: $size-3;
   }
   
   pre {

@@ -477,13 +477,13 @@ const header = _gsap.gsap.timeline({
 header.to('.titlePage', {
     rotate: -6,
     scale: 1.3,
-    ease: 'elastic',
-    duration: 1.5
+    ease: 'back',
+    duration: 1
 });
 header.to('.titlePage', {
     scale: 1,
     rotate: 0,
-    y: -55
+    y: 200
 });
 // SVG 
 _gsap.gsap.set('#scrollanim', {
