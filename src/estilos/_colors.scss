@@ -12,7 +12,19 @@ p > a {
 
 blockquote {
   color: $black-color;
+  border-left-color: $secondary-color;
+  border-right-color: $primary-color;
 }
+
+hr {
+  background-color: $primary-color;
+}
+
+// .blog {
+//   blockquote {
+//     color: $secondary-color;
+//   }
+// }
 
 // Forms
 input {
@@ -43,12 +55,43 @@ input:checked+.switch {
   color: $primary-color;
 }
 
+button {
+  background-color: transparent;
+  color: $grey-color-3;
+  
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.overlay {
+  @media screen and (min-width: $bp1) {
+    background-color: $black-color-alpha-1;
+  }
+}
+
+.blockquote--pie {
+  color: $grey-color-2;
+}
+
 .mainContent {
   background-color: $grey-color-2;
 }
 
 .image-slide + small {
   color: $grey-color-1;
+}
+
+.franjapie {
+  color: $black-color;
+  background-color: $grey-color-3;
+}
+
+/* hambutton */
+.hambutton {
+  line {
+    stroke: $black-color;
+  }
 }
 
 .close:hover,
@@ -138,14 +181,41 @@ input:checked+.switch {
   text-decoration-color: $secondary-color;
 }
 
-.blog {
-  blockquote {
-    color: $secondary-color;
+.nav-posts {
+  background-color: $primary-color;
+}
+
+.footer-site {
+  footer nav a {
+    color: $grey-color-3;
+  }
+
+  footer nav a:hover {
+    color: $grey-color-2;
   }
 }
 
-.nav-posts {
-  background-color: $primary-color;
+.modal {
+  background-color: $black-color-alpha-2;
+}
+
+::selection {
+  color: $black-color;
+  background: $secondary-color;
+}
+
+/* Animacion svg en cover */
+
+#grafica {
+  background-color: $grey-color;
+  
+  path {
+    fill: $primary-color;
+  }
+  
+  text {
+    fill: white;
+  }
 }
 
 // .highlight-line-isdir {

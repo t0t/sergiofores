@@ -1,0 +1,45 @@
+.titlePage {
+  z-index: $raiz;
+}
+
+#metodosvg {
+  z-index: $ramas;
+}
+
+/* hambutton */
+.hambutton {
+  z-index: $tronco;
+}
+
+// gsapanim
+svg#scrollanim {
+  z-index: $raiz;
+}
+
+#gematriApp {
+  text {
+    z-index: $tronco;
+  }
+}
+
+/* LOGO */
+.logo {
+  z-index: $tronco;
+}
+
+.modal {
+  z-index: $raiz;
+}
+
+.close {
+  z-index: $raiz;
+}
+
+// model-viewer {
+//   z-index: auto;
+// }
+
+/* JS - Deshabilita touch en mobil */
+.deshabilitar {
+  z-index: $ramas;
+}

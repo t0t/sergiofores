@@ -32,9 +32,26 @@ p {
   font-weight: $medium;
 }
 
+small {
+  @media screen and (min-width: $bp6) {
+    font-size: $size-2;
+  }
+}
+
+p,
+ul {
+  @media screen and (min-width: $bp6) {
+    line-height: $size-3;
+  }
+}
+
 em, 
 dt {
   font-weight: $medium;
+}
+
+button {
+  text-transform: uppercase;
 }
 
 text {
@@ -57,6 +74,39 @@ input {
 
 label {
   font-size: $size-0;
+}
+
+h2,
+h3 {
+  font-size: $size-1;
+  line-height: $size-1;
+  text-align: center;
+  letter-spacing: 2px;
+
+  @media screen and (min-width: $bp5) {
+    line-height: $size-3;
+    font-size: $size-2;
+  }
+}
+
+ul,
+ol {
+  list-style-position: inside;
+}
+
+figure {
+  figcaption {
+    font-size: $size-0;
+    line-height: $size-1;
+  }
+}
+
+.home :link:not(:hover) {
+  text-decoration: none;
+}
+
+.titlePage {
+  text-align: center;
 }
 
 .image-slide + small {
@@ -136,4 +186,24 @@ label {
 
 .footer-site__item p {
   text-align: center;
+}
+
+.footer-site {
+  footer nav a {
+    text-decoration: none;
+  }
+
+  .followme {
+    text-align: center;
+  }
+}
+
+.nav-posts li a {
+  text-align: center;
+  text-decoration: none;
+}
+
+.nav-posts li a::before {
+  font-size: $size-4;
+  line-height: 1;
 }

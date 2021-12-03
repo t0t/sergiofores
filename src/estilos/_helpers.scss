@@ -240,6 +240,16 @@ mark {
   border-radius: 50%;
 }
 
+.img--fl {
+  float: left;
+  margin-right: $size-3;
+}
+
+.img--fr {
+  float: right;
+  margin-left: $size-3;
+}
+
 .img--25vw {
   max-width: 25vw;
 }
