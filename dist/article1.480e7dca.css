@@ -151,9 +151,8 @@ p > a {
   color: grey;
 }
 blockquote {
-  color: black;
+  color: #6f6f6f;
   border-left-color: #4AECC1;
-  border-right-color: #e2777a;
 }
 hr {
   background-color: #e2777a;
@@ -504,9 +503,15 @@ model-viewer {
   padding-left: 1.6rem;
   padding-right: 1.6rem;
 }
+.blog:last-child {
+  padding-bottom: 6.64rem;
+}
 .blog blockquote {
   margin-top: 2.59rem;
   margin-bottom: 2.59rem;
+}
+.blog pre {
+  margin-bottom: 1.6rem;
 }
 @media screen and (min-width: 766px) {
   .blog {
@@ -646,6 +651,7 @@ text {
 }
 blockquote {
   font-weight: 500;
+  font-style: italic;
 }
 input {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
@@ -1085,9 +1091,6 @@ blockquote {
   border-left: 1rem;
   border-left-width: 0.37rem;
   border-left-style: solid;
-  border-right: 1rem;
-  border-right-width: 0.37rem;
-  border-right-style: solid;
   border-radius: 4.1rem;
 }
 hr {

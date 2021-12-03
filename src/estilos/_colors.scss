@@ -11,9 +11,9 @@ p > a {
 }
 
 blockquote {
-  color: $black-color;
+  color: $grey-color-3;
   border-left-color: $secondary-color;
-  border-right-color: $primary-color;
+  // border-right-color: $primary-color;
 }
 
 hr {
