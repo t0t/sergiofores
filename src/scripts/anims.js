@@ -7,9 +7,16 @@ gsap.registerPlugin(ScrollTrigger)
 let animCrop = gsap.timeline({
   scrollTrigger: {
     trigger: ".animCrop",
-    start: "top 99vw",
+    start: "top 0vh",
+    end: "center 50vh",
     scrub: true,
     toggleActions: 'play none none reverse'
   }
 })
-animCrop.to('.animCrop', {clipPath: "polygon(0 0, 0% 100%, 100% 0)"})
+animCrop.fromTo('.animCrop', {
+  clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+  opacity: 1
+},{
+  clipPath: "polygon(36% 78%, 80% 52%, 100% 100%, 60% 76%, 0 95%, 30% 36%)",
+  opacity: 0
+})
