@@ -1,0 +1,184 @@
+body {
+  color: $bodytextcolor;
+}
+
+a {
+  color: $black-color;
+}
+
+p > a {
+  color: $grey-color;
+}
+
+blockquote {
+  color: $black-color;
+}
+
+// Forms
+input {
+  background-color: $secondary-color;
+}
+
+input[type="text"]:active,
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="submit"]:focus {
+  background-color: $quaternary-color;
+}
+
+::placeholder,
+input[type="date"i] {
+  color: $black-color;
+}
+
+input[type="submit"] {
+  background-color: $grey-color-2;
+}
+
+input[type="submit"]:hover {
+  background-color: $quaternary-color;
+}
+
+input:checked+.switch {
+  color: $primary-color;
+}
+
+.mainContent {
+  background-color: $grey-color-2;
+}
+
+.image-slide + small {
+  color: $grey-color-1;
+}
+
+.close:hover,
+.close:focus {
+  color: $secondary-color;
+}
+
+.close {
+  color: $primary-color;
+}
+
+.previous,
+.next {
+  color: rgb(255 255 255 / 50%);
+}
+
+.previous:hover,
+.next:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* TABS */
+.tablink {
+  background-color: $grey-color-3;
+  color: $white-color;
+}
+
+.tablink:hover {
+  background-color: $grey-color-3;
+}
+
+/* Tags */
+.post-tag {
+  color: $grey-color-3;
+}
+
+.sectionResaltadaClara {
+  background-color: $secondary-color;
+  color: $black-color;
+}
+
+.sectionResaltadaOscura {
+  color: $bodytextcolor;
+}
+
+.post-tag:hover {
+  color: $black-color;
+}
+
+.indicador-icono path {
+  fill: $primary-color;
+}
+
+.footer-site {
+  // color: $black-color;
+  background-color: $grey-color;
+}
+
+.social-links path,
+.social-links circle {
+  fill: $grey-color-4;
+}
+
+.social-links a:hover path {
+  fill: $black-color;
+}
+
+/* Posts list */
+.postlist {
+  background-color: $grey-color-1;
+}
+
+.postlist-item {
+  background-color: $grey-color-0;
+}
+
+.postlist-link {
+  text-decoration-color: $secondary-color;
+
+  a {
+    color: $quaternary-color;
+  }
+}
+
+.postlist-link:hover {
+  color: $primary-color;
+  text-decoration-color: $secondary-color;
+}
+
+.blog {
+  blockquote {
+    color: $secondary-color;
+  }
+}
+
+.nav-posts {
+  background-color: $primary-color;
+}
+
+// .highlight-line-isdir {
+//   color: #b0b0b0;
+//   background-color: #222;
+// }
+
+// .highlight-line-active {
+//   background-color: #444;
+//   background-color: hsla(0, 0%, 27%, .8);
+// }
+
+// .highlight-line-add {
+//   background-color: $secondary-color;
+// }
+
+// .highlight-line-remove {
+//   background-color: #902f2f;
+// }
+
+
+// #London {
+//   background-color: $quaternary-color;
+// }
+
+// #Paris {
+//   background-color: $tertiary-color;
+// }
+
+// #Tokyo {
+//   background-color: $primary-color;
+// }
+
+// #Oslo {
+//   background-color: $secondary-color;
+// }

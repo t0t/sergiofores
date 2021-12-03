@@ -72,11 +72,8 @@
 .nav-item a {
   text-decoration: none;
   color: $grey-color-2;
-  
-  // @media screen and (min-width:$bp3) {
-  //   color: $white-color;
-  // }
 }
+
 .nav-item-active a {
   color: $black-color;
   background-color: $white-color;
@@ -132,11 +129,6 @@
 
 body {
   margin: 0;
-  color: $bodytextcolor;
-  font-family: $mainff;
-  // font-size: $size-1;
-  font-weight: $normal;
-  // background-color: $grey-color-4;
   overflow-x: hidden;
 }
 
@@ -189,8 +181,8 @@ body {
   gap: 0px;
   padding: 0px;
   min-height: 50vh;
-  // grid-template-columns: 1fr;
   grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+
   .grid__item {
     background-position: center;
     background-size: cover;
@@ -199,7 +191,6 @@ body {
 }
 
 .grid__item {
-  // background-color: red;
   min-height: 50vh;
   width: 100%;
   img {
@@ -222,7 +213,6 @@ figure {
   }
 
   figcaption {
-    // padding-top: $size-1;
     font-size: $size-0;
     line-height: $size-1;
     padding-left: $size-1;
@@ -249,15 +239,6 @@ section {
   text-align: center;
   margin-bottom: $size-4;
   gap: $size-3;
-}
-
-.sectionResaltadaClara {
-  background-color: $secondary-color;
-  color: $black-color;
-}
-
-.sectionResaltadaOscura {
-  color: $bodytextcolor;
 }
 
 h1 {
@@ -293,10 +274,6 @@ h3 {
   }
 }
 
-h4 {
-  line-height: $size-2;
-}
-
 .titlePage {
   text-align: center;
   margin-bottom: $size-0;
@@ -305,41 +282,28 @@ h4 {
   top: 40%;
 }
 
-.subTitlePage {
-  font-size: $size-2;
-  text-align: center;
-
-  @media screen and (min-width: $bp3) {
-    font-size: inherit;
-    // color: $secondary-color;
-  }
+dl {
+  padding-bottom: $size-2;
 }
-
-p,
-a,
-ul,
-dl,
-p strong,
-h3,
-blockquote {
-  line-height: 2rem;
-  letter-spacing: 1px;
-  word-spacing: 0.5px;
+p, 
+dl {
+  padding-left: $size-3;
+  padding-right: $size-3;
 }
-
-em {
-  font-weight: $medium;
+dt {
+  margin-top: $size-2;
+  margin-bottom: $size-2;
 }
+// dd {
+//   margin-left: 0;
+// }
 
 p {
-  font-size: $size-1;
   margin-bottom: $size-2;
-  font-weight: $medium;
 }
 
-p>a {
+p > a {
   padding-bottom: $size-1;
-  color: #b0b0b0;
 }
 
 li {
@@ -351,25 +315,12 @@ ol {
   list-style-position: inside;
 }
 
-dd {
-  margin-left: 0;
-}
-
-small {
-  font-size: $size-0;
-  // line-height: $size-0;
-}
-
-a {
-  color: $black-color;
-}
-
 p,
 .tmpl-post li,
 img,
 pre,
-ul {
-
+ul,
+dl {
   max-width: 100%;
 
   @media screen and (min-width: $bp3) {
@@ -378,25 +329,11 @@ ul {
     margin-right: auto;
     max-width: $size-9;
   }
-
-  // @media screen and (min-width: $bp3) {
-  //     margin-left: auto;
-  //     margin-right: auto;
-  //     max-width: $size-10;
-  // }
 }
 
 ul {
   padding-left: 0;
   list-style-position: inside;
-}
-
-.tachado {
-  text-decoration: line-through;
-  text-underline-position: from-font;
-  text-underline-offset: 0;
-  text-decoration-thickness: 2px;
-  text-decoration-color: $primary-color;
 }
 
 .blockquote--pie {
@@ -414,18 +351,13 @@ ul {
 
 .blockquote--pie blockquote {
   border-left: 0px;
-  // padding-left: 0px;
-  // padding-top: $size-0;
-  // padding-bottom: $size-0;
 }
 
 blockquote {
-  color: $black-color;
   border-left: $size-1;
   border-left-width: $size--1;
   border-left-color: $secondary-color;
   border-left-style: solid;
-  font-weight: $medium;
   padding: $size-4;
   max-width: $size-9;
   margin-left: auto;
@@ -445,18 +377,10 @@ hr {
   display: grid;
   align-content: center;
   justify-items: center;
-  font-weight: $medium;
-  // color: $black-color;
-  background-color: $grey-color;
 }
 
 .footer-site .contact-me {
   flex-direction: column;
-  text-align: center;
-}
-
-.footer-site__item p {
-  text-align: center;
 }
 
 .footer-site {
@@ -470,7 +394,6 @@ hr {
   }
 
   .followme {
-    // margin-top: $size-3;
     text-align: center;
   }
 }
@@ -479,24 +402,14 @@ hr {
   padding: $size-1;
   color: $black-color;
   display: grid;
-  // font-weight: $medium;
   grid-template-columns: repeat(2, 1fr);
   place-items: center;
   background-color: $grey-color-3;
   min-height: 50vh;
-  // position: fixed;
-  // bottom: 0;
 }
 
-
-
 text {
-  // font-size: 0.4rem;
-  letter-spacing: 1px;
   stroke: none;
-  // font-size: 0.24rem;
-  font-weight: bold;
-  letter-spacing: 0.1px;
 }
 
 // /* FORMS */
@@ -513,18 +426,10 @@ button {
   }
 }
 
-label {
-  font-size: $size-0;
-}
-
 input {
-  background-color: $secondary-color;
   border: none;
   border-radius: $size-1;
   padding: $size-1;
-  font-family: $mainff;
-  font-weight: $medium;
-  font-size: inherit;
 }
 
 input[type="date"i] {
@@ -570,29 +475,8 @@ input[type="date"i] {
   // }
 }
 
-input[type="text"]:active,
-input[type="text"]:focus,
-input[type="date"]:focus,
-input[type="submit"]:focus {
-  background-color: $quaternary-color;
-}
-
-::placeholder,
-input[type="date"i] {
-  color: $black-color;
-}
-
-input[type="submit"] {
-  background-color: $grey-color-2;
-}
-
 input[type="submit"]:hover {
   cursor: pointer;
-  background-color: $quaternary-color;
-}
-
-input:checked+.switch {
-  color: $primary-color;
 }
 
 svg.grafica {
@@ -696,13 +580,17 @@ svg.grafica {
 .card {
   align-self: center;
   // background-color: $white-color;
-  // padding: $size-4;
+  padding: $size-4;
   justify-self: start;
   background-size: cover;
   color: $black-color;
   
   &Bottom {
     margin-top: $size-6;
+  }
+
+  p {
+    padding: 0;
   }
   
   @media screen and (min-width: $bp3) {
@@ -731,10 +619,6 @@ svg.grafica {
 #icono-switcher.indicador-icono {
   transform: rotate(180deg);
   transition: transform .4s;
-}
-
-.indicador-icono path {
-  fill: $primary-color;
 }
 
 .switch {
@@ -779,38 +663,13 @@ img {
   height: auto;
 }
 
-/* input[type="checkbox"]:checked {
-	cursor: grab;
-   } */
-
-// #typewritter {
-//   background-color: transparent;
-//   // box-shadow: 0 0 $size-1 $secondary-color;
-//   box-shadow: -20px 0px 0px red, 20px 0px 0px blue;
-// }
-
-// /* Helpers */
-.rounded {
-  border-radius: 50%;
-}
-
 // /* Social Links */
 .social-links {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: $size-1;
-  // padding: 0 $size-2 $size-2;
   max-width: 600px;
   margin: 0 auto;
-}
-
-.social-links path,
-.social-links circle {
-  fill: $grey-color-4;
-}
-
-.social-links a:hover path {
-  fill: $black-color;
 }
 
 .social-links svg {
@@ -846,53 +705,21 @@ img {
   display: none;
 }
 
-.highlight-line-isdir {
-  color: #b0b0b0;
-  background-color: #222;
-}
-
-.highlight-line-active {
-  background-color: #444;
-  background-color: hsla(0, 0%, 27%, .8);
-}
-
-.highlight-line-add {
-  background-color: $secondary-color;
-}
-
-.highlight-line-remove {
-  background-color: #902f2f;
-}
-
-// /* Header */
+/* Header */
 
 .home :link:not(:hover) {
   text-decoration: none;
 }
 
-.img--25vw {
-  max-width: 25vw;
-}
-
-.img--50vw {
-  max-width: 50vw;
-}
-
-.img--100vw {
-  max-width: 100vw;
-}
-
-// /* Posts list */
+/* Posts list */
 .postlist {
   display: grid;
   gap: 0px;
-  // gap: $size-2;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   list-style: none;
   margin-top: 0;
   margin-bottom: 0;
   padding: $size-3;
-  background-color: $grey-color-1;
 }
 
 .postlist-item {
@@ -902,27 +729,13 @@ img {
   text-align: center;
   align-content: center;
   counter-increment: start-from -1;
-  background-color: $grey-color-0;
-  // border-top-left-radius: $size-1;
-  // border-bottom-right-radius: $size-1;
-  // box-shadow: 7px 7px 0px -3px rgba(0, 0, 0, 0.1);
   padding: $size-1;
   margin-bottom: 0px;
-}
-
-.postlist-date {
-  word-spacing: -0.5px;
 }
 
 .postlist-link {
   padding-left: $size-1;
   padding-right: $size-1;
-  text-underline-position: from-font;
-  text-underline-offset: 0;
-  text-decoration-thickness: 5px;
-  text-decoration-color: $secondary-color;
-  font-weight: $bold;
-  line-height: $size-2;
 
   h3 {
     margin-top: 0;
@@ -930,19 +743,6 @@ img {
     padding-top: 0;
     padding-bottom: $size-1;
   }
-
-  a {
-    color: $quaternary-color;
-  }
-}
-
-.postlist-link:hover {
-  color: $primary-color;
-  text-decoration-color: $secondary-color;
-}
-
-.postlist-item-active .postlist-link {
-  font-weight: $normal;
 }
 
 /* Meta */
@@ -954,7 +754,6 @@ img {
 }
 
 .post-meta {
-  text-align: center;
   margin-top: $size-1;
   margin-bottom: $size-4;
 }
@@ -968,7 +767,6 @@ img {
   blockquote {
     margin-top: $size-3;
     margin-bottom: $size-3;
-    color: $secondary-color;
   }
 
   @media screen and (min-width: $bp3) {
@@ -989,21 +787,11 @@ img {
 .post-tag {
   display: inline-flex;
   align-items: center;
-  text-transform: uppercase;
   padding: 4px;
-  font-size: $size-0;
   border-radius: 0.25em;
-  text-decoration: none;
-  letter-spacing: 1px;
-  color: $grey-color-3;
-  font-weight: $bold;
 }
 
-.post-tag:hover {
-  color: $black-color;
-}
-
-.postlist-item>.post-tag {
+.postlist-item > .post-tag {
   align-self: center;
 }
 
@@ -1032,16 +820,6 @@ model-viewer {
 .tmpl-post {
   padding-top: calc($size-6 - $size-3);
 }
-
-// .tmpl-home .titlePage {
-//   margin-left: 0;
-//   margin-right: 0;
-//   text-align: left;
-// }
-
-// .tmpl-home {
-//   background: linear-gradient(180deg, ($grey-color-1) 0, ($grey-color-0) 20%;
-// }
 
 .img--25vw,
 .img--50vw,
@@ -1108,12 +886,6 @@ model-viewer {
   margin-bottom: $size-2;
 }
 
-.image-slide+small {
-  text-align: center;
-  line-height: 1.7;
-  color: $grey-color-1;
-}
-
 .dots {
   display: grid;
   gap: $size-0;
@@ -1138,18 +910,14 @@ img.hover-shadow {
 }
 
 .close {
-  color: $primary-color;
   position: fixed;
   top: $size-1;
   right: $size-2;
-  font-size: $size-3;
   z-index: 1;
 }
 
 .close:hover,
 .close:focus {
-  color: $secondary-color;
-  text-decoration: none;
   cursor: pointer;
 }
 
@@ -1165,9 +933,6 @@ img.hover-shadow {
   width: auto;
   padding: $size-2;
   margin-top: -50px;
-  color: rgb(255 255 255 / 50%);
-  font-weight: bold;
-  font-size: $size-2;
   transition: 0.6s ease;
   user-select: none;
   -webkit-user-select: none;
@@ -1181,26 +946,14 @@ img.hover-shadow {
   right: -40px;
 }
 
-.previous:hover,
-.next:hover {
-  color: rgba(255, 255, 255, 0.8);
-}
-
 /* TABS */
 .tablink {
-  background-color: $grey-color-3;
-  color: $white-color;
   float: left;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
-  font-size: 17px;
   width: 25%;
-}
-
-.tablink:hover {
-  background-color: $grey-color-3;
 }
 
 /* Style the tab content */
@@ -1209,22 +962,6 @@ img.hover-shadow {
   display: none;
   padding: 50px;
   text-align: center;
-}
-
-#London {
-  background-color: $quaternary-color;
-}
-
-#Paris {
-  background-color: $tertiary-color;
-}
-
-#Tokyo {
-  background-color: $primary-color;
-}
-
-#Oslo {
-  background-color: $secondary-color;
 }
 
 /* ACCORDION */
@@ -1267,11 +1004,8 @@ img.hover-shadow {
   transition: max-height 0.2s ease-out;
 }
 
-
-
 .nav-posts {
   list-style: none;
-  background-color: $primary-color;
   margin-top: $size-4;
   padding-right: $size-1;
   padding-bottom: $size-1;
@@ -1339,7 +1073,6 @@ svg#mapabasediez {
     display: none;
     text-align: center;
     transform: translateY(1em);
-    color: $secondary-color;
   }
 
   #adicionales {
@@ -1435,11 +1168,7 @@ svg#mapabasediez {
 
   // gsapanim
   svg#scrollanim {
-    // width: 100vw;
     transform-box: fill-box;
-    // position: fixed;
-    // top:0;
-    // left: 50vw;
     z-index: 1;
     // #cero, #uno, #dos, #tres, #cuatro {}
     #cinco, #seis, #siete, #ocho, #nueve {
@@ -1459,11 +1188,9 @@ svg#mapabasediez {
         stroke: $white-color-alpha-1;
       }
     }
-    
   }
 
   .mainContent {
-    background-color: $grey-color-2;
     position: relative;
     // overflow-y: scroll;
     // scroll-snap-type: y proximity;
@@ -1519,22 +1246,6 @@ svg#mapabasediez {
 
 }
 
-@media screen and (min-width: $bp4) {
-  #metodosvg {
-    max-height: 50vh;
-  }
-
-  .txt--cero {
-    color: $grey-color-1;
-  }
-
-  .tmpl-home,
-  .tmpl-page,
-  .tmpl-post {
-    padding-top: calc($size-6) - $size-3;
-  }
-
-}
 
 @media screen and (min-width: $bp6) {
 
@@ -1572,9 +1283,6 @@ svg#mapabasediez {
 
 #grafica {
   background-color: $grey-color;
-
-  svg {
-  }
   
   circle {
     stroke: none;
@@ -1590,10 +1298,7 @@ svg#mapabasediez {
     fill: white;
     stroke: none;
     font-size: $size-0;
-    // font-family: $mainff;
-    // text-transform: uppercase;
     font-weight: $medium;
-    // letter-spacing: 1px;
   }
 }
 
@@ -1623,7 +1328,6 @@ svg#mapabasediez {
   }
   text {
     font-size: $size-0;
-    // fill: $quaternary-color;
     z-index: 10000;
   }
 }

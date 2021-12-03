@@ -1,0 +1,139 @@
+body {
+  font-family: $mainff;
+  font-weight: $normal;
+}
+
+h4 {
+  line-height: $size-2;
+}
+
+p,
+a,
+ul,
+dl,
+p strong,
+h3,
+blockquote {
+  line-height: 2rem;
+  letter-spacing: 1px;
+  word-spacing: 0.5px;
+}
+
+small {
+  font-size: $size-0;
+}
+
+a {
+  font-weight: $medium;
+}
+
+p {
+  font-size: $size-1;
+  font-weight: $medium;
+}
+
+em, 
+dt {
+  font-weight: $medium;
+}
+
+text {
+  // font-size: 0.4rem;
+  letter-spacing: 1px;
+  font-weight: bold;
+  letter-spacing: 0.1px;
+}
+
+blockquote {
+  font-weight: $medium;
+}
+
+// Forms
+input {
+  font-family: $mainff;
+  font-weight: $medium;
+  font-size: inherit;
+}
+
+label {
+  font-size: $size-0;
+}
+
+.image-slide + small {
+  text-align: center;
+  line-height: 1.7;
+}
+
+.close:hover,
+.close:focus {
+  text-decoration: none;
+}
+
+.close {
+  font-size: $size-3;
+}
+
+.previous,
+.next {
+  font-weight: bold;
+  font-size: $size-2;
+}
+
+/* TABS */
+.tablink {
+  font-size: 17px;
+}
+
+/* Tags */
+.post-tag {
+  text-transform: uppercase;
+  font-size: $size-0;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-weight: $bold;
+}
+
+.postlist-date {
+  word-spacing: -0.5px;
+}
+
+.postlist-link {
+  font-weight: $bold;
+  line-height: $size-2;
+  text-underline-position: from-font;
+  text-underline-offset: 0;
+  text-decoration-thickness: 5px;
+
+  h3 {
+    line-height: inherit;
+  }
+}
+
+.subTitlePage {
+  font-size: $size-2;
+  text-align: center;
+
+  @media screen and (min-width: $bp3) {
+    font-size: inherit;
+  }
+}
+
+.postlist-item-active .postlist-link {
+  font-weight: $normal;
+}
+
+.post-meta {
+  text-align: center;
+}
+
+.footer-site {
+  font-weight: $medium;
+}
+
+.footer-site .contact-me {
+  text-align: center;
+}
+
+.footer-site__item p {
+  text-align: center;
+}
