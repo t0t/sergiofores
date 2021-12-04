@@ -355,13 +355,14 @@ svg#mapabasediez #adicionales {
 body {
   margin: 0;
 }
-h2,
+h2 {
+  margin-bottom: 2.59rem;
+}
 h3 {
-  margin-bottom: 0.61rem;
+  margin-bottom: 2.59rem;
 }
 @media screen and (min-width: 766px) {
-  h2,
-h3 {
+  h3 {
     padding-bottom: 4.1rem;
   }
 }
@@ -392,15 +393,14 @@ p {
 p > a {
   padding-bottom: 1rem;
 }
-ul {
-  padding-left: 0;
-}
 li {
-  margin-bottom: 1rem;
+  margin-bottom: 0.37rem;
 }
 dl {
   padding-bottom: 1.6rem;
 }
+h1,
+h2,
 p,
 dl {
   padding-left: 2.59rem;
@@ -429,8 +429,8 @@ figure {
 }
 @media screen and (min-width: 766px) {
   figure {
-    padding-top: 6.64rem;
-    padding-bottom: 6.64rem;
+    padding-top: 4.1rem;
+    padding-bottom: 4.1rem;
   }
 }
 figure figcaption {

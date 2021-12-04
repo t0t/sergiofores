@@ -2,9 +2,12 @@ body {
   margin: 0;
 }
 
-h2,
+h2 {
+  margin-bottom: $size-3;
+}
+
 h3 {
-  margin-bottom: $size-0;
+  margin-bottom: $size-3;
 
   @media screen and (min-width: $bp3) {
     padding-bottom: $size-4;
@@ -35,17 +38,19 @@ p > a {
   padding-bottom: $size-1;
 }
 
-ul {
-  padding-left: 0;
-}
+// ul {
+//   padding-left: 0;
+// }
 
 li {
-  margin-bottom: $size-1;
+  margin-bottom: $size--1;
 }
 
 dl {
   padding-bottom: $size-2;
 }
+h1,
+h2,
 p, 
 dl {
   padding-left: $size-3;
@@ -79,8 +84,8 @@ figure {
   padding-bottom: $size-3;
   
   @media screen and (min-width: $bp3) {
-    padding-top: $size-5;
-    padding-bottom: $size-5;
+    padding-top: $size-4;
+    padding-bottom: $size-4;
   }
 
   figcaption {
