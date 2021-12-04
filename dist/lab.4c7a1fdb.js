@@ -486,10 +486,14 @@ arjes.enter().append("text").text((d)=>`${d.title}`
 ).attr("y", (d)=>`${d.y}`
 ).attr("fill", (d)=>`${d.color}`
 );
-const dropdownButton = d3.select("#gematriApp").append('select').selectAll('option').data(datos).enter().append('option').text((d)=>d.title
-) // text showed in the menu
-.attr("value", (d)=>d.color
-);
+// const dropdownButton = d3.select("#gematriApp")
+//   .append('select')
+//   .selectAll('option')
+//   .data(datos)
+//   .enter()
+//   .append('option')
+//   .text( d => d.title ) // text showed in the menu
+//   .attr("value", d => d.color ) 
 // Escalas
 const x = d3.scaleLinear().domain([
     0,
@@ -525,9 +529,10 @@ function updateInput() {
     areaFrecuencia.attr("r", this.value);
 }
 // Dropdown
-dropdownButton.on("change", (e)=>{
-    areaFrecuencia.style("stroke", e.target.value);
-});
+// dropdownButton
+//   .on("change", (e) => {
+//     areaFrecuencia.style("stroke", e.target.value)
+//   })
 d3.select("#fechanacimiento").on("change", updateFecha);
 function updateFecha(e) {
     let fechaNacimientoUsuario = e.target.value;
@@ -569,23 +574,20 @@ gematriAppG.selectAll("rect").data(datos).enter().append("rect").attr("x", (d, i
 ).attr("stroke", "white").attr("fill", "white").attr("height", (d, i)=>d.x + i * 5
 ).attr("width", "3px");
 // DOWNLOAD SVG
-const downloadAs = require('./utils/dowloadassvg.js');
-d3.select('#savesvg').on('click', ()=>{
-    downloadAs.svg('svg#main-svg', 'gematriapp.svg');
-});
+// const downloadAs = require('./utils/dowloadassvg.js')
+// d3.select('#savesvg').on('click', () => {
+//   downloadAs.svg('svg#main-svg', 'gematriapp.svg')
+// })
 // MAPA INTERACTIVO SVG BASEDIEZ
 const botones = d3.selectAll("#mapabasediez > #botones > circle").data(datos);
 d3.selectAll("#mapabasediez > #botones > text").classed("avoid-clicks", true);
 const p = d3.select(".descripcion").append("p");
 botones.on("click", (d, t)=>{
-    // const este = d3.select(this);
-    // d3.select(this).attr("fill","red")
-    // console.log(d.srcElement)
     const tags = t.tags.join(", ");
-    p.text(tags).style("display", "block");
+    p.html(tags).style("display", "block");
 });
 
-},{"d3":"97vK6","./data/datos.json":"i2wOf","./utils/gematriaap":"3Ngm5","./utils/inicializargraficas":"jhWEh","./utils/dowloadassvg.js":"7uRyG"}],"97vK6":[function(require,module,exports) {
+},{"d3":"97vK6","./data/datos.json":"i2wOf","./utils/gematriaap":"3Ngm5","./utils/inicializargraficas":"jhWEh"}],"97vK6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _d3Array = require("d3-array");
@@ -30016,7 +30018,7 @@ exports.default = function(event) {
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i2wOf":[function(require,module,exports) {
-module.exports = JSON.parse("{\"datos\":[{\"id\":0,\"x\":0,\"cx\":17,\"y\":0,\"cy\":0,\"r\":50,\"lupa\":30,\"color\":\"white\",\"title\":\"Cero\",\"nombre\":\"0\",\"tags\":[\"infinito\",\"vacio\",\"actualización\"]},{\"id\":1,\"x\":100,\"cx\":100,\"y\":0,\"cy\":-50,\"r\":50,\"lupa\":24,\"color\":\"#2BC4A9\",\"title\":\"Uno\",\"nombre\":\"1\",\"tags\":[\"Tierra\",\"Materia\",\"Vida\"]},{\"id\":2,\"x\":365,\"cx\":15,\"y\":50,\"cy\":50,\"r\":20,\"lupa\":13,\"color\":\"#FF6874\",\"title\":\"Dos\",\"nombre\":\"2\",\"tags\":[\"agua\",\"separación\",\"emocion\",\"proteccion\"]},{\"id\":3,\"x\":19,\"cx\":19,\"y\":-45,\"cy\":-45,\"r\":30,\"lupa\":55,\"color\":\"#9F9FFF\",\"title\":\"Tres\",\"nombre\":\"3\",\"tags\":[\"palabra\",\"aire\",\"simbolo\",\"encuentro\",\"analogia\"]},{\"id\":4,\"x\":0,\"cx\":0,\"y\":76,\"cy\":76,\"r\":40,\"lupa\":212,\"color\":\"#FFFF9F\",\"title\":\"Cuatro\",\"nombre\":\"4\",\"tags\":[\"fuego\",\"identidad\",\"mundo\",\"techo\"]},{\"id\":5,\"x\":17,\"cx\":17,\"y\":59,\"cy\":59,\"r\":50,\"lupa\":365,\"color\":\"grey\",\"title\":\"Cinco\",\"nombre\":\"5\",\"tags\":[\"emuná\",\"matriz\",\"lógica\",\"arjé\"]},{\"id\":6,\"x\":12,\"cx\":12,\"y\":-45,\"cy\":-45,\"r\":60,\"lupa\":153,\"color\":\"grey\",\"title\":\"Seis\",\"nombre\":\"6\",\"tags\":[\"posibilidades\",\"universos\",\"oportunidad\"]},{\"id\":7,\"x\":25,\"cx\":38,\"y\":0,\"cy\":13,\"r\":50,\"lupa\":319,\"color\":\"red\",\"title\":\"Siete\",\"nombre\":\"7\",\"tags\":[\"origen\",\"tzimtzum\",\"genuino\"]},{\"id\":8,\"x\":50,\"cx\":50,\"y\":72,\"cy\":72,\"r\":80,\"lupa\":3,\"color\":\"grey\",\"title\":\"Ocho\",\"nombre\":\"8\",\"tags\":[\"red\",\"circuitos globales\",\"secuencia completa\"]},{\"id\":9,\"x\":74,\"cx\":74,\"y\":-45,\"cy\":-45,\"r\":90,\"lupa\":46,\"color\":\"grey\",\"title\":\"Nueve\",\"nombre\":\"9\",\"tags\":[\"propósito\",\"discernimiento\",\"foco\"]}]}");
+module.exports = JSON.parse("{\"datos\":[{\"id\":0,\"x\":0,\"cx\":17,\"y\":0,\"cy\":0,\"r\":50,\"lupa\":30,\"color\":\"white\",\"title\":\"Cero\",\"nombre\":\"0\",\"tags\":[\"Infinito\",\"Atemporal\",\"Vacio\",\"Actualización\",\"Sutil\",\"Disolución\",\"Espacio\",\"Ocultamiento\"]},{\"id\":1,\"x\":100,\"cx\":100,\"y\":0,\"cy\":-50,\"r\":50,\"lupa\":24,\"color\":\"#2BC4A9\",\"title\":\"Uno\",\"nombre\":\"1\",\"tags\":[\"Tierra\",\"Materia\",\"Vida\",\"Plasmar\",\"Resultado\",\"Denso\",\"Concreto\",\"Herramientas\",\"Estructuras\",\"Hacer\",\"Ritmo\",\"Tesoro\",\"Coagulación\",\"Función\",\"Cristalización\"]},{\"id\":2,\"x\":365,\"cx\":15,\"y\":50,\"cy\":50,\"r\":20,\"lupa\":13,\"color\":\"#FF6874\",\"title\":\"Dos\",\"nombre\":\"2\",\"tags\":[\"Agua\",\"Separación\",\"Emoción\",\"Diaballein\",\"Protección\",\"Memoria\",\"Línea\",\"Circuitos internos\",\"Membranas\",\"Vulnerabilidad\",\"Sentir\",\"Imaginario\",\"Ilusión\",\"Psique\"]},{\"id\":3,\"x\":19,\"cx\":19,\"y\":-45,\"cy\":-45,\"r\":30,\"lupa\":55,\"color\":\"#9F9FFF\",\"title\":\"Tres\",\"nombre\":\"3\",\"tags\":[\"Palabra\",\"Aire\",\"Símbolo\",\"Códigos\",\"Encuentro\",\"Analogia\",\"Triángulo\",\"Conexión\",\"Hermes\",\"Mensajero\",\"Función TOTH\",\"re-Unión\",\"mediación externa\",\"Decir\",\"Nombrar\",\"Diálogo\"]},{\"id\":4,\"x\":0,\"cx\":0,\"y\":76,\"cy\":76,\"r\":40,\"lupa\":212,\"color\":\"#FFFF9F\",\"title\":\"Cuatro\",\"nombre\":\"4\",\"tags\":[\"Decisión\",\"Discernimiento\",\"Fuego\",\"Identidad\",\"Mundo\",\"Techo\",\"Voluntad\",\"Pensar\",\"Ideación\",\"Creencias\",\"Puente\",\"Ego-Yo\",\"Personaje\",\"Razón\"]},{\"id\":5,\"x\":17,\"cx\":17,\"y\":59,\"cy\":59,\"r\":50,\"lupa\":365,\"color\":\"grey\",\"title\":\"Cinco\",\"nombre\":\"5\",\"tags\":[\"Emuná\",\"Matriz\",\"Lógica\",\"Arjé\",\"Logos\",\"Principio Solar\",\"Blueprint\",\"Mapas\",\"Orden\"]},{\"id\":6,\"x\":12,\"cx\":12,\"y\":-45,\"cy\":-45,\"r\":60,\"lupa\":153,\"color\":\"grey\",\"title\":\"Seis\",\"nombre\":\"6\",\"tags\":[\"Infinitas Posibilidades\",\"Universos - Versiones\",\"Oportunidad\",\"Potencial\"]},{\"id\":7,\"x\":25,\"cx\":38,\"y\":0,\"cy\":13,\"r\":50,\"lupa\":319,\"color\":\"red\",\"title\":\"Siete\",\"nombre\":\"7\",\"tags\":[\"Origen\",\"Génesis\",\"TzimTzum\",\"Genuino\",\"Luz\",\"funda de la existencia\",\"Plasma\",\"Brecha\",\"Fuente\",\"Emanación\"]},{\"id\":8,\"x\":50,\"cx\":50,\"y\":72,\"cy\":72,\"r\":80,\"lupa\":3,\"color\":\"grey\",\"title\":\"Ocho\",\"nombre\":\"8\",\"tags\":[\"Red\",\"Circuitos globales\",\"Secuencia completa\"]},{\"id\":9,\"x\":74,\"cx\":74,\"y\":-45,\"cy\":-45,\"r\":90,\"lupa\":46,\"color\":\"grey\",\"title\":\"Nueve\",\"nombre\":\"9\",\"tags\":[\"propósito\",\"discernimiento\",\"foco\"]}]}");
 
 },{}],"3Ngm5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -30133,99 +30135,6 @@ function crearSVG(canvasname, el, data) {
     return elemento;
 }
 
-},{"d3":"97vK6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7uRyG":[function(require,module,exports) {
-!function(e, t) {
-    "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.downloadAs = t() : e.downloadAs = t();
-}(window, function() {
-    return (function(e1) {
-        var t1 = {
-        };
-        function n(o) {
-            if (t1[o]) return t1[o].exports;
-            var r = t1[o] = {
-                i: o,
-                l: !1,
-                exports: {
-                }
-            };
-            return e1[o].call(r.exports, r, r.exports, n), r.l = !0, r.exports;
-        }
-        return n.m = e1, n.c = t1, n.d = function(e, t, o) {
-            n.o(e, t) || Object.defineProperty(e, t, {
-                enumerable: !0,
-                get: o
-            });
-        }, n.r = function(e) {
-            "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
-                value: "Module"
-            }), Object.defineProperty(e, "__esModule", {
-                value: !0
-            });
-        }, n.t = function(e, t) {
-            if (1 & t && (e = n(e)), 8 & t) return e;
-            if (4 & t && "object" == typeof e && e && e.__esModule) return e;
-            var o = Object.create(null);
-            if (n.r(o), Object.defineProperty(o, "default", {
-                enumerable: !0,
-                value: e
-            }), 2 & t && "string" != typeof e) for(var r in e)n.d(o, r, (function(t) {
-                return e[t];
-            }).bind(null, r));
-            return o;
-        }, n.n = function(e) {
-            var t = e && e.__esModule ? function() {
-                return e.default;
-            } : function() {
-                return e;
-            };
-            return n.d(t, "a", t), t;
-        }, n.o = function(e, t) {
-            return Object.prototype.hasOwnProperty.call(e, t);
-        }, n.p = "", n(n.s = 0);
-    })([
-        function(e2, t2, n1) {
-            "use strict";
-            n1.r(t2);
-            let o1 = null;
-            const r1 = "TRIGGER__" + Math.random();
-            var u1 = {
-                download (e, t) {
-                    document.getElementById(r1) ? o1 = document.getElementById(r1) : ((o1 = document.createElement("a")).id = r1, o1.target = "_blank", document.body.appendChild(o1)), o1.download = t, o1.href = e, o1.click();
-                }
-            }, c1 = (e, t)=>{
-                const n = "data:image/svg+xml;utf8," + document.querySelector(e).outerHTML.replace(/"/g, "'").replace(/[\r\n%#()<>?\[\\\]^`{|}]/g, encodeURIComponent);
-                u1.download(n, t);
-            }, d1 = (e, t)=>{
-                var n = "data:text/plain;charset=utf-8," + encodeURIComponent(e);
-                u1.download(n, t);
-            }, a = (e3, t, n2 = "png")=>{
-                e3.toBlob(function(e) {
-                    var n = document.createElement("img"), o = URL.createObjectURL(e);
-                    n.onload = function() {
-                        URL.revokeObjectURL(o);
-                    }, u1.download(o, t);
-                }, `image/${n2}`, 1);
-            }, i = (e, t)=>{
-                const n = document.querySelector(e), o = (new XMLSerializer).serializeToString(n), r = "data:image/svg+xml;base64," + btoa(o), u = document.createElement("canvas");
-                u.width = 200, u.height = 200;
-                const c = u.getContext("2d"), d = new Image;
-                d.onload = function() {
-                    c.drawImage(d, 0, 0), a(u, t);
-                }, d.src = r;
-            };
-            n1.d(t2, "svg", function() {
-                return c1;
-            }), n1.d(t2, "txt", function() {
-                return d1;
-            }), n1.d(t2, "cnv", function() {
-                return a;
-            }), n1.d(t2, "svgpng", function() {
-                return i;
-            });
-        }
-    ]);
-});
-
-},{}]},["6Msik","dFcvm"], "dFcvm", "parcelRequirece68")
+},{"d3":"97vK6","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["6Msik","dFcvm"], "dFcvm", "parcelRequirece68")
 
 //# sourceMappingURL=lab.4c7a1fdb.js.map

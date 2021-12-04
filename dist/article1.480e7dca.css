@@ -160,13 +160,13 @@ hr {
   background-color: #e2777a;
 }
 input {
-  background-color: #4AECC1;
+  background-color: #ffffff30;
 }
 input[type=text]:active,
 input[type=text]:focus,
 input[type=date]:focus,
 input[type=submit]:focus {
-  background-color: #FFFF9F;
+  background-color: #4AECC1;
 }
 ::-moz-placeholder {
   color: black;
@@ -183,6 +183,13 @@ input[type=submit] {
 }
 input[type=submit]:hover {
   background-color: #FFFF9F;
+}
+input:focus {
+  outline: none;
+}
+input:focus-visible {
+  outline: 1px dotted #00000056;
+  /* That'll show 'em */
 }
 input:checked + .switch {
   color: #e2777a;
@@ -293,6 +300,33 @@ button:hover {
 }
 .footer-site footer nav a:hover {
   color: #c0c0c0;
+}
+#gematriApp svg {
+  background-color: #ffffff30;
+}
+#gematriApp circle {
+  fill: none;
+}
+#gematriApp line {
+  stroke: #FFFF9F;
+}
+svg#mapabasediez #cero, svg#mapabasediez #uno, svg#mapabasediez #dos, svg#mapabasediez #tres, svg#mapabasediez #cuatro {
+  fill: #c0c0c0;
+}
+svg#mapabasediez #cinco, svg#mapabasediez #seis, svg#mapabasediez #siete, svg#mapabasediez #ocho, svg#mapabasediez #nueve {
+  fill: #6f6f6f;
+}
+svg#mapabasediez #cero:hover, svg#mapabasediez #uno:hover, svg#mapabasediez #dos:hover, svg#mapabasediez #tres:hover, svg#mapabasediez #cuatro:hover, svg#mapabasediez #cinco:hover, svg#mapabasediez #seis:hover, svg#mapabasediez #siete:hover, svg#mapabasediez #ocho:hover, svg#mapabasediez #nueve:hover {
+  fill: #4AECC1;
+}
+svg#mapabasediez text {
+  fill: black;
+}
+svg#mapabasediez + .descripcion p {
+  background-color: #ffffff30;
+}
+svg#mapabasediez #adicionales {
+  stroke: black;
 }
 .modal {
   background-color: #000000d6;
@@ -528,6 +562,23 @@ model-viewer {
     max-width: 50vw;
   }
 }
+.codigos-ejemplo {
+  margin-top: 4.1rem;
+  margin-bottom: 4.1rem;
+  padding: 0 2.59rem 1.6rem;
+}
+.codigos-ejemplo dt {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.codigos-ejemplo dd {
+  margin-left: 1rem;
+}
+@media screen and (min-width: 766px) {
+  .codigos-ejemplo {
+    padding: 0 2.59rem 1.6rem;
+  }
+}
 .modal {
   left: 0;
   top: 0;
@@ -568,6 +619,20 @@ model-viewer {
 .franjapie {
   padding: 1rem;
   min-height: 50vh;
+}
+svg#mapabasediez {
+  max-height: 50vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+svg#mapabasediez + .descripcion {
+  padding-left: 2.59rem;
+  padding-right: 2.59rem;
+}
+svg#mapabasediez + .descripcion p {
+  padding-top: 2.59rem;
+  padding-bottom: 2.59rem;
+  margin-bottom: 0;
 }
 .titlePage {
   z-index: 1;
@@ -683,6 +748,24 @@ ol {
 figure figcaption {
   font-size: 0.61rem;
   line-height: 1rem;
+}
+.codigos-ejemplo {
+  text-align: center;
+}
+.codigos-ejemplo dt span {
+  font-weight: 700;
+}
+.codigos-ejemplo dd {
+  font-size: 0.61rem;
+  line-height: 1.5;
+}
+@media screen and (min-width: 766px) {
+  .codigos-ejemplo {
+    text-align: inherit;
+  }
+  .codigos-ejemplo dt {
+    text-align: right;
+  }
 }
 .home :link:not(:hover) {
   text-decoration: none;
@@ -1237,18 +1320,6 @@ svg.grafica text {
 .output.resultado h2 {
   padding: 0;
 }
-.codigos-ejemplo {
-  text-align: center;
-  padding: 0 2.59rem 1.6rem;
-}
-.codigos-ejemplo dt span {
-  font-weight: 700;
-}
-.codigos-ejemplo dd {
-  margin-left: 1rem;
-  font-size: 0.61rem;
-  line-height: 1.5;
-}
 @media screen and (min-width: 373px) {
   .codigos-ejemplo {
     display: grid;
@@ -1259,11 +1330,6 @@ svg.grafica text {
   .codigos-ejemplo {
     align-items: center;
     grid-template-columns: repeat(4, 1fr);
-    padding: 0 2.59rem 1.6rem;
-    text-align: inherit;
-  }
-  .codigos-ejemplo dt {
-    text-align: right;
   }
 }
 @media screen and (min-width: 1438px) {
@@ -1535,31 +1601,20 @@ img.hover-shadow {
 svg#mapabasediez {
   transform-box: fill-box;
 }
-svg#mapabasediez #cero, svg#mapabasediez #uno, svg#mapabasediez #dos, svg#mapabasediez #tres, svg#mapabasediez #cuatro {
-  fill: #c0c0c0;
-}
-svg#mapabasediez #cinco, svg#mapabasediez #seis, svg#mapabasediez #siete, svg#mapabasediez #ocho, svg#mapabasediez #nueve {
-  fill: #6f6f6f;
-}
 svg#mapabasediez #cero, svg#mapabasediez #uno, svg#mapabasediez #dos, svg#mapabasediez #tres, svg#mapabasediez #cuatro, svg#mapabasediez #cinco, svg#mapabasediez #seis, svg#mapabasediez #siete, svg#mapabasediez #ocho, svg#mapabasediez #nueve {
   stroke: none;
 }
 svg#mapabasediez #cero:hover, svg#mapabasediez #uno:hover, svg#mapabasediez #dos:hover, svg#mapabasediez #tres:hover, svg#mapabasediez #cuatro:hover, svg#mapabasediez #cinco:hover, svg#mapabasediez #seis:hover, svg#mapabasediez #siete:hover, svg#mapabasediez #ocho:hover, svg#mapabasediez #nueve:hover {
   cursor: help;
-  fill: #4AECC1;
 }
 svg#mapabasediez text {
-  fill: black;
   font-size: 0.61rem;
   transform: translate(-0.32em, 0.35em);
 }
 svg#mapabasediez + .descripcion p {
   display: none;
   text-align: center;
-  transform: translateY(1em);
-}
-svg#mapabasediez #adicionales {
-  stroke: black;
+  transition: all cubic-bezier(0.6, -0.28, 0.735, 0.045) 1s;
 }
 /* MEDIAQUERIES */
 @media screen and (min-width: 318px) {
@@ -1711,22 +1766,12 @@ pre {
   font-size: 0.61rem;
   font-weight: 500;
 }
-#gematriApp svg {
-  background-color: #00000056;
-}
-#gematriApp circle {
-  fill: none;
-}
 #gematriApp .result {
   font-size: 1rem;
-  fill: #e2777a;
 }
 #gematriApp .result--anim {
   transition: transform 2s cubic-bezier(0.215, 0.61, 0.355, 1);
   transform: scale(2);
-}
-#gematriApp line {
-  stroke: #FFFF9F;
 }
 #gematriApp text {
   font-size: 0.61rem;

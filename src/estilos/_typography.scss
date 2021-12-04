@@ -102,6 +102,26 @@ figure {
   }
 }
 
+.codigos-ejemplo {
+  text-align: center;
+  
+  dt span {
+    font-weight: $bold;
+  }
+  
+  dd {
+    font-size: $size-0;
+    line-height: 1.5;
+  }
+
+  @media screen and (min-width: $bp3) {
+    text-align: inherit;
+    dt {
+      text-align: right;
+    }
+  }
+}
+
 .home :link:not(:hover) {
   text-decoration: none;
 }

@@ -293,19 +293,6 @@ svg.grafica {
 }
 
 .codigos-ejemplo {
-  text-align: center;
-  padding: 0 $size-3 $size-2;
-  
-  dt span {
-    font-weight: $bold;
-  }
-  
-  dd {
-    margin-left: $size-1;
-    font-size: $size-0;
-    line-height: 1.5;
-  }
-
   @media screen and (min-width: $bp1) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -313,12 +300,6 @@ svg.grafica {
   @media screen and (min-width: $bp3) {
     align-items: center;
     grid-template-columns: repeat(4, 1fr);
-    padding: 0 $size-3 $size-2;
-    text-align: inherit;
-    
-    dt {
-      text-align: right;
-    }
   }
   @media screen and (min-width: $bp5) {
     grid-template-columns: repeat(8, 1fr);
@@ -646,21 +627,13 @@ img.hover-shadow {
 svg#mapabasediez {
   transform-box: fill-box;
 
-  #cero, #uno, #dos, #tres, #cuatro {
-    fill: $grey-color-2;
-  }
-  #cinco, #seis, #siete, #ocho, #nueve {
-    fill: $grey-color-3;
-  }
   #cero, #uno, #dos, #tres, #cuatro, #cinco, #seis, #siete, #ocho, #nueve {
     stroke: none;
     &:hover {
       cursor: help;
-      fill: $secondary-color;
     }
   } 
   text {
-    fill: $black-color;
     font-size: $size-0;
     transform: translate(-0.32em, .35em);
   }
@@ -668,11 +641,7 @@ svg#mapabasediez {
   + .descripcion p {
     display: none;
     text-align: center;
-    transform: translateY(1em);
-  }
-
-  #adicionales {
-    stroke: $black-color;
+    transition: all cubic-bezier(0.6, -0.28, 0.735, 0.045) 1s;
   }
 }
 
@@ -857,24 +826,14 @@ svg#mapabasediez {
 }
 
 #gematriApp {
-  svg {
-    background-color: $black-color-alpha-0;
-  }
-  circle {
-    fill: none;
-  }
+
   .result {
     font-size: $size-1;
-    fill: $primary-color;
 
     &--anim {
       transition: transform 2s cubic-bezier(0.215, 0.610, 0.355, 1);
       transform: scale(2);
     }
-  }
-
-  line {
-    stroke: $quaternary-color;
   }
   text {
     font-size: $size-0;

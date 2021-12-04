@@ -45,14 +45,14 @@ const arjes = gematriAppG.selectAll("text").data(datos)
     .attr("y", d => `${d.y}`)
     .attr("fill", d =>`${d.color}`)
 
-const dropdownButton = d3.select("#gematriApp")
-  .append('select')
-  .selectAll('option')
-  .data(datos)
-  .enter()
-  .append('option')
-  .text( d => d.title ) // text showed in the menu
-  .attr("value", d => d.color ) 
+// const dropdownButton = d3.select("#gematriApp")
+//   .append('select')
+//   .selectAll('option')
+//   .data(datos)
+//   .enter()
+//   .append('option')
+//   .text( d => d.title ) // text showed in the menu
+//   .attr("value", d => d.color ) 
 
 // Escalas
 const x = d3.scaleLinear()
@@ -98,10 +98,10 @@ circulos
   }
   
   // Dropdown
-  dropdownButton
-    .on("change", (e) => {
-      areaFrecuencia.style("stroke", e.target.value)
-    })
+  // dropdownButton
+  //   .on("change", (e) => {
+  //     areaFrecuencia.style("stroke", e.target.value)
+  //   })
 
   d3.select("#fechanacimiento").on("change", updateFecha )
   function updateFecha(e) {
@@ -148,8 +148,6 @@ circulos
         return `${diahoy}-${diasfinanyo}`
       })
 
-
-
 function updateArjesArray(dato) {
   arjesArray.push(dato)
   for (let i = 0; i < arjesArray.length; i++) {
@@ -179,12 +177,11 @@ gematriAppG.selectAll("rect")
   .attr("height", (d,i) => d.x+i*5)
   .attr("width", "3px")
 
-
 // DOWNLOAD SVG
-const downloadAs = require('./utils/dowloadassvg.js')
-d3.select('#savesvg').on('click', () => {
-  downloadAs.svg('svg#main-svg', 'gematriapp.svg')
-})
+// const downloadAs = require('./utils/dowloadassvg.js')
+// d3.select('#savesvg').on('click', () => {
+//   downloadAs.svg('svg#main-svg', 'gematriapp.svg')
+// })
 
 // MAPA INTERACTIVO SVG BASEDIEZ
 const botones = d3.selectAll("#mapabasediez > #botones > circle").data(datos)
@@ -192,9 +189,6 @@ d3.selectAll("#mapabasediez > #botones > text").classed("avoid-clicks", true)
 
 const p = d3.select(".descripcion").append("p")
 botones.on("click", (d,t)=> {
-  // const este = d3.select(this);
-  // d3.select(this).attr("fill","red")
-  // console.log(d.srcElement)
   const tags = t.tags.join(", ")
-  p.text(tags).style("display", "block")
+  p.html(tags).style("display", "block")
 })
