@@ -285,9 +285,9 @@
     "articles": [
       {
         "id": 0,
-        "title": "Cómo sostener el interés por tus proyectos",
+        "title": "Todo es Número",
         "img": "./img/bg4.jpg",
-        "description": "La montaña gusta de lo que ya no me gusta",
+        "description": "(y parte de la Unidad)",
         "url": "./article1.pug"
       },
       {
