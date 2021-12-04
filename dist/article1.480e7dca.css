@@ -678,7 +678,7 @@ dl,
 p strong,
 h3,
 blockquote {
-  line-height: 2rem;
+  line-height: 1.7rem;
   letter-spacing: 1px;
   word-spacing: 0.5px;
 }
@@ -1061,7 +1061,7 @@ figure figcaption {
   transition: margin-left 0.3s;
 }
 .mainContent {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .headerContent {
   position: relative;
