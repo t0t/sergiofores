@@ -24,6 +24,12 @@ hr {
   background-color: $primary-color;
 }
 
+figure {
+  figcaption {
+    border-left: $size--1 solid $primary-color;
+  }
+}
+
 // .blog {
 //   blockquote {
 //     color: $secondary-color;

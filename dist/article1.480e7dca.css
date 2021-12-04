@@ -159,6 +159,9 @@ blockquote {
 hr {
   background-color: #e2777a;
 }
+figure figcaption {
+  border-left: 0.37rem solid #e2777a;
+}
 input {
   background-color: #ffffff30;
 }
@@ -452,7 +455,12 @@ button {
 .titlePage {
   margin-top: 2.59rem;
   margin-bottom: 2.59rem;
-  top: 30vw;
+  top: 50vw;
+}
+@media screen and (min-width: 766px) {
+  .titlePage {
+    top: 30vw;
+  }
 }
 .mainContent {
   min-height: 125vh;
@@ -668,6 +676,24 @@ body {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
+h2 {
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 2px;
+  font-size: 1.6rem;
+}
+h3 {
+  font-size: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  letter-spacing: 2px;
+}
+@media screen and (min-width: 1438px) {
+  h3 {
+    line-height: 2.59rem;
+    font-size: 1.6rem;
+  }
+}
 h4 {
   line-height: 1.6rem;
 }
@@ -727,20 +753,6 @@ input {
 label {
   font-size: 0.61rem;
 }
-h2,
-h3 {
-  font-size: 1rem;
-  line-height: 1rem;
-  text-align: center;
-  letter-spacing: 2px;
-}
-@media screen and (min-width: 1438px) {
-  h2,
-h3 {
-    line-height: 2.59rem;
-    font-size: 1.6rem;
-  }
-}
 ul,
 ol {
   list-style-position: inside;
@@ -748,6 +760,8 @@ ol {
 figure figcaption {
   font-size: 0.61rem;
   line-height: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 .codigos-ejemplo {
   text-align: center;
@@ -1133,9 +1147,6 @@ body {
 figure {
   display: grid;
   place-items: center;
-}
-figure figcaption {
-  border-left: 1px solid #4AECC1;
 }
 section {
   position: relative;

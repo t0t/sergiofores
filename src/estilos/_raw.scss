@@ -85,10 +85,6 @@ body {
 figure {
   display: grid;
   place-items: center;
-
-  figcaption {
-    border-left: 1px solid $secondary-color;
-  }
 }
 
 section {
