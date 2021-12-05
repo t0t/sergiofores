@@ -93,6 +93,26 @@ figure {
   }
 }
 
+.card {
+  padding: $size-3;
+    min-height: 50vh;
+    width: 100%;
+    // img {
+    //   max-height: 50vh;
+    // }
+  &Bottom {
+    margin-top: $size-6;
+  }
+
+  p {
+    padding: 0;
+  }
+  
+  @media screen and (min-width: $bp3) {
+    max-width: 50vw;
+  }
+}
+
 blockquote {
   padding: $size-4;
   max-width: $size-9;
@@ -161,7 +181,7 @@ button {
 }
 
 .grid__item {
-  min-height: 50vh;
+  min-height: 100%;
   width: 100%;
   img {
     max-height: 50vh;
@@ -273,8 +293,15 @@ model-viewer {
   height: 100%;
 }
 
-.social-links svg {
-  width: $size-2;
+// /* Social Links */
+.social-links {
+  gap: $size-1;
+  max-width: 600px;
+  margin: 0 auto;
+  
+  svg {
+    width: $size-2;
+  }
 }
 
 .preview {

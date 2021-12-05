@@ -30,6 +30,17 @@ figure {
   }
 }
 
+.card {
+  &Dark {
+    color: $grey-color-2;
+    background-color: $grey-color-4;
+  }
+  &Invert {
+    // color: $grey-color;
+    background-color: $grey-color-3;
+  }
+}
+
 // .blog {
 //   blockquote {
 //     color: $secondary-color;

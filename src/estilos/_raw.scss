@@ -304,22 +304,8 @@ svg.grafica {
 
 .card {
   align-self: center;
-  padding: $size-4;
   justify-self: start;
   background-size: cover;
-  color: $black-color;
-  
-  &Bottom {
-    margin-top: $size-6;
-  }
-
-  p {
-    padding: 0;
-  }
-  
-  @media screen and (min-width: $bp3) {
-    max-width: 50vw;
-  }
 }
 
 .menu3d {
@@ -385,9 +371,6 @@ svg.grafica {
 .social-links {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: $size-1;
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 .lienzo {

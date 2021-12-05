@@ -162,6 +162,13 @@ hr {
 figure figcaption {
   border-left: 0.37rem solid #e2777a;
 }
+.cardDark {
+  color: #c0c0c0;
+  background-color: #2e2e2e;
+}
+.cardInvert {
+  background-color: #a5a5a5;
+}
 input {
   background-color: #ffffff30;
 }
@@ -199,7 +206,7 @@ input:checked + .switch {
 }
 button {
   background-color: transparent;
-  color: #6f6f6f;
+  color: #a5a5a5;
 }
 button:hover {
   color: #e2777a;
@@ -220,7 +227,7 @@ button:hover {
 }
 .franjapie {
   color: black;
-  background-color: #6f6f6f;
+  background-color: #a5a5a5;
 }
 /* hambutton */
 .hambutton line {
@@ -243,15 +250,15 @@ button:hover {
 }
 /* TABS */
 .tablink {
-  background-color: #6f6f6f;
+  background-color: #a5a5a5;
   color: white;
 }
 .tablink:hover {
-  background-color: #6f6f6f;
+  background-color: #a5a5a5;
 }
 /* Tags */
 .post-tag {
-  color: #6f6f6f;
+  color: #a5a5a5;
 }
 .sectionResaltadaClara {
   background-color: #4AECC1;
@@ -299,7 +306,7 @@ button:hover {
   background-color: #e2777a;
 }
 .footer-site footer nav a {
-  color: #6f6f6f;
+  color: #a5a5a5;
 }
 .footer-site footer nav a:hover {
   color: #c0c0c0;
@@ -317,7 +324,7 @@ svg#mapabasediez #cero, svg#mapabasediez #uno, svg#mapabasediez #dos, svg#mapaba
   fill: #c0c0c0;
 }
 svg#mapabasediez #cinco, svg#mapabasediez #seis, svg#mapabasediez #siete, svg#mapabasediez #ocho, svg#mapabasediez #nueve {
-  fill: #6f6f6f;
+  fill: #a5a5a5;
 }
 svg#mapabasediez #cero:hover, svg#mapabasediez #uno:hover, svg#mapabasediez #dos:hover, svg#mapabasediez #tres:hover, svg#mapabasediez #cuatro:hover, svg#mapabasediez #cinco:hover, svg#mapabasediez #seis:hover, svg#mapabasediez #siete:hover, svg#mapabasediez #ocho:hover, svg#mapabasediez #nueve:hover {
   fill: #4AECC1;
@@ -436,6 +443,22 @@ figure {
 figure figcaption {
   padding-left: 1rem;
 }
+.card {
+  padding: 2.59rem;
+  min-height: 50vh;
+  width: 100%;
+}
+.cardBottom {
+  margin-top: 10.7rem;
+}
+.card p {
+  padding: 0;
+}
+@media screen and (min-width: 766px) {
+  .card {
+    max-width: 50vw;
+  }
+}
 blockquote {
   padding: 4.1rem;
   max-width: 45.5rem;
@@ -497,7 +520,7 @@ button {
   }
 }
 .grid__item {
-  min-height: 50vh;
+  min-height: 100%;
   width: 100%;
 }
 .grid__item img {
@@ -592,6 +615,11 @@ model-viewer {
   top: 0;
   width: 100vw;
   height: 100%;
+}
+.social-links {
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 .social-links svg {
   width: 1.6rem;
@@ -1037,8 +1065,8 @@ figure figcaption {
   fill: none;
 }
 .btn--white {
-  color: #6f6f6f;
-  border: 1px solid #6f6f6f;
+  color: #a5a5a5;
+  border: 1px solid #a5a5a5;
 }
 .btn--white:hover {
   color: black;
@@ -1350,21 +1378,8 @@ svg.grafica text {
 }
 .card {
   align-self: center;
-  padding: 4.1rem;
   justify-self: start;
   background-size: cover;
-  color: black;
-}
-.cardBottom {
-  margin-top: 10.7rem;
-}
-.card p {
-  padding: 0;
-}
-@media screen and (min-width: 766px) {
-  .card {
-    max-width: 50vw;
-  }
 }
 .menu3d {
   display: grid;
@@ -1418,13 +1433,10 @@ svg.grafica text {
 .social-links {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 1rem;
-  max-width: 600px;
-  margin: 0 auto;
 }
 .lienzo {
   position: relative;
-  background-color: #6f6f6f;
+  background-color: #a5a5a5;
 }
 .contact-me {
   grid-template-columns: 1fr 1fr;
@@ -1704,7 +1716,7 @@ svg#mapabasediez + .descripcion p {
     transform-box: fill-box;
   }
   svg#scrollanim #cinco, svg#scrollanim #seis, svg#scrollanim #siete, svg#scrollanim #ocho, svg#scrollanim #nueve {
-    fill: #6f6f6f;
+    fill: #a5a5a5;
   }
   svg#scrollanim #cero, svg#scrollanim #uno, svg#scrollanim #dos, svg#scrollanim #tres, svg#scrollanim #cuatro, svg#scrollanim #cinco, svg#scrollanim #seis, svg#scrollanim #siete, svg#scrollanim #ocho, svg#scrollanim #nueve {
     mix-blend-mode: soft-light;
@@ -2141,7 +2153,7 @@ pre {
   color: #c0c0c0;
 }
 .color-grey-3 {
-  color: #6f6f6f;
+  color: #a5a5a5;
 }
 .bgcolor-primary {
   background-color: #e2777a;
@@ -2171,7 +2183,7 @@ pre {
   background-color: #c0c0c0;
 }
 .bgcolor-grey-3 {
-  background-color: #6f6f6f;
+  background-color: #a5a5a5;
 }
 .bgcolor-alpha-0 {
   background-color: #ffffff30;
