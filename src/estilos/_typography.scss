@@ -70,7 +70,10 @@ dt {
 }
 
 button {
-  text-transform: uppercase;
+  font-family: $mainff;
+  font-size: $size-1;
+  letter-spacing: 1px;
+  font-weight: $medium;
 }
 
 text {

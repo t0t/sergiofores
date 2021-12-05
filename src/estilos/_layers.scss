@@ -11,6 +11,13 @@
   z-index: $tronco;
 }
 
+/* Nav */
+.nav {
+  @media screen and (min-width: $bp3) {
+    z-index: $ramas;
+  }
+}
+
 // gsapanim
 svg#scrollanim {
   z-index: $raiz;

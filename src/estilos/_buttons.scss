@@ -19,24 +19,28 @@
 
 
 .btn--default {
-  margin-top: $size-3;
+  margin-top: $size-2;
+  padding: ($size-2 - $size-0) $size-2;
   display: inline-block;
+  text-decoration: none;
+  line-height: 1;
+
   &:hover {
+    color: $black-color;
     background-color: $secondary-color;
     border-color: $secondary-color;
   }
 }
 
-.btn--default,
 .btn--primary {
   text-decoration: none;
-  padding: $size-1 $size-2;
+  padding: $size-2 $size-3;
   background-color: transparent;
   margin: 0;
+  &:hover {
+    background-color: $primary-color;
+    border-color: $primary-color;
+    // transition: background-color .1s cubic-bezier(0.6, -0.28, 0.735, 0.045)
+  }
 }
 
-.btn--primary:hover {
-  background-color: $primary-color;
-  border-color: $primary-color;
-  // transition: background-color .1s cubic-bezier(0.6, -0.28, 0.735, 0.045)
-}

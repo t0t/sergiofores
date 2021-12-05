@@ -42,46 +42,6 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
 }
 
-// GRID
-
-.grid {
-  display: grid;
-  gap: $size-0;
-  place-items: center;
-
-  @media screen and (min-width: $bp2) {
-    gap: $size-1;
-  }
-
-  @media screen and (min-width: $bp3) {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: $size-2;
-  }
-  
-  @media screen and (min-width: $bp4) {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: $size-2;
-  }
-
-  @media screen and (min-width: $bp5) {
-    grid-template-columns: repeat(auto-fit, minmax($size-7, 1fr));
-    gap: $size-4;
-  }
-}
-
-.grid--img {
-  gap: 0px;
-  padding: 0px;
-  min-height: 50vh;
-  grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
-
-  .grid__item {
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-}
-
 figure {
   display: grid;
   place-items: center;
@@ -124,7 +84,7 @@ h1 {
   place-items: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
+  // background-attachment: fixed;
   
   blockquote {
     border-left: 0px;

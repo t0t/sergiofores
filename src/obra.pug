@@ -12,26 +12,22 @@ block content
       mark.subTitlePage obras tridimensionales esculpidas por una luz que es de verdad.
     .bgImg.animCrop(style="background-image: url('./img/bg8.png');")
 
-  .grid.sectionResaltadaOscura  
-    .grid__item
+  .grid  
+    .grid-12.grid-md-6
       video#video1(poster='./img/arte3d.jpeg')
         source(src='./videos/desdelapoesiadelamateria.mp4' type='video/mp4')
         source(src='./videos/desdelapoesiadelamateria.webm' type='video/webm')
         | Your browser does not support the video tag.
 
-    .card
+    .grid-12.grid-md-6.card
       p.
         Fluidos en un espacio etérico reaccionan a dinámicas vibracionales e inercias sinérgicas que fraguan en un no-tiempo donde se palpa el pálpito del tiempo detenido y se vive el instante como símbolo.
 
-      button.btn--white(onclick='playPause()') Play/Stop Video presentación
-
-  figure.p-0
-    img(src='./img/pieza.jpg' alt='')
+      button.btn--default.btn--black(onclick='playPause()') play/stop video
 
   section
 
-    hr
-    h3 En exposición
+    h2 En exposición
 
     .gallery
       each obra in obras
@@ -59,34 +55,32 @@ block content
 
   section
 
-    hr
-
-    h3 Proceso
+    h2 Proceso
 
     .grid
 
-      .card.grid__item
-
+      .grid-12.grid-md-6
         video#video2(controls='false' loop='true' autoplay)
           source(src='./videos/proceso.webm' type='video/webm')
           source(src='./videos/proceso.mp4' type='video/mp4')
           | Your browser does not support the video tag.
 
+      .grid-12.grid-md-6
         p.
           Las piezas parten de un entorno digital donde se generan mallas 3D que son transformadas por los efectos de determinadas físicas de vibración. Luego se lleva a producción, se imprimen en gran formato y se le dan los acabados con resinas, arenas y pigmentos.
 
-      .card.grid__item
+    .grid
 
-        figure
-          img(src='./img/bg4.jpg' alt='Imagen del proceso')
+      figure.grid-12.grid-md-6
+        img(src='./img/bg4.jpg' alt='Imagen del proceso')
 
-        p.
-          Diferentes longitudes de onda en el espectro. La luz, el color y la perspectiva, desde donde se observa, generan la conexión con todo lo que integra el instante.
+      p.grid-12.grid-md-6.
+        Diferentes longitudes de onda en el espectro. La luz, el color y la perspectiva, desde donde se observa, generan la conexión con todo lo que integra el instante.
 
-      .card.grid__item
+    .grid-12
 
-        figure
-          img(src='./img/bg7.png' alt='Imagen del proceso')
+      figure
+        img(src='./img/bg7.png' alt='Imagen del proceso')
 
   footer.blockquote--pie(style="background-image: url('./img/bg3.jpg');")
     blockquote.highlight.
@@ -95,4 +89,4 @@ block content
 block append scripts
   script( src="./scripts/lightbox.js")
   script( src="./scripts/videoplayer.js")
-  script(type="module", src="./scripts/anims.js")
+  script( type="module", src="./scripts/anims.js")
