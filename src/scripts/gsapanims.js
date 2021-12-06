@@ -51,12 +51,11 @@ const scrollanim = gsap
     '#botones circle',
     {
       opacity: 0,
-      // fill: '#4AECC1',
       scale: 1.3
     },
     {
       scale: 1,
-      stagger: 0.1,
+      stagger: {amount:0.1},
       ease: 'back',
       opacity: 1
     }
@@ -64,7 +63,7 @@ const scrollanim = gsap
   .fromTo(
     '#botones text',
     { opacity: 0 },
-    { opacity: 1, stagger: 0.1, fill: 'white', x: -3, y: 3.9 }
+    { opacity: 1, stagger: 0.1, x: -3, y: 3.9 }
   )
 
 const circulos = document.querySelectorAll('#botones circle')
@@ -87,8 +86,9 @@ animContainer.forEach(element => {
 
   ScrollTrigger.create({
     trigger: element,
-    start: 'top 60%',
-    toggleActions: 'play none none reverse',
+    start: 'top 80%',
+    end: 'bottom 80%',
+    toggleActions: 'play reverse play reverse',
     animation: tl
   })
 })

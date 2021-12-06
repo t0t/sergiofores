@@ -507,11 +507,12 @@ const scrollanim = _gsap.gsap.timeline({
     opacity: 1
 }).fromTo('#botones circle', {
     opacity: 0,
-    // fill: '#4AECC1',
     scale: 1.3
 }, {
     scale: 1,
-    stagger: 0.1,
+    stagger: {
+        amount: 0.1
+    },
     ease: 'back',
     opacity: 1
 }).fromTo('#botones text', {
@@ -519,7 +520,6 @@ const scrollanim = _gsap.gsap.timeline({
 }, {
     opacity: 1,
     stagger: 0.1,
-    fill: 'white',
     x: -3,
     y: 3.9
 });
@@ -543,8 +543,9 @@ animContainer.forEach((element)=>{
     });
     _scrollTrigger.ScrollTrigger.create({
         trigger: element,
-        start: 'top 60%',
-        toggleActions: 'play none none reverse',
+        start: 'top 80%',
+        end: 'bottom 80%',
+        toggleActions: 'play reverse play reverse',
         animation: tl
     });
 }) // mueve elemento dependiendo del cursor
