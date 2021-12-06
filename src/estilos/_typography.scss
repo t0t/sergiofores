@@ -36,6 +36,10 @@ blockquote {
   line-height: 1.7rem;
   letter-spacing: 1px;
   word-spacing: 0.5px;
+
+  @media screen and (min-width: $bp5) {
+    line-height: 3rem;
+  }
 }
 
 small {
@@ -49,6 +53,10 @@ a {
 p {
   font-size: $size-1;
   font-weight: $medium;
+
+  @media screen and (min-width: $bp5) {
+    font-size: $size-2;
+  }
 }
 
 small {

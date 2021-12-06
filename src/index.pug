@@ -11,24 +11,24 @@ block content
     h1.titlePage descifrar la Creación <br> para encontrArte  <mark>desde cero</mark>
     .bgImg.animCrop(style="background-image: url('./img/bg13.jpg');")
 
-  section.grid.grid--img
-
-    svg#scrollanim(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 101 66')
-      g#adicionales(fill='none' fill-rule='evenodd')
-        circle#grande2(cx='35.25' cy='31.919' r='28.228' vector-effect='non-scaling-stroke')
-        circle#grande1(cx='63.491' cy='31.919' r='28.228' vector-effect='non-scaling-stroke')
-        g(transform='translate(7.05 7.057)')
-          path#Path(d='M71.021 49.575c-8.677-4.813-14.597-14.082-14.597-24.714 0-10.743 6.023-20.094 14.852-24.861M13.365 0c8.83 4.767 14.853 14.118 14.853 24.861 0 10.673-5.921 19.977-14.7 24.77' vector-effect='non-scaling-stroke')
-          circle(cx='14.111' cy='24.864' r='14.111' vector-effect='non-scaling-stroke')
-          circle(cx='70.546' cy='24.864' r='14.111' vector-effect='non-scaling-stroke')
-          circle(cx='42.325' cy='24.864' r='14.111' vector-effect='non-scaling-stroke')
-          circle(cx='7.059' cy='24.859' r='7.056' vector-effect='non-scaling-stroke')
-          circle(cx='63.497' cy='24.859' r='7.056' vector-effect='non-scaling-stroke')
-          circle(cx='35.273' cy='24.859' r='7.056' vector-effect='non-scaling-stroke')
-          circle(cx='21.173' cy='24.859' r='7.056' vector-effect='non-scaling-stroke')
-          circle(cx='77.608' cy='24.859' r='7.056' vector-effect='non-scaling-stroke')
-          circle(cx='49.384' cy='24.859' r='7.056' vector-effect='non-scaling-stroke')
-      g#botones(fill-rule='evenodd')
+  section.grid
+    .grid-12.grid-xs-6
+      svg#scrollanim(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 101 66')
+        g#adicionales(fill='none' fill-rule='evenodd')
+          circle#grande2(cx='35.25' cy='31.919' r='28.228' vector-effect='non-scaling-stroke')
+          circle#grande1(cx='63.491' cy='31.919' r='28.228' vector-effect='non-scaling-stroke')
+          g(transform='translate(7.05 7.057)')
+            path#Path(d='M71.021 49.575c-8.677-4.813-14.597-14.082-14.597-24.714 0-10.743 6.023-20.094 14.852-24.861M13.365 0c8.83 4.767 14.853 14.118 14.853 24.861 0 10.673-5.921 19.977-14.7 24.77' vector-effect='non-scaling-stroke')
+            circle(cx='14.111' cy='24.864' r='14.111' vector-effect='non-scaling-stroke')
+            circle(cx='70.546' cy='24.864' r='14.111' vector-effect='non-scaling-stroke')
+            circle(cx='42.325' cy='24.864' r='14.111' vector-effect='non-scaling-stroke')
+            circle(cx='7.059' cy='24.859' r='7.056' vector-effect='non-scaling-stroke')
+            circle(cx='63.497' cy='24.859' r='7.056' vector-effect='non-scaling-stroke')
+            circle(cx='35.273' cy='24.859' r='7.056' vector-effect='non-scaling-stroke')
+            circle(cx='21.173' cy='24.859' r='7.056' vector-effect='non-scaling-stroke')
+            circle(cx='77.608' cy='24.859' r='7.056' vector-effect='non-scaling-stroke')
+            circle(cx='49.384' cy='24.859' r='7.056' vector-effect='non-scaling-stroke')
+        g#botones(fill-rule='evenodd')
         circle#cero(cx='7.056' cy='31.8' r='7.056' vector-effect='non-scaling-stroke')
         text(x='7.056' y='31.8') 0
         circle#uno(cx='91.739' cy='31.8' r='7.056' vector-effect='non-scaling-stroke')
@@ -50,22 +50,23 @@ block content
         circle#nueve(cx='20.59' cy='7.056' r='7.056' vector-effect='non-scaling-stroke')
         text(x='20.59' y='7.056') 9
 
-    article.card 
-      p Observo un Mapa Universal del proceso de toda la Creación. Facilito a artistas, diseñadores y buscadores un método sencillo para descifrar, desbloquear y trascender el vacío existencial y los bloqueos creativos.
+    .grid-12.grid-xs-6
+      .card 
+        p Observo un Mapa Universal del proceso de toda la Creación. Facilito a artistas, diseñadores y buscadores un método sencillo para descifrar, desbloquear y trascender el vacío existencial y los bloqueos creativos.
 
-      a.btn--default.btn--black(href="lab.pug") descubre +0+1234
+        a.btn--default.btn--black(href="lab.pug") descubre +0+1234
   
-  section.grid.grid--img.animContainer
+  section.grid.animContainer
 
-    article.grid__item.animItem(style="background-image: url('./img/bg10.jpg');")
+    article.grid-12.grid-lg-6.grid--img.animItem(style="background-image: url('./img/bg10.jpg');")
 
-    article.card.cardInvert.animItem
+    article.grid-12.grid-lg-6.card.cardInvert.animItem
       p Realizo esculturas plásticas que son símbolos vivos de lo sagrado, y sobre las cuales la luz revela corrientes de formas que cristalizan en el tiempo.
       a.btn--default.btn--black(href="obra.pug") obra plástica
 
-    article.grid--img(style="background-image: url('./img/bg9.jpg');")
+    article.grid-6.grid--img(style="background-image: url('./img/bg9.jpg');")
 
-    article.grid--img(style="background-image: url('./img/bg2.jpg');")
+    article.grid-6.grid--img(style="background-image: url('./img/bg2.jpg');")
 
     //- article.card.cardDark.animItem 
       //- p Realizo ipsum, dolor sit amet consectetur adipisicing elit. Consectetur at explicabo aliquid accusamus voluptatem nesciunt architecto iusto suscipit optio! Ratione nam autem eius eveniet doloribus fugit perferendis cum repudiandae quibusdam!
@@ -75,13 +76,15 @@ block content
       //- p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur at explicabo aliquid accusamus voluptatem nesciunt architecto iusto suscipit optio! Ratione nam autem eius eveniet doloribus fugit perferendis cum repudiandae quibusdam!
       //- a.btn--default.btn--white(href="obra.pug") obra plástica
 
-  section.grid.grid--img.color-black.animContainer(style="background-image: url('./img/bg12.jpg');")
-    article.card.cardDark.animItem
+    .grid-6.grid--img.color-black.animContainer(style="background-image: url('./img/bg12.jpg');")
+
+    article.grid-6.card.cardDark.animItem
       p Durante mi trayectoria laboral desde 1999 me he movido en distintos mundos: prototipando interfaces de usuario, creando temas en Wordpress, maquetando aplicaciones web, revistas, identidad corporativa, etc. todo esto me ha dado un poso técnico de conocimientos que he terminado vinculando a cuestiones vocacionales, artísticas y holísticas.
       a(class="btn--default  btn--white" href="sobremi.pug") sobre mí
   
-  footer.blockquote--pie.bgImg(style="background-image: url('./img/bg3.jpg');")
-    blockquote.highlight.
+  footer.grid.blockquote--pie.bgImg(style="background-image: url('./img/bg3.jpg');")
+
+    blockquote.grid-6.highlight.
       &ldquo;... y cuando el Todo hubo comenzado a ordenarse, todos los elementos recibieron de Dios sus figuras por acción de las ideas y de los números.&rdquo; <br> &mdash; Platón
 
 block append scripts

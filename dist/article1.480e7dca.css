@@ -431,14 +431,6 @@ figure {
   margin: 0;
   width: inherit;
   gap: 1.6rem;
-  padding-top: 2.59rem;
-  padding-bottom: 2.59rem;
-}
-@media screen and (min-width: 766px) {
-  figure {
-    padding-top: 4.1rem;
-    padding-bottom: 4.1rem;
-  }
 }
 figure figcaption {
   padding-left: 1rem;
@@ -453,11 +445,6 @@ figure figcaption {
 }
 .card p {
   padding: 0;
-}
-@media screen and (min-width: 766px) {
-  .card {
-    max-width: 50vw;
-  }
 }
 blockquote {
   padding: 4.1rem;
@@ -522,9 +509,6 @@ button {
 .grid__item {
   min-height: 100%;
   width: 100%;
-}
-.grid__item img {
-  max-height: 50vh;
 }
 video {
   width: 100%;
@@ -742,6 +726,17 @@ blockquote {
   letter-spacing: 1px;
   word-spacing: 0.5px;
 }
+@media screen and (min-width: 1438px) {
+  p,
+a,
+ul,
+dl,
+p strong,
+h3,
+blockquote {
+    line-height: 3rem;
+  }
+}
 small {
   font-size: 0.61rem;
 }
@@ -751,6 +746,11 @@ a {
 p {
   font-size: 1rem;
   font-weight: 500;
+}
+@media screen and (min-width: 1438px) {
+  p {
+    font-size: 1.6rem;
+  }
 }
 @media screen and (min-width: 2558px) {
   small {
@@ -1068,7 +1068,6 @@ figure figcaption {
   border: 2px solid black;
 }
 .btn--default {
-  margin-top: 1.6rem;
   padding: 0.99rem 1.6rem;
   display: inline-block;
   text-decoration: none;
@@ -1614,7 +1613,6 @@ svg.grafica text {
   }
 }
 .card {
-  align-self: center;
   justify-self: start;
   background-size: cover;
 }

@@ -493,7 +493,7 @@ const scrollanim = _gsap.gsap.timeline({
     scrollTrigger: {
         trigger: '#scrollanim',
         start: 'top 80%',
-        end: 'bottom 80%',
+        end: 'bottom 60%',
         scrub: true,
         markers: false,
         toggleActions: 'play reverse play reverse'
@@ -521,8 +521,8 @@ const scrollanim = _gsap.gsap.timeline({
 }, {
     opacity: 1,
     fill: 'black',
-    x: -3,
-    y: 3
+    x: 0,
+    y: 6
 }, "+=10");
 const circulos = document.querySelectorAll('#botones circle');
 circulos.forEach((el)=>{

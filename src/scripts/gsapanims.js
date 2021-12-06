@@ -34,7 +34,7 @@ const scrollanim = gsap
     scrollTrigger: {
       trigger: '#scrollanim',
       start: 'top 80%',
-      end: 'bottom 80%',
+      end: 'bottom 60%',
       scrub: true,
       markers: false,
       toggleActions: 'play reverse play reverse'
@@ -66,7 +66,7 @@ const scrollanim = gsap
   .fromTo(
     '#botones text',
     { opacity: 0 },
-    { opacity: 1, fill: 'black', x: -3, y: 3 },
+    { opacity: 1, fill: 'black', x: 0, y: 6 },
     "+=10"
   )
 
