@@ -478,7 +478,7 @@ animContainer.forEach((element)=>{
     });
     _scrollTrigger.ScrollTrigger.create({
         trigger: element,
-        start: 'top 40%',
+        start: 'top 50%',
         end: 'bottom top',
         toggleActions: 'play none none none',
         animation: tl
