@@ -467,7 +467,7 @@ _gsap.gsap.registerPlugin(_scrollTrigger.ScrollTrigger);
 const header = _gsap.gsap.timeline({
     scrollTrigger: {
         trigger: '.titlePage',
-        start: 'top center',
+        start: 'top 51%',
         end: '+=200vh center',
         scrub: true,
         markers: false,
@@ -481,7 +481,8 @@ header.fromTo('.titlePage', {
     rotate: 0,
     scale: 1,
     ease: 'back',
-    duration: 1
+    duration: 1,
+    y: -100
 });
 
 },{"gsap":"2aTR0","gsap/ScrollTrigger":"41HI5"}]},["fsmwT","kwUfx"], "kwUfx", "parcelRequirece68")

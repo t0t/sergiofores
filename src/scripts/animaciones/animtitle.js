@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger)
 const header = gsap.timeline({
   scrollTrigger: {
     trigger: '.titlePage',
-    start: 'top center',
+    start: 'top 51%',
     end: '+=200vh center',
     scrub: true,
     markers: false,
@@ -22,5 +22,6 @@ header.fromTo('.titlePage', {
   rotate: 0,
   scale: 1,
   ease: 'back',
-  duration: 1
+  duration: 1,
+  y: -100
 })
