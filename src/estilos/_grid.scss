@@ -5,13 +5,13 @@
   grid-template-columns: repeat(12, 1fr);
 }
 
+// Controla los gaps
 @for $i from 1 through 4 {
   .grid--gap-#{$i} {
     gap: $i+em;
   }
 }
 
-// Controla los gaps
 @for $i from 1 through 12 {
   .grid-#{$i} {
     grid-column: span ($i);

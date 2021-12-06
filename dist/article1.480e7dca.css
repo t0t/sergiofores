@@ -365,9 +365,6 @@ body {
 h2 {
   margin-bottom: 2.59rem;
 }
-h3 {
-  margin-bottom: 2.59rem;
-}
 @media screen and (min-width: 766px) {
   h3 {
     padding-bottom: 4.1rem;
@@ -444,6 +441,7 @@ figure figcaption {
 }
 .card p {
   padding: 0;
+  margin-top: 0;
   margin-left: 0;
   margin-right: 0;
 }
@@ -466,7 +464,7 @@ button {
 .titlePage {
   margin-top: 2.59rem;
   margin-bottom: 2.59rem;
-  top: 33%;
+  top: 50%;
 }
 .mainContent {
   min-height: 125vh;
@@ -491,7 +489,11 @@ button {
 }
 .bgImg {
   width: 100%;
-  height: 100vh;
+  min-height: 50vh;
+}
+.grid-12 {
+  min-height: 50vh;
+  background-size: cover;
 }
 .section {
   min-height: 50vh;
@@ -1436,8 +1438,7 @@ h1 {
   }
 }
 .titlePage {
-  position: -webkit-sticky;
-  position: sticky;
+  position: absolute;
 }
 .blockquote--pie {
   display: grid;
@@ -1862,7 +1863,7 @@ svg#mapabasediez #cero:hover, svg#mapabasediez #uno:hover, svg#mapabasediez #dos
   cursor: help;
 }
 svg#mapabasediez text {
-  font-size: 0.61rem;
+  font-size: 0.37rem;
   transform: translate(-0.32em, 0.35em);
 }
 svg#mapabasediez + .descripcion p {

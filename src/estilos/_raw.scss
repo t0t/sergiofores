@@ -71,11 +71,10 @@ h1 {
   @media screen and (min-width: $bp3) {
     font-size: 5vw;
   }
-
 }
 
 .titlePage {
-  position: sticky;
+  position: absolute;
 }
 
 .blockquote--pie {
@@ -573,7 +572,7 @@ svg#mapabasediez {
     }
   } 
   text {
-    font-size: $size-0;
+    font-size: $size--1;
     transform: translate(-0.32em, .35em);
   }
 

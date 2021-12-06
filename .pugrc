@@ -78,6 +78,14 @@
         "imagen": "./img/obras/img7.jpg",
         "description": "Impresión 3D. Arena, latex y óxidos. 100cm ø 2020",
         "ref": "131020"
+      },
+      {
+        "id": 8,
+        "title": "Aguas superiores",
+        "preview": "./img/obras-preview/img8.jpg",
+        "imagen": "./img/obras/img8.jpg",
+        "description": "Impresión 3D. PLA. 100cm ø 2020",
+        "ref": "211120"
       }
     ],
     "codigos": [

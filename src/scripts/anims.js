@@ -15,6 +15,8 @@ let animCrop = gsap.timeline({
 })
 animCrop.fromTo('.animCrop', {
   opacity: 1,
+  width: "100vw",
+  height: "100vh",
   clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
 },{
   opacity: 0.5,
