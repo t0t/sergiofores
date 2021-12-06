@@ -136,10 +136,10 @@ button {
 .titlePage {
   margin-top: $size-3;
   margin-bottom: $size-3;
-  top: 50vw;
-  @media screen and (min-width: $bp3) {
-    top: 30vw;
-  }
+  top: 6%;
+  // @media screen and (min-width: $bp3) {
+  //   top: 10%;
+  // }
 }
 
 .mainContent {

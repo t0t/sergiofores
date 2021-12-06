@@ -498,8 +498,8 @@ const scrollanim = _gsap.gsap.timeline({
 }, {
     opacity: 1,
     stagger: 0.1,
-    x: -3,
-    y: 3.9
+    x: -2,
+    y: 1.9
 });
 const circulos = document.querySelectorAll('#botones circle');
 circulos.forEach((el)=>{

@@ -466,12 +466,7 @@ button {
 .titlePage {
   margin-top: 2.59rem;
   margin-bottom: 2.59rem;
-  top: 50vw;
-}
-@media screen and (min-width: 766px) {
-  .titlePage {
-    top: 30vw;
-  }
+  top: 6%;
 }
 .mainContent {
   min-height: 125vh;
@@ -727,7 +722,7 @@ blockquote {
   letter-spacing: 1px;
   word-spacing: 0.5px;
 }
-@media screen and (min-width: 1438px) {
+@media screen and (min-width: 2558px) {
   p,
 a,
 ul,
@@ -748,7 +743,7 @@ p {
   font-size: 1rem;
   font-weight: 500;
 }
-@media screen and (min-width: 1438px) {
+@media screen and (min-width: 2558px) {
   p {
     font-size: 1.6rem;
   }
@@ -1957,7 +1952,6 @@ svg#mapabasediez + .descripcion p {
   svg#scrollanim text {
     pointer-events: none;
     font-size: 0.37rem;
-    transform: translate(-1.5%, 4%);
   }
   svg#scrollanim #adicionales path,
 svg#scrollanim #adicionales circle {

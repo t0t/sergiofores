@@ -13,13 +13,13 @@ block content
     .bgImg.animCrop(style="background-image: url('./img/bg8.png');")
 
   .grid  
-    .grid-12.grid-md-6.grid-xl-3
+    .grid-12.grid-md-6
       video#video1(poster='./img/arte3d.jpeg')
         source(src='./videos/desdelapoesiadelamateria.mp4' type='video/mp4')
         source(src='./videos/desdelapoesiadelamateria.webm' type='video/webm')
         | Your browser does not support the video tag.
 
-    .grid-12.grid-md-6.grid-xl-3.card
+    .grid-12.grid-md-6.card
       p.
         Fluidos en un espacio etérico reaccionan a dinámicas vibracionales e inercias sinérgicas que fraguan en un no-tiempo donde se palpa el pálpito del tiempo detenido y se vive el instante como símbolo.
 
@@ -89,3 +89,4 @@ block append scripts
   script( src="./scripts/lightbox.js")
   script( src="./scripts/videoplayer.js")
   script( type="module", src="./scripts/anims.js")
+  script( type="module", src="./scripts/animaciones/animtitle.js")

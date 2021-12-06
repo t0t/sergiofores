@@ -474,18 +474,16 @@ const header = _gsap.gsap.timeline({
         toggleActions: 'play reverse play reverse'
     }
 });
-header.to('.titlePage', {
+header.fromTo('.titlePage', {
     rotate: -6,
-    scale: 1.3,
+    scale: 1.3
+}, {
+    rotate: 0,
+    scale: 1,
     ease: 'back',
     duration: 1
-});
-header.to('.titlePage', {
-    scale: 1,
-    rotate: 0,
-    y: 200
 });
 
 },{"gsap":"2aTR0","gsap/ScrollTrigger":"41HI5"}]},["fsmwT","kwUfx"], "kwUfx", "parcelRequirece68")
 
-//# sourceMappingURL=index.c89f3945.js.map
+//# sourceMappingURL=lab.c89f3945.js.map

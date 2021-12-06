@@ -15,14 +15,12 @@ const header = gsap.timeline({
   }
 })
 
-header.to('.titlePage', {
+header.fromTo('.titlePage', {
   rotate: -6,
-  scale: 1.3,
+  scale: 1.3
+}, {
+  rotate: 0,
+  scale: 1,
   ease: 'back',
   duration: 1
-})
-header.to('.titlePage', {
-  scale: 1,
-  rotate: 0,
-  y: 200
 })

@@ -39,7 +39,7 @@ const scrollanim = gsap
   .fromTo(
     '#botones text',
     { opacity: 0 },
-    { opacity: 1, stagger: 0.1, x: -3, y: 3.9 }
+    { opacity: 1, stagger: 0.1, x: -2, y: 1.9 }
   )
 
 const circulos = document.querySelectorAll('#botones circle')
