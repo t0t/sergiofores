@@ -73,22 +73,22 @@ circulos.forEach(el => {
 
 
 // Anims
-let animContainer = document.querySelectorAll('.animContainer')
+let animContainer = document.querySelectorAll('.animItem')
 animContainer.forEach(element => {
-  const animItem = element.querySelector('.animItem')
+  // const animItem = element.querySelector('.animItem')
   let tl = gsap
     .timeline()
     .fromTo(
-      animItem,
+      element,
       { width: "0%", opacity: 0 },
       { width: "100%", opacity: 1, ease: 'back', duration: 2 }
     )
 
   ScrollTrigger.create({
     trigger: element,
-    start: 'top 80%',
-    end: 'bottom 80%',
-    toggleActions: 'play reverse play reverse',
+    start: 'top 40%',
+    end: 'bottom top',
+    toggleActions: 'play none none none',
     animation: tl
   })
 })

@@ -529,10 +529,10 @@ circulos.forEach((el)=>{
     ;
 });
 // Anims
-let animContainer = document.querySelectorAll('.animContainer');
+let animContainer = document.querySelectorAll('.animItem');
 animContainer.forEach((element)=>{
-    const animItem = element.querySelector('.animItem');
-    let tl = _gsap.gsap.timeline().fromTo(animItem, {
+    // const animItem = element.querySelector('.animItem')
+    let tl = _gsap.gsap.timeline().fromTo(element, {
         width: "0%",
         opacity: 0
     }, {
@@ -543,9 +543,9 @@ animContainer.forEach((element)=>{
     });
     _scrollTrigger.ScrollTrigger.create({
         trigger: element,
-        start: 'top 80%',
-        end: 'bottom 80%',
-        toggleActions: 'play reverse play reverse',
+        start: 'top 40%',
+        end: 'bottom top',
+        toggleActions: 'play none none none',
         animation: tl
     });
 }) // mueve elemento dependiendo del cursor
