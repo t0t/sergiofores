@@ -95,7 +95,7 @@ figure {
 
 .card {
   padding: $size-3;
-    min-height: 50vh;
+    // min-height: 50vh;
     width: 100%;
     // img {
     //   max-height: 50vh;
@@ -106,6 +106,8 @@ figure {
 
   p {
     padding: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
   
   // @media screen and (min-width: $bp3) {
