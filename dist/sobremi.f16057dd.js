@@ -140,12 +140,12 @@
       this[globalName] = mainExports;
     }
   }
-})({"ddyNp":[function(require,module,exports) {
+})({"cU3F9":[function(require,module,exports) {
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "4a236f9275d0a351";
-module.bundle.HMR_BUNDLE_ID = "755263647b063ec5";
+module.bundle.HMR_BUNDLE_ID = "8e3bcccaf16057dd";
 "use strict";
 function _createForOfIteratorHelper(o, allowArrayLike) {
     var it;
@@ -458,67 +458,33 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"ew1wZ":[function(require,module,exports) {
+},{}],"gmI2Y":[function(require,module,exports) {
 //  GSAP
 var _gsap = require("gsap");
 var _scrollTrigger = require("gsap/ScrollTrigger");
 _gsap.gsap.registerPlugin(_scrollTrigger.ScrollTrigger);
-// SVG 
-_gsap.gsap.set('#scrollanim', {
-    scale: 0.6
+// Anims
+let animContainer = document.querySelectorAll('.animItem');
+animContainer.forEach((element)=>{
+    // const animItem = element.querySelector('.animItem')
+    let tl = _gsap.gsap.timeline().fromTo(element, {
+        width: "0%",
+        opacity: 0
+    }, {
+        width: "100%",
+        opacity: 1,
+        ease: 'back',
+        duration: 2
+    });
+    _scrollTrigger.ScrollTrigger.create({
+        trigger: element,
+        start: 'top 40%',
+        end: 'bottom top',
+        toggleActions: 'play none none none',
+        animation: tl
+    });
 });
-const scrollanim = _gsap.gsap.timeline({
-    scrollTrigger: {
-        trigger: '#scrollanim',
-        start: 'top 80%',
-        end: 'bottom 80%',
-        scrub: true,
-        markers: false,
-        toggleActions: 'play reverse play reverse'
-    }
-}).add('anim').to('#scrollanim', {
-    scale: 0.9,
-    transformOrigin: 'center'
-}).fromTo('#adicionales circle', {
-    opacity: 0
-}, {
-    opacity: 1
-}).fromTo('#botones circle', {
-    opacity: 0,
-    scale: 1.3
-}, {
-    scale: 1,
-    stagger: {
-        amount: 0.1
-    },
-    ease: 'back',
-    opacity: 1
-}).fromTo('#botones text', {
-    opacity: 0
-}, {
-    opacity: 1,
-    stagger: 0.1,
-    x: -3,
-    y: 3.9
-});
-const circulos = document.querySelectorAll('#botones circle');
-circulos.forEach((el)=>{
-    el.onclick = ()=>scrollanim.play('anim')
-    ;
-}) // mueve elemento dependiendo del cursor
- // const container = document.querySelector('.section--cover')
- // const typew = document.querySelector('#typewritter')
- // const cursormove = e => {
- //   let xPos = e.layerY
- //   typew.style.pointerEvents = 'none'
- //   typew.style.display = 'block'
- //   typew.style.transform = `
- //     rotate(${-xPos / 100}deg)
- //   `
- // }
- // container.addEventListener('mousemove', cursormove)
-;
 
-},{"gsap":"2aTR0","gsap/ScrollTrigger":"41HI5"}]},["ddyNp","ew1wZ"], "ew1wZ", "parcelRequirece68")
+},{"gsap":"2aTR0","gsap/ScrollTrigger":"41HI5"}]},["cU3F9","gmI2Y"], "gmI2Y", "parcelRequirece68")
 
-//# sourceMappingURL=index.7b063ec5.js.map
+//# sourceMappingURL=sobremi.f16057dd.js.map

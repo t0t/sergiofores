@@ -3,30 +3,6 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
-// Anim header
-const header = gsap.timeline({
-  scrollTrigger: {
-    trigger: '.titlePage',
-    start: 'top center',
-    end: '+=200vh center',
-    scrub: true,
-    markers: false,
-    toggleActions: 'play reverse play reverse'
-  }
-})
-
-header.to('.titlePage', {
-  rotate: -6,
-  scale: 1.3,
-  ease: 'back',
-  duration: 1
-})
-header.to('.titlePage', {
-  scale: 1,
-  rotate: 0,
-  y: 200
-})
-
 // SVG 
 gsap.set('#scrollanim', { scale: 0.6 })
 const scrollanim = gsap
@@ -69,28 +45,6 @@ const scrollanim = gsap
 const circulos = document.querySelectorAll('#botones circle')
 circulos.forEach(el => {
   el.onclick = () => scrollanim.play('anim')
-})
-
-
-// Anims
-let animContainer = document.querySelectorAll('.animItem')
-animContainer.forEach(element => {
-  // const animItem = element.querySelector('.animItem')
-  let tl = gsap
-    .timeline()
-    .fromTo(
-      element,
-      { width: "0%", opacity: 0 },
-      { width: "100%", opacity: 1, ease: 'back', duration: 2 }
-    )
-
-  ScrollTrigger.create({
-    trigger: element,
-    start: 'top 40%',
-    end: 'bottom top',
-    toggleActions: 'play none none none',
-    animation: tl
-  })
 })
 
 // mueve elemento dependiendo del cursor

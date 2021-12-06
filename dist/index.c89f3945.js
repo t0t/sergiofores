@@ -140,12 +140,12 @@
       this[globalName] = mainExports;
     }
   }
-})({"ddyNp":[function(require,module,exports) {
+})({"fsmwT":[function(require,module,exports) {
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "4a236f9275d0a351";
-module.bundle.HMR_BUNDLE_ID = "755263647b063ec5";
+module.bundle.HMR_BUNDLE_ID = "2acc4a14c89f3945";
 "use strict";
 function _createForOfIteratorHelper(o, allowArrayLike) {
     var it;
@@ -458,67 +458,34 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"ew1wZ":[function(require,module,exports) {
+},{}],"kwUfx":[function(require,module,exports) {
 //  GSAP
 var _gsap = require("gsap");
 var _scrollTrigger = require("gsap/ScrollTrigger");
 _gsap.gsap.registerPlugin(_scrollTrigger.ScrollTrigger);
-// SVG 
-_gsap.gsap.set('#scrollanim', {
-    scale: 0.6
-});
-const scrollanim = _gsap.gsap.timeline({
+// Anim header
+const header = _gsap.gsap.timeline({
     scrollTrigger: {
-        trigger: '#scrollanim',
-        start: 'top 80%',
-        end: 'bottom 80%',
+        trigger: '.titlePage',
+        start: 'top center',
+        end: '+=200vh center',
         scrub: true,
         markers: false,
         toggleActions: 'play reverse play reverse'
     }
-}).add('anim').to('#scrollanim', {
-    scale: 0.9,
-    transformOrigin: 'center'
-}).fromTo('#adicionales circle', {
-    opacity: 0
-}, {
-    opacity: 1
-}).fromTo('#botones circle', {
-    opacity: 0,
-    scale: 1.3
-}, {
-    scale: 1,
-    stagger: {
-        amount: 0.1
-    },
-    ease: 'back',
-    opacity: 1
-}).fromTo('#botones text', {
-    opacity: 0
-}, {
-    opacity: 1,
-    stagger: 0.1,
-    x: -3,
-    y: 3.9
 });
-const circulos = document.querySelectorAll('#botones circle');
-circulos.forEach((el)=>{
-    el.onclick = ()=>scrollanim.play('anim')
-    ;
-}) // mueve elemento dependiendo del cursor
- // const container = document.querySelector('.section--cover')
- // const typew = document.querySelector('#typewritter')
- // const cursormove = e => {
- //   let xPos = e.layerY
- //   typew.style.pointerEvents = 'none'
- //   typew.style.display = 'block'
- //   typew.style.transform = `
- //     rotate(${-xPos / 100}deg)
- //   `
- // }
- // container.addEventListener('mousemove', cursormove)
-;
+header.to('.titlePage', {
+    rotate: -6,
+    scale: 1.3,
+    ease: 'back',
+    duration: 1
+});
+header.to('.titlePage', {
+    scale: 1,
+    rotate: 0,
+    y: 200
+});
 
-},{"gsap":"2aTR0","gsap/ScrollTrigger":"41HI5"}]},["ddyNp","ew1wZ"], "ew1wZ", "parcelRequirece68")
+},{"gsap":"2aTR0","gsap/ScrollTrigger":"41HI5"}]},["fsmwT","kwUfx"], "kwUfx", "parcelRequirece68")
 
-//# sourceMappingURL=index.7b063ec5.js.map
+//# sourceMappingURL=index.c89f3945.js.map

@@ -12,7 +12,7 @@ block content
     .bgImg.animCrop(style="background-image: url('./img/bg13.jpg');")
 
   section.grid
-    .grid-12.grid-xs-6
+    .grid-12.grid-md-6
       svg#scrollanim(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 101 66')
         g#adicionales(fill='none' fill-rule='evenodd')
           circle#grande2(cx='35.25' cy='31.919' r='28.228' vector-effect='non-scaling-stroke')
@@ -50,11 +50,11 @@ block content
           circle#nueve(cx='20.59' cy='7.056' r='7.056' vector-effect='non-scaling-stroke')
           text(x='20.59' y='7.056') 9
 
-    .grid-12.grid-xs-6
+    .grid-12.grid-md-6
       .card 
         p Observo un Mapa Universal del proceso de toda la Creación. Facilito a artistas, diseñadores y buscadores un método sencillo para descifrar, desbloquear y trascender el vacío existencial y los bloqueos creativos.
 
-        a.btn--default.btn--black(href="lab.pug") descubre +0+1234
+        a.btn--default.btn--black(href="./lab.pug") descubre +0+1234
   
   section.grid.animContainer
 
@@ -90,5 +90,7 @@ block content
 block append scripts
   script(type="module", src="./scripts/anims.js")
   script(type="module", src="./scripts/gsapanims.js")
+  script(type="module", src="./scripts/animaciones/animtitle.js")
+  script(type="module", src="./scripts/animaciones/animitem.js")
   //- script(src="./scripts/grafica.js", type="module")
   //- script(src="./scripts/modelo3d.js", type="module")

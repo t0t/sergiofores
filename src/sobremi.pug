@@ -33,12 +33,12 @@ block content
 
   .grid 
     .grid-12.grid-md-6.card
-      figure
+      figure.animItem
         img.rounded(src='./img/sergiofores.jpg')
         figcaption Llegar a alguna parte es sólo la mitad del camino
   
     .grid-12.grid-md-6.card
-      figure
+      figure.animItem
         img.rounded(src='./img/img1.jpg')
         figcaption.
           Me harté de buscar y hasta de encontrar... <br> tenía que haber algo más. Me preguntaba: ¿y todo esto para qué?
@@ -54,11 +54,12 @@ block content
 
       .grid
         .grid-12.grid-xs-6 
-          figure.card
+          figure.card.animItem
             img(src='./img/dibujo.jpg')
         .grid-12.grid-xs-6 
           p.
             Cuando entré en la adolescencia tenía "muy claro" que iba a ser pintor, artista. Fueron años de exposiciones en bares, visitas a museos y mucho aprendizaje en el mundo de las artes plásticas, pero tras unos años, a la edad de 20 años, en pleno florecimiento de internet quedé fascinado por el potencial de los ordenadores para hacer cosas increibles.
+
       p.
         Algo cambió en mi cerebro la primera vez que diseñé una web, era increible que haciendo click en un enlace sucedieran cosas. &iquest;Que brujería era esa? era como hacer magia, tenía que aprender más... Buscando sentar las bases para un oficio menos bohemio y más acorde con el modelo de sociedad en el que me habia criado me puse a estudiar Arte Electrónico y Diseño Digital en una escuela dirigida por Claudia Giannetti.
       
@@ -109,3 +110,4 @@ block content
 
 block append scripts
   script(type="module", src="./scripts/anims.js")
+  script(type="module", src="./scripts/animaciones/animitem.js")

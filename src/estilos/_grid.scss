@@ -11,6 +11,7 @@
   }
 }
 
+// Controla los gaps
 @for $i from 1 through 12 {
   .grid-#{$i} {
     grid-column: span ($i);
@@ -60,15 +61,6 @@
 //   @media screen and (min-width: $bp3) {
 //     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 //   }
-  
-//   @media screen and (min-width: $bp4) {
-//     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-//   }
-
-//   @media screen and (min-width: $bp5) {
-//     grid-template-columns: repeat(auto-fit, minmax($size-7, 1fr));
-//   }
-// }
 
 .grid--0 {
   gap: 0px;
