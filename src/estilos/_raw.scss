@@ -668,23 +668,24 @@ svg#mapabasediez {
 
   // gsapanim
   svg#scrollanim {
-    transform-box: fill-box;
-    // #cero, #uno, #dos, #tres, #cuatro {}
+
     #cinco, #seis, #siete, #ocho, #nueve {
-      fill: $grey-color-3;
+      fill: $grey-color-2;
     }
-    #cero, #uno, #dos, #tres, #cuatro, #cinco, #seis, #siete, #ocho, #nueve {
-      mix-blend-mode: soft-light;
+    #cero, #uno, #dos, #tres, #cuatro {
+      fill: $grey-color-3;
     } 
+
     text {
       pointer-events: none;
-      font-size: $size-0;
-      fill: $secondary-color;
+      font-size: $size--1;
+      transform: translate(-1.5%,4%);
     }
 
     #adicionales {
-      path,circle {
-        stroke: $white-color-alpha-1;
+      path,
+      circle {
+        stroke: $black-color-alpha-1;
       }
     }
   }

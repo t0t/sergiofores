@@ -1947,22 +1947,20 @@ svg#mapabasediez + .descripcion p {
     fill: #c0c0c0;
   }
 
-  svg#scrollanim {
-    transform-box: fill-box;
-  }
   svg#scrollanim #cinco, svg#scrollanim #seis, svg#scrollanim #siete, svg#scrollanim #ocho, svg#scrollanim #nueve {
-    fill: #a5a5a5;
+    fill: #c0c0c0;
   }
-  svg#scrollanim #cero, svg#scrollanim #uno, svg#scrollanim #dos, svg#scrollanim #tres, svg#scrollanim #cuatro, svg#scrollanim #cinco, svg#scrollanim #seis, svg#scrollanim #siete, svg#scrollanim #ocho, svg#scrollanim #nueve {
-    mix-blend-mode: soft-light;
+  svg#scrollanim #cero, svg#scrollanim #uno, svg#scrollanim #dos, svg#scrollanim #tres, svg#scrollanim #cuatro {
+    fill: #a5a5a5;
   }
   svg#scrollanim text {
     pointer-events: none;
-    font-size: 0.61rem;
-    fill: #4AECC1;
+    font-size: 0.37rem;
+    transform: translate(-1.5%, 4%);
   }
-  svg#scrollanim #adicionales path, svg#scrollanim #adicionales circle {
-    stroke: #ffffff77;
+  svg#scrollanim #adicionales path,
+svg#scrollanim #adicionales circle {
+    stroke: #0000009e;
   }
 
   .gallery {

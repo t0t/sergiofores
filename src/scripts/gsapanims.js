@@ -34,7 +34,7 @@ const scrollanim = gsap
     scrollTrigger: {
       trigger: '#scrollanim',
       start: 'top 80%',
-      end: 'bottom 60%',
+      end: 'bottom 80%',
       scrub: true,
       markers: false,
       toggleActions: 'play reverse play reverse'
@@ -51,23 +51,20 @@ const scrollanim = gsap
     '#botones circle',
     {
       opacity: 0,
-      fill: '#4AECC1',
+      // fill: '#4AECC1',
       scale: 1.3
     },
     {
       scale: 1,
-      stagger: {
-        amount:2
-      },
-      ease: 'elastic',
+      stagger: 0.1,
+      ease: 'back',
       opacity: 1
     }
   )
   .fromTo(
     '#botones text',
     { opacity: 0 },
-    { opacity: 1, fill: 'black', x: 0, y: 6 },
-    "+=10"
+    { opacity: 1, stagger: 0.1, fill: 'white', x: -3, y: 3.9 }
   )
 
 const circulos = document.querySelectorAll('#botones circle')
