@@ -501,7 +501,7 @@ button {
 }
 @media screen and (min-width: 766px) {
   .section {
-    padding: 6.64rem;
+    padding: 4.1rem;
   }
 }
 .grid__item {
@@ -1852,6 +1852,10 @@ img.hover-shadow {
   display: block;
   padding-top: 1.6rem;
   padding-bottom: 1.6rem;
+}
+svg#mapafin {
+  width: 100%;
+  min-height: 50vh;
 }
 svg#mapabasediez {
   transform-box: fill-box;

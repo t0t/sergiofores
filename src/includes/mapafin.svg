@@ -1,0 +1,215 @@
+<svg id="mapafin" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 480 222">
+  <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
+    <path id="linea" fill="#000" fill-rule="nonzero" d="m387 104 9 4-9 5v-4H102v-1h285v-4Z"/>
+    <g id="grafico" transform="translate(0 4)">
+      <g id="grande-gris" fill-rule="nonzero">
+        <use xlink:href="#path-1" fill="#F0F0F0" style="mix-blend-mode:multiply"/>
+        <use xlink:href="#path-1" stroke="#000"/>
+      </g>
+      <path id="grande-puntos2" fill-rule="nonzero" stroke="#000" stroke-dasharray="4" d="M204 204a102 102 0 1 0 0-204 102 102 0 0 0 0 204Z"/>
+      <path id="grande-puntos1" fill-rule="nonzero" stroke="#000" stroke-dasharray="4" d="M102 204a102 102 0 1 0 0-204 102 102 0 0 0 0 204Z"/>
+      <circle id="grande" cx="306" cy="102" r="102" fill-rule="nonzero" stroke="#000"/>
+
+      <g id="cero" transform="translate(96 98)">
+        <circle cx="6.4" cy="6.4" r="6.4" fill="#000" fill-rule="nonzero" stroke="#000"/>
+        <text id="0" fill="#FFF" font-size="7">
+          <tspan x="4" y="9">0</tspan>
+        </text>
+      </g>
+      <g id="uno" transform="translate(402 98)">
+        <circle cx="6.4" cy="6.4" r="6.4" fill="#000" fill-rule="nonzero" stroke="#000"/>
+        <text id="1" fill="#FFF" font-size="7">
+          <tspan x="5" y="9">1</tspan>
+        </text>
+      </g>
+      <g id="dos" transform="translate(351 184)">
+        <circle cx="6.4" cy="6.4" r="6.4" fill="#000" fill-rule="nonzero" stroke="#000"/>
+        <text id="2" fill="#FFF" font-size="7">
+          <tspan x="4" y="9">2</tspan>
+        </text>
+      </g>
+      <g id="tres" transform="translate(351 8)">
+        <circle cx="6.4" cy="6.4" r="6.4" fill="#000" fill-rule="nonzero" stroke="#000"/>
+        <text id="3" fill="#FFF" font-size="7">
+          <tspan x="4" y="9">3</tspan>
+        </text>
+      </g>
+      <g id="cuatro" transform="translate(300 98)">
+        <circle cx="6.4" cy="6.4" r="6.4" fill="#000" fill-rule="nonzero" stroke="#000"/>
+        <text id="4" fill="#FFF" font-size="7">
+          <tspan x="4" y="9">4</tspan>
+        </text>
+      </g>
+      <g id="cinco" transform="translate(248 184)">
+        <circle cx="6.4" cy="6.4" r="6.4" fill="#FFF" fill-rule="nonzero" stroke="#000"/>
+        <text id="5" fill="#000" font-size="7">
+          <tspan x="4" y="9">5</tspan>
+        </text>
+      </g>
+      <g id="seis" transform="translate(248 8)">
+        <circle cx="6.4" cy="6.4" r="6.4" fill="#FFF" fill-rule="nonzero" stroke="#000"/>
+        <text id="6" fill="#000" font-size="7">
+          <tspan x="4" y="9">6</tspan>
+        </text>
+      </g>
+      <g id="ocho" transform="translate(144 184)">
+        <circle cx="6.4" cy="6.4" r="6.4" fill="#FFF" fill-rule="nonzero" stroke="#000"/>
+        <text id="8" fill="#000" font-size="7">
+          <tspan x="4" y="9">8</tspan>
+        </text>
+      </g>
+      <g id="nueve" transform="translate(147 8)">
+        <circle cx="6.4" cy="6.4" r="6.4" fill="#FFF" fill-rule="nonzero" stroke="#000"/>
+        <text id="9" fill="#000" font-size="7">
+          <tspan x="4" y="9">9</tspan>
+        </text>
+      </g>
+      <g id="siete" transform="translate(198 98)">
+        <circle cx="6.4" cy="6.4" r="6.4" fill="#FFF" fill-rule="nonzero" stroke="#000"/>
+        <text id="7" fill="#000" font-size="7">
+          <tspan x="4" y="9">7</tspan>
+        </text>
+      </g>
+    </g>
+    <g id="textos" fill="#000" transform="translate(54)">
+      <text id="1" font-size="7">
+        <tspan x="243" y="119">1</tspan>
+      </text>
+      <text id="4" font-size="7">
+        <tspan x="360" y="119">4</tspan>
+      </text>
+      <text id="SUTIL" font-size="4">
+        <tspan x="14" y="102">SUTIL</tspan>
+      </text>
+      <text id="DENSO-Copy" font-size="4">
+        <tspan x="368" y="104">DENSO</tspan>
+      </text>
+      <text id="SUPERVIVENCIA" font-size="4">
+        <tspan x="361" y="141">SUPERVIVENCIA</tspan>
+      </text>
+      <text id="FORMA-Copy" font-size="4">
+        <tspan x="362" y="95">FORMA</tspan>
+      </text>
+      <text id="ENCUENTRO" font-size="4">
+        <tspan x="289" y="39">ENCUENTRO</tspan>
+      </text>
+      <text id="MENTE" font-size="4">
+        <tspan x="296" y="32">MENTE</tspan>
+      </text>
+      <text id="MENTE-Copy" font-size="4">
+        <tspan x="275" y="19">MENTE</tspan>
+      </text>
+      <text id="CUERPO" font-size="4">
+        <tspan x="360" y="84">CUERPO</tspan>
+      </text>
+      <text id="DIALECTICA" font-size="4">
+        <tspan x="290" y="47">DIALECTICA</tspan>
+      </text>
+      <text id="SINAPSIS" font-size="4">
+        <tspan x="293" y="55">SINAPSIS</tspan>
+      </text>
+      <text id="INTERACCION" font-size="4">
+        <tspan x="287" y="63">INTERACCION</tspan>
+      </text>
+      <text id="PROTECCIÓN" font-size="4">
+        <tspan x="288" y="171">PROTECCIÓN</tspan>
+      </text>
+      <text id="SEPARACIÓN" font-size="4">
+        <tspan x="288" y="220">SEPARACIÓN</tspan>
+      </text>
+      <text id="INFORMA" font-size="4">
+        <tspan x="191" y="101">INFORMA</tspan>
+      </text>
+      <text id="ACTUALIZA" font-size="4">
+        <tspan x="189" y="120">ACTUALIZA</tspan>
+      </text>
+      <text id="COSA-40" font-size="4">
+        <tspan x="259" y="92">COSA 40</tspan>
+      </text>
+      <text id="MUNDO" font-size="4">
+        <tspan x="262" y="84">MUNDO</tspan>
+      </text>
+      <text id="POSIBILIDADES" font-size="4">
+        <tspan x="155" y="19">POSIBILIDADES</tspan>
+      </text>
+      <text id="ORDEN-58" font-size="4">
+        <tspan x="138" y="196">ORDEN 58</tspan>
+      </text>
+      <text id="RED-28" font-size="4">
+        <tspan x="90" y="210">RED 28</tspan>
+      </text>
+      <text id="MATRIZ-LÓGICA" font-size="4">
+        <tspan x="184" y="212">MATRIZ LÓGICA</tspan>
+      </text>
+      <text id="RES-44" font-size="4" letter-spacing=".3">
+        <tspan x="266" y="121">RES 44</tspan>
+      </text>
+      <text id="SER-44" font-size="4" letter-spacing=".3">
+        <tspan x="264" y="100">SER 44</tspan>
+      </text>
+      <text id="IDENTIDAD-71" font-size="4" letter-spacing=".3">
+        <tspan x="212" y="93">IDENTIDAD 71</tspan>
+      </text>
+      <text id="ABSTRACTO" font-size="8" font-weight="bold" letter-spacing=".8">
+        <tspan x="173" y="144">ABSTRACTO</tspan>
+      </text>
+      <text id="IMPLICA" font-size="8" font-weight="bold" letter-spacing=".8">
+        <tspan x="298" y="93">IMPLICA</tspan>
+      </text>
+      <text id="CONCRETO" font-size="8" font-weight="bold" letter-spacing=".8">
+        <tspan x="279" y="139">CONCRETO</tspan>
+      </text>
+      <text id="EXPLICA" font-size="8" font-weight="bold" letter-spacing=".8">
+        <tspan x="379" y="50">EXPLICA</tspan>
+      </text>
+      <text id="FUNDA" font-size="4">
+        <tspan x="125" y="102">FUNDA</tspan>
+      </text>
+      <text id="ORIGEN" font-size="4">
+        <tspan x="124" y="119">ORIGEN</tspan>
+      </text>
+      <text id="EMANA" font-size="4">
+        <tspan x="125" y="93">EMANA</tspan>
+      </text>
+      <text id="FUENTE" font-size="4">
+        <tspan x="121" y="84">FUENTE</tspan>
+      </text>
+      <text id="PLASMA-Copy" font-size="4" font-weight="bold">
+        <tspan x="1" y="115">PLASMA</tspan>
+      </text>
+      <text id="DISUELVE-Copy" font-size="4">
+        <tspan x="9" y="128">DISUELVE</tspan>
+      </text>
+      <text id="VACÍO" font-size="4">
+        <tspan x="20" y="141">VACÍO</tspan>
+      </text>
+      <text id="COAGULA-Copy" font-size="4">
+        <tspan x="374" y="128">COAGULA</tspan>
+      </text>
+      <text id="SÓLIDO-Copy" font-size="4">
+        <tspan x="375" y="113">SÓLIDO</tspan>
+      </text>
+      <text id="GASEOSO-Copy" font-size="4">
+        <tspan x="292" y="4">GASEOSO</tspan>
+      </text>
+      <text id="POTENCIAL" font-size="4">
+        <tspan x="187" y="4">POTENCIAL</tspan>
+      </text>
+      <text id="PROPÓSITO" font-size="4">
+        <tspan x="86" y="4">PROPÓSITO</tspan>
+      </text>
+      <text id="REALIDAD-55" font-size="4">
+        <tspan x="185" y="221">REALIDAD 55</tspan>
+      </text>
+      <text id="LÍQUIDO-Copy" font-size="4">
+        <tspan x="294" y="211">LÍQUIDO</tspan>
+      </text>
+      <text id="ALMA" font-size="4">
+        <tspan x="298" y="180">ALMA</tspan>
+      </text>
+      <text id="ESPIRITU" font-size="4">
+        <tspan x="222" y="102">ESPIRITU</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

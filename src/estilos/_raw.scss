@@ -562,6 +562,11 @@ img.hover-shadow {
   padding-bottom: $size-2;
 }
 
+svg#mapafin {
+  width: 100%;
+  min-height: 50vh;
+}
+
 svg#mapabasediez {
   transform-box: fill-box;
 
