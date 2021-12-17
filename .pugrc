@@ -86,6 +86,14 @@
         "imagen": "./img/obras/img8.jpg",
         "description": "Impresión 3D. PLA. 100cm ø 2020",
         "ref": "211120"
+      },
+      {
+        "id": 9,
+        "title": "Ondas leche primordial",
+        "preview": "./img/obras-preview/img9.jpg",
+        "imagen": "./img/obras/img9.jpg",
+        "description": "Impresión 3D. PLA. 100cm ø 2021",
+        "ref": "211120"
       }
     ],
     "codigos": [
