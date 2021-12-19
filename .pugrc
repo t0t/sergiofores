@@ -25,7 +25,7 @@
     "obras": [
       {
         "id": 1,
-        "title": "Sin título.",
+        "title": "Sin título",
         "preview": "./img/obras-preview/img1.jpg",
         "imagen": "./img/obras/img1.jpg",
         "description": "Serie Paisajes circulares. Impresión 3D. 110cm ø 2019",

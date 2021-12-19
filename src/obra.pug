@@ -43,15 +43,16 @@ block content
         .slide
           img.image-slide(src=obra.imagen alt=obra.title)
           small
-            strong= obra.title
-            | obra.description. REF: obra.ref
+            strong= obra.title 
+            strong= obra.description 
+            strong= obra.ref 
 
       a.previous(onclick=`changeSlide(-1)`) &#x276E;
       a.next(onclick=`changeSlide(1)`) &#x276F;
 
       .dots
         each obra in obras
-          img.modal-preview.hover-shadow(src= obra.preview alt= obra.title onclick=`toSlide( ${obra.id })`)
+          img.modal-preview.hover-shadow(src= obra.preview alt= obra.title onclick=`toSlide( ${obra.id} )`)
 
   section
 
@@ -81,12 +82,10 @@ block content
           img(src='./img/bg7.png' alt='Imagen del proceso')
 
       .grid-12.grid-md-6.bgImg(style="background-image: url('./img/bg15.jpg');")
-      
+
       .grid-12.grid-md-6
         figure.animItem
           img(src='./img/bg16.jpg' alt='Imagen del proceso')
-
-      
 
   footer.blockquote--pie(style="background-image: url('./img/bg3.jpg');")
     blockquote.highlight.
