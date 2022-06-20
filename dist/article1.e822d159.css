@@ -30,7 +30,6 @@ pre {
   word-spacing: normal;
   word-break: normal;
   tab-size: 2;
-  -webkit-hyphens: none;
   hyphens: none;
   background-color: #f6f6f6;
   margin: .5em 0;
@@ -51,7 +50,6 @@ code[class*="language-"], pre[class*="language-"] {
   word-break: normal;
   word-wrap: normal;
   tab-size: 4;
-  -webkit-hyphens: none;
   hyphens: none;
   background: none;
   font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
@@ -166,14 +164,6 @@ input {
 
 input[type="text"]:active, input[type="text"]:focus, input[type="date"]:focus, input[type="submit"]:focus {
   background-color: #4aecc1;
-}
-
-::-moz-placeholder {
-  color: #000;
-}
-
-:-ms-input-placeholder {
-  color: #000;
 }
 
 ::placeholder, input[type="date" i] {
@@ -1458,7 +1448,7 @@ figure figcaption {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  transition: clip-path 1s, -webkit-clip-path 1s;
+  transition: clip-path 1s;
 }
 
 .animCrop {
@@ -1578,7 +1568,6 @@ input {
 }
 
 input[type="date" i] {
-  -webkit-padding-start: 1rem;
   padding-inline-start: 1rem;
   display: -webkit-inline-flex;
   overflow: hidden;
@@ -1611,11 +1600,7 @@ input[type="date" i] {
 }
 
 .form-group input {
-  min-width: -webkit-max-content;
-  min-width: -moz-max-content;
   min-width: max-content;
-  max-width: -webkit-max-content;
-  max-width: -moz-max-content;
   max-width: max-content;
   width: 100%;
   margin-top: .61rem;
@@ -1901,7 +1886,6 @@ img.hover-shadow {
 .previous, .next {
   cursor: pointer;
   width: auto;
-  -webkit-user-select: none;
   user-select: none;
   margin-top: -50px;
   padding: 1.6rem;
@@ -2161,13 +2145,11 @@ svg#mapabasediez + .descripcion p {
 }
 
 #animcover circle:hover {
-  cursor: -webkit-grab;
   cursor: grab;
 }
 
 #animcover circle:active {
   fill-opacity: .8;
-  cursor: -webkit-grabbing;
   cursor: grabbing;
 }
 
@@ -2616,9 +2598,8 @@ mark {
 .tachado {
   text-underline-position: from-font;
   text-underline-offset: 0;
-  text-decoration: line-through;
+  text-decoration: line-through #e2777a;
   text-decoration-thickness: 2px;
-  text-decoration-color: #e2777a;
 }
 
 .rounded {
