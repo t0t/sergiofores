@@ -1,5 +1,5 @@
 import '../sass/style.scss'
-import img13 from '../img/bg13.jpg'
+import img13 from '/public/img/bg12.jpg'
 document.getElementById('img13').src = img13
 
 // LOADER con fundido
