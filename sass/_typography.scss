@@ -2,7 +2,9 @@ body {
   font-family: $mainff;
   font-weight: $normal;
 }
-
+h1 {
+  position: relative;
+}
 h2 {
   font-weight: $normal;
   text-align: center;
