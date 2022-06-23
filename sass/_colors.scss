@@ -39,7 +39,7 @@ figure {
     background-color: $grey-color-4;
   }
   &Invert {
-    // color: $grey-color;
+    color: $black-color;
     background-color: $grey-color-3;
   }
 }
@@ -105,7 +105,7 @@ button {
 }
 
 .mainContent {
-  background-color: $grey-color-2;
+  background-color: $grey-color-4;
 }
 
 .image-slide + small {
@@ -175,11 +175,6 @@ button {
   fill: $primary-color;
 }
 
-.footer-site {
-  // color: $black-color;
-  background-color: $grey-color-2;
-}
-
 .social-links path,
 .social-links circle {
   fill: $grey-color-4;
@@ -216,6 +211,9 @@ button {
 }
 
 .footer-site {
+  color: $black-color;
+  background-color: $grey-color-3;
+
   footer nav a {
     color: $grey-color-3;
   }

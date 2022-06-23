@@ -120,9 +120,9 @@ hr {
   display: grid;
   place-items: center;
 
-  @media screen and (min-width: $bp3) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  // @media screen and (min-width: $bp3) {
+  //   grid-template-columns: repeat(2, 1fr);
+  // }
 }
 
 text {

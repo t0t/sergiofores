@@ -13,8 +13,8 @@ $grey-color: grey;
 $grey-color-0: #E8E8E8;
 $grey-color-1: #dad9d9;
 $grey-color-2: #c0c0c0;
-$grey-color-3: #a5a5a5;
-$grey-color-4: #2e2e2e;
+$grey-color-3: #988d86;
+$grey-color-4: #221711;
 $grey-color-5: #323232;
 $white-color-alpha-0: #ffffff30;
 $white-color-alpha-1: #ffffff77;
@@ -52,7 +52,7 @@ $bp6: 2558px;
 $mainff: 'Montserrat', Arial, Helvetica, sans-serif;
 
 $baselineheight: $size-3 - 0.162;
-$bodytextcolor: $black-color;
+$bodytextcolor: $grey-color-3;
 
 // z-index
 $ramas: 3;
