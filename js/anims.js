@@ -38,12 +38,12 @@ let animCrop2 = gsap.timeline({
   }
 })
 animCrop2.fromTo('.animCrop2', {
-  // opacity: 1,
+  opacity: 1,
   width: "100vw",
   height: "100vh",
   clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
 },{
-  // opacity: 0.5,
+  opacity: 0.7,
   y: "50vh",
   x: "-10vw",
   clipPath: "polygon(0% 0%, 75% 50%, 0% 100%, 0% 100%)",

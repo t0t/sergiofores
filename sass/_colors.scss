@@ -34,6 +34,7 @@ figure {
   color: $white-color;
 }
 .card {
+  background-color: transparent;
   &Dark {
     color: $grey-color-2;
     background-color: $grey-color-4;

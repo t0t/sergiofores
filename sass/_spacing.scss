@@ -36,6 +36,20 @@ p > a {
   padding-bottom: $size-1;
 }
 
+p,
+a,
+ul,
+dl,
+p strong,
+h3,
+blockquote {
+  padding-left: 0;
+  
+  @media screen and (min-width: $bp6) {
+    padding-left: inherit;
+  }
+}
+
 // ul {
 //   padding-left: 0;
 // }
@@ -47,13 +61,13 @@ li {
 dl {
   padding-bottom: $size-2;
 }
-h1,
-h2,
-p, 
-dl {
-  padding-left: $size-3;
-  padding-right: $size-3;
-}
+// h1,
+// h2,
+// p, 
+// dl {
+//   padding-left: $size-3;
+//   padding-right: $size-3;
+// }
 dt {
   margin-top: $size-2;
   margin-bottom: $size-2;
@@ -173,8 +187,11 @@ button {
 }
 
 .grid-12 {
-  min-height: 50vh;
   background-size: cover;
+  
+  @media screen and (min-width: $bp3) {
+    min-height: 50vh;
+  }
 }
 
 .section {

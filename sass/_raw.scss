@@ -66,7 +66,6 @@ section {
 h1 {
   font-weight: $normal;
   text-align: center;
-  margin: 0 $size-3;
   letter-spacing: 1.5px;
   
   @media screen and (min-width: $bp0) {
@@ -269,6 +268,10 @@ svg.grafica {
   // align-self: center;
   justify-self: start;
   background-size: cover;
+  p {
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 
 .menu3d {
