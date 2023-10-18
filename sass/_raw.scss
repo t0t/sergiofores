@@ -89,20 +89,20 @@ h1 {
   // background-attachment: fixed;
   
   blockquote {
-    border-left: 0px;
-    border-right: 0px;
-    border-radius: 0px;
+    // border-left: 0px;
+    // border-right: 0px;
+    // border-radius: 0px;
   }
 }
 
 blockquote {
-  border-left: $size-1;
-  border-left-width: $size--1;
-  border-left-style: solid;
+  // border-left: $size-1;
+  // border-left-width: $size--1;
+  // border-left-style: solid;
   // border-right: $size-1;
   // border-right-width: $size--1;
   // border-right-style: solid;
-  border-radius: $size-4;
+  // border-radius: $size-4;
 }
 
 hr {
@@ -336,7 +336,8 @@ svg.grafica {
 // /* Social Links */
 .social-links {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
 }
 
 .lienzo {
@@ -353,9 +354,10 @@ svg.grafica {
 
 .highlight-line {
   display: block;
-  padding: 0.125em 1em;
+  // padding: $size-2;
+  // border: 2px;
   text-decoration: none;
-  color: inherit;
+  // color: inherit;
 }
 
 // /* allow highlighting empty lines */
@@ -684,7 +686,7 @@ svg#mapabasediez {
       fill: $grey-color-2;
     }
     #cero, #uno, #dos, #tres, #cuatro {
-      fill: $grey-color-3;
+      fill: $white-color;
     } 
 
     text {
@@ -696,7 +698,7 @@ svg#mapabasediez {
     #adicionales {
       path,
       circle {
-        stroke: $secondary-color;
+        stroke: $black-color;
       }
     }
   }

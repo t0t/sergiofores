@@ -12,12 +12,16 @@ p > a {
 
 blockquote {
   // color: $grey-color-3;
-  border-left-color: $secondary-color;
+  border: 1px solid $white-color;
   // border-right-color: $primary-color;
 }
 
 .blockquote--pie blockquote {
-  color: $black-color;
+  // color: $black-color;
+}
+
+.blockquote--pie {
+  // color: $grey-color-2;
 }
 
 hr {
@@ -31,7 +35,7 @@ figure {
 }
 
 .titlePage {
-  color: $white-color;
+  color: $black-color;
 }
 .card {
   &Dark {
@@ -40,7 +44,7 @@ figure {
   }
   &Invert {
     color: $black-color;
-    background-color: $grey-color-3;
+    background-color: $white-color;
   }
 }
 
@@ -100,12 +104,8 @@ button {
   }
 }
 
-.blockquote--pie {
-  color: $grey-color-2;
-}
-
 .mainContent {
-  background-color: $grey-color-4;
+  background-color: $white-color;
 }
 
 .image-slide + small {
@@ -113,8 +113,8 @@ button {
 }
 
 .franjapie {
-  color: $black-color;
-  background-color: $grey-color-3;
+  // color: $black-color;
+  background-color: $grey-color-1;
 }
 
 /* hambutton */
@@ -291,6 +291,10 @@ svg#mapabasediez {
   text {
     fill: white;
   }
+}
+
+.highlight {
+  color: $white-color;
 }
 
 // .highlight-line-isdir {
