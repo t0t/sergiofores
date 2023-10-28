@@ -18,7 +18,7 @@ const scrollanim = gsap
   })
   .add('anim')
   .to('#scrollanim', {
-    scale: 0.9,
+    scale: 0.65,
     transformOrigin: 'center'
   })
   .fromTo('#adicionales circle', {

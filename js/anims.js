@@ -14,15 +14,15 @@ let animCrop = gsap.timeline({
   }
 })
 animCrop.fromTo('.animCrop', {
-  opacity: 0.45,
+  opacity: 1,
   width: "100vw",
   height: "100vh",
-  clipPath: "polygon(10% 0%, 100% 0%, 100% 100%, 0% 50%)",
+  clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
 },{
   opacity: 1,
   y: "40vh",
   x: "0vw",
-  clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+  clipPath: "polygon(100% 0%, 100% 50%, 50% 50%, 0% 50%)",
   // mixBlendMode: "normal",
   // backgroundPosition: "top left"
 })

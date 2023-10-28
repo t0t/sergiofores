@@ -38,7 +38,7 @@ blockquote {
   line-height: 1.7rem;
   letter-spacing: 1px;
   word-spacing: 0.5px;
-  font-weight: $light;
+  // font-weight: $normal;
 
 
   @media screen and (min-width: $bp6) {
@@ -153,6 +153,7 @@ figure {
 
 .titlePage {
   text-align: center;
+  font-style: bold;
 }
 
 .image-slide + small {
