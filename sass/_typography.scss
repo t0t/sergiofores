@@ -17,7 +17,7 @@ h3 {
   line-height: $size-1;
   text-align: center;
   letter-spacing: 2px;
-
+  
   @media screen and (min-width: $bp5) {
     line-height: $size-3;
     font-size: $size-2;
@@ -26,6 +26,7 @@ h3 {
 
 h4 {
   line-height: $size-2;
+  letter-spacing: 1px;
 }
 
 p,
