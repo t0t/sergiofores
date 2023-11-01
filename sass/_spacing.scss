@@ -192,9 +192,9 @@ button {
 .grid-12 {
   background-size: cover;
   
-  @media screen and (min-width: $bp3) {
-    min-height: 50vh;
-  }
+  // @media screen and (min-width: $bp3) {
+  //   min-height: 50vh;
+  // }
 }
 
 .section {

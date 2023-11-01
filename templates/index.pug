@@ -14,19 +14,22 @@ main#maincontent.mainContent
   block pageheader 
 
     header.headerContent
-      h1.titlePage Me planto en el huerto <br> de contar <mark>+0+1234</mark>
+      h1.titlePage <mark>01234</mark> <br> Cuento la Creación
       .bgImg.animCrop(style="background-image: url('../img/arte3d.jpeg');")
 
     section.grid
       .grid-12
         .card.vh100
-          h1 Sergio Forés <mark>סרחיו </mark>
-          h2.tac caigo en la cuenta de mi verdad       
-          .bgImg.animCrop2(style="background-image: url('../img/bg2.png');")
+          h1 Soy <mark> Sergio </mark>
+          h2.tac y caigo en la cuenta de mí   
+          //- .bgImg.animCrop2(style="background-image: url('../img/bg2.png');")
+          video#video1(poster='./img/bg1.jpg' controls='false' loop='true')
+            source(src='./img/introweb.mp4' type='video/mp4')
+            | Your browser does not support the video tag.   
 
       .grid-12
         .card
-          h1 Transito en lo que <mark> cuenta</mark>
+          h2 <mark>Cuento</mark> lo que transito.
 
       .grid-12
         .card
@@ -38,6 +41,12 @@ main#maincontent.mainContent
             li Hago cosas para que estén
 
     section.grid
+      .grid-12
+        .card.cardInvert.tac
+          header
+            h2 Me planto en mi verdad
+            p Cuento para darme cuenta y expandirlo.
+          //- a.btn--default.btn--black(href="./lab.pug") descubre +0+1234
       .grid-12
         svg#scrollanim(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 101 66')
           g#adicionales(fill='none' fill-rule='evenodd')
@@ -66,29 +75,26 @@ main#maincontent.mainContent
             circle#cuatro(cx='63.491' cy='31.8' r='7.056' vector-effect='non-scaling-stroke')
             text(x='63.491' y='31.8') 1
 
-      .grid-12
-        .card.tac
-          p +0+1234.
-          p Observo un territorio por el que se coagula mi experiencia de lo espiritual en el mundo. Encontré el fractal que lo vincula todo y ahora trato de integrarlo, bajarlo en lo biológico para sanarme, para aprender, para estar alineado con la fuente que me originó.
-
-          //- a.btn--default.btn--black(href="./lab.pug") descubre +0+1234
-
     section.grid.animContainer
 
-      article.grid-12.grid-lg-6.grid--img.animItem(style="background-image: url('../img/pieza.jpg');")
+      article.grid-12.grid-lg-6.grid--img.animItem.minheight(style="background-image: url('../img/pieza.jpg');")
 
       article.grid-12.grid-lg-6.card.cardInvert
+        p Observo un territorio por el que se coagula mi experiencia de lo espiritual en el mundo. 
+        p Encontré el fractal que lo vincula todo y ahora trato de integrarlo, bajarlo en lo biológico para sanarme, para aprender, para estar alineado con la fuente que me originó.
+      
+      article.grid-12.grid-lg-6.card.cardInvert.tar
         p Moldeo esculturas en 3D y las imprimo
-        p Pinto cuadros en hebreo antigüo
-        p Diseño prototipos Front-end
-        p Hago de taxista
+        p Amante de las letras hebreas
+        p Artista, Diseñador Gráfico, Front-end
         p Observo cábala desde 2017
         p Bebo té a raudales
+        p Dejo de girar
         //- a.btn--default.btn--black(href="obra.pug") obra plástica
 
-      article.grid-6.grid--img.animItem(style="background-image: url('/img/bg9.jpg');")
+      article.grid-6.grid--img.animItem.minheight(style="background-image: url('/img/bg9.jpg');")
 
-      article.grid-6.grid--img.animItem(style="background-image: url('../img/sergiofores.jpg');")
+      article.grid-6.grid--img.animItem.minheight(style="background-image: url('../img/sergiofores.jpg');")
 
       //- article.card.cardDark.animItem 
         //- p Realizo ipsum, dolor sit amet consectetur adipisicing elit. Consectetur at explicabo aliquid accusamus voluptatem nesciunt architecto iusto suscipit optio! Ratione nam autem eius eveniet doloribus fugit perferendis cum repudiandae quibusdam!
@@ -98,14 +104,24 @@ main#maincontent.mainContent
         //- p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur at explicabo aliquid accusamus voluptatem nesciunt architecto iusto suscipit optio! Ratione nam autem eius eveniet doloribus fugit perferendis cum repudiandae quibusdam!
         //- a.btn--default.btn--white(href="obra.pug") obra plástica
 
-      article.grid-12.grid-md-6.animItem(style="background-image: url('../img/img3.jpg');")
-
-      article.grid-12.grid-md-6.card.cardDark
-        p 1. Emanación
-        p 2. Creación
-        p 3. Formación
-        p 4. Acción
+      article.grid-12.grid-md-6.card
+        ul 
+          li Potencial infinito
+          li Emanación
+          li Creación
+          li Formación
+          li Acción
         //- a(class="btn--default  btn--white" href="sobremi.pug") sobre mí
+
+      article.grid-12.grid-lg-6.card.cardInvert.tar
+        p Lo cuento todo para dejarlo y que se cumpla porque el ambiente me transforma
+        p Vibro en acceso directo a mi verdad
+        p Bajando Claridad en el decir de mi ser-humano.
+        p Me quedo en la esencia
+        p Incorporo el aprendizaje
+        p Irrefutable en mí, cada dia al despertar
+
+      article.grid-12.grid-md-6.animItem.minheight(style="background-image: url('../img/img1.jpg');")
 
     footer.blockquote--pie(style="background-image: url('../img/bg3.jpg');")
       blockquote.highlight.highlight-line.

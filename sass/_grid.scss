@@ -72,7 +72,7 @@
 .grid--img {
   @extend .grid--0;
   width: 100%;
-  min-height: 50vh;
+  // min-height: 50vh;
   grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
   background-position: center;
   background-size: cover;
