@@ -12,8 +12,8 @@
 .headerContent {
   position: relative;
   display: grid;
-  place-items: center;
-  align-content: end;
+  // place-items: center;
+  // align-content: stretch;
 }
 
 .bgImg {
@@ -79,6 +79,7 @@ h1 {
 
 .titlePage {
   position: absolute;
+  width: 100%;
 }
 
 .blockquote--pie {

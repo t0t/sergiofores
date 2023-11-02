@@ -21,6 +21,26 @@ let fundidoPagina = () => {
   document.querySelector("#theSite").classList.add("fade-page-on")
 }
 
+// ANIME 
+import anime from 'animejs/lib/anime.es.js';
+
+anime({
+  targets: '.titlePage',
+  // scale: ['3', '1.5'],
+  keyframes: [
+    {translateY: -300},
+    {translateX: 250},
+    {translateY: 40},
+    {translateX: 0},
+    {translateY: 0}
+  ],
+  rotate: '2turn',
+  // backgroundColor: '#000',
+  duration: 3500
+  // borderRadius: ['0%', '5%']
+});
+
+
 
 // Muestra Creditos
 // document.addEventListener("DOMContentLoaded", () => {
