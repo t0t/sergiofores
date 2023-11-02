@@ -14,8 +14,8 @@ main#maincontent.mainContent
   block pageheader 
 
     header.headerContent
-      h1.titlePage <mark>01234</mark> Cuento la Creación
-      .bgImg.animCrop(style="background-image: url('../img/arte3d.jpeg');")
+      h1.titlePage Cuento la Creación
+      .bgImg.animCrop(style="background-image: url('../img/creacion.jpg');")
 
     section.grid
       .grid-12
@@ -25,9 +25,9 @@ main#maincontent.mainContent
           //- .bgImg.animCrop2(style="background-image: url('../img/bg2.png');")
       .grid-2
       .grid-8
-          video#video1(poster='./img/bg1.jpg' controls='false' loop='true')
-            source(src='./img/introweb.mp4' type='video/mp4')
-            | Your browser does not support the video tag.   
+        video#video1(poster='./img/bg1.jpg' controls='false' loop='true')
+          source(src='./img/introweb.mp4' type='video/mp4')
+          | Your browser does not support the video tag.   
 
       .grid-12
         .card
@@ -47,7 +47,7 @@ main#maincontent.mainContent
             h2 Me planto en mi  <mark>verdad </mark>
             p Cuento todo el rato para darme cuenta y expandirlo. La información ocurriendo completamente. Somos respuesta.
 
-    section.grid.animContainer
+    section.grid.animContainer.card
 
       article.grid-12.grid-lg-6.grid--img.animItem.minheight(style="background-image: url('../img/pieza.jpg');")
 

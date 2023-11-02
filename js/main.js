@@ -28,13 +28,16 @@ anime({
   targets: '.titlePage',
   // scale: ['3', '1.5'],
   keyframes: [
+    {scale: 2},
     {translateY: -300},
     {translateX: 250},
     {translateY: 40},
     {translateX: 0},
-    {translateY: 0}
+    {translateY: 0},
+    {scale: 1}
+    // {rotate: '-10deg'}
   ],
-  rotate: '2turn',
+  rotate: '1turn',
   // backgroundColor: '#000',
   duration: 3500
   // borderRadius: ['0%', '5%']

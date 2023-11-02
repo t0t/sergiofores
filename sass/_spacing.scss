@@ -153,6 +153,7 @@ button {
   @media screen and (min-width: $bp3) {
     margin-left: $size-2;
     margin-right: $size-2;
+    margin-left: inherit;
     // font-size: inherit;
     top: 45%;
   }
