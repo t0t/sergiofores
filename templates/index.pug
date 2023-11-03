@@ -14,15 +14,24 @@ main#maincontent.mainContent
   block pageheader 
 
     header.headerContent
-      h1.titlePage Cuento la Creación
-      .bgImg.animCrop(style="background-image: url('../img/creacion.jpg');")
-
+      .bgImg.animCrop(style="background-image: url('../img/logo.png');")
+      div.drag#drag1
+        h3.titlePage Cuento la Creación
+      div.drag#drag2
+        <mark>Escribo, pinto, tecleo códigos y símbolos </mark>
+      div.drag#drag3
+        .bgImg(style="background-image: url('../img/bg2.png');")
+      div.drag#drag4
+        <mark> Artista, Diseñador Gráfico, FrontEnd</mark>
+      div.drag#drag5
+        .bgImg(style="background-image: url('../img/bg1.png');")
+      div.drag#drag6
+        <mark> Modelo esculturas en 3D y las imprimo</mark>
     section.grid
       .grid-12
         .card
           h1 Me doy cuenta de <mark> +0+1234</mark>
           h2.tac Me inspiro para respirar. 
-          //- .bgImg.animCrop2(style="background-image: url('../img/bg2.png');")
       .grid-2
       .grid-8
         video#video1(poster='./img/bg1.jpg' controls='false' loop='true')
@@ -56,9 +65,6 @@ main#maincontent.mainContent
         p Me di cuenta del fractal que lo vincula todo y ahora simplemente voy integrándolo en coherencia.
       
       article.grid-12.grid-lg-6.card.cardInvert.tar
-        p Modelo esculturas en 3D y las imprimo
-        p Escribo, pinto, tecleo códigos y símbolos 
-        p Artista, Diseñador Gráfico, FrontEnd
         p Alumno eterno
         p Bebo té a raudales
         p Dejo de girar y avanzo
