@@ -19,6 +19,7 @@
 .bgImg {
   background-position: center;
   background-repeat: no-repeat;
+  mix-blend-mode: invert;
   background-size: cover;
   transition: clip-path 1s;
 }
