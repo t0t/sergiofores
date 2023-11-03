@@ -309,22 +309,33 @@ mark {
   top: 50%;
   left: 40%;
 }
+#drag7 {
+  top: 70%;
+  left: 10%;
+}
 
 .drag {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  height: 300px;
-  width: 300px;
-  background-color: white;
   // border-radius: 50%;
   text-align: center;
-  background-color: $black-color;
+  // background-color: $black-color;
   // mix-blend-mode: hard-light;
+  display: none;
   opacity: .1;
   margin-bottom: inherit;
   font-weight: bold;
   letter-spacing: 5px;
+  
+  @media screen and (min-width: $bp3) {
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+  }
+
+  h3 {
+    color: $black-color;
+  }
   
   &:hover {
     z-index: 999;

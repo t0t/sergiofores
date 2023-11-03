@@ -182,7 +182,9 @@ button {
 }
 
 .headerContent {
-  height: 100vh;
+  @media screen and (min-width: $bp3) {
+    height: 100vh;
+  }
 }
 
 .bgImg {
