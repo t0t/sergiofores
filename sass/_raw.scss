@@ -339,6 +339,35 @@ svg.grafica {
     transition: transform .8s;
   }
 }
+.logo2 {
+  width: $size-5;
+  transition: transform 1s;
+  top: calc($size-3 + $size-3);
+  right: calc($size-3 - $size-1);
+  position: fixed;
+  z-index: 9999999;
+  // display: block;
+  // mix-blend-mode: difference;
+
+  circle {
+    stroke: $black-color;
+    stroke-width: 3px;
+    fill: none;
+  }
+  text {
+    fill: none;
+    stroke: $black-color;
+    stroke-width: 6px;
+  }
+  path {
+    fill: $white-color;
+    stroke-width: 6px;
+  }
+  &:hover {
+    transform: rotate(360deg) scale(1.1);
+    transition: transform .8s;
+  }
+}
 
 // /* Social Links */
 .social-links {
