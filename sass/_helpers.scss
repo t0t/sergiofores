@@ -314,29 +314,35 @@ mark {
   left: 10%;
 }
 
-.drag {
-  // border-radius: 50%;
-  text-align: center;
-  // background-color: $black-color;
-  // mix-blend-mode: hard-light;
-  display: none;
-  opacity: .1;
-  margin-bottom: inherit;
-  font-weight: bold;
-  letter-spacing: 5px;
-  
-  @media screen and (min-width: $bp3) {
-    position: absolute;
-    height: 300px;
-    width: 300px;
-    display: flex;
-    align-items: center;
-  }
 
-  h3 {
-    color: $black-color;
-  }
+
+// DRAG
+.container {
+  position: relative;
+  width: 100vw;
+  height: 500vh;
+}
+
+.draggable {
+  background-color: rgba(0, 0, 0, 0.05);
+  background-size: cover;
+  // padding: $size-2;
+  // border: solid 1px;
   
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  &:active {
+      cursor: grabbing;
+      cursor: -moz-grabbing;
+      cursor: -webkit-grabbing;
+  }
   &:hover {
     z-index: 999;
     background-color: $secondary-color;
@@ -344,5 +350,82 @@ mark {
     opacity: 1;
     cursor: move;
   }
-
+}
+.draggable:nth-child(1) {
+  top: 80%;
+  left: auto;
+}
+.draggable:nth-child(2) {
+  top: 1%;
+  left: 33%;
+}
+.draggable:nth-child(3) {
+  top: 20%;
+  left: 30%;
+}
+.draggable:nth-child(4) {
+  top: 60%;
+  left: 84%;
+}
+.draggable:nth-child(5) {
+  top: 61.5%;
+  left: 10%;
+}
+.draggable:nth-child(6) {
+  top: 10%;
+  left: 30%;
+}
+.draggable:nth-child(7) {
+  top: 3%;
+  left: 0%;
+}
+.draggable:nth-child(8) {
+  top: 30%;
+  left: 30%;
+}
+.draggable:nth-child(9) {
+  top: 80%;
+  left: 30%;
+}
+.draggable:nth-child(10) {
+  top: 15%;
+  left: 10%;
+}
+.draggable:nth-child(11) {
+  top: 67%;
+  left: 34%;
+}
+.draggable:nth-child(12) {
+  top: 48%;
+  left: 23%;
+}
+.draggable:nth-child(13) {
+  top: 30%;
+  left: 30%;
+}
+.draggable:nth-child(14) {
+  top: 100%;
+  left: 10%;
+}
+.draggable:nth-child(15) {
+  top: 98%;
+  left: 40%;
+  transform: rotate(-3deg);
+}
+.draggable:nth-child(16) {
+  top: 50%;
+  left: 10%;
+}
+.draggable:nth-child(17) {
+  top: 70%;
+  left: 10%;
+}
+.draggable:nth-child(18) {
+  top: 70%;
+  left: 10%;
+}
+.draggable:nth-child(19) {
+  top: 89%;
+  left: 10%;
+  transform: rotate(-3deg);
 }

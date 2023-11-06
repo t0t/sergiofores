@@ -13,88 +13,63 @@
 main#maincontent.mainContent
   block pageheader 
 
-    header.headerContent
-      .bgImg.animCrop(style="background-image: url('../img/logo.png');background-size: 60%;background-rotate: 3deg;")
-      div.drag#drag1
-        h3.titlePage Cuento la Creación
-      div.drag#drag2
-        <mark>Escribo, pinto, tecleo códigos y símbolos </mark>
-      div.drag#drag3
-        .bgImg(style="background-image: url('../img/bg2.png');")
-      div.drag#drag4
-        <mark> Artista, Diseñador Gráfico, FrontEnd</mark>
-      div.drag#drag5
-        .bgImg(style="background-image: url('../img/bg1.png');")
-      div.drag#drag6
-        <mark> Modelo esculturas en 3D y las imprimo</mark>
-      div.drag#drag7
-        h3.titlePage Siempre en construcción
-    section.grid
-      .grid-12
-        .card
-          h1 Me doy cuenta de <mark> +0+1234</mark>
-          h2.tac Me inspiro para respirar. 
-      .grid-2
-      .grid-8
-        video#video1(poster='./img/bg1.jpg' controls='false' loop='true')
-          source(src='./img/introweb.mp4' type='video/mp4')
-          | Your browser does not support the video tag.   
+  div.container
+    .draggable <mark>Escribo, pinto, tecleo códigos y símbolos </mark>
+    .draggable
+      h1 Cuento la Creación
+    .draggable.bgImg(style="background-image: url('../img/bg2.png');")
+    .draggable <mark> Artista, Diseñador Gráfico, FrontEnd</mark>
+    .draggable <mark> Modelo esculturas en 3D y las imprimo</mark>
+    .draggable
+      p Siempre en construcción
+    .draggable.bgImg(style="background-image: url('../img/pieza.jpg');")
+    .draggable.bgImg(style="background-image: url('../img/bg1.png');")
+    .draggable.bgImg(style="background-image: url('../img/bg5.png');")
 
-      .grid-12
-        .card
-          h2 <mark>Yo cuento</mark> en el transitar.
-          ul 
-            li Me expando para verme
-            li Dejo registro para clarificarme.
-            li Percibo el pensamiento de la Creación (מחשבת הבריאה).
-            li Avanzo en coherencia paso a paso.
-            li Hago cosas para que estén
-            li La vida son cuatro cosas (que son cinco)
+    .draggable
+      .card
+        h1 Me doy cuenta de <mark> +0+1234</mark>
+        h2.tac Me inspiro para respirar. 
 
-    section.grid
-      .grid-12
-        .card.cardInvert.tac
-          header
-            h2 Me planto en mi  <mark>verdad </mark>
-            p Cuento todo el rato para darme cuenta y expandirlo. La información ocurriendo completamente. Somos respuesta.
+    .draggable
+      .card
+        h2 <mark>Yo cuento</mark> en el transitar.
+        ul 
+          li Me expando para verme
+          li Dejo registro para clarificarme.
+          li Percibo el pensamiento de la Creación (מחשבת הבריאה).
+          li Avanzo en coherencia paso a paso.
+          li Hago cosas para que estén
+          li La vida son cuatro cosas (que son cinco)
 
-    section.grid.animContainer.card
-
-      article.grid-12.grid-lg-6.grid--img.animItem.minheight(style="background-image: url('../img/pieza.jpg');")
-
-      article.grid-12.grid-lg-6.card.cardInvert
+    .draggable
+      header
+        h2 Me planto en mi  <mark>verdad </mark>
+        p Cuento todo el rato para darme cuenta y expandirlo. La información ocurriendo completamente. Somos respuesta.
+    
+    .draggable
+      .card
         p Observo un territorio holístico de creación en el que cristaliza todo lo que soy en esta antena humana que no para de resonar y vibrar. 
         p Me di cuenta del fractal que lo vincula todo y ahora simplemente voy integrándolo en coherencia.
-      
-      article.grid-12.grid-lg-6.card.cardInvert.tar
         p Alumno eterno
         p Bebo té a raudales
         p Dejo de girar y avanzo
-        //- a.btn--default.btn--black(href="obra.pug") obra plástica
+    
+    .draggable.bgImg(style="background-image: url('../img/img1.jpg');")
+    .draggable.bgImg(title="hola" style="background-image: url('../img/sergiofores.jpg');")
+    .draggable.bgImg(style="background-image: url('../img/bg9.jpg');")
 
-      article.grid-6.grid--img.animItem.minheight(style="background-image: url('/img/bg9.jpg');")
+    .draggable
+      h4 El proceso Es:
+      ul 
+        li Potencial
+        li Emanación
+        li Creación
+        li Formación
+        li Acción
 
-      article.grid-6.grid--img.animItem.minheight(style="background-image: url('../img/sergiofores.jpg');")
-
-      //- article.card.cardDark.animItem 
-        //- p Realizo ipsum, dolor sit amet consectetur adipisicing elit. Consectetur at explicabo aliquid accusamus voluptatem nesciunt architecto iusto suscipit optio! Ratione nam autem eius eveniet doloribus fugit perferendis cum repudiandae quibusdam!
-        //- a.btn--default.btn--white(href="obra.pug") obra plástica
-
-      //- article.card.cardDark.animItem 
-        //- p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur at explicabo aliquid accusamus voluptatem nesciunt architecto iusto suscipit optio! Ratione nam autem eius eveniet doloribus fugit perferendis cum repudiandae quibusdam!
-        //- a.btn--default.btn--white(href="obra.pug") obra plástica
-
-      article.grid-12.grid-md-6.card
-        h4 El proceso Es:
-        ul 
-          li Potencial
-          li Emanación
-          li Creación
-          li Formación
-          li Acción
-        //- a(class="btn--default  btn--white" href="sobremi.pug") sobre mí
-
-      article.grid-12.grid-lg-6.card.cardInvert.tar
+    .draggable
+      .card 
         p Lo cuento todo para dejarlo y que se cumpla, porque el ambiente me transforma
         p Vibro el acceso directo a mi verdad
         p Bajando claridad en el decir de mi ser-humano.
@@ -102,11 +77,11 @@ main#maincontent.mainContent
         p Incorporo el aprendizaje contínuo de no saber
         p Irrefutable en mí, cada dia al despertar
 
-      article.grid-12.grid-md-6.animItem.minheight(style="background-image: url('../img/img1.jpg');")
-
-    footer.blockquote--pie(style="background-image: url('../img/bg3.jpg');")
-      blockquote.highlight.
-        &ldquo; ...todos los llamados de mi nombre (1); para gloria mía los he creado (3), los formé (2) y los hice (4). &rdquo; <br> &mdash; Isaías 43:7
+    .draggable
+      video#video1(poster='./img/bg1.jpg' controls='false' loop='true')
+        source(src='./img/introweb.mp4' type='video/mp4')
+        | Your browser does not support the video tag.   
+</div>
 
 #footer 
   include footer

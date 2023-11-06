@@ -56,8 +56,6 @@ anime({
 // }
 
 
-
-
 function eventoDragVentanas(){
   const VENTANAS = document.querySelectorAll(".drag");
 
@@ -96,7 +94,8 @@ function eventoDragVentanas(){
       
       element.addEventListener('mousedown', mainEH, true);
           
-          
   });
 }
 eventoDragVentanas();
+
+document.querySelectorAll('.draggable').DraggableJS();
