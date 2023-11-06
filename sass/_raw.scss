@@ -347,7 +347,7 @@ svg.grafica {
   position: fixed;
   z-index: 9999999;
   // display: block;
-  // mix-blend-mode: difference;
+  mix-blend-mode: darken;
 
   circle {
     stroke: $black-color;
@@ -358,6 +358,8 @@ svg.grafica {
     fill: none;
     stroke: $black-color;
     stroke-width: 6px;
+    // font-size: 3px;
+    // font-weight: bold;
   }
   path {
     fill: $white-color;
