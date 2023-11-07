@@ -294,7 +294,7 @@ mark {
 }
 
 .draggable {
-  background-color: rgba(0, 0, 0, 0.05); 
+  background-color: rgba(0, 0, 0, 0.03); 
   cursor: move; /* fallback if grab cursor is unsupported */
   cursor: grab;
   cursor: -moz-grab;
@@ -323,35 +323,58 @@ mark {
   left: 3%;
   z-index: 1;
 }
+// cuento la creacion
 .draggable:nth-child(2) {
-  transform: perspective(50vw) rotateY(-33deg);
-  top: 4%;
-  left: 30%;
+  transform: perspective(50vw) rotateY(-30deg);
+  top: 1%;
+  left: 4%;
+  @media screen and (min-width: $bp3) {
+    top: 2%;
+    right: 13%;
+  }
 }
 .draggable:nth-child(3) {
-  top: 22%;
-  left: 10%;
+  top: 23%;
+  right: 10%;
 }
 // arte...
 .draggable:nth-child(4) {
-  top: 7%;
-  right: 0%;
+  top: 11%;
+  right: -4%;
+  @media screen and (min-width: $bp3) {
+    top: 7%;
+    right: 15%;
+  }
 }
 // modelo
 .draggable:nth-child(5) {
-  top: 12.5%;
+  top: 13.5%;
   right: 0%;
+  @media screen and (min-width: $bp3) {
+    top: 11.5%;
+    right: 20%;
+  }
 }
 // siempre en construcción
 .draggable:nth-child(6) {
-  top: 2.5%;
-  left: 68.8%;
+  top: 16.5%;
+  right: 3%;
+  @media screen and (min-width: $bp3) {
+    top: 9.5%;
+    right: 17%;
+  }
 }
 // pieza 3D
 .draggable:nth-child(7) {
   top: 6%;
-  left: 12%;
-  transform: perspective(400px) rotateY(45deg);
+  left: 0%;
+  transform: perspective(5vw) rotateY(15deg);
+  border-radius: 50%;
+  @media screen and (min-width: $bp3) {
+    top: 6%;
+    left: 0%;
+    transform: perspective(10vw) rotateY(45deg);
+  }
 }
 .draggable:nth-child(8) {
   top: 35%;
@@ -364,8 +387,9 @@ mark {
 }
 // me doy cuenta
 .draggable:nth-child(10) {
-  top: 15%;
-  right: 0%;
+  top: 20%;
+  left: 8%;
+  max-width: 75vw;
 }
 // yo cuento en el transitar
 .draggable:nth-child(11) {
@@ -410,6 +434,10 @@ mark {
   top: 59%;
   left: 10%;
   transform: rotate(-3deg);
+  video {
+    display: block;
+    width: 50vh;
+  }
 }
 // social links
 .draggable:nth-child(20) {

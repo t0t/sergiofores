@@ -192,8 +192,12 @@ button {
 }
 
 .bgImg {
-  width: 50%;
-  min-height: 30vh;
+  width: 50vw;
+  min-height: 50vw;
+  @media screen and (min-width: $bp3) {
+    width: 60vh;
+    min-height: 40vh;
+  }
 }
 
 .grid-12 {

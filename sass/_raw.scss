@@ -340,15 +340,19 @@ svg.grafica {
   }
 }
 .logo2 {
+  // top: calc($size-3 + $size-3);
+  top: 30vh;
   width: $size-5;
   transition: transform 1s;
-  top: 50px;
-  // top: calc($size-3 + $size-3);
-  left: 33%;
-  position: fixed;
+  right: 6%;
   z-index: 9999999;
-  // display: block;
   mix-blend-mode: darken;
+  position: absolute;
+  @media screen and (min-width: $bp3) {
+    position: fixed;
+    left: 33%;
+    top: 50px;
+  }
 
   circle {
     stroke: $black-color;
