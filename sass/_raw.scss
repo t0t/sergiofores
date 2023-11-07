@@ -25,6 +25,7 @@
   mix-blend-mode: invert;
   background-size: cover;
   transition: clip-path 1s;
+  // transform: perspective(100vw) rotateY(10deg);
 }
 
 .animCrop {

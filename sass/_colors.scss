@@ -12,17 +12,8 @@ p > a {
 }
 
 blockquote {
-  // color: $grey-color-3;
   border: 1px solid $white-color;
   // border-right-color: $primary-color;
-}
-
-.blockquote--pie blockquote {
-  // color: $black-color;
-}
-
-.blockquote--pie {
-  // color: $grey-color-2;
 }
 
 hr {
@@ -48,12 +39,6 @@ figure {
     background-color: $white-color;
   }
 }
-
-// .blog {
-//   blockquote {
-//     color: $secondary-color;
-//   }
-// }
 
 // Forms
 input {
