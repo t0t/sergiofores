@@ -18,10 +18,15 @@ main#maincontent.mainContent
     .draggable
       h1 Cuento la Creación
     .draggable.bgImg(style="background-image: url('../img/bg2.png');")
-    .draggable Artista, Diseñador Gráfico, FrontEnd
-    .draggable Modelo esculturas en 3D y las imprimo
     .draggable
-      p Siempre en construcción
+      .card
+        p Arte, Diseño, Desarrollo Web, Impresión 3D
+    .draggable 
+      .card 
+        p Modelo esculturas en 3D y las imprimo
+    .draggable
+      .card 
+        p Siempre en construcción
     .draggable.bgImg(title="Pieza 3D" style="background-image: url('../img/pieza.jpg');")
     .draggable.bgImg(style="background-image: url('../img/bg1.png');")
     .draggable.bgImg(style="background-image: url('../img/bg5.png');")
@@ -29,11 +34,11 @@ main#maincontent.mainContent
     .draggable
       .card
         h1 Me doy cuenta de <mark> +0+1234</mark>
-        h2.tac Me inspiro para respirar. 
+        h3.tac Me inspiro para respirar. 
 
     .draggable
       .card
-        h2 <mark>Yo cuento</mark> en el transitar.
+        h3 <mark>Yo cuento</mark> en el transitar.
         ul 
           li Me expando para verme
           li Dejo registro para clarificarme.
@@ -43,8 +48,8 @@ main#maincontent.mainContent
           li La vida son cuatro cosas (que son cinco)
 
     .draggable
-      header
-        h2 Me planto en mi  <mark>verdad </mark>
+      .card
+        h3 Me planto en mi  <mark>verdad </mark>
         p Cuento todo el rato para darme cuenta y expandirlo. La información ocurriendo completamente. Somos respuesta.
     
     .draggable
@@ -60,13 +65,14 @@ main#maincontent.mainContent
     .draggable.bgImg(style="background-image: url('../img/bg9.jpg');")
 
     .draggable
-      h4 El proceso Es:
-      ul 
-        li Potencial
-        li Emanación
-        li Creación
-        li Formación
-        li Acción
+      .card
+        h3 El proceso <mark>Es:</mark>
+        ul 
+          li Potencial
+          li Emanación
+          li Creación
+          li Formación
+          li Acción
 
     .draggable
       .card 
@@ -82,5 +88,6 @@ main#maincontent.mainContent
         source(src='./img/introweb.mp4' type='video/mp4')
         | Your browser does not support the video tag.   
     footer.draggable 
-      include footer
+      .card
+        include footer
 </div>

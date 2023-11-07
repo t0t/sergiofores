@@ -2,14 +2,9 @@ body {
   margin: 0;
 }
 
-h2 {
-  margin-bottom: $size-3;
-}
-
-h3 {
-  @media screen and (min-width: $bp3) {
-    padding-bottom: $size-4;
-  }
+h2, h3 {
+  margin-top: 0;
+  margin-bottom: $size-2;
 }
 
 p,
@@ -44,18 +39,22 @@ p strong,
 h3,
 blockquote {
   padding-left: 0;
+  max-width: 50vw;
   
   @media screen and (min-width: $bp6) {
     padding-left: inherit;
   }
 }
 
-// ul {
-//   padding-left: 0;
-// }
+ul {
+  margin-bottom: 0;
+}
 
 li {
   margin-bottom: $size--1;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 dl {
@@ -106,12 +105,17 @@ figure {
 }
 
 .card {
-  padding: $size-3;
-    // min-height: 50vh;
-    width: 100%;
-    // img {
-    //   max-height: 50vh;
-    // }
+  padding: $size-2;
+  width: 100%;
+
+  @media screen and (min-width: $bp3) {
+    padding: $size-3;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
   &Bottom {
     margin-top: $size-6;
   }
@@ -240,18 +244,6 @@ input {
   margin-top: 0;
   margin-bottom: 0;
   padding: $size-3;
-}
-
-.postlist-link {
-  padding-left: $size-1;
-  padding-right: $size-1;
-
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: $size-1;
-  }
 }
 
 .post-meta {

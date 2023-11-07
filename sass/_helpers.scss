@@ -285,37 +285,6 @@ mark {
   }
 }
 
-#drag1 {
-  top: 1%;
-  left: 0%;
-}
-#drag2 {
-  top: 10%;
-  left: 10%;
-}
-#drag3 {
-  top: 20%;
-  left: 20%;
-}
-#drag4 {
-  top: 30%;
-  left: 50%;
-}
-#drag5 {
-  top: 40%;
-  left: 45%;
-}
-#drag6 {
-  top: 50%;
-  left: 40%;
-}
-#drag7 {
-  top: 70%;
-  left: 10%;
-}
-
-
-
 // DRAG
 .container {
   position: relative;
@@ -363,10 +332,10 @@ mark {
   top: 22%;
   left: 10%;
 }
-// artista
+// arte...
 .draggable:nth-child(4) {
   top: 7%;
-  left: 84%;
+  right: 0%;
 }
 // modelo
 .draggable:nth-child(5) {
@@ -433,7 +402,7 @@ mark {
 }
 // lo cuento todo
 .draggable:nth-child(18) {
-  top: 73%;
+  top: 75.5%;
   right: 1%;
 }
 // video
