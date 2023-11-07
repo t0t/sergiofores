@@ -1,6 +1,6 @@
 body {
   color: $bodytextcolor;
-  background-color: rgba(0, 0, 0, 1); 
+  // background-color: rgba(0, 0, 0, 1); 
 }
 
 a {
@@ -276,8 +276,8 @@ svg#mapabasediez {
 }
 
 ::selection {
-  color: $black-color;
-  background: $secondary-color;
+  color: $white-color;
+  background: $blue-color;
 }
 
 /* Animacion svg en cover */

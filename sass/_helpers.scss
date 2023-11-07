@@ -220,8 +220,9 @@
 }
 
 mark {
-  background-color: $secondary-color;
-  color: $black-color;
+  // color: $white-color;
+  background: inherit;
+  border-bottom: 3px solid black;
 }
 
 .avoid-clicks {
@@ -294,7 +295,7 @@ mark {
 }
 
 .draggable {
-  background-color: rgba(255, 255, 255, 0.03); 
+  // background-color: rgba(255, 255, 255, 0.03); 
   cursor: move; /* fallback if grab cursor is unsupported */
   cursor: grab;
   cursor: -moz-grab;
@@ -302,6 +303,9 @@ mark {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba($primary-color, 0.2);
+  // transition: transform 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  // transform: perspective(50vw) rotateY(30deg);
   
   &:active {
     cursor: grabbing;
@@ -311,7 +315,7 @@ mark {
   }
   &:hover {
     z-index: 999;
-    background-color: $secondary-color;
+    background-color: rgba(250,228,229, .7);
     // color: $black-color;
     opacity: 1;
     cursor: move;
@@ -325,11 +329,13 @@ mark {
 }
 // cuento la creacion
 .draggable:nth-child(2) {
-  transform: perspective(50vw) rotateY(-30deg);
-  top: 1%;
-  left: 4%;
+  @media screen and (min-width: $bp2) {
+    top: 1%;
+    left: 4%;
+    transform: perspective(50vw) rotateY(-30deg);
+  }
   @media screen and (min-width: $bp3) {
-    top: 2%;
+    top: 4.5%;
     right: 13%;
   }
 }
@@ -345,6 +351,10 @@ mark {
     top: 7%;
     right: 15%;
   }
+  @media screen and (min-width: $bp4) {
+    top: 15%;
+    // right: 15%;
+  }
 }
 // modelo
 .draggable:nth-child(5) {
@@ -352,7 +362,11 @@ mark {
   right: 0%;
   @media screen and (min-width: $bp3) {
     top: 11.5%;
-    right: 20%;
+    right: 0%;
+  }
+  @media screen and (min-width: $bp4) {
+    // top: 15%;
+    right: 2%;
   }
 }
 // siempre en construcción
@@ -361,19 +375,30 @@ mark {
   right: 3%;
   @media screen and (min-width: $bp3) {
     top: 9.5%;
-    right: 17%;
+    right: 0%;
   }
 }
-// pieza 3D
+// foto cover
 .draggable:nth-child(7) {
   top: 6%;
   left: 0%;
-  transform: perspective(5vw) rotateY(15deg);
+  transform: scale(2) perspective(200px) rotateY(45deg);
   border-radius: 30%;
-  @media screen and (min-width: $bp3) {
+  
+  @media screen and (min-width: $bp0) {
     top: 6%;
     left: 0%;
-    transform: perspective(10vw) rotateY(45deg);
+    transform: perspective(19vw) rotateY(45deg);
+  }
+  @media screen and (min-width: $bp3) {
+    top: 9%;
+    right: 1%;
+    transform: perspective(-18vw) rotateY(-55deg);
+  }
+  @media screen and (min-width: $bp4) {
+    top: 9%;
+    right: 5%;
+    transform: scale(2) perspective(-18vw) rotateY(-65deg);
   }
 }
 .draggable:nth-child(8) {
