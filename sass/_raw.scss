@@ -342,8 +342,9 @@ svg.grafica {
 .logo2 {
   width: $size-5;
   transition: transform 1s;
-  top: calc($size-3 + $size-3);
-  right: calc($size-3 - $size-1);
+  top: 50px;
+  // top: calc($size-3 + $size-3);
+  left: 33%;
   position: fixed;
   z-index: 9999999;
   // display: block;
