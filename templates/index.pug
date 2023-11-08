@@ -12,24 +12,47 @@
 
 main#maincontent.mainContent
   block pageheader
-
-  div.container
-    .draggable <mark>Escribo, pinto, tecleo códigos y símbolos </mark>
+  .container
+    .draggable 
+      .card
+        h3 Llego a mí
+        mark Escribo, pinto, tecleo códigos y símbolos
     .draggable
       h1.animeintro Cuento la Creación
-    .draggable.bgImg(style="background-image: url('../img/bg2.png');")
+    .draggable 
+      .w3-content.w3-display-container
+        img.mySlides3(src='../img/bg16.jpg')
+        img.mySlides3(src='../img/bg1.jpg')
+        .mySlides3.card
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda eligendi voluptate expedita animi, ab molestiae recusandae inventore quisquam ipsam nam quibusdam, temporibus perferendis doloremque, dolorem nobis repellendus quos laudantium dolores!
+        button.w3-button.w3-black.w3-display-left(onclick='plusDivs(-1, 2)') &#x276E;
+        button.w3-button.w3-black.w3-display-right(onclick='plusDivs(1, 2)') &#x276F;
     .draggable
       .card
         p.animeintro Arte, Prototipado Web, Impresión 3D
     .draggable 
       .card 
-        p.animeintro Desarrollo mi Ser/Humano en coherencia con la Creación
+        p.animeintro Desarrollando en coherencia con la Creación
     .draggable
       .card 
-        p.animeintro Evolución sin fin
-    .draggable.bgImg(title="Pieza 3D" style="background-image: url('../img/fangw.jpg');")
-    .draggable.bgImg(style="background-image: url('../img/bg1.png');")
-    .draggable.bgImg( title="Mapa de la creación con letras hebreas" style="background-image: url('../img/bg3.png');")
+        p.animeintro Soy/Humano Nuevo en evolución sin fin
+    .draggable.bgImg(style="background-image: url('../img/bg3.png');")
+    .draggable 
+      .w3-content.w3-display-container
+        img.mySlides1(src='../img/fangw.jpg')
+        img.mySlides1(src='../img/bg2.png')
+        img.mySlides1(src='../img/bg4.jpg')
+        img.mySlides1(src='../img/bg3.png')
+        button.w3-button.w3-black.w3-display-left(onclick='plusDivs(-1, 0)') &#x276E;
+        button.w3-button.w3-black.w3-display-right(onclick='plusDivs(1, 0)') &#x276F;
+    .draggable 
+      .w3-content.w3-display-container
+        img.mySlides2(src='../img/bg2.png')
+        img.mySlides2(src='../img/bg3.png')
+        .mySlides2.card
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda eligendi voluptate expedita animi, ab molestiae recusandae inventore quisquam ipsam nam quibusdam, temporibus perferendis doloremque, dolorem nobis repellendus quos laudantium dolores!
+        button.w3-button.w3-black.w3-display-left(onclick='plusDivs(-1, 1)') &#x276E;
+        button.w3-button.w3-black.w3-display-right(onclick=`plusDivs(1, 1)`) &#x276F;
 
     .draggable
       .card
@@ -37,31 +60,37 @@ main#maincontent.mainContent
 
     .draggable
       .card
-        h3 <mark>Yo cuento</mark> en el transitar.
-        ul 
-          li Me expando para verme
-          li Dejo registro para clarificarme.
-          li Percibo el pensamiento de la Creación (מחשבת הבריאה).
-          li Avanzo en coherencia paso a paso.
-          li Hago cosas para que estén
-          li La vida son cuatro cosas (que son cinco)
+        .parent 
+          .slides 
+            .element
+              h3 <mark>Yo cuento</mark> en el transitar.
+            .element
+              ul 
+                li Me expando para verme
+                li Dejo registro para clarificarme.
+                li Percibo el pensamiento de la Creación (מחשבת הבריאה).
+                li Avanzo en coherencia paso a paso.
+                li Hago cosas para que estén
+                li La vida son cuatro cosas (que son cinco)
 
     .draggable
       .card
-        h3 Me planto en mi  <mark>verdad </mark>
+        h3 Me planto en mi  <mark>verdad</mark>
         p Cuento todo el rato para darme cuenta y expandirlo. La información ocurriendo completamente. Somos respuesta.
     
     .draggable
+      h3 Soy <mark>el ser</mark> siendo
       .card
         p Observo un territorio holístico de creación en el que cristaliza todo lo que soy en esta antena humana que no para de resonar y vibrar. 
         p Me di cuenta del fractal que lo vincula todo y ahora paso a paso integro coherencia en mi caminar.
         br
         ul 
           li Alumno eterno
-          li Bebo té a raudales
+          li Honor y gratitud por lo andado hasta aquí
           li Dejo de girar y avanzo
-    
-    .draggable.bgImg(title="imagen" style="background-image: url('../img/arte3d.jpeg');")
+        .flecha
+          button &gt;
+    .draggable.bgImg(style="background-image: url('../img/arte3d.jpeg');")
     .draggable.bgImg(title="hola" style="background-image: url('../img/sergiofores.jpg');")
     .draggable.bgImg(style="background-image: url('../img/pieza.jpg');")
 
@@ -77,6 +106,7 @@ main#maincontent.mainContent
 
     .draggable
       .card
+        h3 Todo Ya És, aquí. <mark>Obvio!</mark>
         ul 
           li Lo cuento todo para que, lo que Es, se cumpla
           li El ambiente me transforma a través del símbolo
@@ -84,6 +114,8 @@ main#maincontent.mainContent
           li Bajando claridad en el decir de mi ser-humano.
           li Me meto en el huerto de estar y quedarme...
           li Incorporo el aprendizaje contínuo de no saber
+          li Las letras hebreas me permiten expandir mi comprensión
+          li El código Web me abre el funcionamiento de todo
 
     .draggable
       video#video1(poster='./img/bg1.jpg' controls='false' loop='true')
@@ -93,3 +125,10 @@ main#maincontent.mainContent
       .card
         include footer
 </div>
+
+//- block append scripts
+//-   script( src="./scripts/slider.js")
+  //- script( src="./scripts/videoplayer.js")
+  //- script( type="module", src="./scripts/anims.js")
+  //- script( type="module", src="./scripts/animaciones/animitem.js")
+  //- script( type="module", src="./scripts/animaciones/animtitle.js")

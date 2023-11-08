@@ -1,6 +1,4 @@
 import '../sass/style.scss'
-// import img13 from '/img/bg12.jpg'
-// document.getElementById('img13').src = img13
 
 // LOADER con fundido
 let loader = document.getElementById("wrap-preloader");

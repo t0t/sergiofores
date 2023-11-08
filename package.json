@@ -16,6 +16,7 @@
     "vite-plugin-pug": "^0.3.2"
   },
   "dependencies": {
-    "animejs": "^3.2.1"
+    "animejs": "^3.2.1",
+    "simple-slider": "^1.0.1"
   }
 }
