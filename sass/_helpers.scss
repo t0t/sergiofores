@@ -378,21 +378,37 @@ mark {
 }
 
 [title ~= "video"] {
-  top: 68%;
-  left: 10%;
-  transform: rotate(-3deg);
-  // border: 5px solid green;
+  top: 64%;
+  left: 0%;
   video {
     display: block;
+    width: 100vw;
+  }
+
+  @media screen and (min-width: $bp4) {
+    top: 64%;
+    left: 30%;
+    video {
+      transform: rotate(-6deg);
+      display: block;
+      width: 60vh;
+    }
+  }
+  @media screen and (min-width: $bp6) {
+    video {
+      width: 44vw;
+    }
   }
 }
 [title ~= "yocuento"] {
-  // border: 5px solid yellow;
-  top: 74%;
+  top: 71%;
   left: 18%;
   @media screen and (min-width: $bp3) {
-    top: 74%;
-    left: 5%;
+    top: 75%;
+  }
+  @media screen and (min-width: $bp4) {
+    top: 72%;
+    left: 44%;
   }
 }
 
@@ -402,12 +418,12 @@ mark {
   left: 12%;
 }
 [title ~= "sociallinks"] {
-  // border: 5px solid yellow;
   bottom: 1.5%;
   left: 7%;
-  @media screen and (min-width: $bp4) {
+  @media screen and (min-width: $bp5) {
+    // border: 5px solid yellow;
     transform: rotate(-10deg);
     top: 90%;
-    left: 1%;
+    left: 40%;
   }
 }

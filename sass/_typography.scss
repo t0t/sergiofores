@@ -4,6 +4,7 @@ body {
 }
 h1 {
   position: relative;
+  font-size: $size-3;
 }
 h2 {
   // font-weight: $normal;
@@ -14,13 +15,14 @@ h2 {
 
 h3 {
   font-size: $size-1;
-  line-height: $size-1;
   text-align: center;
   letter-spacing: 2px;
   
-  @media screen and (min-width: $bp5) {
-    line-height: $size-3;
+  @media screen and (min-width: $bp4) {
     font-size: $size-2;
+  }
+  @media screen and (min-width: $bp6) {
+    font-size: $size-3;
   }
 }
 
@@ -35,49 +37,33 @@ a,
 ul,
 dl,
 p strong,
-h3,
 blockquote {
-  line-height: 1.7rem;
+  font-size: $size-1;
+  line-height: $size-2;
   letter-spacing: 1px;
   word-spacing: 0.5px;
-  // font-weight: $normal;
-
-
-  @media screen and (min-width: $bp6) {
-    line-height: 3rem;
+  
+  @media screen and (min-width: $bp5) {
+    font-size: $size-1;
+    line-height: $size-2;
   }
-}
-
-small {
-  font-size: $size-0;
+  @media screen and (min-width: $bp6) {
+    // line-height: $size-3;
+  }
+  @media screen and (min-width: $bp7) {
+    font-size: $size-2;
+    line-height: $size-3;
+  }
 }
 
 a {
   font-weight: $medium;
 }
 
-p, ul {
-  font-size: $size-0;
-  line-height: $size-1;
-  
-  @media screen and (min-width: $bp3) {
-    font-size: $size-1;
-    line-height: $size-2;
-  }
-  @media screen and (min-width: $bp6) {
-    font-size: $size-2;
-  }
-}
-
 small {
-  @media screen and (min-width: $bp6) {
+  font-size: $size-0;
+  @media screen and (min-width: $bp7) {
     font-size: $size-2;
-  }
-}
-
-ul {
-  @media screen and (min-width: $bp6) {
-    line-height: $size-3;
   }
 }
 
@@ -152,9 +138,9 @@ figure {
   }
 }
 
-.home :link:not(:hover) {
-  text-decoration: none;
-}
+// .home :link:not(:hover) {
+//   text-decoration: none;
+// }
 
 .titlePage {
   text-align: center;
