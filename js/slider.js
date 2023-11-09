@@ -1,22 +1,22 @@
 // SLIDER https://www.w3schools.com/w3css/w3css_slideshow.asp
-var slideIndex = [1, 1, 1, 1];
-var slideId = [
+let slideIndex = [1, 1, 1, 1];
+let slideId = [
   "slider1",
   "slider2",
   "slider3",
   "slider4"
 ]
 
-showDivs(1, 0);
-showDivs(1, 1);
-showDivs(1, 2);
-showDivs(1, 3);
+// showDivs(1, 0);
+// showDivs(1, 1);
+// showDivs(1, 2);
+// showDivs(1, 3);
 
-function plusDivs(n, no) {
+export function plusDivs(n, no) {
   showDivs(slideIndex[no] += n, no);
 }
 
-function showDivs(n, no) {
+export function showDivs(n, no) {
   var i;
   var x = document.getElementsByClassName(slideId[no]);
 

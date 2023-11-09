@@ -1,4 +1,6 @@
 import '../sass/style.scss'
+// import { plusDivs, showDivs } from './slider.js'
+// import { slideIndex, slideId } from './slider.js'
 
 // LOADER con fundido
 let loader = document.getElementById("wrap-preloader");
@@ -107,11 +109,14 @@ var slideId = [
   "slider3",
   "slider4"
 ]
-
 showDivs(1, 0);
 showDivs(1, 1);
 showDivs(1, 2);
 showDivs(1, 3);
+
+// main.js is added as a type=module. Module creates a scope to avoid name collisions.
+// You can either expose your function to the window object
+window.plusDivs = plusDivs
 
 function plusDivs(n, no) {
   showDivs(slideIndex[no] += n, no);
