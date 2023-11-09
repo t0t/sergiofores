@@ -5,17 +5,33 @@ import '../sass/style.scss'
 // LOADER con fundido
 let loader = document.getElementById("wrap-preloader");
 let theSite = document.getElementById("theSite");
-let noOverflow = document.querySelector("body");
+let noOverflow = document.querySelector("html");
 
-// Cuando carge todo, DOM, recursos, etc
+
+function cargadoDOM() {
+  console.info("DOM cargado!");
+  loader.style.display = "flex"; //poner en none/grid
+}
+
+
+if (document.readyState === "loading") {
+  // Loading hasn't finished yet
+} else {
+  // `DOMContentLoaded` has already fired
+  document.addEventListener("DOMContentLoaded", cargadoDOM);
+  theSite.style.display = "none";
+  noOverflow.style.overflow = "hidden";
+}
+
+
+
+// Cuando carge todo,  DOM, recursos, etc
 window.addEventListener("load", () =>  {
-  fundidoPagina();
-  // oculta el loader
+  console.info("Recursos cargados!");
   loader.style.display = "none"; //poner en none/grid
-  // Muestra la pagina
-  theSite.style.display = "inherit";
-  noOverflow.style.overflow = "visible";
-  
+  theSite.style.display = "block";
+  noOverflow.style.overflow = "auto";
+  fundidoPagina();
 });
 
 let fundidoPagina = () => {
