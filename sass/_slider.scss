@@ -2,12 +2,14 @@
     display: grid;
     grid-template-areas:
         "prev slides next";
-    // position: relative;
+
     div {
         grid-area: slides;
-        width: 100vw;
-        @media screen and (min-width: $bp2) {
+        width: 65vw;
+        @media screen and (min-width: $bp5) {
             max-width: 50vh;
+            // border: 5px solid goldenrod;
+
         }
     }
     &:nth-last-child(1) {

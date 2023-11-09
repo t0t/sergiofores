@@ -292,30 +292,37 @@ mark {
   width: 100vw;
   height: 500vh;
   // border: 2px solid black;
-  @media screen and (min-width: $bp3) {
-
-  }
 }
 
 [title ~= "cover"] {
   transform: perspective(700px) rotateY(-40deg);
   // border: 5px solid goldenrod;
-  top: 36vh;
+  top: 16vh;
   left: 0%;
-  // border-radius: 30%;
+  @media screen and (min-width: $bp3) {
+    top: 36vh;
+  }
 }
 [title ~= "coverimg"] {
   transform: scale(0.5) perspective(550px) rotateY(-60deg);
   top: 40vh;
-  left: 0%;
+  right: -49%;
   border-radius: 50%;
   background-color: transparent;
+  @media screen and (min-width: $bp4) {
+    top: 40vh;
+    right: -9%;
+  }
 }
 [title ~= "sintesis"] {
   transform: perspective(550px) rotateY(30deg);
-  top: 70vh;
-  left: 5%;
+  top: 53vh;
+  left: 0%;
   background-color: transparent;
+  @media screen and (min-width: $bp3) {
+    top: 70vh;
+    left: 5%;
+  }
 }
 
 .draggable {
@@ -342,10 +349,13 @@ mark {
 
 [title ~= "vision01234"] {
   // border: 5px solid goldenrod;
-  top: 30%;
-  left: 7%;
-  // transform: scale(2) perspective(200px) rotateY(45deg);
-  // border-radius: 30%;
+  top: 23%;
+  left: 0%;
+  @media screen and (min-width: $bp2) {
+    // border: 5px solid goldenrod;
+    top: 30%;
+    left: 7%;
+  }
 }
 [title ~= "obvio"] {
   // border: 5px solid palegreen;
@@ -379,7 +389,11 @@ mark {
 [title ~= "yocuento"] {
   // border: 5px solid yellow;
   top: 74%;
-  right: 5%;
+  left: 18%;
+  @media screen and (min-width: $bp3) {
+    top: 74%;
+    right: 5%;
+  }
 }
 
 [title ~= "elsersiendo"] {
@@ -388,8 +402,12 @@ mark {
   left: 12%;
 }
 [title ~= "sociallinks"] {
-  transform: rotate(-10deg);
   // border: 5px solid yellow;
-  top: 90%;
-  right: 1%;
+  bottom: 1.5%;
+  left: 7%;
+  @media screen and (min-width: $bp4) {
+    transform: rotate(-10deg);
+    top: 90%;
+    left: 1%;
+  }
 }
