@@ -71,15 +71,6 @@ section {
 h1 {
   font-weight: $bold;
   text-align: center;
-  letter-spacing: 5px;
-  // line-height: $size-6 - $size-4;
-  
-  @media screen and (min-width: $bp0) {
-    font-size: $size-2;
-  }
-  @media screen and (min-width: $bp3) {
-    font-size: 5vw;
-  }
 }
 
 .titlePage {

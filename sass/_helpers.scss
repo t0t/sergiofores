@@ -296,11 +296,19 @@ mark {
 
 [title ~= "cover"] {
   transform: perspective(700px) rotateY(-40deg);
-  // border: 5px solid goldenrod;
   top: 16vh;
   left: 0%;
   @media screen and (min-width: $bp3) {
-    top: 36vh;
+    // border: 5px solid goldenrod;
+    transform: perspective(800px) rotateY(-40deg);
+    top: 20vh;
+    left: -15%;
+  }
+  @media screen and (min-width: $bp3) {
+    // border: 5px solid goldenrod;
+    transform: perspective(700px) rotateY(40deg);
+    top: 24vh;
+    right: -10%;
   }
 }
 [title ~= "coverimg"] {

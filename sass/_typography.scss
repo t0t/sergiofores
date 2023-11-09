@@ -5,6 +5,18 @@ body {
 h1 {
   position: relative;
   font-size: $size-3;
+  letter-spacing: 2px;
+  @media screen and (min-width: $bp0) {
+    font-size: $size-3;
+  }
+  @media screen and (min-width: $bp3) {
+    // border: 2px solid red;
+    font-size: $size-5;
+    line-height: $size-5;
+  }
+  @media screen and (min-width: $bp6) {
+    // border: 2px solid red;
+  }
 }
 h2 {
   // font-weight: $normal;
@@ -23,6 +35,7 @@ h3 {
   }
   @media screen and (min-width: $bp6) {
     font-size: $size-3;
+    line-height: $size-3;
   }
 }
 

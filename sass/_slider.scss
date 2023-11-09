@@ -9,7 +9,9 @@
         @media screen and (min-width: $bp5) {
             max-width: 50vh;
             // border: 5px solid goldenrod;
-
+        }
+        @media screen and (min-width: $bp6) {
+            max-width: 63vh;
         }
     }
     &:nth-last-child(1) {

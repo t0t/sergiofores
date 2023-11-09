@@ -1,10 +1,17 @@
 body {
   margin: 0;
 }
-
+h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 h2, h3 {
   margin-top: 0;
   margin-bottom: $size-2;
+  @media screen and (min-width: $bp6) {
+    margin-bottom: $size-3;
+
+  }
 }
 
 p,
@@ -14,7 +21,6 @@ pre,
 ul,
 dl {
   max-width: 100%;
-
   @media screen and (min-width: $bp3) {
     margin-top: 0;
     margin-left: auto;
