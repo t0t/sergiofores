@@ -119,14 +119,14 @@ main#maincontent.mainContent
       video#video1(poster='./img/bg1.jpg' controls='false' loop='true')
         source(src='./img/introweb.mp4' type='video/mp4')
         | Your browser does not support the video tag.  
-         
+
     footer.draggable 
       .card
         include footer
 </div>
 
-//- block append scripts
-//-   script( src="./scripts/slider.js")
+block append scripts
+  script( src="./js/slider.js")
   //- script( src="./scripts/videoplayer.js")
   //- script( type="module", src="./scripts/anims.js")
   //- script( type="module", src="./scripts/animaciones/animitem.js")
