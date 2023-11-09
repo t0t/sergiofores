@@ -101,7 +101,12 @@ eventoDragVentanas();
 
 document.querySelectorAll('.draggable').DraggableJS();
 
-// SLIDER https://www.w3schools.com/w3css/w3css_slideshow.asp
+
+
+
+
+// SLIDESHOW
+// https://www.w3schools.com/w3css/w3css_slideshow.asp
 var slideIndex = [1, 1, 1, 1];
 var slideId = [
   "slider1",
