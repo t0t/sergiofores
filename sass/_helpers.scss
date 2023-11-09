@@ -295,15 +295,15 @@ mark {
 }
 
 .draggable {
-  // background-color: rgba(255, 255, 255, 0.03); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba($primary-color, 1);
   cursor: move; /* fallback if grab cursor is unsupported */
   cursor: grab;
   cursor: -moz-grab;
   cursor: -webkit-grab;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba($primary-color, 0.2);
+  max-width: 50vh;
   // transition: transform 3s cubic-bezier(0.075, 0.82, 0.165, 1);
   // transform: perspective(50vw) rotateY(30deg);
   
@@ -311,33 +311,32 @@ mark {
     cursor: grabbing;
     cursor: -moz-grabbing;
     cursor: -webkit-grabbing;
-    z-index: 999999999999999999;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
   }
   &:hover {
-    z-index: 999;
-    background-color: rgba(250,228,229, .7);
-    // color: $black-color;
+    z-index: 999999999999999999;
     opacity: 1;
     cursor: move;
   }
 }
-// escribo pinto
-.draggable:nth-child(1) {
-  top: 87.4%;
-  left: 30%;
-  // z-index: 1;
-}
 // cuento la creacion
-.draggable:nth-child(2) {
+.draggable:nth-child(1) {
   @media screen and (min-width: $bp2) {
     top: 1%;
-    left: 4%;
+    right: 10%;
     transform: perspective(50vw) rotateY(-30deg);
   }
   @media screen and (min-width: $bp3) {
     top: 4.5%;
-    right: 13%;
+    right: 25%;
+    transform: scale(2) perspective(20vw) rotateY(-30deg);
   }
+}
+// llego a mi
+.draggable:nth-child(2) {
+  top: 87.4%;
+  left: 30%;
 }
 .draggable:nth-child(3) {
   top: 23%;
@@ -412,9 +411,12 @@ mark {
 }
 // me doy cuenta
 .draggable:nth-child(10) {
-  top: 20%;
-  left: 8%;
-  max-width: 75vw;
+  top: 40%;
+  left: 10%;
+  width: 50vh;
+  max-height: 50vh;
+  background-color: inherit;
+  background-size: cover;
 }
 // yo cuento en el transitar
 .draggable:nth-child(11) {
@@ -434,12 +436,12 @@ mark {
 // img suelta
 .draggable:nth-child(14) {
   top: 81%;
-  left: 0%;
+  right: 13%;
 }
 // Foto sergio
 .draggable:nth-child(15) {
-  top: 93.5%;
-  left: 36%;
+  top: 80%;
+  right: 15%;
   transform: rotate(-3deg);
 }
 .draggable:nth-child(16) {
@@ -469,6 +471,6 @@ mark {
 .draggable:nth-child(20) {
   top: 91%;
   left: 21%;
-  transform: rotate(-6deg);
+  transform: rotate(-10deg);
   // z-index: 9999999999999999999999999999999;
 }

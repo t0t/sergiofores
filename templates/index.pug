@@ -13,20 +13,17 @@
 main#maincontent.mainContent
   block pageheader
   .container
+    .draggable
+      h1.animeintro Cuento la Creación
     .draggable 
       .card
         h3 Llego a mí
         mark Escribo, pinto, tecleo códigos y símbolos
-    .draggable
-      h1.animeintro Cuento la Creación
     .draggable 
-      .w3-content.w3-display-container
-        img.mySlides3(src='../img/bg16.jpg')
-        img.mySlides3(src='../img/bg1.jpg')
-        .mySlides3.card
-          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda eligendi voluptate expedita animi, ab molestiae recusandae inventore quisquam ipsam nam quibusdam, temporibus perferendis doloremque, dolorem nobis repellendus quos laudantium dolores!
-        button.w3-button.w3-black.w3-display-left(onclick='plusDivs(-1, 2)') &#x276E;
-        button.w3-button.w3-black.w3-display-right(onclick='plusDivs(1, 2)') &#x276F;
+      .slider3.bgImg(style="background-image: url('../img/bg16.jpg');")
+      .slider3.bgImg(style="background-image: url('../img/pieza.jpg');")
+      button(onclick='plusDivs(-1, 2)') &#x276E;
+      button(onclick='plusDivs(1, 2)') &#x276F;
     .draggable
       .card
         p.animeintro Arte, Prototipado Web, Impresión 3D
@@ -36,42 +33,52 @@ main#maincontent.mainContent
     .draggable
       .card 
         p.animeintro Soy/Humano Nuevo en evolución sin fin
+
     .draggable.bgImg(style="background-image: url('../img/bg3.png');")
-    .draggable 
-      .w3-content.w3-display-container
-        img.mySlides1(src='../img/fangw.jpg')
-        img.mySlides1(src='../img/bg2.png')
-        img.mySlides1(src='../img/bg4.jpg')
-        img.mySlides1(src='../img/bg3.png')
-        button.w3-button.w3-black.w3-display-left(onclick='plusDivs(-1, 0)') &#x276E;
-        button.w3-button.w3-black.w3-display-right(onclick='plusDivs(1, 0)') &#x276F;
-    .draggable 
-      .w3-content.w3-display-container
-        img.mySlides2(src='../img/bg2.png')
-        img.mySlides2(src='../img/bg3.png')
-        .mySlides2.card
-          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda eligendi voluptate expedita animi, ab molestiae recusandae inventore quisquam ipsam nam quibusdam, temporibus perferendis doloremque, dolorem nobis repellendus quos laudantium dolores!
-        button.w3-button.w3-black.w3-display-left(onclick='plusDivs(-1, 1)') &#x276E;
-        button.w3-button.w3-black.w3-display-right(onclick=`plusDivs(1, 1)`) &#x276F;
+
+    .draggable
+      .slider1.bgImg(style="background-image: url('../img/fangw.jpg');")
+      .slider1.bgImg(style="background-image: url('../img/bg2.png');")
+      .slider1.bgImg(style="background-image: url('../img/bg4.jpg');")
+      .slider1.bgImg(style="background-image: url('../img/bg3.png');")
+      button(onclick='plusDivs(-1, 0)') &#x276E;
+      button(onclick='plusDivs(1, 0)') &#x276F;
 
     .draggable
       .card
-        h3 Me doy cuenta de mí <br> percibiendo <mark> 0,1,2,3 y 4</mark>
+        .slider2
+          h3 Todo Ya És, aquí. <mark>Obvio!</mark>
+          ul 
+            li Lo cuento todo para que, lo que Es, se cumpla
+            li El ambiente me transforma a través del símbolo
+            li Vibro el acceso directo a mi verdad
+            li Bajando claridad en el decir de mi ser-humano.
+        .slider2
+          h3 Me doy <mark> cuenta</mark> de mí
+          ul 
+            li Me meto en el huerto de estar y quedarme...
+            li Incorporo el aprendizaje contínuo de no saber
+        .slider2
+          h3 Percibo en <mark> 0,1,2,3 y 4</mark>
+          ul 
+            li Las letras hebreas me permiten expandir mi comprensión
+            li El código Web me abre el funcionamiento de todo
+        button(onclick='plusDivs(-1, 1)') &#x276E;
+        button(onclick=`plusDivs(1, 1)`) &#x276F;
+
+    .draggable
+      img(src="../img/pardes-alef.png")
 
     .draggable
       .card
-        .parent 
-          .slides 
-            .element
-              h3 <mark>Yo cuento</mark> en el transitar.
-            .element
-              ul 
-                li Me expando para verme
-                li Dejo registro para clarificarme.
-                li Percibo el pensamiento de la Creación (מחשבת הבריאה).
-                li Avanzo en coherencia paso a paso.
-                li Hago cosas para que estén
-                li La vida son cuatro cosas (que son cinco)
+        h3 <mark>Yo cuento</mark> en el transitar.
+        ul 
+          li Me expando para verme
+          li Dejo registro para clarificarme.
+          li Percibo el pensamiento de la Creación (מחשבת הבריאה).
+          li Avanzo en coherencia paso a paso.
+          li Hago cosas para que estén
+          li La vida son cuatro cosas (que son cinco)
 
     .draggable
       .card
@@ -79,17 +86,21 @@ main#maincontent.mainContent
         p Cuento todo el rato para darme cuenta y expandirlo. La información ocurriendo completamente. Somos respuesta.
     
     .draggable
-      h3 Soy <mark>el ser</mark> siendo
       .card
-        p Observo un territorio holístico de creación en el que cristaliza todo lo que soy en esta antena humana que no para de resonar y vibrar. 
-        p Me di cuenta del fractal que lo vincula todo y ahora paso a paso integro coherencia en mi caminar.
-        br
-        ul 
-          li Alumno eterno
-          li Honor y gratitud por lo andado hasta aquí
-          li Dejo de girar y avanzo
-        .flecha
-          button &gt;
+        .slider4
+          h3 Soy <mark>el ser</mark> siendo
+          p Observo un territorio holístico de creación en el que cristaliza todo lo que soy en esta antena humana que no para de resonar y vibrar.
+        .slider4
+          h3 Alumno <mark>eterno</mark>
+          ul 
+            li Honor y gratitud por lo andado hasta aquí
+            li Dejo de girar y avanzo
+        .slider4
+          h3 Me <mark>doy cuenta</mark>
+          | ...del fractal que lo vincula todo y ahora paso a paso integro coherencia en mi caminar.
+        button(onclick='plusDivs(-1, 3)') &#x276E;
+        button(onclick='plusDivs(1, 3)') &#x276F;
+      
     .draggable.bgImg(style="background-image: url('../img/arte3d.jpeg');")
     .draggable.bgImg(title="hola" style="background-image: url('../img/sergiofores.jpg');")
     .draggable.bgImg(style="background-image: url('../img/pieza.jpg');")
@@ -105,22 +116,10 @@ main#maincontent.mainContent
           li Acción
 
     .draggable
-      .card
-        h3 Todo Ya És, aquí. <mark>Obvio!</mark>
-        ul 
-          li Lo cuento todo para que, lo que Es, se cumpla
-          li El ambiente me transforma a través del símbolo
-          li Vibro el acceso directo a mi verdad
-          li Bajando claridad en el decir de mi ser-humano.
-          li Me meto en el huerto de estar y quedarme...
-          li Incorporo el aprendizaje contínuo de no saber
-          li Las letras hebreas me permiten expandir mi comprensión
-          li El código Web me abre el funcionamiento de todo
-
-    .draggable
       video#video1(poster='./img/bg1.jpg' controls='false' loop='true')
         source(src='./img/introweb.mp4' type='video/mp4')
-        | Your browser does not support the video tag.   
+        | Your browser does not support the video tag.  
+         
     footer.draggable 
       .card
         include footer
