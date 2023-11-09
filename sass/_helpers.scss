@@ -298,9 +298,9 @@ mark {
 }
 
 [title ~= "cover"] {
-  transform: perspective(550px) rotateY(-60deg);
+  transform: perspective(700px) rotateY(-40deg);
   // border: 5px solid goldenrod;
-  top: 40vh;
+  top: 36vh;
   left: 0%;
   // border-radius: 30%;
 }
@@ -349,14 +349,14 @@ mark {
 }
 [title ~= "obvio"] {
   // border: 5px solid palegreen;
-  top: 38%;
+  top: 36%;
   right: 13%;
 }
 
 [title ~= "proceso"] {
   // border: 5px solid red;
   top: 55.8%;
-  right: 1%;
+  right: 8%;
 }
 [title ~= "plastica"] {
   // border: 5px solid blue;

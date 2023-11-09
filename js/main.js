@@ -44,13 +44,11 @@ import anime from 'animejs/lib/anime.es.js';
 anime({
   targets: '.animeintro',
   opacity: '1',
-  // scale: ['3', '1.5'],
+  scale: ['3', '1.5', '1', '.9'],
   keyframes: [
-    {scale: .8},
     {rotate: '-10'},
-    {translateX: 1},
-    {translateY: 1},
-    {scale: 1},
+    {translateX: 10},
+    {translateY: -10},
     {rotate: '10'},
     {rotate: '0'},
   ],
