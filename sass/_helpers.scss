@@ -319,9 +319,9 @@ mark {
   top: 53vh;
   left: 0%;
   background-color: transparent;
-  @media screen and (min-width: $bp3) {
+  @media screen and (min-width: $bp4) {
     top: 70vh;
-    left: 5%;
+    left: 7%;
   }
 }
 
@@ -392,7 +392,7 @@ mark {
   left: 18%;
   @media screen and (min-width: $bp3) {
     top: 74%;
-    right: 5%;
+    left: 5%;
   }
 }
 
