@@ -12,64 +12,13 @@
 
 main#maincontent.mainContent
   block pageheader
+  
   .container
-    .draggable
+    .draggable(title="cover")
       h1.animeintro Cuento la Creación
-    .draggable 
-      .card
-        h3 Llego a mí
-        mark Escribo, pinto, tecleo códigos y símbolos
-    .draggable 
-      .slider3.bgImg(style="background-image: url('../img/bg16.jpg');")
-      .slider3.bgImg(style="background-image: url('../img/pieza.jpg');")
-      button.button--slider(onclick='plusDivs(-1, 2)') &#x276E;
-      button.button--slider(onclick='plusDivs(1, 2)') &#x276F;
-    .draggable
-      .card
-        p.animeintro Arte, Prototipado Web, Impresión 3D
-    .draggable 
-      .card 
-        p.animeintro Desarrollando en coherencia con la Creación
-    .draggable
-      .card 
-        p.animeintro Soy/Humano Nuevo en evolución sin fin
-
-    .draggable.bgImg(style="background-image: url('../img/bg3.png');")
-
-    .draggable
-      .slider1.bgImg(style="background-image: url('../img/fangw.jpg');")
-      .slider1.bgImg(style="background-image: url('../img/bg2.png');")
-      .slider1.bgImg(style="background-image: url('../img/bg4.jpg');")
-      .slider1.bgImg(style="background-image: url('../img/bg3.png');")
-      button.button--slider(onclick='plusDivs(-1, 0)') &#x276E;
-      button.button--slider(onclick='plusDivs(1, 0)') &#x276F;
-
-    .draggable
-      .card
-        .slider2
-          h3 Todo Ya És, aquí. <mark>Obvio!</mark>
-          ul 
-            li Lo cuento todo para que, lo que Es, se cumpla
-            li El ambiente me transforma a través del símbolo
-            li Vibro el acceso directo a mi verdad
-            li Bajando claridad en el decir de mi ser-humano.
-        .slider2
-          h3 Me doy <mark> cuenta</mark> de mí
-          ul 
-            li Me meto en el huerto de estar y quedarme...
-            li Incorporo el aprendizaje contínuo de no saber
-        .slider2
-          h3 Percibo en <mark> 0,1,2,3 y 4</mark>
-          ul 
-            li Las letras hebreas me permiten expandir mi comprensión
-            li El código Web me abre el funcionamiento de todo
-        button.button--slider(onclick='plusDivs(-1, 1)') &#x276E;
-        button.button--slider(onclick=`plusDivs(1, 1)`) &#x276F;
-
-    .draggable
-      img(src="../img/pardes-alef.png" alt="Obra")
-
-    .draggable
+    .draggable(title="coverimg")
+      img.animeintro(src="../img/arte3d.jpeg", alt="Cover image")
+    .draggable(title="sintesis")
       .card
         h3 <mark>Yo cuento</mark> en el transitar.
         ul 
@@ -77,52 +26,125 @@ main#maincontent.mainContent
           li Dejo registro para clarificarme.
           li Percibo el pensamiento de la Creación (מחשבת הבריאה).
           li Avanzo en coherencia paso a paso.
-          li Hago cosas para que estén
           li La vida son cuatro cosas (que son cinco)
-
-    .draggable
-      .card
-        h3 Me planto en mi  <mark>verdad</mark>
-        p Cuento todo el rato para darme cuenta y expandirlo. La información ocurriendo completamente. Somos respuesta.
-    
-    .draggable
-      .card
-        .slider4
-          h3 Soy <mark>el ser</mark> siendo
-          p Observo un territorio holístico de creación en el que cristaliza todo lo que soy en esta antena humana que no para de resonar y vibrar.
-        .slider4
-          h3 Alumno <mark>eterno</mark>
+  
+    .draggable(title="vision01234")
+      .slider--container
+        .slider1.card
+          h3 Todo Ya És, aquí. <mark>Obvio!</mark>
           ul 
-            li Honor y gratitud por lo andado hasta aquí
-            li Dejo de girar y avanzo
-        .slider4
-          h3 Me <mark>doy cuenta</mark>
-          | ...del fractal que lo vincula todo y ahora paso a paso integro coherencia en mi caminar.
-        button.button--slider(onclick='plusDivs(-1, 3)') &#x276E;
-        button.button--slider(onclick='plusDivs(1, 3)') &#x276F;
-      
-    .draggable.bgImg(style="background-image: url('../img/arte3d.jpeg');")
-    .draggable.bgImg(title="hola" style="background-image: url('../img/sergiofores.jpg');")
-    .draggable.bgImg(style="background-image: url('../img/pieza.jpg');")
+            li Lo cuento todo para que, lo que Es, se cumpla
+            li El ambiente me transforma a través del símbolo
+            li Vibro el acceso directo a mi verdad
+            li Bajando claridad en el decir de mi ser-humano.
+        .slider1.card
+          h3 Me doy <mark> cuenta</mark> de mí
+          ul 
+            li Me meto en el huerto de estar y quedarme...
+            li Incorporo el aprendizaje contínuo de no saber
+        .slider1.card
+          h3 Percibo en <mark> 0,1,2,3 y 4</mark>
+          ul 
+            li Las letras hebreas me permiten expandir mi comprensión
+            li El código Web me abre el funcionamiento de todo
+        .slider1.card
+          h3 Llego a mí
+          mark Escribo, pinto, tecleo códigos y símbolos
+          p.animeintro Desarrollando en coherencia con la Creación
+          p.animeintro Soy/Humano Nuevo en evolución sin fin
+          p.animeintro Arte, Prototipado Web, Impresión 3D
+        button.btn--slider(onclick='plusDivs(-1, 0)') &#x276E;
+        button.btn--slider(onclick='plusDivs(1, 0)') &#x276F;
 
-    .draggable
+    .draggable(title="obvio")
+      .slider--container
+        .slider2.bgImg(style="background-image: url('../img/435681.svg');")
+        .slider2.bgImg(style="background-image: url('../img/logo.png');")
+        .slider2.bgImg(style="background-image: url('../img/bg3.png');")
+        .slider2.bgImg(style="background-image: url('../img/pardes-alef.png');")
+        button.btn--slider(onclick='plusDivs(-1, 1)') &#x276E;
+        button.btn--slider(onclick=`plusDivs(1, 1)`) &#x276F;
+
+
+    .draggable(title="yocuento")
       .card
-        h3 El proceso <mark>Es:</mark>
+        h3 <mark>Yo cuento</mark> en el transitar.
         ul 
-          li Potencial
-          li Emanación
-          li Creación
-          li Formación
-          li Acción
+          li Me expando para verme
+          li Dejo registro para clarificarme.
+          li Percibo el pensamiento de la Creación (מחשבת הבריאה).
+          li Avanzo en coherencia paso a paso.
+          li La vida son cuatro cosas (que son cinco)
+    
 
-    .draggable
+    .draggable(title="proceso")
+      .slider--container
+        .slider3.card
+          h3 Una obra <mark>Un proceso</mark>
+          ul 
+            li Potencial
+            li Emanación
+            li Creación
+            li Formación
+            li Acción
+        .slider3.card
+          ul
+            li Hago cosas para que estén
+        button.btn--slider(onclick='plusDivs(-1, 2)') &#x276E;
+        button.btn--slider(onclick='plusDivs(1, 2)') &#x276F;
+
+    .draggable(title="plastica")
+      .slider--container
+        .slider4.bgImg(style="background-image: url('../img/arte3d.jpeg');")
+        .slider4.bgImg(style="background-image: url('../img/pieza.jpg');")
+        .slider4.bgImg(style="background-image: url('../img/obras-preview/img1.jpg');")
+        .slider4.bgImg(style="background-image: url('../img/obras-preview/img2.jpg');")
+        .slider4.bgImg(style="background-image: url('../img/obras-preview/img3.jpg');")
+        .slider4.bgImg(style="background-image: url('../img/obras-preview/img4.jpg');")
+        .slider4.bgImg(style="background-image: url('../img/obras-preview/img5.jpg');")
+        .slider4.bgImg(style="background-image: url('../img/obras-preview/img6.jpg');")
+        .slider4.bgImg(style="background-image: url('../img/obras-preview/img7.jpg');")
+        .slider4.bgImg(style="background-image: url('../img/obras-preview/img8.jpg');")
+        .slider4.bgImg(style="background-image: url('../img/obras-preview/img9.jpg');")
+        .slider4.bgImg(style="background-image: url('../img/obras-preview/img10.jpg');")
+        .slider4.bgImg(style="background-image: url('../img/bg16.jpg');")
+        button.btn--slider(onclick='plusDivs(-1, 3)') &#x276E;
+        button.btn--slider(onclick='plusDivs(1, 3)') &#x276F;
+
+    .draggable(title="video")
       video#video1(poster='./img/bg1.jpg' controls='false' loop='true')
         source(src='./img/introweb.mp4' type='video/mp4')
         | Your browser does not support the video tag.  
 
-    footer.draggable 
-      .card
-        include footer
+    .draggable(title="elsersiendo")
+      .slider--container
+        .slider5.card
+          h3 Alumno <mark>eterno</mark>
+          ul 
+            li Dándome cuenta de mí.
+            li Afinando <mark>claridad</mark>
+            li Honor y gratitud por lo andado hasta aquí
+            li Dejo de girar y avanzo
+        .slider5.card
+          h3 Me planto en mi  <mark>verdad</mark>
+          p Cuento todo el rato para darme cuenta y expandirlo. La información ocurriendo completamente. Somos respuesta.
+        .slider5.card
+          h3 Soy <mark>el ser</mark> siendo
+          p Observo un territorio holístico de creación en el que cristaliza todo lo que soy en esta antena humana que no para de resonar y vibrar.
+        .slider5.card
+          h3 Me <mark>doy cuenta</mark>
+          | ...del fractal que lo vincula todo y ahora paso a paso integro coherencia en mi caminar.
+        button.btn--slider(onclick='plusDivs(-1, 4)') &#x276E;
+        button.btn--slider(onclick='plusDivs(1, 4)') &#x276F;
+
+    .draggable(title="sociallinks")
+      .slider--container
+        .slider6.bgImg(style="background-image: url('../img/sergiofores.jpg');")
+        .slider6.card
+          h3 Me sigo
+          include footer
+        button.btn--slider(onclick='plusDivs(-1, 5)') &#x276E;
+        button.btn--slider(onclick='plusDivs(1, 5)') &#x276F;
 </div>
 
 //- block append scripts

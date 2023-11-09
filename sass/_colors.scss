@@ -7,7 +7,7 @@ a {
   color: $black-color;
 }
 
-p > a {
+p>a {
   color: $grey-color;
 }
 
@@ -29,11 +29,13 @@ figure {
 .titlePage {
   color: $white-color;
 }
+
 .card {
   &Dark {
     color: $grey-color-2;
     background-color: $grey-color-4;
   }
+
   &Invert {
     color: $black-color;
     background-color: $white-color;
@@ -53,7 +55,7 @@ input[type="submit"]:focus {
 }
 
 ::placeholder,
-input[type="date"i] {
+input[type="date" i] {
   color: $black-color;
 }
 
@@ -68,17 +70,20 @@ input[type="submit"]:hover {
 input:focus {
   outline: none;
 }
+
 input:focus-visible {
-  outline: 1px dotted $black-color-alpha-0; /* That'll show 'em */
+  outline: 1px dotted $black-color-alpha-0;
+  /* That'll show 'em */
 }
-input:checked + .switch {
+
+input:checked+.switch {
   color: $primary-color;
 }
 
 button {
   background-color: transparent;
   color: $grey-color-3;
-  
+
   &:hover {
     color: $primary-color;
   }
@@ -91,10 +96,10 @@ button {
 }
 
 .mainContent {
-  background-color: $white-color;
+  background-color: $grey-color-2;
 }
 
-.image-slide + small {
+.image-slide+small {
   color: $grey-color-1;
 }
 
@@ -213,41 +218,62 @@ button {
   svg {
     background-color: $white-color-alpha-0;
   }
+
   circle {
     fill: none;
   }
+
   .result {
     // fill: $primary-color;
 
-    &--anim {
-    }
+    &--anim {}
   }
 
   line {
     stroke: $quaternary-color;
   }
-  text {
-  }
+
+  text {}
 }
 
 svg#mapabasediez {
 
-  #cero, #uno, #dos, #tres, #cuatro {
+  #cero,
+  #uno,
+  #dos,
+  #tres,
+  #cuatro {
     fill: $grey-color-2;
   }
-  #cinco, #seis, #siete, #ocho, #nueve {
+
+  #cinco,
+  #seis,
+  #siete,
+  #ocho,
+  #nueve {
     fill: $grey-color-3;
   }
-  #cero, #uno, #dos, #tres, #cuatro, #cinco, #seis, #siete, #ocho, #nueve {
+
+  #cero,
+  #uno,
+  #dos,
+  #tres,
+  #cuatro,
+  #cinco,
+  #seis,
+  #siete,
+  #ocho,
+  #nueve {
     &:hover {
       fill: $secondary-color;
     }
-  } 
+  }
+
   text {
     fill: $black-color;
   }
 
-  + .descripcion p {
+  +.descripcion p {
     background-color: $white-color-alpha-0;
   }
 
@@ -269,11 +295,11 @@ svg#mapabasediez {
 
 #grafica {
   background-color: $grey-color;
-  
+
   path {
     fill: $primary-color;
   }
-  
+
   text {
     fill: white;
   }
@@ -284,37 +310,6 @@ svg#mapabasediez {
   border: none;
 }
 
-// .highlight-line-isdir {
-//   color: #b0b0b0;
-//   background-color: #222;
-// }
-
-// .highlight-line-active {
-//   background-color: #444;
-//   background-color: hsla(0, 0%, 27%, .8);
-// }
-
-// .highlight-line-add {
-//   background-color: $secondary-color;
-// }
-
-// .highlight-line-remove {
-//   background-color: #902f2f;
-// }
-
-
-// #London {
-//   background-color: $quaternary-color;
-// }
-
-// #Paris {
-//   background-color: $tertiary-color;
-// }
-
-// #Tokyo {
-//   background-color: $primary-color;
-// }
-
-// #Oslo {
-//   background-color: $secondary-color;
-// }
+.draggable {
+  background-color: rgba($grey-color-1, 1);
+}

@@ -292,18 +292,37 @@ mark {
   width: 100vw;
   height: 500vh;
   // border: 2px solid black;
+  @media screen and (min-width: $bp3) {
+
+  }
+}
+
+[title ~= "cover"] {
+  transform: perspective(550px) rotateY(-60deg);
+  // border: 5px solid goldenrod;
+  top: 40vh;
+  left: 0%;
+  // border-radius: 30%;
+}
+[title ~= "coverimg"] {
+  transform: scale(0.5) perspective(550px) rotateY(-60deg);
+  top: 40vh;
+  left: 0%;
+  border-radius: 50%;
+  background-color: transparent;
+}
+[title ~= "sintesis"] {
+  transform: perspective(550px) rotateY(30deg);
+  top: 70vh;
+  left: 5%;
+  background-color: transparent;
 }
 
 .draggable {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba($primary-color, 1);
   cursor: move; /* fallback if grab cursor is unsupported */
   cursor: grab;
   cursor: -moz-grab;
   cursor: -webkit-grab;
-  max-width: 50vh;
   // transition: transform 3s cubic-bezier(0.075, 0.82, 0.165, 1);
   // transform: perspective(50vw) rotateY(30deg);
   
@@ -311,8 +330,8 @@ mark {
     cursor: grabbing;
     cursor: -moz-grabbing;
     cursor: -webkit-grabbing;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
+    // border-bottom: 1px solid black;
+    // border-right: 1px solid black;
   }
   &:hover {
     z-index: 999999999999999999;
@@ -320,157 +339,57 @@ mark {
     cursor: move;
   }
 }
-// cuento la creacion
-.draggable:nth-child(1) {
-  @media screen and (min-width: $bp2) {
-    top: 1%;
-    right: 10%;
-    transform: perspective(50vw) rotateY(-30deg);
-  }
-  @media screen and (min-width: $bp3) {
-    top: 4.5%;
-    right: 25%;
-    transform: scale(2) perspective(20vw) rotateY(-30deg);
-  }
-}
-// llego a mi
-.draggable:nth-child(2) {
-  top: 87.4%;
-  left: 30%;
-}
-.draggable:nth-child(3) {
-  top: 23%;
-  right: 10%;
-}
-// arte...
-.draggable:nth-child(4) {
-  top: 11%;
-  right: -4%;
-  @media screen and (min-width: $bp3) {
-    top: 7%;
-    right: 15%;
-  }
-  @media screen and (min-width: $bp4) {
-    top: 15%;
-    // right: 15%;
-  }
-}
-// modelo
-.draggable:nth-child(5) {
-  top: 13.5%;
-  right: 0%;
-  @media screen and (min-width: $bp3) {
-    top: 11.5%;
-    right: 0%;
-  }
-  @media screen and (min-width: $bp4) {
-    // top: 15%;
-    right: 2%;
-  }
-}
-// siempre en construcción
-.draggable:nth-child(6) {
-  top: 16.5%;
-  right: 3%;
-  @media screen and (min-width: $bp3) {
-    top: 9.5%;
-    right: 0%;
-  }
-}
-// foto cover
-.draggable:nth-child(7) {
-  top: 6%;
-  left: 0%;
-  transform: scale(2) perspective(200px) rotateY(45deg);
-  border-radius: 30%;
-  
-  @media screen and (min-width: $bp0) {
-    top: 6%;
-    left: 0%;
-    transform: perspective(19vw) rotateY(45deg);
-  }
-  @media screen and (min-width: $bp3) {
-    top: 9%;
-    right: 1%;
-    transform: perspective(-18vw) rotateY(-55deg);
-  }
-  @media screen and (min-width: $bp4) {
-    top: 9%;
-    right: 5%;
-    transform: scale(2) perspective(-18vw) rotateY(-65deg);
-  }
-}
-.draggable:nth-child(8) {
-  top: 35%;
-  right: 1%;
-}
-// foto abajo
-.draggable:nth-child(9) {
-  top: 68%;
-  right: 25%;
-}
-// me doy cuenta
-.draggable:nth-child(10) {
-  top: 40%;
-  left: 10%;
-  width: 50vh;
-  max-height: 50vh;
-  background-color: inherit;
-  background-size: cover;
-}
-// yo cuento en el transitar
-.draggable:nth-child(11) {
-  top: 49.5%;
-  left: 30%;
-}
-// me planto en mi verdad
-.draggable:nth-child(12) {
-  top: 43%;
-  right: 1%;
-}
-// observo
-.draggable:nth-child(13) {
+
+[title ~= "vision01234"] {
+  // border: 5px solid goldenrod;
   top: 30%;
-  left: 4%;
+  left: 7%;
+  // transform: scale(2) perspective(200px) rotateY(45deg);
+  // border-radius: 30%;
 }
-// img suelta
-.draggable:nth-child(14) {
-  top: 81%;
+[title ~= "obvio"] {
+  // border: 5px solid palegreen;
+  top: 38%;
   right: 13%;
 }
-// Foto sergio
-.draggable:nth-child(15) {
-  top: 80%;
-  right: 15%;
-  transform: rotate(-3deg);
-}
-.draggable:nth-child(16) {
-  top: 45%;
-  left: 0%;
-}
-.draggable:nth-child(17) {
-  top: 66%;
-  left: 0%;
-}
-// lo cuento todo
-.draggable:nth-child(18) {
-  top: 75.5%;
+
+[title ~= "proceso"] {
+  // border: 5px solid red;
+  top: 55.8%;
   right: 1%;
 }
-// video
-.draggable:nth-child(19) {
-  top: 59%;
-  left: 10%;
-  transform: rotate(-3deg);
-  video {
-    display: block;
-    width: 50vh;
+[title ~= "plastica"] {
+  // border: 5px solid blue;
+  top: 50%;
+  left: 4%;
+  .bgImg {
+    border-radius: 50%;
   }
 }
-// social links
-.draggable:nth-child(20) {
-  top: 91%;
-  left: 21%;
+
+[title ~= "video"] {
+  top: 68%;
+  left: 10%;
+  transform: rotate(-3deg);
+  // border: 5px solid green;
+  video {
+    display: block;
+  }
+}
+[title ~= "yocuento"] {
+  // border: 5px solid yellow;
+  top: 74%;
+  right: 5%;
+}
+
+[title ~= "elsersiendo"] {
+  // border: 5px solid purple;
+  top: 84.6%;
+  left: 12%;
+}
+[title ~= "sociallinks"] {
   transform: rotate(-10deg);
-  // z-index: 9999999999999999999999999999999;
+  // border: 5px solid yellow;
+  top: 90%;
+  right: 1%;
 }

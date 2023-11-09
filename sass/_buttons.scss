@@ -44,3 +44,12 @@
   }
 }
 
+.btn--slider {
+  // font-size: $size-3;
+  // background-color: transparent;
+  // border: 1px dashed $grey-color-3;
+  &:hover {
+    color: $black-color;
+  }
+}
+

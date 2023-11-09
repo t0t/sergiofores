@@ -1,55 +1,22 @@
-.w3-content {
-	width: 50vh;
-}    
-    
-    
-    
-    //   /* set the box for the slides */
-    //   .parent {
-    //       height: 300px;
-    //       width: 600px;
-    //       overflow: hidden;
-    //   }
-
-    //   /* set height and width for slide elements */
-    //   .element {
-    //       float: left;
-    //       height: 500px;
-    //       width: 716px;
-    //   }
-
-    //   /* set the width of the slides div and animation. */
-    //   .slides {
-    //       width: calc(716px * 4);
-    //       animation-delay: 0s;
-    //     animation-play-state: paused;
-    //     &:hover {
-    //           animation: slideShow 10s ease-in-out infinite alternate;
-    //         cursor: wait;
-    //       }
-    //   }
-
-    //   img {
-    //       width: 100%;
-    //       height: 100%;
-    //   }
-
-    //   /* creating the animation for the slideshow */
-    //   /* for more slides, users can take percentages accordingly. */
-    //   @keyframes slideShow {
-    //       20% {
-    //           margin-left: 0px;
-    //       }
-
-    //       40% {
-    //           margin-left: calc(-716px * 1);
-    //       }
-
-    //       60% {
-    //           margin-left: calc(-716px * 2);
-    //       }
-
-    //       80% {
-    //           margin-left: calc(-716px * 3);
-    //       }
-    //   }
+.slider--container {
+    display: grid;
+    grid-template-areas:
+        "prev slides next";
+    // position: relative;
+    div {
+        grid-area: slides;
+        width: 100vw;
+        @media screen and (min-width: $bp2) {
+            max-width: 50vh;
+        }
+    }
+    &:nth-last-child(1) {
+        grid-area: next;
+        align-self: end;
+    }
+    &:nth-last-child(2) {
+        grid-area: prev;
+        align-self: start;
+        // position: absolute;
+    }
+}

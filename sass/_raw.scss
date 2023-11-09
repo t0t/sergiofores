@@ -22,7 +22,7 @@
 .bgImg {
   background-position: center;
   background-repeat: no-repeat;
-  mix-blend-mode: invert;
+  mix-blend-mode: luminosity;
   background-size: cover;
   transition: clip-path 1s;
   // transform: perspective(100vw) rotateY(10deg);
@@ -836,6 +836,7 @@ svg#mapabasediez {
     font-size: $size-0;
   }
 }
+
 
 #animcover {
   border-radius: 50%;
