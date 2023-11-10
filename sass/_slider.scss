@@ -1,17 +1,27 @@
 .slider--container {
+    margin-left: $size-1;
+    margin-right: $size-1;
     display: grid;
-    grid-template-areas:
-        "prev slides next";
+    grid-template-areas: 
+        "slides slides"
+        "prev next"
+        ;
+
+    @media screen and (min-width: $ipad) {
+        grid-template-columns: .1fr 10fr .1fr;
+        grid-template-areas: "prev slides next";
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: $size-0;
+        margin-bottom: $size-0;
+    }
+    @media screen and (min-width: $desktop) {
+    }
 
     div {
         grid-area: slides;
-        width: 65vw;
-        @media screen and (min-width: $bp5) {
-            max-width: 50vh;
-            // border: 5px solid goldenrod;
-        }
-        @media screen and (min-width: $bp6) {
-            max-width: 63vh;
+        @media screen and (min-width: $desktop) {
+            // width: max-content;
         }
     }
     &:nth-last-child(1) {
@@ -21,6 +31,5 @@
     &:nth-last-child(2) {
         grid-area: prev;
         align-self: start;
-        // position: absolute;
     }
 }

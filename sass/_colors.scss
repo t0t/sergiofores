@@ -95,7 +95,8 @@ button {
   }
 }
 
-.mainContent {
+.mainContent,
+.mainNav {
   background-color: $grey-color-2;
 }
 
@@ -142,6 +143,9 @@ button {
 /* Tags */
 .post-tag {
   color: $grey-color-3;
+}
+.section {
+// background-color: red;
 }
 
 .sectionResaltadaClara {

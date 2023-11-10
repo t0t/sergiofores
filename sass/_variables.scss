@@ -43,14 +43,18 @@ $size-8: 28rem;
 $size-9: 45.5rem;
 $size-10: 73.7rem;
 
-$bp0: 318px;
+$bp0: 318px; // MOBIL
 $bp1: 373px;
-$bp2: 423px;
+$bp2: 423px; // IPAD
 $bp3: 766px;
-$bp4: 1022px;
+$bp4: 1025px; // DESKTOP
 $bp5: 1438px;
 $bp6: 1700px; // Full screen MACBOOK
 $bp7: 2558px;
+
+$mobil: $bp0;
+$ipad: $bp2;
+$desktop: $bp4;
 
 $mainff: 'Montserrat', Arial, Helvetica, sans-serif;
 

@@ -265,6 +265,7 @@ mark {
 
 .minheight {
   min-height: 400px;
+
   @media screen and (min-width: $bp3) {
     min-height: 50vh;
   }
@@ -274,6 +275,7 @@ mark {
   border-bottom-right-radius: 2em;
   border-top-right-radius: 2em;
 }
+
 .roundedl {
   border-bottom-left-radius: 2em;
   border-top-left-radius: 2em;
@@ -283,155 +285,5 @@ mark {
   @media screen and (min-width: $bp3) {
     padding-left: $size-5;
     padding-right: $size-5;
-  }
-}
-
-// DRAG
-.container {
-  position: relative;
-  width: 100vw;
-  height: 500vh;
-  // border: 2px solid black;
-}
-
-[title ~= "cover"] {
-  transform: perspective(700px) rotateY(-40deg);
-  top: 16vh;
-  left: 0%;
-  @media screen and (min-width: $bp3) {
-    // border: 5px solid goldenrod;
-    transform: perspective(800px) rotateY(-40deg);
-    top: 20vh;
-    left: -15%;
-  }
-  @media screen and (min-width: $bp3) {
-    // border: 5px solid goldenrod;
-    transform: perspective(700px) rotateY(40deg);
-    top: 24vh;
-    right: -10%;
-  }
-}
-[title ~= "coverimg"] {
-  transform: scale(0.5) perspective(550px) rotateY(-60deg);
-  top: 40vh;
-  right: -49%;
-  border-radius: 50%;
-  background-color: transparent;
-  @media screen and (min-width: $bp4) {
-    top: 40vh;
-    right: -9%;
-  }
-}
-[title ~= "sintesis"] {
-  transform: perspective(550px) rotateY(30deg);
-  top: 53vh;
-  left: 0%;
-  background-color: transparent;
-  @media screen and (min-width: $bp4) {
-    top: 70vh;
-    left: 7%;
-  }
-}
-
-.draggable {
-  cursor: move; /* fallback if grab cursor is unsupported */
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-  // transition: transform 3s cubic-bezier(0.075, 0.82, 0.165, 1);
-  // transform: perspective(50vw) rotateY(30deg);
-  
-  &:active {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
-    // border-bottom: 1px solid black;
-    // border-right: 1px solid black;
-  }
-  &:hover {
-    z-index: 999999999999999999;
-    opacity: 1;
-    cursor: move;
-  }
-}
-
-[title ~= "vision01234"] {
-  // border: 5px solid goldenrod;
-  top: 23%;
-  left: 0%;
-  @media screen and (min-width: $bp2) {
-    // border: 5px solid goldenrod;
-    top: 30%;
-    left: 7%;
-  }
-}
-[title ~= "obvio"] {
-  // border: 5px solid palegreen;
-  top: 36%;
-  right: 13%;
-}
-
-[title ~= "proceso"] {
-  // border: 5px solid red;
-  top: 55.8%;
-  right: 8%;
-}
-[title ~= "plastica"] {
-  // border: 5px solid blue;
-  top: 50%;
-  left: 4%;
-  .bgImg {
-    border-radius: 50%;
-  }
-}
-
-[title ~= "video"] {
-  top: 64%;
-  left: 0%;
-  video {
-    display: block;
-    width: 100vw;
-  }
-
-  @media screen and (min-width: $bp4) {
-    top: 64%;
-    left: 30%;
-    video {
-      transform: rotate(-6deg);
-      display: block;
-      width: 60vh;
-    }
-  }
-  @media screen and (min-width: $bp6) {
-    video {
-      width: 44vw;
-    }
-  }
-}
-[title ~= "yocuento"] {
-  top: 71%;
-  left: 18%;
-  @media screen and (min-width: $bp3) {
-    top: 75%;
-  }
-  @media screen and (min-width: $bp4) {
-    top: 72%;
-    left: 44%;
-  }
-}
-
-[title ~= "elsersiendo"] {
-  // border: 5px solid purple;
-  top: 84.6%;
-  left: 12%;
-}
-[title ~= "sociallinks"] {
-  bottom: 1.5%;
-  left: 7%;
-  @media screen and (min-width: $bp5) {
-    // border: 5px solid yellow;
-    transform: rotate(-10deg);
-    top: 90%;
-    left: 40%;
   }
 }

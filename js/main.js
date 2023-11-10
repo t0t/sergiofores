@@ -9,8 +9,8 @@ let noOverflow = document.querySelector("html");
 
 
 function cargadoDOM() {
-  console.info("DOM cargado!");
-  loader.style.display = "flex"; //poner en none/grid
+  // console.info("DOM cargado!");
+  loader.style.display = "flex";
 }
 
 
@@ -23,12 +23,10 @@ if (document.readyState === "loading") {
   noOverflow.style.overflow = "hidden";
 }
 
-
-
 // Cuando carge todo,  DOM, recursos, etc
-window.addEventListener("load", () =>  {
-  console.info("Recursos cargados!");
-  loader.style.display = "none"; //poner en none/grid
+window.addEventListener("load", () => {
+  // console.info("Recursos cargados!");
+  loader.style.display = "none";
   theSite.style.display = "block";
   noOverflow.style.overflow = "auto";
   fundidoPagina();
@@ -43,14 +41,19 @@ import anime from 'animejs/lib/anime.es.js';
 
 anime({
   targets: '.animeintro',
-  opacity: '1',
+  // opacity: '1',
   scale: ['3', '1.5', '1', '.9'],
   keyframes: [
-    {rotate: '-10'},
-    {translateX: 10},
-    {translateY: -10},
-    {rotate: '10'},
-    {rotate: '0'},
+    { rotate: '-10' },
+    { translateX: "10" },
+    { translateY: "-10" },
+    { rotate: '10' },
+    { rotate: '0' },
+    { translateX: "0" },
+    { translateY: "0" },
+    { scale: "1" },
+    { rotateY: "60deg" },
+    { perspective: "10vw" }
   ],
   easing: 'easeInOutSine',
   // backgroundColor: '#000',
@@ -71,52 +74,37 @@ anime({
 // }
 
 
-function eventoDragVentanas(){
-  const VENTANAS = document.querySelectorAll(".drag");
 
-  VENTANAS.forEach(ventana => {
-          
-      let mousePosition   = [0,0];
-      let element         = document.getElementById(ventana.id);
-      let elementPosition = [10 , 55];
-      
-      let mainEH = function (event) {
-              let rect = event.target.getBoundingClientRect();
-              elementPosition = [rect.left , rect.top];
-              mousePosition = [event.clientX, event.clientY];
-              document.addEventListener('mousemove', calcEH);
-              document.addEventListener('mouseup', removeHandlers);
-              document.addEventListener('contextmenu', removeHandlers);
-      };
-      
-      let calcEH = function (event) {
-          let vector      = [-mousePosition[0] + event.clientX, -mousePosition[1] + event.clientY];
-          mousePosition   = [mousePosition[0] + vector[0], mousePosition[1] + vector[1]];
-          elementPosition = [elementPosition[0] + vector[0], elementPosition[1] + vector[1]];
-          updatePosition();
-      };
-      
-      let removeHandlers = function () {
-          document.removeEventListener('mousemove', calcEH);
-          document.removeEventListener('mouseup', removeHandlers);
-          document.removeEventListener('contextmenu', removeHandlers);
-      };
-      
-      function updatePosition() {
-          element.style.left = elementPosition[0] + "px";
-          element.style.top  = elementPosition[1] + "px";
-      }
-      
-      element.addEventListener('mousedown', mainEH, true);
-          
-  });
+let anchoVentana = window.innerWidth
+
+const isDesktop = () => {
+  // DRAGGABLE
+  // document.querySelectorAll('.draggable').DraggableJS();
+
+  console.log("isDesktop");
 }
-eventoDragVentanas();
 
-document.querySelectorAll('.draggable').DraggableJS();
+const isIpad = () => {
+  console.log("isIpad");
+}
 
+const isMobile = () => {
+  console.log("isMobile");
+}
 
-
+window.addEventListener('resize', function () {
+  anchoVentana = window.innerWidth;
+  if (anchoVentana > 1024) {
+    isDesktop();
+    // window.removeEventListener("resize", isDesktop);
+  } else if (anchoVentana > 422 && anchoVentana < 1023) {
+    isIpad();
+    // window.removeEventListener("resize", isIpad);
+  } else {
+    isMobile();
+    // window.removeEventListener("resize", isMobile);
+  }
+});
 
 
 // SLIDESHOW

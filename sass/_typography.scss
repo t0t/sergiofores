@@ -2,24 +2,27 @@ body {
   font-family: $mainff;
   font-weight: $normal;
 }
+
 h1 {
-  position: relative;
   font-size: $size-3;
   letter-spacing: 2px;
-  @media screen and (min-width: $bp0) {
-    font-size: $size-3;
-  }
-  @media screen and (min-width: $bp3) {
-    // border: 2px solid red;
+  line-height: $size-3 + $size-0;
+  
+  @media screen and (min-width: $ipad) {
+    line-height: $size-5 + $size-1;
     font-size: $size-5;
-    line-height: $size-5;
+    // margin-left: $size-6;
+    z-index: 9;
   }
-  @media screen and (min-width: $bp6) {
+  
+  @media screen and (min-width: $desktop) {
+    position: relative;
     // border: 2px solid red;
   }
 }
+
 h2 {
-  // font-weight: $normal;
+  line-height: $size-2 + $size-0;
   text-align: center;
   letter-spacing: 2px;
   font-size: $size-2;
@@ -29,13 +32,14 @@ h3 {
   font-size: $size-1;
   text-align: center;
   letter-spacing: 2px;
-  
-  @media screen and (min-width: $bp4) {
+
+  @media screen and (min-width: $ipad) {
     font-size: $size-2;
   }
-  @media screen and (min-width: $bp6) {
+
+  @media screen and (min-width: $desktop) {
     font-size: $size-3;
-    line-height: $size-3;
+    line-height: $size-2 + $size-2;
   }
 }
 
@@ -51,18 +55,19 @@ ul,
 dl,
 p strong,
 blockquote {
-  font-size: $size-1;
   line-height: $size-2;
   letter-spacing: 1px;
   word-spacing: 0.5px;
-  
+
   @media screen and (min-width: $bp5) {
     font-size: $size-1;
     line-height: $size-2;
   }
+
   @media screen and (min-width: $bp6) {
     // line-height: $size-3;
   }
+
   @media screen and (min-width: $bp7) {
     font-size: $size-2;
     line-height: $size-3;
@@ -75,12 +80,13 @@ a {
 
 small {
   font-size: $size-0;
+
   @media screen and (min-width: $bp7) {
     font-size: $size-2;
   }
 }
 
-em, 
+em,
 dt {
   font-weight: $medium;
 }
@@ -133,11 +139,11 @@ figure {
 
 .codigos-ejemplo {
   text-align: center;
-  
+
   dt span {
     font-weight: $bold;
   }
-  
+
   dd {
     font-size: $size-0;
     line-height: 1.5;
@@ -145,6 +151,7 @@ figure {
 
   @media screen and (min-width: $bp3) {
     text-align: inherit;
+
     dt {
       text-align: right;
     }
@@ -160,7 +167,7 @@ figure {
   font-style: bold;
 }
 
-.image-slide + small {
+.image-slide+small {
   text-align: center;
   line-height: 1.7;
 }

@@ -1,13 +1,26 @@
 body {
   margin: 0;
 }
-h1 {
-  margin-top: 0;
-  margin-bottom: 0;
+
+.mainNav {
+  padding-top: $size-3;
+  @media screen and (min-width: $ipad) {
+    padding-top: inherit;
+  }
 }
-h2, h3 {
+
+// h1 {
+//   @media screen and (min-width: $ipad) {
+//     margin-top: 0;
+//     margin-bottom: 0;
+//   }
+// }
+
+h2,
+h3 {
   margin-top: 0;
   margin-bottom: $size-2;
+
   @media screen and (min-width: $bp6) {
     margin-bottom: $size-3;
 
@@ -21,6 +34,7 @@ pre,
 ul,
 dl {
   max-width: 100%;
+
   @media screen and (min-width: $bp3) {
     margin-top: 0;
     margin-left: auto;
@@ -33,7 +47,7 @@ p {
   margin-bottom: $size-2;
 }
 
-p > a {
+p>a {
   padding-bottom: $size-1;
 }
 
@@ -45,9 +59,9 @@ p strong,
 h3,
 blockquote {
   padding-left: 0;
-  max-width: 50vw;
   
-  @media screen and (min-width: $bp6) {
+  @media screen and (min-width: $ipad) {
+    // max-width: 50vw;
     padding-left: inherit;
   }
 }
@@ -58,6 +72,7 @@ ul {
 
 li {
   margin-bottom: $size--1;
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -66,6 +81,7 @@ li {
 dl {
   padding-bottom: $size-2;
 }
+
 // h1,
 // h2,
 // p, 
@@ -77,6 +93,7 @@ dt {
   margin-top: $size-2;
   margin-bottom: $size-2;
 }
+
 // dd {
 //   margin-left: 0;
 // }
@@ -99,7 +116,7 @@ figure {
   gap: $size-2;
   // padding-top: $size-3;
   // padding-bottom: $size-3;
-  
+
   // @media screen and (min-width: $bp3) {
   //   padding-top: $size-4;
   //   padding-bottom: $size-4;
@@ -114,7 +131,7 @@ figure {
   padding: $size-2;
   width: 100%;
 
-  @media screen and (min-width: $bp3) {
+  @media screen and (min-width: $ipad) {
     padding: $size-3;
   }
 
@@ -132,7 +149,7 @@ figure {
     margin-left: 0;
     margin-right: 0;
   }
-  
+
   // @media screen and (min-width: $bp3) {
   //   max-width: 50vw;
   // }
@@ -143,7 +160,7 @@ blockquote {
   max-width: $size-9;
   margin-left: auto;
   margin-right: auto;
-  
+
   @media screen and (min-width: $bp6) {
     max-width: $size-10;
     margin-left: auto;
@@ -160,6 +177,7 @@ button {
   margin-top: $size-3;
   margin-bottom: $size-3;
   top: 50%;
+
   @media screen and (min-width: $bp3) {
     margin-left: $size-2;
     margin-right: $size-2;
@@ -198,43 +216,47 @@ button {
 }
 
 .bgImg {
-  max-width: 50vw;
   min-height: 50vw;
-  @media screen and (min-width: $bp3) {
-    width: 60vh;
-    min-height: 40vh;
+
+  @media screen and (min-width: $ipad) {
     transform: rotate(-6deg);
   }
 }
 
 .grid-12 {
   background-size: cover;
-  
   // @media screen and (min-width: $bp3) {
   //   min-height: 50vh;
   // }
 }
 
 .section {
-  min-height: 50vh;
+  min-height: 100vh;
   width: 100%;
-  
-  @media screen and (min-width: $bp3) {
-    padding: $size-4;
+
+  @media screen and (min-width: $desktop) {
+    padding: $size-3;
+    place-items: center;
   }
 }
 
 .grid__item {
   min-height: 100%;
-  width: 100%;
   // img {
   //   max-height: 50vh;
   // }
 }
 
-// video {
-//   width: 50%;
-// }
+video {
+  padding-top: $size-1;
+  padding-left: $size-1;
+  padding-right: $size-1;
+  max-width: 100%;
+
+  @media screen and (min-width: $ipad) {
+    width: 50%;
+  }
+}
 
 section {
   width: 100%;
@@ -269,6 +291,7 @@ model-viewer {
 }
 
 .blog {
+
   // padding-left: $size-2;
   // padding-right: $size-2;
   &:last-child {
@@ -281,7 +304,7 @@ model-viewer {
     padding-left: $size-3;
     margin-left: $size-3;
   }
-  
+
   pre {
     margin-bottom: $size-2;
   }
@@ -289,10 +312,12 @@ model-viewer {
   @media screen and (min-width: $bp3) {
     padding-left: inherit;
     padding-right: inherit;
+
     figure img {
       max-width: 75vw;
     }
   }
+
   @media screen and (min-width: $bp4) {
     figure img {
       max-width: 50vw;
@@ -304,11 +329,12 @@ model-viewer {
   margin-top: $size-4;
   margin-bottom: $size-4;
   padding: 0 $size-3 $size-2;
-  
+
   dt {
     margin-top: 0;
     margin-bottom: 0;
   }
+
   dd {
     margin-left: $size-1;
   }
@@ -330,7 +356,7 @@ model-viewer {
   gap: $size-1;
   max-width: 600px;
   margin: 0 auto;
-  
+
   svg {
     width: $size-2;
   }
@@ -381,11 +407,12 @@ svg#mapabasediez {
   margin-left: auto;
   margin-right: auto;
 
-  + .descripcion {
+  +.descripcion {
     padding-left: $size-3;
     padding-right: $size-3;
   }
-  + .descripcion p {
+
+  +.descripcion p {
     padding-top: $size-3;
     padding-bottom: $size-3;
     margin-bottom: 0;

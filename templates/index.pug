@@ -14,21 +14,17 @@ main#maincontent.mainContent
   block pageheader
   
   .container
-    .draggable(title="cover")
-      h1.animeintro Cuento la Creación
-    .draggable(title="coverimg")
-      img.animeintro(src="../img/arte3d.jpeg", alt="Cover image")
-    .draggable(title="sintesis")
-      .card
-        h3 <mark>Yo cuento</mark> en mi transitar.
-        ul 
-          li Me expando para verme
-          li Dejo registro para clarificarme.
-          li Percibo el pensamiento de la Creación (מחשבת הבריאה).
-          li Avanzo en coherencia paso a paso.
-          li La vida son cuatro cosas (que son cinco)
+    .section
+      .div(title="covertitle")
+        h1 Cuento <br>Creación
+
+      .div(title="coverimg")
+        img(src="../img/arte3d.jpeg", alt="Cover image")
+
+      .div(title="sintesis")
+          h2 01234 ya! <br>Despertando Ser/Humano
   
-    .draggable(title="vision01234")
+    div(title="vision")
       .slider--container
         .slider1.card
           h3 Todo Ya És, aquí. <mark>Obvio!</mark>
@@ -49,102 +45,108 @@ main#maincontent.mainContent
             li El código Web me abre el funcionamiento de todo
         .slider1.card
           h3 Llego a mí
-          mark Escribo, pinto, tecleo códigos y símbolos
-          p.animeintro Desarrollando en coherencia con la Creación
-          p.animeintro Soy/Humano Nuevo en evolución sin fin
-          p.animeintro Arte, Prototipado Web, Impresión 3D
+          ul
+            li Escribo, pinto, tecleo códigos y símbolos
+            li Desarrollando en coherencia con la Creación
+            li Soy/Humano Nuevo en evolución sin fin
+            li Arte, Prototipado Web, Impresión 3D
         button.btn--slider(onclick='plusDivs(-1, 0)') &#x276E;
         button.btn--slider(onclick='plusDivs(1, 0)') &#x276F;
 
-    .draggable(title="obvio")
-      .slider--container
-        .slider2.bgImg(style="background-image: url('../img/435681.svg');")
-        .slider2.bgImg(style="background-image: url('../img/logo.png');")
-        .slider2.bgImg(style="background-image: url('../img/bg3.png');")
-        .slider2.bgImg(style="background-image: url('../img/pardes-alef.png');")
-        button.btn--slider(onclick='plusDivs(-1, 1)') &#x276E;
-        button.btn--slider(onclick=`plusDivs(1, 1)`) &#x276F;
+    .grid(title="percepcion")
+      .grid-12.grid-md-6(title="obvio")
+        .slider--container
+          .slider2.bgImg(style="background-image: url('../img/pardes-alef.png');")
+          .slider2.bgImg(style="background-image: url('../img/435681.svg');")
+          .slider2.bgImg(style="background-image: url('../img/logo.png');")
+          .slider2.bgImg(style="background-image: url('../img/bg3.png');")
+          button.btn--slider(onclick='plusDivs(-1, 1)') &#x276E;
+          button.btn--slider(onclick=`plusDivs(1, 1)`) &#x276F;
 
-
-    .draggable(title="yocuento")
-      .card
-        h3 <mark>Yo cuento</mark> en mi transitar.
-        ul 
-          li Me expando para verme
-          li Dejo registro para clarificarme.
-          li Percibo el pensamiento de la Creación (מחשבת הבריאה).
-          li Avanzo en coherencia paso a paso.
-          li La vida son cuatro cosas (que son cinco)
+      .grid-12.grid-md-6(title="yocuento")
+        .card
+          h3 <mark>Yo cuento</mark> en mi transitar.
+          ul 
+            li Me expando para verme
+            li Dejo registro para clarificarme.
+            li Percibo el pensamiento de la Creación (מחשבת הבריאה).
+            li Avanzo en coherencia paso a paso.
+            li La vida son cuatro cosas (que son cinco)
     
+    .grid(title="entrenamiento")
+      .grid-12.grid-md-6(title="proceso")
+        .slider--container
+          .slider3.card
+            h3 Una obra; <mark>un proceso</mark>.
+            ul 
+              li Potencial
+              li Emanación
+              li Creación
+              li Formación
+              li Acción
+          .slider3.card
+            h3 Abro mi <mark>verdad</mark>.
+            ul
+              li Hago cosas para que estén
+          button.btn--slider(onclick='plusDivs(-1, 2)') &#x276E;
+          button.btn--slider(onclick='plusDivs(1, 2)') &#x276F;
 
-    .draggable(title="proceso")
-      .slider--container
-        .slider3.card
-          h3 Una obra; <mark>un proceso</mark>.
-          ul 
-            li Potencial
-            li Emanación
-            li Creación
-            li Formación
-            li Acción
-        .slider3.card
-          ul
-            li Hago cosas para que estén
-        button.btn--slider(onclick='plusDivs(-1, 2)') &#x276E;
-        button.btn--slider(onclick='plusDivs(1, 2)') &#x276F;
+      .grid-12.grid-md-6(title="plastica")
+        .slider--container
+          .slider4.bgImg(style="background-image: url('../img/arte3d.jpeg');")
+          .slider4.bgImg(style="background-image: url('../img/pieza.jpg');")
+          .slider4.bgImg(style="background-image: url('../img/obras-preview/img1.jpg');")
+          .slider4.bgImg(style="background-image: url('../img/obras-preview/img2.jpg');")
+          .slider4.bgImg(style="background-image: url('../img/obras-preview/img3.jpg');")
+          .slider4.bgImg(style="background-image: url('../img/obras-preview/img4.jpg');")
+          .slider4.bgImg(style="background-image: url('../img/obras-preview/img5.jpg');")
+          .slider4.bgImg(style="background-image: url('../img/obras-preview/img6.jpg');")
+          .slider4.bgImg(style="background-image: url('../img/obras-preview/img7.jpg');")
+          .slider4.bgImg(style="background-image: url('../img/obras-preview/img8.jpg');")
+          .slider4.bgImg(style="background-image: url('../img/obras-preview/img9.jpg');")
+          .slider4.bgImg(style="background-image: url('../img/obras-preview/img10.jpg');")
+          .slider4.bgImg(style="background-image: url('../img/bg16.jpg');")
+          button.btn--slider(onclick='plusDivs(-1, 3)') &#x276E;
+          button.btn--slider(onclick='plusDivs(1, 3)') &#x276F;
+    
+    .grid(title="entrenamiento")
+      .grid-12.grid-md-6(title="video")
+        video#video1(poster='./img/bg1.jpg' controls='false' loop='true')
+          source(src='./img/introweb.mp4' type='video/mp4')
+          | Your browser does not support the video tag.  
 
-    .draggable(title="plastica")
-      .slider--container
-        .slider4.bgImg(style="background-image: url('../img/arte3d.jpeg');")
-        .slider4.bgImg(style="background-image: url('../img/pieza.jpg');")
-        .slider4.bgImg(style="background-image: url('../img/obras-preview/img1.jpg');")
-        .slider4.bgImg(style="background-image: url('../img/obras-preview/img2.jpg');")
-        .slider4.bgImg(style="background-image: url('../img/obras-preview/img3.jpg');")
-        .slider4.bgImg(style="background-image: url('../img/obras-preview/img4.jpg');")
-        .slider4.bgImg(style="background-image: url('../img/obras-preview/img5.jpg');")
-        .slider4.bgImg(style="background-image: url('../img/obras-preview/img6.jpg');")
-        .slider4.bgImg(style="background-image: url('../img/obras-preview/img7.jpg');")
-        .slider4.bgImg(style="background-image: url('../img/obras-preview/img8.jpg');")
-        .slider4.bgImg(style="background-image: url('../img/obras-preview/img9.jpg');")
-        .slider4.bgImg(style="background-image: url('../img/obras-preview/img10.jpg');")
-        .slider4.bgImg(style="background-image: url('../img/bg16.jpg');")
-        button.btn--slider(onclick='plusDivs(-1, 3)') &#x276E;
-        button.btn--slider(onclick='plusDivs(1, 3)') &#x276F;
-
-    .draggable(title="video")
-      video#video1(poster='./img/bg1.jpg' controls='false' loop='true')
-        source(src='./img/introweb.mp4' type='video/mp4')
-        | Your browser does not support the video tag.  
-
-    .draggable(title="elsersiendo")
-      .slider--container
-        .slider5.card
-          h3 Alumno <mark>eterno</mark>
-          ul 
-            li Dándome cuenta de mí.
-            li Afinando <mark>claridad</mark>
-            li Honor y gratitud por lo andado hasta aquí
-            li Dejo de girar y avanzo
-        .slider5.card
-          h3 Me planto en mi  <mark>verdad</mark>
-          p Cuento todo el rato para darme cuenta y expandirlo. La información ocurriendo completamente. Somos respuesta.
-        .slider5.card
-          h3 Soy <mark>el ser</mark> siendo
-          p Observo un territorio holístico de creación en el que cristaliza todo lo que soy en esta antena humana que no para de resonar y vibrar.
-        .slider5.card
-          h3 Me <mark>doy cuenta</mark>
-          | ...del fractal que lo vincula todo y ahora paso a paso integro coherencia en mi caminar.
-        button.btn--slider(onclick='plusDivs(-1, 4)') &#x276E;
-        button.btn--slider(onclick='plusDivs(1, 4)') &#x276F;
-
-    .draggable(title="sociallinks")
-      .slider--container
-        .slider6.bgImg(style="background-image: url('../img/sergiofores.jpg');")
-        .slider6.card
-          h3 Me sigo
-          include footer
-        button.btn--slider(onclick='plusDivs(-1, 5)') &#x276E;
-        button.btn--slider(onclick='plusDivs(1, 5)') &#x276F;
+      .grid-12.grid-md-6(title="elsersiendo")
+        .slider--container
+          .slider5.card
+            h3 Alumno <mark>eterno</mark>
+            ul 
+              li Dándome cuenta de mí.
+              li Afinando <mark>claridad</mark>
+              li Honor y gratitud por lo andado hasta aquí
+              li Dejo de girar y avanzo
+          .slider5.card
+            h3 Me planto en mi  <mark>verdad</mark>
+            p Cuento todo el rato para darme cuenta y expandirlo. La información ocurriendo completamente. Somos respuesta.
+          .slider5.card
+            h3 Soy <mark>el ser</mark> siendo
+            p Observo un territorio holístico de creación en el que cristaliza todo lo que soy en esta antena humana que no para de resonar y vibrar.
+          .slider5.card
+            h3 Me <mark>doy cuenta</mark> ...del fractal que lo vincula todo y ahora paso a paso integro coherencia en mi caminar.
+          button.btn--slider(onclick='plusDivs(-1, 4)') &#x276E;
+          button.btn--slider(onclick='plusDivs(1, 4)') &#x276F;
+    
+    .section
+      .grid(title="sociallinks")
+        .grid-12.grid-md-6
+          .card
+            h3 Me sigo
+            include footer
+        .grid-12.grid-md-6
+          .slider--container
+            .slider6.rounded.bgImg(style="background-image: url('../img/sergiofores.jpg');")
+            .slider6.rounded.bgImg(style="background-image: url('../img/img1.jpg');")
+            button.btn--slider(onclick='plusDivs(-1, 5)') &#x276E;
+            button.btn--slider(onclick='plusDivs(1, 5)') &#x276F;
 </div>
 
 //- block append scripts
