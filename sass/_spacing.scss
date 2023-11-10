@@ -9,12 +9,12 @@ body {
   }
 }
 
-// h1 {
-//   @media screen and (min-width: $ipad) {
-//     margin-top: 0;
-//     margin-bottom: 0;
-//   }
-// }
+h1 {
+  margin-bottom: $size-3;
+  // @media screen and (min-width: $ipad) {
+  //   margin-top: 0;
+  // }
+}
 
 h2,
 h3 {
@@ -81,6 +81,7 @@ li {
 dl {
   padding-bottom: $size-2;
 }
+
 
 // h1,
 // h2,
