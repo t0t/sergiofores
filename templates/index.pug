@@ -27,7 +27,7 @@ main#maincontent.mainContent
     div(title="vision")
       .slider--container
         .slider1.card
-          h3 Todo Ya És, aquí. <mark>Obvio!</mark>
+          h3 Todo ya És, aquí. <mark>Obvio!</mark>
           ul 
             li Lo cuento todo para que, lo que Es, se cumpla
             li El ambiente me transforma a través del símbolo
@@ -56,8 +56,13 @@ main#maincontent.mainContent
     .grid(title="percepcion")
       .grid-12.grid-md-6(title="obvio")
         .slider--container
+          .slider2.bgImg(style="background-image: url('../img/grafico1.svg');")
+          .slider2.bgImg(style="background-image: url('../img/grafico6.svg');")
+          .slider2.bgImg(style="background-image: url('../img/grafico5.svg');")
+          .slider2.bgImg(style="background-image: url('../img/grafico4.svg');")
+          .slider2.bgImg(style="background-image: url('../img/grafico3.svg');")
+          .slider2.bgImg(style="background-image: url('../img/grafico2.svg');")
           .slider2.bgImg(style="background-image: url('../img/pardes-alef.png');")
-          .slider2.bgImg(style="background-image: url('../img/435681.svg');")
           .slider2.bgImg(style="background-image: url('../img/logo.png');")
           .slider2.bgImg(style="background-image: url('../img/bg3.png');")
           button.btn--slider(onclick='plusDivs(-1, 1)') &#x276E;
@@ -93,6 +98,7 @@ main#maincontent.mainContent
 
       .grid-12.grid-md-6(title="plastica")
         .slider--container
+          .slider4.bgImg(style="background-image: url('../img/grafico7.svg');")
           .slider4.bgImg(style="background-image: url('../img/arte3d.jpeg');")
           .slider4.bgImg(style="background-image: url('../img/pieza.jpg');")
           .slider4.bgImg(style="background-image: url('../img/obras-preview/img1.jpg');")
@@ -135,18 +141,20 @@ main#maincontent.mainContent
           button.btn--slider(onclick='plusDivs(-1, 4)') &#x276E;
           button.btn--slider(onclick='plusDivs(1, 4)') &#x276F;
     
-    .section
-      .grid(title="sociallinks")
-        .grid-12.grid-md-6
-          .card
-            h3 Me sigo
-            include footer
-        .grid-12.grid-md-6
-          .slider--container
-            .slider6.rounded.bgImg(style="background-image: url('../img/sergiofores.jpg');")
-            .slider6.rounded.bgImg(style="background-image: url('../img/img1.jpg');")
-            button.btn--slider(onclick='plusDivs(-1, 5)') &#x276E;
-            button.btn--slider(onclick='plusDivs(1, 5)') &#x276F;
+    .grid(title="sociallinks")
+      .grid-12.grid-md-6
+        p.tac.mt-4 Me sigo
+        include footer
+      .grid-12.grid-md-6
+        .slider--container
+          .slider6.rounded.bgImg(style="background-image: url('../img/sergiofores.jpg');")
+          .slider6.rounded.bgImg(style="background-image: url('../img/img1.jpg');")
+          button.btn--slider(onclick='plusDivs(-1, 5)') &#x276E;
+          button.btn--slider(onclick='plusDivs(1, 5)') &#x276F;
+  .grid 
+    .grid-12 
+      .card.tac
+        small Esto es un prototipo evolutivo de Sergio Forés como acceso directo a mi verdad
 </div>
 
 //- block append scripts

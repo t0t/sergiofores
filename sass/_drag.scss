@@ -168,9 +168,8 @@
         left: 7%;
     }
 
-    @media screen and (min-width: $desktop) {
-        transform: rotate(-10deg);
-        top: 90%;
-        left: 40%;
-    }
+    // @media screen and (min-width: $desktop) {
+    //     top: 90%;
+    //     left: 40%;
+    // }
 }
