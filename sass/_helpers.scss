@@ -241,6 +241,11 @@ mark {
   border-radius: 50%;
 }
 
+.placeself {
+  place-self: center;
+}
+
+
 .img--fl {
   float: left;
   margin-right: $size-3;

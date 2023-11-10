@@ -44,13 +44,19 @@
   }
 }
 
-@keyframes parpadeo {
+@keyframes intro {
   0% {
     opacity: 0;
+    transform: scale(4) perspective(50vw) rotateY(10deg);
   }
-
+  50% {
+    transform: scale(1.4);
+    transform: rotate(9deg);
+  }
+  
   100% {
     opacity: 1;
+    transform: scale(1.4) perspective(100vw) rotateY(50deg);
   }
 }
 

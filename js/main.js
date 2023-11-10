@@ -53,7 +53,8 @@ anime({
     { translateY: "0" },
     { scale: "1" },
     { rotateY: "60deg" },
-    { perspective: "10vw" }
+    { perspective: "10vw" },
+    { perspective: "100vw" }
   ],
   easing: 'easeInOutSine',
   // backgroundColor: '#000',
