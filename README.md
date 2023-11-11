@@ -13,7 +13,7 @@ La idea es generar un sitio web Estático usando el mínimo de dependencias, sim
   - Prepross
   - Motor de templates con Pug
 - Deployment
-  - con Vercel CLI y el comando ´vercel --prod´
+  - con Vercel CLI subimos a producción con: ´vercel --prod´ y hacemos el build con: ´vercel build´
 
 🙌 by Sergio Forés 
 [Instagram](https://www.instagram.com/t.o.d.h/) [Linkedin](https://www.linkedin.com/in/sergiofores/) [Twitter](https://twitter.com/t0tinspire)
