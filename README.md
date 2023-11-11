@@ -8,23 +8,12 @@ La idea es generar un sitio web Estático usando el mínimo de dependencias, sim
 
 ### Minimal Universal Config
 
-- **Css**
-  - Sass 
-  - Autoprefixer
-
-- **Javascript puro**
-  - Módulos ES6
-  - D3.js
 
 - **HTML** 
-  - Componentización y motor de templates con Pug
-
-- **Parcel**
-  - Bundler Zero config para todo.
-  - NPM
-
+  - Prepross
+  - Motor de templates con Pug
 - Deployment
-  - Github -> Vercel
+  - con Vercel CLI subimos a producción con: ´vercel --prod´ y hacemos el build con: ´vercel build´
 
 🙌 by Sergio Forés 
 [Instagram](https://www.instagram.com/t.o.d.h/) [Linkedin](https://www.linkedin.com/in/sergiofores/) [Twitter](https://twitter.com/t0tinspire)

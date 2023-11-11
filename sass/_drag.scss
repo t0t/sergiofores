@@ -47,9 +47,9 @@
     @media screen and (min-width: $desktop) {
         position: absolute;
         transform-origin: left;
-            transform: scale(1.5) perspective(50vh) rotateY(30deg);
-        top: 10px;
-        left: -19%;
+        transform: scale(1.5) perspective(50vh) rotateY(30deg);
+        top: 0;
+        left: 0%;
         img {
             // width: 50%;
             border-top-left-radius: 50%;
