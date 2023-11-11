@@ -1,0 +1,105 @@
+.mainNav {
+  display: flex;
+  justify-content: center;
+}
+
+/* SIDE NAV */
+
+.sidenav {
+  display: inherit;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  background-color: $grey-color-4;
+  overflow-x: hidden;
+  transition: 0.2s;
+  padding-top: $size-5;
+
+  li {
+    list-style: none;
+    text-align: center;
+  }
+
+  a {
+    padding: $size-2 $size-1;
+    text-decoration: none;
+    font-size: $size-2;
+    font-weight: $medium;
+    color: $white-color;
+    display: block;
+    transition: 0.3s;
+    mix-blend-mode: difference;
+  }
+  
+  .closebtn {
+    position: absolute;
+    top: 0;
+    right: $size-1;
+    font-size: $size-3;
+  }
+}
+
+/* Nav */
+.nav {
+  display: none;
+
+  a {
+    text-decoration: none;
+    padding: $size-0 $size-1;
+    justify-self: end;
+    margin-left: $size-1;
+  }
+
+  // @media screen and (min-width: $bp3) {
+  //   mix-blend-mode: difference;
+  //   display: inline-flex;
+  //   position: fixed;
+  //   list-style: none;
+  //   transition: top 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  //   margin: 0;
+  //   padding-right: $size-3;
+  //   text-align: center;
+  //   height: $size-4;
+  //   align-items: center;
+  //   font-weight: $medium;
+  //   height: $size-5;
+  //   top: inherit;
+  //   right: 0;
+  // }
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: $grey-color-2;
+}
+
+.nav-item-active a {
+  color: $black-color;
+  background-color: $white-color;
+}
+
+/* hambutton */
+.hambutton {
+  display: block;
+  display: none;
+  position: fixed;
+  top: $size-1;
+  left: 85vw;
+  width: $size-3;
+  mix-blend-mode: difference;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  line {
+    stroke-width: 4px;
+  }
+
+  @media screen and (min-width: $bp3) {
+    display: none;
+  }
+}

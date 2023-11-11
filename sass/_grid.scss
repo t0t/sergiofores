@@ -1,0 +1,84 @@
+// GRID
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+// Controla los gaps
+@for $i from 1 through 4 {
+  .grid--gap-#{$i} {
+    gap: $i+em;
+  }
+}
+
+@for $i from 1 through 12 {
+  .grid-#{$i} {
+    grid-column: span ($i);
+  }
+}
+
+@media only screen and (min-width: $bp2)  {
+  @for $i from 1 through 12 {
+    .grid-xs-#{$i} {
+      grid-column: span ($i);
+    }
+  }
+}
+
+@media screen and (min-width: $bp3) {
+  @for $i from 1 through 12 {
+    .grid-md-#{$i} {
+      grid-column: span ($i);
+    }
+  }
+}
+
+@media (min-width: $bp4) {
+  @for $i from 1 through 12 {
+    .grid-lg-#{$i} {
+      grid-column: span ($i);
+    }
+  }
+}
+
+@media (min-width: $bp5) {
+  @for $i from 1 through 12 {
+    .grid-xl-#{$i} {
+      grid-column: span ($i);
+    }
+  }
+}
+
+// .grid {
+//   display: grid;
+//   place-items: center;
+
+//   // @media screen and (min-width: $bp2) {
+//   //   gap: $size-1;
+//   // }
+
+//   @media screen and (min-width: $bp3) {
+//     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+//   }
+
+.grid--0 {
+  gap: 0px;
+}
+.grid--1 {
+  gap: $size-2;
+}
+
+.grid--img {
+  @extend .grid--0;
+  width: 100%;
+  // min-height: 50vh;
+  grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+  background-position: center;
+  background-size: cover;
+
+  .grid__item {
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}

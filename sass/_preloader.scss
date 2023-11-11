@@ -1,0 +1,25 @@
+// /* LOADER */
+
+.fade-page-off {
+    opacity: 0;
+  }
+  
+  .fade-page-off.fade-page-on {
+    opacity: 1;
+    background-color: black;
+    transition: all 20s ease-out;
+  }
+  
+  #preloader {
+    // transform: scale(0.5);
+    padding: $size-2;
+    animation: parpadeo .4s linear infinite;
+    opacity: 0; //poner en 1 para debugear
+  }
+
+// imagen animacion
+.animintro circle {
+    stroke: white;
+    stroke-width: 1px;
+    fill: none;
+}

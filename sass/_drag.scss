@@ -1,0 +1,175 @@
+// DRAG
+.container {
+    position: relative;
+    min-height: 100%;
+    @media screen and (min-width: $ipad) {
+        width: 100vw;
+    }
+}
+
+
+[title~="covertitle"] {
+    margin-left: $size-2;
+    @media screen and (min-width: $ipad) {
+        // border: 5px solid goldenrod;
+        // transform: scale(0.7) perspective(700px) rotateY(30deg);
+    }
+
+    @media screen and (min-width: $desktop) {
+        h1 {
+            top: 18vh;
+            right: 18vh;
+            // transform: scale(1.4) perspective(100vw) rotateY(50deg);
+            transform-origin: right;
+            text-align: right;
+            width: 100vw;
+            margin-right: $size-6;
+            animation: intro;
+            animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation-duration: 4s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+        // border: 5px solid goldenrod;
+        // left: 0%;
+    }
+}
+
+[title~="coverimg"] {
+    img {
+        border-top-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+    }
+    @media screen and (min-width: $ipad) {
+        // transform: perspective(550px) rotateY(-40deg);
+    }
+    
+    @media screen and (min-width: $desktop) {
+        position: absolute;
+        transform-origin: left;
+            transform: scale(1.5) perspective(50vh) rotateY(30deg);
+        top: 10px;
+        left: -19%;
+        img {
+            // width: 50%;
+            border-top-left-radius: 50%;
+            // border-bottom-right-radius: 50%;
+        }
+    }
+}
+
+[title~="sintesis"] {
+    @media screen and (min-width: $ipad) {
+        top: 30px;
+        // transform: perspective(550px) rotateY(30deg);
+    }
+    
+    @media screen and (min-width: $desktop) {
+        position: absolute;
+        top: 80vh;
+        right: 7vw;
+        margin-bottom: $size-7;
+        h2 {
+            transform-origin: right;
+            transform: scale(1.9) perspective(50vh) rotateY(-30deg);
+            text-align: right;
+        }
+        // transform: translateX(9vw) translateY(-9vw) scale(1.8) perspective(100vw) rotateY(50deg);
+    }
+}
+
+
+[title~="percepcion"] {    
+    @media screen and (min-width: $desktop) {
+        // background-color: #fff;
+    }
+}
+
+[title~="vision"] {    
+    // @media screen and (min-width: $ipad) {
+    //     border: 5px solid goldenrod;
+    //     top: 23%;
+    //     left: 0%;
+    // }
+
+    @media screen and (min-width: $desktop) {
+        // margin-top: 0;
+        // height: 50vh;
+    }
+}
+
+[title~="obvio"] {
+    @media screen and (min-width: $ipad) {
+        // border: 5px solid palegreen;
+        top: 36%;
+        right: 13%;
+    }
+}
+
+[title~="proceso"] {
+    @media screen and (min-width: $ipad) {
+        // border: 5px solid red;
+        top: 55.8%;
+        right: 8%;
+    }
+}
+
+[title~="plastica"] {
+    @media screen and (min-width: $ipad) {
+        top: 50%;
+        left: 4%;
+
+        .bgImg {
+            border-radius: 50%;
+        }
+    }
+}
+
+[title~="video"] {
+    @media screen and (min-width: $ipad) {
+        top: 64%;
+        left: 30%;
+
+        video {
+            transform: rotate(-6deg);
+            display: block;
+            width: 60vh;
+        }
+    }
+
+    @media screen and (min-width: $desktop) {
+        video {
+            width: 44vw;
+        }
+    }
+}
+
+[title~="yocuento"] {
+    @media screen and (min-width: $ipad) {
+        top: 75%;
+    }
+
+    @media screen and (min-width: $desktop) {
+        top: 72%;
+        left: 44%;
+    }
+}
+
+[title~="elsersiendo"] {
+    @media screen and (min-width: $ipad) {
+        top: 84.6%;
+        left: 12%;
+    }
+}
+
+[title~="sociallinks"] {
+    @media screen and (min-width: $ipad) {
+        bottom: 1.5%;
+        left: 7%;
+    }
+
+    // @media screen and (min-width: $desktop) {
+    //     top: 90%;
+    //     left: 40%;
+    // }
+}
