@@ -2864,10 +2864,6 @@ svg#mapabasediez + .descripcion p {
 }
 
 /* Nav */
-.nav {
-  display: none;
-}
-
 .nav a {
   text-decoration: none;
   padding: 0.61rem 1.2rem;

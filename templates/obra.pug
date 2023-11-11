@@ -1,22 +1,31 @@
 extends includes/base
+//- include ../js/data/datos.json
 
 block append head
   title #{sitename} - Obra Plástica
   meta(name="description" content="Aporto una perspectiva multidimensional, transdisciplinar y holistica de la Creación para encontrarnos a nosotros mismos en el contexto desde el vacío.")
 
-  - let current = "Obra";
+  - var current = "Obra";
+  - var arr = [ "decir", "sentir", "pensar", "hacer" ];
 
 block content
   header.headerContent
-    h1.titlePage Corrientes de formas, 
-      mark.subTitlePage obras tridimensionales esculpidas por una luz que es de verdad.
-    .bgImg.animCrop(style="background-image: url('./img/bg8.png');")
+
+  h3 
+    each a in arr
+      p= a
+  p #{sitename}
+
+
+    //- h1.titlePage Corrientes de formas, 
+    //-   mark.subTitlePage obras tridimensionales esculpidas por una luz que es de verdad.
+    //- .bgImg.animCrop(style="background-image: url('../public/img/bg1.jpg');")
 
   .grid  
     .grid-12.grid-md-6
-      video#video1(poster='./img/arte3d.jpeg')
-        source(src='./videos/desdelapoesiadelamateria.mp4' type='video/mp4')
-        source(src='./videos/desdelapoesiadelamateria.webm' type='video/webm')
+      video#video1(poster='./public/img/bg1.jpg')
+        source(src='../public/videos/desdelapoesiadelamateria.mp4' type='video/mp4')
+        source(src='../public/videos/desdelapoesiadelamateria.webm' type='video/webm')
         | Your browser does not support the video tag.
 
     .grid-12.grid-md-6.card
@@ -24,36 +33,36 @@ block content
       p.
         Fluidos en un espacio etérico reaccionan a dinámicas vibracionales e inercias sinérgicas que fraguan en un no-tiempo donde se palpa el pálpito de ese tiempo detenido que se vive en el instante presente como símbolo.
 
-      button.btn--default.btn--black(onclick='playPause()') play/stop video
+      //- button.btn--default.btn--black(onclick='playPause()') play/stop video
 
   section
 
     h2 En exposición
 
     .gallery
-      each obra in obras
-        .gallery__item
-          img#openlightbox.hover-shadow.preview(src=obra.preview alt=obra.title onclick=`openLightbox(); toSlide(${obra.id})`)
-          small= obra.title
+      //- each obra in obras
+      //-   p #{obra.title}
+        //- .gallery__item
+        //-   img#openlightbox.hover-shadow.preview(src=obra.preview alt=obra.title onclick=`openLightbox(); toSlide(${obra.id})`)
 
   #Lightbox.modal
-    span.close.pointer(onclick=`closeLightbox()`) &times;
+    //- span.close.pointer(onclick=`closeLightbox()`) &times;
 
     .modal-content
-      each obra in obras
-        .slide
-          img.image-slide(src=obra.imagen alt=obra.title)
-          small
-            strong= obra.title 
-            strong= obra.description 
-            strong= obra.ref 
+      //- each obra in obras
+        //- .slide
+          //- img.image-slide(src=obra.imagen alt=obra.title)
+          //- small
+          //-   strong= obra.title 
+          //-   strong= obra.description 
+          //-   strong= obra.ref 
 
-      a.previous(onclick=`changeSlide(-1)`) &#x276E;
-      a.next(onclick=`changeSlide(1)`) &#x276F;
+      //- a.previous(onclick=`changeSlide(-1)`) &#x276E;
+      //- a.next(onclick=`changeSlide(1)`) &#x276F;
 
       .dots
-        each obra in obras
-          img.modal-preview.hover-shadow(src= obra.preview alt= obra.title onclick=`toSlide( ${obra.id} )`)
+        //- each obra in obras
+          //- img.modal-preview.hover-shadow(src= obra.preview alt= obra.title onclick=`toSlide( ${obra.id} )`)
 
   section
 
@@ -62,39 +71,33 @@ block content
     .grid
 
       .grid-12.grid-md-6.grid-xl-3
-        video#video2(controls='false' loop='true' autoplay)
-          source(src='./videos/proceso.webm' type='video/webm')
-          source(src='./videos/proceso.mp4' type='video/mp4')
-          | Your browser does not support the video tag.
-
-      .grid-12.grid-md-6.grid-xl-3
         p.
           Las piezas parten de un entorno digital donde se generan mallas 3D que son transformadas por los efectos de determinadas físicas de vibración. Luego se lleva a producción, se imprimen en gran formato y se le dan los acabados con resinas, arenas y pigmentos.
 
       .grid-12.grid-md-6.grid-xl-3
         figure.animItem
-          img(src='./img/bg4.jpg' alt='Imagen del proceso')
+          img(src='../public/img/bg4.jpg' alt='Imagen del proceso')
 
       p.grid-12.grid-md-6.grid-xl-3.
         Diferentes longitudes de onda en el espectro. La luz, el color y la perspectiva, desde donde se observa, generan la conexión con todo lo que integra el instante.
 
       .grid-12
         figure
-          img(src='./img/bg7.png' alt='Imagen del proceso')
+          img(src='../public/img/bg1.jpg' alt='Imagen del proceso')
 
-      .grid-12.grid-md-6.bgImg(style="background-image: url('./img/bg15.jpg');")
+      .grid-12.grid-md-6.bgImg(style="background-image: url('../public/img/bg15.jpg');")
 
       .grid-12.grid-md-6
         figure.animItem
-          img(src='./img/bg16.jpg' alt='Imagen del proceso')
+          img(src='../public/img/bg16.jpg' alt='Imagen del proceso')
 
-  footer.blockquote--pie(style="background-image: url('./img/bg3.jpg');")
+  footer.blockquote--pie(style="background-image: url('../public/img/bg3.jpg');")
     blockquote.highlight.
       &ldquo;Las obras de arte también son formas simbólicas en sí mismas y, como tales, cumplen una función mediadora capaz de abrirle lo real a la conciencia.&rdquo; <br> &mdash; Gadamer
 
-block append scripts
-  script( src="./scripts/lightbox.js")
-  script( src="./scripts/videoplayer.js")
-  script( type="module", src="./scripts/anims.js")
-  script( type="module", src="./scripts/animaciones/animitem.js")
-  script( type="module", src="./scripts/animaciones/animtitle.js")
+//- block append scripts
+  //-script( src="./js/lightbox.js")
+  //- script( src="./scripts/videoplayer.js")
+  //- script( type="module", src="./scripts/anims.js")
+  //- script( type="module", src="./scripts/animaciones/animitem.js")
+  //- script( type="module", src="./scripts/animaciones/animtitle.js")
