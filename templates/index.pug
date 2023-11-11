@@ -1,177 +1,170 @@
-//- extends ./includes/base.pug
+extends ./includes/base
 
-//- block append head
-//-     title #{sitename} - Sergio Forés, arte, desarrollo web y conciencia holistica
-//-     meta(name="description" content="Aporto una perspectiva multidimensional, transdisciplinar y holistica de la Creación para encontrarnos a nosotros mismos en el contexto desde el vacío.")
+block append head
+  title Sergio Forés, arte, desarrollo web y conciencia holistica
+  meta(name="description" content="Aporto una perspectiva multidimensional, transdisciplinar y holistica de la Creación para encontrarnos a nosotros mismos en el contexto desde el vacío.")
 
-.mainNav
-  include brand
-  //- include navbar
-  //- include sidenav
-  //- include hambutton.svg
-
-main#maincontent.mainContent
-  block pageheader
-  
+block pageheader
   .container
     .section
       .div(title="covertitle")
         h1 Cuento <br>Creación
 
       .div(title="coverimg")
-        img(src="../img/arte3d.jpeg", alt="Cover image")
+        img(src="../public/img/arte3d.jpg", alt="Cover image")
 
       .div(title="sintesis")
           h2 01234 ya! <br>Despertando Ser/Humano
-  
-    div(title="vision")
+
+block content
+  div(title="vision")
+    .slider--container
+      .slider1.card
+        h3 Todo ya és, aquí <mark>obvio!</mark>
+        ul 
+          li Lo cuento todo para que, lo que Es, se cumpla
+          li El ambiente me transforma a través del símbolo
+          li Vibro el acceso directo a mi verdad
+          li Bajando claridad en el decir de mi ser-humano.
+      .slider1.card
+        h3 Me doy <mark> cuenta</mark> de mí
+        ul 
+          li Me meto en el huerto de estar y quedarme...
+          li Incorporo el aprendizaje contínuo de no saber
+      .slider1.card
+        h3 Percibo en <mark> 0,1,2,3 y 4</mark>
+        ul 
+          li Las letras hebreas me permiten expandir mi comprensión
+          li El código Web me abre el funcionamiento de todo
+      .slider1.card
+        h3 Llego a mí
+        ul
+          li Escribo, pinto, tecleo códigos y símbolos
+          li Desarrollando en coherencia con la Creación
+          li Soy/Humano Nuevo en evolución sin fin
+          li Arte, Prototipado Web, Impresión 3D
+      button.btn--slider(onclick='plusDivs(-1, 0)') &#x276E;
+      button.btn--slider(onclick='plusDivs(1, 0)') &#x276F;
+
+  .grid(title="percepcion")
+    .grid-12.grid-md-6(title="obvio")
       .slider--container
-        .slider1.card
-          h3 Todo ya és, aquí <mark>obvio!</mark>
-          ul 
-            li Lo cuento todo para que, lo que Es, se cumpla
-            li El ambiente me transforma a través del símbolo
-            li Vibro el acceso directo a mi verdad
-            li Bajando claridad en el decir de mi ser-humano.
-        .slider1.card
-          h3 Me doy <mark> cuenta</mark> de mí
-          ul 
-            li Me meto en el huerto de estar y quedarme...
-            li Incorporo el aprendizaje contínuo de no saber
-        .slider1.card
-          h3 Percibo en <mark> 0,1,2,3 y 4</mark>
-          ul 
-            li Las letras hebreas me permiten expandir mi comprensión
-            li El código Web me abre el funcionamiento de todo
-        .slider1.card
-          h3 Llego a mí
+        .slider2.bgImg(style="background-image: url('./public/img/logo3.svg');")
+        .slider2.bgImg(style="background-image: url('./public/img/grafico5.svg');")
+        .slider2.bgImg(style="background-image: url('./public/img/grafico1.svg');")
+        .slider2.bgImg(style="background-image: url('./public/img/grafico6.svg');")
+        .slider2.bgImg(style="background-image: url('./public/img/grafico4.svg');")
+        .slider2.bgImg(style="background-image: url('./public/img/grafico3.svg');")
+        .slider2.bgImg(style="background-image: url('./public/img/grafico2.svg');")
+        .slider2.bgImg(style="background-image: url('./public/img/pardes-alef.png');")
+        .slider2.bgImg(style="background-image: url('./public/img/bg3.png');")
+        .slider2.bgImg(style="background-image: url('./public/img/obra5.jpg');")
+        button.btn--slider(onclick='plusDivs(-1, 1)') &#x276E;
+        button.btn--slider(onclick=`plusDivs(1, 1)`) &#x276F;
+
+    .grid-12.grid-md-6(title="yocuento").placeself
+      .card
+        h3 <mark>Yo cuento</mark> en mi transitar.
+        ul 
+          li Me expando para verme
+          li Dejo registro para clarificarme.
+          li Percibo el pensamiento de la Creación (מחשבת הבריאה).
+          li Avanzo en coherencia paso a paso.
+          li La vida son cuatro cosas (que son cinco)
+
+  .grid(title="entrenamiento")
+    .grid-12.grid-md-6(title="proceso")
+      .slider--container
+        .slider3.card
+          h3 Abro mi <mark>verdad</mark>.
+          p Cuando yo percibo un símbolo tomo conciencia de una realidad, de un sentido que el simbolo está produciendo sobre mi. Se activa una conciencia de revelación.
+          hr
           ul
-            li Escribo, pinto, tecleo códigos y símbolos
-            li Desarrollando en coherencia con la Creación
-            li Soy/Humano Nuevo en evolución sin fin
-            li Arte, Prototipado Web, Impresión 3D
-        button.btn--slider(onclick='plusDivs(-1, 0)') &#x276E;
-        button.btn--slider(onclick='plusDivs(1, 0)') &#x276F;
-
-    .grid(title="percepcion")
-      .grid-12.grid-md-6(title="obvio")
-        .slider--container
-          .slider2.bgImg(style="background-image: url('../img/logo3.svg');")
-          .slider2.bgImg(style="background-image: url('../img/grafico5.svg');")
-          .slider2.bgImg(style="background-image: url('../img/grafico1.svg');")
-          .slider2.bgImg(style="background-image: url('../img/grafico6.svg');")
-          .slider2.bgImg(style="background-image: url('../img/grafico4.svg');")
-          .slider2.bgImg(style="background-image: url('../img/grafico3.svg');")
-          .slider2.bgImg(style="background-image: url('../img/grafico2.svg');")
-          .slider2.bgImg(style="background-image: url('../img/pardes-alef.png');")
-          .slider2.bgImg(style="background-image: url('../img/bg3.png');")
-          .slider2.bgImg(style="background-image: url('../img/obra5.jpg');")
-          button.btn--slider(onclick='plusDivs(-1, 1)') &#x276E;
-          button.btn--slider(onclick=`plusDivs(1, 1)`) &#x276F;
-
-      .grid-12.grid-md-6(title="yocuento").placeself
-        .card
-          h3 <mark>Yo cuento</mark> en mi transitar.
+            li El producto es el proceso
+            li Hago cosas para que estén
+        button.btn--slider(onclick='plusDivs(-1, 2)') &#x276E;
+        button.btn--slider(onclick='plusDivs(1, 2)') &#x276F;
+        .slider3.card
+          h3 Una obra; <mark>un proceso</mark>.
           ul 
-            li Me expando para verme
-            li Dejo registro para clarificarme.
-            li Percibo el pensamiento de la Creación (מחשבת הבריאה).
-            li Avanzo en coherencia paso a paso.
-            li La vida son cuatro cosas (que son cinco)
-    
-    .grid(title="entrenamiento")
-      .grid-12.grid-md-6(title="proceso")
-        .slider--container
-          .slider3.card
-            h3 Abro mi <mark>verdad</mark>.
-            p Cuando yo percibo un símbolo tomo conciencia de una realidad, de un sentido que el simbolo está produciendo sobre mi. Se activa una conciencia de revelación.
-            hr
-            ul
-              li El producto es el proceso
-              li Hago cosas para que estén
-          button.btn--slider(onclick='plusDivs(-1, 2)') &#x276E;
-          button.btn--slider(onclick='plusDivs(1, 2)') &#x276F;
-          .slider3.card
-            h3 Una obra; <mark>un proceso</mark>.
-            ul 
-              li Potencial
-              li Emanación
-              li Creación
-              li Formación
-              li Acción
+            li Potencial
+            li Emanación
+            li Creación
+            li Formación
+            li Acción
 
-      .grid-12.grid-md-6(title="plastica")
-        .slider--container
-          .slider4.bgImg(style="background-image: url('../img/bg2.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/detalle2.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/bg16.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/detalle3.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/obra2.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/grafico7.svg');")
-          .slider4.bgImg(style="background-image: url('../img/arte3d.jpeg');")
-          .slider4.bgImg(style="background-image: url('../img/img3.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/pieza.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/obra6.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/obra4.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/obras-preview/img2.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/obra10.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/obras-preview/img3.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/obra1.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/obras-preview/img4.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/th-img4.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/obras-preview/img5.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/obras-preview/img6.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/obras-preview/img7.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/obras-preview/img8.jpg');")
-          .slider4.bgImg(style="background-image: url('../img/obras-preview/img9.jpg');")
-          button.btn--slider(onclick='plusDivs(-1, 3)') &#x276E;
-          button.btn--slider(onclick='plusDivs(1, 3)') &#x276F;
+    .grid-12.grid-md-6(title="plastica")
+      .slider--container
+        .slider4.bgImg(style="background-image: url('./public/img/bg2.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/detalle2.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/bg16.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/detalle3.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/obra2.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/grafico7.svg');")
+        .slider4.bgImg(style="background-image: url('./public/img/arte3d.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/img3.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/pieza.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/obra6.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/obra4.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/obras-preview/img2.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/obra10.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/obras-preview/img3.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/obra1.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/obras-preview/img4.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/th-img4.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/obras-preview/img5.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/obras-preview/img6.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/obras-preview/img7.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/obras-preview/img8.jpg');")
+        .slider4.bgImg(style="background-image: url('./public/img/obras-preview/img9.jpg');")
+        button.btn--slider(onclick='plusDivs(-1, 3)') &#x276E;
+        button.btn--slider(onclick='plusDivs(1, 3)') &#x276F;
     
-    .grid(title="entrenamiento")
-      .grid-12.grid-md-6(title="video")
-        video#video1(poster='./img/bg1.jpg' controls='false' loop='true')
-          source(src='./img/introweb.mp4' type='video/mp4')
-          | Your browser does not support the video tag.  
+  .grid(title="entrenamiento")
+    .grid-12.grid-md-6(title="video")
+      video#video1(poster='./public/img/bg1.jpg' controls='false' loop='true')
+        source(src='./public/img/introweb.mp4' type='video/mp4')
+        | Your browser does not support the video tag.  
 
-      .grid-12.grid-md-6(title="elsersiendo")
-        .slider--container
-          .slider5.card
-            h3 Alumno <mark>eterno</mark>
-            ul 
-              li Dándome cuenta de mí.
-              li Afinando <mark>claridad</mark>
-              li Honor y gratitud por lo andado hasta aquí
-              li Dejo de girar y avanzo
-          .slider5.card
-            h3 Me planto en mi  <mark>verdad</mark>
-            p Cuento todo el rato para darme cuenta y expandirlo. La información ocurriendo completamente. Somos respuesta.
-          .slider5.card
-            h3 Soy <mark>el ser</mark> siendo
-            p Observo un territorio holístico de creación en el que cristaliza todo lo que soy en esta antena humana que no para de resonar y vibrar.
-          .slider5.card
-            h3 Me <mark>doy cuenta</mark> ...del fractal que lo vincula todo y ahora paso a paso integro coherencia en mi caminar.
-          button.btn--slider(onclick='plusDivs(-1, 4)') &#x276E;
-          button.btn--slider(onclick='plusDivs(1, 4)') &#x276F;
+    .grid-12.grid-md-6(title="elsersiendo")
+      .slider--container
+        .slider5.card
+          h3 Alumno <mark>eterno</mark>
+          ul 
+            li Dándome cuenta de mí.
+            li Afinando <mark>claridad</mark>
+            li Honor y gratitud por lo andado hasta aquí
+            li Dejo de girar y avanzo
+        .slider5.card
+          h3 Me planto en mi  <mark>verdad</mark>
+          p Cuento todo el rato para darme cuenta y expandirlo. La información ocurriendo completamente. Somos respuesta.
+        .slider5.card
+          h3 Soy <mark>el ser</mark> siendo
+          p Observo un territorio holístico de creación en el que cristaliza todo lo que soy en esta antena humana que no para de resonar y vibrar.
+        .slider5.card
+          h3 Me <mark>doy cuenta</mark> ...del fractal que lo vincula todo y ahora paso a paso integro coherencia en mi caminar.
+        button.btn--slider(onclick='plusDivs(-1, 4)') &#x276E;
+        button.btn--slider(onclick='plusDivs(1, 4)') &#x276F;
     
-    .grid(title="sociallinks")
-      .grid-12.grid-md-6
-        p.tac.mt-4 Me sigo
-        include footer
-      .grid-12.grid-md-6
-        .slider--container
-          .slider6.rounded.bgImg(style="background-image: url('../img/sergiofores.jpg');")
-          .slider6.rounded.bgImg(style="background-image: url('../img/detalle1.jpg');")
-          .slider6.rounded.bgImg(style="background-image: url('../img/img1.jpg');")
-          button.btn--slider(onclick='plusDivs(-1, 5)') &#x276E;
-          button.btn--slider(onclick='plusDivs(1, 5)') &#x276F;
+  .grid(title="sociallinks")
+    .grid-12.grid-md-6
+      p.tac.mt-4 Me sigo
+      include footer
+    .grid-12.grid-md-6
+      .slider--container
+        .slider6.rounded.bgImg(style="background-image: url('./public/img/sergiofores.jpg');")
+        .slider6.rounded.bgImg(style="background-image: url('./public/img/detalle1.jpg');")
+        .slider6.rounded.bgImg(style="background-image: url('./public/img/img1.jpg');")
+        button.btn--slider(onclick='plusDivs(-1, 5)') &#x276E;
+        button.btn--slider(onclick='plusDivs(1, 5)') &#x276F;
+
+block foot
   .grid 
     .grid-12 
       .card.tac
         small Desde este prototipo evolutivo Sergio Forés, gratitud infinita por todo lo que me ayudó a llegar a este momento.
-</div>
 
-//- block append scripts
-  //- script( type="module", src="js/slider.js")
+block append scripts
   //- script( src="./scripts/videoplayer.js")
   //- script( src="./scripts/videoplayer.js")
   //- script( type="module", src="./scripts/anims.js")

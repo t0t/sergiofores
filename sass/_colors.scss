@@ -120,25 +120,15 @@ button {
   color: $primary-color;
 }
 
-.previous,
-.next {
-  color: rgb(255 255 255 / 50%);
-}
-
-.previous:hover,
-.next:hover {
-  color: rgba(255, 255, 255, 0.8);
-}
-
 /* TABS */
-.tablink {
-  background-color: $grey-color-3;
-  color: $white-color;
-}
+// .tablink {
+//   background-color: $grey-color-3;
+//   color: $white-color;
+// }
 
-.tablink:hover {
-  background-color: $grey-color-3;
-}
+// .tablink:hover {
+//   background-color: $grey-color-3;
+// }
 
 /* Tags */
 .post-tag {
