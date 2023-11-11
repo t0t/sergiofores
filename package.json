@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "This is a dummy package.json file created by Prepros to manage packages with NPM. You can edit this file to add your own information.",
   "dependencies": {
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
+    "vite-plugin-pug": "^0.3.2"
   },
   "devDependencies": {
     "vite": "^4.5.0"
