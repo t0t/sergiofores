@@ -3318,8 +3318,8 @@ mark {
             transform-origin: left;
     -webkit-transform: scale(1.5) perspective(50vh) rotateY(30deg);
             transform: scale(1.5) perspective(50vh) rotateY(30deg);
-    top: 10px;
-    left: -19%;
+    top: 0;
+    left: 0%;
   }
   [title~="coverimg"] img {
     border-top-left-radius: 50%;
