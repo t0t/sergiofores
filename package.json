@@ -1,21 +1,11 @@
 {
-  "name": "vite-sergiofores",
-  "private": true,
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "npm run build && vite preview"
+  "name": "prepros-project",
+  "version": "1.0.0",
+  "description": "This is a dummy package.json file created by Prepros to manage packages with NPM. You can edit this file to add your own information.",
+  "dependencies": {
+    "sass": "^1.69.5"
   },
   "devDependencies": {
-    "d3": "^7.1.1",
-    "gsap": "^3.12.2",
-    "sass": "^1.43.4",
-    "three": "^0.134.0",
-    "vite": "^4.4.8"
-  },
-  "dependencies": {
-    "animejs": "^3.2.1",
-    "vite-plugin-pug": "^0.3.2"
+    "vite": "^4.5.0"
   }
 }
