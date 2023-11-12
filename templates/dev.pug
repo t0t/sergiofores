@@ -1,7 +1,7 @@
 extends base
 
 block append head
-  - var current = "Vision";
+  - var current = "DEV";
   title #{sitename} - #{current}
   meta(name="description" content="Aporto una perspectiva multidimensional, transdisciplinar y holistica de la Creación para encontrarnos a nosotros mismos en el contexto desde el vacío.")
 
@@ -13,10 +13,10 @@ block pageheader
         h1= current
 
       .div(title="coverimg")
-        img(src=`${baseUrl + data.plastica[4]}` alt='Cover image')
+        img(src=`${baseUrl + data.plastica[0]}` alt='Cover image')
 
       .div(title="sintesis")
-        h2= data.vision4[3]
+        h2= data.vision4[2]
 
 block content
   div(title="vision")
