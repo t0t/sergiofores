@@ -1,35 +1,46 @@
-extends includes/base.pug
+extends base
 
-//- block append head
-//-   title #{sitename} - Laboratorio
-//-   meta(name="description" content="Creando aplicaciones para traducir numeros y letras a frecuencias, para ver la lógica creativa de este momento")
+block append head
+  title #{sitename} - Obra Plástica
+  meta(name="description" content="Aporto una perspectiva multidimensional, transdisciplinar y holistica de la Creación para encontrarnos a nosotros mismos en el contexto desde el vacío.")
 
-//-   - let current = "Lab";
-
-//- block content      
-//-   header.headerContent
-//-     h1.titlePage +0+1234, 
-//-       span.subTitlePage <mark>una herramienta viva para descifrar realidad y verle la lógica a este momento</mark>
-//-     .bgImg.animCrop(style="background-image: url('./img/bg17.jpg');")
-
-//-   .tac
-//-     include includes/mapabasediez.svg
-//-     .descripcion 
-
-//-   .section.grid
-//-     .grid-12
-//-       include includes/mapafin.svg
-//-     .grid-12
-//-       h2 Escuchar lo idéntico en lo diferente
-//-       p Lo que tengo para aportar es una vivencia revelada de la matriz a partir de la cual se puede destilar una percepción más refinada y profunda la Creación. +0+1234 revela y desvela a través del discernimiento de los códigos universales, bandas de frecuencias o dimensiones en que se despliega el proceso de cualquier Creación. <br> El proyecto consta de tres niveles de exploración; uno íntimo/vivencial, otro conceptual/teórico y otro que se practica en el contexto por medio de una herramienta para desencriptar.
-
-//-   include includes/app.pug
-
-//-   footer.blockquote--pie(style="background-image: url('./img/bg6.jpg');")
-//-     blockquote.highlight.
-//-       &ldquo;Sólo cuando bajamos al abismo recuperamos los auténticos tesoros de la vida.&rdquo; <br> &mdash; Joseph Campbell
+  - var current = "Lab";
   
-//- block append scripts
-//-   script( type="module", src="./scripts/anims.js")
-//-   script( type="module", src="./scripts/animaciones/animtitle.js")
-    
+
+block content
+  h1= `${current}` 
+
+  .grid  
+    .grid-12.grid-md-6
+      h2 lkj
+
+    .grid-12.grid-md-6.card
+      h4= data["sentir"] 
+
+  section
+    h2 En exposición
+
+    .gallery
+      //- each obra in obras
+      //-   p #{obra.title}
+        //- .gallery__item
+        //-   img#openlightbox.hover-shadow.preview(src=obra.preview alt=obra.title onclick=`openLightbox(); toSlide(${obra.id})`)
+
+  #Lightbox.modal
+    //- span.close.pointer(onclick=`closeLightbox()`) &times;
+
+    .modal-content
+      //- each obra in obras
+        //- .slide
+          //- img.image-slide(src=obra.imagen alt=obra.title)
+          //- small
+          //-   strong= obra.title 
+          //-   strong= obra.description 
+          //-   strong= obra.ref 
+
+      //- a.previous(onclick=`changeSlide(-1)`) &#x276E;
+      //- a.next(onclick=`changeSlide(1)`) &#x276F;
+
+      .dots
+        //- each obra in obras
+          //- img.modal-preview.hover-shadow(src= obra.preview alt= obra.title onclick=`toSlide( ${obra.id} )`)
