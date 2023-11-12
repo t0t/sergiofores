@@ -1,0 +1,265 @@
+body {
+  font-family: $mainff;
+  font-weight: $normal;
+}
+
+h1 {
+  font-size: 9vw;
+  letter-spacing: 2px;
+  line-height: $size-3 + $size-0;
+  
+  @media screen and (min-width: $ipad) {
+    line-height: $size-5 + $size-1;
+    z-index: 9;
+  }
+  
+  @media screen and (min-width: $desktop) {
+    position: relative;
+  }
+}
+
+h2 {
+  line-height: $size-2 + $size-0;
+  text-align: center;
+  letter-spacing: 2px;
+  font-size: $size-2;
+}
+
+h3 {
+  font-size: $size-1;
+  text-align: center;
+  letter-spacing: 2px;
+
+  @media screen and (min-width: $ipad) {
+    font-size: $size-2;
+  }
+
+  @media screen and (min-width: $desktop) {
+    // font-size: $size-3;
+    // line-height: $size-2 + $size-2;
+  }
+}
+
+h4 {
+  line-height: $size-2;
+  letter-spacing: 1px;
+}
+
+html,
+p,
+a,
+ul,
+dl,
+p strong,
+blockquote {
+  line-height: $size-2;
+  letter-spacing: 1px;
+  word-spacing: 0.5px;
+
+  @media screen and (min-width: $bp5) {
+    font-size: $size-1;
+    line-height: $size-2;
+  }
+
+  @media screen and (min-width: $bp6) {
+    // line-height: $size-3;
+  }
+
+  @media screen and (min-width: $bp7) {
+    font-size: $size-2;
+    line-height: $size-3;
+  }
+}
+
+a {
+  font-weight: $medium;
+}
+
+small {
+  font-size: $size-0;
+  line-height: $size-1;
+
+  @media screen and (min-width: $bp7) {
+    font-size: $size-2;
+  }
+}
+
+em,
+dt {
+  font-weight: $medium;
+}
+
+button {
+  font-family: $mainff;
+  font-size: $size-1;
+  letter-spacing: 1px;
+  font-weight: $medium;
+}
+
+text {
+  // font-size: 0.4rem;
+  letter-spacing: 1px;
+  font-weight: bold;
+  letter-spacing: 0.1px;
+}
+
+blockquote {
+  font-size: $size-2;
+  line-height: $size-3;
+  // font-weight: $medium;
+  // font-style: italic;
+}
+
+// Forms
+input {
+  font-family: $mainff;
+  font-weight: $medium;
+  font-size: inherit;
+}
+
+label {
+  font-size: $size-0;
+}
+
+ul,
+ol {
+  list-style-position: inside;
+}
+
+figure {
+  figcaption {
+    font-size: $size-0;
+    line-height: $size-1;
+    font-weight: $medium;
+    letter-spacing: 1px;
+  }
+}
+
+.codigos-ejemplo {
+  text-align: center;
+
+  dt span {
+    font-weight: $bold;
+  }
+
+  dd {
+    font-size: $size-0;
+    line-height: 1.5;
+  }
+
+  @media screen and (min-width: $bp3) {
+    text-align: inherit;
+
+    dt {
+      text-align: right;
+    }
+  }
+}
+
+// .home :link:not(:hover) {
+//   text-decoration: none;
+// }
+
+.titlePage {
+  text-align: center;
+  font-style: bold;
+}
+
+.image-slide+small {
+  text-align: center;
+  line-height: 1.7;
+}
+
+.close:hover,
+.close:focus {
+  text-decoration: none;
+}
+
+.close {
+  font-size: $size-3;
+}
+
+.previous,
+.next {
+  font-weight: bold;
+  font-size: $size-2;
+}
+
+/* TABS */
+.tablink {
+  font-size: 17px;
+}
+
+/* Tags */
+.post-tag {
+  text-transform: uppercase;
+  font-size: $size-0;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-weight: $bold;
+}
+
+.postlist-date {
+  word-spacing: -0.5px;
+}
+
+.postlist-link {
+  font-weight: $bold;
+  line-height: $size-2;
+  text-underline-position: from-font;
+  text-underline-offset: 0;
+  text-decoration-thickness: 5px;
+
+  h3 {
+    line-height: inherit;
+  }
+}
+
+.subTitlePage {
+  font-size: $size-2;
+  text-align: center;
+
+  @media screen and (min-width: $bp3) {
+    font-size: inherit;
+  }
+}
+
+.postlist-item-active .postlist-link {
+  font-weight: $normal;
+}
+
+.post-meta {
+  text-align: center;
+}
+
+.footer-site {
+  font-weight: $medium;
+}
+
+.footer-site .contact-me {
+  text-align: center;
+}
+
+.footer-site__item p {
+  text-align: center;
+}
+
+.footer-site {
+  footer nav a {
+    text-decoration: none;
+  }
+
+  .followme {
+    text-align: center;
+  }
+}
+
+.nav-posts li a {
+  text-align: center;
+  text-decoration: none;
+}
+
+.nav-posts li a::before {
+  font-size: $size-4;
+  line-height: 1;
+}
