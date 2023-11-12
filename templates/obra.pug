@@ -1,22 +1,14 @@
 extends includes/base
-//- include ../js/data/datos.json
 
 block append head
   title #{sitename} - Obra Plástica
   meta(name="description" content="Aporto una perspectiva multidimensional, transdisciplinar y holistica de la Creación para encontrarnos a nosotros mismos en el contexto desde el vacío.")
 
   - var current = "Obra";
-  - var arr = [ "decir", "sentir", "pensar", "hacer" ];
+  
 
 block content
-  header.headerContent
-
-  h3 
-    each a in arr
-      p= a
-  p #{sitename}
-
-
+  header.headerContents
     //- h1.titlePage Corrientes de formas, 
     //-   mark.subTitlePage obras tridimensionales esculpidas por una luz que es de verdad.
     //- .bgImg.animCrop(style="background-image: url('../public/img/bg1.jpg');")
@@ -29,7 +21,7 @@ block content
         | Your browser does not support the video tag.
 
     .grid-12.grid-md-6.card
-      h4 La forma de mis obras son vehículos para que la luz se pueda manifestar.
+      h4= data["sentir"] 
       p.
         Fluidos en un espacio etérico reaccionan a dinámicas vibracionales e inercias sinérgicas que fraguan en un no-tiempo donde se palpa el pálpito de ese tiempo detenido que se vive en el instante presente como símbolo.
 

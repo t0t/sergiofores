@@ -38,8 +38,8 @@ h3 {
   }
 
   @media screen and (min-width: $desktop) {
-    font-size: $size-3;
-    line-height: $size-2 + $size-2;
+    // font-size: $size-3;
+    // line-height: $size-2 + $size-2;
   }
 }
 
@@ -80,6 +80,7 @@ a {
 
 small {
   font-size: $size-0;
+  line-height: $size-1;
 
   @media screen and (min-width: $bp7) {
     font-size: $size-2;

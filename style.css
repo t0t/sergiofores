@@ -470,6 +470,12 @@ h1 {
   margin-bottom: 2.59rem;
 }
 
+@media screen and (min-width: 1025px) {
+  h1 {
+    max-width: 50vw;
+  }
+}
+
 h2,
 h3 {
   margin-top: 0;
@@ -961,13 +967,6 @@ h3 {
   }
 }
 
-@media screen and (min-width: 1025px) {
-  h3 {
-    font-size: 2.59rem;
-    line-height: 3.2rem;
-  }
-}
-
 h4 {
   line-height: 1.6rem;
   letter-spacing: 1px;
@@ -1017,6 +1016,7 @@ a {
 
 small {
   font-size: 0.61rem;
+  line-height: 1.2rem;
 }
 
 @media screen and (min-width: 2558px) {
@@ -3283,12 +3283,12 @@ mark {
 @media screen and (min-width: 1025px) {
   [title~="covertitle"] h1 {
     top: 18vh;
-    right: 18vh;
+    right: -40vw;
     -webkit-transform-origin: right;
             transform-origin: right;
     text-align: right;
     width: 100vw;
-    margin-right: 10.7rem;
+    margin-right: 0;
     -webkit-animation: intro;
             animation: intro;
     -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);

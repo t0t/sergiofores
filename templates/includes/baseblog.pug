@@ -1,23 +1,23 @@
 extends base
 
-block content
-  main.blog
-    block blog
+//- block content
+//-   main.blog
+//-     block blog
 
-block foot
-  ol.postlist.grid
-    each article in articles
-      li.grid__item.postlist-item
-        a.postlist-link(href=`${article.url}`) 
-          h3= article.title
-          img(src=article.img, alt=article.title)
+//- block foot
+//-   ol.postlist.grid
+//-     each article in articles
+//-       li.grid__item.postlist-item
+//-         a.postlist-link(href=`${article.url}`) 
+//-           h3= article.title
+//-           img(src=article.img, alt=article.title)
 
-  footer.blockquote--pie(style="background-image: url('./img/bg2.jpg');")
-    blockquote.highlight.
-      &ldquo;... y cuando el Todo hubo comenzado a ordenarse, todos los elementos recibieron de Dios sus figuras por acción de las ideas y de los números.&rdquo; <br> &mdash; Platón
-  #footer 
-    include footer
+//-   footer.blockquote--pie(style="background-image: url('./img/bg2.jpg');")
+//-     blockquote.highlight.
+//-       &ldquo;... y cuando el Todo hubo comenzado a ordenarse, todos los elementos recibieron de Dios sus figuras por acción de las ideas y de los números.&rdquo; <br> &mdash; Platón
+//-   #footer 
+//-     include footer
 
-block append scripts
-  script(type="module", src="./js/anims.js")
-  script(type="module", src="./js/animaciones/animtitle.js")
+//- block append scripts
+//-   script(type="module", src="./js/anims.js")
+//-   script(type="module", src="./js/animaciones/animtitle.js")
