@@ -11,6 +11,6 @@
     "sass": "^1.69.5"
   },
   "devDependencies": {
-
+    "pug": "^3.0.2"
   }
 }

@@ -89,8 +89,8 @@ block content
     
   .grid(title="entrenamiento")
     .grid-12.grid-md-6(title="video")
-      video#video1(poster='/img/bg1.jpg' controls='false' loop='true')
-        source(src='/img/introweb.mp4' type='video/mp4')
+      video#video1(poster='./public/img/bg1.jpg' controls='false' loop='true')
+        source(src='./public/img/introweb.mp4' type='video/mp4')
         | Your browser does not support the video tag.  
 
     .grid-12.grid-md-6(title="elsersiendo")
@@ -116,7 +116,7 @@ block content
   .grid(title="sociallinks")
     .grid-12.grid-md-6
       p.tac.mt-4 Me sigo
-      include footer
+      include ./footer
     .grid-12.grid-md-6
       .slider--container
         each imgUrl in page_vision.sobremi
