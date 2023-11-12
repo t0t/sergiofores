@@ -69,6 +69,7 @@
         top: 80vh;
         right: 7vw;
         margin-bottom: $size-7;
+        max-width: 25vw;
         h2 {
             transform-origin: right;
             transform: scale(1.9) perspective(50vh) rotateY(-30deg);

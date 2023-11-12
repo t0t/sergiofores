@@ -9,14 +9,14 @@ block append head
 block pageheader
   .container
     .section
-      .div(title="covertitle")
+      div(title="covertitle")
         h1= current
 
-      .div(title="coverimg")
+      div(title="coverimg")
         img(src=`${baseUrl + data.plastica[4]}` alt='Cover image')
 
-      .div(title="sintesis")
-        h2= data.vision4[3]
+      div(title="sintesis")
+        h2= data.vision4[1]
 
 block content
   div(title="vision")

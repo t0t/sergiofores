@@ -3348,6 +3348,7 @@ mark {
     top: 80vh;
     right: 7vw;
     margin-bottom: 17.3rem;
+    max-width: 25vw;
   }
   [title~="sintesis"] h2 {
     -webkit-transform-origin: right;
