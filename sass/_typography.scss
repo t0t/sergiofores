@@ -10,14 +10,11 @@ h1 {
   
   @media screen and (min-width: $ipad) {
     line-height: $size-5 + $size-1;
-    // font-size: $size-5;
-    // margin-left: $size-6;
     z-index: 9;
   }
   
   @media screen and (min-width: $desktop) {
     position: relative;
-    // border: 2px solid red;
   }
 }
 
