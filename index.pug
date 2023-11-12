@@ -1,4 +1,4 @@
-extends /base
+extends ./base
 
 block append head
   - var current = "Cuento";
@@ -12,7 +12,7 @@ block pageheader
         h1= page1["titulo"]
 
       .div(title="coverimg")
-        img(src='/img/cover2.jpg' alt='Cover image')
+        img(src='./public/img/cover2.jpg' alt='Cover image')
 
       .div(title="sintesis")
         h2= page1["subtitulo"]
@@ -88,8 +88,8 @@ block content
     
   .grid(title="entrenamiento")
     .grid-12.grid-md-6(title="video")
-      video#video1(poster='/img/bg1.jpg' controls='false' loop='true')
-        source(src='/img/introweb.mp4' type='video/mp4')
+      video#video1(poster='./public/img/bg1.jpg' controls='false' loop='true')
+        source(src='./public/img/introweb.mp4' type='video/mp4')
         | Your browser does not support the video tag.  
 
     .grid-12.grid-md-6(title="elsersiendo")
@@ -133,5 +133,5 @@ block foot
         small &ldquo;Las obras de arte también son formas simbólicas en sí mismas y, como tales, cumplen una función mediadora capaz de abrirle lo real a la conciencia.&rdquo; <br> &mdash; Gadamer
 
 block append scripts
-  script( type="module" src="/js/slider.js")
+  script( type="module" src="./js/slider.js")
   //- script(type="module" src="/js/main.js")
