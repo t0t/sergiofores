@@ -1,8 +1,9 @@
 extends ./base
 
 block append head
-  title Sergio Forés, arte, desarrollo web y conciencia holistica
-  meta(name="description" content= "Aporto una perspectiva multidimensional, transdisciplinar y holistica de la Creación para encontrarnos a nosotros mismos en el contexto desde el vacío.")
+  - var current = "Home";
+  title #{sitename} - Sergio Forés
+  meta(name="description" content="Sergio Forés, arte, desarrollo web y conciencia holistica")
 
 block pageheader
   .container
@@ -94,7 +95,7 @@ block content
     .grid-12.grid-md-6(title="elsersiendo")
       .slider--container
         .slider5.card
-          h3 Alumno <mark>eterno</mark>
+          h3 Alumno eterno <mark>nuevo</mark> 
           ul 
             li Dándome cuenta de mí.
             li Afinando <mark>claridad</mark>

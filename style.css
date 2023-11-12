@@ -273,8 +273,7 @@ button:hover {
   }
 }
 
-.mainContent,
-.mainNav {
+.mainContent {
   background-color: #dad8d5;
 }
 
@@ -348,6 +347,10 @@ button:hover {
 .postlist-link:hover {
   color: #fae4e5;
   text-decoration-color: #4AECC1;
+}
+
+.nav a {
+  background-color: #fae4e5;
 }
 
 .nav-posts {
@@ -462,7 +465,8 @@ body {
 
 @media screen and (min-width: 423px) {
   .mainNav {
-    padding-top: inherit;
+    position: fixed;
+    z-index: 9;
   }
 }
 
@@ -2864,6 +2868,16 @@ svg#mapabasediez + .descripcion p {
 }
 
 /* Nav */
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.nav li {
+  list-style: none;
+}
+
 .nav a {
   text-decoration: none;
   padding: 0.61rem 1.2rem;
@@ -2874,7 +2888,7 @@ svg#mapabasediez + .descripcion p {
 
 .nav-item a {
   text-decoration: none;
-  color: #dad8d5;
+  color: #131211;
 }
 
 .nav-item-active a {

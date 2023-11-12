@@ -5,7 +5,8 @@ body {
 .mainNav {
   padding-top: $size-3;
   @media screen and (min-width: $ipad) {
-    padding-top: inherit;
+    position: fixed;
+    z-index: 9;
   }
 }
 

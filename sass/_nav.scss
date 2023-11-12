@@ -1,6 +1,7 @@
 .mainNav {
   display: flex;
   justify-content: center;
+  // flex-wrap: wrap;
 }
 
 /* SIDE NAV */
@@ -45,7 +46,10 @@
 /* Nav */
 .nav {
   // display: none;
-
+  display: flex;
+  li {
+    list-style: none;
+  }
   a {
     text-decoration: none;
     padding: $size-0 $size-1;
@@ -73,7 +77,7 @@
 
 .nav-item a {
   text-decoration: none;
-  color: $grey-color-2;
+  color: $grey-color-4;
 }
 
 .nav-item-active a {

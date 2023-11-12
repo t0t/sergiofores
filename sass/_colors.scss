@@ -95,8 +95,7 @@ button {
   }
 }
 
-.mainContent,
-.mainNav {
+.mainContent {
   background-color: $grey-color-2;
 }
 
@@ -186,6 +185,11 @@ button {
   text-decoration-color: $secondary-color;
 }
 
+
+// NAV
+.nav a {
+  background-color: $primary-color;
+}
 .nav-posts {
   background-color: $primary-color;
 }

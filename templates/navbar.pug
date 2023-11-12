@@ -1,7 +1,4 @@
 nav#navbar.nav
-  //- each link in sitenav
-  //-   li(class=(link.name === current) ? "nav-item nav-item-active" : "nav-item")
-  //-     a(href=link.url)= link.name
-  a(href="./sobremi.html") sobre mi
-  a(href="./obra.html") obra
-  a(href="./lab.html") lab
+  each link in sitenav
+    li(class=(link.name === current) ? `nav-item nav-item-active` : `nav-item`)
+      a(href=link.url)= `${link.name}`
