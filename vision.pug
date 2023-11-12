@@ -1,0 +1,137 @@
+extends ./base
+
+block append head
+  - var current = "Vision";
+  title #{sitename} - #{current}
+  meta(name="description" content="Aporto una perspectiva multidimensional, transdisciplinar y holistica de la Creación para encontrarnos a nosotros mismos en el contexto desde el vacío.")
+
+  
+block pageheader
+  .container
+    .section
+      div(title="covertitle")
+        h1= page_vision.titulo
+
+      div(title="coverimg")
+        img(src=`${baseUrl + page_vision.plastica[0]}` alt='Cover image')
+
+      div(title="sintesis")
+        h2= page_vision.vision4[1]
+
+block content
+  div(title="vision")
+    .slider--container
+      .slider1.card
+        h3 Todo ya és, aquí <mark>obvio!</mark>
+        ul 
+          each d1 in page_vision.vision1
+            li= `${d1}`
+
+      .slider1.card
+        h3 Me doy <mark> cuenta</mark> de mí
+        ul 
+          each d2 in page_vision.vision2
+            li= `${d2}`
+
+      .slider1.card
+        h3 Percibo en <mark> 0,1,2,3 y 4</mark>
+        ul 
+          each d3 in page_vision.vision3
+            li= `${d3}`
+
+      .slider1.card
+        h3 Llego a mí
+        ul 
+          each d4 in page_vision.vision4
+            li= `${d4}`
+
+      button.btn--slider(onclick='plusDivs(-1, 0)') &#x276E;
+      button.btn--slider(onclick='plusDivs(1, 0)') &#x276F;
+
+  .grid(title="percepcion")
+    .grid-12.grid-md-6(title="obvio")
+      .slider--container
+        each imgUrl in page_vision.percepcion
+          .slider2.bgImg(style='background-image: url('+`${baseUrl + imgUrl}`+');')
+        button.btn--slider(onclick='plusDivs(-1, 1)') &#x276E;
+        button.btn--slider(onclick=`plusDivs(1, 1)`) &#x276F;
+
+    .grid-12.grid-md-6(title="yocuento").placeself
+      .card
+        h3 <mark>Yo cuento</mark> en mi transitar.
+        ul 
+          each d5 in page_vision.vision5
+            li= `${d5}`
+
+  .grid(title="entrenamiento")
+    .grid-12.grid-md-6(title="proceso")
+      .slider--container
+        .slider3.card
+          h3 Abro mi <mark>verdad</mark>
+          ul 
+            each p in page_vision.proceso1
+              li= `${p}`
+
+        button.btn--slider(onclick='plusDivs(-1, 2)') &#x276E;
+        button.btn--slider(onclick='plusDivs(1, 2)') &#x276F;
+        .slider3.card
+          h3 Una obra; <mark>un proceso</mark>.
+          ul 
+            each p2 in page_vision.proceso2
+              li= `${p2}`
+
+    .grid-12.grid-md-6(title="plastica")
+      .slider--container
+        each imgUrl in page_vision.plastica
+          .slider4.bgImg(style='background-image: url('+`${baseUrl + imgUrl}`+');')
+        button.btn--slider(onclick='plusDivs(-1, 3)') &#x276E;
+        button.btn--slider(onclick='plusDivs(1, 3)') &#x276F;
+    
+  .grid(title="entrenamiento")
+    .grid-12.grid-md-6(title="video")
+      video#video1(poster='/img/bg1.jpg' controls='false' loop='true')
+        source(src='/img/introweb.mp4' type='video/mp4')
+        | Your browser does not support the video tag.  
+
+    .grid-12.grid-md-6(title="elsersiendo")
+      .slider--container
+        .slider5.card
+          h3 Alumno eterno <mark>nuevo</mark> 
+          ul 
+            li Dándome cuenta de mí.
+            li Afinando <mark>claridad</mark>
+            li Honor y gratitud por lo andado hasta aquí
+            li Dejo de girar y avanzo
+        .slider5.card
+          h3 Me planto en mi  <mark>verdad</mark>
+          p Cuento todo el rato para darme cuenta y expandirlo. La información ocurriendo completamente. Somos respuesta.
+        .slider5.card
+          h3 Soy <mark>el ser</mark> siendo
+          p Observo un territorio holístico de creación en el que cristaliza todo lo que soy en esta antena humana que no para de resonar y vibrar.
+        .slider5.card
+          h3 Me <mark>doy cuenta</mark> ...del fractal que lo vincula todo y ahora paso a paso integro coherencia en mi caminar.
+        button.btn--slider(onclick='plusDivs(-1, 4)') &#x276E;
+        button.btn--slider(onclick='plusDivs(1, 4)') &#x276F;
+    
+  .grid(title="sociallinks")
+    .grid-12.grid-md-6
+      p.tac.mt-4 Me sigo
+      include footer
+    .grid-12.grid-md-6
+      .slider--container
+        each imgUrl in page_vision.sobremi
+          .slider6.bgImg(style='background-image: url('+`${baseUrl + imgUrl}`+');')
+        button.btn--slider(onclick='plusDivs(-1, 5)') &#x276E;
+        button.btn--slider(onclick='plusDivs(1, 5)') &#x276F;
+
+block foot
+  .grid 
+    .grid-12.grid-md-6 
+      .card.tac
+        small= `${creditossitio}`
+    .grid-12.grid-md-6 
+      .card.tac
+        small &ldquo;Las obras de arte también son formas simbólicas en sí mismas y, como tales, cumplen una función mediadora capaz de abrirle lo real a la conciencia.&rdquo; <br> &mdash; Gadamer
+
+block append scripts
+  script( src="./js/slider.js")

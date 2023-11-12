@@ -1,0 +1,48 @@
+- const sitename = "+0+1234";
+
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    meta(name='author' content='Sergio Forés')
+    meta(name='keywords' content='Art, Holistic, Creacion, Cabala, Conciencia, Design, 3D printing, Process, HTML, CSS, JavaScript, Crisis, Bloqueo, Creativo, Multidimensional, Arte, Analogia, Hermeneutica, Mapas, Tecnología')
+    link(rel="icon" type="image/x-icon" href="/favicon.ico")
+    link(rel="stylesheet", href="./style.css")
+    block head 
+  
+  include ./data.pug
+  
+  body(style="overflow: hidden")
+    #wrap-preloader(style='flex-wrap: wrap; flex-direction: column; justify-content: center; align-items: center; align-content: center; width: 100vw; height: 100vh; background-color: #fae4e5; margin: 0; padding:0;')
+      svg#preloader.animintro(viewbox='-0 -0 110 110' xmlns='http://www.w3.org/2000/svg' style='z-index: 9999999999999999; width: 50%')
+        circle.grande(cx='50%' cy='50%' r='50' style='fill: white; stroke-width: 2px; stroke: black;' vector-effect='non-scaling-stroke')
+        circle.mediano(cx='27.5%' cy='50%' r='25' style='fill: none; stroke-width: 2px; stroke: black;' vector-effect='non-scaling-stroke')
+        circle.mediano(cx='72.5%' cy='50%' r='25' style='fill: none; stroke-width: 2px; stroke: black;' vector-effect='non-scaling-stroke')
+        circle.uno(cx='15.6%' cy='50%' r='12.5' style='fill: none; stroke-width: 2px; stroke: black;' vector-effect='non-scaling-stroke')
+        circle.tres(cx='61.5%' cy='50%' r='12.5' style='fill: none; stroke-width: 2px; stroke: black;' vector-effect='non-scaling-stroke')
+        circle.dos(cx='38.5%' cy='50%' r='12.5' style='fill: none; stroke-width: 2px; stroke: black;' vector-effect='non-scaling-stroke')
+        circle.cuatro(cx='84.4%' cy='50%' r='12.5' style='fill: none; stroke-width: 2px; stroke: black;' vector-effect='non-scaling-stroke')
+        text(x='39' y='93' font-size='7' font-weight='bold' fill='black' letter-spacing='12') +0+1234
+      h4(style='text-align: center; color:black; font-size: 1.5rem; margin-top: 0; margin-bottom: 0;')
+        | Preparando para contar...
+
+    #theSite.fade-page-off
+    .mainNav
+      include brand
+      include navbar
+      include hambutton.svg
+
+    main#maincontent.mainContent
+      block pageheader 
+      block content 
+
+      footer#footer 
+        block foot
+    
+    block scripts
+      script(type="module" src="/js/main.js")
+      //- script(type="module", src="./js/slider.js")
+
+
