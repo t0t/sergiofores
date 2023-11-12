@@ -19,19 +19,16 @@
         h1 {
             top: 18vh;
             right: -40vw;
-            // transform: scale(1.4) perspective(100vw) rotateY(50deg);
             transform-origin: right;
             text-align: right;
             width: 100vw;
             margin-right: 0;
             animation: intro;
             animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation-duration: 4s;
+            animation-duration: 1s;
             animation-iteration-count: 1;
             animation-fill-mode: forwards;
         }
-        // border: 5px solid goldenrod;
-        // left: 0%;
     }
 }
 

@@ -343,7 +343,7 @@ svg.grafica {
   width: $size-5;
   transition: transform 1s;
   z-index: 9999999;
-  mix-blend-mode: darken;
+  // mix-blend-mode: multiply;
 
   @media screen and (min-width: $ipad) {
     position: absolute;

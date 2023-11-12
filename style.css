@@ -933,7 +933,7 @@ body {
 }
 
 h1 {
-  font-size: 2.59rem;
+  font-size: 9vw;
   letter-spacing: 2px;
   line-height: 3.2rem;
 }
@@ -941,7 +941,6 @@ h1 {
 @media screen and (min-width: 423px) {
   h1 {
     line-height: 7.84rem;
-    font-size: 6.64rem;
     z-index: 9;
   }
 }
@@ -2186,7 +2185,6 @@ svg.grafica text {
   transition: transform 1s;
   transition: transform 1s, -webkit-transform 1s;
   z-index: 9999999;
-  mix-blend-mode: darken;
 }
 
 @media screen and (min-width: 423px) {
@@ -3307,8 +3305,8 @@ mark {
             animation: intro;
     -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
             animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    -webkit-animation-duration: 4s;
-            animation-duration: 4s;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
     -webkit-animation-iteration-count: 1;
             animation-iteration-count: 1;
     -webkit-animation-fill-mode: forwards;

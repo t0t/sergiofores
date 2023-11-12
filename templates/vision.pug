@@ -10,13 +10,13 @@ block pageheader
   .container
     .section
       div(title="covertitle")
-        h1= current
+        h1= page_vision.titulo
 
       div(title="coverimg")
-        img(src=`${baseUrl + data.plastica[4]}` alt='Cover image')
+        img(src=`${baseUrl + page_vision.plastica[0]}` alt='Cover image')
 
       div(title="sintesis")
-        h2= data.vision4[1]
+        h2= page_vision.vision4[1]
 
 block content
   div(title="vision")
@@ -24,25 +24,25 @@ block content
       .slider1.card
         h3 Todo ya és, aquí <mark>obvio!</mark>
         ul 
-          each d1 in data.vision1
+          each d1 in page_vision.vision1
             li= `${d1}`
 
       .slider1.card
         h3 Me doy <mark> cuenta</mark> de mí
         ul 
-          each d2 in data.vision2
+          each d2 in page_vision.vision2
             li= `${d2}`
 
       .slider1.card
         h3 Percibo en <mark> 0,1,2,3 y 4</mark>
         ul 
-          each d3 in data.vision3
+          each d3 in page_vision.vision3
             li= `${d3}`
 
       .slider1.card
         h3 Llego a mí
         ul 
-          each d4 in data.vision4
+          each d4 in page_vision.vision4
             li= `${d4}`
 
       button.btn--slider(onclick='plusDivs(-1, 0)') &#x276E;
@@ -51,7 +51,7 @@ block content
   .grid(title="percepcion")
     .grid-12.grid-md-6(title="obvio")
       .slider--container
-        each imgUrl in data.percepcion
+        each imgUrl in page_vision.percepcion
           .slider2.bgImg(style='background-image: url('+`${baseUrl + imgUrl}`+');')
         button.btn--slider(onclick='plusDivs(-1, 1)') &#x276E;
         button.btn--slider(onclick=`plusDivs(1, 1)`) &#x276F;
@@ -60,7 +60,7 @@ block content
       .card
         h3 <mark>Yo cuento</mark> en mi transitar.
         ul 
-          each d5 in data.vision5
+          each d5 in page_vision.vision5
             li= `${d5}`
 
   .grid(title="entrenamiento")
@@ -69,7 +69,7 @@ block content
         .slider3.card
           h3 Abro mi <mark>verdad</mark>
           ul 
-            each p in data.proceso1
+            each p in page_vision.proceso1
               li= `${p}`
 
         button.btn--slider(onclick='plusDivs(-1, 2)') &#x276E;
@@ -77,12 +77,12 @@ block content
         .slider3.card
           h3 Una obra; <mark>un proceso</mark>.
           ul 
-            each p2 in data.proceso2
+            each p2 in page_vision.proceso2
               li= `${p2}`
 
     .grid-12.grid-md-6(title="plastica")
       .slider--container
-        each imgUrl in data.plastica
+        each imgUrl in page_vision.plastica
           .slider4.bgImg(style='background-image: url('+`${baseUrl + imgUrl}`+');')
         button.btn--slider(onclick='plusDivs(-1, 3)') &#x276E;
         button.btn--slider(onclick='plusDivs(1, 3)') &#x276F;
@@ -119,7 +119,7 @@ block content
       include footer
     .grid-12.grid-md-6
       .slider--container
-        each imgUrl in data.sobremi
+        each imgUrl in page_vision.sobremi
           .slider6.bgImg(style='background-image: url('+`${baseUrl + imgUrl}`+');')
         button.btn--slider(onclick='plusDivs(-1, 5)') &#x276E;
         button.btn--slider(onclick='plusDivs(1, 5)') &#x276F;

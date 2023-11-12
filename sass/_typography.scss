@@ -4,13 +4,13 @@ body {
 }
 
 h1 {
-  font-size: $size-3;
+  font-size: 9vw;
   letter-spacing: 2px;
   line-height: $size-3 + $size-0;
   
   @media screen and (min-width: $ipad) {
     line-height: $size-5 + $size-1;
-    font-size: $size-5;
+    // font-size: $size-5;
     // margin-left: $size-6;
     z-index: 9;
   }
