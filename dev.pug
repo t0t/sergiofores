@@ -21,28 +21,28 @@ block pageheader
 block content
   div(title="vision")
     .slider--container
-      .slider1.card
-        h3 Todo ya és, aquí <mark>obvio!</mark>
+      .slider1.card.cardInvert
+        h3= page_dev.headings.h1
         ul 
-          each d1 in page_dev.vision1
+          each d1 in page_dev.bloque1
             li= `${d1}`
 
       .slider1.card
         h3 Me doy <mark> cuenta</mark> de mí
         ul 
-          each d2 in page_dev.vision2
+          each d2 in page_dev.bloque2
             li= `${d2}`
 
       .slider1.card
         h3 Percibo en <mark> 0,1,2,3 y 4</mark>
         ul 
-          each d3 in page_dev.vision3
+          each d3 in page_dev.bloque3
             li= `${d3}`
 
       .slider1.card
         h3 Llego a mí
         ul 
-          each d4 in page_dev.vision4
+          each d4 in page_dev.bloque4
             li= `${d4}`
 
       button.btn--slider(onclick='plusDivs(-1, 0)') &#x276E;
@@ -60,7 +60,7 @@ block content
       .card
         h3 <mark>Yo cuento</mark> en mi transitar.
         ul 
-          each d5 in page_dev.vision5
+          each d5 in page_dev.bloque5
             li= `${d5}`
 
   .grid(title="entrenamiento")

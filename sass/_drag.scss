@@ -28,11 +28,13 @@
             animation-duration: 1s;
             animation-iteration-count: 1;
             animation-fill-mode: forwards;
+            z-index: $tronco;
         }
     }
 }
 
 [title~="coverimg"] {
+    z-index: $raiz;
     img {
         border-top-left-radius: 50%;
         border-bottom-right-radius: 50%;

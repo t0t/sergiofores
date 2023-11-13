@@ -2,9 +2,13 @@
   z-index: $raiz;
 }
 
-#metodosvg {
+.mainNav {
   z-index: $ramas;
 }
+
+// #metodosvg {
+//   z-index: $ramas;
+// }
 
 /* hambutton */
 .hambutton {
@@ -17,17 +21,19 @@
     z-index: $ramas;
   }
 }
-
+.card {
+  z-index: $tronco;
+}
 // gsapanim
 svg#scrollanim {
   z-index: $raiz;
 }
 
-#gematriApp {
-  text {
-    z-index: $tronco;
-  }
-}
+// #gematriApp {
+//   text {
+//     z-index: $tronco;
+//   }
+// }
 
 /* LOGO */
 .logo {
