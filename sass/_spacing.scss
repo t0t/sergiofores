@@ -2,14 +2,6 @@ body {
   margin: 0;
 }
 
-.mainNav {
-  padding-top: $size-2;
-  @media screen and (min-width: $ipad) {
-    position: fixed;
-    z-index: 9;
-  }
-}
-
 h1 {
   margin-bottom: $size-3;
   @media screen and (min-width: $desktop) {
@@ -191,6 +183,10 @@ button {
 
 .mainContent {
   min-height: 125vh;
+  padding-top: 8vh;
+  @media screen and (min-width: $desktop) {
+    padding-top: inherit;
+  }
 }
 
 .overlay {

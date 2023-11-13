@@ -323,39 +323,48 @@ svg.grafica {
 }
 
 /* LOGO */
-.logo {
-  width: $size-3;
-  transition: transform 1s;
-  top: calc($size-3 - $size-1);
-  left: calc($size-3 - $size-1);
-  position: fixed;
-  mix-blend-mode: difference;
+// .logo {
+//   width: $size-3;
+//   transition: transform 1s;
+//   top: calc($size-3 - $size-1);
+//   left: calc($size-3 - $size-1);
+//   position: fixed;
+//   mix-blend-mode: difference;
 
-  circle {
-    stroke: $grey-color;
-    stroke-width: 1px;
-    fill: none;
-  }
+//   circle {
+//     stroke: $grey-color;
+//     stroke-width: 1px;
+//     fill: none;
+//   }
 
-  &:hover {
-    transform: rotate(360deg) scale(1.1);
-    transition: transform .8s;
-  }
+//   &:hover {
+//     transform: rotate(360deg) scale(1.1);
+//     transition: transform .8s;
+//   }
+// }
+
+.brand {
+  // display: block;
+  // position: relative;
+  // width: 100%;
+  // height: 100%;
+  // background-color: #fff;
 }
 
 .logo2 {
-  width: $size-5;
-  transition: transform 1s;
-  z-index: 9999999;
-  // mix-blend-mode: multiply;
+  width: 100px;
+  z-index: 9;
+  padding-left: $size-0;
+  padding-top: $size-0;
+  position: fixed;
 
-  @media screen and (min-width: $ipad) {
-    position: absolute;
+  @media screen and (min-width: $desktop) {
+    // width: 30vw;
+    transition: transform 1s;
+    width: $size-5;
+    position: fixed;
     top: 5vw;
     right: 5vw;
-  }
-  @media screen and (min-width: $desktop) {
-    position: fixed;
   }
 
   circle {
