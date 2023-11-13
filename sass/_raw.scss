@@ -279,6 +279,10 @@ svg.grafica {
   }
 }
 
+.cardRotate {
+  transform: rotate(2deg);
+}
+
 .menu3d {
   display: grid;
   padding-bottom: $size-1;

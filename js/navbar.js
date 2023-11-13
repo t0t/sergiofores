@@ -15,16 +15,32 @@ if ( !isSafari && !isMobileDevice()) {
 
   // console.log(`No es SAFARI porque da ${isSafari}`);
   var prevScrollpos = window.pageYOffset;
+  
+  let nav = document.getElementById("navbar");
 
   window.onscroll = function () {
     var currentScrollPos = window.pageYOffset;
 
     if (prevScrollpos > currentScrollPos)  {
-      document.getElementById("navbar").style.top = "0px";
+      // console.log(nav);
+      nav.style.top = "0px";
     } else {
-      document.getElementById("navbar").style.top = "-100px";
+      // console.log(nav);
+      nav.style.top = "-100px";
     }
 
     prevScrollpos = currentScrollPos;
   };
 };
+
+/* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
+// var prevScrollpos = window.pageYOffset;
+// window.onscroll = function() {
+//   var currentScrollPos = window.pageYOffset;
+//   if (prevScrollpos > currentScrollPos) {
+//     document.getElementById("navbar").style.top = "0";
+//   } else {
+//     document.getElementById("navbar").style.top = "-50px";
+//   }
+//   prevScrollpos = currentScrollPos;
+// }

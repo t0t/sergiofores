@@ -21,25 +21,25 @@ block pageheader
 block content
   div(title="vision")
     .slider--container
-      .slider1.card.cardInvert
+      .slider1.card.cardInvert.cardRotate
         h3= page_dev.headings.h1
         ul 
           each d1 in page_dev.bloque1
             li= `${d1}`
 
-      .slider1.card
+      .slider1.card.cardInvert.cardRotate
         h3 Me doy <mark> cuenta</mark> de mí
         ul 
           each d2 in page_dev.bloque2
             li= `${d2}`
 
-      .slider1.card
+      .slider1.card.cardInvert.cardRotate
         h3 Percibo en <mark> 0,1,2,3 y 4</mark>
         ul 
           each d3 in page_dev.bloque3
             li= `${d3}`
 
-      .slider1.card
+      .slider1.card.cardInvert.cardRotate
         h3 Llego a mí
         ul 
           each d4 in page_dev.bloque4

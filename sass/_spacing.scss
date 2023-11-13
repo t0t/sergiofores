@@ -3,7 +3,7 @@ body {
 }
 
 .mainNav {
-  padding-top: $size-3;
+  padding-top: $size-2;
   @media screen and (min-width: $ipad) {
     position: fixed;
     z-index: 9;
