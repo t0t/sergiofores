@@ -6,6 +6,7 @@
         "slides slides"
         "prev next"
         ;
+    align-items: center;
 
     @media screen and (min-width: $ipad) {
         grid-template-columns: .1fr 10fr .1fr;
