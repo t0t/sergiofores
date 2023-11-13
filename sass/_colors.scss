@@ -7,7 +7,11 @@ a {
   color: $black-color;
 }
 
-p>a {
+a:hover {
+  color: $grey-color;
+}
+
+p > a {
   color: $grey-color;
 }
 
@@ -132,9 +136,6 @@ button {
 /* Tags */
 .post-tag {
   color: $grey-color-3;
-}
-.section {
-// background-color: red;
 }
 
 .sectionResaltadaClara {
