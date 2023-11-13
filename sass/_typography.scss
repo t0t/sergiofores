@@ -9,7 +9,8 @@ h1 {
   line-height: $size-3 + $size-0;
   
   @media screen and (min-width: $ipad) {
-    line-height: $size-5 + $size-1;
+    line-height: 10vw;
+    // line-height: $size-5 + $size-1;
     // z-index: 9;
   }
   
