@@ -113,3 +113,6 @@ window.addEventListener('resize', function () {
 });
 
 
+const d = new Date();
+let year = d.getFullYear();
+document.getElementById("fecha").innerHTML = year;

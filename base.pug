@@ -29,7 +29,7 @@ html(lang='es')
         | Preparando para contar...
 
     #theSite.fade-page-off
-    .mainNav
+    nav.mainNav
       include brand
       include navbar
       //- include hambutton.svg
@@ -38,9 +38,10 @@ html(lang='es')
       block pageheader 
       block content 
 
-      footer#footer 
-        block foot
-    
+    footer.siteFooter 
+      block foot
+      include footer
+
     block scripts
       script(type="module" src="/js/main.js")
       //- script(type="module", src="./js/slider.js")

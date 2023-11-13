@@ -1,21 +1,24 @@
-//- footer.grid-12
-  //- .card.cardInvert.tac
-  //-   header
-  //-     h1 Todo lo que existe se reduce a +0+1234
+.grid
 
-  //-   main
-  //-     p.
-  //-       No voy a poder evitar responder si me envias un mensaje:
-    
+  //- .grid-12
+  //-   .card.cardInvert.tac
   //-   .contact-me
   //-     a.btn--default.btn--black.m-2(href='https://api.whatsapp.com/send?phone=+34619549032' target='_blank') whatsApp
   //-     a.btn--default.btn--black.m-2(href='https://t.me/sergiofores' target='_blank') telegram
 
-  //-   footer
-  //-     h2 Me gusta desarrollar, diseñar, crear ligero y fluido 
-  //-     dl
-  //-       dt Como desarrollador frontend (old school) estoy enamorado de:
-  //-       dd Git, HTML, CSS, SASS, PUG, JS
+  //- .grid-6
+  //-   h2 Me gusta desarrollar, diseñar, crear ligero y fluido 
+  //-   dl
+  //-     dt Como desarrollador frontend (old school) estoy enamorado de:
+  //-     dd Git, HTML, CSS, SASS, PUG, JS
 
-.followme
-  include sociallinks
+  .grid-12
+    p.tac.mt-4 Me sigo
+    .followme
+      include sociallinks
+  
+  .grid-12
+    .card.tac
+      small #{creditossitio} 
+      small(id="fecha")
+
