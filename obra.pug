@@ -113,11 +113,8 @@ block content
         button.btn--slider(onclick='plusDivs(-1, 4)') &#x276E;
         button.btn--slider(onclick='plusDivs(1, 4)') &#x276F;
     
-  .grid(title="sociallinks")
-    .grid-12.grid-md-6
-      p.tac.mt-4 Me sigo
-      include footer
-    .grid-12.grid-md-6
+  footer.grid(title="sociallinks")
+    .grid-12
       .slider--container
         each imgUrl in page_obra.sobremi
           .slider6.bgImg(style='background-image: url('+`${baseUrl + imgUrl}`+');')
