@@ -349,11 +349,13 @@ svg.grafica {
   // width: 100%;
   // height: 100%;
   // background-color: #fff;
+  mix-blend-mode: multiply;
+  z-index: $cielo;
+  position: fixed;
 }
 
 .logo2 {
   width: 100px;
-  z-index: 9;
   padding-left: $size-0;
   padding-top: $size-0;
   position: fixed;
@@ -362,7 +364,6 @@ svg.grafica {
     // width: 30vw;
     transition: transform 1s;
     width: $size-5;
-    position: fixed;
     top: 5vw;
     right: 5vw;
   }
