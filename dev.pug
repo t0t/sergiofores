@@ -5,7 +5,6 @@ block append head
   title #{sitename} - #{current}
   meta(name="description" content="Aporto una perspectiva multidimensional, transdisciplinar y holistica de la Creación para encontrarnos a nosotros mismos en el contexto desde el vacío.")
 
-  
 block pageheader
   main(title="covertitle")
     h1= page_dev.titulo
@@ -17,7 +16,7 @@ block pageheader
     h2= page_dev.subtitulo
 
 block content
-  section(title="vision").grid
+  section(title="vision")
     .slider--container
       .slider1.card.cardInvert.cardRotate
         h3= page_dev.headings.h1
