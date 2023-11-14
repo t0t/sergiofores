@@ -110,10 +110,10 @@ figure {
 }
 
 .card {
-  padding: $size-2;
+  // padding: $size-2;
   
   @media screen and (min-width: $ipad) {
-    padding: $size-3;
+    // padding: $size-1;
   }
   
   @media screen and (min-width: $desktop) {
