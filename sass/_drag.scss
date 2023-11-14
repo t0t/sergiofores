@@ -17,7 +17,7 @@
 
     @media screen and (min-width: $desktop) {
         h1 {
-            top: 18vh;
+            top: 24vh;
             right: -40vw;
             transform-origin: right;
             text-align: right;
@@ -59,13 +59,14 @@
 
 [title~="sintesis"] {
     @media screen and (min-width: $ipad) {
-        top: 30px;
+        // top: 40px;
+        // margin-top: $size-7;
         // transform: perspective(550px) rotateY(30deg);
     }
     
     @media screen and (min-width: $desktop) {
         position: absolute;
-        top: 80vh;
+        top: 70vh;
         right: 7vw;
         margin-bottom: $size-7;
         max-width: 25vw;

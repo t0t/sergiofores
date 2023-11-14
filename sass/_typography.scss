@@ -4,12 +4,12 @@ body {
 }
 
 h1 {
-  font-size: 9vw;
+  font-size: 7vw;
   letter-spacing: 2px;
-  line-height: $size-3 + $size-0;
+  line-height: 7vw;
+  // line-height: $size-2;
   
   @media screen and (min-width: $ipad) {
-    line-height: 10vw;
     // line-height: $size-5 + $size-1;
     // z-index: 9;
   }
@@ -87,7 +87,7 @@ button {
 }
 
 text {
-  // font-size: 0.4rem;
+  font-size: 23px;
   letter-spacing: 1px;
   font-weight: bold;
   letter-spacing: 0.1px;
