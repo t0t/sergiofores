@@ -8,18 +8,16 @@
 }
 
 
-[title~="covertitle"] {
-    margin-left: $size-2;
-    @media screen and (min-width: $ipad) {
-        // border: 5px solid goldenrod;
-        // transform: scale(0.7) perspective(700px) rotateY(30deg);
-    }
-    
-    @media screen and (min-width: $desktop) {
-        margin-left: 0;
-        h1 {
-            top: 24vh;
-            right: -40vw;
+[title~="covertitle"] {   
+    // position: absolute; 
+    h1 {
+        @media screen and (min-width: $ipad) {
+            top: inherit;
+            position: relative;
+        }
+        @media screen and (min-width: $desktop) {
+            top: -7vh;
+            right: -43vw;
             transform-origin: right;
             text-align: right;
             width: 100vw;
@@ -37,6 +35,7 @@
 [title~="coverimg"] {
     z-index: $raiz;
     img {
+        // object-fit: cover;
         border-top-left-radius: 50%;
         border-bottom-right-radius: 50%;
     }

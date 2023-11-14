@@ -3,7 +3,8 @@ body {
 }
 
 h1 {
-  margin-bottom: $size-3;
+  margin-top: 0;
+  margin-bottom: 0;
   @media screen and (min-width: $desktop) {
     max-width: 50vw;
   }
@@ -194,11 +195,18 @@ section {
 }
 
 .mainHeader {
-  height: 100vh;
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  row-gap: $size-2;
+  text-align: center;
+  @media screen and (min-width: $desktop) {
+    // height: 100vh;
+  }
 }
 .mainContent {
   min-height: 125vh;
-  padding-top: 8vh;
+  // padding-top: 8vh;
   padding-right: $size-2;
   padding-left: $size-2;
   
@@ -420,5 +428,11 @@ svg#mapabasediez {
 }
 
 .siteFooter {
-  // height: 75vh;
+  min-height: 30vh;
+  @media screen and (min-width: $ipad) {
+    min-height: 50vh;
+  }
+  @media screen and (min-width: $desktop) {
+    min-height: 75vh;
+  }
 }
