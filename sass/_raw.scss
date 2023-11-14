@@ -331,16 +331,16 @@ article {
 
 .logo2 {
   width: 100px;
-  padding-left: $size-0;
-  padding-top: $size-0;
+  // padding-left: $size-0;
+  // padding-top: $size-0;
   position: fixed;
 
   @media screen and (min-width: $desktop) {
     // width: 30vw;
     transition: transform 1s;
     width: $size-5;
-    top: 5vw;
-    right: 5vw;
+    top: $size-3;
+    right: $size-3;
   }
 
   circle {

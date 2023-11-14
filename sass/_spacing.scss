@@ -5,7 +5,13 @@ body {
 h1 {
   margin-top: 0;
   margin-bottom: 0;
+  @media screen and (min-width: $ipad) {
+    margin-top: 12vw;
+    margin-bottom: 9vw;
+  }
   @media screen and (min-width: $desktop) {
+    margin-top: 0;
+    margin-bottom: 0;
     max-width: 50vw;
   }
 }
@@ -122,20 +128,17 @@ figure {
     min-width: 40vw;
     padding: $size-3;
   }
-
-  p {
-    margin-bottom: 0;
-  }
-
+  
   &Bottom {
     margin-top: $size-6;
   }
-
+  
   p {
     padding: 0;
     margin-top: 0;
     margin-left: 0;
     margin-right: 0;
+    margin-bottom: 0;
   }
 
   // @media screen and (min-width: $bp3) {

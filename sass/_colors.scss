@@ -100,7 +100,7 @@ button {
 }
 
 .mainContent {
-  background-color: $grey-color-2;
+  background-color: $grey-color-6;
 }
 
 .image-slide+small {
@@ -188,7 +188,7 @@ button {
 
 .siteFooter {
   color: $black-color;
-  background-color: $grey-color-1;
+  background-color: $grey-color-2;
 
   footer nav a {
     color: $grey-color-3;
@@ -196,74 +196,6 @@ button {
 
   footer nav a:hover {
     color: $grey-color-2;
-  }
-}
-
-#gematriApp {
-  svg {
-    background-color: $white-color-alpha-0;
-  }
-
-  circle {
-    fill: none;
-  }
-
-  .result {
-    // fill: $primary-color;
-
-    &--anim {}
-  }
-
-  line {
-    stroke: $quaternary-color;
-  }
-
-  text {}
-}
-
-svg#mapabasediez {
-
-  #cero,
-  #uno,
-  #dos,
-  #tres,
-  #cuatro {
-    fill: $grey-color-2;
-  }
-
-  #cinco,
-  #seis,
-  #siete,
-  #ocho,
-  #nueve {
-    fill: $grey-color-3;
-  }
-
-  #cero,
-  #uno,
-  #dos,
-  #tres,
-  #cuatro,
-  #cinco,
-  #seis,
-  #siete,
-  #ocho,
-  #nueve {
-    &:hover {
-      fill: $secondary-color;
-    }
-  }
-
-  text {
-    fill: $black-color;
-  }
-
-  +.descripcion p {
-    background-color: $white-color-alpha-0;
-  }
-
-  #adicionales {
-    stroke: $black-color;
   }
 }
 
