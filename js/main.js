@@ -112,7 +112,13 @@ window.addEventListener('resize', function () {
   }
 });
 
-
+// Pon el anyo en curso
 const d = new Date();
 let year = d.getFullYear();
 document.getElementById("fecha").innerHTML = year;
+
+// document.getElementById('submit-btn').addEventListener('click', 
+//   function(event) {
+//     // Handle the form data
+//     event.preventDefault();
+// });

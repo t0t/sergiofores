@@ -131,40 +131,40 @@
         left: 30%;
 
         video {
-            transform: rotate(-6deg);
             display: block;
             width: 60vh;
         }
     }
-
+    
     @media screen and (min-width: $desktop) {
         video {
+            transform: rotate(-6deg);
             width: 44vw;
         }
     }
 }
 
 [title~="yocuento"] {
-    @media screen and (min-width: $ipad) {
-        top: 75%;
-    }
+    // @media screen and (min-width: $ipad) {
+    //     top: 75%;
+    // }
 
-    @media screen and (min-width: $desktop) {
-        top: 72%;
-        left: 44%;
-    }
+    // @media screen and (min-width: $desktop) {
+    //     top: 72%;
+    //     left: 44%;
+    // }
 }
 
 [title~="elsersiendo"] {
-    @media screen and (min-width: $ipad) {
-        top: 84.6%;
-        left: 12%;
-    }
+    // @media screen and (min-width: $ipad) {
+    //     top: 84.6%;
+    //     left: 12%;
+    // }
 }
 
 [title~="sociallinks"] {
-    @media screen and (min-width: $ipad) {
-        bottom: 1.5%;
-        left: 7%;
-    }
+    // @media screen and (min-width: $ipad) {
+    //     bottom: 1.5%;
+    //     left: 7%;
+    // }
 }

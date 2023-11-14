@@ -3,24 +3,27 @@
     margin-right: $size-1;
     display: grid;
     grid-template-areas: 
-        "slides slides"
-        "prev next"
-        ;
+    "slides slides"
+    "prev next"
+    ;
     align-items: center;
-
+    gap: $size-1;
+    
     @media screen and (min-width: $ipad) {
         grid-template-columns: .1fr 10fr .1fr;
         grid-template-areas: "prev slides next";
         margin-left: 0;
         margin-right: 0;
-        margin-top: $size-0;
-        margin-bottom: $size-0;
+        // margin-top: $size-0;
+        // margin-bottom: $size-0;
     }
     @media screen and (min-width: $desktop) {
+        gap: $size-3;
     }
 
     div {
         grid-area: slides;
+        width: auto;
         @media screen and (min-width: $desktop) {
             // width: max-content;
         }

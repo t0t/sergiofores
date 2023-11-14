@@ -51,6 +51,7 @@
   width: 50px;
   background-color: $grey-color-2;
   border: 1px solid $grey-color-3;
+  place-self: center;
   &:hover {
     color: $black-color;
     background-color: $white-color-alpha-0;

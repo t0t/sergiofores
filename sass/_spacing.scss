@@ -53,10 +53,10 @@ h3,
 blockquote {
   padding-left: 0;
   
-  @media screen and (min-width: $ipad) {
-    // max-width: 50vw;
-    padding-left: inherit;
-  }
+  // @media screen and (min-width: $ipad) {
+  //   // max-width: 50vw;
+  //   padding-left: inherit;
+  // }
 }
 
 ul {
@@ -75,22 +75,10 @@ dl {
   padding-bottom: $size-2;
 }
 
-
-// h1,
-// h2,
-// p, 
-// dl {
-//   padding-left: $size-3;
-//   padding-right: $size-3;
-// }
 dt {
   margin-top: $size-2;
   margin-bottom: $size-2;
 }
-
-// dd {
-//   margin-left: 0;
-// }
 
 hr {
   width: $size-4;
@@ -123,9 +111,14 @@ figure {
 
 .card {
   padding: $size-2;
-  width: 100%;
-
+  
   @media screen and (min-width: $ipad) {
+    padding: $size-3;
+  }
+  
+  @media screen and (min-width: $desktop) {
+    max-width: 50vw;
+    min-width: 40vw;
     padding: $size-3;
   }
 
@@ -181,6 +174,28 @@ button {
   }
 }
 
+section {
+  // background-color: blue;
+  place-content: center;
+  align-items: center;
+  
+  @media screen and (min-width: $ipad) {
+    min-height: 50vh;
+  }
+  @media screen and (min-width: $desktop) {
+    margin: 0 $size-3;
+    // padding: $size-3;
+    place-items: center;
+  }
+}
+
+.sectionContent {
+  // display: grid;
+}
+
+.mainHeader {
+  height: 100vh;
+}
 .mainContent {
   min-height: 125vh;
   padding-top: 8vh;
@@ -216,7 +231,7 @@ button {
 .bgImg {
   min-height: 50vw;
 
-  @media screen and (min-width: $ipad) {
+  @media screen and (min-width: $desktop) {
     transform: rotate(-6deg);
   }
 }
@@ -226,16 +241,6 @@ button {
   // @media screen and (min-width: $bp3) {
   //   min-height: 50vh;
   // }
-}
-
-.section {
-  min-height: 100vh;
-  width: 100%;
-
-  @media screen and (min-width: $desktop) {
-    padding: $size-3;
-    place-items: center;
-  }
 }
 
 .grid__item {
@@ -253,14 +258,6 @@ video {
 
   @media screen and (min-width: $ipad) {
     width: 50%;
-  }
-}
-
-section {
-  width: 100%;
-
-  @media screen and (min-width: $bp2) {
-    padding: 0;
   }
 }
 
@@ -417,7 +414,6 @@ svg#mapabasediez {
   }
 }
 
-
 .siteFooter {
-  height: 75vh;
+  // height: 75vh;
 }

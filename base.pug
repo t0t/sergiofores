@@ -34,9 +34,12 @@ html(lang='es')
         include navbar
         //- include ./assets/hambutton.svg
 
-      main#maincontent.mainContent
-        block pageheader 
-        block content 
+      main.mainContent
+        header.mainHeader
+          block pageheader 
+
+        .sectionContent
+          block content 
 
       footer.siteFooter 
         block foot

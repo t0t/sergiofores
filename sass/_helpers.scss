@@ -236,7 +236,9 @@ mark {
   text-decoration-thickness: 2px;
   text-decoration-color: $primary-color;
 }
-
+.shadow {
+  filter: drop-shadow($grey-color 0 0 0.5rem);
+}
 .rounded {
   border-radius: 50%;
 }
@@ -244,7 +246,6 @@ mark {
 .placeself {
   place-self: center;
 }
-
 
 .img--fl {
   float: left;

@@ -67,11 +67,11 @@
 }
 .grid--1 {
   gap: $size-4;
-  @media screen and (min-width: $ipad) {
-    max-width: 90vw;
-    place-items: center;
-    margin: 0 $size-3;
-  }
+  // @media screen and (min-width: $ipad) {
+  //   max-width: 90vw;
+  //   place-items: center;
+  //   margin: 0 $size-3;
+  // }
 }
 
 .grid--img {

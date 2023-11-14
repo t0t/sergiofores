@@ -1,9 +1,9 @@
 /* Global stylesheet */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;700&display=swap');
 
-#main {
-  transition: margin-left .3s;
-}
+// #main {
+//   transition: margin-left .3s;
+// }
 
 .mainContent {
   overflow: hidden;
@@ -265,7 +265,6 @@ svg.grafica {
     justify-self: start;
     background-size: cover;
     // flex-direction: initial;
-
   }
 
   p {
