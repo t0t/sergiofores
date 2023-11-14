@@ -1,26 +1,16 @@
 .slider--container {
-    margin-left: $size-1;
-    margin-right: $size-1;
     display: grid;
     grid-template-areas: 
     "slides slides"
-    "prev next"
-    ;
+    "prev next";
     gap: $size-1;
     
     @media screen and (min-width: $ipad) {
         justify-items: center;
-        // grid-template-rows: 1fr;
-        // grid-template-areas: "prev slides next";
-        margin-left: 0;
-        margin-right: 0;
-        // background-color: #fff;
-        // margin-top: $size-0;
-        // margin-bottom: $size-0;
     }
-    @media screen and (min-width: $desktop) {
-        gap: $size-3;
-    }
+    // @media screen and (min-width: $desktop) {
+    //     // gap: $size-1;
+    // }
     .next {
         grid-area: next;
         place-self: start;
@@ -28,6 +18,7 @@
     .prev{
         grid-area: prev;
         place-self: end;
+        align-self: start;
     }
     
     div {

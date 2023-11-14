@@ -239,21 +239,27 @@ svg.grafica {
   }
 }
 
-.codigos-ejemplo {
-  @media screen and (min-width: $bp1) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
+// .codigos-ejemplo {
+//   @media screen and (min-width: $bp1) {
+//     display: grid;
+//     grid-template-columns: repeat(2, 1fr);
+//   }
 
-  @media screen and (min-width: $bp3) {
-    align-items: center;
-    grid-template-columns: repeat(4, 1fr);
-  }
+//   @media screen and (min-width: $bp3) {
+//     align-items: center;
+//     grid-template-columns: repeat(4, 1fr);
+//   }
 
-  @media screen and (min-width: $bp5) {
-    grid-template-columns: repeat(8, 1fr);
-  }
+//   @media screen and (min-width: $bp5) {
+//     grid-template-columns: repeat(8, 1fr);
+//   }
+// }
+
+
+article {
+  display: inherit;
 }
+
 
 .card {
   display: flex;

@@ -199,8 +199,13 @@ section {
 .mainContent {
   min-height: 125vh;
   padding-top: 8vh;
+  padding-right: $size-2;
+  padding-left: $size-2;
+  
   @media screen and (min-width: $desktop) {
     padding-top: inherit;
+    padding-right: inherit;
+    padding-left: inherit;
   }
 }
 

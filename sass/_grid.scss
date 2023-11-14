@@ -2,8 +2,15 @@
 
 .grid {
   display: grid;
-  gap: $size-3;
-  grid-template-columns: repeat(12, 1fr);
+  row-gap: $size-3;
+  @media screen and (min-width: $ipad) {
+    column-gap: $size-2;
+    grid-template-columns: repeat(12, 1fr);
+    // grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  }
+  @media screen and (min-width: $desktop) {
+    column-gap: $size-3;
+  }
 }
 
 // Controla los gaps
