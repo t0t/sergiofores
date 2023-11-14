@@ -6,34 +6,35 @@
     "slides slides"
     "prev next"
     ;
-    align-items: center;
+    justify-items: center;
     gap: $size-1;
     
+    .next {
+        grid-area: next;
+        place-self: start;
+    }
+    .prev{
+        grid-area: prev;
+        place-self: end;
+    }
     @media screen and (min-width: $ipad) {
-        grid-template-columns: .1fr 10fr .1fr;
-        grid-template-areas: "prev slides next";
+        // grid-template-rows: 1fr;
+        // grid-template-areas: "prev slides next";
         margin-left: 0;
         margin-right: 0;
+        // background-color: #fff;
         // margin-top: $size-0;
         // margin-bottom: $size-0;
     }
     @media screen and (min-width: $desktop) {
         gap: $size-3;
     }
-
+    
     div {
         grid-area: slides;
-        width: auto;
-        @media screen and (min-width: $desktop) {
+        @media screen and (min-width: $ipad) {
+            width: 100%;
             // width: max-content;
         }
-    }
-    &:nth-last-child(1) {
-        grid-area: next;
-        align-self: end;
-    }
-    &:nth-last-child(2) {
-        grid-area: prev;
-        align-self: start;
     }
 }

@@ -14,8 +14,9 @@
         // border: 5px solid goldenrod;
         // transform: scale(0.7) perspective(700px) rotateY(30deg);
     }
-
+    
     @media screen and (min-width: $desktop) {
+        margin-left: 0;
         h1 {
             top: 24vh;
             right: -40vw;
@@ -66,7 +67,7 @@
     
     @media screen and (min-width: $desktop) {
         position: absolute;
-        top: 70vh;
+        top: 74vh;
         right: 7vw;
         margin-bottom: $size-7;
         max-width: 25vw;
@@ -77,95 +78,4 @@
         }
         // transform: translateX(9vw) translateY(-9vw) scale(1.8) perspective(100vw) rotateY(50deg);
     }
-}
-
-
-[title~="percepcion"] {    
-    @media screen and (min-width: $desktop) {
-        // background-color: #fff;
-    }
-}
-
-[title~="vision"] {    
-    // @media screen and (min-width: $ipad) {
-    //     border: 5px solid goldenrod;
-    //     top: 23%;
-    //     left: 0%;
-    // }
-
-    @media screen and (min-width: $desktop) {
-        // margin-top: 0;
-        // height: 50vh;
-    }
-}
-
-[title~="obvio"] {
-    @media screen and (min-width: $ipad) {
-        // border: 5px solid palegreen;
-        top: 36%;
-        right: 13%;
-    }
-}
-
-[title~="proceso"] {
-    @media screen and (min-width: $ipad) {
-        // border: 5px solid red;
-        top: 55.8%;
-        right: 8%;
-    }
-}
-
-[title~="plastica"] {
-    @media screen and (min-width: $ipad) {
-        top: 50%;
-        left: 4%;
-
-        .bgImg {
-            border-radius: 50%;
-        }
-    }
-}
-
-[title~="video"] {
-    @media screen and (min-width: $ipad) {
-        top: 64%;
-        left: 30%;
-
-        video {
-            display: block;
-            width: 60vh;
-        }
-    }
-    
-    @media screen and (min-width: $desktop) {
-        video {
-            transform: rotate(-6deg);
-            width: 44vw;
-        }
-    }
-}
-
-[title~="yocuento"] {
-    // @media screen and (min-width: $ipad) {
-    //     top: 75%;
-    // }
-
-    // @media screen and (min-width: $desktop) {
-    //     top: 72%;
-    //     left: 44%;
-    // }
-}
-
-[title~="elsersiendo"] {
-    // @media screen and (min-width: $ipad) {
-    //     top: 84.6%;
-    //     left: 12%;
-    // }
-}
-
-[title~="sociallinks"] {
-    // @media screen and (min-width: $ipad) {
-    //     bottom: 1.5%;
-    //     left: 7%;
-    // }
 }

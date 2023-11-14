@@ -1,3 +1,20 @@
+.prev,
+.next {
+  padding: inherit;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: $grey-color-2;
+  border: 1px solid $grey-color-3;
+  place-self: center;
+  &:hover {
+    color: $black-color;
+    background-color: $white-color-alpha-0;
+  }
+  // font-weight: bold;
+  font-size: $size-2;
+}
+
 .btn--white {
   color: $grey-color-3;
   border: 1px solid $grey-color-3;
@@ -44,17 +61,5 @@
   }
 }
 
-.btn--slider {
-  padding: inherit;
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  background-color: $grey-color-2;
-  border: 1px solid $grey-color-3;
-  place-self: center;
-  &:hover {
-    color: $black-color;
-    background-color: $white-color-alpha-0;
-  }
-}
+
 

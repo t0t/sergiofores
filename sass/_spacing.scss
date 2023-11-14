@@ -176,8 +176,8 @@ button {
 
 section {
   // background-color: blue;
-  place-content: center;
-  align-items: center;
+  // place-content: center;
+  // align-items: center;
   
   @media screen and (min-width: $ipad) {
     min-height: 50vh;
@@ -185,12 +185,12 @@ section {
   @media screen and (min-width: $desktop) {
     margin: 0 $size-3;
     // padding: $size-3;
-    place-items: center;
+    // place-items: center;
   }
 }
 
 .sectionContent {
-  // display: grid;
+  padding-bottom: $size-3;
 }
 
 .mainHeader {
@@ -232,7 +232,7 @@ section {
   min-height: 50vw;
 
   @media screen and (min-width: $desktop) {
-    transform: rotate(-6deg);
+    // transform: rotate(-6deg);
   }
 }
 
@@ -251,13 +251,13 @@ section {
 }
 
 video {
-  padding-top: $size-1;
-  padding-left: $size-1;
-  padding-right: $size-1;
+  // padding-top: $size-1;
+  // padding-left: $size-1;
+  // padding-right: $size-1;
   max-width: 100%;
 
   @media screen and (min-width: $ipad) {
-    width: 50%;
+    // width: 50%;
   }
 }
 
