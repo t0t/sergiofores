@@ -7,7 +7,7 @@ h1 {
   margin-bottom: 0;
   @media screen and (min-width: $ipad) {
     margin-top: 12vw;
-    margin-bottom: 9vw;
+    // margin-bottom: 9vw;
   }
   @media screen and (min-width: $desktop) {
     margin-top: 0;
@@ -187,7 +187,7 @@ section {
     min-height: 50vh;
   }
   @media screen and (min-width: $desktop) {
-    margin: 0 $size-3;
+    // margin: 0 $size-3;
     // padding: $size-3;
     // place-items: center;
   }
@@ -203,20 +203,24 @@ section {
   align-content: center;
   row-gap: $size-2;
   text-align: center;
+  
+  grid-template-areas: 
+    "title"
+    "subtitle"
+    "img";
   @media screen and (min-width: $desktop) {
     // height: 100vh;
   }
 }
 .mainContent {
   min-height: 125vh;
-  // padding-top: 8vh;
   padding-right: $size-2;
   padding-left: $size-2;
   
   @media screen and (min-width: $desktop) {
     padding-top: inherit;
-    padding-right: inherit;
-    padding-left: inherit;
+    padding-right: $size-4;
+    padding-left: $size-4;
   }
 }
 
@@ -261,15 +265,9 @@ section {
 
 .grid__item {
   min-height: 100%;
-  // img {
-  //   max-height: 50vh;
-  // }
 }
 
 video {
-  // padding-top: $size-1;
-  // padding-left: $size-1;
-  // padding-right: $size-1;
   max-width: 100%;
 
   @media screen and (min-width: $ipad) {
@@ -387,12 +385,12 @@ model-viewer {
   margin-top: $size-2;
 }
 
-.previous {
-  left: -40px;
-}
-
+.prev,
 .next {
-  right: -40px;
+  z-index: $ramas;
+  @media screen and (min-width: $desktop) {
+    // margin-top: -9.5vh;
+  }
 }
 
 .nav-posts {

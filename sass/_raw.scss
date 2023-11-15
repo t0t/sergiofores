@@ -18,18 +18,20 @@
   background-position: center;
   background-repeat: no-repeat;
   mix-blend-mode: luminosity;
-  background-size: cover;
-  transition: clip-path 1s;
+  background-size: contain;
+  // transition: clip-path 1s;
+  background-color: $white-color-alpha-0;
+  @media screen and (min-width: $ipad) {
+    background-size: cover;
+    // background-size: 50vh;
+  }
+  @media screen and (min-width: $desktop) {
+    background-size: 60vh;
+  }
+  @media screen and (min-width: $tv) {
+    background-size: 50vh;
+  }
   // transform: perspective(100vw) rotateY(10deg);
-}
-
-.animCrop {
-  // mix-blend-mode: luminosity;
-}
-
-.animCrop2 {
-  // mix-blend-mode: exclusion;
-  // clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)
 }
 
 body {
@@ -251,13 +253,17 @@ svg.grafica {
 //   }
 
 //   @media screen and (min-width: $bp5) {
-//     grid-template-columns: repeat(8, 1fr);
-//   }
-// }
-
-
-article {
-  display: inherit;
+  //     grid-template-columns: repeat(8, 1fr);
+  //   }
+  // }
+  
+  
+  article {
+    @media screen and (min-width: $desktop) {
+      display: grid;
+      align-content: center;
+      min-height: 100vh;
+    }
 }
 
 

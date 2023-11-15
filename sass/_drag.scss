@@ -10,18 +10,17 @@
 
 [title~="covertitle"] {   
     // position: absolute; 
+    grid-area: title;
     h1 {
         @media screen and (min-width: $ipad) {
             top: inherit;
             position: relative;
         }
         @media screen and (min-width: $desktop) {
-            top: -7vh;
-            right: -43vw;
+            top: -5vh;
+            left: 60vw;
             transform-origin: right;
-            text-align: right;
-            width: 100vw;
-            margin-right: 0;
+            text-align: left;
             animation: intro;
             animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
             animation-duration: 1s;
@@ -34,6 +33,7 @@
 
 [title~="coverimg"] {
     z-index: $raiz;
+    grid-area: img;
     img {
         // object-fit: cover;
         border-top-left-radius: 50%;
@@ -58,11 +58,7 @@
 }
 
 [title~="sintesis"] {
-    @media screen and (min-width: $ipad) {
-        // top: 40px;
-        // margin-top: $size-7;
-        // transform: perspective(550px) rotateY(30deg);
-    }
+    grid-area: subtitle;
     
     @media screen and (min-width: $desktop) {
         position: absolute;
