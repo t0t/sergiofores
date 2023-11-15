@@ -26,7 +26,7 @@ if ( !isSafari && !isMobileDevice()) {
       nav.style.top = "0px";
     } else {
       // console.log(nav);
-      nav.style.top = "-100px";
+      nav.style.top = "-150px";
     }
 
     prevScrollpos = currentScrollPos;
