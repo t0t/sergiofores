@@ -56,23 +56,21 @@
   
   100% {
     opacity: 1;
-    transform: scale(1.4) perspective(100vw) rotateY(50deg);
+    transform: scale(2) perspective(100vw) rotateY(50deg);
   }
 }
 
 @keyframes introimg {
   0% {
     opacity: 0;
-    transform: scale(4) perspective(50vw) rotateY(10deg);
-  }
-  50% {
-    transform: scale(1.4);
-    transform: rotate(9deg);
+    mix-blend-mode: color-burn;
+    transform: scale(1) translateX(50%);
+    // transform: perspective(50vw) rotateY(0deg);
   }
   
   100% {
     opacity: 1;
-    transform: scale(1.5) perspective(50vh) rotateY(30deg);
+    transform: scale(1) translateX(0);
   }
 }
 

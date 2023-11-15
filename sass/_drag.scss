@@ -17,6 +17,8 @@
             position: relative;
         }
         @media screen and (min-width: $desktop) {
+            mix-blend-mode: lighten;
+            color: $tertiary-color;
             top: -5vh;
             right: -39vw;
             transform-origin: right;
@@ -35,10 +37,13 @@
 [title~="coverimg"] {
     z-index: $raiz;
     grid-area: img;
+    mix-blend-mode: luminosity;
     img {
         // object-fit: cover;
-        border-top-left-radius: 50%;
-        border-bottom-right-radius: 50%;
+        // transform-origin: 0 left;
+        // border-top-right-radius: 50%;
+        // border-bottom-left-radius: 50%;
+        // border-bottom-left-radius: 0;
     }
     @media screen and (min-width: $ipad) {
         // transform: perspective(550px) rotateY(-40deg);
@@ -46,8 +51,8 @@
     
     @media screen and (min-width: $desktop) {
         position: absolute;
-        transform-origin: left;
-        transform: scale(1.5) perspective(50vh) rotateY(30deg);
+        // transform-origin: 0 left;
+        // transform: scale(1.5) perspective(100vw) rotateY(30deg);
         top: 0;
         left: 0;
         animation: introimg;
@@ -57,8 +62,9 @@
         animation-fill-mode: forwards;
         img {
             // width: 50%;
-            border-top-left-radius: 50%;
+            // border-top-left-radius: 0%;
             // border-bottom-right-radius: 50%;
+            // border-bottom-left-radius: 50%;
         }
     }
 }
@@ -72,9 +78,10 @@
         right: 7vw;
         margin-bottom: $size-7;
         max-width: 25vw;
+        z-index: $tronco;
         h2 {
             transform-origin: right;
-            transform: scale(1.9) perspective(50vh) rotateY(-30deg);
+            transform: scale(2) perspective(50vh) rotateY(-30deg);
             text-align: right;
         }
         // transform: translateX(9vw) translateY(-9vw) scale(1.8) perspective(100vw) rotateY(50deg);
