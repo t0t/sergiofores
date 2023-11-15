@@ -5,11 +5,11 @@
     "prev next";
     gap: $size-1;
     
-    @media screen and (min-width: $ipad) {
-        justify-items: center;
-    }
+    // @media screen and (min-width: $ipad) {
+    //     justify-items: center;
+    // }
     // @media screen and (min-width: $desktop) {
-    //     // gap: $size-1;
+    //     justify-content: center;
     // }
     .next {
         grid-area: next;

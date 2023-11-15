@@ -269,9 +269,9 @@ section {
 
 video {
   max-width: 100%;
-
-  @media screen and (min-width: $ipad) {
-    // width: 50%;
+  
+  @media screen and (min-width: $desktop) {
+    max-width: 50vw;
   }
 }
 

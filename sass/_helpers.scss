@@ -236,15 +236,21 @@ mark {
   text-decoration-thickness: 2px;
   text-decoration-color: $primary-color;
 }
+
 .shadow {
   filter: drop-shadow($grey-color 0 0 0.5rem);
 }
+
 .rounded {
   border-radius: 50%;
 }
 
 .placeself {
   place-self: center;
+}
+
+.jcc {
+  justify-content: center;
 }
 
 .img--fl {

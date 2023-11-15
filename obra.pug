@@ -1,7 +1,7 @@
 extends ./base
 
 block append head
-  - var current = "obra";
+  - var current = "Obra";
   title #{sitename} - #{current}
   meta(name="description" content="Aporto una perspectiva multidimensional, transdisciplinar y holistica de la Creación para encontrarnos a nosotros mismos en el contexto desde el vacío.")
 
@@ -97,7 +97,7 @@ block content
       button.next(onclick='plusDivs(1, 5)') &#x276F;
 
   article.grid-12
-    .slider--container
+    .slider--container.jcc
       .slider3
         video#video1(poster='./assets/img/bg1.jpg' controls='false' loop='true')
           source(src='./assets/img/introweb.mp4' type='video/mp4')
