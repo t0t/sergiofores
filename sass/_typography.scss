@@ -24,14 +24,14 @@ h1 {
 h2 {
   line-height: $size-2 + $size-0;
   text-align: center;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   font-size: $size-2;
 }
 
 h3 {
   font-size: $size-1;
   text-align: center;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 
   @media screen and (min-width: $ipad) {
     font-size: $size-2;
@@ -46,9 +46,22 @@ h4 {
   letter-spacing: 1px;
 }
 
+@counter-style negative-paren {
+  system: numeric;
+  symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
+  negative: " 0" " ";
+}                                                
+ol { 
+  list-style-type: negative-minus;   
+  text-transform: lowercase;
+    // list-style-position: inside;
+
+}
+
 p,
 a,
 ul,
+ol,
 dl,
 p strong,
 blockquote {
@@ -114,11 +127,6 @@ input {
 
 label {
   font-size: $size-0;
-}
-
-ul,
-ol {
-  list-style-position: inside;
 }
 
 figure {

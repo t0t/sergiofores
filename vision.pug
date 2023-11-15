@@ -20,6 +20,12 @@ block content
   article.grid-12.grid-md-6
     .slider--container
       .slider1.card
+        h3 #{page_vision.headings[4]}
+        ol(start="0")
+          each frase in page_vision.frases3
+            li= `${frase}`
+
+      .slider1.card
         h3 #{page_vision.headings[0]}
         ul
           each frase in page_vision.frases1
@@ -29,12 +35,6 @@ block content
         h3 #{page_vision.headings[5]}
         ul 
           each frase in page_vision.frases2
-            li= `${frase}`
-
-      .slider1.card
-        h3 #{page_vision.headings[4]}
-        ul 
-          each frase in page_vision.frases3
             li= `${frase}`
 
       .slider1.card
