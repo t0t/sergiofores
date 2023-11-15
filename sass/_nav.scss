@@ -3,10 +3,14 @@
   padding-top: $size-2;
   padding-left: $size-5;
   
-  @media screen and (min-width: $desktop) {
-    transition: top 0.3s; /* Transition effect when sliding down (and up) */
+  @media screen and (min-width: $ipad) {
     padding-top: $size-3;
     padding-left: $size-3;
+  }
+  @media screen and (min-width: $desktop) {
+    transition: top 0.3s; /* Transition effect when sliding down (and up) */
+    padding-top: $size-4;
+    padding-left: $size-4;
     z-index: 9;
   }
 }
