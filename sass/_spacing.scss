@@ -260,10 +260,12 @@ section {
   } 
 }
 .bgCover--special {
-  background-size: 44vw;
-  background-position: bottom right;
-  // background-size: cover;
+  background-size: inherit;
   background-color: $tertiary-color;
+  @media screen and (min-width: $desktop) {
+    background-size: 44vw;
+    background-position: bottom right;
+  } 
 }
 
 

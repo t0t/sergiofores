@@ -39,11 +39,12 @@
     z-index: $raiz;
     grid-area: img;
     width: 94vw;
-    min-height: 96.5vh;
-    // margin-bottom: $size-4;
+    min-height: 50vh;
+    margin-bottom: $size-5;
     border-top-right-radius: 37vw;
-    
     @media screen and (min-width: $desktop) {
+        margin-bottom: 0;
+        min-height: 96.5vh;
         position: absolute;
         top: $size-3;
         left: $size-3;
