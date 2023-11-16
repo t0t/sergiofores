@@ -16,16 +16,19 @@ h1 {
   }
   
   @media screen and (min-width: $desktop) {
-    font-size: 7vw;
-    line-height: 7vw;
+    font-size: 3.5vw;
+    line-height: 3.5vw;
   }
 }
 
 h2 {
-  line-height: $size-2 + $size-0;
+  font-size: $size-2;
   text-align: center;
   letter-spacing: 1px;
-  font-size: $size-2;
+  @media screen and (min-width: $desktop) {
+    font-size: 2.5vw;
+    line-height: 2.5vw;
+  }
 }
 
 h3 {

@@ -200,16 +200,19 @@ section {
 .mainHeader {
   min-height: 100vh;
   display: grid;
-  align-content: center;
-  row-gap: $size-2;
-  text-align: center;
+  align-items: end;
+  align-content: stretch;
+  // align-content: center;
+  row-gap: $size-4;
+  // text-align: center;
   
   grid-template-areas: 
     "title"
     "subtitle"
     "img";
-  @media screen and (min-width: $desktop) {
+  @media screen and (min-width: $ipad) {
     // height: 100vh;
+    justify-items: center;
   }
 }
 .mainContent {
@@ -251,15 +254,20 @@ section {
 .bgCover {
   background-position: center;
   background-repeat: no-repeat;
-  width: 100vw;
-  background-color: red;
+  // width: 100vw;
+  background-color: $white-color-alpha-0;
+  @media screen and (min-width: $desktop) {
+    background-size: 50vw;
+  } 
 }
+
+.bgCover--special {
+  background-size: cover;
+}
+
 .bgImg {
   min-height: 50vw;
   // width: 100vw;
-  @media screen and (min-width: $desktop) {
-    // transform: rotate(-6deg);
-  }
 }
 
 .grid-12 {

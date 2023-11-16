@@ -47,7 +47,7 @@
 @keyframes intro {
   0% {
     opacity: 0;
-    transform: scale(4) perspective(50vw) rotateY(10deg);
+    transform: scale(1) perspective(50vw) rotateY(10deg);
   }
   50% {
     transform: scale(1.4);

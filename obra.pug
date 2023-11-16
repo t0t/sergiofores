@@ -9,8 +9,8 @@ block pageheader
   main(title="covertitle")
     h1= page_obra.titulo
 
-  aside(title="coverimg")
-    img(src=`${baseUrl + page_obra.galeria2[0]}` alt='Cover image')
+  aside(title="coverimg").bgCover(style='background-image: url('+`${baseUrl + page_obra.galeria2[0]}`+');')
+  //- img(src=`${baseUrl + page_obra.galeria2[0]}` alt='Cover image')
 
   header(title="sintesis")
     h2= page_obra.subtitulo

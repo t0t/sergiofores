@@ -8,10 +8,9 @@ block append head
 block pageheader
   main(title="covertitle")
     h1= page_index.titulo
-
-  aside(title="coverimg")
-    img(src=`${baseUrl + page_index.galeria3[2]}` alt='Cover image')
-
+  aside(title="coverimg" class=(`${sitenav.name == current}`) ? `bgCover bgCover--special` : `bgCover` style='background-image: url('+`${baseUrl + page_index.galeria3[2]}`+');')
+  //- a(href=link.url)= `${link.name}`
+  //- img(src=`${baseUrl + page_index.galeria3[2]}` alt='Cover image')
   header(title="sintesis")
     h2= page_index.subtitulo
 
