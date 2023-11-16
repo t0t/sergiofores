@@ -64,13 +64,13 @@
   0% {
     opacity: 0;
     mix-blend-mode: color-burn;
-    transform: scale(1) translateX(50%);
+    transform: rotate(-8deg)
     // transform: perspective(50vw) rotateY(0deg);
   }
   
   100% {
     opacity: 1;
-    transform: scale(1) translateX(0);
+    transform: rotate(0deg);
   }
 }
 

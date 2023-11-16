@@ -17,10 +17,10 @@
             position: relative;
         }
         @media screen and (min-width: $desktop) {
-            mix-blend-mode: lighten;
-            color: $tertiary-color;
-            top: 24vh;
-            right: -19vw;
+            // mix-blend-mode: difference;
+            color: $black-color;
+            top: 16.7vh;
+            right: 0;
             transform-origin: right;
             text-align: center;
             animation: intro;
@@ -30,6 +30,7 @@
             animation-iteration-count: 1;
             animation-fill-mode: forwards;
             z-index: $tronco;
+            max-width: 40vw;
         }
     }
 }
@@ -37,9 +38,10 @@
 [title~="coverimg"] {
     z-index: $raiz;
     grid-area: img;
-    width: 90vw;
-    min-height: 87.5vh;
+    width: 94vw;
+    min-height: 96.5vh;
     // margin-bottom: $size-4;
+    border-top-right-radius: 37vw;
     
     @media screen and (min-width: $desktop) {
         position: absolute;
@@ -57,10 +59,10 @@
     grid-area: subtitle;
     
     @media screen and (min-width: $desktop) {
-        // max-width: 50vw;
+        width: 60vw;
         color: $quaternary-color;
         z-index: $tronco;
-        mix-blend-mode: luminosity;
+        mix-blend-mode: difference;
         animation: intro;
         animation-delay: .5s;
         animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);

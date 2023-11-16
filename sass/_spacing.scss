@@ -217,13 +217,13 @@ section {
 }
 .mainContent {
   min-height: 125vh;
-  padding-right: $size-2;
-  padding-left: $size-2;
+  padding-right: $size-3;
+  padding-left: $size-3;
   
   @media screen and (min-width: $desktop) {
     padding-top: inherit;
-    padding-right: $size-4;
-    padding-left: $size-4;
+    // padding-right: $size-4;
+    // padding-left: $size-4;
   }
 }
 
@@ -255,15 +255,17 @@ section {
   background-position: center;
   background-repeat: no-repeat;
   // width: 100vw;
-  background-color: $white-color-alpha-0;
   @media screen and (min-width: $desktop) {
     background-size: 50vw;
   } 
 }
-
 .bgCover--special {
-  background-size: cover;
+  background-size: 44vw;
+  background-position: bottom right;
+  // background-size: cover;
+  background-color: $tertiary-color;
 }
+
 
 .bgImg {
   min-height: 50vw;
