@@ -248,9 +248,15 @@ section {
   }
 }
 
+.bgCover {
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  background-color: red;
+}
 .bgImg {
   min-height: 50vw;
-
+  // width: 100vw;
   @media screen and (min-width: $desktop) {
     // transform: rotate(-6deg);
   }

@@ -37,22 +37,10 @@
 [title~="coverimg"] {
     z-index: $raiz;
     grid-area: img;
-    mix-blend-mode: luminosity;
-    img {
-        // object-fit: cover;
-        // transform-origin: 0 left;
-        // border-top-right-radius: 50%;
-        // border-bottom-left-radius: 50%;
-        // border-bottom-left-radius: 0;
-    }
-    @media screen and (min-width: $ipad) {
-        // transform: perspective(550px) rotateY(-40deg);
-    }
+    // mix-blend-mode: luminosity;
     
     @media screen and (min-width: $desktop) {
         position: absolute;
-        // transform-origin: 0 left;
-        // transform: scale(1.5) perspective(100vw) rotateY(30deg);
         top: 0;
         left: 0;
         animation: introimg;
@@ -60,12 +48,6 @@
         animation-duration: 1s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
-        img {
-            // width: 50%;
-            // border-top-left-radius: 0%;
-            // border-bottom-right-radius: 50%;
-            // border-bottom-left-radius: 50%;
-        }
     }
 }
 
