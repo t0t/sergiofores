@@ -85,7 +85,10 @@
     display: inline-block;
     text-decoration: none;
     background-color: $white-color-alpha-1;
-    padding: $size-0 $size-1;
+    padding: 7px 10px;
+    @media screen and (min-width: $ipad) {
+      padding: $size-0 $size-1;
+    }
   }
   a:hover {
     color: $black-color;
