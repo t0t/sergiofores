@@ -11,16 +11,15 @@
   padding-top: $size-3;
   padding-left: $size-3;
   
-  @media screen and (min-width: $ipad) {
-    padding-top: $size-3;
-    padding-left: $size-3;
+  @media screen and (min-width: $desktop) {
+    padding-top: $size-4;
+    padding-left: $size-4;
+    mix-blend-mode: exclusion;
   }
-  
 }
 
 
 .mainNav {  
-
   @media screen and (min-width: $desktop) {
     position: relative; /* Para aplicar transición */
     transition: top 0.3s; /* Transition effect when sliding down (and up) */
@@ -68,27 +67,45 @@
   background-color: $black-color;
 }
 
+.logoOnTop .logo2 {
+  width: $size-5;
+  transition: transform 1s;
+  transform: scale(1);
+  top: $size-4;
+  right: $size-4;
+  path {
+    fill: none;
+    stroke: $white-color;
+    stroke-width: 3px
+  }
+  .numeros {
+    stroke: none;
+    fill: $white-color;
+  }
+}
+
 .logo2 {
   min-width: 60px;
   @media screen and (min-width: $desktop) {
+    position: absolute;
+    transform: scale(0.22);
     transition: transform 1s;
-    width: $size-5;
-    top: $size-3;
-    right: $size-3;
+    top: -50vw;
+    right: -54vw;
   }
 
   path {
     fill: none;
-    stroke: $black-color;
-    stroke-width: 4.17px
+    stroke: $white-color;
+    stroke-width: 0.5px
   }
   .numeros {
     stroke: none;
-    fill: $black-color;
+    fill: $white-color;
   }
 
-  &:hover {
-    transform: rotate(360deg) scale(1.1);
-    transition: transform .8s;
-  }
+  // &:hover {
+  //   // transition: transform .8s;
+  //   background-color: $white-color;
+  // }
 }

@@ -9,22 +9,25 @@ h1 {
     margin-top: 12vw;
   }
   @media screen and (min-width: $desktop) {
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: inherit;
     max-width: 50vw;
   }
 }
 
-h1,
 h2 {
   @media screen and (min-width: $ipad) {
     margin-top: 0;
     margin-bottom: 0;
+    margin-left: $size-4;
   }
 }
 
+h3 {
+  margin-top: 0;
+  // background-color: blue;
+}
+
 p,
-.tmpl-post li,
 img,
 pre,
 ul,
@@ -50,9 +53,9 @@ p>a {
 p,
 a,
 ul,
+ol,
 dl,
 p strong,
-h3,
 blockquote {
   padding-left: 0;
   
@@ -116,13 +119,12 @@ figure {
   // padding: $size-2;
   
   @media screen and (min-width: $ipad) {
-    // padding: $size-1;
+    padding-bottom: $size-3;
   }
   
   @media screen and (min-width: $desktop) {
     max-width: 50vw;
     min-width: 40vw;
-    padding: $size-3;
   }
   
   &Bottom {
@@ -214,7 +216,7 @@ section {
 .mainContent {
   min-height: 125vh;
   padding-right: $size-3;
-  padding-left: $size-3;
+  padding-left: $size-4;
   
   @media screen and (min-width: $desktop) {
     padding-top: inherit;
@@ -248,12 +250,16 @@ section {
 }
 
 .bgCover {
-  background-position-x: right;
-  background-position-y: 70%;
+  background-position-y: center;
+  background-position-x: center;
   background-repeat: no-repeat;
-
+  
+  @media screen and (min-width: $ipad) {
+  }
   @media screen and (min-width: $desktop) {
-    background-size: 70vw;
+    background-position-y: 100%;
+    background-position-x: right;
+    background-size: 60vw;
   } 
 }
 .bgCover--special {

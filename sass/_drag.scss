@@ -7,7 +7,6 @@
     }
 }
 
-
 [title~="covertitle"] {   
     grid-area: title;
 
@@ -18,10 +17,10 @@
         }
         @media screen and (min-width: $desktop) {
             mix-blend-mode: screen;
-            max-width: 80vw;
-            top: 6vw;
-            left: 0;
-            transform-origin: center;
+            max-width: 56vw;
+            top: $size-6;
+            left: $size-4;
+            transform-origin: left;
             animation: intro;
             animation-delay: .5s;
             animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -59,20 +58,8 @@
     grid-area: subtitle;
     z-index: $tronco;
     @media screen and (min-width: $desktop) {
+        color: $white-color;
         mix-blend-mode: difference;
-        max-width: 30vw;
+        max-width: 28vw;
     }
-    // h2 {
-    //     @media screen and (min-width: $desktop) {
-    //         // top: 4vw;
-    //         // left: 0;
-    //         // transform-origin: center;
-    //         // animation: intro;
-    //         // animation-delay: .5s;
-    //         // animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    //         // animation-duration: 2s;
-    //         // animation-iteration-count: 1;
-    //         // animation-fill-mode: forwards;
-    //     }
-    // }
 }

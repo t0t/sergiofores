@@ -276,6 +276,7 @@ svg.grafica {
   @media screen and (min-width: $ipad) {
     justify-self: start;
     background-size: cover;
+    // border-left: 1px solid black;
     // flex-direction: initial;
   }
 

@@ -2,7 +2,7 @@
 
 .grid {
   display: grid;
-  row-gap: $size-3;
+  row-gap: $size-4;
   @media screen and (min-width: $ipad) {
     column-gap: $size-2;
     grid-template-columns: repeat(12, 1fr);

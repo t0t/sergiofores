@@ -55,7 +55,7 @@
   }
   
   100% {
-    transform: scale(1) perspective(100vw) rotateY(50deg);
+    transform: scale(1.5) perspective(100vw) rotateY(30deg);
     opacity: 1;
   }
 }
@@ -64,7 +64,7 @@
   0% {
     opacity: 0;
     mix-blend-mode: color-burn;
-    transform: rotate(-8deg)
+    transform: rotate(-13deg)
     // transform: perspective(50vw) rotateY(0deg);
   }
   

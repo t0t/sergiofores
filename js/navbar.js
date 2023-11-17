@@ -14,23 +14,42 @@ const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { retu
 if ( !isSafari && !isMobileDevice()) {
 
   // console.log(`No es SAFARI porque da ${isSafari}`);
-  var prevScrollpos = window.pageYOffset;
+  let prevScrollpos = window.scrollY;
   
   let nav = document.getElementById("navbar");
+  let logo = document.getElementById("logo");
 
   window.onscroll = function () {
-    var currentScrollPos = window.pageYOffset;
+    var currentScrollPos = window.scrollY;
 
     if (prevScrollpos > currentScrollPos)  {
       // console.log(nav);
       nav.style.top = "0px";
     } else {
       // console.log(nav);
-      nav.style.top = "-150px";
+      nav.style.top = "-170px";
     }
 
     prevScrollpos = currentScrollPos;
   };
+
+  let scrollpos = window.scrollY
+  const header = document.getElementById("navcontainer")
+  const header_height = header.offsetHeight
+
+  const add_class_on_scroll = () => header.classList.add("logoOnTop")
+  const remove_class_on_scroll = () => header.classList.remove("logoOnTop")
+
+  window.addEventListener('scroll', function() { 
+    scrollpos = window.scrollY;
+
+    if (scrollpos >= header_height) { add_class_on_scroll() }
+    else { remove_class_on_scroll() }
+
+    console.log(scrollpos)
+  })
+
+
 };
 
 /* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
