@@ -328,57 +328,6 @@ svg.grafica {
   touch-action: auto !important;
 }
 
-/* LOGO */
-.brand {
-  mix-blend-mode: multiply;
-  z-index: $cielo;
-  position: fixed;
-}
-
-.logo2 {
-  width: 100px;
-  // padding-left: $size-0;
-  // padding-top: $size-0;
-  position: fixed;
-  
-  @media screen and (min-width: $ipad) {
-    // width: 30vw;
-    transition: transform 1s;
-    width: $size-5;
-    top: $size-3;
-    right: $size-3;
-  }
-  @media screen and (min-width: $desktop) {
-    // width: 30vw;
-    transition: transform 1s;
-    width: $size-5;
-    top: $size-3;
-    right: $size-3;
-  }
-
-  circle {
-    stroke: $black-color;
-    stroke-width: 3px;
-    fill: none;
-  }
-
-  text {
-    fill: none;
-    stroke: $black-color;
-    stroke-width: 6px;
-  }
-
-  path {
-    fill: $white-color;
-    stroke-width: 6px;
-  }
-
-  &:hover {
-    transform: rotate(360deg) scale(1.1);
-    transition: transform .8s;
-  }
-}
-
 // /* Social Links */
 .social-links {
   display: grid;

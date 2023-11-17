@@ -7,7 +7,6 @@ h1 {
   margin-bottom: 0;
   @media screen and (min-width: $ipad) {
     margin-top: 12vw;
-    // margin-bottom: 9vw;
   }
   @media screen and (min-width: $desktop) {
     margin-top: 0;
@@ -16,14 +15,11 @@ h1 {
   }
 }
 
-h2,
-h3 {
-  margin-top: 0;
-  margin-bottom: $size-2;
-
-  @media screen and (min-width: $bp6) {
-    margin-bottom: $size-3;
-
+h1,
+h2 {
+  @media screen and (min-width: $ipad) {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 
@@ -200,18 +196,15 @@ section {
 .mainHeader {
   min-height: 100vh;
   display: grid;
-  align-items: end;
-  align-content: stretch;
-  // align-content: center;
+  // align-items: end;
+  align-content: end;
   row-gap: $size-4;
-  // text-align: center;
-  
   grid-template-areas: 
-    "title"
-    "subtitle"
-    "img";
-  @media screen and (min-width: $ipad) {
-    // height: 100vh;
+  "title"
+  "subtitle"
+  "img";
+  @media screen and (min-width: $desktop) {
+    align-content: stretch;
     justify-items: center;
   }
 }

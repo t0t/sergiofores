@@ -29,10 +29,11 @@ html(lang='es')
         | Preparando para contar...
 
     #theSite.fade-page-off
-      include brand
-      nav.mainNav#navbar
-        include navbar
-        //- include ./assets/hambutton.svg
+      .navContainer
+        include brand
+        nav.mainNav#navbar
+          include navbar
+          //- include ./assets/hambutton.svg
 
       header.mainHeader
         block pageheader 

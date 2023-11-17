@@ -1,5 +1,14 @@
-.mainNav {
+
+.navContainer {
+  display: flex;
+  // background-color: red;
   position: fixed;
+  flex-direction: row-reverse;
+  z-index: $cielo;
+  width: 100vw;
+  flex-flow: row-reverse;
+  justify-content: space-between;
+
   padding-top: $size-3;
   padding-left: $size-3;
   
@@ -7,6 +16,11 @@
     padding-top: $size-3;
     padding-left: $size-3;
   }
+  
+}
+
+
+.mainNav {  
   @media screen and (min-width: $desktop) {
     transition: top 0.3s; /* Transition effect when sliding down (and up) */
     // padding-top: $size-4;
@@ -15,6 +29,10 @@
   }
 }
 
+.brand {
+  margin-right: $size-3;
+  mix-blend-mode: multiply;
+}
 
 /* SIDE NAV */
 .sidenav {
@@ -56,11 +74,10 @@
 
 /* Nav */
 .nav {
-  display: grid;
-  // gap: $size-1;
-  grid-auto-flow: column;
-  // margin-top: $size-3;
-  // margin-left: $size-3;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: $size-3;
+
   li {
     list-style: none;
   }
@@ -74,6 +91,11 @@
     color: $black-color;
     background-color: $white-color;
   }
+  @media screen and (min-width: $ipad) {
+    display: grid;
+    // gap: $size-1;
+    grid-auto-flow: column;
+  }
   @media screen and (min-width: $desktop) {
     // display: flex;
   }
@@ -82,6 +104,44 @@
 .nav-item-active a {
   color: $grey-color-2;
   background-color: $black-color;
+}
+
+.logo2 {
+  min-width: 60px;
+  @media screen and (min-width: $desktop) {
+    transition: transform 1s;
+    width: $size-5;
+    top: $size-3;
+    right: $size-3;
+  }
+
+  // circle {
+  //   stroke: $black-color;
+  //   stroke-width: 3px;
+  //   fill: none;
+  // }
+
+  // text {
+  //   fill: none;
+  //   stroke: $black-color;
+  //   stroke-width: 6px;
+  // }
+
+  path {
+    fill: none;
+    stroke: $black-color;
+    stroke-width: 4.17px
+  }
+  .numeros {
+    stroke: none;
+    fill: $black-color;
+    
+  }
+
+  &:hover {
+    transform: rotate(360deg) scale(1.1);
+    transition: transform .8s;
+  }
 }
 
 /* hambutton */
