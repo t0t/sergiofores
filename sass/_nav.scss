@@ -42,9 +42,10 @@
     list-style: none;
   }
   a {
+    color: $white-color;
     display: inline-block;
     text-decoration: none;
-    background-color: $white-color-alpha-1;
+    background-color: $black-color;
     padding: 7px 10px;
 
     @media screen and (min-width: $ipad) {
@@ -63,8 +64,8 @@
 }
 
 .nav-item-active a {
-  color: $grey-color-2;
-  background-color: $black-color;
+  color: $black-color;
+  background-color: $white-color;
 }
 
 .logoOnTop .logo2 {
