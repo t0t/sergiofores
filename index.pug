@@ -7,9 +7,9 @@ block append head
 
 block pageheader
   main(title="covertitle")
-    h1= page_index.titulo
+    h1 !{page_index.titulo}
   header(title="sintesis")
-    h2= page_index.subtitulo
+    h2 !{page_index.subtitulo}
   aside(title="coverimg" class=(`${sitenav.name == current}`) ? `bgCover bgCover--special` : `bgCover` style='background-image: url('+`${baseUrl + page_index.galeria3[2]}`+');')
   //- a(href=link.url)= `${link.name}`
   //- img(src=`${baseUrl + page_index.galeria3[2]}` alt='Cover image')
@@ -18,25 +18,25 @@ block content
   article.grid-12.grid-md-6
     .slider--container
       .slider1.card
-        h3 #{page_index.headings[0]}
+        h3 !{page_index.headings[0]}
         ul
           each frase in page_index.frases1
             li= `${frase}`
 
       .slider1.card
-        h3 #{page_index.headings[5]}
+        h3 !{page_index.headings[5]}
         ul 
           each frase in page_index.frases2
             li= `${frase}`
 
       .slider1.card
-        h3 #{page_index.headings[4]}
+        h3 !{page_index.headings[4]}
         ul 
           each frase in page_index.frases3
             li= `${frase}`
 
       .slider1.card
-        h3 #{page_index.headings[3]}
+        h3 !{page_index.headings[3]}
         ul 
           each frase in page_index.frases4
             li= `${frase}`
@@ -53,7 +53,7 @@ block content
 
   article.grid-12.grid-md-6.placeself
     .card
-      h3 #{page_index.headings[2]}
+      h3 !{page_index.headings[2]}
       ul 
         each frase in page_index.frases5
           li= `${frase}`
@@ -68,7 +68,7 @@ block content
   article.grid-12.grid-md-6
     .slider--container
       .slider5.card
-        h3 #{page_index.headings[6]}
+        h3 !{page_index.headings[6]}
         ul 
           each frase in page_index.frases6
             li= `${frase}`

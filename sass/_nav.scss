@@ -73,6 +73,8 @@
   transform: scale(1);
   top: $size-4;
   right: $size-4;
+  // background-color: $primary-color;
+
   path {
     fill: none;
     stroke: $white-color;
@@ -104,8 +106,8 @@
     fill: $white-color;
   }
 
-  // &:hover {
-  //   // transition: transform .8s;
-  //   background-color: $white-color;
-  // }
+  &:hover {
+    // transition: transform .8s;
+    // background-color: $primary-color;
+  }
 }

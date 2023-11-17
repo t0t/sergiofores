@@ -28,6 +28,7 @@ h2, h3 {
   font-size: $size-2;
   text-align: center;
   letter-spacing: 1px;
+  font-weight: lighter;
   
   @media screen and (min-width: $desktop) {
     text-align: left;
