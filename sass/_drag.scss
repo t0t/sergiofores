@@ -9,20 +9,19 @@
 
 
 [title~="covertitle"] {   
-    // position: absolute; 
     grid-area: title;
+
     h1 {
         @media screen and (min-width: $ipad) {
             top: inherit;
             position: relative;
         }
         @media screen and (min-width: $desktop) {
-            // mix-blend-mode: difference;
-            color: $black-color;
-            top: 16.7vh;
-            right: 0;
-            transform-origin: right;
-            text-align: center;
+            mix-blend-mode: screen;
+            max-width: 80vw;
+            top: 6vw;
+            left: 0;
+            transform-origin: center;
             animation: intro;
             animation-delay: .5s;
             animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -30,23 +29,20 @@
             animation-iteration-count: 1;
             animation-fill-mode: forwards;
             z-index: $tronco;
-            max-width: 40vw;
         }
     }
 }
 
 [title~="coverimg"] {
-    z-index: $raiz;
     grid-area: img;
     width: 100vw;
     min-height: 40vh;
-    // margin-bottom: $size-5;
-    border-top-right-radius: 37vw;
-    @media screen and (min-width: $desktop) {
+    z-index: $raiz;
+    // border-top-right-radius: 37vw;
+    @media screen and (min-width: $ipad) {
         width: 94vw;
     }
     @media screen and (min-width: $desktop) {
-        // margin-bottom: 0;
         min-height: 96.5vh;
         position: absolute;
         top: $size-3;
@@ -61,24 +57,22 @@
 
 [title~="sintesis"] {
     grid-area: subtitle;
-    
+    z-index: $tronco;
     @media screen and (min-width: $desktop) {
-        width: 60vw;
-        color: $quaternary-color;
-        z-index: $tronco;
         mix-blend-mode: difference;
-        animation: intro;
-        animation-delay: .5s;
-        animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        animation-duration: 1s;
-        animation-iteration-count: 1;
-
-        h2 {
-            transform-origin: center;
-            transform: perspective(40vw) rotateY(-30deg);
-            text-align: center;
-            margin-bottom: 0;
-        }
-        // transform: translateX(9vw) translateY(-9vw) scale(1.8) perspective(100vw) rotateY(50deg);
+        max-width: 30vw;
     }
+    // h2 {
+    //     @media screen and (min-width: $desktop) {
+    //         // top: 4vw;
+    //         // left: 0;
+    //         // transform-origin: center;
+    //         // animation: intro;
+    //         // animation-delay: .5s;
+    //         // animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    //         // animation-duration: 2s;
+    //         // animation-iteration-count: 1;
+    //         // animation-fill-mode: forwards;
+    //     }
+    // }
 }

@@ -198,14 +198,17 @@ section {
   display: grid;
   // align-items: end;
   align-content: end;
-  row-gap: $size-4;
   grid-template-areas: 
   "title"
   "subtitle"
   "img";
+  @media screen and (min-width: $ipad) {
+    row-gap: $size-4;
+    align-items: end;
+  }
   @media screen and (min-width: $desktop) {
     align-content: stretch;
-    justify-items: center;
+    justify-items: start;
   }
 }
 .mainContent {
@@ -245,19 +248,22 @@ section {
 }
 
 .bgCover {
-  background-position: center;
+  background-position-x: right;
+  background-position-y: 70%;
   background-repeat: no-repeat;
-  // width: 100vw;
+
   @media screen and (min-width: $desktop) {
-    background-size: 50vw;
+    background-size: 70vw;
   } 
 }
 .bgCover--special {
-  background-size: inherit;
-  background-color: $tertiary-color;
+  // background-size: inherit;
+  // background-color: $tertiary-color;
   @media screen and (min-width: $desktop) {
-    background-size: 44vw;
-    background-position: bottom right;
+    // mix-blend-mode: luminosity;
+    // background-size: 74vw;
+    // background-position-x: right;
+    // background-position-y: 230%;
   } 
 }
 

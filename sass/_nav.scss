@@ -1,7 +1,6 @@
 
 .navContainer {
   display: flex;
-  // background-color: red;
   position: fixed;
   flex-direction: row-reverse;
   z-index: $cielo;
@@ -21,10 +20,10 @@
 
 
 .mainNav {  
+
   @media screen and (min-width: $desktop) {
+    position: relative; /* Para aplicar transición */
     transition: top 0.3s; /* Transition effect when sliding down (and up) */
-    // padding-top: $size-4;
-    // padding-left: $size-4;
     z-index: 9;
   }
 }
@@ -32,44 +31,6 @@
 .brand {
   margin-right: $size-3;
   mix-blend-mode: multiply;
-}
-
-/* SIDE NAV */
-.sidenav {
-  display: inherit;
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 99;
-  top: 0;
-  right: 0;
-  background-color: $grey-color-4;
-  overflow-x: hidden;
-  transition: 0.2s;
-  padding-top: $size-5;
-
-  li {
-    list-style: none;
-    text-align: center;
-  }
-
-  a {
-    padding: $size-2 $size-1;
-    text-decoration: none;
-    font-size: $size-2;
-    font-weight: $medium;
-    color: $white-color;
-    display: block;
-    transition: 0.3s;
-    mix-blend-mode: difference;
-  }
-  
-  .closebtn {
-    position: absolute;
-    top: 0;
-    right: $size-1;
-    font-size: $size-3;
-  }
 }
 
 /* Nav */
@@ -86,6 +47,7 @@
     text-decoration: none;
     background-color: $white-color-alpha-1;
     padding: 7px 10px;
+
     @media screen and (min-width: $ipad) {
       padding: $size-0 $size-1;
     }
@@ -94,13 +56,10 @@
     color: $black-color;
     background-color: $white-color;
   }
+
   @media screen and (min-width: $ipad) {
     display: grid;
-    // gap: $size-1;
     grid-auto-flow: column;
-  }
-  @media screen and (min-width: $desktop) {
-    // display: flex;
   }
 }
 
@@ -118,18 +77,6 @@
     right: $size-3;
   }
 
-  // circle {
-  //   stroke: $black-color;
-  //   stroke-width: 3px;
-  //   fill: none;
-  // }
-
-  // text {
-  //   fill: none;
-  //   stroke: $black-color;
-  //   stroke-width: 6px;
-  // }
-
   path {
     fill: none;
     stroke: $black-color;
@@ -138,7 +85,6 @@
   .numeros {
     stroke: none;
     fill: $black-color;
-    
   }
 
   &:hover {
@@ -146,26 +92,3 @@
     transition: transform .8s;
   }
 }
-
-/* hambutton */
-// .hambutton {
-//   display: block;
-//   display: none;
-//   position: fixed;
-//   top: $size-1;
-//   left: 85vw;
-//   width: $size-3;
-//   mix-blend-mode: difference;
-
-//   &:hover {
-//     cursor: pointer;
-//   }
-
-//   line {
-//     stroke-width: 4px;
-//   }
-
-//   @media screen and (min-width: $bp3) {
-//     display: none;
-//   }
-// }
