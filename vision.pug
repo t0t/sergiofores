@@ -8,11 +8,11 @@ block append head
   
 block pageheader
   main(title="covertitle")
-    h1= page_vision.titulo
+    h1 !{page_vision.titulo}
   aside(title="coverimg").bgCover(style='background-image: url('+`${baseUrl + page_vision.galeria1[0]}`+');')
   //- img(src=`${baseUrl + page_vision.galeria1[0]}` alt='Cover image')
   header(title="sintesis")
-    h2= page_vision.subtitulo
+    h2 !{page_vision.subtitulo}
 
 block content
   article.grid-12.grid-md-6

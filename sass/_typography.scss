@@ -16,9 +16,9 @@ h1 {
   }
   
   @media screen and (min-width: $desktop) {
-    color: $vibrant-color-1;
+    color: $white-color;
     font-size: $size-5;
-    line-height: $size-5;
+    line-height: 1;
     margin-left: inherit;
     text-align: inherit;
   }
@@ -27,8 +27,8 @@ h1 {
 h2, h3 {
   font-size: $size-2;
   text-align: center;
-  letter-spacing: 1px;
-  font-weight: lighter;
+  letter-spacing: 2.5px;
+  // font-weight: lighter;
   
   @media screen and (min-width: $desktop) {
     text-align: left;

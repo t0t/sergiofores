@@ -16,9 +16,9 @@
             position: relative;
         }
         @media screen and (min-width: $desktop) {
-            mix-blend-mode: screen;
+            mix-blend-mode: exclusion;
             max-width: 56vw;
-            top: $size-6;
+            top: $size-5;
             left: $size-4;
             transform-origin: left;
             animation: intro;
@@ -60,6 +60,6 @@
     @media screen and (min-width: $desktop) {
         color: $white-color;
         mix-blend-mode: difference;
-        max-width: 28vw;
+        max-width: 45dvw;
     }
 }
