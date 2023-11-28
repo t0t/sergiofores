@@ -98,9 +98,10 @@ block content
   article.grid-12
     .slider--container.jcc
       .slider3
-        video#video1(poster='./assets/img/bg1.jpg' controls='false' loop='true')
-          source(src='./assets/img/introweb.mp4' type='video/mp4')
-          | Your browser does not support the video tag. 
+        iframe(width='560' height='315' src='https://www.youtube-nocookie.com/embed/3RcIpGOs5ZQ?si=so_qptG-vfpNUrAZ' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen='')
+        //- video#video1(poster='./assets/img/bg1.jpg' controls='false' loop='true')
+        //-   source(src='./assets/img/introweb.mp4' type='video/mp4')
+        //-   | Your browser does not support the video tag. 
       .slider3
         h3.tac Aquí irán llegando más videos...
       button.prev(onclick='plusDivs(-1, 2)') &#x276E;
