@@ -333,7 +333,7 @@ svg.grafica {
 .social-links {
   display: grid;
   text-align: center;
-  grid-template-columns: minmax(max-content, 20vw) minmax(50px, 1fr) 50px;
+  grid-template-columns: minmax(50px, 1fr) 50px;
   @media screen and (min-width: $ipad) {
     grid-template-columns: repeat(5, 1fr);
   }
