@@ -46,7 +46,7 @@ if ( !isSafari && !isMobileDevice()) {
     if (scrollpos >= header_height) { add_class_on_scroll() }
     else { remove_class_on_scroll() }
 
-    console.log(scrollpos)
+    // console.log(scrollpos)
   })
 
 

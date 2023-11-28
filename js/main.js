@@ -3,8 +3,8 @@
 // import { plusDivs, showDivs } from './slider.js'
 // import { slideIndex, slideId } from './slider.js'
 
-import {obras} from './data/obras.js'
-console.log(obras)
+// import {obras} from './data/obras.js'
+// console.log(obras)
 
 // LOADER con fundido
 let loader = document.getElementById("wrap-preloader");
