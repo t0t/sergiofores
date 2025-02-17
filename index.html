@@ -1,308 +1,123 @@
+
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sergio Forés</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --cursor-default: url('/assets/cursor.svg'), auto;
-            --cursor-pointer: url('/assets/cursor.svg'), pointer;
-            --color-background: #F5F2F0;
-            --color-text: #2C1810;
-            --font-primary: 'Montserrat', sans-serif;
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sergio Fores - Portfolio</title>
+    <meta name="description" content="Portfolio de Sergio Fores - Desarrollador y Artista Digital" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles.css">
+  </head>
+  <body>
+    <nav id="mainNav" class="main-nav">
+      <div class="nav-container">
+        <div class="logo-container">
+          <svg class="logo" viewBox="0 0 50 50">
+            <circle cx="25" cy="25" r="20" class="logo-circle" />
+            <path d="M15 25h20M25 15v20" class="logo-cross" />
+          </svg>
+        </div>
+        <button class="menu-toggle" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul>
+          <li><a href="#desarrollo-web">Desarrollo Web</a></li>
+          <li><a href="#exploracion">Exploración</a></li>
+          <li><a href="#arte">Arte</a></li>
+          <li><a href="#laboratorio">Laboratorio</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="container">
+        <div class="grid">
+          <div class="col-12">
+            <div class="logo-container">
+              <svg class="logo" viewBox="0 0 50 50">
+                <circle cx="25" cy="25" r="20" class="logo-circle" />
+                <path d="M15 25h20M25 15v20" class="logo-cross" />
+              </svg>
+              <h1>Sergio Fores</h1>
+            </div>
+            <p class="subtitle">Transformando ideas en experiencias digitales únicas</p>
+          </div>
+        </div>
         
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            cursor: var(--cursor-default);
-            font-family: var(--font-primary);
-            background-color: var(--color-background);
-            color: var(--color-text);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .fixed-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 20px;
-            z-index: 100;
-            background: linear-gradient(to bottom, var(--color-background) 60%, transparent);
-        }
-
-        .name {
-            font-size: 2rem;
-            font-weight: 300;
-            margin: 0;
-        }
-
-        .bio {
-            max-width: 300px;
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-top: 10px;
-        }
-
-        .center-point {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 100;
-            width: 100px;
-            height: 100px;
-        }
-
-        .logo {
-            width: 100%;
-            height: 100%;
-            transition: transform 0.3s ease;
-        }
-
-        .logo circle {
-            fill: var(--color-text);
-            transition: fill 0.3s ease;
-        }
-
-        .center-point:hover .logo {
-            transform: scale(1.1);
-        }
-
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 150px 2rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            min-height: 200vh; /* Asegurar scroll */
-        }
-
-        .card {
-            position: relative;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            opacity: 0;
-            transform: scale(0.8) translateY(100px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transform-origin: center center;
-            will-change: transform, opacity;
-        }
-
-        .card.visible {
-            opacity: var(--card-opacity);
-            transform: scale(var(--card-scale)) translateY(var(--card-translate)) rotate(var(--random-rotate));
-        }
-
-        .card-link {
-            display: block;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .card-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover .card-image {
-            transform: scale(1.05);
-        }
-
-        .card-content {
-            padding: 1rem;
-        }
-
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin: 0 0 0.5rem;
-        }
-
-        .card-description {
-            font-size: 0.9rem;
-            line-height: 1.4;
-            opacity: 0.8;
-        }
-
-        .background-image {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: auto;
-            height: 200px;
-            object-fit: contain;
-            opacity: 0.8;
-            z-index: -1;
-        }
-
-        .whatsapp {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            padding: 10px 20px;
-            border-radius: 25px;
-            background: #25D366;
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            cursor: var(--cursor-pointer);
-        }
-
-        .whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-        }
-    </style>
-</head>
-<body>
-    <header class="fixed-header">
-        <h1 class="name">Sergio Forés</h1>
-        <p class="bio">Artista y desarrollador web. Explorando la intersección entre arte, tecnología y conciencia.</p>
+        <div class="grid">
+          <div class="col-4 col-sm-12">
+            <div class="feature-card">
+              <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=1600&h=900" alt="Desarrollo Web" class="feature-image">
+              <h3>Desarrollo Web</h3>
+              <p>Soluciones digitales creativas y funcionales</p>
+            </div>
+          </div>
+          <div class="col-4 col-sm-12">
+            <div class="feature-card">
+              <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=1600&h=900" alt="Diseño UI/UX" class="feature-image">
+              <h3>Diseño UI/UX</h3>
+              <p>Experiencias visuales memorables</p>
+            </div>
+          </div>
+          <div class="col-4 col-sm-12">
+            <div class="feature-card">
+              <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&q=80&w=1600&h=900" alt="Innovación" class="feature-image">
+              <h3>Innovación</h3>
+              <p>Explorando nuevas posibilidades</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <div class="center-point">
-        <svg class="logo" viewBox="0 0 40 40">
-            <g>
-                <circle id="mediano2" cx="10" cy="20" r="9.5"/>
-                <circle id="mediano1" cx="30" cy="20" r="9.5"/>
-                <circle id="grande" cx="20" cy="20" r="19.5"/>
-                <circle id="cuatro" cx="5" cy="20" r="4.5"/>
-                <circle id="tres" cx="15" cy="20" r="4.5"/>
-                <circle id="dos" cx="25" cy="20" r="4.5"/>
-                <circle id="uno" cx="35" cy="20" r="4.5"/>
-            </g>
-        </svg>
-    </div>
+    <main>
+      <section id="desarrollo-web" class="project-section">
+        <h2>Desarrollo Web</h2>
+        <p>Mi faceta como desarrollador web y programador creativo.</p>
+        <img src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&q=80" alt="Desarrollo Web" class="section-image">
+        <a href="https://t0t.github.io/sergiofores-main/" class="external-link" target="_blank" rel="noopener noreferrer">
+          <button>Ver proyectos web</button>
+        </a>
+      </section>
+      
+      <section id="exploracion" class="project-section">
+        <h2>Exploración</h2>
+        <p>Un espacio para la exploración y el descubrimiento personal.</p>
+        <img src="https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?auto=format&fit=crop&q=80" alt="Exploración" class="section-image">
+        <a href="https://o1234.lovable.app/" class="external-link" target="_blank" rel="noopener noreferrer">
+          <button>Explorar más</button>
+        </a>
+      </section>
+      
+      <section id="arte" class="project-section">
+        <h2>Arte</h2>
+        <p>Mi trabajo como artista plástico y visual.</p>
+        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80" alt="Arte" class="section-image">
+        <a href="https://t0t.github.io/sergiofores_art/" class="external-link" target="_blank" rel="noopener noreferrer">
+          <button>Ver galería</button>
+        </a>
+      </section>
+      
+      <section id="laboratorio" class="project-section">
+        <h2>Laboratorio</h2>
+        <p>Espacio de experimentación y desarrollo de ideas.</p>
+        <img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&q=80" alt="Laboratorio" class="section-image">
+        <a href="https://t0t.github.io/huerto_01234/" class="external-link" target="_blank" rel="noopener noreferrer">
+          <button>Ver experimentos</button>
+        </a>
+      </section>
+    </main>
 
-    <div class="cards-container">
-        <!-- Las cards se añadirán dinámicamente aquí -->
-    </div>
+    <button id="whatsappButton" class="whatsapp-button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="0">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+      </svg>
+    </button>
 
-    <img src="/assets/img/fangw.jpg" alt="Background" class="background-image">
-    <a href="#" class="whatsapp" data-phone="KzM0NjE5NTQ5MDMy">WhatsApp</a>
-
-    <script>
-        // Función para decodificar el número de WhatsApp (Base64)
-        function decodePhone(encoded) {
-            return atob(encoded);
-        }
-
-        // Datos de las cards...
-        const cardsData = [
-            {
-                image: '/assets/img/obra.png',
-                title: 'Desarrollo Web',
-                description: 'Mi faceta como desarrollador web y programador creativo.',
-                url: 'https://t0t.github.io/sergiofores-main/'
-            },
-            {
-                image: '/assets/img/dibujo.jpg',
-                title: 'Exploración',
-                description: 'Un espacio para la exploración y el descubrimiento personal.',
-                url: 'https://o1234.lovable.app/'
-            },
-            {
-                image: '/assets/img/obra1.jpg',
-                title: 'Arte',
-                description: 'Mi trabajo como artista plástico y visual.',
-                url: 'https://t0t.github.io/sergiofores_art/'
-            },
-            {
-                image: '/assets/img/lab1.png',
-                title: 'Laboratorio',
-                description: 'Espacio de experimentación y desarrollo de ideas en Github.',
-                url: 'https://t0t.github.io/huerto_01234/'
-            }
-        ];
-
-        // Función para crear una card
-        function createCard(data, index) {
-            const card = document.createElement('div');
-            card.className = 'card';
-            
-            // Rotación aleatoria entre -5 y 5 grados
-            const rotation = (Math.random() * 10 - 5).toFixed(2);
-            card.style.setProperty('--random-rotate', `${rotation}deg`);
-            
-            // Delay basado en la posición
-            card.style.transitionDelay = `${index * 0.1}s`;
-            
-            card.innerHTML = `
-                <a href="${data.url}" class="card-link" target="_blank">
-                    <img src="${data.image}" alt="${data.title}" class="card-image">
-                    <div class="card-content">
-                        <h3 class="card-title">${data.title}</h3>
-                        <p class="card-description">${data.description}</p>
-                    </div>
-                </a>
-            `;
-            return card;
-        }
-
-        // Función para animar las cards basado en scroll
-        function animateCards() {
-            const cards = document.querySelectorAll('.card');
-            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-            
-            cards.forEach((card, index) => {
-                const cardRect = card.getBoundingClientRect();
-                const cardCenter = cardRect.top + cardRect.height / 2;
-                const distanceFromCenter = Math.abs(window.innerHeight / 2 - cardCenter);
-                const maxDistance = window.innerHeight / 2;
-                const visibility = 1 - (distanceFromCenter / maxDistance);
-                
-                card.style.setProperty('--card-opacity', Math.max(0, Math.min(1, visibility)));
-                card.style.setProperty('--card-scale', 0.8 + (visibility * 0.2));
-                card.style.setProperty('--card-translate', `${100 - (visibility * 100)}px`);
-                
-                if (visibility > 0) {
-                    card.classList.add('visible');
-                } else {
-                    card.classList.remove('visible');
-                }
-            });
-        }
-
-        // Inicializar las cards
-        function initCards() {
-            const container = document.querySelector('.cards-container');
-            cardsData.forEach((data, index) => {
-                container.appendChild(createCard(data, index));
-            });
-            
-            // Escuchar el scroll
-            window.addEventListener('scroll', () => {
-                requestAnimationFrame(animateCards);
-            });
-            
-            // Animación inicial
-            animateCards();
-        }
-
-        // Manejar clic en WhatsApp
-        document.querySelector('.whatsapp').addEventListener('click', function(e) {
-            e.preventDefault();
-            const phone = decodePhone(this.dataset.phone);
-            window.open(`https://wa.me/${phone.replace('+','')}`, '_blank');
-        });
-
-        // Inicializar cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', initCards);
-    </script>
-</body>
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script src="/src/main.js" type="module"></script>
+  </body>
 </html>
