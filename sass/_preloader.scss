@@ -1,24 +1,96 @@
-// /* LOADER */
+// Preloader styles
+#wrap-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fae4e5;
+  z-index: 9999;
+  transition: opacity 0.5s ease-out;
 
-.fade-page-off {
+  &.preloader-fade-out {
     opacity: 0;
   }
-  
-  .fade-page-off.fade-page-on {
-    opacity: 1;
-    transition: all 20s ease-out;
-  }
-  
+
   #preloader {
-    // transform: scale(0.5);
-    padding: $size-2;
-    animation: parpadeo .4s linear infinite;
-    opacity: 1; //poner en 1 para debugear
+    width: 50%;
+    max-width: 200px;
+    animation: pulse 2s infinite;
+
+    circle {
+      transition: all 0.3s ease-out;
+      transform-origin: center;
+      
+      &.grande { animation: rotate 4s linear infinite; }
+      &.mediano { animation: rotate-reverse 3s linear infinite; }
+      &.uno, &.dos, &.tres, &.cuatro { animation: pulse-circle 2s ease-in-out infinite; }
+    }
+
+    text {
+      font-family: system-ui, -apple-system, sans-serif;
+      animation: fade 2s ease-in-out infinite;
+    }
   }
+
+  .loading-text {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+    animation: fade 1.5s ease-in-out infinite alternate;
+  }
+}
+
+// Animations
+@keyframes pulse {
+  0%, 100% { transform: scale(0.95); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes pulse-circle {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
+// Page transitions
+.fade-page-off {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.fade-page-off.fade-page-on {
+  opacity: 1;
+}
 
 // imagen animacion
 .animintro circle {
-    stroke: white;
-    stroke-width: 1px;
-    fill: none;
+  stroke: white;
+  stroke-width: 1px;
+  fill: none;
 }
