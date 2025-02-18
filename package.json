@@ -9,6 +9,20 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.20",
     "vite": "^5.0.0"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {
+        "overrideBrowserslist": [
+          ">1%",
+          "last 2 versions",
+          "not dead"
+        ],
+        "flexbox": true,
+        "grid": true
+      }
+    }
   }
 }

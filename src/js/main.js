@@ -118,6 +118,48 @@ const updateYear = () => {
     document.getElementById('year').textContent = new Date().getFullYear();
 };
 
+// Cambiar color de enlaces de navegación según la sección activa
+const changeNavLinksColor = () => {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.navbar-links a');
+
+    let current = '';
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+
+        if (pageYOffset >= sectionTop - sectionHeight / 3) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    let navbarColor;
+
+    if (current === 'about') {
+        const backgroundColor = getComputedStyle(document.getElementById('about')).backgroundColor;
+        navbarColor = (backgroundColor === 'rgb(255, 255, 255)') ? 'var(--gray-10)' : 'var(--gray-1)';
+    } else if (current === 'projects') {
+        const backgroundColor = getComputedStyle(document.getElementById('projects')).backgroundColor;
+        navbarColor = (backgroundColor === 'rgb(255, 255, 255)') ? 'var(--gray-10)' : 'var(--gray-1)';
+    } else if (current === 'hero') {
+        const backgroundColor = getComputedStyle(document.getElementById('hero')).backgroundColor;
+        navbarColor = (backgroundColor === 'rgb(255, 255, 255)') ? 'var(--gray-10)' : 'var(--gray-1)';
+    }
+
+    navLinks.forEach(link => {
+        link.style.color = navbarColor || 'var(--gray-10)'; // Cambia el color de todos los enlaces
+        link.style.borderBottom = '2px solid transparent'; // Borde por defecto
+        link.style.paddingBottom = 'var(--space-2)'; // Espacio inferior
+
+        if (link.getAttribute('href') === `#${current}`) {
+            link.style.borderBottom = `2px solid ${navbarColor || 'var(--gray-10)'}`; // Borde activo con el color actual
+        }
+    });
+};
+
+document.addEventListener('scroll', changeNavLinksColor);
+
 // Inicialización
 const init = () => {
     initImageRotation();

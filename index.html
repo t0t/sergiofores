@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sergio Fores - Portfolio Experimental</title>
     <meta name="description" content="Portfolio experimental de Sergio Fores - Desarrollador y Artista Digital">
+    <meta name="keywords" content="Art, Holistic, Creacion, Cabala, Conciencia, Design, 3D printing, Process, HTML, CSS, JavaScript, Crisis, Bloqueo, Creativo, Multidimensional, Arte, Analogia, Hermeneutica, Mapas, Tecnología">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="/src/styles/main.css">
@@ -13,30 +14,51 @@
 </head>
 
 <body>
+    <nav class="navbar">
+        <a href="#hero" aria-label="Ir a la sección de inicio" class="navbar-brand">
+            <img src="/images/avatar.png" alt="Avatar de Sergio Fores" class="avatar">
+            <span class="author-name">Sergio Forés</span>
+        </a>
+        <ul class="navbar-links">
+            <li><a href="#about" aria-label="Ir a la sección Sobre mí">Sobre mí</a></li>
+            <li><a href="#projects" aria-label="Ir a la sección Proyectos">Proyectos</a></li>
+        </ul>
+    </nav>
 
-    <header class="hero">
-        <div>
-            <h1>Sergio Forés</h1>
-            <h2 class="subtitle">Transformando ideas en experiencias digitales únicas</h2>
-        </div>
+    <header id="hero" class="hero">
+        <h1>Creación desde el <span class="highlight-gradient">Lenguaje Natural</span> </h1>
+        <h2 class="subtitle">Bienvenido a mi página personal!</h2>
     </header>
 
     <section class="features-grid">
         <div class="feature">
+            <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="25" cy="25" r="20" fill="blue" />
+            </svg>
             <h3>Desarrollo Web</h3>
             <p>Soluciones digitales creativas y funcionales</p>
         </div>
         <div class="feature">
+            <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+                <rect width="50" height="50" fill="green" />
+            </svg>
             <h3>Diseño UI/UX</h3>
             <p>Experiencias visuales memorables</p>
         </div>
         <div class="feature">
+            <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="25,0 50,50 0,50" fill="red" />
+            </svg>
             <h3>Innovación</h3>
             <p>Explorando nuevas posibilidades</p>
         </div>
     </section>
 
-    <section class="projects">
+    <section id="about" class="about">
+        <h2>Sobre mí</h2>
+        <p>Desarrollador y artista digital con experiencia en proyectos variados.</p>
+    </section>
+    <section id="projects" class="projects">
         <h2>Enlaces a otros proyectos</h2>
     <ul class="projects-grid">
         <li id="desarrollo-web" class="card project-section">
@@ -45,10 +67,10 @@
             </div>
             <div class="description">
                 <h3>Desarrollo Web</h3>
-                <p>Mi faceta como desarrollador web y programador creativo.</p>
+                <p>Fusiono código y creatividad para construir experiencias digitales impactantes, donde la funcionalidad se encuentra con el diseño experimental.</p>
             </div>
             <a href="https://t0t.github.io/sergiofores-main/" class="button button-card" target="_blank" rel="noopener noreferrer">
-                Abrir sitio externo <span class="external-icon">↗</span>
+                Ver sitio web <span class="external-icon">↗</span>
             </a>
         </li>
 
@@ -57,11 +79,11 @@
                 <img src="/images/o1234-home.jpg" alt="Exploración" class="project-image" loading="lazy">
             </div>
             <div class="description">
-                <h3>Exploración</h3>
-                <p>Un espacio para la exploración y el descubrimiento personal.</p>
+                <h3>+0+1234</h3>
+                <p>Un espacio para el descubrimiento personal, donde cada idea se convierte en un viaje a nuevos horizontes, desafiando los límites de lo convencional.</p>
             </div>
             <a href="https://o1234.lovable.app/" class="button button-card" target="_blank" rel="noopener noreferrer">
-                Abrir sitio externo <span class="external-icon">↗</span>
+                Ver sitio web <span class="external-icon">↗</span>
             </a>
         </li>
 
@@ -70,30 +92,36 @@
                 <img src="/images/t0t-sergiofores-art.jpg" alt="Arte" class="project-image" loading="lazy">
             </div>
             <div class="description">
-                <h3>Arte</h3>
-                <p>Mi trabajo como artista plástico y visual.</p>
+                <h3>Obra plástica</h3>
+                <p>Mi faceta como artista plástico y visual se plasma en obras que combinan sensibilidad y técnica, invitándote a ver el mundo con otros ojos.</p>
             </div>
             <a href="https://t0t.github.io/sergiofores_art/" class="button button-card" target="_blank" rel="noopener noreferrer">
-                Abrir sitio externo <span class="external-icon">↗</span>
+                Ver sitio web <span class="external-icon">↗</span>
             </a>
         </li>
 
         <li id="laboratorio" class="card project-section">
             <div class="image-container">
-                <img src="/images/t0t-sergiofores-main.jpg" alt="Laboratorio" class="project-image" loading="lazy">
+                <img src="/images/t0t-sergiofores-dev2.png" alt="Laboratorio" class="project-image" loading="lazy">
             </div>
             <div class="description">
-                <h3>Laboratorio</h3>
-                <p>Espacio de experimentación y desarrollo de ideas.</p>
+                <h3>Github Playground</h3>
+                <p>Un entorno de experimentación constante, donde pruebo y desarrollo ideas en un laboratorio digital, impulsando la innovación a cada paso.</p>
             </div>
             <a href="https://t0t.github.io/huerto_01234/" class="button button-card" target="_blank" rel="noopener noreferrer">
-                Abrir sitio externo <span class="external-icon">↗</span>
+                Ver sitio web <span class="external-icon">↗</span>
             </a>
         </li>
     </ul>
     </section>
 
     <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/cuenta.01234/" class="social-link" target="_blank">Instagram</a>
+            <a href="https://x.com/t0tinspire" class="social-link" target="_blank">X (Twitter)</a>
+            <a href="https://www.youtube.com/@0-1234" class="social-link" target="_blank">YouTube</a>
+            <a href="https://github.com/t0t" class="social-link" target="_blank">GitHub</a>
+        </div>
         <p><span id="year">2025</span> - Sergio Forés.</p>
     </footer>
 
@@ -104,7 +132,7 @@
     </button>
 
     <div id="customAlert" class="custom-alert" hidden>
-        <span>PAÁGINAEN DESARROLLO</span>
+        <span>PAÁGINA EN DESARROLLO</span>
     </div>
 
     <script src='src/js/main.js'></script>
