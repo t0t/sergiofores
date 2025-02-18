@@ -73,7 +73,7 @@
 }
 
 html {
-    font-size: 15px;
+    font-size: 18px;
 }
 body {
     font-family: var(--font-family);
@@ -146,7 +146,6 @@ ul {
     padding: var(--space-6); /* Usar variable para el padding */
     text-align: center;
     background-image: url("/images/backgrounds/bg2.jpg");
-    /* background-size: cover; */
     background-position: bottom center;
     background-attachment: fixed;
     background-size: 70vw;
@@ -227,31 +226,51 @@ img.avatar {
     align-content: center;
 }
 
+
+.resumen {
+    padding: var(--space-6);
+}
+
+.resumen h3 {
+    font-size: var(--font-size-large);
+    font-weight: var(--font-weight-normal);
+    max-width: var(--container-width);
+    margin: 0 auto;
+    line-height: var(--line-height-2);
+}
+
 .feature {
     display: grid;
     gap: var(--space-2);
     justify-content: center;
-    justify-items: center;
+    /* justify-items: center; */
     background-color: var(--gray-2); /* Usar variable para el color de fondo */
     padding: var(--space-6) var(--space-5); /* Aumenta el padding superior e inferior usando variables */
-    text-align: center;
+    /* text-align: center; */
 }
 
 .about {
+    display: grid;
     padding: var(--space-6);
-    background-color: var(--gray-7);
+    background-color: var(--gray-3);
     min-height: 100vh;
+    align-content: center;
+    gap: var(--space-3); /* Usar variable para el gap */
 }
 
 .about h2 {
     padding-bottom: var(--space-6);
     text-align: center;
-    color: var(--gray-3);
+    color: var(--gray-4);
+}
+
+.about h3 {
+    text-align: center;
 }
 
 .about p {
-    text-align: center;
-    color: var(--gray-3);
+    max-width: var(--container-width);
+    margin: 0 auto;
 }
 
 .projects {
