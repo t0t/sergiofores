@@ -239,7 +239,7 @@ footer {
 
 @media (min-width: 769px) {
     .hero {
-        height: 40vh; /* Ajuste para ocupar el 50% de la altura de la ventana en pantallas grandes */
+        height: 50vh; /* Ajuste para ocupar el 50% de la altura de la ventana en pantallas grandes */
         align-content: space-evenly;
     }
 }
