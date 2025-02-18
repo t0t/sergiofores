@@ -70,9 +70,10 @@ ul {
 }
 
 .feature {
+    display: grid;
+    grid-template-rows: auto 1fr;
     background-color: #f4f4f4;
     padding: 20px;
-    border-radius: 8px;
     text-align: center;
 }
 
@@ -84,9 +85,9 @@ ul {
 }
 
 .project-section {
-    background-color: #fff;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     padding: 0 0 20px 0;
-    border-radius: 8px;
     text-align: center;
 }
 
@@ -97,7 +98,6 @@ ul {
 .project-image {
     width: 100%;
     height: auto;
-    border-radius: 8px;
 }
 
 .whatsapp-button {
