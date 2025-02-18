@@ -113,12 +113,18 @@ const initLazyLoading = () => {
     $$('img[data-src]').forEach(img => imageObserver.observe(img));
 };
 
+// Actualizar año automáticamente
+const updateYear = () => {
+    document.getElementById('year').textContent = new Date().getFullYear();
+};
+
 // Inicialización
 const init = () => {
     initImageRotation();
     initSmoothScroll();
     initWhatsApp();
     initLazyLoading();
+    updateYear();
     
     // Mostrar alerta inicial
     setTimeout(() => {
