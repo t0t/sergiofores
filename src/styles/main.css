@@ -357,6 +357,7 @@ footer {
 
 .social-links {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: var(--space-4);
     margin: var(--space-4) 0;
@@ -401,9 +402,11 @@ footer {
 
     .hero h1 {
         font-size: clamp(1rem, 2vw + 1rem, 3rem);
-        
-        /* font-size: var(--font-size-large); */
         line-height: var(--line-height-2);
+    }
+
+    .resumen h3 {
+        font-size: var(--font-size-medium);
     }
 
     .features-grid {
