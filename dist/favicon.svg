@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        circle, path {
+            stroke: #B1D5A9;
+            stroke-width: 2;
+            fill: none;
+        }
+        @media (prefers-color-scheme: dark) {
+            circle, path {
+                stroke: #B1D5A9;
+            }
+        }
+        @media (prefers-color-scheme: light) {
+            circle, path {
+                stroke: #22252C;
+            }
+        }
+    </style>
+    <circle cx="25" cy="25" r="20"/>
+    <path d="M15 25h20M25 15v20"/>
+</svg>
