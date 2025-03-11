@@ -24,5 +24,9 @@
         "grid": true
       }
     }
+  },
+  "dependencies": {
+    "marked": "^15.0.7",
+    "mermaid": "^11.4.1"
   }
 }

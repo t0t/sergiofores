@@ -1,159 +1,358 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sergio Fores - Portfolio Experimental</title>
-    <meta name="description" content="Portfolio experimental de Sergio Fores - Desarrollador y Artista Digital">
-    <meta name="keywords" content="Art, Holistic, Creacion, Cabala, Conciencia, Design, 3D printing, Process, HTML, CSS, JavaScript, Crisis, Bloqueo, Creativo, Multidimensional, Arte, Analogia, Hermeneutica, Mapas, Tecnología">
+    <title>Sergio Fores - Portfolio</title>
+    <meta name="description" content="Portfolio de Sergio Fores - Desarrollador y Artista Digital">
+    <meta name="keywords" content="Art, Holistic, Creacion, Cabala, Conciencia, Design, 3D printing, Process, HTML, CSS, JavaScript">
+    
+    <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="src/styles/main.css">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <script type="module" src="src/js/main.js"></script>
-</head>
-
-<body>
-    <nav class="navbar">
-        <a href="#hero" aria-label="Ir a la sección de inicio" class="navbar-brand">
-            <img src="images/avatar.png" alt="Avatar de Sergio Fores" class="avatar">
-            <span class="author-name">Sergio Forés</span>
-        </a>
-        <ul class="navbar-links">
-            <li><a href="#about" aria-label="Ir a la sección Sobre mí">Sobre mí</a></li>
-            <li><a href="#projects" aria-label="Ir a la sección Proyectos">Proyectos</a></li>
-        </ul>
-    </nav>
-
-    <header id="hero" class="hero">
-        <h1>Hablando con la Creación <br> en <span class="highlight-gradient">Lenguaje Natural</span> </h1>
-        <h2 class="subtitle">Literalmente, la lógica creativa de este momento</h2>
-    </header>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <section class="resumen">
-        <h3>Soy un ser en desarrollo continuo dialogando con campos interconectados, donde la tecnología sirve como herramienta para la expresión artística, la IA potencia el proceso creativo, y el pensamiento simbólico proporciona la base filosófica que unifica estos elementos en un diálogo permanente.</h3>
-    </section>
-
-    <section class="features-grid">
+    <!-- Mermaid (versión estable) -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.13.4/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            securityLevel: 'loose',
+            theme: 'default'
+        });
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #4285f4;
+            --secondary-color: #34a853;
+            --background-color: #ffffff;
+            --text-color: #333333;
+            --heading-color: #1a1a1a;
+            --card-background: #f9f9f9;
+            --border-radius: 8px;
+            --spacing: 20px;
+            --transition: 0.3s ease;
+        }
         
-        <div class="feature">
-            <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="25" cy="25" r="20" fill="blue" />
-            </svg>
-            <h3>Arte y Creación</h3>
-            <li>Integración de expresión artística con implementación tecnológica</li>
-            <li>Proceso creativo enfocado en experiencias transformadoras</li>
-            <li>Innovación visual y conceptual</li>
-        </div>
-        <div class="feature">
-            <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
-                <rect width="50" height="50" fill="green" />
-            </svg>
-            <h3>Desarrollo con IA</h3>
-            <li>Prototipado rápido asistido por IA</li>
-            <li>Integración de herramientas de IA en flujos creativos</li>
-            <li>Transformación de conceptos en soluciones tangibles</li>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing);
+        }
+        
+        header {
+            text-align: center;
+            padding: 50px 0;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: var(--heading-color);
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            color: var(--heading-color);
+            margin: 30px 0 15px;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--heading-color);
+            margin: 25px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            display: block;
+            margin: 20px 0;
+        }
+        
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #555;
+        }
+        
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        code {
+            font-family: monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        main {
+            padding: 20px 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Clase para el loader */
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+        
+        .loader::after {
+            content: "";
+            width: 40px;
+            height: 40px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Estilos para la mermaid */
+        .mermaid {
+            margin: 30px 0;
+            background-color: white !important;
+            overflow: visible !important;
+        }
+        
+        /* Estilos para los proyectos en grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .project-card {
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .project-card h3 {
+            padding: 15px 15px 0;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .project-card p {
+            padding: 0 15px;
+            margin: 10px 0;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            margin: 0;
+            border-radius: 0;
+        }
+        
+        .project-link {
+            display: inline-block;
+            margin: 10px 15px 15px;
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .project-link:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
             
-        </div>
-        <div class="feature">
-            <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="25,0 50,50 0,50" fill="red" />
-            </svg>
-            <h3>Símbolos y Lenguaje</h3>
-            <li>Marco 01234 como enfoque holístico de creación</li>
-            <li>Integración de sabiduría ancestral con tecnología moderna</li>
-            <li>Conexión entre patrones universales y creación digital</li>
-        </div>
-
- 
-    </section>
-
-    <section id="about" class="about">
-        <h2>Sobre mí</h2>
-        <h3>Creatividad, velocidad y profundidad filosófica</h3>
-        <p>Hola, podría etiquetarme como <strong>Holistic Developer</strong> que fusiona más de dos décadas de experiencia en arte, diseño y desarrollo. A lo largo de mi carrera he explorado la intersección entre la tecnología, la expresión artística y la sabiduría ancestral, buscando dar forma a ideas de manera ágil y funcional.</p>
-        <p>Mi enfoque es holístico, enfocándome más en las experiencias transformadoras que en los objetos, integrando cada disciplina para conectar con la esencia misma de la Creación.
-        <br> Como diseñador gráfico/front-end y especialista en prototipado rápido, materializo prototipos funcionales a velocidad récord, siempre con la intención de reconectar con la verdad que nos habita.</p>
-        <p>Mi trabajo es una invitación al proceso en sí, ayudando a las personas y organizaciones a materializar la visión original que vive en cada uno de nosotros, mientras exploro las fascinantes conexiones entre los códigos del universo y la creación digital. </p>
-    </section>
-    <section id="projects" class="projects">
-        <h2>Enlaces a otros proyectos</h2>
-    <ul class="projects-grid">
-        <li id="desarrollo-web" class="card project-section">
-            <div class="image-container">
-                <img src="/images/t0t-sergiofores-dev.jpg" alt="Desarrollo Web" class="project-image" loading="lazy">
-            </div>
-            <div class="description">
-                <h3>Desarrollo Web</h3>
-                <p>Fusiono código y creatividad para construir experiencias digitales impactantes, donde la funcionalidad se encuentra con el diseño experimental.</p>
-            </div>
-            <a href="https://t0t.github.io/sergiofores-main/" class="button button-card" target="_blank" rel="noopener noreferrer">
-                Ver sitio web <span class="external-icon">↗</span>
-            </a>
-        </li>
-
-        <li id="exploracion" class="card project-section">
-            <div class="image-container">
-                <img src="/images/o1234-home.jpg" alt="Exploración" class="project-image" loading="lazy">
-            </div>
-            <div class="description">
-                <h3>+0+1234</h3>
-                <p>Un espacio para el descubrimiento personal, donde cada idea se convierte en un viaje a nuevos horizontes, desafiando los límites de lo convencional.</p>
-            </div>
-            <a href="https://o1234.lovable.app/" class="button button-card" target="_blank" rel="noopener noreferrer">
-                Ver sitio web <span class="external-icon">↗</span>
-            </a>
-        </li>
-
-        <li id="arte" class="card project-section">
-            <div class="image-container">
-                <img src="/images/t0t-sergiofores-art.jpg" alt="Arte" class="project-image" loading="lazy">
-            </div>
-            <div class="description">
-                <h3>Obra plástica</h3>
-                <p>Mi faceta como artista plástico y visual se plasma en obras que combinan sensibilidad y técnica, invitándote a ver el mundo con otros ojos.</p>
-            </div>
-            <a href="https://t0t.github.io/sergiofores_art/" class="button button-card" target="_blank" rel="noopener noreferrer">
-                Ver sitio web <span class="external-icon">↗</span>
-            </a>
-        </li>
-
-        <li id="laboratorio" class="card project-section">
-            <div class="image-container">
-                <img src="/images/t0t-sergiofores-dev2.png" alt="Laboratorio" class="project-image" loading="lazy">
-            </div>
-            <div class="description">
-                <h3>Github Playground</h3>
-                <p>Un entorno de experimentación constante, donde pruebo y desarrollo ideas en un laboratorio digital.</p>
-            </div>
-            <a href="https://t0t.github.io/huerto_01234/" class="button button-card" target="_blank" rel="noopener noreferrer">
-                Ver sitio web <span class="external-icon">↗</span>
-            </a>
-        </li>
-    </ul>
-    </section>
-
-    <footer>
-        <div class="social-links">
-            <a href="https://www.instagram.com/cuenta.01234/" class="social-link" target="_blank">Instagram</a>
-            <a href="https://x.com/t0tinspire" class="social-link" target="_blank">X (Twitter)</a>
-            <a href="https://www.youtube.com/@0-1234" class="social-link" target="_blank">YouTube</a>
-            <a href="https://github.com/t0t" class="social-link" target="_blank">GitHub</a>
-        </div>
-        <p><span id="year">2025</span> - Sergio Forés.</p>
-    </footer>
-
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            h3 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Estilos para las redes sociales */
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: background-color var(--transition), transform var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Estilos adicionales para el botón de WhatsApp */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #25d366;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+        
+        .whatsapp-button:hover {
+            background-color: #1da851;
+            transform: scale(1.1);
+        }
+        
+        /* Estilos adicionales para los proyectos */
+        .project-section {
+            margin-bottom: 40px;
+        }
+        
+        .project-section img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .project-section img:hover {
+            transform: scale(1.03);
+        }
+        
+        .project-section a {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .project-section a:hover {
+            color: #004499;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">        
+        <main>
+            <div id="loader" class="loader"></div>
+            <div id="content"></div>
+        </main>
+        
+        <footer>
+            <p>&copy; <span id="year">2023</span></p>
+        </footer>
+    </div>
+    
+    <!-- Botón de WhatsApp -->
     <button id="whatsappButton" class="whatsapp-button" aria-label="Contactar por WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
             <path d="M 25 2 C 12.318 2 2 12.318 2 25 C 2 28.96 3.0228906 32.853062 4.9628906 36.289062 L 2.0371094 46.730469 C 1.9411094 47.073469 2.03325 47.440312 2.28125 47.695312 C 2.47225 47.892313 2.733 48 3 48 C 3.08 48 3.1612344 47.989703 3.2402344 47.970703 L 14.136719 45.271484 C 17.463719 47.057484 21.21 48 25 48 C 37.682 48 48 37.682 48 25 C 48 12.318 37.682 2 25 2 z M 16.642578 14 C 17.036578 14 17.428437 14.005484 17.773438 14.021484 C 18.136437 14.039484 18.624516 13.883484 19.103516 15.021484 C 19.595516 16.189484 20.775875 19.058563 20.921875 19.351562 C 21.069875 19.643563 21.168656 19.984047 20.972656 20.373047 C 20.776656 20.762047 20.678813 21.006656 20.382812 21.347656 C 20.086813 21.688656 19.762094 22.107141 19.496094 22.369141 C 19.200094 22.660141 18.892328 22.974594 19.236328 23.558594 C 19.580328 24.142594 20.765484 26.051656 22.521484 27.597656 C 24.776484 29.583656 26.679531 30.200188 27.269531 30.492188 C 27.859531 30.784188 28.204828 30.734703 28.548828 30.345703 C 28.892828 29.955703 30.024969 28.643547 30.417969 28.060547 C 30.810969 27.477547 31.204094 27.572578 31.746094 27.767578 C 32.288094 27.961578 35.19125 29.372062 35.78125 29.664062 C 36.37125 29.956063 36.766062 30.102703 36.914062 30.345703 C 37.062062 30.587703 37.062312 31.754234 36.570312 33.115234 C 36.078313 34.477234 33.717984 35.721672 32.583984 35.888672 C 31.565984 36.037672 30.277281 36.10025 28.863281 35.65625 C 28.006281 35.38625 26.907047 35.028734 25.498047 34.427734 C 19.575047 31.901734 15.706156 26.012047 15.410156 25.623047 C 15.115156 25.234047 13 22.46275 13 19.59375 C 13 16.72475 14.524406 15.314469 15.066406 14.730469 C 15.608406 14.146469 16.248578 14 16.642578 14 z"></path>
-            </svg>
+        </svg>
     </button>
-
-    <div id="customAlert" class="custom-alert" hidden>
-        <span>PAÁGINA EN DESARROLLO</span>
-    </div>
-
+    
+    <!-- Script principal -->
+    <script type="module" src="./src/js/markdown-loader.js"></script>
 </body>
-
 </html>
