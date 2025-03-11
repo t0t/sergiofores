@@ -31,8 +31,11 @@ async function cargarContenidoMarkdown() {
         // Ocultar el cargador
         cargador.style.display = 'none';
         
+        // Modificar el HTML para eliminar las etiquetas <p> alrededor de las imágenes
+        const contenidoModificado = contenidoHTML.replace(/<p>(<img[^>]+>)<\/p>/g, '$1');
+        
         // Insertar el HTML en el contenedor
-        contenedor.innerHTML = contenidoHTML;
+        contenedor.innerHTML = contenidoModificado;
         
         console.log("Contenido Markdown cargado y convertido a HTML");
         

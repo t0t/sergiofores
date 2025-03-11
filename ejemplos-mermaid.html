@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplos de Mermaid</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.13.4/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            securityLevel: 'loose',
+            theme: 'default'
+        });
+    </script>
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background-color: #f8f8f8;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .ejemplo {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+        }
+        
+        .codigo {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin-bottom: 10px;
+        }
+        
+        h1, h2, h3 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ejemplos de flechas con texto en Mermaid</h1>
+    
+    <div class="ejemplo">
+        <h2>Ejemplo 1: Flecha con texto usando sintaxis básica</h2>
+        <div class="codigo">
+            C --&gt;|texto| D;
+        </div>
+        <div class="mermaid">
+            graph LR
+            C -->|texto| D;
+        </div>
+    </div>
+    
+    <div class="ejemplo">
+        <h2>Ejemplo 2: Flecha con texto usando la sintaxis de doble guión</h2>
+        <div class="codigo">
+            C --texto--&gt; D;
+        </div>
+        <div class="mermaid">
+            graph LR
+            C --texto--> D;
+        </div>
+    </div>
+    
+    <div class="ejemplo">
+        <h2>Ejemplo 3: Enlace sin flecha con texto</h2>
+        <div class="codigo">
+            C ---texto--- D;
+        </div>
+        <div class="mermaid">
+            graph LR
+            C ---texto--- D;
+        </div>
+    </div>
+    
+    <div class="ejemplo">
+        <h2>Ejemplo 4: Flecha punteada con texto</h2>
+        <div class="codigo">
+            C -.texto.-> D;
+        </div>
+        <div class="mermaid">
+            graph LR
+            C -.texto.-> D;
+        </div>
+    </div>
+    
+    <div class="ejemplo">
+        <h2>Ejemplo 5: Flecha gruesa con texto</h2>
+        <div class="codigo">
+            C ==texto==> D;
+        </div>
+        <div class="mermaid">
+            graph LR
+            C ==texto==> D;
+        </div>
+    </div>
+    
+    <div class="ejemplo">
+        <h2>Ejemplo 6: Ejemplo completo con varios nodos y relaciones</h2>
+        <div class="codigo">
+            A --&gt; B;
+            B --texto1--&gt; C;
+            C ==texto2==&gt; D;
+            D -.texto3.-&gt; E;
+        </div>
+        <div class="mermaid">
+            graph TD
+            A --> B;
+            B --texto1--> C;
+            C ==texto2==> D;
+            D -.texto3.-> E;
+        </div>
+    </div>
+</body>
+</html>

@@ -1,8 +1,12 @@
+<header>
+
 # Sergio Forés
 
 ## "Me doy cuenta de 5 cosas"
 
-<div class="mermaid">
+</header>
+
+<div class="mermaid" style="width:100%;">
 graph TD;
     A["Posibilidades"]-->B["¿Qué soy?"];
     B-->C["Habilidades"];
@@ -15,7 +19,7 @@ graph TD;
     H-->A;
 </div>
 
-Soy un ser en desarrollo continuo dialogando con campos interconectados, donde la tecnología sirve como herramienta para la expresión artística, la IA potencia el proceso creativo, y el pensamiento simbólico proporciona la base filosófica que unifica estos elementos en un diálogo permanente.
+<section class="section-features">
 
 ## Áreas principales
 
@@ -33,6 +37,9 @@ Soy un ser en desarrollo continuo dialogando con campos interconectados, donde l
 - Marco 01234 como enfoque holístico de creación
 - Integración de sabiduría ancestral con tecnología moderna
 - Conexión entre patrones universales y creación digital
+
+</section>
+<section>
 
 ## Modelo 01234
 **Claridad para tomar mejores decisiones**
@@ -86,6 +93,9 @@ Transformo todo esto en algo útil y lo ofrezco al mundo:
 - Optimización creativa y de procesos
 - Mejores conversaciones y sinergias
 
+</section>
+<section>
+
 ## Sobre mí
 Yo por ejemplo sé un poquito de cabala, un poco de arte, un poco de diseño y un poco de desarrollo web, por ejemplo, esa sería, algo simplificada, mi corpus de conocimiento biológico, el resto está en algunos dispositivos y en la nube.
 
@@ -104,6 +114,10 @@ Como diseñador gráfico/front-end y especialista en prototipado rápido, materi
 
 Mi trabajo es una invitación al proceso en sí, ayudando a las personas y organizaciones a materializar la visión original que vive en cada uno de nosotros, mientras exploro las fascinantes conexiones entre los códigos del universo y la creación digital.
 
+</section>
+
+
+<div class="proyectos">
 ## Enlaces a otros proyectos
 
 ### Desarrollo Web
@@ -134,6 +148,9 @@ Un entorno de experimentación constante, donde pruebo y desarrollo ideas en un 
 
 [Ver sitio web](https://t0t.github.io/huerto_01234/)
 
+</div>
+<footer>
+
 ## Contacto y redes sociales
 
 - [Instagram](https://www.instagram.com/cuenta.01234/)
@@ -142,3 +159,5 @@ Un entorno de experimentación constante, donde pruebo y desarrollo ideas en un 
 - [GitHub](https://github.com/t0t)
 
 **WhatsApp**: Para contactarme por WhatsApp, haz clic en el botón flotante.
+
+</footer>

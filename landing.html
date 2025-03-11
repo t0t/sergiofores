@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sergio Forés - Portfolio</title>
+    
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos base -->
+    <style>
+        /* Variables CSS */
+        :root {
+            --color-primario: #4285f4;
+            --color-secundario: #34a853;
+            --color-acento: #fbbc05;
+            --color-oscuro: #333333;
+            --color-claro: #ffffff;
+            --color-gris-claro: #f5f5f5;
+            --color-gris: #dddddd;
+            
+            --fuente-principal: 'Montserrat', sans-serif;
+            --radio-borde: 10px;
+            --sombra: 0 4px 6px rgba(0,0,0,0.1);
+            --transicion: all 0.3s ease;
+            
+            --espacio-xs: 4px;
+            --espacio-s: 8px;
+            --espacio-m: 16px;
+            --espacio-l: 24px;
+            --espacio-xl: 32px;
+            --espacio-xxl: 48px;
+        }
+        
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--fuente-principal);
+            line-height: 1.6;
+            color: var(--color-oscuro);
+            background-color: var(--color-claro);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        a {
+            color: var(--color-primario);
+            text-decoration: none;
+            transition: var(--transicion);
+        }
+        
+        a:hover {
+            color: var(--color-secundario);
+        }
+        
+        /* Componentes de layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--espacio-m);
+        }
+        
+        .section {
+            padding: var(--espacio-xxl) 0;
+        }
+        
+        /* Header y navegación */
+        .header {
+            background-color: var(--color-claro);
+            box-shadow: var(--sombra);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--espacio-m) 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--espacio-l);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: var(--espacio-xs) var(--espacio-s);
+            border-radius: var(--radio-borde);
+        }
+        
+        .nav-link:hover {
+            background-color: var(--color-gris-claro);
+        }
+        
+        .nav-link.button {
+            background-color: var(--color-primario);
+            color: var(--color-claro);
+            padding: var(--espacio-s) var(--espacio-m);
+        }
+        
+        .nav-link.button:hover {
+            background-color: var(--color-secundario);
+            color: var(--color-claro);
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero section */
+        .hero {
+            background: linear-gradient(to right, var(--color-primario), var(--color-secundario));
+            color: var(--color-claro);
+            padding: calc(var(--espacio-xxl) * 2) 0 var(--espacio-xxl);
+            margin-top: 60px;
+        }
+        
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--espacio-xl);
+            align-items: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: var(--espacio-l);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: var(--espacio-xl);
+        }
+        
+        .button {
+            display: inline-block;
+            background-color: var(--color-acento);
+            color: var(--color-oscuro);
+            padding: var(--espacio-m) var(--espacio-l);
+            border-radius: var(--radio-borde);
+            font-weight: 600;
+            transition: var(--transicion);
+        }
+        
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .hero-image {
+            border-radius: var(--radio-borde);
+            overflow: hidden;
+            box-shadow: var(--sombra);
+        }
+        
+        /* Sección de características */
+        .features {
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--espacio-xl);
+            text-align: center;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--espacio-l);
+        }
+        
+        .feature-card {
+            background-color: var(--color-gris-claro);
+            border-radius: var(--radio-borde);
+            padding: var(--espacio-l);
+            text-align: center;
+            transition: var(--transicion);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--color-primario);
+            margin-bottom: var(--espacio-m);
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--espacio-s);
+        }
+        
+        /* Sección de proyectos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--espacio-l);
+        }
+        
+        .project-card {
+            border-radius: var(--radio-borde);
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            transition: var(--transicion);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .project-image {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: var(--espacio-l);
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--espacio-s);
+        }
+        
+        .project-description {
+            margin-bottom: var(--espacio-m);
+        }
+        
+        /* Sección de contacto */
+        .contact {
+            background-color: var(--color-gris-claro);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--espacio-xl);
+            align-items: center;
+        }
+        
+        .contact-form {
+            display: grid;
+            gap: var(--espacio-m);
+        }
+        
+        .form-group {
+            display: grid;
+            gap: var(--espacio-xs);
+        }
+        
+        .form-label {
+            font-weight: 600;
+        }
+        
+        .form-input, 
+        .form-textarea {
+            padding: var(--espacio-m);
+            border: 1px solid var(--color-gris);
+            border-radius: var(--radio-borde);
+            font-family: var(--fuente-principal);
+            font-size: 1rem;
+        }
+        
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--color-oscuro);
+            color: var(--color-claro);
+            padding: var(--espacio-xl) 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--espacio-l);
+            margin-bottom: var(--espacio-l);
+            list-style: none;
+        }
+        
+        .footer-link {
+            color: var(--color-claro);
+        }
+        
+        .footer-link:hover {
+            color: var(--color-acento);
+        }
+        
+        /* Diagrama Mermaid */
+        .mermaid {
+            margin: var(--espacio-xl) 0;
+            text-align: center;
+        }
+        
+        /* Media queries */
+        @media (max-width: 768px) {
+            .hero-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-image {
+                order: -1;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--color-claro);
+                flex-direction: column;
+                text-align: center;
+                box-shadow: var(--sombra);
+                padding: var(--espacio-m) 0;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+        }
+    </style>
+    
+    <!-- Mermaid -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.13.4/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose'
+        });
+    </script>
+</head>
+<body>
+    <!-- Header y navegación -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">Sergio Forés</a>
+                
+                <ul class="nav-menu">
+                    <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                    <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+                    <li><a href="#sobre-mi" class="nav-link">Sobre mí</a></li>
+                    <li><a href="#contacto" class="nav-link button">Contacto</a></li>
+                </ul>
+                
+                <div class="mobile-toggle">☰</div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero section -->
+    <section id="inicio" class="hero section">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Desarrollo creativo con enfoque holístico</h1>
+                <p>Soy un desarrollador y artista que conecta tecnología, arte y filosofía para crear experiencias significativas.</p>
+                <a href="#proyectos" class="button">Ver proyectos</a>
+            </div>
+            
+            <div class="hero-image">
+                <img src="/images/t0t-sergiofores-dev.jpg" alt="Sergio Forés trabajando">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Diagrama Mermaid -->
+    <div class="container">
+        <div class="mermaid">
+            graph TD;
+                A["Posibilidades"]-->B["¿Qué soy?"];
+                B-->C["Habilidades"];
+                B-->D["Conexiones"];
+                C-->D;
+                C-->E["Diseñador"];
+                C-->F["Artista"];
+                C-->G["Desarrollador"];
+                D-->H["Hechos"];
+                H-->A;
+        </div>
+    </div>
+    
+    <!-- Sección de características -->
+    <section id="sobre-mi" class="features section">
+        <div class="container">
+            <h2 class="section-title">Áreas principales</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">Arte y Creación</h3>
+                    <p>Integración de expresión artística con implementación tecnológica, enfocado en experiencias transformadoras.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">Desarrollo con IA</h3>
+                    <p>Exploraciones de modelos generativos y conexiones, transformando datos en estructuras de significado.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔤</div>
+                    <h3 class="feature-title">Símbolos y Lenguaje</h3>
+                    <p>Sistemas de significado y patrones universales, comunicación a través de símbolos y metáforas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección de proyectos -->
+    <section id="proyectos" class="projects section">
+        <div class="container">
+            <h2 class="section-title">Proyectos destacados</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="/images/t0t-sergiofores-dev.jpg" alt="Desarrollo Web" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Desarrollo Web</h3>
+                        <p class="project-description">Fusiono código y creatividad para construir experiencias digitales impactantes, donde la funcionalidad se encuentra con el diseño experimental.</p>
+                        <a href="https://t0t.github.io/sergiofores-main/" class="button">Ver proyecto</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="/images/o1234-home.jpg" alt="+0+1234" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">+0+1234</h3>
+                        <p class="project-description">Un espacio para el descubrimiento personal, donde cada idea se convierte en un viaje a nuevos horizontes, desafiando los límites de lo convencional.</p>
+                        <a href="https://o1234.lovable.app/" class="button">Ver proyecto</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="/images/t0t-sergiofores-art.jpg" alt="Obra plástica" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Obra plástica</h3>
+                        <p class="project-description">Mi faceta como artista plástico y visual se plasma en obras que combinan sensibilidad y técnica, invitándote a ver el mundo con otros ojos.</p>
+                        <a href="https://t0t.github.io/sergiofores_art/" class="button">Ver proyecto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección de contacto -->
+    <section id="contacto" class="contact section">
+        <div class="container contact-container">
+            <div class="contact-info">
+                <h2 class="section-title">Contacto</h2>
+                <p>¿Tienes un proyecto en mente? ¿Quieres colaborar o simplemente charlar sobre ideas? Estoy a un mensaje de distancia.</p>
+                
+                <div class="social-links">
+                    <ul class="footer-links">
+                        <li><a href="https://www.instagram.com/cuenta.01234/" class="footer-link">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com/in/sergiofores/" class="footer-link">LinkedIn</a></li>
+                        <li><a href="https://github.com/t0t" class="footer-link">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" id="name" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" class="form-label">Mensaje</label>
+                    <textarea id="message" class="form-textarea" required></textarea>
+                </div>
+                
+                <button type="submit" class="button">Enviar mensaje</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="year">2023</span> Sergio Forés. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script>
+        // Actualizar año
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Menú móvil
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-menu').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

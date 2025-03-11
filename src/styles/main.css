@@ -127,14 +127,15 @@ ul {
     color: var(--gray-9); /* Cambiar el color del texto al color de fondo al pasar el ratón */
 }
 
-.container {
+.section {
     display: grid;
     grid-template-areas: 
         "header header header"
         "features features features"
         "projects projects projects"
         "footer footer footer";
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-auto-flow: dense; /* Añadido grid-auto-flow para optimizar la distribución */
     gap: var(--space-6); /* Usar variable para el gap */
     padding: var(--space-6); /* Usar variable para el padding */
 }
@@ -215,7 +216,7 @@ img.avatar {
     font-weight: var(--font-weight-bold);
 }
 
-.features-grid {
+.section-features {
     grid-area: features;
     background-color: var(--gray-2); /* Usar variable para el color de fondo */
     display: grid;
@@ -373,22 +374,136 @@ footer {
     color: var(--gray-1); /* Cambia a un color deseado para el hover */
 }
 
-
-.highlight-gradient {
-    background: linear-gradient(to right, var(--highlight-4), var(--highlight-2), var(--highlight-3));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+.mermaid {
+    width: 100%;
+    margin: var(--space-5) 0;
+    text-align: center;
 }
 
+.mermaid svg {
+    width: 100% !important;
+    max-width: 800px !important;
+    height: auto !important;
+    margin: 0 auto;
+}
+
+/* Estilos para la sección .proyectos */
+.proyectos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-auto-flow: dense;
+    gap: 25px;
+    margin: var(--space-5) 0;
+    padding: var(--space-4);
+}
+
+.proyectos h2 {
+    grid-column: 1 / -1;
+    margin-bottom: var(--space-4);
+}
+
+.proyectos h3 {
+    margin-top: 0;
+    font-size: 1.6rem;
+}
+
+.proyectos p {
+    margin-bottom: 15px;
+}
+
+.proyectos img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 0 0 15px 0;
+}
+
+.proyectos a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: var(--gray-4);
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.proyectos a:hover {
+    background-color: var(--gray-3);
+}
+
+/* Media queries para .proyectos */
 @media (max-width: 768px) {
-    .container {
+    .proyectos {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 1600px) {
+    .proyectos {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
+
+.project-card {
+    background-color: var(--gray-2);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.project-card h3 {
+    padding: 15px 15px 0;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.project-card p {
+    padding: 0 15px;
+    margin: 10px 0;
+}
+
+.project-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    margin: 0;
+    border-radius: 0;
+}
+
+.project-link {
+    display: inline-block;
+    margin: 10px 15px 15px;
+    padding: 8px 15px;
+    background-color: var(--gray-4);
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.project-link:hover {
+    background-color: var(--gray-3);
+}
+
+/* Ajustes para pantallas más grandes */
+@media (max-width: 768px) {
+    .container content .mermaid{
         grid-template-areas: 
             "header"
             "features"
             "projects"
             "footer";
         grid-template-columns: 1fr;
+        background-color: red;
     }
 
     /* .navbar {
@@ -424,4 +539,66 @@ footer {
         height: 100vh; /* Ajuste para ocupar el 50% de la altura de la ventana en pantallas grandes */
         align-content: space-evenly;
     }
+}
+
+/* Ajustes para imágenes dentro de contenedor p */
+.content p img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-width: 100%;
+    margin: var(--space-4) 0;
+}
+
+/* Eliminar margen extra de párrafos que solo contienen imágenes */
+.content p:has(> img:only-child) {
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal y estructura básica */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+}
+
+/* Estilos para content - el contenedor principal del contenido */
+.content {
+    width: 100%;
+    padding: var(--space-4);
+}
+
+/* Estilos para section */
+section {
+    margin: var(--space-5) 0;
+    padding: var(--space-4);
+}
+
+
+
+/* Estilos para el encabezado */
+header {
+    text-align: center;
+    margin-bottom: var(--space-6);
+    padding: var(--space-5) 0;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: var(--space-3);
+    color: var(--gray-9);
+}
+
+header h2 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--gray-6);
+}
+
+.highlight-gradient {
+    background: linear-gradient(to right, var(--highlight-4), var(--highlight-2), var(--highlight-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
