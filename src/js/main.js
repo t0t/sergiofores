@@ -1,18 +1,3 @@
-// Configuración de imágenes por proyecto
-const PROJECT_IMAGES = {
-    'desarrollo-web': [
-        '/images/t0t-sergiofores-main.jpg',
-        '/images/t0t-sergiofores-dev.jpg'
-    ],
-    'arte': [
-        '/images/t0t-sergiofores-art.jpg'
-    ],
-    'laboratorio': [
-        '/images/t0t-sergiofores-dev2.png',
-        '/images/t0t-sergiofores-dev.jpg'
-    ]
-};
-
 // Estado global
 const AppState = {
     imageState: new Map(),
@@ -32,52 +17,7 @@ const debounce = (func, wait) => {
     };
 };
 
-// Inicializar rotación de imágenes en proyectos
-const initImageRotation = () => {
-    document.querySelectorAll('.project-card').forEach(card => {
-        const cardId = card.id;
-        const image = card.querySelector('.project-image');
-        
-        if (!image || !PROJECT_IMAGES[cardId]) return;
-        
-        AppState.imageState.set(cardId, 0);
-        
-        // Añadir indicador si hay múltiples imágenes
-        if (PROJECT_IMAGES[cardId].length > 1) {
-            const indicator = document.createElement('div');
-            indicator.className = 'image-indicator';
-            indicator.textContent = `${AppState.imageState.get(cardId) + 1}/${PROJECT_IMAGES[cardId].length}`;
-            card.appendChild(indicator);
-            
-            image.style.cursor = 'pointer';
-            image.addEventListener('click', () => handleImageRotation(cardId, image, card));
-        }
-    });
-};
-
-// Manejar rotación de imágenes
-const handleImageRotation = (cardId, image, card) => {
-    const images = PROJECT_IMAGES[cardId];
-    if (images.length <= 1) return;
-    
-    let currentIndex = AppState.imageState.get(cardId);
-    currentIndex = (currentIndex + 1) % images.length;
-    AppState.imageState.set(cardId, currentIndex);
-    
-    // Transición suave
-    image.style.opacity = '0.5';
-    
-    setTimeout(() => {
-        image.src = images[currentIndex];
-        image.style.opacity = '1';
-        
-        // Actualizar indicador
-        const indicator = card.querySelector('.image-indicator');
-        if (indicator) {
-            indicator.textContent = `${currentIndex + 1}/${images.length}`;
-        }
-    }, 200);
-};
+// La funcionalidad de rotación de imágenes ha sido eliminada.
 
 // Scroll suave para navegación
 const initSmoothScroll = () => {
@@ -249,7 +189,7 @@ const init = () => {
         updateYear();
         
         // Funciones de mejora
-        initImageRotation();
+        // initImageRotation(); // Eliminada
         initLazyLoading();
         initImageErrorHandling();
         initMermaid();

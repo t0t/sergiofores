@@ -178,9 +178,11 @@ body {
 
 .hero-container {
     max-width: 800px;
+    perspective: 1000px; /* Añade perspectiva al contenedor */
 }
 
 .hero h1 {
+    transform: rotateX(10deg); /* Rota ligeramente el h1 en el eje X */
     font-size: var(--text-4xl);
     font-weight: var(--font-bold);
     color: var(--text-primary);
@@ -548,6 +550,7 @@ section {
     
     .social-links {
         flex-direction: column;
+        align-items: center; /* Añadido para centrar los botones en layout de columna */
         gap: var(--space-3);
     }
     
