@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sergio Forés | Portfolio</title>
-    <meta name="description" content="Portfolio de Sergio Forés - Desarrollador y Artista Digital">
-    <meta name="keywords" content="Art, Holistic, Creacion, Cabala, Conciencia, Design, 3D printing, Process, HTML, CSS, JavaScript">
+    <meta name="description" content="Portfolio de Sergio Forés - Desarrollador y Artista Digital especializado en tecnología, arte y pensamiento simbólico">
+    <meta name="keywords" content="Art, Holistic, Creacion, Cabala, Conciencia, Design, 3D printing, Process, HTML, CSS, JavaScript, Desarrollo Web, Arte Digital">
+    <meta name="author" content="Sergio Forés">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sergiofores.dev/">
+    <meta property="og:title" content="Sergio Forés | Portfolio">
+    <meta property="og:description" content="Portfolio de Sergio Forés - Desarrollador y Artista Digital">
+    <meta property="og:image" content="/images/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sergiofores.dev/">
+    <meta property="twitter:title" content="Sergio Forés | Portfolio">
+    <meta property="twitter:description" content="Portfolio de Sergio Forés - Desarrollador y Artista Digital">
+    <meta property="twitter:image" content="/images/og-image.jpg">
     
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,381 +28,161 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     
-    <!-- Mermaid (versión estable) -->
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.13.4/dist/mermaid.min.js"></script>
-    <script>
-        mermaid.initialize({
-            startOnLoad: true,
-            securityLevel: 'loose',
-            theme: 'default'
-        });
-    </script>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="/src/styles/main.css">
     
-    <style>
-        /* Variables CSS */
-        :root {
-            --color-texto: #333;
-            --color-fondo: #f8f8f8;
-            --color-primario: #4285f4;
-            --color-secundario: #f5f5f5;
-            
-            --espacio-1: 8px;
-            --espacio-2: 16px;
-            --espacio-3: 24px;
-            --espacio-4: 32px;
-            --espacio-5: 48px;
-            --espacio-6: 64px;
-            
-            --ancho-maximo: 1200px;
-        }
-        
-        /* Reset y estilos base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            color: var(--color-texto);
-            background-color: var(--color-fondo);
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        a {
-            color: var(--color-primario);
-            text-decoration: none;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-        
-        ul, ol {
-            margin-left: var(--espacio-3);
-        }
-        
-        /* Layout principal */
-        .contenedor {
-            width: 100%;
-            max-width: var(--ancho-maximo);
-            margin: 0 auto;
-            padding: 0 var(--espacio-2);
-        }
-        
-        /* Encabezado */
-        .encabezado {
-            text-align: center;
-            margin: var(--espacio-5) 0;
-        }
-        
-        .encabezado h1 {
-            font-size: 2.5rem;
-            margin-bottom: var(--espacio-1);
-        }
-        
-        .encabezado h2 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: #666;
-        }
-        
-        /* Secciones */
-        .seccion {
-            margin: var(--espacio-5) 0;
-        }
-        
-        .seccion-titulo {
-            font-size: 2rem;
-            margin-bottom: var(--espacio-3);
-        }
-        
-        /* Mermaid */
-        .mermaid {
-            width: 100%;
-            text-align: center;
-            margin: var(--espacio-4) 0;
-        }
-        
-        /* Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: var(--espacio-3);
-            margin: var(--espacio-3) 0;
-        }
-        
-        /* Tarjetas */
-        .tarjeta {
-            margin-bottom: var(--espacio-3);
-        }
-        
-        .tarjeta h3 {
-            margin: var(--espacio-2) 0 var(--espacio-1);
-            font-size: 1.3rem;
-        }
-        
-        .tarjeta p {
-            margin-bottom: var(--espacio-2);
-        }
-        
-        .tarjeta img {
-            width: 100%;
-            margin-bottom: var(--espacio-2);
-        }
-        
-        /* Enlaces sociales */
-        .enlaces-sociales {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: var(--espacio-2);
-            margin-bottom: var(--espacio-3);
-        }
-        
-        .enlace-social {
-            padding: var(--espacio-1) var(--espacio-2);
-            color: var(--color-texto);
-            border: 1px solid var(--color-secundario);
-            transition: all 0.3s ease;
-        }
-        
-        .enlace-social:hover {
-            background-color: var(--color-primario);
-            color: white;
-            text-decoration: none;
-        }
-        
-        /* WhatsApp botón */
-        .whatsapp-boton {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
-            background-color: #333;
-            border: none;
-            border-radius: 50%;
-            padding: 12px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        .whatsapp-boton:hover {
-            background-color: #25D366; /* Color verde de WhatsApp */
-        }
-        
-        .whatsapp-boton:hover svg {
-            fill: white;
-        }
-        
-        .whatsapp-boton svg {
-            fill: #f5f5f5;
-        }
-        
-        /* Footer */
-        .pie {
-            text-align: center;
-            margin: var(--espacio-5) 0 var(--espacio-3);
-            padding-top: var(--espacio-4);
-            border-top: 1px solid var(--color-secundario);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .encabezado {
-                margin: var(--espacio-4) 0;
-            }
-            
-            .encabezado h1 {
-                font-size: 2rem;
-            }
-            
-            .enlaces-sociales {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-        
-        /* Estilos para la alerta personalizada */
-        .custom-alert {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: var(--color-primario);
-            color: white;
-            padding: var(--espacio-2);
-            border-radius: var(--espacio-1);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 0.5s;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-    </style>
+    <!-- Mermaid -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
 </head>
 <body>
-    <div class="contenedor">
-        <header class="encabezado">
-            <h1>Sergio Forés</h1>
-            <h2>"Me doy cuenta de 5 cosas"</h2>
-        </header>
-        
-        <main>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <img src="/images/avatar.png" alt="Sergio Forés" class="avatar">
+                <span class="brand-text">Sergio Forés</span>
+            </div>
+            <div class="navbar-links">
+                <a href="#hero">Inicio</a>
+                <a href="#about">Sobre mí</a>
+                <a href="#projects">Proyectos</a>
+                <a href="#contact">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-container">
+            <h1>Desarrollo • Arte • Tecnología</h1>
+            <h2>Explorando la intersección entre creatividad y código, donde cada proyecto es un experimento en la frontera de lo posible.</h2>
+            
             <!-- Diagrama Mermaid -->
             <div class="mermaid">
-                flowchart TD;
-                    0["Posibilidades"];
-                    1["<b>1</b> ¿Quien soy?"];
-                    0-- toma de conciencia-->1
-                    1-->2["<b>2</b> Habilidades"];
-                    1-- orquestación -->3["<b>3</b> Conexiones"];
-                    1--4-->4;
-                    2-- facetas -->3;
-                    2-->E["Diseñador"];
-                    2-->F["Artista"];
-                    2-->G["Desarrollador"];
-                    3-->4["<b>4</b> Hechos"];
-                    4--actualiza-->0;
+                graph TD;
+                    A["Posibilidades"]-->B["¿Qué soy?"];
+                    B-->C["Habilidades"];
+                    B-->D["Conexiones"];
+                    C--cc-->D;
+                    C-->E["Diseñador"];
+                    C-->F["Artista"];
+                    C-->G["Desarrollador"];
+                    D-->H["Hechos"];
+                    H-->A;
             </div>
+        </div>
+    </section>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <!-- About Section -->
+        <section id="about" class="resumen">
+            <h3>Soy un ser en desarrollo continuo dialogando con campos interconectados, donde la tecnología sirve como herramienta para la expresión artística, la IA potencia el proceso creativo, y el pensamiento simbólico proporciona la base filosófica que unifica estos elementos en un diálogo permanente.</h3>
             
-            <section class="seccion">
-                <p>Imagina que tienes una lámpara mágica. Puedes pedir lo que quieras, pero... ¿qué es lo que realmente quieres? <strong>01234</strong> es una herramienta que te ayuda a identificar con claridad qué necesitas, qué te conviene y cómo conseguir mejores resultados a través de decisiones conscientes.</p>
+            <h2>Áreas principales</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>Arte y Creación</h3>
+                    <ul>
+                        <li>Obra plástica y digital</li>
+                        <li>Procesos creativos experimentales</li>
+                        <li>Integración de tecnología y arte</li>
+                        <li>Exploración de nuevos medios</li>
+                    </ul>
+                </div>
                 
-                <h2 class="seccion-titulo">Áreas principales</h2>
+                <div class="feature">
+                    <h3>Desarrollo Tecnológico</h3>
+                    <ul>
+                        <li>Desarrollo web moderno</li>
+                        <li>Aplicaciones interactivas</li>
+                        <li>Herramientas creativas</li>
+                        <li>Prototipado rápido</li>
+                    </ul>
+                </div>
                 
-                <div class="grid">
-                    <div class="tarjeta">
-                        <h3>Arte y Creación</h3>
-                        <ul>
-                            <li>Integración de expresión artística con implementación tecnológica</li>
-                            <li>Proceso creativo enfocado en experiencias transformadoras</li>
-                            <li>Innovación visual y conceptual</li>
-                        </ul>
+                <div class="feature">
+                    <h3>Pensamiento Simbólico</h3>
+                    <ul>
+                        <li>Sistemas de significado</li>
+                        <li>Narrativas transmedia y arquetipos</li>
+                        <li>Comunicación a través de símbolos y metáforas</li>
+                        <li>Filosofía aplicada</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="proyectos">
+            <div class="container">
+                <h2>Proyectos Destacados</h2>
+                
+                <div class="projects-grid">
+                    <div class="project-card" id="desarrollo-web">
+                        <img src="/images/t0t-sergiofores-dev.jpg" alt="Desarrollo Web" class="project-image" loading="lazy">
+                        <div class="description">
+                            <h3>Desarrollo Web</h3>
+                            <p>Creación de experiencias digitales modernas y funcionales, combinando diseño intuitivo con tecnologías de vanguardia para soluciones web innovadoras.</p>
+                            <a href="https://t0t.github.io/sergiofores-main/" target="_blank" rel="noopener" class="project-link">Ver proyecto</a>
+                        </div>
                     </div>
                     
-                    <div class="tarjeta">
-                        <h3>Desarrollo con IA</h3>
-                        <ul>
-                            <li>Exploraciones de modelos generativos y conexiones</li>
-                            <li>Transformación de datos en estructuras de significado</li>
-                            <li>Modelado de abstracción conceptual</li>
-                        </ul>
+                    <div class="project-card" id="arte">
+                        <img src="/images/t0t-sergiofores-art.jpg" alt="Obra plástica" class="project-image" loading="lazy">
+                        <div class="description">
+                            <h3>Obra Plástica</h3>
+                            <p>Exploración artística que combina técnicas tradicionales con medios digitales, creando narrativas visuales únicas y experimentales.</p>
+                            <a href="https://t0t.github.io/sergiofores_art/" target="_blank" rel="noopener" class="project-link">Ver galería</a>
+                        </div>
                     </div>
                     
-                    <div class="tarjeta">
-                        <h3>Símbolos y Lenguaje</h3>
-                        <ul>
-                            <li>Sistemas de significado y patrones universales</li>
-                            <li>Narrativas transmedia y arquetipos</li>
-                            <li>Comunicación a través de símbolos y metáforas</li>
-                        </ul>
+                    <div class="project-card" id="laboratorio">
+                        <img src="/images/t0t-sergiofores-dev2.png" alt="Laboratorio de ideas" class="project-image" loading="lazy">
+                        <div class="description">
+                            <h3>Laboratorio de Ideas</h3>
+                            <p>Espacio experimental donde confluyen tecnología, arte y pensamiento, generando prototipos y conceptos innovadores para el futuro.</p>
+                            <a href="https://t0t.github.io/huerto_01234/" class="project-link" target="_blank" rel="noopener">Ver Proyecto</a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" id="modelo-01234">
+                        <img src="/images/o1234-home.jpg" alt="Modelo conceptual 01234" class="project-image" loading="lazy">
+                        <div class="description">
+                            <h3>Modelo 01234</h3>
+                            <p>Un modelo conceptual para comprender patrones y estructuras de la realidad. Exploración de fundamentos teóricos aplicados a la comprensión del mundo.</p>
+                            <a href="https://o1234.lovable.app/" class="project-link" target="_blank" rel="noopener">Explorar Modelo</a>
+                        </div>
                     </div>
                 </div>
-            </section>
-            
-            <section class="seccion">
-                <h2 class="seccion-titulo">Enlaces a otros proyectos</h2>
-                
-                <div class="grid">
-                    <div class="tarjeta">
-                        <img src="/images/t0t-sergiofores-dev.jpg" alt="Desarrollo Web">
-                        <h3>Desarrollo Web</h3>
-                        <p>Fusiono código y creatividad para construir experiencias digitales impactantes, donde la funcionalidad se encuentra con el diseño experimental.</p>
-                        <a href="https://t0t.github.io/sergiofores-main/" target="_blank" rel="noopener">Ver sitio web</a>
-                    </div>
-                    
-                    <div class="tarjeta">
-                        <img src="/images/o1234-home.jpg" alt="+0+1234">
-                        <h3>+0+1234</h3>
-                        <p>Un espacio para el descubrimiento personal, donde cada idea se convierte en un viaje a nuevos horizontes, desafiando los límites de lo convencional.</p>
-                        <a href="https://o1234.lovable.app/" target="_blank" rel="noopener">Ver sitio web</a>
-                    </div>
-                    
-                    <div class="tarjeta">
-                        <img src="/images/t0t-sergiofores-art.jpg" alt="Obra plástica">
-                        <h3>Obra plástica</h3>
-                        <p>Mi faceta como artista plástico y visual se plasma en obras que combinan sensibilidad y técnica, invitándote a ver el mundo con otros ojos.</p>
-                        <a href="https://t0t.github.io/sergiofores_art/" target="_blank" rel="noopener">Ver sitio web</a>
-                    </div>
-                    
-                    <div class="tarjeta">
-                        <img src="/images/t0t-sergiofores-dev2.png" alt="Github Playground">
-                        <h3>Github Playground</h3>
-                        <p>Un entorno de experimentación constante, donde pruebo y desarrollo ideas en un laboratorio digital.</p>
-                        <a href="https://t0t.github.io/huerto_01234/" target="_blank" rel="noopener">Ver sitio web</a>
-                    </div>
-                </div>
-            </section>
-        </main>
-        
-        <footer class="pie">
-            <div class="enlaces-sociales">
-                <a href="https://www.instagram.com/cuenta.01234/" class="enlace-social" target="_blank" rel="noopener">Instagram</a>
-                <a href="https://x.com/t0tinspire" class="enlace-social" target="_blank" rel="noopener">X (Twitter)</a>
-                <a href="https://www.youtube.com/@0-1234" class="enlace-social" target="_blank" rel="noopener">YouTube</a>
-                <a href="https://github.com/t0t" class="enlace-social" target="_blank" rel="noopener">GitHub</a>
             </div>
-            <p> <span id="anio">2023</span> Sergio Forés</p>
-        </footer>
+        </section>
     </div>
-    
-    <button id="whatsappButton" class="whatsapp-boton" aria-label="Contactar por WhatsApp">
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/cuenta.01234/" class="social-link" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://x.com/t0tinspire" class="social-link" target="_blank" rel="noopener">X (Twitter)</a>
+            <a href="https://www.youtube.com/@0-1234" class="social-link" target="_blank" rel="noopener">YouTube</a>
+            <a href="https://github.com/t0t" class="social-link" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <p>&copy; <span id="year">2024</span> Sergio Forés</p>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <button id="whatsappButton" class="whatsapp-button" aria-label="Contactar por WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
             <path d="M 25 2 C 12.318 2 2 12.318 2 25 C 2 28.96 3.0228906 32.853062 4.9628906 36.289062 L 2.0371094 46.730469 C 1.9411094 47.073469 2.03325 47.440312 2.28125 47.695312 C 2.47225 47.892313 2.733 48 3 48 C 3.08 48 3.1612344 47.989703 3.2402344 47.970703 L 14.136719 45.271484 C 17.463719 47.057484 21.21 48 25 48 C 37.682 48 48 37.682 48 25 C 48 12.318 37.682 2 25 2 z M 16.642578 14 C 17.036578 14 17.428437 14.005484 17.773438 14.021484 C 18.136437 14.039484 18.624516 13.883484 19.103516 15.021484 C 19.595516 16.189484 20.775875 19.058563 20.921875 19.351562 C 21.069875 19.643563 21.168656 19.984047 20.972656 20.373047 C 20.776656 20.762047 20.678813 21.006656 20.382812 21.347656 C 20.086813 21.688656 19.762094 22.107141 19.496094 22.369141 C 19.200094 22.660141 18.892328 22.974594 19.236328 23.558594 C 19.580328 24.142594 20.765484 26.051656 22.521484 27.597656 C 24.776484 29.583656 26.679531 30.200188 27.269531 30.492188 C 27.859531 30.784188 28.204828 30.734703 28.548828 30.345703 C 28.892828 29.955703 30.024969 28.643547 30.417969 28.060547 C 30.810969 27.477547 31.204094 27.572578 31.746094 27.767578 C 32.288094 27.961578 35.19125 29.372062 35.78125 29.664062 C 36.37125 29.956063 36.766062 30.102703 36.914062 30.345703 C 37.062062 30.587703 37.062312 31.754234 36.570312 33.115234 C 36.078313 34.477234 33.717984 35.721672 32.583984 35.888672 C 31.565984 36.037672 30.277281 36.10025 28.863281 35.65625 C 28.006281 35.38625 26.907047 35.028734 25.498047 34.427734 C 19.575047 31.901734 15.706156 26.012047 15.410156 25.623047 C 15.115156 25.234047 13 22.46275 13 19.59375 C 13 16.72475 14.524406 15.314469 15.066406 14.730469 C 15.608406 14.146469 16.248578 14 16.642578 14 z"></path>
         </svg>
     </button>
-    
-    <script>
-        // Actualizar año
-        document.getElementById('anio').textContent = new Date().getFullYear();
-        
-        // Función para obtener número WhatsApp (por seguridad)
-        const getWhatsAppNumber = () => {
-            const parts = ['34', '619', '549', '032'];
-            return parts.join('');
-        };
-        
-        // Sistema de alertas personalizado
-        const showAlert = (message, duration = 3000) => {
-            const alertElement = document.getElementById('customAlert') || (() => {
-                const el = document.createElement('div');
-                el.id = 'customAlert';
-                el.className = 'custom-alert';
-                document.body.appendChild(el);
-                return el;
-            })();
-            
-            alertElement.innerHTML = `<span>${message}</span>`;
-            alertElement.removeAttribute('hidden');
-            
-            setTimeout(() => {
-                alertElement.setAttribute('hidden', '');
-            }, duration);
-        };
-        
-        // Funcionalidad del botón de WhatsApp
-        document.getElementById('whatsappButton').addEventListener('click', function() {
-            const number = getWhatsAppNumber();
-            window.open(`https://wa.me/${number}`, '_blank');
-            showAlert('Redirigiendo a WhatsApp...');
-        });
-    </script>
+
+    <!-- Alert personalizado -->
+    <div id="customAlert" class="custom-alert" hidden>
+        <span></span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/src/js/main.js"></script>
 </body>
 </html>

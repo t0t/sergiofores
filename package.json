@@ -4,29 +4,18 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3001",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --port 4173",
+    "lint": "eslint src --ext .js",
+    "clean": "rm -rf dist",
+    "serve": "python3 -m http.server 8080"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "vite": "^5.0.0"
   },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {
-        "overrideBrowserslist": [
-          ">1%",
-          "last 2 versions",
-          "not dead"
-        ],
-        "flexbox": true,
-        "grid": true
-      }
-    }
-  },
   "dependencies": {
-    "marked": "^15.0.7",
     "mermaid": "^11.4.1"
   }
 }

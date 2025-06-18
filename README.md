@@ -1,54 +1,118 @@
+# 🎨 Portfolio Sergio Forés
 
-# Portfolio Experimental de Sergio Fores
+Portfolio personal con diseño **brutalista minimalista** desarrollado con tecnologías web modernas.
 
-## Descripción
-Portfolio experimental que muestra diferentes facetas creativas y profesionales, incluyendo desarrollo web, exploración, arte y laboratorio de ideas.
+## 🚀 **Características**
 
-## URL del Proyecto
-[https://lovable.dev/projects/08cc4d8f-629b-4075-943f-778af71d971c](https://lovable.dev/projects/08cc4d8f-629b-4075-943f-778af71d971c)
+- ✅ **Diseño Brutalista**: Bordes negros, tipografía en mayúsculas, efectos hover con translate
+- ✅ **Responsive**: Grid CSS con `minmax()` y breakpoints optimizados
+- ✅ **Performance**: Lazy loading, IntersectionObserver, cleanup automático
+- ✅ **Interactividad**: Rotación de imágenes, scroll spy, navegación suave
+- ✅ **Diagramas**: Integración con Mermaid para visualizaciones
+- ✅ **Contacto**: Integración directa con WhatsApp
 
-## Tecnologías Utilizadas
-- JavaScript Vanilla
-- HTML5
-- CSS3
-- Lovable Script
+## 🛠️ **Tecnologías**
 
-## Características Principales
-- Diseño minimalista y moderno
-- Animaciones suaves
-- Navegación intuitiva
-- Secciones de proyectos con imágenes optimizadas
-- Botón de contacto directo vía WhatsApp
-- Sistema de alertas personalizado
-- Imágenes responsivas con ancho máximo optimizado
+- **HTML5** - Estructura semántica
+- **CSS3** - Variables CSS, Grid, Flexbox
+- **JavaScript ES6+** - Vanilla JS moderno
+- **Vite** - Build tool y servidor de desarrollo
+- **PostCSS** - Autoprefixer para compatibilidad
+- **Mermaid** - Diagramas interactivos
 
-## Colores Corporativos
-- Logo y elementos de acento: #B1D5A9
-- Título principal: Gradiente de rgb(155, 135, 245) a rgb(214, 188, 250)
-- Alertas: #ea384c
-- WhatsApp: #25D366
+## 📁 **Estructura**
 
-## Cómo Editar
-Hay varias formas de editar esta aplicación:
-
-### Usar Lovable
-1. Visita el [Proyecto en Lovable](https://lovable.dev/projects/08cc4d8f-629b-4075-943f-778af71d971c)
-2. Comienza a hacer prompts para modificar el código
-Los cambios realizados a través de Lovable se confirmarán automáticamente en este repositorio.
-
-### Usar tu IDE preferido
-Requisitos previos: Un servidor web local (como Live Server)
-
-```sh
-# Paso 1: Clona el repositorio
-git clone <URL_DEL_REPOSITORIO>
-
-# Paso 2: Navega al directorio del proyecto
-cd <NOMBRE_DEL_PROYECTO>
-
-# Paso 3: Abre el proyecto en tu editor favorito
-# Paso 4: Inicia un servidor local (por ejemplo, con Live Server en VS Code)
+```
+sergiofores/
+├── src/
+│   ├── js/main.js           # JavaScript optimizado
+│   └── styles/main.css      # Estilos con variables CSS
+├── public/
+│   └── images/              # Assets del portfolio
+├── archive/
+│   └── index-original.html  # Backup
+├── index.html               # Página principal
+├── vite.config.js          # Configuración Vite
+└── package.json            # Dependencias
 ```
 
-## Despliegue
-Abre [Lovable](https://lovable.dev/projects/08cc4d8f-629b-4075-943f-778af71d971c) y haz clic en Share -> Publish.
+## 🚀 **Desarrollo**
+
+### **Instalación**
+```bash
+npm install
+```
+
+### **Desarrollo**
+```bash
+npm run dev          # Servidor desarrollo (puerto 3001)
+```
+
+### **Build**
+```bash
+npm run build        # Build para producción
+npm run preview      # Preview del build (puerto 4173)
+```
+
+### **Utilidades**
+```bash
+npm run lint         # Linting del código
+npm run clean        # Limpiar directorio dist
+npm run serve        # Servidor HTTP simple (puerto 8080)
+```
+
+## 🎨 **Personalización**
+
+### **Variables CSS**
+El diseño utiliza variables CSS para fácil personalización:
+
+```css
+:root {
+  --gray-9: #111111;           /* Color principal */
+  --border-width: 3px;         /* Grosor bordes */
+  --hover-transform: translate(-2px, -2px);
+  --hover-shadow: 4px 4px 0 var(--gray-9);
+}
+```
+
+### **Proyectos**
+Configura las imágenes de proyectos en `src/js/main.js`:
+
+```javascript
+const PROJECT_IMAGES = {
+  'desarrollo-web': [
+    '/images/proyecto1.jpg',
+    '/images/proyecto2.jpg'
+  ]
+};
+```
+
+## 📱 **Responsive Design**
+
+- **Desktop**: Grid de 3 columnas con efectos hover completos
+- **Tablet**: Grid de 2 columnas adaptativo
+- **Mobile**: Columna única con interacciones optimizadas
+
+## 🔧 **Optimizaciones**
+
+- **JavaScript**: Estado centralizado, manejo de errores, cleanup automático
+- **CSS**: Variables organizadas, efectos brutalistas consistentes
+- **Performance**: Lazy loading, debounce, IntersectionObserver
+- **Build**: Minificación, tree-shaking, chunks optimizados
+
+## 📄 **Documentación**
+
+- `README.md` - Documentación principal
+- `REFACTORING.md` - Detalles de refactorización técnica
+- `STRUCTURE.md` - Estructura de archivos y limpieza
+
+## 🌐 **Deploy**
+
+El proyecto está configurado para deploy automático con:
+- **Vercel** (configuración incluida)
+- **Netlify** (compatible)
+- **GitHub Pages** (build estático)
+
+---
+
+**Desarrollado con ❤️ por Sergio Forés** | [Contacto WhatsApp](https://wa.me/34619549032)
