@@ -387,7 +387,7 @@ section {
     transform: scale(1.02);
 }
 
-.image-indicator {
+.project-image-indicator {
     position: absolute;
     top: var(--space-3);
     right: var(--space-3);
@@ -468,6 +468,7 @@ section {
 
 /* WhatsApp Button minimalista */
 .whatsapp-button {
+    border-radius: 50%;
     position: fixed;
     bottom: var(--space-6);
     right: var(--space-6);
