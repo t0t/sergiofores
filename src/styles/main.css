@@ -97,8 +97,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
+    background: transparent; /* Fondo completamente transparente */
     z-index: 1000;
     padding: var(--space-4) 0;
     transition: var(--transition);
@@ -673,7 +672,6 @@ section {
 }
 
 /* Estados de accesibilidad */
-.navbar-links a:focus,
 .social-links a:focus,
 .project-link:focus,
 .footer .social-link:focus,
