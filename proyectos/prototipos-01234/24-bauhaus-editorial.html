@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01234 - Bauhaus Editorial</title>
+    <style>
+        /* Bauhaus Editorial: Funcionalidad geométrica con rigor académico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bauhaus-red: #E30613;
+            --bauhaus-blue: #0066CC;
+            --bauhaus-yellow: #FFD100;
+            --bauhaus-black: #1C1C1C;
+            --bauhaus-white: #FEFEFE;
+            --academic-gray: #4A4A4A;
+            --grid-gray: #E0E0E0;
+            --text-gray: #6B7280;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'IBM Plex Serif', 'Georgia', serif;
+            background: var(--bauhaus-white);
+            color: var(--bauhaus-black);
+            line-height: 1.7;
+            font-size: 18px;
+        }
+        
+        /* Geometric masthead */
+        .masthead {
+            background: var(--bauhaus-black);
+            color: var(--bauhaus-white);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .masthead::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(90deg, var(--bauhaus-red) 1px, transparent 1px),
+                linear-gradient(var(--bauhaus-blue) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.1;
+        }
+        
+        .masthead-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .journal-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .geometric-element {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--bauhaus-black);
+        }
+        
+        .element-square {
+            background: var(--bauhaus-yellow);
+        }
+        
+        .element-circle {
+            background: var(--bauhaus-red);
+            border-radius: 50%;
+            color: var(--bauhaus-white);
+        }
+        
+        .element-triangle {
+            background: var(--bauhaus-blue);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            color: var(--bauhaus-white);
+        }
+        
+        .journal-title {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin: 0 40px;
+        }
+        
+        .issue-info {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-gray);
+        }
+        
+        /* Grid layout container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            display: grid;
+            grid-template-columns: 120px 1fr 200px;
+            gap: 60px;
+        }
+        
+        /* Functional navigation */
+        .function-nav {
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+        
+        .nav-element {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 56px;
+            font-weight: 300;
+            color: var(--bauhaus-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid var(--bauhaus-black);
+        }
+        
+        .nav-element:hover {
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0 var(--bauhaus-black);
+        }
+        
+        .nav-0 { background: var(--academic-gray); }
+        .nav-1 { background: var(--bauhaus-red); }
+        .nav-2 { background: var(--bauhaus-blue); }
+        .nav-3 { background: var(--bauhaus-yellow); color: var(--bauhaus-black); }
+        .nav-4 { background: var(--bauhaus-black); }
+        
+        /* Main article content */
+        .article-content {
+            background: var(--bauhaus-white);
+            border: 3px solid var(--bauhaus-black);
+            padding: 80px 60px;
+            position: relative;
+        }
+        
+        .article-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid var(--grid-gray);
+            pointer-events: none;
+        }
+        
+        .content-inner {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .article-header {
+            margin-bottom: 60px;
+            text-align: center;
+            border-bottom: 3px solid var(--bauhaus-black);
+            padding-bottom: 40px;
+        }
+        
+        .article-title {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 42px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .function-highlight {
+            background: var(--bauhaus-red);
+            color: var(--bauhaus-white);
+            padding: 8px 16px;
+            display: inline-block;
+            margin: 0 5px;
+        }
+        
+        .author-info {
+            background: var(--bauhaus-yellow);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 20px solid var(--bauhaus-black);
+            position: relative;
+        }
+        
+        .author-info::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--bauhaus-blue);
+            border-radius: 50%;
+        }
+        
+        .author-name {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .author-title {
+            font-size: 16px;
+            color: var(--academic-gray);
+            font-weight: 500;
+        }
+        
+        .publication-date {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-gray);
+        }
+        
+        /* Functional sections */
+        .function-section {
+            margin: 80px 0;
+            position: relative;
+        }
+        
+        .section-header {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-number {
+            width: 100px;
+            height: 100px;
+            background: var(--bauhaus-blue);
+            color: var(--bauhaus-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 48px;
+            font-weight: 300;
+            border: 3px solid var(--bauhaus-black);
+        }
+        
+        .section-title {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--bauhaus-black);
+        }
+        
+        .function-principle {
+            background: var(--bauhaus-black);
+            color: var(--bauhaus-white);
+            padding: 60px;
+            margin: 60px 0;
+            position: relative;
+            border-left: 20px solid var(--bauhaus-red);
+        }
+        
+        .function-principle::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            background: var(--bauhaus-yellow);
+            border: 3px solid var(--bauhaus-white);
+        }
+        
+        .principle-text {
+            font-size: 24px;
+            line-height: 1.6;
+            font-weight: 400;
+            max-width: 600px;
+        }
+        
+        .principle-attribution {
+            margin-top: 30px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--bauhaus-yellow);
+        }
+        
+        /* Functional table */
+        .function-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 3px;
+            margin: 60px 0;
+            background: var(--bauhaus-black);
+        }
+        
+        .function-table th,
+        .function-table td {
+            padding: 25px;
+            text-align: left;
+            background: var(--bauhaus-white);
+            font-family: 'IBM Plex Sans', sans-serif;
+            border: none;
+        }
+        
+        .function-table th {
+            background: var(--bauhaus-black);
+            color: var(--bauhaus-white);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+        
+        .function-table td:first-child {
+            background: var(--bauhaus-yellow);
+            font-weight: 700;
+            font-size: 32px;
+            text-align: center;
+            width: 80px;
+        }
+        
+        .function-table tr:nth-child(2) td:first-child { background: var(--bauhaus-red); color: var(--bauhaus-white); }
+        .function-table tr:nth-child(3) td:first-child { background: var(--bauhaus-blue); color: var(--bauhaus-white); }
+        .function-table tr:nth-child(4) td:first-child { background: var(--academic-gray); color: var(--bauhaus-white); }
+        .function-table tr:nth-child(5) td:first-child { background: var(--bauhaus-black); color: var(--bauhaus-white); }
+        
+        /* Right sidebar with functional elements */
+        .functional-sidebar {
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+        
+        .sidebar-element {
+            width: 100%;
+            height: 120px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 3px solid var(--bauhaus-black);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sidebar-element:hover {
+            transform: scale(1.05);
+        }
+        
+        .sidebar-element::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid currentColor;
+            opacity: 0.5;
+        }
+        
+        .element-void {
+            background: var(--academic-gray);
+            color: var(--bauhaus-white);
+        }
+        
+        .element-form {
+            background: var(--bauhaus-red);
+            color: var(--bauhaus-white);
+        }
+        
+        .element-analysis {
+            background: var(--bauhaus-blue);
+            color: var(--bauhaus-white);
+        }
+        
+        .element-synthesis {
+            background: var(--bauhaus-yellow);
+            color: var(--bauhaus-black);
+        }
+        
+        .element-function {
+            background: var(--bauhaus-black);
+            color: var(--bauhaus-white);
+        }
+        
+        /* Enhanced methodology */
+        .methodology-section {
+            background: var(--bauhaus-red);
+            color: var(--bauhaus-white);
+            padding: 80px 60px;
+            margin: 120px -60px;
+            position: relative;
+            border-top: 20px solid var(--bauhaus-yellow);
+            border-bottom: 20px solid var(--bauhaus-blue);
+        }
+        
+        .methodology-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(255, 255, 255, 0.1) 20px, rgba(255, 255, 255, 0.1) 40px);
+        }
+        
+        .methodology-title {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 36px;
+            font-weight: 500;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .methodology-content {
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+        }
+        
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .function-nav,
+            .functional-sidebar {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .masthead-content {
+                padding: 0 20px;
+            }
+            
+            .journal-logo {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .journal-title {
+                font-size: 32px;
+                margin: 0;
+            }
+            
+            .article-content {
+                padding: 40px 20px;
+            }
+            
+            .methodology-section {
+                margin: 120px -20px;
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="masthead">
+        <div class="masthead-content">
+            <div class="journal-logo">
+                <div class="geometric-element element-square">■</div>
+                <h1 class="journal-title">Functional Review</h1>
+                <div class="geometric-element element-circle">●</div>
+                <div class="geometric-element element-triangle">▲</div>
+            </div>
+            <div class="issue-info">Vol. 01 · Issue 234 · Quarterly Publication</div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <nav class="function-nav">
+            <div class="nav-element nav-0">0</div>
+            <div class="nav-element nav-1">1</div>
+            <div class="nav-element nav-2">2</div>
+            <div class="nav-element nav-3">3</div>
+            <div class="nav-element nav-4">4</div>
+        </nav>
+        
+        <main class="article-content">
+            <div class="content-inner">
+                <div class="article-header">
+                    <h1 class="article-title">
+                        <span class="function-highlight">Form</span> Follows 
+                        <span class="function-highlight">Function</span> Follows 
+                        <span class="function-highlight">Consciousness</span>
+                    </h1>
+                    
+                    <div class="author-info">
+                        <div class="author-name">Dr. Sergio Forés</div>
+                        <div class="author-title">Director, Bauhaus Institute of Cognitive Architecture</div>
+                    </div>
+                    
+                    <div class="publication-date">Published November 2024</div>
+                </div>
+                
+                <div class="function-section">
+                    <div class="section-header">
+                        <div class="section-number">01</div>
+                        <h2 class="section-title">Functional Hierarchy</h2>
+                    </div>
+                    
+                    <p>The Bauhaus principle of "form follows function" finds its ultimate expression in the Sistema 01234, where each cognitive level serves a specific functional purpose within the architecture of consciousness. This systematic approach eliminates ornamental thinking in favor of pure cognitive utility.</p>
+                    
+                    <div class="function-principle">
+                        <div class="principle-text">
+                            "Eliminate everything superfluous. Every thought, every process, every element must serve the ultimate function: the clear manifestation of consciousness into reality."
+                        </div>
+                        <div class="principle-attribution">— Bauhaus Cognitive Manifesto</div>
+                    </div>
+                </div>
+                
+                <div class="function-section">
+                    <div class="section-header">
+                        <div class="section-number">02</div>
+                        <h2 class="section-title">Systematic Functions</h2>
+                    </div>
+                    
+                    <table class="function-table">
+                        <thead>
+                            <tr>
+                                <th>Level</th>
+                                <th>Function</th>
+                                <th>Process</th>
+                                <th>Output</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0</td>
+                                <td>Potential Container</td>
+                                <td>Void Maintenance</td>
+                                <td>Available Space</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Direction Setter</td>
+                                <td>Focus Selection</td>
+                                <td>Clear Intention</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>System Analyzer</td>
+                                <td>Component Breakdown</td>
+                                <td>Structured Understanding</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Network Builder</td>
+                                <td>Relationship Mapping</td>
+                                <td>Connected System</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Reality Implementer</td>
+                                <td>Physical Manifestation</td>
+                                <td>Working Solution</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="function-section">
+                    <div class="section-header">
+                        <div class="section-number">03</div>
+                        <h2 class="section-title">Editorial Function</h2>
+                    </div>
+                    
+                    <p>The integration of Bauhaus functional principles with academic editorial rigor creates a communication system where every visual element serves the dual purpose of aesthetic clarity and cognitive function. Typography becomes architecture, layout becomes logic.</p>
+                    
+                    <p>This synthesis eliminates the false dichotomy between form and content, creating a unified field where the message and its presentation work as a single, functional system. The geometric elements are not decorative but serve as cognitive anchors, helping readers navigate complex theoretical territories with the same precision that Bauhaus architects used to navigate physical space.</p>
+                    
+                    <div class="function-principle">
+                        <div class="principle-text">
+                            "In the marriage of function and form, consciousness finds its clearest expression. The Sistema 01234 is not theory about design—it is design thinking itself."
+                        </div>
+                        <div class="principle-attribution">— S. Forés, Functional Consciousness Studies</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <aside class="functional-sidebar">
+            <div class="sidebar-element element-void">Void</div>
+            <div class="sidebar-element element-form">Form</div>
+            <div class="sidebar-element element-analysis">Analysis</div>
+            <div class="sidebar-element element-synthesis">Synthesis</div>
+            <div class="sidebar-element element-function">Function</div>
+        </aside>
+    </div>
+    
+    <div class="methodology-section">
+        <h3 class="methodology-title">Functional Specifications</h3>
+        <div class="methodology-content">
+            <strong style="color: var(--bauhaus-yellow);">PROMPT ORIGINAL:</strong><br>
+            "Bauhaus Editorial: Funcionalidad geométrica con rigor académico.
+            Combina principios Bauhaus (función pura, geometría, grid) con
+            estructura editorial formal para presentar el Sistema 01234."<br><br>
+            
+            <strong style="color: var(--bauhaus-yellow);">ELEMENTOS CLAVE:</strong><br>
+            • Geometría: Formas puras como elementos funcionales, no decorativos<br>
+            • Tipografía: IBM Plex (sans-serif funcional) + serif para cuerpo texto<br>
+            • Layout: Grid estricto con elementos geométricos integrados<br>
+            • Colores: Paleta Bauhaus clásica (rojo, azul, amarillo, negro, blanco)<br>
+            • Funcionalidad: Cada elemento geométrico sirve propósito específico<br><br>
+            
+            <strong style="color: var(--bauhaus-yellow);">PALABRAS CLAVE EFECTIVAS:</strong><br>
+            functional editorial, bauhaus academic, geometric functionality,
+            systematic design, form follows function, modular thinking<br><br>
+            
+            <strong style="color: var(--bauhaus-yellow);">VARIACIONES PARA EXPLORAR:</strong><br>
+            • "Bauhaus journal con grid más experimental"<br>
+            • "Functional editorial con elementos cinéticos"<br>
+            • "Academic bauhaus con referencias De Stijl"<br>
+            • "Editorial constructivista con dynamic layouts"<br>
+            • "Systematic design con modular typography"<br><br>
+            
+            <strong style="color: var(--bauhaus-yellow);">SÍNTESIS CONCEPTUAL:</strong><br>
+            Elimina todo lo superfluo para crear comunicación pura.
+            La geometría no decora sino que estructura el pensamiento,
+            haciendo visible la arquitectura interna de las ideas.
+        </div>
+    </div>
+</body>
+</html>

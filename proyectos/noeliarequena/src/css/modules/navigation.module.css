@@ -1,0 +1,220 @@
+.menu {
+    position: fixed;
+    top: 0;
+    /* left: 0; */
+    right: 0;
+    display: flex;
+    justify-content: end;
+    /* gap: var(--space-xl); */
+    padding: var(--space-sm) var(--space-md) var(--space-sm);
+    z-index: 101;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing-xl);
+    background-color: var(--nav-background-color);
+    width: fit-content;
+}
+
+.menu.hidden {
+    transform: translateY(-100%);
+}
+
+.menu a {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    text-transform: lowercase;
+    transition: all 0.3s ease;
+    position: relative;
+    letter-spacing: var(--letter-spacing-md);
+    padding: 8px;
+    margin: 4px;
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--text-color);
+    transition: width 0.3s ease;
+}
+
+.menu a:hover::after,
+.menu a.active::after {
+    width: 100%;
+}
+
+.menu a.active {
+    font-weight: 500;
+}
+
+/* Solo mantener el outline para accesibilidad */
+.menu a:focus-visible {
+    outline: 2px solid var(--text-color);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+.menuItems {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: center;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-xs);
+    z-index: 101;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-color);
+    position: absolute;
+    left: 8px;
+    transition: all 0.3s ease;
+}
+
+.hamburger span:nth-child(1) {
+    top: 14px;
+}
+
+.hamburger span:nth-child(2) {
+    top: 22px;
+}
+
+.hamburger span:nth-child(3) {
+    top: 30px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 22px;
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 22px;
+}
+
+.hamburger:focus-visible {
+    outline: 2px solid var(--text-color);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+    .menu {
+        padding: var(--space-sm);
+        width: auto;
+        background: none;
+    }
+
+    .menu.hidden {
+        transform: none;
+    }
+
+    .hamburger {
+        display: block;
+        position: relative;
+        z-index: 102;
+    }
+
+    .menuItems {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--text-color-emphasis);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-xl);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 101;
+        padding: var(--space-xl);
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .menuItems.active {
+        transform: translateX(0);
+        visibility: visible;
+        pointer-events: all;
+    }
+
+    .menu a {
+        font-size: 2rem;
+        padding: var(--space-xs);
+        width: auto;
+        text-align: center;
+        color: var(--text-color);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .menuItems.active a {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .menu,
+    .menuItems,
+    .menu a,
+    .hamburger span {
+        transition: none;
+    }
+}
+
+:global(.skip-link) {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--text-color-emphasis);
+    color: var(--text-color);
+    padding: 8px;
+    z-index: 1000;
+    transition: top 0.3s ease;
+}
+
+:global(.skip-link:focus) {
+    top: 0;
+}
+
+:global(body.menu-active) {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+    -webkit-overflow-scrolling: none;
+}
+
+:global(body.menu-active *) {
+    -webkit-overflow-scrolling: touch;
+}

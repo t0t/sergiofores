@@ -1,0 +1,25 @@
+/* Estilos específicos extraídos de inline styles */
+
+/* Ubicación section header */
+.ubicacion-section-title {
+    text-align: left;
+    color: var(--medieval-gold);
+}
+
+/* Ubicacion visual quote */
+.ubicacion-quote {
+    font-size: var(--text-lg);
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Platform cards in reservas */
+.platform-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Contact button in reservas */
+.reservas-contact-container {
+    margin-top: var(--space-8);
+}

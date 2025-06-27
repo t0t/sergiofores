@@ -1,0 +1,338 @@
+/* Variables del Sistema de Diseño */
+:root {
+    --neutral-white: #FEFEFE;
+    --neutral-cream: #FDFBF7;
+    --neutral-gray-50: #F8F6F0;
+    --neutral-gray-200: #E5E7EB;
+    --neutral-gray-400: #9CA3AF;
+    --neutral-gray-600: #6B7280;
+    --neutral-gray-800: #2C2C2C;
+    --neutral-black: #1A1A1A;
+    
+    --accent-orange: #FF6B35;
+    --accent-red: #E30613;
+    --accent-blue: #0066CC;
+    --accent-yellow: #FFD100;
+    --accent-green: #9CAF88;
+    
+    --font-primary: 'Futura', 'Avenir Next', 'Helvetica Neue', sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
+    
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --space-6: 3rem;
+    --space-8: 4rem;
+    
+    --text-base: clamp(1rem, 1.2vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 1.5vw, 1.25rem);
+    --text-xl: clamp(1.25rem, 2vw, 1.5rem);
+    --text-2xl: clamp(1.5rem, 3vw, 2rem);
+    --text-3xl: clamp(2rem, 4vw, 3rem);
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background: var(--neutral-white);
+    color: var(--neutral-gray-800);
+    line-height: 1.7;
+    font-size: var(--text-base);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+}
+
+/* Header */
+.header {
+    background: var(--neutral-white);
+    border-bottom: 1px solid var(--neutral-gray-200);
+    padding: var(--space-4) 0;
+    margin-bottom: var(--space-8);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.logo-text {
+    font-family: var(--font-mono);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--neutral-black);
+    letter-spacing: 4px;
+}
+
+.breadcrumb {
+    font-size: 14px;
+    color: var(--neutral-gray-600);
+    font-family: var(--font-mono);
+    letter-spacing: 1px;
+}
+
+.breadcrumb a {
+    color: var(--accent-orange);
+    text-decoration: none;
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.hero h1 {
+    font-family: var(--font-primary);
+    font-size: var(--text-3xl);
+    font-weight: 300;
+    color: var(--neutral-black);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: var(--space-2);
+}
+
+.hero p {
+    font-size: var(--text-lg);
+    color: var(--neutral-gray-600);
+    max-width: 800px;
+    margin: 0 auto var(--space-2);
+    letter-spacing: 1px;
+}
+
+.hero-description {
+    font-size: var(--text-base);
+    margin-top: var(--space-2);
+}
+
+/* Secciones */
+.section {
+    margin-bottom: var(--space-8);
+}
+
+.section-title {
+    font-size: var(--text-2xl);
+    font-weight: 300;
+    color: var(--neutral-black);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: var(--space-4);
+    text-align: center;
+}
+
+/* Grid de componentes */
+.components-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.component-card {
+    background: var(--neutral-white);
+    border: 1px solid var(--neutral-gray-200);
+    padding: var(--space-4);
+    transition: all 0.3s ease;
+}
+
+.component-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.component-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--accent-orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    margin-bottom: var(--space-3);
+}
+
+.component-title {
+    font-size: var(--text-lg);
+    font-weight: 400;
+    color: var(--neutral-black);
+    margin-bottom: var(--space-2);
+    letter-spacing: 1px;
+}
+
+.component-description {
+    color: var(--neutral-gray-600);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* Flujo */
+.workflow {
+    background: var(--neutral-gray-50);
+    padding: var(--space-6);
+    border-radius: 8px;
+    margin-bottom: var(--space-6);
+}
+
+.workflow-intro {
+    text-align: center;
+    color: var(--neutral-gray-600);
+    margin-bottom: var(--space-4);
+}
+
+.workflow-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+}
+
+.step {
+    text-align: center;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--accent-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    margin: 0 auto var(--space-2);
+}
+
+.step-title {
+    font-size: var(--text-base);
+    font-weight: 400;
+    color: var(--neutral-black);
+    margin-bottom: var(--space-1);
+}
+
+.step-description {
+    font-size: 13px;
+    color: var(--neutral-gray-600);
+    line-height: 1.5;
+}
+
+/* Filosofía 01234 */
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+}
+
+.level {
+    text-align: center;
+    padding: var(--space-3);
+    border: 1px solid var(--neutral-gray-200);
+    background: var(--neutral-white);
+}
+
+.level-number {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--accent-orange);
+    margin-bottom: var(--space-1);
+}
+
+.level-name {
+    font-size: var(--text-base);
+    font-weight: 400;
+    color: var(--neutral-black);
+    margin-bottom: var(--space-2);
+}
+
+.level-description {
+    font-size: 12px;
+    color: var(--neutral-gray-600);
+    line-height: 1.4;
+}
+
+.vault-structure {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-4);
+}
+
+.vault-structure div h3 {
+    color: var(--accent-orange);
+    margin-bottom: var(--space-2);
+    font-family: var(--font-mono);
+}
+
+.vault-structure div p {
+    font-size: 13px;
+    color: var(--neutral-gray-600);
+}
+
+.philosophy-intro {
+    text-align: center;
+    color: var(--neutral-gray-600);
+    margin-bottom: var(--space-4);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.integration-section {
+    text-align: center;
+    background: var(--neutral-gray-50);
+    padding: var(--space-6);
+    border-radius: 8px;
+}
+
+.integration-section h2 {
+    font-size: var(--text-xl);
+    font-weight: 300;
+    color: var(--neutral-black);
+    margin-bottom: var(--space-3);
+    letter-spacing: 2px;
+}
+
+.integration-section p {
+    color: var(--neutral-gray-600);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.integration-section .footer-info {
+    color: var(--accent-orange);
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .components-grid, .workflow-steps, .philosophy-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}

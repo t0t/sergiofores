@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01234 - Mid-Century Editorial Refinado</title>
+    <style>
+        /* Mid-Century Editorial Refinado: Elegancia atómica con tipografía perfecta */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Futura', 'Avenir Next', sans-serif;
+            background: #FDFDFB;
+            color: #2C2C2C;
+            line-height: 1.6;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+        
+        /* Atomic header */
+        header {
+            text-align: center;
+            margin-bottom: 120px;
+            position: relative;
+        }
+        
+        .atomic-title {
+            font-size: 96px;
+            font-weight: 300;
+            letter-spacing: 12px;
+            margin-bottom: 30px;
+            color: #2C2C2C;
+        }
+        
+        .institute-name {
+            font-size: 18px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #FF6B35;
+            margin-bottom: 60px;
+        }
+        
+        .atomic-divider {
+            width: 300px;
+            height: 2px;
+            background: #FF6B35;
+            margin: 0 auto;
+        }
+        
+        /* Article structure */
+        .article-header {
+            background: #F8F6F0;
+            padding: 80px 60px;
+            margin-bottom: 100px;
+            position: relative;
+        }
+        
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #FF6B35 0%, #4A8A8A 50%, #DAA520 100%);
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+        
+        .atomic-highlight {
+            color: #FF6B35;
+        }
+        
+        .author-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #E0E0E0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .author-info h3 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .author-info p {
+            font-size: 16px;
+            color: #6B7280;
+            letter-spacing: 0.5px;
+        }
+        
+        .publication-meta {
+            text-align: right;
+            font-size: 14px;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Atomic sections */
+        .section {
+            margin: 100px 0;
+            position: relative;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .section-number {
+            width: 80px;
+            height: 80px;
+            background: #FF6B35;
+            color: #FDFDFB;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        p {
+            margin-bottom: 30px;
+            line-height: 1.8;
+            letter-spacing: 0.3px;
+        }
+        
+        /* Atomic quote */
+        .atomic-quote {
+            background: #2C2C2C;
+            color: #FDFDFB;
+            padding: 60px;
+            margin: 80px 0;
+            position: relative;
+            font-size: 24px;
+            line-height: 1.6;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .atomic-quote::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 60px;
+            width: 100px;
+            height: 40px;
+            background: #FF6B35;
+        }
+        
+        .quote-attribution {
+            margin-top: 30px;
+            font-size: 16px;
+            text-align: right;
+            color: #DAA520;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* Atomic grid */
+        .atomic-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            margin: 100px 0;
+        }
+        
+        .atomic-element {
+            background: #FDFDFB;
+            border: 2px solid #E0E0E0;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .atomic-element:hover {
+            transform: translateY(-10px);
+            border-color: #FF6B35;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .element-number {
+            font-size: 72px;
+            font-weight: 100;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .element-name {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+        
+        .element-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #6B7280;
+            letter-spacing: 0.3px;
+        }
+        
+        .element-0 { border-color: #6B7280; }
+        .element-1 { border-color: #FF6B35; }
+        .element-2 { border-color: #4A8A8A; }
+        .element-3 { border-color: #DAA520; }
+        .element-4 { border-color: #2C2C2C; }
+        
+        /* Abstract */
+        .abstract {
+            background: #4A8A8A;
+            color: #FDFDFB;
+            padding: 80px 60px;
+            margin: 100px 0;
+            position: relative;
+        }
+        
+        .abstract::after {
+            content: 'ABSTRACT';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: #DAA520;
+            font-weight: 400;
+        }
+        
+        .abstract h3 {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .abstract p {
+            font-size: 20px;
+            line-height: 1.7;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Enhanced methodology */
+        .methodology {
+            background: #DAA520;
+            color: #2C2C2C;
+            padding: 80px 60px;
+            margin: 120px 0;
+            position: relative;
+        }
+        
+        .methodology-title {
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        
+        .methodology-content {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 100px 0;
+            border-top: 2px solid #E0E0E0;
+            margin-top: 120px;
+        }
+        
+        footer p {
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #6B7280;
+        }
+        
+        @media (max-width: 1024px) {
+            .atomic-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .atomic-title {
+                font-size: 64px;
+                letter-spacing: 6px;
+            }
+            
+            .author-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .atomic-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="atomic-title">01234</h1>
+            <p class="institute-name">Atomic Research Institute</p>
+            <div class="atomic-divider"></div>
+        </header>
+        
+        <div class="article-header">
+            <h1>The <span class="atomic-highlight">Refined Architecture</span> of Mid-Century Consciousness</h1>
+            
+            <div class="author-section">
+                <div class="author-info">
+                    <h3>Dr. Sergio Forés</h3>
+                    <p>Director of Atomic Consciousness Studies<br>Institute for Advanced Mid-Century Research</p>
+                </div>
+                <div class="publication-meta">
+                    <p>Published: November 2024<br>Volume 01 · Issue 234</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="abstract">
+            <h3>Research Summary</h3>
+            <p>This study examines the Sistema 01234 through the lens of mid-century atomic theory and refined editorial presentation. Our findings demonstrate that consciousness operates according to principles of atomic elegance: precise, functional, and beautifully systematized.</p>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Atomic Precision</h2>
+            </div>
+            
+            <p>The mid-century period represented humanity's first systematic approach to atomic understanding. This precision of thought, this clarity of purpose, finds its natural expression in the Sistema 01234. Each level operates with the mechanical perfection of atomic structure while maintaining the organic flow of consciousness itself.</p>
+            
+            <div class="atomic-quote">
+                In the atom, we discovered not chaos but perfect order. In consciousness, we find the same elegant architecture—precise levels, clear functions, beautiful integration.
+                <div class="quote-attribution">— Forés, S. (2024)</div>
+            </div>
+            
+            <p>This approach combines the optimistic rationalism of the atomic age with the sophisticated typography and layout principles that defined mid-century editorial design. The result is a presentation that honors both scientific rigor and aesthetic refinement.</p>
+        </div>
+        
+        <div class="atomic-grid">
+            <div class="atomic-element element-0">
+                <div class="element-number">0</div>
+                <div class="element-name">Quantum Void</div>
+                <div class="element-description">The pristine vacuum state containing infinite atomic possibilities</div>
+            </div>
+            
+            <div class="atomic-element element-1">
+                <div class="element-number">1</div>
+                <div class="element-name">Nuclear Focus</div>
+                <div class="element-description">The concentrated energy of intentional atomic consciousness</div>
+            </div>
+            
+            <div class="atomic-element element-2">
+                <div class="element-number">2</div>
+                <div class="element-name">Electron Shell</div>
+                <div class="element-description">The orbital analysis layer of systematic atomic breakdown</div>
+            </div>
+            
+            <div class="atomic-element element-3">
+                <div class="element-number">3</div>
+                <div class="element-name">Molecular Bond</div>
+                <div class="element-description">The connection matrix linking atomic elements into compounds</div>
+            </div>
+            
+            <div class="atomic-element element-4">
+                <div class="element-number">4</div>
+                <div class="element-name">Crystal Form</div>
+                <div class="element-description">The materialized structure of perfected atomic architecture</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Editorial Refinement</h2>
+            </div>
+            
+            <p>The marriage of atomic precision with editorial sophistication creates a new standard for presenting complex theoretical frameworks. This synthesis honors both the scientific rationalism of the atomic age and the typographic excellence that characterized the golden period of American design.</p>
+            
+            <p>Each element—from letter spacing to section organization—serves the ultimate goal of clarity. Like the atomic structures that inspired mid-century optimism, this approach reveals the underlying order that makes complex systems both comprehensible and beautiful.</p>
+        </div>
+        
+        <div class="methodology">
+            <h3 class="methodology-title">Design Methodology</h3>
+            <div class="methodology-content">
+                <strong>PROMPT ORIGINAL:</strong><br>
+                "Mid-Century Editorial Refinado: Elegancia atómica con tipografía perfecta.
+                Combina precision atomic age con sophisticated editorial layout,
+                usando perfect spacing, elegant typography y clean atomic aesthetics."<br><br>
+                
+                <strong>ELEMENTOS CLAVE:</strong><br>
+                • Tipografía: Futura/Avenir con letter-spacing perfecto<br>
+                • Layout: Grid atómico limpio con spacing sophisticated<br>
+                • Colores: Atomic orange, space teal, electron gold<br>
+                • Precisión: Cada elemento sirve función específica<br>
+                • Elegancia: Mid-century sophistication con clarity<br><br>
+                
+                <strong>SÍNTESIS CONCEPTUAL:</strong><br>
+                Fusiona la precision científica del atomic age con la
+                elegancia editorial mid-century. Tipografía como arquitectura,
+                layout como atomic structure, contenido como nuclear physics.
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2024 Atomic Research Institute · Sistema 01234 · Mid-Century Precision</p>
+        </footer>
+    </div>
+</body>
+</html>

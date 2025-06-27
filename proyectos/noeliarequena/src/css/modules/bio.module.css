@@ -1,0 +1,139 @@
+.bio {
+    padding: var(--space-lg) 0;
+}
+
+.bioContent {
+    composes: container from '../../css/main.css';
+}
+
+.avatarContainer {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 0;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+    transform: scale(1.05);
+}
+
+.bioContent {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.bioContent h2 {
+    margin: 2rem 0 1rem;
+    font-size: 1.25rem;
+}
+
+.bioContent p {
+    margin-bottom: 1.5rem;
+}
+
+.quoteAuthor {
+    font-style: italic;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+}
+
+.quote {
+    font-size: 2rem;
+    line-height: 1.6;
+    font-style: italic;
+    margin: 2rem 0;
+    position: relative;
+    color: var(--text-color);
+}
+
+.bioContent dl {
+    margin: 3rem 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.bioContent dt {
+    font-weight: 500;
+    margin-top: 2rem;
+    color: var(--color-text);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.bioContent dt:first-child {
+    margin-top: 0;
+}
+
+.bioContent dd {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    color: var(--color-text);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+}
+
+.bioContent dd + dt {
+    margin-top: 2.5rem;
+}
+
+.bioContent dd i {
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.bioTabs :global(.tab-buttons) {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: var(--space-sm);
+}
+
+.bioTabs :global(.tab-buttons button) {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #666;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.bioTabs :global(.tab-buttons button:hover) {
+    color: #000;
+}
+
+.bioTabs :global(.tab-buttons button.active) {
+    color: #000;
+    border-bottom-color: #000;
+}
+
+@media (max-width: 768px) {
+    .bio {
+        padding: 6rem 1rem 3rem;
+    }
+
+    .bioContent dl {
+        margin: 2rem 0;
+        font-size: 1rem;
+    }
+
+    .bioContent dt {
+        margin-top: 1.5rem;
+        font-size: 0.85rem;
+    }
+
+    .bioContent dd + dt {
+        margin-top: 2rem;
+    }
+}

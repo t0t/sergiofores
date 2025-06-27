@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipos 01234 | Laboratorio de Diseño Web</title>
+    <style>
+        /* Variables del Sistema de Diseño */
+        :root {
+            /* Base Neutra (80% del diseño) */
+            --neutral-white: #FEFEFE;
+            --neutral-cream: #FDFBF7;
+            --neutral-gray-50: #F8F6F0;
+            --neutral-gray-200: #E5E7EB;
+            --neutral-gray-400: #9CA3AF;
+            --neutral-gray-600: #6B7280;
+            --neutral-gray-800: #2C2C2C;
+            --neutral-black: #1A1A1A;
+            
+            /* Colores de Énfasis (20% - Solo uso justificado) */
+            --accent-orange: #FF6B35;
+            --accent-red: #E30613;
+            --accent-blue: #0066CC;
+            --accent-yellow: #FFD100;
+            --accent-green: #9CAF88;
+            
+            /* Tipografía */
+            --font-primary: 'Futura', 'Avenir Next', 'Helvetica Neue', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
+            
+            /* Spacing sistemático 8px */
+            --space-1: 0.5rem;   /* 8px */
+            --space-2: 1rem;     /* 16px */
+            --space-3: 1.5rem;   /* 24px */
+            --space-4: 2rem;     /* 32px */
+            --space-6: 3rem;     /* 48px */
+            --space-8: 4rem;     /* 64px */
+            --space-12: 6rem;    /* 96px */
+            
+            /* Tamaños fluidos */
+            --text-base: clamp(1rem, 1.2vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1.5vw, 1.25rem);
+            --text-xl: clamp(1.25rem, 2vw, 1.5rem);
+            --text-2xl: clamp(1.5rem, 3vw, 2rem);
+            --text-3xl: clamp(2rem, 4vw, 3rem);
+        }
+        
+        /* Reset y base */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: var(--neutral-white);
+            color: var(--neutral-gray-800);
+            line-height: 1.7;
+            font-size: var(--text-base);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Layout principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+        
+        /* Header */
+        .header {
+            background: var(--neutral-white);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: var(--space-3) 0;
+            margin-bottom: var(--space-8);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-text {
+            font-family: var(--font-primary);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--neutral-black);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+        
+        .back-link {
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--neutral-black);
+        }
+        
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: var(--space-12);
+        }
+        
+        .hero h1 {
+            font-family: var(--font-primary);
+            font-size: var(--text-3xl);
+            font-weight: 300;
+            color: var(--neutral-black);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-4);
+        }
+        
+        .hero p {
+            font-size: var(--text-lg);
+            color: var(--neutral-gray-600);
+            max-width: 800px;
+            margin: 0 auto;
+            letter-spacing: 1px;
+        }
+        
+        /* Grid de prototipos */
+        .prototipos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-12);
+        }
+        
+        .prototipo-card {
+            background: var(--neutral-white);
+            border: 1px solid var(--neutral-gray-200);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            aspect-ratio: 16/10;
+        }
+        
+        .prototipo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent-orange);
+        }
+        
+        .prototipo-preview {
+            width: 100%;
+            height: 100%;
+            background: var(--neutral-gray-50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neutral-gray-400);
+            font-size: var(--text-lg);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .prototipo-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: var(--space-4) var(--space-6) var(--space-6) var(--space-6);
+            background: linear-gradient(
+                to top, 
+                rgba(0, 0, 0, 0.95) 0%, 
+                rgba(0, 0, 0, 0.8) 60%, 
+                rgba(0, 0, 0, 0.5) 80%,
+                rgba(0, 0, 0, 0.2) 100%
+            );
+            color: var(--neutral-white);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+        }
+        
+        .prototipo-card:hover .prototipo-content {
+            transform: translateY(0);
+        }
+        
+        .prototipo-card:hover .prototipo-preview {
+            filter: brightness(0.7);
+        }
+        
+        .prototipo-title {
+            font-family: var(--font-primary);
+            font-size: var(--text-xl);
+            font-weight: 400;
+            color: var(--neutral-white);
+            margin-bottom: var(--space-2);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .prototipo-description {
+            color: var(--neutral-white);
+            margin-bottom: var(--space-3);
+            line-height: 1.6;
+            font-size: var(--text-base);
+            opacity: 0.9;
+        }
+        
+        .prototipo-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-1);
+        }
+        
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--neutral-white);
+            padding: 4px 8px;
+            font-size: 11px;
+            font-family: var(--font-mono);
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(4px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .prototipos-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-4);
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--space-2);
+            }
+        }
+        
+        /* Estados de focus accesibles */
+        a:focus {
+            outline: 2px solid var(--accent-orange);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <span class="logo-text">Prototipos 01234</span>
+                <a href="../../index.html" class="back-link">← Volver al índice</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Laboratorio de Diseño Web</h1>
+            <p>Experimentación con diferentes corrientes estéticas aplicadas al diseño web. Cada prototipo explora principios específicos de diseño, tipografía y composición visual.</p>
+        </section>
+
+        <section class="prototipos-grid">
+            
+            <!-- Prototipo Bauhaus -->
+            <a href="02-bauhaus.html" class="prototipo-card">
+                <div class="prototipo-preview">
+                    Bauhaus
+                </div>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Bauhaus Puro</h2>
+                    <p class="prototipo-description">Geometría funcional, tipografía sans-serif, colores primarios. Principios de la escuela alemana aplicados al diseño web contemporáneo.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag">Geometría</span>
+                        <span class="tech-tag">Funcional</span>
+                        <span class="tech-tag">Minimalista</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Prototipo Editorial -->
+            <a href="12-editorial.html" class="prototipo-card">
+                <div class="prototipo-preview">
+                    Editorial
+                </div>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Editorial</h2>
+                    <p class="prototipo-description">Jerarquía tipográfica clara, espaciado sistemático, legibilidad óptima. Principios de diseño editorial adaptados al medio digital.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag">Tipografía</span>
+                        <span class="tech-tag">Jerarquía</span>
+                        <span class="tech-tag">Legibilidad</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Prototipo Mid-Century -->
+            <a href="16-midcentury.html" class="prototipo-card">
+                <div class="prototipo-preview">
+                    Mid-Century
+                </div>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Mid-Century Modern</h2>
+                    <p class="prototipo-description">Formas orgánicas, colores tierra, equilibrio asimétrico. Estética de los años 50-60 reinterpretada para interfaces digitales.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag">Orgánico</span>
+                        <span class="tech-tag">Retro</span>
+                        <span class="tech-tag">Equilibrio</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Prototipo Bauhaus-Editorial -->
+            <a href="24-bauhaus-editorial.html" class="prototipo-card">
+                <div class="prototipo-preview">
+                    Bauhaus + Editorial
+                </div>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Bauhaus Editorial</h2>
+                    <p class="prototipo-description">Combinación de principios bauhaus con técnicas editoriales avanzadas. Funcionalidad geométrica aplicada a contenidos textuales.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag">Funcional</span>
+                        <span class="tech-tag">Editorial</span>
+                        <span class="tech-tag">Sistemático</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Prototipo Mid-Century Académico -->
+            <a href="25-midcentury-academic.html" class="prototipo-card">
+                <div class="prototipo-preview">
+                    Mid-Century + Académico
+                </div>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Mid-Century Académico</h2>
+                    <p class="prototipo-description">Estética mid-century con rigor académico. Presentación formal de contenidos con sensibilidad visual de mediados del siglo XX.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag">Académico</span>
+                        <span class="tech-tag">Formal</span>
+                        <span class="tech-tag">Vintage</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Prototipo Orgánico-Bauhaus Puro -->
+            <a href="27-organic-bauhaus-pure.html" class="prototipo-card">
+                <div class="prototipo-preview">
+                    Orgánico + Bauhaus
+                </div>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Orgánico Bauhaus Puro</h2>
+                    <p class="prototipo-description">Reversión del experimento híbrido. Formas naturales como base con elementos geométricos bauhaus como acentos funcionales.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag">Natural</span>
+                        <span class="tech-tag">Puro</span>
+                        <span class="tech-tag">Sintético</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Prototipo Mid-Century Editorial Refinado -->
+            <a href="28-midcentury-editorial-refined.html" class="prototipo-card">
+                <div class="prototipo-preview">
+                    Mid-Century + Editorial
+                </div>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Mid-Century Editorial Refinado</h2>
+                    <p class="prototipo-description">Síntesis final combinando lo mejor del mid-century con técnicas editoriales refinadas. Elegancia vintage con legibilidad contemporánea.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag">Refinado</span>
+                        <span class="tech-tag">Elegante</span>
+                        <span class="tech-tag">Síntesis</span>
+                    </div>
+                </div>
+            </a>
+
+        </section>
+    </main>
+
+    <script>
+        // Lazy loading para optimización
+        const cards = document.querySelectorAll('.prototipo-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

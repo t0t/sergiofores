@@ -1,0 +1,58 @@
+/* Estilos específicos extraídos de inline styles */
+
+/* Hero CTA container */
+.hero-cta-container {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--space-6);
+}
+
+/* Hero info container */
+.hero-info-container {
+    margin-top: var(--space-8);
+    padding-top: var(--space-4);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+/* Hero address */
+.hero-address {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    opacity: 0.7;
+    letter-spacing: 2px;
+}
+
+/* Lugar section title styling */
+.lugar-section-title {
+    text-align: left;
+    color: var(--neutral-white);
+}
+
+/* Lugar visual quote text */
+.lugar-quote-text {
+    font-size: var(--text-lg);
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Lugar address text */
+.lugar-address-text {
+    margin-top: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    opacity: 0.7;
+}
+
+/* Galeria intro text */
+.galeria-intro-text {
+    text-align: center;
+    color: var(--neutral-gray-600);
+    margin-bottom: var(--space-4);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
