@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System - CEREBRO DIGITAL</title>
+    <style>
+        /* Variables del Sistema de Diseño */
+        :root {
+            /* Base Neutra (80% del diseño) */
+            --neutral-white: #FEFEFE;
+            --neutral-cream: #FDFBF7;
+            --neutral-gray-50: #F8F6F0;
+            --neutral-gray-200: #E5E7EB;
+            --neutral-gray-400: #9CA3AF;
+            --neutral-gray-600: #6B7280;
+            --neutral-gray-800: #2C2C2C;
+            --neutral-black: #1A1A1A;
+            
+            /* Colores de Énfasis (20% - Solo uso justificado) */
+            --accent-orange: #FF6B35;
+            --accent-red: #E30613;
+            --accent-blue: #0066CC;
+            --accent-yellow: #FFD100;
+            --accent-green: #9CAF88;
+            
+            /* Paleta Natural y Espiritual (Taller 01234) */
+            --sage-white: #F7F9F7;
+            --soft-cream: #F4F1E8;
+            --pearl-gray: #E8E6E0;
+            --warm-stone: #D4C4B0;
+            --moss-green: #7A8471;
+            --deep-forest: #4A5D23;
+            --earth-clay: #A0522D;
+            --sunset-coral: #E07A5F;
+            --golden-amber: #DAA520;
+            --mystic-purple: #6B5B95;
+            --ocean-teal: #2F4858;
+            --sacred-indigo: #3D405B;
+            
+            /* Tipografía */
+            --font-primary: 'Futura', 'Avenir Next', 'Helvetica Neue', sans-serif;
+            --font-secondary: 'Crimson Text', 'Charter', 'Times New Roman', serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
+            
+            /* Spacing sistemático 8px */
+            --space-1: 0.5rem;   /* 8px */
+            --space-2: 1rem;     /* 16px */
+            --space-3: 1.5rem;   /* 24px */
+            --space-4: 2rem;     /* 32px */
+            --space-6: 3rem;     /* 48px */
+            --space-8: 4rem;     /* 64px */
+            --space-12: 6rem;    /* 96px */
+            --space-16: 8rem;    /* 128px */
+            
+            /* Tamaños fluidos */
+            --text-xs: clamp(0.75rem, 0.8vw, 0.875rem);
+            --text-sm: clamp(0.875rem, 1vw, 1rem);
+            --text-base: clamp(1rem, 1.2vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1.5vw, 1.25rem);
+            --text-xl: clamp(1.25rem, 2vw, 1.5rem);
+            --text-2xl: clamp(1.5rem, 3vw, 2rem);
+            --text-3xl: clamp(2rem, 4vw, 3rem);
+            --text-4xl: clamp(2.5rem, 6vw, 4rem);
+        }
+        
+        /* Reset y base */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: var(--neutral-white);
+            color: var(--neutral-gray-800);
+            line-height: 1.7;
+            font-size: var(--text-base);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Layout principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+        
+        /* Header */
+        .header {
+            background: var(--neutral-white);
+            border-bottom: 1px solid var(--neutral-gray-200);
+            padding: var(--space-4) 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .geo-shape {
+            transition: transform 0.3s ease;
+        }
+        
+        .geo-shape:hover {
+            transform: scale(1.1);
+        }
+        
+        .geo-circle {
+            width: 32px;
+            height: 32px;
+            background: var(--accent-red);
+            border-radius: 50%;
+        }
+        
+        .geo-square {
+            width: 32px;
+            height: 32px;
+            background: var(--accent-yellow);
+            border-radius: 4px;
+        }
+        
+        .geo-triangle {
+            width: 0; 
+            height: 0;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-bottom: 32px solid var(--accent-blue);
+        }
+        
+        .logo-text {
+            font-family: var(--font-mono);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--neutral-black);
+            letter-spacing: 4px;
+        }
+        
+        .breadcrumb {
+            font-size: 14px;
+            color: var(--neutral-gray-600);
+            font-family: var(--font-mono);
+            letter-spacing: 1px;
+        }
+        
+        .breadcrumb a {
+            color: var(--accent-orange);
+            text-decoration: none;
+        }
+        
+        /* Navegación lateral */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: var(--space-8);
+            margin-top: var(--space-8);
+        }
+        
+        .sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+        
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .nav-item {
+            margin-bottom: var(--space-1);
+        }
+        
+        .nav-link {
+            display: block;
+            padding: var(--space-2);
+            color: var(--neutral-gray-600);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: var(--text-sm);
+            letter-spacing: 1px;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--neutral-gray-50);
+            color: var(--accent-orange);
+        }
+        
+        /* Contenido principal */
+        .main-content {
+            min-height: 100vh;
+        }
+        
+        .section {
+            margin-bottom: var(--space-12);
+            padding: var(--space-6) 0;
+            border-bottom: 1px solid var(--neutral-gray-200);
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            font-family: var(--font-primary);
+            font-size: var(--text-3xl);
+            font-weight: 300;
+            color: var(--neutral-black);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-6);
+        }
+        
+        .section-subtitle {
+            font-size: var(--text-xl);
+            color: var(--neutral-gray-800);
+            margin: var(--space-4) 0 var(--space-3) 0;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        
+        .section-description {
+            color: var(--neutral-gray-600);
+            margin-bottom: var(--space-6);
+            line-height: 1.6;
+        }
+        
+        /* Muestras de color */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+        
+        .color-swatch {
+            text-align: center;
+        }
+        
+        .color-preview {
+            width: 100%;
+            height: 80px;
+            border-radius: 8px;
+            border: 1px solid var(--neutral-gray-200);
+            margin-bottom: var(--space-2);
+        }
+        
+        .color-name {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+        }
+        
+        .color-value {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--neutral-gray-600);
+        }
+        
+        /* Ejemplos tipográficos */
+        .typography-samples {
+            display: grid;
+            gap: var(--space-6);
+        }
+        
+        .type-sample {
+            padding: var(--space-4);
+            border: 1px solid var(--neutral-gray-200);
+            border-radius: 8px;
+        }
+        
+        .type-label {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--neutral-gray-600);
+            margin-bottom: var(--space-2);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Ejemplos de componentes */
+        .component-grid {
+            display: grid;
+            gap: var(--space-6);
+        }
+        
+        .component-example {
+            padding: var(--space-6);
+            border: 1px solid var(--neutral-gray-200);
+            border-radius: 8px;
+            background: var(--neutral-cream);
+        }
+        
+        .component-title {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            color: var(--neutral-gray-600);
+            margin-bottom: var(--space-3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Aplicación de componentes del sistema */
+        .btn {
+            font-family: var(--font-primary);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: var(--space-3) var(--space-6);
+            border: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-right: var(--space-2);
+            margin-bottom: var(--space-2);
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: var(--accent-orange);
+            color: var(--neutral-white);
+        }
+        
+        .btn-primary:hover {
+            background: var(--neutral-black);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--neutral-gray-800);
+            border: 1px solid var(--neutral-gray-400);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--accent-orange);
+            color: var(--accent-orange);
+        }
+        
+        .card {
+            background: var(--neutral-white);
+            border: 1px solid var(--neutral-gray-200);
+            padding: var(--space-6);
+            transition: all 0.3s ease;
+            margin-bottom: var(--space-4);
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--neutral-gray-400);
+        }
+        
+        .card-title {
+            font-family: var(--font-primary);
+            font-size: var(--text-xl);
+            font-weight: 400;
+            margin-bottom: var(--space-2);
+            color: var(--neutral-black);
+            letter-spacing: 1px;
+        }
+        
+        .card-text {
+            font-size: var(--text-base);
+            line-height: 1.7;
+            color: var(--neutral-gray-600);
+            letter-spacing: 0.3px;
+        }
+        
+        /* Espaciado visual */
+        .spacing-demo {
+            display: grid;
+            gap: var(--space-3);
+        }
+        
+        .spacing-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .spacing-visual {
+            background: var(--accent-orange);
+            height: 20px;
+        }
+        
+        .spacing-label {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            color: var(--neutral-gray-600);
+            min-width: 120px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                gap: var(--space-4);
+            }
+            
+            .sidebar {
+                position: static;
+                order: 2;
+            }
+            
+            .color-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Estados de focus */
+        a:focus,
+        button:focus {
+            outline: 2px solid var(--accent-orange);
+            outline-offset: 2px;
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Aplicaciones específicas del sistema */
+        .text-title {
+            font-family: var(--font-primary);
+            font-weight: 300;
+            letter-spacing: 4px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+        
+        .text-body {
+            font-family: var(--font-primary);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            line-height: 1.7;
+        }
+        
+        .text-nav {
+            font-family: var(--font-primary);
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: var(--text-sm);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="geo-shape geo-circle"></div>
+                    <div class="geo-shape geo-square"></div>
+                    <div class="geo-shape geo-triangle"></div>
+                    <span class="logo-text">01234</span>
+                </div>
+                <div class="breadcrumb">
+                    <a href="../index.html">◌ PROYECTOS</a> / Design System
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-layout">
+            <nav class="sidebar">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#principios" class="nav-link">Principios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#colores" class="nav-link">Colores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tipografia" class="nav-link">Tipografía</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#espaciado" class="nav-link">Espaciado</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#componentes" class="nav-link">Componentes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#botones" class="nav-link">Botones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#cards" class="nav-link">Cards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#responsive" class="nav-link">Responsive</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <main class="main-content">
+                <section id="principios" class="section">
+                    <h1 class="section-title">Design System</h1>
+                    <p class="section-description">
+                        Sistema de diseño unificado para todos los proyectos CEREBRO-DIGITAL basado en la filosofía 01234. 
+                        Enfoque minimalista, tipografía como arquitectura y color con propósito justificado.
+                    </p>
+                    
+                    <h2 class="section-subtitle">Principios Fundamentales</h2>
+                    <div class="component-grid">
+                        <div class="component-example">
+                            <h3 class="component-title">Tipografía como Arquitectura</h3>
+                            <p>La tipografía estructura el contenido y define la jerarquía visual.</p>
+                        </div>
+                        <div class="component-example">
+                            <h3 class="component-title">Color con Propósito</h3>
+                            <p>Base neutra (80%) + énfasis justificado (20%) para máxima claridad.</p>
+                        </div>
+                        <div class="component-example">
+                            <h3 class="component-title">Funcionalidad > Ornamentación</h3>
+                            <p>Cada elemento debe servir una función específica y clara.</p>
+                        </div>
+                        <div class="component-example">
+                            <h3 class="component-title">Limpieza Extrema</h3>
+                            <p>Eliminar todo lo no esencial siguiendo el Nivel 1 del sistema 01234.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="colores" class="section">
+                    <h2 class="section-title">Paleta de Colores</h2>
+                    
+                    <h3 class="section-subtitle">Base Neutra (80% del diseño)</h3>
+                    <div class="color-grid">
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #FEFEFE;"></div>
+                            <div class="color-name">Neutral White</div>
+                            <div class="color-value">#FEFEFE</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #FDFBF7;"></div>
+                            <div class="color-name">Neutral Cream</div>
+                            <div class="color-value">#FDFBF7</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #F8F6F0;"></div>
+                            <div class="color-name">Gray 50</div>
+                            <div class="color-value">#F8F6F0</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #E5E7EB;"></div>
+                            <div class="color-name">Gray 200</div>
+                            <div class="color-value">#E5E7EB</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #9CA3AF;"></div>
+                            <div class="color-name">Gray 400</div>
+                            <div class="color-value">#9CA3AF</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #6B7280;"></div>
+                            <div class="color-name">Gray 600</div>
+                            <div class="color-value">#6B7280</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #2C2C2C;"></div>
+                            <div class="color-name">Gray 800</div>
+                            <div class="color-value">#2C2C2C</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #1A1A1A;"></div>
+                            <div class="color-name">Neutral Black</div>
+                            <div class="color-value">#1A1A1A</div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="section-subtitle">Colores de Énfasis (20% - Solo uso justificado)</h3>
+                    <div class="color-grid">
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #FF6B35;"></div>
+                            <div class="color-name">Accent Orange</div>
+                            <div class="color-value">#FF6B35</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #E30613;"></div>
+                            <div class="color-name">Accent Red</div>
+                            <div class="color-value">#E30613</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #0066CC;"></div>
+                            <div class="color-name">Accent Blue</div>
+                            <div class="color-value">#0066CC</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #FFD100;"></div>
+                            <div class="color-name">Accent Yellow</div>
+                            <div class="color-value">#FFD100</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #9CAF88;"></div>
+                            <div class="color-name">Accent Green</div>
+                            <div class="color-value">#9CAF88</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="natural-espiritual" class="section">
+                    <h2 class="section-title">Paleta Natural y Espiritual</h2>
+                    <p class="section-description">
+                        Paleta diseñada para el Taller Vivencial 01234. Colores naturales y espirituales 
+                        que evocan conexión con la tierra, el mar y estados expandidos de conciencia.
+                    </p>
+                    
+                    <h3 class="section-subtitle">Naturales Base</h3>
+                    <div class="color-grid">
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #F7F9F7;"></div>
+                            <div class="color-name">Sage White</div>
+                            <div class="color-value">#F7F9F7</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #F4F1E8;"></div>
+                            <div class="color-name">Soft Cream</div>
+                            <div class="color-value">#F4F1E8</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #E8E6E0;"></div>
+                            <div class="color-name">Pearl Gray</div>
+                            <div class="color-value">#E8E6E0</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #D4C4B0;"></div>
+                            <div class="color-name">Warm Stone</div>
+                            <div class="color-value">#D4C4B0</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #7A8471;"></div>
+                            <div class="color-name">Moss Green</div>
+                            <div class="color-value">#7A8471</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #4A5D23;"></div>
+                            <div class="color-name">Deep Forest</div>
+                            <div class="color-value">#4A5D23</div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="section-subtitle">Acentos Terrosos</h3>
+                    <div class="color-grid">
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #A0522D;"></div>
+                            <div class="color-name">Earth Clay</div>
+                            <div class="color-value">#A0522D</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #E07A5F;"></div>
+                            <div class="color-name">Sunset Coral</div>
+                            <div class="color-value">#E07A5F</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #DAA520;"></div>
+                            <div class="color-name">Golden Amber</div>
+                            <div class="color-value">#DAA520</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #6B5B95;"></div>
+                            <div class="color-name">Mystic Purple</div>
+                            <div class="color-value">#6B5B95</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #2F4858;"></div>
+                            <div class="color-name">Ocean Teal</div>
+                            <div class="color-value">#2F4858</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #3D405B;"></div>
+                            <div class="color-name">Sacred Indigo</div>
+                            <div class="color-value">#3D405B</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tipografia" class="section">
+                    <h2 class="section-title">Sistema Tipográfico</h2>
+                    
+                    <h3 class="section-subtitle">Fuentes Base</h3>
+                    <div class="typography-samples">
+                        <div class="type-sample">
+                            <div class="type-label">Primaria - Futura</div>
+                            <div style="font-family: var(--font-primary); font-size: var(--text-2xl);">
+                                Futura, Avenir Next, Helvetica Neue
+                            </div>
+                        </div>
+                        <div class="type-sample">
+                            <div class="type-label">Secundaria - Crimson Text</div>
+                            <div style="font-family: var(--font-secondary); font-size: var(--text-2xl);">
+                                Crimson Text, Charter, Times New Roman
+                            </div>
+                        </div>
+                        <div class="type-sample">
+                            <div class="type-label">Monospace - JetBrains Mono</div>
+                            <div style="font-family: var(--font-mono); font-size: var(--text-2xl);">
+                                JetBrains Mono, SF Mono, Courier New
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="section-subtitle">Escala Tipográfica</h3>
+                    <div class="typography-samples">
+                        <div class="type-sample">
+                            <div class="type-label">Text 4XL - Títulos Hero</div>
+                            <div class="text-title" style="font-size: var(--text-4xl);">
+                                CEREBRO DIGITAL
+                            </div>
+                        </div>
+                        <div class="type-sample">
+                            <div class="type-label">Text 3XL - Títulos Principales</div>
+                            <div class="text-title" style="font-size: var(--text-3xl);">
+                                SISTEMA 01234
+                            </div>
+                        </div>
+                        <div class="type-sample">
+                            <div class="type-label">Text 2XL - Subtítulos</div>
+                            <div style="font-size: var(--text-2xl); font-weight: 400;">
+                                Exploración Transdisciplinar
+                            </div>
+                        </div>
+                        <div class="type-sample">
+                            <div class="type-label">Text XL - Títulos de Sección</div>
+                            <div style="font-size: var(--text-xl); font-weight: 400;">
+                                Arquitectura de la Conciencia
+                            </div>
+                        </div>
+                        <div class="type-sample">
+                            <div class="type-label">Text Base - Cuerpo Principal</div>
+                            <div class="text-body">
+                                El sistema 01234 representa un marco cognitivo de 5 niveles que organiza el procesamiento de información desde el potencial cuántico hasta la materialización física.
+                            </div>
+                        </div>
+                        <div class="type-sample">
+                            <div class="type-label">Text SM - Navegación</div>
+                            <div class="text-nav">
+                                PROYECTOS • FILOSOFÍA • CONTACTO
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="espaciado" class="section">
+                    <h2 class="section-title">Sistema de Espaciado</h2>
+                    <p class="section-description">Sistema basado en múltiplos de 8px para consistencia y armonía visual.</p>
+                    
+                    <div class="spacing-demo">
+                        <div class="spacing-item">
+                            <div class="spacing-label">--space-1 (8px)</div>
+                            <div class="spacing-visual" style="width: var(--space-1);"></div>
+                        </div>
+                        <div class="spacing-item">
+                            <div class="spacing-label">--space-2 (16px)</div>
+                            <div class="spacing-visual" style="width: var(--space-2);"></div>
+                        </div>
+                        <div class="spacing-item">
+                            <div class="spacing-label">--space-3 (24px)</div>
+                            <div class="spacing-visual" style="width: var(--space-3);"></div>
+                        </div>
+                        <div class="spacing-item">
+                            <div class="spacing-label">--space-4 (32px)</div>
+                            <div class="spacing-visual" style="width: var(--space-4);"></div>
+                        </div>
+                        <div class="spacing-item">
+                            <div class="spacing-label">--space-6 (48px)</div>
+                            <div class="spacing-visual" style="width: var(--space-6);"></div>
+                        </div>
+                        <div class="spacing-item">
+                            <div class="spacing-label">--space-8 (64px)</div>
+                            <div class="spacing-visual" style="width: var(--space-8);"></div>
+                        </div>
+                        <div class="spacing-item">
+                            <div class="spacing-label">--space-12 (96px)</div>
+                            <div class="spacing-visual" style="width: var(--space-12);"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="componentes" class="section">
+                    <h2 class="section-title">Componentes Base</h2>
+                    
+                    <h3 class="section-subtitle">Logo Bauhaus</h3>
+                    <div class="component-example">
+                        <div class="component-title">Elementos Geométricos 01234</div>
+                        <div class="logo">
+                            <div class="geo-shape geo-circle"></div>
+                            <div class="geo-shape geo-square"></div>
+                            <div class="geo-shape geo-triangle"></div>
+                            <span class="logo-text">01234</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="botones" class="section">
+                    <h2 class="section-title">Botones</h2>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Estados de Botón</div>
+                        <button class="btn btn-primary">Botón Primario</button>
+                        <button class="btn btn-secondary">Botón Secundario</button>
+                    </div>
+                </section>
+
+                <section id="cards" class="section">
+                    <h2 class="section-title">Cards</h2>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Tarjeta de Proyecto</div>
+                        <div class="card">
+                            <h3 class="card-title">Portfolio Completo</h3>
+                            <p class="card-text">Implementación completa del sistema de diseño aplicando filosofía 01234 con tipografía Futura y paleta neutra justificada.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="responsive" class="section">
+                    <h2 class="section-title">Responsive Design</h2>
+                    <p class="section-description">
+                        Enfoque mobile-first con breakpoints sistemáticos y tipografía fluida.
+                    </p>
+                    
+                    <div class="component-grid">
+                        <div class="component-example">
+                            <h3 class="component-title">Breakpoints</h3>
+                            <p>Mobile: 480px • Tablet: 768px • Desktop: 1024px • Wide: 1400px</p>
+                        </div>
+                        <div class="component-example">
+                            <h3 class="component-title">Tipografía Fluida</h3>
+                            <p>Escalado automático usando clamp() para legibilidad en todos los dispositivos.</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Navegación lateral activa
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section');
+        
+        function updateActiveNav() {
+            const scrollPos = window.scrollY + 150;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    const correspondingLink = document.querySelector(`a[href="#${section.id}"]`);
+                    if (correspondingLink) {
+                        correspondingLink.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav();
+        
+        // Smooth scrolling para navegación
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    const offsetTop = targetSection.offsetTop - 120;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Efectos interactivos para formas geométricas
+        const geoShapes = document.querySelectorAll('.geo-shape');
+        geoShapes.forEach(shape => {
+            shape.addEventListener('mouseenter', () => {
+                shape.style.transform = 'scale(1.2) rotate(5deg)';
+            });
+            
+            shape.addEventListener('mouseleave', () => {
+                shape.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+        
+        // Animación de aparición para componentes
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Aplicar animación a elementos
+        const animatedElements = document.querySelectorAll('.component-example, .color-swatch, .type-sample');
+        animatedElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

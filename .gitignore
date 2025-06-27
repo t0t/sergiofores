@@ -1,5 +1,14 @@
-# Ignorar subcarpeta proyectos
+# Ignorar subcarpeta proyectos (excepto proyectos específicos)
 proyectos/
+# Des-ignorar proyectos específicos
+!proyectos/castillo_peniscola_alquiler/
+!proyectos/cerebro_digital/
+!proyectos/cerebro_digital_ia/
+!proyectos/cerebro_digital_vault/
+!proyectos/design-system/
+!proyectos/sergio-dev/
+!proyectos/tienda-peniscola/
+!proyectos/taller_01234_blanes/
 
 # MacOS
 .DS_Store

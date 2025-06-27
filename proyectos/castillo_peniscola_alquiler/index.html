@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartamento en el Castillo de Peñíscola - Calle Mayor</title>
+    <meta name="description" content="Vive una experiencia única durmiendo dentro del castillo de Peñíscola. Apartamento histórico en Calle Mayor con vistas excepcionales al Mediterráneo.">
+    <meta name="keywords" content="Peñíscola, castillo, alquiler, apartamento, Calle Mayor, mediterráneo, turismo, vacaciones">
+    <style>
+        /* Variables del Sistema de Diseño */
+        :root {
+            --castle-stone: #8D6E63;
+            --medieval-gold: #D4AF37;
+            --sea-blue: #1976D2;
+            --sunset-orange: #FF5722;
+            --ancient-white: #FFF8E1;
+            --deep-blue: #0D47A1;
+            
+            --neutral-white: #FEFEFE;
+            --neutral-gray-50: #F8F6F0;
+            --neutral-gray-200: #E5E7EB;
+            --neutral-gray-400: #9CA3AF;
+            --neutral-gray-600: #6B7280;
+            --neutral-gray-800: #2C2C2C;
+            --neutral-black: #1A1A1A;
+            
+            --font-primary: 'Futura', 'Avenir Next', 'Helvetica Neue', sans-serif;
+            --font-serif: 'Georgia', 'Times New Roman', serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
+            
+            --space-1: 0.5rem;
+            --space-2: 1rem;
+            --space-3: 1.5rem;
+            --space-4: 2rem;
+            --space-6: 3rem;
+            --space-8: 4rem;
+            --space-12: 6rem;
+            
+            --text-sm: clamp(0.875rem, 1vw, 1rem);
+            --text-base: clamp(1rem, 1.2vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1.5vw, 1.25rem);
+            --text-xl: clamp(1.25rem, 2vw, 1.5rem);
+            --text-2xl: clamp(1.5rem, 3vw, 2rem);
+            --text-3xl: clamp(2rem, 4vw, 3rem);
+            --text-4xl: clamp(2.5rem, 5vw, 4rem);
+        }
+        
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: var(--ancient-white);
+            color: var(--neutral-gray-800);
+            line-height: 1.7;
+            font-size: var(--text-base);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            overflow-x: hidden;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--sea-blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--neutral-white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,20 L30,10 L40,20 L30,30 Z" fill="rgba(212,175,55,0.1)"/><path d="M70,30 L80,20 L90,30 L80,40 Z" fill="rgba(212,175,55,0.08)"/><circle cx="15" cy="70" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="85" cy="60" r="2" fill="rgba(255,255,255,0.08)"/></svg>') repeat;
+            animation: castleFloat 25s ease-in-out infinite;
+        }
+        
+        @keyframes castleFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-15px) rotate(90deg); }
+            66% { transform: translateY(8px) rotate(180deg); }
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            padding: 0 var(--space-4);
+            z-index: 1;
+            position: relative;
+        }
+        
+        .hero-crown {
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-3);
+            color: var(--medieval-gold);
+        }
+        
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: var(--text-4xl);
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: var(--space-4);
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-2);
+            opacity: 0.95;
+            font-style: italic;
+        }
+        
+        .hero-location {
+            font-family: var(--font-mono);
+            font-size: var(--text-lg);
+            letter-spacing: 3px;
+            margin-bottom: var(--space-6);
+            color: var(--medieval-gold);
+            text-transform: uppercase;
+        }
+        
+        .cta-container {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--space-6);
+        }
+        
+        .cta-primary {
+            display: inline-block;
+            background: var(--sunset-orange);
+            color: var(--neutral-white);
+            padding: var(--space-3) var(--space-6);
+            text-decoration: none;
+            font-family: var(--font-primary);
+            font-weight: 500;
+            font-size: var(--text-lg);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            border: 2px solid var(--sunset-orange);
+        }
+        
+        .cta-primary:hover {
+            background: transparent;
+            border-color: var(--medieval-gold);
+            color: var(--medieval-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-secondary {
+            display: inline-block;
+            background: transparent;
+            color: var(--medieval-gold);
+            padding: var(--space-3) var(--space-6);
+            text-decoration: none;
+            font-family: var(--font-primary);
+            font-weight: 500;
+            font-size: var(--text-lg);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: 2px solid var(--medieval-gold);
+        }
+        
+        .cta-secondary:hover {
+            background: var(--medieval-gold);
+            color: var(--deep-blue);
+            transform: translateY(-2px);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+        
+        /* Sections */
+        .section {
+            padding: var(--space-12) 0;
+        }
+        
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-3xl);
+            font-weight: 400;
+            color: var(--castle-stone);
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: var(--space-8);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '⚜';
+            display: block;
+            color: var(--medieval-gold);
+            font-size: var(--text-xl);
+            margin-top: var(--space-2);
+        }
+        
+        /* Experiencia Única */
+        .experiencia {
+            background: var(--neutral-white);
+        }
+        
+        .experiencia-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--space-8);
+            font-size: var(--text-xl);
+            color: var(--neutral-gray-600);
+            line-height: 1.8;
+            font-style: italic;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+        
+        .feature-card {
+            background: var(--ancient-white);
+            padding: var(--space-6);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid var(--neutral-gray-200);
+            position: relative;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(141, 110, 99, 0.15);
+            border-color: var(--medieval-gold);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: var(--space-4);
+            display: block;
+        }
+        
+        .feature-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            font-weight: 400;
+            color: var(--castle-stone);
+            margin-bottom: var(--space-3);
+            letter-spacing: 1px;
+        }
+        
+        .feature-description {
+            color: var(--neutral-gray-600);
+            line-height: 1.6;
+        }
+        
+        /* Ubicación */
+        .ubicacion {
+            background: linear-gradient(45deg, var(--castle-stone) 0%, var(--neutral-gray-800) 100%);
+            color: var(--neutral-white);
+        }
+        
+        .ubicacion-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            align-items: center;
+        }
+        
+        .ubicacion-text h2 {
+            color: var(--medieval-gold);
+            margin-bottom: var(--space-4);
+        }
+        
+        .ubicacion-description {
+            font-size: var(--text-lg);
+            line-height: 1.7;
+            margin-bottom: var(--space-4);
+            opacity: 0.95;
+        }
+        
+        .ubicacion-highlights {
+            list-style: none;
+        }
+        
+        .ubicacion-highlights li {
+            padding: var(--space-2) 0;
+            font-size: var(--text-base);
+            opacity: 0.9;
+            position: relative;
+            padding-left: var(--space-4);
+        }
+        
+        .ubicacion-highlights li::before {
+            content: '🏰';
+            position: absolute;
+            left: 0;
+            top: var(--space-2);
+        }
+        
+        .ubicacion-visual {
+            background: rgba(212, 175, 55, 0.1);
+            padding: var(--space-6);
+            text-align: center;
+            border-radius: 8px;
+            border: 2px solid var(--medieval-gold);
+        }
+        
+        .ubicacion-visual h3 {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-4);
+            color: var(--medieval-gold);
+        }
+        
+        .ubicacion-address {
+            font-family: var(--font-mono);
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-4);
+            letter-spacing: 2px;
+        }
+        
+        /* Apartamento */
+        .apartamento {
+            background: var(--neutral-gray-50);
+        }
+        
+        .apartamento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-4);
+            margin-top: var(--space-8);
+        }
+        
+        .apartamento-detail {
+            background: var(--neutral-white);
+            padding: var(--space-4);
+            text-align: center;
+            border-left: 4px solid var(--medieval-gold);
+        }
+        
+        .detail-number {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            font-weight: 600;
+            color: var(--castle-stone);
+            margin-bottom: var(--space-2);
+        }
+        
+        .detail-label {
+            font-size: var(--text-base);
+            color: var(--neutral-gray-600);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Historia */
+        .historia {
+            background: var(--neutral-white);
+        }
+        
+        .historia-timeline {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .timeline-item {
+            margin-bottom: var(--space-6);
+            padding: var(--space-4);
+            background: var(--ancient-white);
+            border: 1px solid var(--medieval-gold);
+            position: relative;
+        }
+        
+        .timeline-year {
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--castle-stone);
+            margin-bottom: var(--space-2);
+        }
+        
+        .timeline-text {
+            color: var(--neutral-gray-600);
+            line-height: 1.6;
+        }
+        
+        /* Reservas */
+        .reservas {
+            background: var(--deep-blue);
+            color: var(--neutral-white);
+            text-align: center;
+        }
+        
+        .reservas h2 {
+            color: var(--medieval-gold);
+            margin-bottom: var(--space-6);
+        }
+        
+        .precio-desde {
+            font-family: var(--font-serif);
+            font-size: var(--text-3xl);
+            color: var(--medieval-gold);
+            margin-bottom: var(--space-2);
+        }
+        
+        .precio-descripcion {
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-8);
+            opacity: 0.9;
+        }
+        
+        .booking-platforms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+            max-width: 600px;
+            margin: 0 auto var(--space-8);
+        }
+        
+        .platform-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--space-4);
+            border: 2px solid var(--medieval-gold);
+            transition: all 0.3s ease;
+        }
+        
+        .platform-card:hover {
+            background: var(--medieval-gold);
+            color: var(--deep-blue);
+            transform: translateY(-3px);
+        }
+        
+        .platform-name {
+            font-size: var(--text-xl);
+            font-weight: 500;
+            margin-bottom: var(--space-2);
+        }
+        
+        .platform-description {
+            font-size: var(--text-sm);
+            opacity: 0.8;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--neutral-black);
+            color: var(--neutral-white);
+            text-align: center;
+            padding: var(--space-8) 0;
+        }
+        
+        .footer-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-3);
+            color: var(--medieval-gold);
+        }
+        
+        .footer-contact {
+            font-size: var(--text-base);
+            margin-bottom: var(--space-2);
+            opacity: 0.9;
+        }
+        
+        .footer-signature {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            opacity: 0.7;
+            letter-spacing: 1px;
+            margin-top: var(--space-4);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: var(--text-3xl);
+            }
+            
+            .ubicacion-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-6);
+            }
+            
+            .cta-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .features-grid, .apartamento-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Animaciones */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Efecto parallax suave */
+        .parallax {
+            transform: translateY(0);
+            transition: transform 0.1s ease-out;
+        }
+    </style>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-crown">👑</div>
+            <h1>Vive en el Castillo<br>de Peñíscola</h1>
+            <p class="hero-subtitle">Una experiencia única en el corazón de la historia</p>
+            <div class="hero-location">Calle Mayor • Casco Histórico</div>
+            <div class="cta-container">
+                <a href="#reservas" class="cta-primary">Ver Disponibilidad</a>
+                <a href="#apartamento" class="cta-secondary">Conoce el Espacio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiencia Única -->
+    <section class="section experiencia" id="experiencia">
+        <div class="container">
+            <h2 class="section-title">Una Experiencia Sin Igual</h2>
+            <p class="experiencia-intro fade-in">
+                Despierta cada mañana dentro de las murallas de un castillo templario del siglo XIII. 
+                Tu ventana se abre al mismo Mediterráneo que contemplaron reyes y templarios durante más de 700 años.
+            </p>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">🏰</span>
+                    <h3 class="feature-title">Dentro del Castillo</h3>
+                    <p class="feature-description">
+                        El único apartamento turístico ubicado literalmente dentro de las murallas del castillo templario. 
+                        Una experiencia que muy pocos pueden vivir en el mundo.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">🌊</span>
+                    <h3 class="feature-title">Vistas al Mediterráneo</h3>
+                    <p class="feature-description">
+                        Panorámicas únicas desde las alturas del castillo. Contempla amaneceres y atardeceres 
+                        desde la misma perspectiva que el Papa Luna hace 600 años.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">📚</span>
+                    <h3 class="feature-title">Historia Viva</h3>
+                    <p class="feature-description">
+                        Cada piedra cuenta una historia. Camina por los mismos lugares donde se escribieron 
+                        páginas fundamentales de la historia mediterránea y europea.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">🎬</span>
+                    <h3 class="feature-title">Escenario de Cine</h3>
+                    <p class="feature-description">
+                        Reconoce los lugares donde se rodó Game of Thrones y decenas de producciones. 
+                        Vive desde dentro lo que millones han visto en pantalla.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">🚶‍♂️</span>
+                    <h3 class="feature-title">Todo a Pie</h3>
+                    <p class="feature-description">
+                        Playas, restaurantes, museo del castillo, murallas, miradores... Todo accesible 
+                        a pie desde tu puerta. La ubicación más privilegiada de Peñíscola.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">💫</span>
+                    <h3 class="feature-title">Experiencia Auténtica</h3>
+                    <p class="feature-description">
+                        Lejos del turismo masivo, disfruta de la autenticidad de vivir como un lugareño 
+                        en el corazón histórico más exclusivo del Mediterráneo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section class="section ubicacion" id="ubicacion">
+        <div class="container">
+            <div class="ubicacion-content">
+                <div class="ubicacion-text fade-in">
+                    <h2 class="section-title ubicacion-section-title">El Corazón del Castillo</h2>
+                    <p class="ubicacion-description">
+                        Calle Mayor es la arteria principal del casco histórico de Peñíscola, 
+                        la única calle que atraviesa el castillo desde la entrada hasta el mar. 
+                        Nuestro apartamento te sitúa en el epicentro de esta experiencia histórica única.
+                    </p>
+                    <ul class="ubicacion-highlights">
+                        <li>Acceso directo al Castillo del Papa Luna</li>
+                        <li>A 2 minutos andando de las playas Norte y Sur</li>
+                        <li>Rodeado de restaurantes típicos mediterráneos</li>
+                        <li>Vistas panorámicas desde las murallas</li>
+                        <li>Parking público a 100 metros</li>
+                        <li>Zona peatonal segura y tranquila</li>
+                        <li>Centro neurálgico de todas las actividades</li>
+                    </ul>
+                </div>
+                <div class="ubicacion-visual fade-in">
+                    <h3>Peñíscola Histórica</h3>
+                    <div class="ubicacion-address">Calle Mayor<br>Castillo de Peñíscola</div>
+                    <p class="ubicacion-quote">
+                        "En el cruce de civilizaciones, donde el Mediterráneo se encuentra con la historia, 
+                        tu hogar temporal te espera en el lugar más extraordinario de la Costa del Azahar."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apartamento -->
+    <section class="section apartamento" id="apartamento">
+        <div class="container">
+            <h2 class="section-title">Tu Hogar en el Castillo</h2>
+            <div class="apartamento-grid">
+                <div class="apartamento-detail fade-in">
+                    <div class="detail-number">2-4</div>
+                    <div class="detail-label">Huéspedes</div>
+                </div>
+                <div class="apartamento-detail fade-in">
+                    <div class="detail-number">1</div>
+                    <div class="detail-label">Dormitorio</div>
+                </div>
+                <div class="apartamento-detail fade-in">
+                    <div class="detail-number">1</div>
+                    <div class="detail-label">Baño Completo</div>
+                </div>
+                <div class="apartamento-detail fade-in">
+                    <div class="detail-number">★★★★★</div>
+                    <div class="detail-label">Valoración</div>
+                </div>
+                <div class="apartamento-detail fade-in">
+                    <div class="detail-number">WiFi</div>
+                    <div class="detail-label">Alta Velocidad</div>
+                </div>
+                <div class="apartamento-detail fade-in">
+                    <div class="detail-number">A/C</div>
+                    <div class="detail-label">Climatización</div>
+                </div>
+                <div class="apartamento-detail fade-in">
+                    <div class="detail-number">700</div>
+                    <div class="detail-label">Años de Historia</div>
+                </div>
+                <div class="apartamento-detail fade-in">
+                    <div class="detail-number">24/7</div>
+                    <div class="detail-label">Check-in Flexible</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historia -->
+    <section class="section historia" id="historia">
+        <div class="container">
+            <h2 class="section-title">Siglos de Historia</h2>
+            <div class="historia-timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">Siglo XIII</div>
+                    <p class="timeline-text">
+                        Construcción del castillo templario sobre los restos de la alcazaba árabe. 
+                        Peñíscola se convierte en fortaleza inexpugnable del Mediterráneo.
+                    </p>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">1411-1423</div>
+                    <p class="timeline-text">
+                        El Papa Luna (Benedicto XIII) establece su residencia en el castillo. 
+                        Peñíscola se convierte en sede del papado y centro de poder europeo.
+                    </p>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2011-2019</div>
+                    <p class="timeline-text">
+                        Game of Thrones elige Peñíscola como Meereen. El castillo alcanza 
+                        fama mundial y se convierte en destino imprescindible.
+                    </p>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">HOY</div>
+                    <p class="timeline-text">
+                        Tu oportunidad única de vivir esta historia desde dentro. 
+                        Una experiencia que trasciende el turismo convencional.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservas -->
+    <section class="section reservas" id="reservas">
+        <div class="container">
+            <h2 class="section-title">Reserva Tu Experiencia</h2>
+            <div class="precio-desde fade-in">Desde 89€/noche</div>
+            <p class="precio-descripcion">Precio especial para estancias mínimas de 2 noches</p>
+            
+            <div class="booking-platforms">
+                <a href="https://www.booking.com" target="_blank" class="platform-card platform-card-link fade-in">
+                    <div class="platform-name">Booking.com</div>
+                    <p class="platform-description">Reserva directa con cancelación gratuita hasta 24h antes</p>
+                </a>
+                <a href="https://www.airbnb.es" target="_blank" class="platform-card platform-card-link fade-in">
+                    <div class="platform-name">Airbnb</div>
+                    <p class="platform-description">Experiencia completa con recomendaciones locales</p>
+                </a>
+            </div>
+
+            <div class="reservas-contact-container">
+                <a href="https://www.instagram.com/cuenta.01234/" target="_blank" class="cta-primary">
+                    Consulta Disponibilidad
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <h3 class="footer-title">Contacto</h3>
+            <p class="footer-contact">Instagram: @cuenta.01234</p>
+            <p class="footer-contact">X: @t0tinspire</p>
+            <p class="footer-signature">CASTILLO DE PEÑÍSCOLA • CALLE MAYOR • EXPERIENCIAS ÚNICAS</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animaciones de entrada
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Efecto parallax suave en el hero
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.3;
+            
+            if (hero && scrolled < hero.offsetHeight) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+
+        // Efecto de aparición escalonada
+        window.addEventListener('load', () => {
+            const cards = document.querySelectorAll('.feature-card, .apartamento-detail');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
