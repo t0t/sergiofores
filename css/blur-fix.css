@@ -1,0 +1,240 @@
+/* =============================================
+   THUMBNAIL BLUR FIX CSS
+   Sergio Forés Portfolio - Crystal Clear Images
+   ============================================= */
+
+/* Core image sharpness optimizations */
+.project-screenshot img {
+    /* Hardware acceleration for smoother rendering */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    
+    /* Enhanced image rendering for different browsers */
+    image-rendering: -webkit-optimize-contrast; /* Safari */
+    image-rendering: crisp-edges; /* Chrome/Firefox */
+    image-rendering: pixelated; /* Fallback */
+    
+    /* Prevent subpixel rendering issues */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* Ensure proper scaling */
+    object-fit: cover;
+    object-position: center;
+    
+    /* Better quality scaling */
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Fix aspect ratio container to prevent stretching */
+.project-screenshot {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    
+    /* Force GPU acceleration */
+    will-change: transform;
+    
+    /* Ensure container maintains proper aspect ratio */
+    aspect-ratio: 16 / 10;
+}
+
+/* High-DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), 
+       (min-resolution: 192dpi),
+       (min-resolution: 2dppx) {
+    .project-screenshot img {
+        /* Better image rendering for Retina displays */
+        image-rendering: -webkit-optimize-contrast;
+        -webkit-transform: translateZ(0);
+        
+        /* Ensure crisp edges on high-DPI */
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Ultra-high DPI displays (3x) */
+@media (-webkit-min-device-pixel-ratio: 3),
+       (min-resolution: 288dpi),
+       (min-resolution: 3dppx) {
+    .project-screenshot img {
+        /* Maximum quality for 3x displays */
+        image-rendering: -webkit-optimize-contrast;
+        transform: translateZ(0) scale(1.0001); /* Subtle scale to force crisp rendering */
+    }
+}
+
+/* Prevent blur on hover transforms */
+.project-card:hover {
+    /* Use GPU acceleration for smooth transforms */
+    transform: translateY(-6px) translateZ(0);
+    
+    /* Ensure transforms don't cause blur */
+    -webkit-transform: translateY(-6px) translateZ(0);
+    backface-visibility: hidden;
+}
+
+.project-card:hover .project-screenshot img {
+    /* Maintain image sharpness during hover */
+    transform: translateZ(0);
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* Fix project card sizing for consistent display */
+.project-card {
+    /* Ensure consistent sizing across devices */
+    width: 100%;
+    max-width: 400px; /* Maximum card width */
+    aspect-ratio: 16 / 10;
+    
+    /* Better rendering */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Responsive optimizations */
+@media (max-width: 1200px) {
+    .project-card {
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-card {
+        max-width: 100%;
+        aspect-ratio: 16 / 9; /* Slightly different ratio for mobile */
+    }
+    
+    .project-screenshot {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+/* WebP support enhancements */
+.webp .project-screenshot source[type="image/webp"] {
+    /* Ensure WebP images are prioritized when supported */
+    display: block;
+}
+
+.no-webp .project-screenshot source[type="image/webp"] {
+    display: none;
+}
+
+/* Loading state improvements */
+.project-screenshot img[loading="lazy"] {
+    /* Remove blur effect that may interfere with sharpness */
+    filter: none;
+    transform: translateZ(0);
+}
+
+.project-screenshot img.loaded {
+    /* Ensure loaded images are perfectly sharp */
+    filter: none;
+    transform: translateZ(0);
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* Picture element optimizations */
+picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Force browser to use highest quality scaling */
+.project-screenshot img {
+    /* Prevent browser from applying its own blur/smoothing */
+    -ms-interpolation-mode: nearest-neighbor; /* IE */
+    image-rendering: -moz-crisp-edges;        /* Firefox */
+    image-rendering: -webkit-crisp-edges;     /* Webkit */
+    image-rendering: crisp-edges;             /* Standard */
+    image-rendering: pixelated;               /* Fallback */
+}
+
+/* Safari-specific fixes */
+@supports (-webkit-appearance: none) {
+    .project-screenshot img {
+        /* Safari tends to blur images, force crisp rendering */
+        image-rendering: -webkit-optimize-contrast;
+        -webkit-transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+    }
+}
+
+/* Firefox-specific fixes */
+@-moz-document url-prefix() {
+    .project-screenshot img {
+        image-rendering: -moz-crisp-edges;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Chrome-specific optimizations */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .project-screenshot img {
+        image-rendering: -webkit-optimize-contrast;
+        transform: translateZ(0);
+    }
+}
+
+/* Grid layout adjustments for better image display */
+.projects-grid {
+    /* Ensure grid items are properly sized */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* Force reflow for image sharpness on resize */
+@media (orientation: landscape) {
+    .project-screenshot img {
+        will-change: transform;
+    }
+}
+
+@media (orientation: portrait) {
+    .project-screenshot img {
+        will-change: auto;
+    }
+}
+
+/* Prevent common blur-causing issues */
+* {
+    /* Prevent accidental blur from transform-style */
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+/* Critical image preloading hints */
+.project-card:nth-child(-n+3) .project-screenshot img {
+    /* First 3 images should be high priority */
+    content-visibility: visible;
+    contain-intrinsic-size: none;
+}
+
+/* Loading performance optimizations */
+.project-screenshot img {
+    /* Optimize for perceived performance */
+    content-visibility: auto;
+    contain-intrinsic-size: 400px 250px;
+}
+
+/* Debug mode (uncomment to visualize image boundaries) */
+/*
+.project-screenshot {
+    border: 2px solid red;
+}
+.project-screenshot img {
+    border: 1px solid blue;
+}
+*/

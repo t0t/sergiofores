@@ -223,7 +223,8 @@ html {
 /* Grid de proyectos */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+    justify-content: center;
     gap: var(--space-6);
     margin-bottom: var(--space-16);
 }
@@ -240,22 +241,57 @@ html {
     color: inherit;
     cursor: pointer;
     aspect-ratio: 16/10;
-    max-width: 50vh;
+    max-width: 400px; /* Fixed max width for consistent display */
+    width: 100%;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    
+    /* Better rendering */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .project-card:hover {
-    transform: translateY(-6px);
+    /* Use GPU acceleration for smooth transforms */
+    transform: translateY(-6px) translateZ(0);
     box-shadow: 0 16px 50px rgba(0, 0, 0, 0.12);
+    
+    /* Ensure transforms don't cause blur */
+    backface-visibility: hidden;
 }
 
 .project-screenshot {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--neutral-gray-50);
+    transition: all 0.3s ease;
+    /* Force GPU acceleration for crisp rendering */
+    will-change: transform;
+    aspect-ratio: 16 / 10;
+}
+
+.project-screenshot img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    background: var(--neutral-gray-50);
-    transition: all 0.3s ease;
+    object-position: center;
+    display: block;
+    
+    /* Hardware acceleration for smooth rendering */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    
+    /* Enhanced image rendering for crystal clarity */
+    image-rendering: -webkit-optimize-contrast; /* Safari */
+    image-rendering: crisp-edges; /* Chrome/Firefox */
+    
+    /* Prevent subpixel rendering issues */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .project-screenshot[src*="logo-01234"] {
@@ -462,6 +498,65 @@ html {
     transform: translateY(-2px);
 }
 
+/* High-DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), 
+       (min-resolution: 192dpi),
+       (min-resolution: 2dppx) {
+    .project-screenshot img {
+        /* Better image rendering for Retina displays */
+        image-rendering: -webkit-optimize-contrast;
+        -webkit-transform: translateZ(0);
+        
+        /* Ensure crisp edges on high-DPI */
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Ultra-high DPI displays (3x) */
+@media (-webkit-min-device-pixel-ratio: 3),
+       (min-resolution: 288dpi),
+       (min-resolution: 3dppx) {
+    .project-screenshot img {
+        /* Maximum quality for 3x displays */
+        image-rendering: -webkit-optimize-contrast;
+        transform: translateZ(0) scale(1.0001); /* Subtle scale to force crisp rendering */
+    }
+}
+
+/* Prevent blur on hover transforms */
+.project-card:hover .project-screenshot img {
+    /* Maintain image sharpness during hover */
+    transform: translateZ(0);
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* Browser-specific optimizations */
+/* Safari-specific fixes */
+@supports (-webkit-appearance: none) {
+    .project-screenshot img {
+        /* Safari tends to blur images, force crisp rendering */
+        image-rendering: -webkit-optimize-contrast;
+        -webkit-transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+    }
+}
+
+/* Firefox-specific fixes */
+@-moz-document url-prefix() {
+    .project-screenshot img {
+        image-rendering: -moz-crisp-edges;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Chrome-specific optimizations */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .project-screenshot img {
+        image-rendering: -webkit-optimize-contrast;
+        transform: translateZ(0);
+    }
+}
+
 /* Estados de focus accesibles */
 a:focus,
 button:focus {
@@ -503,4 +598,124 @@ button:focus {
     text-decoration: none;
     font-size: 14px;
     letter-spacing: 1px;
+}
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+/* =============================================
+   IMAGE OPTIMIZATION CSS
+   Performance enhancements for Sergio Forés Portfolio
+   ============================================= */
+
+/* Progressive image loading with blur-up effect */
+.project-screenshot {
+    position: relative;
+    overflow: hidden;
+    background-color: #f3f4f6;
+    transition: opacity 0.3s ease;
+}
+
+.project-screenshot img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Lazy loading placeholder */
+.project-screenshot img[loading="lazy"] {
+    filter: blur(5px);
+    transform: scale(1.02);
+}
+
+/* Image loaded state */
+.project-screenshot img.loaded {
+    filter: blur(0);
+    transform: scale(1);
+}
+
+/* WebP support detection */
+.no-webp .project-screenshot source[type="image/webp"] {
+    display: none;
+}
+
+/* Loading skeleton for better UX */
+.project-screenshot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: shimmer 1.5s infinite;
+    z-index: 1;
+}
+
+.project-screenshot img.loaded + .project-screenshot::before {
+    display: none;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Intersection Observer fade-in animation */
+.project-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-card.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Performance optimizations */
+.project-screenshot img {
+    content-visibility: auto;
+    contain-intrinsic-size: 400px;
+}
+
+/* Critical images (above the fold) - no lazy loading */
+.projects-grid > .project-card:first-child .project-screenshot img,
+.projects-grid > .project-card:nth-child(2) .project-screenshot img {
+    loading: eager;
+}
+
+/* Responsive image sizes */
+.project-screenshot img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .project-screenshot {
+        aspect-ratio: 16/9;
+        object-fit: cover;
+    }
+}
+
+/* Preload critical images hint */
+.critical-image {
+    importance: high;
+}
+
+/* WebP fallback styling */
+picture {
+    display: block;
+}
+
+picture img {
+    width: 100%;
+    height: auto;
 }

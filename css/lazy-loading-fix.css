@@ -1,0 +1,318 @@
+/* =============================================
+   LAZY LOADING FIX CSS
+   Performance Engineer Solution
+   Eliminates permanent blur issue
+   ============================================= */
+
+/* CRITICAL: Remove problematic blur rules */
+.project-screenshot img[loading="lazy"] {
+    /* REMOVE: filter: blur(5px); */
+    /* REMOVE: transform: scale(1.02); */
+    
+    /* Replace with optimized loading state */
+    filter: none !important;
+    transform: none !important;
+    transition: filter 0.5s ease-out, transform 0.5s ease-out, opacity 0.3s ease-out;
+}
+
+/* Optimized lazy loading states */
+.project-screenshot img.lazy-loading {
+    /* Subtle blur for loading state only */
+    filter: blur(8px);
+    transform: scale(1.02);
+    opacity: 0.7;
+    
+    /* Smooth transition */
+    transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Loaded state - crystal clear */
+.project-screenshot img.loaded {
+    filter: none !important;
+    transform: none !important;
+    opacity: 1;
+    
+    /* Enhanced rendering */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    
+    /* Hardware acceleration */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Critical images - no lazy loading artifacts */
+.project-screenshot img.critical {
+    filter: none !important;
+    transform: none !important;
+    opacity: 1;
+    
+    /* Immediate sharp rendering */
+    image-rendering: -webkit-optimize-contrast;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Error state */
+.project-screenshot img.error {
+    filter: none !important;
+    transform: none !important;
+    opacity: 0.5;
+    background: linear-gradient(45deg, #f3f4f6 25%, transparent 25%), 
+                linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #f3f4f6 75%), 
+                linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Enhanced project screenshot container */
+.project-screenshot {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    
+    /* Force GPU acceleration */
+    will-change: transform;
+    transform: translateZ(0);
+    
+    /* Aspect ratio for consistency */
+    aspect-ratio: 16 / 10;
+}
+
+/* Image optimization - CORE FIXES */
+.project-screenshot img {
+    /* Dimensions and layout */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    
+    /* High-quality rendering */
+    image-rendering: -webkit-optimize-contrast; /* Safari */
+    image-rendering: crisp-edges; /* Chrome/Firefox */
+    
+    /* Hardware acceleration */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    
+    /* Prevent subpixel rendering issues */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* Better quality scaling */
+    image-rendering: high-quality;
+}
+
+/* Remove problematic shimmer animation */
+.project-screenshot::before {
+    /* DISABLE: causes layout issues */
+    display: none !important;
+}
+
+/* High-DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), 
+       (min-resolution: 192dpi),
+       (min-resolution: 2dppx) {
+    .project-screenshot img {
+        /* Better image rendering for Retina displays */
+        image-rendering: -webkit-optimize-contrast;
+        -webkit-transform: translateZ(0);
+        
+        /* Ensure crisp edges on high-DPI */
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Ultra-high DPI displays (3x) */
+@media (-webkit-min-device-pixel-ratio: 3),
+       (min-resolution: 288dpi),
+       (min-resolution: 3dppx) {
+    .project-screenshot img {
+        /* Maximum quality for 3x displays */
+        image-rendering: -webkit-optimize-contrast;
+        transform: translateZ(0) scale(1.0001); /* Subtle scale to force crisp rendering */
+    }
+}
+
+/* Project card hover optimizations */
+.project-card:hover {
+    /* Use GPU acceleration for smooth transforms */
+    transform: translateY(-6px) translateZ(0);
+    
+    /* Ensure transforms don't cause blur */
+    backface-visibility: hidden;
+}
+
+.project-card:hover .project-screenshot img {
+    /* Maintain image sharpness during hover */
+    transform: translateZ(0);
+    image-rendering: -webkit-optimize-contrast;
+    filter: brightness(0.9); /* Subtle darkening instead of blur */
+}
+
+/* Intersection Observer animation fixes */
+.project-card {
+    /* Remove conflicting opacity/transform from main.css */
+    opacity: 1 !important;
+    transform: none !important;
+    
+    /* Better rendering */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    
+    /* Smooth transitions */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card.in-view {
+    /* Animation target state */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Performance optimizations */
+.project-screenshot img {
+    /* Content visibility for better performance */
+    content-visibility: auto;
+    contain-intrinsic-size: 400px 250px;
+}
+
+/* Critical images (above the fold) - no lazy loading */
+.projects-grid > .project-card:nth-child(1) .project-screenshot img,
+.projects-grid > .project-card:nth-child(2) .project-screenshot img,
+.projects-grid > .project-card:nth-child(3) .project-screenshot img {
+    /* First 3 images should load immediately */
+    loading: eager !important;
+    filter: none !important;
+    transform: none !important;
+}
+
+/* WebP support enhancements */
+.webp .project-screenshot source[type="image/webp"] {
+    display: block;
+}
+
+.no-webp .project-screenshot source[type="image/webp"] {
+    display: none;
+}
+
+/* Picture element optimizations */
+picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Browser-specific optimizations */
+
+/* Safari-specific fixes */
+@supports (-webkit-appearance: none) {
+    .project-screenshot img {
+        /* Safari tends to blur images, force crisp rendering */
+        image-rendering: -webkit-optimize-contrast;
+        -webkit-transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+    }
+}
+
+/* Firefox-specific fixes */
+@-moz-document url-prefix() {
+    .project-screenshot img {
+        image-rendering: -moz-crisp-edges;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Chrome-specific optimizations */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .project-screenshot img {
+        image-rendering: -webkit-optimize-contrast;
+        transform: translateZ(0);
+    }
+}
+
+/* Debug mode - uncomment to visualize boundaries */
+/*
+.project-screenshot {
+    border: 2px solid red !important;
+}
+.project-screenshot img {
+    border: 1px solid blue !important;
+}
+.project-screenshot img.lazy-loading {
+    border: 2px solid orange !important;
+}
+.project-screenshot img.loaded {
+    border: 2px solid green !important;
+}
+*/
+
+/* Loading indicator for better UX */
+.project-screenshot.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #e5e7eb;
+    border-top: 2px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 2;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.project-screenshot img.loaded + .project-screenshot.loading::after {
+    display: none;
+}
+
+/* Responsive optimizations */
+@media (max-width: 768px) {
+    .project-screenshot {
+        aspect-ratio: 16 / 9;
+    }
+    
+    .project-screenshot img {
+        /* Mobile-specific optimizations */
+        will-change: auto; /* Reduce GPU usage on mobile */
+    }
+}
+
+/* Print styles */
+@media print {
+    .project-screenshot img {
+        filter: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .project-screenshot img {
+        transition: none !important;
+    }
+    
+    .project-card {
+        transition: none !important;
+    }
+}

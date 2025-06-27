@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exposiciones - Noelia Requena</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/video-gallery.css">
+    <link rel="stylesheet" href="../css/exposiciones.css">
+    <link rel="stylesheet" href="../css/grid-system.css">
+    <style>
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: #f3f3f3;
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .close {
+            color: #333;
+            position: fixed;
+            right: 25px;
+            top: 15px;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1010;
+        }
+
+        .close:hover {
+            color: #666;
+        }
+
+        .prev,
+        .next {
+            cursor: pointer;
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 16px;
+            color: #333;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.3s ease;
+            user-select: none;
+            -webkit-user-select: none;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1010;
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .slides {
+            width: 100%;
+            height: calc(100vh - 40px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f3f3f3;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            text-align: center;
+            background-color: #f3f3f3;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-container {
+            max-width: 90%;
+            max-height: calc(100vh - 200px);
+            margin: 0 auto;
+            background-color: #f3f3f3;
+        }
+
+        video {
+            max-height: calc(100vh - 200px);
+            max-width: 100%;
+            object-fit: contain;
+            background-color: #f3f3f3;
+        }
+
+        .video-description {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .video-description h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .video-description p {
+            margin: 0;
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="siteheader">
+        <a href="../">
+            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:bevel;stroke-miterlimit:1.5"
+                viewBox="0 0 408 409">
+                <circle cx="102436" cy="13938.8" r="553.055" transform="matrix(.36163 0 0 .36163 -36839.796 -4836.64)"
+                    vector-effect="non-scaling-stroke" />
+                <circle cx="102436" cy="13938.8" r="553.055" transform="matrix(.2411 0 0 .2411 -24493.885 -3223.357)"
+                    vector-effect="non-scaling-stroke" />
+                <circle cx="102436" cy="13938.8" r="553.055" transform="translate(-12144.912 -1476.333) scale(.12055)"
+                    vector-effect="non-scaling-stroke" />
+                <circle cx="102436" cy="13938.8" r="553.055" transform="matrix(.2411 0 0 .2411 -24493.885 -3090.011)"
+                    vector-effect="non-scaling-stroke" />
+            </svg>
+        </a>
+    </header>
+
+    <nav id="navbar" class="menu">
+        <a class="selected" href=".">expo</a>
+        <a href="../artworks/">artworks</a>
+        <a href="../bio/">bio</a>
+    </nav>
+
+    <main class="container">
+        <!-- Can Puget Exhibition -->
+        <section class="grid gap-5 pt-5">
+            <div class="col-span-12 lg:col-span-4">
+                <img src="../images/expos/cartel_v1.jpeg" alt="Cartel de la exposición" class="img-100" loading="lazy" onclick="openLightbox();toSlide(1)">
+                
+                <div class="video-container video-916" id="video-container-1">
+                    <video controls preload="none" playsinline poster="../images/expos/video_expo_6_poster.jpg" onclick="openLightbox();toSlide(2)">
+                        <source src="../images/expos/video_expo_6.webm" type="video/webm">
+                        <source src="../images/expos/video_expo_6.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento video.
+                    </video>
+                </div>
+            </div>
+            <div class="col-span-12 lg:col-span-8">
+                <div class="expo-text">
+                    <h2 class="expo-title pt-2">Can Puget</h2>
+                    <p>Sala de exposiciones Manlleu, 2023</p>
+                    <p><strong>Ciertos procesos emocionales coagulan en forma de cuadros</strong></p>
+                    <p>Pinto desnudos como una forma de expresión posible que, lejos de alegorías y connotaciones reivindicativas, son en mí una tentativa de despojar de capas al cuerpo para acceder hacia mi verdad encarnada. Una desnudez que escoge la piel y la carne, que descarta arquetipos y capas teorizadas.</p>
+                    <p>Busco reconocerme, descubrirme en el anonimato de distintos cuerpos, siendo ése el lugar donde no hay ausencia y donde lamo mis propias heridas irracionales, donde despojo a mi realidad de sus vestiduras.</p>
+                    <p>Me apetece significar una piel cristalina, translúcida, frágil: como una vasija cubriendo la superficie del cuadro donde me puedo hacer invisible, y entrar o salir a voluntad.</p>
+                    <p>En los matices del proceso pictórico se van superponiendo las instantáneas de cómo me sentí en ahoras ya transitados.</p>
+                    <p>Me inundo en sensaciones mientras bajo a mi mundo emocional por medio de la materia, percepciones que una vez plasmadas parece que desaparecen o tal vez quedan escondidas como un misterio esperando a ser desvelado. Me dejo sorprender por mi propia necesidad irracional de fijar sombras sutiles, de remarcar cómo se proyecta la luz y se reafirman contornos; vinculándome a la sorpresa del propio descubrimiento.</p>
+                    <p>En ocasiones al aplicar una determinada vibración de color, conecto con una sensación de éxtasis, como una pulsión de fundirme en una vibración divina. La luz iluminando partes del cuerpo descubre con capas muy delgadas y traslúcidas el camino que siento hacia lo sublime. Las corrientes delicadas de las luces y sus tonos se imprimen, de algún modo, también en mi cuerpo y en mi mente.</p>
+                    <p>Los procesos pictóricos son un espejo, generando un espacio donde mis carencias y miedos se van viendo revelados tímidamente, donde danzan mis dualidades internas. Espacio donde es posible un encuentro conmigo misma, un encuentro en el que mi hacer caótico y desbordado busca contener(se) de todo lo que va quedando fijado.</p>
+                </div>
+                <div class="video-container">
+                    <video controls preload="none" playsinline poster="../images/expos/video_expo_5_poster.jpg" onclick="openLightbox();toSlide(3)">
+                        <source src="../images/expos/video_expo_5.webm" type="video/webm">
+                        <source src="../images/expos/video_expo_5.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento video.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- Autocensura Exhibition -->
+        <section class="grid gap-5 pt-5">
+            <div class="col-span-12 lg:col-span-4">
+                <div class="video-container video-916" id="video-container-2">
+                    <video controls preload="none" playsinline poster="../images/expos/video_expo_7_poster.jpg" onclick="openLightbox();toSlide(4)">
+                        <source src="../images/expos/video_expo_7.webm" type="video/webm">
+                        <source src="../images/expos/video_expo_7.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento video.
+                    </video>
+                </div>
+            </div>
+            <div class="col-span-12 lg:col-span-8">
+                <div class="expo-text">
+                    <h2 class="expo-title pt-2">Exposición colectiva</h2>
+                    <p>Muestra de arte contemporáneo MGA, 2024</p>
+
+                    <div class="expo-details">
+                        <p>Autocensura <br>
+                        óleo sobre lienzo, 130x89cm</p>
+                    </div>
+                    <p>Oculto, reprimo, me callo. <br>
+                        Experimentando un deterioro <br>
+                        y una deformación.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <div class="modal-content">
+            <div class="slides">
+                <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                <a class="next" onclick="changeSlide(1)">&#10095;</a>
+                
+                <div class="slide">
+                    <img src="../images/expos/cartel_v1.jpeg" alt="Cartel de la exposición" style="max-height: calc(100vh - 100px); max-width: 100%; object-fit: contain;">
+                </div>
+
+                <div class="slide">
+                    <div class="video-container">
+                        <video controls poster="../images/expos/video_expo_6_poster.jpg">
+                            <source src="../images/expos/video_expo_6.webm" type="video/webm">
+                            <source src="../images/expos/video_expo_6.mp4" type="video/mp4">
+                            Tu navegador no soporta el elemento video.
+                        </video>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="video-container">
+                        <video controls poster="../images/expos/video_expo_5_poster.jpg">
+                            <source src="../images/expos/video_expo_5.webm" type="video/webm">
+                            <source src="../images/expos/video_expo_5.mp4" type="video/mp4">
+                            Tu navegador no soporta el elemento video.
+                        </video>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="video-container">
+                        <video controls poster="../images/expos/video_expo_7_poster.jpg">
+                            <source src="../images/expos/video_expo_7.webm" type="video/webm">
+                            <source src="../images/expos/video_expo_7.mp4" type="video/mp4">
+                            Tu navegador no soporta el elemento video.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-5">
+        <p class="p-0">follow me:</p><br>
+        <a href="https://www.instagram.com/noelia__requena/" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+                <title>Logo Instagram</title>
+                <path
+                    d="M32,9.045c7.476,0,8.362.029,11.314.163a15.525,15.525,0,0,1,5.2.964,9.28,9.28,0,0,1,5.314,5.314,15.525,15.525,0,0,1,.964,5.2c.134,2.952.163,3.838.163,11.314s-.029,8.362-.163,11.314a15.525,15.525,0,0,1-.964,5.2,9.28,9.28,0,0,1-5.314,5.314,15.525,15.525,0,0,1-5.2.964c-2.952.134-3.837.163-11.314.163s-8.362-.029-11.314-.163a15.525,15.525,0,0,1-5.2-.964,9.28,9.28,0,0,1-5.314-5.314,15.525,15.525,0,0,1-.964-5.2C9.074,40.362,9.045,39.476,9.045,32s.029-8.362.163-11.314a15.525,15.525,0,0,1,.964-5.2,9.28,9.28,0,0,1,5.314-5.314,15.525,15.525,0,0,1,5.2-.964c2.952-.134,3.838-.163,11.314-.163M32,4c-7.6,0-8.558.032-11.544.168a20.553,20.553,0,0,0-6.8,1.3A14.324,14.324,0,0,0,5.47,13.659a20.553,20.553,0,0,0-1.3,6.8C4.032,23.442,4,24.4,4,32s.032,8.558.168,11.544a20.553,20.553,0,0,0,1.3,6.8,14.324,14.324,0,0,0,8.189,8.189,20.553,20.553,0,0,0,6.8,1.3C23.442,59.968,24.4,60,32,60s8.558-.032,11.544-.168a20.553,20.553,0,0,0,6.8-1.3,14.324,14.324,0,0,0,8.189-8.189,20.553,20.553,0,0,0,1.3-6.8C59.968,40.558,60,39.6,60,32s-.032-8.558-.168-11.544a20.553,20.553,0,0,0-1.3-6.8A14.324,14.324,0,0,0,50.341,5.47a20.553,20.553,0,0,0-6.8-1.3C40.558,4.032,39.6,4,32,4Z">
+                </path>
+                <path
+                    d="M32,17.622A14.378,14.378,0,1,0,46.378,32,14.378,14.378,0,0,0,32,17.622Zm0,23.711A9.333,9.333,0,1,1,41.333,32,9.332,9.332,0,0,1,32,41.333Z">
+                </path>
+                <circle cx="46.946" cy="17.054" r="3.36"></circle>
+            </svg>
+        </a>
+    </footer>
+
+    <script src="../js/navbar.js"></script>
+    <script>
+        let slideIndex = 1;
+        let currentVideo = null;
+
+        function openLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            if (currentVideo) {
+                currentVideo.pause();
+            }
+        }
+
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function toSlide(n) {
+            slideIndex = n;
+            showSlides(slideIndex);
+        }
+
+        function showSlides(n) {
+            const slides = document.getElementsByClassName('slide');
+            
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+
+            // Pausar video actual si existe
+            if (currentVideo) {
+                currentVideo.pause();
+            }
+
+            // Ocultar todas las slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            // Mostrar la slide actual
+            slides[slideIndex - 1].style.display = "flex";
+
+            // Manejar video en la slide actual
+            currentVideo = slides[slideIndex - 1].querySelector('video');
+            if (currentVideo) {
+                currentVideo.controls = true;
+            }
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('lightbox');
+
+            // Cerrar con Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.style.display === 'block') {
+                    closeLightbox();
+                }
+            });
+
+            // Navegación con flechas
+            document.addEventListener('keydown', function(e) {
+                if (lightbox.style.display === 'block') {
+                    if (e.key === 'ArrowLeft') {
+                        changeSlide(-1);
+                    } else if (e.key === 'ArrowRight') {
+                        changeSlide(1);
+                    }
+                }
+            });
+
+            // Cerrar al hacer click fuera
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

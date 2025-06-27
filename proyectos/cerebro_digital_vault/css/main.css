@@ -1,12 +1,24 @@
 /* 
 CEREBRO-DIGITAL - Sistema PKM + IA
 Diseño técnico, limpio y profesional
+OPTIMIZADO: Sin dependencias externas, performance mejorada
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
-/* Design System */
+/* Design System Optimized */
 :root {
+    /* Fuentes Nativas - Sin dependencias externas */
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    
+    /* Tipografía Fluida - Responsive sin media queries */
+    --text-xs: clamp(0.75rem, 0.8vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 1vw, 1rem);
+    --text-base: clamp(1rem, 1.2vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 1.5vw, 1.25rem);
+    --text-xl: clamp(1.25rem, 2vw, 1.5rem);
+    --text-2xl: clamp(1.5rem, 3vw, 2rem);
+    --text-3xl: clamp(2rem, 4vw, 3rem);
+    
     /* Colores Base */
     --bg-primary: #FFFFFF;
     --bg-secondary: #F8FAFC;
@@ -85,6 +97,27 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Skip Link para Accesibilidad */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--accent-blue);
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    z-index: 1000;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 6px;
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
@@ -93,12 +126,12 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-primary);
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
-h5 { font-size: 1.125rem; }
-h6 { font-size: 1rem; }
+h1 { font-size: var(--text-3xl); }
+h2 { font-size: var(--text-2xl); }
+h3 { font-size: var(--text-xl); }
+h4 { font-size: var(--text-lg); }
+h5 { font-size: var(--text-base); }
+h6 { font-size: var(--text-sm); }
 
 p {
     color: var(--text-secondary);
@@ -177,6 +210,28 @@ a:hover {
 .nav-link:hover {
     color: var(--text-primary);
     background-color: var(--hover-bg);
+}
+
+/* Mobile Navigation Toggle */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-primary);
+    padding: var(--space-sm);
+    border-radius: 4px;
+    transition: background-color var(--transition-fast);
+}
+
+.nav-toggle:hover {
+    background-color: var(--hover-bg);
+}
+
+.nav-toggle:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
 }
 
 /* Hero */
@@ -271,6 +326,7 @@ a:hover {
     font-size: 0.875rem;
     box-shadow: var(--shadow-md);
     animation: float 3s ease-in-out infinite;
+    will-change: transform;
 }
 
 .node-1 {
@@ -315,8 +371,12 @@ a:hover {
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    0%, 100% { 
+        transform: translateY(0px) translateZ(0); 
+    }
+    50% { 
+        transform: translateY(-10px) translateZ(0); 
+    }
 }
 
 /* Sections */
@@ -720,8 +780,38 @@ a:hover {
         font-size: 2.25rem;
     }
     
+    /* Mobile Navigation */
+    .nav-toggle {
+        display: block;
+    }
+    
     .nav {
-        gap: var(--space-md);
+        position: fixed;
+        top: 4rem;
+        left: 0;
+        right: 0;
+        background: var(--bg-primary);
+        flex-direction: column;
+        padding: var(--space-lg);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-100%);
+        transition: transform var(--transition-normal);
+        z-index: 99;
+        border-bottom: 1px solid var(--border-light);
+    }
+    
+    .nav.active {
+        transform: translateY(0);
+    }
+    
+    .nav-link {
+        padding: var(--space-md);
+        text-align: center;
+        border-bottom: 1px solid var(--border-light);
+    }
+    
+    .nav-link:last-child {
+        border-bottom: none;
     }
     
     .workflow {
@@ -772,9 +862,6 @@ a:hover {
         font-size: 2rem;
     }
     
-    .nav {
-        display: none;
-    }
     
     .levels-grid {
         grid-template-columns: 1fr;

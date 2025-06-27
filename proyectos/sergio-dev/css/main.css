@@ -107,6 +107,8 @@ body {
     gap: var(--space-sm);
     cursor: pointer;
     transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
 }
 
 .logo:hover {

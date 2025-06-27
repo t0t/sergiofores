@@ -3,26 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
     <title>CEREBRO-DIGITAL | Sistema PKM + IA</title>
-    <meta name="description" content="Documentación técnica del sistema CEREBRO-DIGITAL: arquitectura, flujos de trabajo y integración Obsidian + Claude Code en funcionamiento real.">
+    <meta name="description" content="Sistema PKM que integra Obsidian y Claude Code para gestión inteligente de conocimiento personal.">
+    
+    <!-- Performance Optimization -->
+    <link rel="preload" href="css/main.css" as="style">
     <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "CEREBRO-DIGITAL",
+      "applicationCategory": "Knowledge Management System",
+      "operatingSystem": "Web",
+      "description": "Sistema PKM que integra Obsidian y Claude Code para gestión inteligente de conocimiento personal",
+      "author": {
+        "@type": "Person",
+        "name": "Sergio Forés",
+        "url": "https://sergiofores.com"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
     <!-- Header -->
-    <header class="header">
+    <header class="header" role="banner">
         <div class="container">
             <div class="header-content">
                 <h1 class="logo">CEREBRO-DIGITAL</h1>
-                <nav class="nav">
+                <nav class="nav" role="navigation" aria-label="Navegación principal">
                     <a href="#sistema" class="nav-link">Sistema</a>
                     <a href="#funcionamiento" class="nav-link">Funcionamiento</a>
                     <a href="#arquitectura" class="nav-link">Arquitectura</a>
                     <a href="#integracion" class="nav-link">Integración</a>
                 </nav>
+                <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
             </div>
         </div>
     </header>
 
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        
     <!-- Hero -->
     <section class="hero">
         <div class="container">
@@ -307,5 +346,29 @@
             </div>
         </div>
     </footer>
+    
+    </main>
+    
+    <!-- Mobile Navigation JavaScript -->
+    <script>
+        // Mobile navigation toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const nav = document.querySelector('.nav');
+        
+        navToggle.addEventListener('click', function() {
+            nav.classList.toggle('active');
+            const isExpanded = nav.classList.contains('active');
+            navToggle.setAttribute('aria-expanded', isExpanded);
+        });
+        
+        // Close nav when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
 </body>
 </html>
