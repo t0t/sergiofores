@@ -1,21 +1,6 @@
-# Ignorar subcarpeta proyectos (excepto proyectos específicos)
-proyectos/
-# Des-ignorar proyectos específicos
-!proyectos/castillo_peniscola_alquiler/
-!proyectos/cerebro_digital/
-!proyectos/cerebro_digital_ia/
-!proyectos/cerebro_digital_vault/
-!proyectos/design-system/
-!proyectos/landing_01234/
-!proyectos/proceso-cognitivo/
-!proyectos/prototipos-01234/
-!proyectos/sergio-dev/
-!proyectos/sergio_arte_plastica/
-!proyectos/tienda-peniscola/
-!proyectos/taller_01234_blanes/
-
-# Ignorar proyecto noeliarequena (repositorio independiente)
+# Ignorar proyectos específicos con repositorios independientes
 proyectos/noeliarequena/
+
 
 # MacOS
 .DS_Store
