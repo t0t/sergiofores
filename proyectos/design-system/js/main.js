@@ -73,3 +73,55 @@ animatedElements.forEach(el => {
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
 });
+
+// Sistema de Alert Elegante
+function showAlert(type, title, message) {
+    const overlay = document.getElementById('alertOverlay');
+    const icon = document.getElementById('alertIcon');
+    const titleEl = document.getElementById('alertTitle');
+    const messageEl = document.getElementById('alertMessage');
+    
+    // Configurar contenido
+    titleEl.textContent = title;
+    messageEl.textContent = message;
+    
+    // Configurar icono y estilo según tipo
+    icon.className = `alert-icon ${type}`;
+    switch(type) {
+        case 'development':
+            icon.textContent = '🚧';
+            break;
+        case 'info':
+            icon.textContent = 'ℹ️';
+            break;
+        case 'warning':
+            icon.textContent = '⚠️';
+            break;
+        default:
+            icon.textContent = '📢';
+    }
+    
+    // Mostrar alert
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideAlert() {
+    const overlay = document.getElementById('alertOverlay');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Cerrar alert al hacer clic en el overlay
+document.getElementById('alertOverlay').addEventListener('click', (e) => {
+    if (e.target.id === 'alertOverlay') {
+        hideAlert();
+    }
+});
+
+// Cerrar alert con ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        hideAlert();
+    }
+});

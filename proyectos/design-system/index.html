@@ -24,7 +24,7 @@
             --accent-yellow: #FFD100;
             --accent-green: #9CAF88;
             
-            /* Paleta Natural y Espiritual (Taller 01234) */
+            /* Paleta Natural y Espiritual */
             --sage-white: #F7F9F7;
             --soft-cream: #F4F1E8;
             --pearl-gray: #E8E6E0;
@@ -62,6 +62,153 @@
             --text-2xl: clamp(1.5rem, 3vw, 2rem);
             --text-3xl: clamp(2rem, 4vw, 3rem);
             --text-4xl: clamp(2.5rem, 6vw, 4rem);
+        }
+        
+        /* Sistema de Alert Elegante */
+        .alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .alert-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .alert-box {
+            background: var(--neutral-white);
+            border-radius: 16px;
+            box-shadow: 
+                0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            max-width: 500px;
+            width: 90%;
+            padding: var(--space-6);
+            position: relative;
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .alert-overlay.active .alert-box {
+            transform: scale(1) translateY(0);
+        }
+        
+        .alert-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto var(--space-4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 2rem;
+        }
+        
+        .alert-icon.warning {
+            background: linear-gradient(135deg, #FFD100, #FF8C00);
+            color: white;
+        }
+        
+        .alert-icon.info {
+            background: linear-gradient(135deg, #0066CC, #4A90E2);
+            color: white;
+        }
+        
+        .alert-icon.development {
+            background: linear-gradient(135deg, #FF6B35, #E30613);
+            color: white;
+        }
+        
+        .alert-title {
+            font-family: var(--font-primary);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--neutral-black);
+            text-align: center;
+            margin-bottom: var(--space-3);
+            letter-spacing: 0.5px;
+        }
+        
+        .alert-message {
+            font-size: var(--text-base);
+            color: var(--neutral-gray-600);
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: var(--space-6);
+        }
+        
+        .alert-actions {
+            display: flex;
+            gap: var(--space-3);
+            justify-content: center;
+        }
+        
+        .alert-button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-family: var(--font-primary);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
+        }
+        
+        .alert-button.primary {
+            background: var(--accent-orange);
+            color: white;
+        }
+        
+        .alert-button.primary:hover {
+            background: #FF5722;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+        }
+        
+        .alert-button.secondary {
+            background: var(--neutral-gray-200);
+            color: var(--neutral-gray-700);
+        }
+        
+        .alert-button.secondary:hover {
+            background: var(--neutral-gray-300);
+            transform: translateY(-2px);
+        }
+        
+        .alert-close {
+            position: absolute;
+            top: var(--space-3);
+            right: var(--space-3);
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--neutral-gray-400);
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .alert-close:hover {
+            background: var(--neutral-gray-100);
+            color: var(--neutral-gray-600);
         }
         
         /* Reset y base */
@@ -148,17 +295,6 @@
             letter-spacing: 4px;
         }
         
-        .breadcrumb {
-            font-size: 14px;
-            color: var(--neutral-gray-600);
-            font-family: var(--font-mono);
-            letter-spacing: 1px;
-        }
-        
-        .breadcrumb a {
-            color: var(--accent-orange);
-            text-decoration: none;
-        }
         
         /* Navegación lateral */
         .main-layout {
@@ -468,10 +604,7 @@
                     <div class="geo-shape geo-circle"></div>
                     <div class="geo-shape geo-square"></div>
                     <div class="geo-shape geo-triangle"></div>
-                    <span class="logo-text">01234</span>
-                </div>
-                <div class="breadcrumb">
-                    <a href="../index.html">◌ PROYECTOS</a> / Design System
+                    <span class="logo-text">Sistema de Diseño</span>
                 </div>
             </div>
         </div>
@@ -505,6 +638,9 @@
                     <li class="nav-item">
                         <a href="#responsive" class="nav-link">Responsive</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="#alerts" class="nav-link">Alerts</a>
+                    </li>
                 </ul>
             </nav>
 
@@ -512,7 +648,7 @@
                 <section id="principios" class="section">
                     <h1 class="section-title">Design System</h1>
                     <p class="section-description">
-                        Sistema de diseño unificado para todos los proyectos CEREBRO-DIGITAL basado en la filosofía 01234. 
+                        Sistema de diseño unificado para todos los proyectos CEREBRO-DIGITAL. 
                         Enfoque minimalista, tipografía como arquitectura y color con propósito justificado.
                     </p>
                     
@@ -532,7 +668,7 @@
                         </div>
                         <div class="component-example">
                             <h3 class="component-title">Limpieza Extrema</h3>
-                            <p>Eliminar todo lo no esencial siguiendo el Nivel 1 del sistema 01234.</p>
+                            <p>Eliminar todo lo no esencial siguiendo principios de diseño minimalista.</p>
                         </div>
                     </div>
                 </section>
@@ -617,7 +753,7 @@
                 <section id="natural-espiritual" class="section">
                     <h2 class="section-title">Paleta Natural y Espiritual</h2>
                     <p class="section-description">
-                        Paleta diseñada para el Taller Vivencial 01234. Colores naturales y espirituales 
+                        Paleta natural y espiritual. Colores naturales y espirituales 
                         que evocan conexión con la tierra, el mar y estados expandidos de conciencia.
                     </p>
                     
@@ -726,7 +862,7 @@
                         <div class="type-sample">
                             <div class="type-label">Text 3XL - Títulos Principales</div>
                             <div class="text-title" style="font-size: var(--text-3xl);">
-                                SISTEMA 01234
+                                SISTEMA DE DISEÑO
                             </div>
                         </div>
                         <div class="type-sample">
@@ -744,7 +880,7 @@
                         <div class="type-sample">
                             <div class="type-label">Text Base - Cuerpo Principal</div>
                             <div class="text-body">
-                                El sistema 01234 representa un marco cognitivo de 5 niveles que organiza el procesamiento de información desde el potencial cuántico hasta la materialización física.
+                                El Sistema de Diseño representa un marco cognitivo de 5 niveles que organiza el procesamiento de información desde el potencial cuántico hasta la materialización física.
                             </div>
                         </div>
                         <div class="type-sample">
@@ -797,12 +933,12 @@
                     
                     <h3 class="section-subtitle">Logo Bauhaus</h3>
                     <div class="component-example">
-                        <div class="component-title">Elementos Geométricos 01234</div>
+                        <div class="component-title">Elementos Geométricos</div>
                         <div class="logo">
                             <div class="geo-shape geo-circle"></div>
                             <div class="geo-shape geo-square"></div>
                             <div class="geo-shape geo-triangle"></div>
-                            <span class="logo-text">01234</span>
+                            <span class="logo-text">Sistema de Diseño</span>
                         </div>
                     </div>
                 </section>
@@ -824,7 +960,7 @@
                         <div class="component-title">Tarjeta de Proyecto</div>
                         <div class="card">
                             <h3 class="card-title">Portfolio Completo</h3>
-                            <p class="card-text">Implementación completa del sistema de diseño aplicando filosofía 01234 con tipografía Futura y paleta neutra justificada.</p>
+                            <p class="card-text">Implementación completa del sistema de diseño con tipografía Futura y paleta neutra justificada.</p>
                         </div>
                     </div>
                 </section>
@@ -846,7 +982,44 @@
                         </div>
                     </div>
                 </section>
+
+                <section id="alerts" class="section">
+                    <h2 class="section-title">Sistema de Alerts</h2>
+                    <p class="section-description">
+                        Alerts elegantes con animaciones suaves y backdrop blur para comunicación efectiva.
+                    </p>
+                    
+                    <div class="component-grid">
+                        <div class="component-example">
+                            <h3 class="component-title">Alert de Desarrollo</h3>
+                            <button onclick="showAlert('development', 'Proyecto en Desarrollo', 'Este proyecto está actualmente en fase de desarrollo. Próximamente estará disponible con funcionalidades completas.')" class="btn btn-primary">Mostrar Alert</button>
+                        </div>
+                        <div class="component-example">
+                            <h3 class="component-title">Alert de Información</h3>
+                            <button onclick="showAlert('info', 'Información del Sistema', 'Este es el sistema de diseño unificado para todos los proyectos CEREBRO-DIGITAL con componentes reutilizables.')" class="btn btn-secondary">Mostrar Alert</button>
+                        </div>
+                        <div class="component-example">
+                            <h3 class="component-title">Alert de Advertencia</h3>
+                            <button onclick="showAlert('warning', 'Atención', 'Algunos componentes requieren configuración adicional para funcionar correctamente en todos los navegadores.')" class="btn btn-primary">Mostrar Alert</button>
+                        </div>
+                    </div>
+                </section>
             </main>
+        </div>
+    </div>
+
+    <!-- Sistema de Alert Elegante -->
+    <div id="alertOverlay" class="alert-overlay">
+        <div class="alert-box">
+            <button class="alert-close" onclick="hideAlert()">&times;</button>
+            <div id="alertIcon" class="alert-icon development">
+                🚧
+            </div>
+            <h3 id="alertTitle" class="alert-title">Título del Alert</h3>
+            <p id="alertMessage" class="alert-message">Mensaje del alert aquí</p>
+            <div class="alert-actions">
+                <button class="alert-button primary" onclick="hideAlert()">Entendido</button>
+            </div>
         </div>
     </div>
 

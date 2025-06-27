@@ -1,6 +1,8 @@
 // Alert de desarrollo al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
-    alert('🚧 Proyecto en Desarrollo\n\nEste taller vivencial está actualmente en fase de planificación y desarrollo. Próximamente estará disponible la información completa y el sistema de reservas.\n\n¡Gracias por tu interés!');
+    setTimeout(() => {
+        showAlert('development', 'Taller en Desarrollo', 'Este taller vivencial está actualmente en fase de planificación y desarrollo. Próximamente estará disponible la información completa y el sistema de reservas. ¡Gracias por tu interés!');
+    }, 1000);
 });
 
 // Animaciones de entrada
@@ -43,5 +45,57 @@ window.addEventListener('scroll', () => {
     
     if (hero) {
         hero.style.transform = `translateY(${rate}px)`;
+    }
+});
+
+// Sistema de Alert Elegante
+function showAlert(type, title, message) {
+    const overlay = document.getElementById('alertOverlay');
+    const icon = document.getElementById('alertIcon');
+    const titleEl = document.getElementById('alertTitle');
+    const messageEl = document.getElementById('alertMessage');
+    
+    // Configurar contenido
+    titleEl.textContent = title;
+    messageEl.textContent = message;
+    
+    // Configurar icono y estilo según tipo
+    icon.className = `alert-icon ${type}`;
+    switch(type) {
+        case 'development':
+            icon.textContent = '🚧';
+            break;
+        case 'info':
+            icon.textContent = 'ℹ️';
+            break;
+        case 'warning':
+            icon.textContent = '⚠️';
+            break;
+        default:
+            icon.textContent = '📢';
+    }
+    
+    // Mostrar alert
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideAlert() {
+    const overlay = document.getElementById('alertOverlay');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Cerrar alert al hacer clic en el overlay
+document.getElementById('alertOverlay').addEventListener('click', (e) => {
+    if (e.target.id === 'alertOverlay') {
+        hideAlert();
+    }
+});
+
+// Cerrar alert con ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        hideAlert();
     }
 });

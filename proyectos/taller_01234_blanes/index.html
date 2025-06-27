@@ -62,6 +62,143 @@
             --text-4xl: clamp(2.5rem, 5vw, 4rem);
         }
         
+        /* Sistema de Alert Elegante */
+        .alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .alert-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .alert-box {
+            background: var(--sage-white);
+            border-radius: 16px;
+            box-shadow: 
+                0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            max-width: 500px;
+            width: 90%;
+            padding: var(--space-6);
+            position: relative;
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .alert-overlay.active .alert-box {
+            transform: scale(1) translateY(0);
+        }
+        
+        .alert-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto var(--space-4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 2rem;
+        }
+        
+        .alert-icon.development {
+            background: linear-gradient(135deg, var(--sunset-coral), var(--earth-clay));
+            color: white;
+        }
+        
+        .alert-icon.info {
+            background: linear-gradient(135deg, var(--ocean-teal), var(--mystic-purple));
+            color: white;
+        }
+        
+        .alert-icon.warning {
+            background: linear-gradient(135deg, var(--golden-amber), var(--sunset-coral));
+            color: white;
+        }
+        
+        .alert-title {
+            font-family: var(--font-primary);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--soft-black);
+            text-align: center;
+            margin-bottom: var(--space-3);
+            letter-spacing: 0.5px;
+        }
+        
+        .alert-message {
+            font-size: var(--text-base);
+            color: var(--moss-green);
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: var(--space-6);
+        }
+        
+        .alert-actions {
+            display: flex;
+            gap: var(--space-3);
+            justify-content: center;
+        }
+        
+        .alert-button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-family: var(--font-primary);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
+        }
+        
+        .alert-button.primary {
+            background: var(--sunset-coral);
+            color: white;
+        }
+        
+        .alert-button.primary:hover {
+            background: var(--earth-clay);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(224, 122, 95, 0.3);
+        }
+        
+        .alert-close {
+            position: absolute;
+            top: var(--space-3);
+            right: var(--space-3);
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--warm-stone);
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .alert-close:hover {
+            background: var(--pearl-gray);
+            color: var(--moss-green);
+        }
+        
         *, *::before, *::after {
             margin: 0;
             padding: 0;
@@ -943,6 +1080,21 @@
             <p class="footer-signature">SERGIO FORÉS • SISTEMA 01234 • BLANES 2025</p>
         </div>
     </footer>
+
+    <!-- Sistema de Alert Elegante -->
+    <div id="alertOverlay" class="alert-overlay">
+        <div class="alert-box">
+            <button class="alert-close" onclick="hideAlert()">&times;</button>
+            <div id="alertIcon" class="alert-icon development">
+                🚧
+            </div>
+            <h3 id="alertTitle" class="alert-title">Título del Alert</h3>
+            <p id="alertMessage" class="alert-message">Mensaje del alert aquí</p>
+            <div class="alert-actions">
+                <button class="alert-button primary" onclick="hideAlert()">Entendido</button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/main.js"></script>
 </body>
