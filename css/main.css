@@ -662,22 +662,9 @@ button:focus {
     display: none;
 }
 
-/* Loading skeleton for better UX */
+/* Loading skeleton for better UX - DISABLED */
 .project-screenshot::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.4),
-        transparent
-    );
-    animation: shimmer 1.5s infinite;
-    z-index: 1;
+    display: none !important;
 }
 
 .project-screenshot img.loaded + .project-screenshot::before {
