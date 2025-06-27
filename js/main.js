@@ -106,6 +106,11 @@ class ImageOptimizer {
     }
 
     async init() {
+        console.log('🚀 Image Optimizer initializing...');
+        
+        // CRITICAL FIX: Remove blur from all images immediately
+        this.fixBlurredImages();
+        
         // Detect WebP support
         await this.detectWebPSupport();
         
@@ -117,6 +122,8 @@ class ImageOptimizer {
         
         // Monitor performance
         this.monitorPerformance();
+        
+        console.log('✅ Image Optimizer ready!');
     }
 
     // WebP Support Detection
@@ -169,6 +176,9 @@ class ImageOptimizer {
     loadImage(img) {
         const picture = img.closest('picture');
         
+        // CRITICAL FIX: Remove blur immediately for production
+        this.removeBlurFilter(img);
+        
         if (picture) {
             // Handle picture element with WebP sources
             const sources = picture.querySelectorAll('source');
@@ -188,23 +198,48 @@ class ImageOptimizer {
         img.addEventListener('load', () => {
             img.classList.add('loaded');
             
+            // CRITICAL FIX: Ensure blur is completely removed on load
+            this.removeBlurFilter(img);
+            
             // Performance measurement
             if ('performance' in window) {
                 const loadTime = performance.now();
-                console.log(`Image loaded: ${img.alt || img.src} in ${loadTime.toFixed(2)}ms`);
+                console.log(`✅ Image loaded: ${img.alt || img.src} in ${loadTime.toFixed(2)}ms`);
             }
         });
 
         img.addEventListener('error', () => {
-            console.warn('Failed to load image:', img.src);
+            console.warn('❌ Failed to load image:', img.src);
             img.classList.add('error');
+            
+            // CRITICAL FIX: Remove blur even on error
+            this.removeBlurFilter(img);
         });
     }
 
+    // CRITICAL FIX: Remove blur filter from images
+    removeBlurFilter(img) {
+        // Force remove filter and transform
+        img.style.filter = 'none';
+        img.style.transform = 'none';
+        img.style.opacity = '1';
+        
+        // Remove lazy loading class if present
+        img.classList.remove('lazy-loading');
+        
+        // Add loaded class
+        img.classList.add('loaded');
+        
+        console.log(`🔧 Blur removed from: ${img.alt || img.src}`);
+    }
+    
     // Fallback: load all images
     loadAllImages() {
         const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-        lazyImages.forEach(img => this.loadImage(img));
+        lazyImages.forEach(img => {
+            this.removeBlurFilter(img);
+            this.loadImage(img);
+        });
     }
 
     // Intersection Observer for animations
@@ -307,6 +342,21 @@ class ImageOptimizer {
         document.head.appendChild(link);
     }
 
+    // CRITICAL FIX: Remove blur from all images immediately
+    fixBlurredImages() {
+        console.log('🔧 Fixing blurred images...');
+        
+        // Find all potentially blurred images
+        const allImages = document.querySelectorAll('.project-screenshot img, img[loading="lazy"]');
+        
+        allImages.forEach((img, index) => {
+            this.removeBlurFilter(img);
+            console.log(`🔧 Fixed image ${index + 1}: ${img.alt || 'No alt'}`);
+        });
+        
+        console.log(`✅ Fixed ${allImages.length} images`);
+    }
+    
     // Resource cleanup
     destroy() {
         if (this.observer) {

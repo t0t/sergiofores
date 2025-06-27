@@ -620,16 +620,41 @@ button:focus {
     transition: filter 0.3s ease, transform 0.3s ease;
 }
 
-/* Lazy loading placeholder */
+/* CRITICAL FIX: Lazy loading placeholder - DISABLED FOR PRODUCTION */
 .project-screenshot img[loading="lazy"] {
-    filter: blur(5px);
-    transform: scale(1.02);
+    /* DISABLED: filter: blur(5px); */
+    /* DISABLED: transform: scale(1.02); */
+    
+    /* PRODUCTION FIX: No blur by default */
+    filter: none;
+    transform: none;
+    transition: filter 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Image loaded state */
+/* Image loaded state - OPTIMIZED FOR PRODUCTION */
 .project-screenshot img.loaded {
-    filter: blur(0);
-    transform: scale(1);
+    filter: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    
+    /* Enhanced rendering for sharpness */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* CRITICAL PRODUCTION FIX: Force remove blur from any stuck images */
+.project-screenshot img {
+    filter: none !important;
+    transform: none !important;
+    opacity: 1;
+    
+    /* Ensure crisp rendering */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    
+    /* Hardware acceleration for smooth rendering */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 /* WebP support detection */
