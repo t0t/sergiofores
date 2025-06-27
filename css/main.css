@@ -662,12 +662,32 @@ button:focus {
     display: none;
 }
 
-/* Loading skeleton for better UX - DISABLED */
+/* Loading skeleton for better UX */
 .project-screenshot::before {
-    display: none !important;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: shimmer 1.5s infinite;
+    z-index: 1;
 }
 
-.project-screenshot img.loaded + .project-screenshot::before {
+/* Hide shimmer when image is loaded */
+.project-screenshot img.loaded ~ .project-screenshot::before,
+.project-screenshot:has(img.loaded)::before {
+    display: none;
+}
+
+/* Alternative for browsers without :has() support */
+.project-screenshot.image-loaded::before {
     display: none;
 }
 
