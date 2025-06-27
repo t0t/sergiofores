@@ -1,3 +1,8 @@
+// Alert de desarrollo al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    alert('🚧 Proyecto en Desarrollo\n\nEste taller vivencial está actualmente en fase de planificación y desarrollo. Próximamente estará disponible la información completa y el sistema de reservas.\n\n¡Gracias por tu interés!');
+});
+
 // Animaciones de entrada
 const observerOptions = {
     threshold: 0.1,

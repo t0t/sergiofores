@@ -1,3 +1,8 @@
+// Alert de desarrollo al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    alert('🚧 Tienda en Desarrollo\n\nEsta tienda online está actualmente en desarrollo. Los productos mostrados son únicamente de demostración. Próximamente estará disponible con productos reales y sistema de pago.\n\n¡Gracias por tu paciencia!');
+});
+
 // Datos de productos (esto se conectaría a una base de datos real)
 const productos = [
     {

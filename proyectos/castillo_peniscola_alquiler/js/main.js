@@ -1,3 +1,8 @@
+// Alert de desarrollo al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    alert('🚧 Alquiler en Desarrollo\n\nEste servicio de alquiler vacacional está actualmente en desarrollo. Las propiedades mostradas son de demostración. Próximamente estará disponible con propiedades reales y sistema de reservas.\n\n¡Gracias por tu interés!');
+});
+
 // Animaciones de entrada
 const observerOptions = {
     threshold: 0.1,
