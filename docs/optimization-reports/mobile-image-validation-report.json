@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-06-27T23:03:37.520Z",
+  "summary": {
+    "total_references": 30,
+    "missing_images": 0,
+    "valid_images": 30,
+    "orphan_webp": 6,
+    "mobile_performance_impact": {
+      "failed_webp_ratio": "0.0%",
+      "estimated_extra_requests": 0,
+      "performance_score": "EXCELLENT"
+    }
+  },
+  "mobile_issues": {
+    "failed_webp_loads": 0,
+    "missing_fallbacks": 0,
+    "double_requests": 0
+  },
+  "detailed_errors": [],
+  "warnings": [
+    "Orphan WebP file: img/huerto-01234.webp (not referenced in HTML)",
+    "Orphan WebP file: img/landing-sergio.webp (not referenced in HTML)",
+    "Orphan WebP file: img/noeliarequena-fixed.webp (not referenced in HTML)",
+    "Orphan WebP file: img/noeliarequena-local.webp (not referenced in HTML)",
+    "Orphan WebP file: img/sergiofores-art.webp (not referenced in HTML)",
+    "Orphan WebP file: img/sergiofores-main.webp (not referenced in HTML)"
+  ],
+  "recommendations": [
+    "Consider using orphan WebP files or remove them to clean up storage",
+    "Add preload hints for above-the-fold images",
+    "Implement responsive images with srcset for mobile optimization"
+  ]
+}

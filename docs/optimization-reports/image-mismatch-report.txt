@@ -1,0 +1,200 @@
+IMAGE MISMATCH PREVENTION REPORT
+Generated: Sat Jun 28 01:06:48 CEST 2025
+Portfolio: Sergio Forés - sergiofores
+================================
+
+SUMMARY:
+- HTML file analyzed: ./index.html
+- Image directory: ./img
+- Total existing images:       53
+- Total HTML references:       30
+- Missing images:       30
+- Orphan images:       53
+
+MISSING IMAGES (referenced in HTML but file not found):
+- img/castillo-peniscola-alquiler.jpg
+- img/castillo-peniscola-alquiler.webp
+- img/cerebro-digital-ia.jpg
+- img/cerebro-digital-ia.webp
+- img/cerebro-digital-vault.jpg
+- img/cerebro-digital.jpg
+- img/design-system.jpg
+- img/gematria-app.png
+- img/github-t0t.jpg
+- img/github-t0t.webp
+- img/landing-01234.jpg
+- img/noeliarequena-com.jpg
+- img/noeliarequena-com.webp
+- img/o1234-lovable.jpg
+- img/o1234-lovable.webp
+- img/o1234-nng.png
+- img/o1234-slidev.jpg
+- img/o1234-slidev.webp
+- img/podcast-api.jpg
+- img/podcast-api.webp
+- img/proceso-cognitivo.jpg
+- img/repositorio-01234-v4.jpg
+- img/repositorio-01234-v4.webp
+- img/sergio-arte-plastica.jpg
+- img/sergio-arte-plastica.webp
+- img/sergio-dev.jpg
+- img/taller-01234-blanes.jpg
+- img/taller-01234-blanes.webp
+- img/three-svelte.png
+- img/tienda-peniscola.jpg
+
+ORPHAN IMAGES (file exists but not referenced in HTML):
+- ./img/castillo-peniscola-alquiler.jpg
+- ./img/castillo-peniscola-alquiler.webp
+- ./img/cerebro-digital-ia.jpg
+- ./img/cerebro-digital-ia.webp
+- ./img/cerebro-digital-vault.jpg
+- ./img/cerebro-digital.jpg
+- ./img/cerebro-obsidian.jpg
+- ./img/clarity-fintech.jpg
+- ./img/design-system.jpg
+- ./img/gematria-app.png
+- ./img/github-t0t.jpg
+- ./img/github-t0t.webp
+- ./img/huerto-01234.jpg
+- ./img/huerto-01234.webp
+- ./img/landing-01234.jpg
+- ./img/landing-sergio.jpg
+- ./img/landing-sergio.webp
+- ./img/logo-01234.png
+- ./img/modelo-01234.jpg
+- ./img/noeliarequena-com.jpg
+- ./img/noeliarequena-com.webp
+- ./img/noeliarequena-fixed.jpg
+- ./img/noeliarequena-fixed.webp
+- ./img/noeliarequena-local.jpg
+- ./img/noeliarequena-local.webp
+- ./img/noeliarequena-portfolio.jpg
+- ./img/o1234-lovable.jpg
+- ./img/o1234-lovable.webp
+- ./img/o1234-nng.png
+- ./img/o1234-slidev.jpg
+- ./img/o1234-slidev.webp
+- ./img/podcast-api.jpg
+- ./img/podcast-api.webp
+- ./img/proceso-cognitivo.jpg
+- ./img/prototipo-bauhaus-organic.jpg
+- ./img/prototipo-bauhaus.jpg
+- ./img/prototipo-editorial.jpg
+- ./img/prototipo-midcentury.jpg
+- ./img/repositorio-01234-v4.jpg
+- ./img/repositorio-01234-v4.webp
+- ./img/sergio-arte-plastica.jpg
+- ./img/sergio-arte-plastica.webp
+- ./img/sergio-dev.jpg
+- ./img/sergio-portfolio-complete.jpg
+- ./img/sergiofores-art.jpg
+- ./img/sergiofores-art.webp
+- ./img/sergiofores-main.jpg
+- ./img/sergiofores-main.webp
+- ./img/sergiofores.jpg
+- ./img/taller-01234-blanes.jpg
+- ./img/taller-01234-blanes.webp
+- ./img/three-svelte.png
+- ./img/tienda-peniscola.jpg
+
+EXISTING IMAGES:
+- ./img/castillo-peniscola-alquiler.jpg
+- ./img/castillo-peniscola-alquiler.webp
+- ./img/cerebro-digital-ia.jpg
+- ./img/cerebro-digital-ia.webp
+- ./img/cerebro-digital-vault.jpg
+- ./img/cerebro-digital.jpg
+- ./img/cerebro-obsidian.jpg
+- ./img/clarity-fintech.jpg
+- ./img/design-system.jpg
+- ./img/gematria-app.png
+- ./img/github-t0t.jpg
+- ./img/github-t0t.webp
+- ./img/huerto-01234.jpg
+- ./img/huerto-01234.webp
+- ./img/landing-01234.jpg
+- ./img/landing-sergio.jpg
+- ./img/landing-sergio.webp
+- ./img/logo-01234.png
+- ./img/modelo-01234.jpg
+- ./img/noeliarequena-com.jpg
+- ./img/noeliarequena-com.webp
+- ./img/noeliarequena-fixed.jpg
+- ./img/noeliarequena-fixed.webp
+- ./img/noeliarequena-local.jpg
+- ./img/noeliarequena-local.webp
+- ./img/noeliarequena-portfolio.jpg
+- ./img/o1234-lovable.jpg
+- ./img/o1234-lovable.webp
+- ./img/o1234-nng.png
+- ./img/o1234-slidev.jpg
+- ./img/o1234-slidev.webp
+- ./img/podcast-api.jpg
+- ./img/podcast-api.webp
+- ./img/proceso-cognitivo.jpg
+- ./img/prototipo-bauhaus-organic.jpg
+- ./img/prototipo-bauhaus.jpg
+- ./img/prototipo-editorial.jpg
+- ./img/prototipo-midcentury.jpg
+- ./img/repositorio-01234-v4.jpg
+- ./img/repositorio-01234-v4.webp
+- ./img/sergio-arte-plastica.jpg
+- ./img/sergio-arte-plastica.webp
+- ./img/sergio-dev.jpg
+- ./img/sergio-portfolio-complete.jpg
+- ./img/sergiofores-art.jpg
+- ./img/sergiofores-art.webp
+- ./img/sergiofores-main.jpg
+- ./img/sergiofores-main.webp
+- ./img/sergiofores.jpg
+- ./img/taller-01234-blanes.jpg
+- ./img/taller-01234-blanes.webp
+- ./img/three-svelte.png
+- ./img/tienda-peniscola.jpg
+
+HTML REFERENCES:
+- img/castillo-peniscola-alquiler.jpg
+- img/castillo-peniscola-alquiler.webp
+- img/cerebro-digital-ia.jpg
+- img/cerebro-digital-ia.webp
+- img/cerebro-digital-vault.jpg
+- img/cerebro-digital.jpg
+- img/design-system.jpg
+- img/gematria-app.png
+- img/github-t0t.jpg
+- img/github-t0t.webp
+- img/landing-01234.jpg
+- img/noeliarequena-com.jpg
+- img/noeliarequena-com.webp
+- img/o1234-lovable.jpg
+- img/o1234-lovable.webp
+- img/o1234-nng.png
+- img/o1234-slidev.jpg
+- img/o1234-slidev.webp
+- img/podcast-api.jpg
+- img/podcast-api.webp
+- img/proceso-cognitivo.jpg
+- img/repositorio-01234-v4.jpg
+- img/repositorio-01234-v4.webp
+- img/sergio-arte-plastica.jpg
+- img/sergio-arte-plastica.webp
+- img/sergio-dev.jpg
+- img/taller-01234-blanes.jpg
+- img/taller-01234-blanes.webp
+- img/three-svelte.png
+- img/tienda-peniscola.jpg
+
+MOBILE UX IMPACT:
+- Missing images cause 404 errors and performance degradation
+- Failed WebP loads force fallback delays on mobile networks
+- Orphan files consume unnecessary storage space
+- Picture element failures impact Core Web Vitals
+
+RECOMMENDATIONS:
+1. Fix missing image references immediately
+2. Generate missing WebP files or remove HTML references
+3. Consider using orphan images or remove unused files
+4. Implement automated validation in CI/CD pipeline
+5. Add error handling for robust mobile experience
+

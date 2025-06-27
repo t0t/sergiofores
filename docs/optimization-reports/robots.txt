@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://sergiofores.com/sitemap.xml
+
+# Disallow specific paths if needed
+Disallow: /css/
+Disallow: /js/
+
+# Allow important resources
+Allow: /img/
+Allow: /proyectos/
