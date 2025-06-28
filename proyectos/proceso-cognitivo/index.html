@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proceso Cognitivo · Laboratorio de Consciencia</title>
+    <link rel="preload" href="css/main.css" as="style">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="preload" href="assets/videos/63d3e59d-32c8-443a-a55d-2646edb923f3.webm" as="video" type="video/webm">
+    <link rel="preload" href="assets/webp_images/abstract-1.webp" as="image">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
     <!-- Header flotante -->
@@ -26,7 +31,7 @@
 
     <!-- Hero cinematográfico con video -->
     <section class="hero">
-        <video class="hero-video" autoplay muted loop>
+        <video class="hero-video" autoplay muted loop preload="auto" playsinline poster="assets/placeholders/abstract-1.jpg">
             <source src="assets/videos/63d3e59d-32c8-443a-a55d-2646edb923f3.webm" type="video/webm">
             <source src="assets/videos/63d3e59d-32c8-443a-a55d-2646edb923f3.mp4" type="video/mp4">
         </video>
@@ -44,7 +49,10 @@
             
             <div class="gallery-mosaic">
                 <div class="mosaic-item large reveal">
-                    <img src="assets/placeholders/abstract-1.jpg" alt="Abstracción principal" class="mosaic-image">
+                    <picture>
+                        <source srcset="assets/webp_images/abstract-1.webp" type="image/webp">
+                        <img src="assets/placeholders/abstract-1.jpg" alt="Abstracción principal" class="mosaic-image" loading="eager" data-webp="assets/webp_images/abstract-1.webp">
+                    </picture>
                     <div class="mosaic-overlay">
                         <h3 class="mosaic-title">Abstracción Generativa</h3>
                         <p class="mosaic-description">Formas que emergen del diálogo entre algoritmo e intuición</p>
@@ -52,7 +60,10 @@
                 </div>
                 
                 <div class="mosaic-item reveal">
-                    <img src="assets/placeholders/geometric-1.jpg" alt="Geometría" class="mosaic-image">
+                    <picture>
+                        <source srcset="assets/webp_images/geometric-1.webp" type="image/webp">
+                        <img src="assets/placeholders/geometric-1.jpg" alt="Geometría" class="mosaic-image" loading="lazy" data-webp="assets/webp_images/geometric-1.webp">
+                    </picture>
                     <div class="mosaic-overlay">
                         <h3 class="mosaic-title">Geometría Cognitiva</h3>
                         <p class="mosaic-description">Patrones visuales del pensamiento sistémico</p>
@@ -60,7 +71,10 @@
                 </div>
                 
                 <div class="mosaic-item tall reveal">
-                    <img src="assets/placeholders/img-001.jpg" alt="Proceso 1" class="mosaic-image">
+                    <picture>
+                        <source srcset="assets/webp_images/img-001.webp" type="image/webp">
+                        <img src="assets/placeholders/img-001.jpg" alt="Proceso 1" class="mosaic-image" loading="lazy" data-webp="assets/webp_images/img-001.webp">
+                    </picture>
                     <div class="mosaic-overlay">
                         <h3 class="mosaic-title">Proceso I</h3>
                         <p class="mosaic-description">Documentación del nivel 0: potencial puro</p>
@@ -68,7 +82,7 @@
                 </div>
                 
                 <div class="mosaic-item wide reveal">
-                    <img src="assets/placeholders/img-002.jpg" alt="Proceso 2" class="mosaic-image">
+                    <img src="assets/placeholders/img-002.jpg" alt="Proceso 2" class="mosaic-image" loading="lazy">
                     <div class="mosaic-overlay">
                         <h3 class="mosaic-title">Metamorfosis</h3>
                         <p class="mosaic-description">La transformación como proceso cognitivo</p>
@@ -76,7 +90,7 @@
                 </div>
                 
                 <div class="mosaic-item reveal">
-                    <img src="assets/placeholders/img-003.jpg" alt="Proceso 3" class="mosaic-image">
+                    <img src="assets/placeholders/img-003.jpg" alt="Proceso 3" class="mosaic-image" loading="lazy">
                     <div class="mosaic-overlay">
                         <h3 class="mosaic-title">Síntesis</h3>
                         <p class="mosaic-description">Convergencia de múltiples líneas de investigación</p>
@@ -84,7 +98,7 @@
                 </div>
                 
                 <div class="mosaic-item reveal">
-                    <img src="assets/placeholders/img-004.jpg" alt="Proceso 4" class="mosaic-image">
+                    <img src="assets/placeholders/img-004.jpg" alt="Proceso 4" class="mosaic-image" loading="lazy">
                     <div class="mosaic-overlay">
                         <h3 class="mosaic-title">Materialización</h3>
                         <p class="mosaic-description">Del concepto a la forma tangible</p>
@@ -92,7 +106,7 @@
                 </div>
                 
                 <div class="mosaic-item wide reveal">
-                    <img src="assets/placeholders/img-005.jpg" alt="Proceso 5" class="mosaic-image">
+                    <img src="assets/placeholders/img-005.jpg" alt="Proceso 5" class="mosaic-image" loading="lazy">
                     <div class="mosaic-overlay">
                         <h3 class="mosaic-title">Red Neural</h3>
                         <p class="mosaic-description">Arquitecturas de procesamiento distribuido</p>
@@ -120,17 +134,23 @@
             
             <div class="ia-grid">
                 <div class="ia-item reveal">
-                    <img src="assets/imagenes/A moody image showcasing a Tesla Optimus humanoid in a worn brown sweater cooking, a mother playing with her child on a sofa, with intense dramatic lighting, high contrast, graceful elegance.jpg" alt="Optimus Doméstico I">
+                    <picture>
+                        <source srcset="assets/webp_images/optimus-moody.webp" type="image/webp">
+                        <img src="assets/placeholders/img-006.jpg" alt="Optimus Doméstico I" class="mosaic-image" loading="lazy" data-original="assets/imagenes/A moody image showcasing a Tesla Optimus humanoid in a worn brown sweater cooking, a mother playing with her child on a sofa, with intense dramatic lighting, high contrast, graceful elegance.jpg" data-webp="assets/webp_images/optimus-moody.webp">
+                    </picture>
                     <div class="ia-overlay"></div>
                 </div>
                 
                 <div class="ia-item reveal">
-                    <img src="assets/imagenes/A soft cinematic scene with a hazy atmosphere a Tesla Optimus humanoid wearing a worn brown sweater expertly cooks as a mother plays with her child on a sofa. Soft focus, hazy background.jpg" alt="Optimus Doméstico II">
+                    <picture>
+                        <source srcset="assets/webp_images/optimus-soft.webp" type="image/webp">
+                        <img src="assets/placeholders/img-005.jpg" alt="Optimus Doméstico II" class="mosaic-image" loading="lazy" data-original="assets/imagenes/A soft cinematic scene with a hazy atmosphere a Tesla Optimus humanoid wearing a worn brown sweater expertly cooks as a mother plays with her child on a sofa. Soft focus, hazy background.jpg" data-webp="assets/webp_images/optimus-soft.webp">
+                    </picture>
                     <div class="ia-overlay"></div>
                 </div>
                 
                 <div class="ia-item reveal">
-                    <img src="assets/placeholders/img-006.jpg" alt="Proceso Cognitivo III">
+                    <img src="assets/placeholders/img-006.jpg" alt="Proceso Cognitivo III" loading="lazy">
                     <div class="ia-overlay"></div>
                 </div>
             </div>
@@ -157,7 +177,7 @@
                 <h3 class="audio-title">Arquitectura Acústica</h3>
                 
                 <div class="audio-player">
-                    <audio controls preload="metadata">
+                    <audio controls preload="none" data-lazy-audio>
                         <source src="assets/audios/Diálogo Imposible III.ogg" type="audio/ogg">
                         <source src="assets/audios/Diálogo Imposible III.mp3" type="audio/mpeg">
                         Tu navegador no soporta el elemento audio.
@@ -169,7 +189,7 @@
                 </div>
                 
                 <div class="audio-player">
-                    <audio controls preload="metadata">
+                    <audio controls preload="none" data-lazy-audio>
                         <source src="assets/audios/Cuenta 3.ogg" type="audio/ogg">
                         <source src="assets/audios/Cuenta 3.mp3" type="audio/mpeg">
                         Tu navegador no soporta el elemento audio.
@@ -208,7 +228,7 @@
 
     <!-- Video segundo -->
     <section class="hero video-segundo">
-        <video class="hero-video" autoplay muted loop>
+        <video class="hero-video" muted loop preload="none" playsinline poster="assets/placeholders/img-002.jpg" data-lazy-video>
             <source src="assets/videos/78a264a9-9dbb-4565-be85-7cf081f8e5bd.webm" type="video/webm">
             <source src="assets/videos/78a264a9-9dbb-4565-be85-7cf081f8e5bd.mp4" type="video/mp4">
         </video>
@@ -244,5 +264,6 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/performance-metrics.js"></script>
 </body>
 </html>

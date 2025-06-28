@@ -41,11 +41,20 @@
     --text-4xl: clamp(2.5rem, 6vw, 4rem);
 }
 
-/* Reset y base tipográfica */
+/* Reset y base tipográfica optimizada para performance */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+/* Performance optimizations */
+html {
+    scroll-behavior: smooth;
+    /* Optimizar font rendering */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -57,10 +66,96 @@ body {
     font-weight: 300;
     letter-spacing: 0.5px;
     overflow-x: hidden;
+    /* Performance hints */
+    will-change: scroll-position;
 }
 
-html {
-    scroll-behavior: smooth;
+/* Critical rendering path optimizations */
+.hero-video,
+.mosaic-image,
+audio,
+video {
+    /* Hardware acceleration para multimedia */
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Lazy loading visual states */
+img[data-webp],
+img[data-original] {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+img.image-loaded {
+    opacity: 1;
+}
+
+/* Progressive image loading placeholder */
+img[loading="lazy"]:not(.image-loaded) {
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.1) 25%, 
+        rgba(255, 255, 255, 0.05) 50%, 
+        rgba(255, 255, 255, 0.1) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Performance-optimized animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+    will-change: auto;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+    will-change: opacity;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    will-change: auto;
+}
+
+/* Contenct-visibility para performance */
+.gallery-mosaic,
+.ia-grid,
+.audio-container {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px;
+}
+
+/* Reduce motion para accessibility y performance */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    
+    .reveal,
+    .fade-in,
+    .hero-video {
+        animation: none;
+        transition: none;
+    }
+    
+    .logo-shape {
+        animation: none;
+    }
 }
 
 /* Container */
