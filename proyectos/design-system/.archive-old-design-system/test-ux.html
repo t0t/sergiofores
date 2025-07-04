@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test UX Improvements - Design System</title>
+    <link rel="stylesheet" href="sergio-design-tokens.css">
+    <link rel="stylesheet" href="sergio-components.css">
+</head>
+<body>
+    <!-- SVG Icons Sprite -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </symbol>
+        
+        <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20,6 9,17 4,12"/>
+        </symbol>
+        
+        <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+        </symbol>
+        
+        <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+        </symbol>
+        
+        <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6,9 12,15 18,9"/>
+        </symbol>
+    </svg>
+
+    <h1>🧪 Test UX Improvements</h1>
+    
+    <h2>✅ 1. Copy to Clipboard</h2>
+    <div class="code-example">
+        <div class="code-header">
+            <button class="copy-btn" onclick="copyCode(this)">
+                <svg class="icon icon--sm"><use href="#icon-copy"></use></svg>
+                Copiar
+            </button>
+        </div>
+        <div style="background: var(--color-surface-secondary); padding: var(--space-4); border-radius: var(--border-radius-base); font-family: var(--font-mono); font-size: var(--text-sm);">
+            <pre style="margin: 0;"><code>.btn {
+  display: inline-flex;
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-accent-primary);
+  color: var(--color-white);
+  border-radius: var(--border-radius-base);
+}</code></pre>
+        </div>
+    </div>
+    
+    <h2>✅ 2. Search Input</h2>
+    <div class="sidebar__search" style="max-width: 300px;">
+        <div class="search-input-wrapper">
+            <svg class="icon icon--sm search-icon"><use href="#icon-search"></use></svg>
+            <input type="text" class="search-input" placeholder="Buscar componentes..." id="component-search">
+        </div>
+    </div>
+    
+    <h2>✅ 3. Component Status</h2>
+    <div style="display: flex; gap: var(--space-2); margin: var(--space-4) 0;">
+        <span class="component-status component-status--stable">Estable</span>
+        <span class="component-status component-status--beta">Beta</span>
+        <span class="component-status component-status--new">Nuevo</span>
+    </div>
+    
+    <h2>✅ 4. Mobile Menu Toggle</h2>
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" style="position: relative; display: block;">
+        <svg class="icon icon--lg"><use href="#icon-menu"></use></svg>
+    </button>
+    
+    <div class="mobile-overlay" id="mobile-overlay" onclick="closeMobileMenu()"></div>
+    
+    <h2>📱 Instructions</h2>
+    <ul>
+        <li><strong>Copy Button:</strong> Hover sobre el código y haz clic en "Copiar"</li>
+        <li><strong>Search:</strong> Escribe en el campo de búsqueda</li>
+        <li><strong>Status Badges:</strong> Diferentes estados visuales</li>
+        <li><strong>Mobile Menu:</strong> Haz clic en el botón ☰</li>
+        <li><strong>Keyboard:</strong> Prueba Ctrl/Cmd + K para enfocar la búsqueda</li>
+        <li><strong>Responsive:</strong> Cambia el tamaño de la ventana</li>
+    </ul>
+
+    <script>
+        // UX Functions
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-example').querySelector('code');
+            const originalHTML = button.innerHTML;
+            
+            navigator.clipboard.writeText(codeBlock.textContent.trim()).then(() => {
+                button.classList.add('copied');
+                button.innerHTML = '<svg class="icon icon--sm"><use href="#icon-check"></use></svg>¡Copiado!';
+                
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    button.innerHTML = originalHTML;
+                }, 2000);
+            }).catch(err => {
+                console.warn('Error al copiar:', err);
+            });
+        }
+
+        function toggleMobileMenu() {
+            const overlay = document.getElementById('mobile-overlay');
+            if (overlay) {
+                overlay.classList.toggle('active');
+                if (overlay.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+        }
+
+        function closeMobileMenu() {
+            const overlay = document.getElementById('mobile-overlay');
+            if (overlay) {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Search functionality
+            const searchInput = document.getElementById('component-search');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    console.log('Searching for:', e.target.value);
+                });
+            }
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeMobileMenu();
+                }
+                
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    if (searchInput) {
+                        searchInput.focus();
+                    }
+                }
+            });
+
+            console.log('✅ UX Test initialized');
+        });
+    </script>
+</body>
+</html>

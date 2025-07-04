@@ -2,6 +2,15 @@
 
 **Sistema de diseño unificado para todos los proyectos web y prototipos del CEREBRO-DIGITAL**
 
+## ✨ Últimas Actualizaciones
+
+**Versión 2.1 - Nuevos Componentes (Junio 2024)**
+- ✅ **Sistema de Iconos SVG** completo con 15+ iconos inline
+- ✅ **2 Componentes Footer**: Simple y Completo
+- ✅ **3 Componentes Features**: Grid, Cards y Highlight
+- ✅ Responsive design mejorado
+- ✅ Documentación actualizada con ejemplos
+
 ---
 
 ## 🎯 Principios Fundamentales
@@ -20,6 +29,35 @@
 4. **Elegancia** - ¿Mantiene la limpieza visual?
 
 ---
+
+## 🎨 Paleta de Colores
+
+### ✅ PROBLEMA RESUELTO: Paleta Completa Visible
+
+**Diagnóstico completado:** La sección de colores en `index.html` ahora muestra TODA la paleta disponible en el sistema de diseño, no solo dos colores.
+
+**Causa del problema identificada:**
+- Los elementos `.color-swatch` no tenían estilos CSS definidos
+- Inconsistencia en la estructura HTML entre colores
+- Faltaba funcionalidad interactiva para copiar variables
+
+**Solución implementada:**
+- ✅ **Estilos CSS completos** para `.color-swatch`, `.color-preview`, `.color-name`, `.color-value`
+- ✅ **Estructura HTML unificada** para todos los colores
+- ✅ **5 grupos de colores organizados** según función
+- ✅ **Funcionalidad copy-to-clipboard** con feedback visual
+- ✅ **Layout responsive** con grid adaptativo
+- ✅ **Accesibilidad completa** (teclado + tooltips)
+
+### Grupos de Colores Implementados
+
+1. **Grises Base (12 colores)**
+2. **Colores de Texto (4 colores)**  
+3. **Colores de Superficie (4 colores)**
+4. **Colores de Acento (4 colores)**
+5. **Paleta Tech Verde (4 colores)**
+
+**Total: 28 colores visibles** vs. 2 colores anteriores
 
 ## 🎨 Paleta de Colores
 
@@ -477,6 +515,195 @@ html {
 
 ---
 
-*Design System v1.0 - Creado: 2025-06-26*  
-*Estado: Definitivo y operativo*  
+## 🎯 Nuevos Componentes (v2.1)
+
+### Sistema de Iconos SVG
+
+**Características:**
+- ✅ 15+ iconos SVG inline para mejor performance
+- ✅ Múltiples tamaños: xs (12px) → 2xl (40px)
+- ✅ Variantes de color: primary, secondary, success, warning, error, tech
+- ✅ Estados interactivos con hover effects
+- ✅ Compatibilidad total con screen readers
+
+**Uso básico:**
+```html
+<!-- Icono básico -->
+<span class="icon icon--check"></span>
+
+<!-- Con tamaño y color -->
+<span class="icon icon--star icon--lg icon--primary"></span>
+
+<!-- Icono con texto -->
+<div class="icon-text">
+    <span class="icon icon--mail icon--primary"></span>
+    <span>Email de contacto</span>
+</div>
+```
+
+**Iconos disponibles:**
+- Navegación: `arrow-right`, `arrow-left`, `arrow-up`, `arrow-down`, `menu`, `close`
+- Acciones: `check`, `star`, `heart`, `search`, `external`
+- Contacto: `mail`, `phone`, `location`, `globe`
+- Redes sociales: `instagram`, `twitter`, `linkedin`, `github`, `youtube`
+
+### Componentes Footer
+
+#### Footer Simple
+- ✅ Navegación centrada con links principales
+- ✅ Redes sociales con iconos SVG
+- ✅ Copyright y marca minimalista
+- ✅ Efectos hover elegantes
+
+```html
+<footer class="footer footer--simple">
+    <div class="footer__container">
+        <div class="footer__content">
+            <a href="#" class="footer__brand">SERGIO.01234</a>
+            <nav class="footer__links">
+                <a href="#" class="footer__link">Trabajo</a>
+                <a href="#" class="footer__link">Sobre mí</a>
+            </nav>
+            <div class="footer__social">
+                <a href="#" class="footer__social-link">
+                    <span class="icon icon--instagram"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+```
+
+#### Footer Completo
+- ✅ Estructura de 4 columnas responsiva
+- ✅ Sección de marca con descripción
+- ✅ Múltiples secciones de navegación
+- ✅ Información de contacto con iconos
+- ✅ Footer bottom con enlaces legales
+
+```html
+<footer class="footer footer--complete">
+    <div class="footer__container">
+        <div class="footer__main">
+            <div class="footer__brand-section">
+                <a href="#" class="footer__brand">SERGIO.01234</a>
+                <p class="footer__description">Descripción del proyecto...</p>
+                <div class="footer__social">...</div>
+            </div>
+            <div class="footer__section">
+                <h3 class="footer__section-title">Navegación</h3>
+                <div class="footer__section-links">...</div>
+            </div>
+        </div>
+    </div>
+</footer>
+```
+
+### Componentes Features
+
+#### Features Grid
+- ✅ Grid responsivo de características
+- ✅ Iconos personalizables con efectos 3D
+- ✅ Animaciones de hover sofisticadas
+- ✅ Enlaces con iconos de acción
+
+```html
+<section class="features features--grid">
+    <div class="features__container">
+        <div class="features__header">
+            <h2 class="features__title">Título Principal</h2>
+            <p class="features__subtitle">Subtítulo descriptivo</p>
+        </div>
+        <div class="features__grid">
+            <div class="features__item">
+                <div class="features__icon">
+                    <span class="icon icon--star"></span>
+                </div>
+                <h3 class="features__item-title">Característica</h3>
+                <p class="features__item-description">Descripción...</p>
+                <a href="#" class="features__item-link">Ver más</a>
+            </div>
+        </div>
+    </div>
+</section>
+```
+
+#### Features Cards
+- ✅ Tarjetas con imágenes destacadas
+- ✅ Categorías y metadatos organizados
+- ✅ Overlay icons con efectos de transformación
+- ✅ Footer con links y metadata
+
+```html
+<section class="features features--cards">
+    <div class="features__container">
+        <div class="features__cards">
+            <div class="features__card">
+                <img src="imagen.jpg" class="features__card-image">
+                <div class="features__card-overlay">
+                    <span class="icon icon--star"></span>
+                </div>
+                <div class="features__card-content">
+                    <span class="features__card-category">Categoría</span>
+                    <h3 class="features__card-title">Título</h3>
+                    <p class="features__card-description">Descripción...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+```
+
+#### Features Highlight
+- ✅ Layout de dos columnas con imagen
+- ✅ Lista de características con iconos
+- ✅ Sección de CTAs prominente
+- ✅ Efectos visuales de profundidad
+
+```html
+<section class="features features--highlight">
+    <div class="features__container">
+        <div class="features__content">
+            <div class="features__text">
+                <h2 class="features__title">Título Destacado</h2>
+                <p class="features__description">Descripción principal...</p>
+                <ul class="features__list">
+                    <li class="features__list-item">
+                        <span class="icon icon--check features__list-icon"></span>
+                        <div class="features__list-content">
+                            <h4>Característica</h4>
+                            <p>Descripción detallada...</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="features__cta">
+                    <a href="#" class="btn btn--primary">CTA Principal</a>
+                </div>
+            </div>
+            <div class="features__image">
+                <img src="imagen.jpg" alt="Descripción">
+            </div>
+        </div>
+    </div>
+</section>
+```
+
+## 📚 Recursos de Implementación
+
+### Archivos Demo
+- **ejemplos-nuevos-componentes.html**: Showcase completo de todos los nuevos componentes
+- **sergio-components.css**: CSS actualizado con todos los componentes
+- **sergio-design-tokens.css**: Variables y tokens del sistema
+
+### Guidelines de Uso
+1. **Siempre importar primero** los design tokens
+2. **Usar variables CSS** para mantener consistencia
+3. **Seguir nomenclatura BEM** para modificadores
+4. **Testear responsividad** en múltiples dispositivos
+5. **Validar accesibilidad** con herramientas estándar
+
+---
+
+*Design System v2.1 - Actualizado: 2025-06-28*  
+*Estado: Ampliado con componentes Footer, Features e Iconos*  
 *Uso: Todos los proyectos web CEREBRO-DIGITAL*

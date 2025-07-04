@@ -1,0 +1,2849 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System - CEREBRO DIGITAL</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Sistema de Diseño Atómico -->
+    <link rel="stylesheet" href="sergio-design-tokens.css">
+    <link rel="stylesheet" href="sergio-components.css">
+    
+    <!-- SVG Icons Sprite -->
+    <link rel="preload" href="sergio-icons.svg" as="image" type="image/svg+xml">
+    
+    <!-- Interactive Components JavaScript -->
+    <script src="sergio-interactions.js" defer></script>
+    
+    <!-- Design System Coherence Checker -->
+    <script>
+        // Verificación de coherencia del design system
+        document.addEventListener('DOMContentLoaded', function() {
+            const atomicClasses = ['grid', 'mb-', 'mt-', 'p-', 'm-', 'text-'];
+            const systemComponents = ['header', 'card', 'btn', 'badge', 'alert', 'hero', 'section', 'sidebar'];
+            
+            // Contar uso de clases atómicas
+            let atomicCount = 0;
+            atomicClasses.forEach(prefix => {
+                const elements = document.querySelectorAll(`[class*="${prefix}"]`);
+                atomicCount += elements.length;
+            });
+            
+            // Contar componentes del sistema
+            let componentCount = 0;
+            systemComponents.forEach(component => {
+                const elements = document.querySelectorAll(`[class*="${component}"]`);
+                componentCount += elements.length;
+            });
+            
+            // Mostrar métricas en consola
+            console.log('=== DESIGN SYSTEM COHERENCE REPORT ===');
+            console.log(`✓ Clases atómicas en uso: ${atomicCount}`);
+            console.log(`✓ Componentes del sistema: ${componentCount}`);
+            console.log(`✓ Esta documentación usa su propio sistema: ${atomicCount + componentCount > 50 ? 'SÍ' : 'NECESITA MEJORAS'}`);
+            console.log('=======================================');
+        });
+    </script>
+    
+    <style>
+        /* Estilos específicos mínimos para documentación - usando variables del sistema */
+        
+        .spacing-demo {
+            display: grid;
+            gap: var(--space-3);
+        }
+        
+        .spacing-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .spacing-visual {
+            background: var(--color-accent-primary);
+            height: 20px;
+        }
+        
+        .spacing-label {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            min-width: 120px;
+        }
+        
+        /* Layout específico usando grid responsive */
+        @media (max-width: 768px) {
+            .grid[style*="280px"] {
+                grid-template-columns: 1fr !important;
+                gap: var(--space-4) !important;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- SVG Icons Sprite -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <!-- Navigation Icons -->
+        <symbol id="icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9,22 9,12 15,12 15,22"/>
+        </symbol>
+        
+        <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+        </symbol>
+        
+        <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+        </symbol>
+        
+        <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9,18 15,12 9,6"/>
+        </symbol>
+        
+        <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12,5 19,12 12,19"/>
+        </symbol>
+        
+        <!-- Action Icons -->
+        <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+        </symbol>
+        
+        <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+        </symbol>
+        
+        <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v6m0 6v6M3.05 6.05l4.24 4.24m2.82 2.82l4.24 4.24M1 12h6m6 0h6M3.05 17.95l4.24-4.24m2.82-2.82l4.24-4.24"/>
+        </symbol>
+        
+        <!-- Contact & Social Icons -->
+        <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+        </symbol>
+        
+        <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </symbol>
+        
+        <symbol id="icon-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </symbol>
+        
+        <symbol id="icon-twitter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+        </symbol>
+        
+        <symbol id="icon-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+        </symbol>
+        
+        <!-- Feature Icons -->
+        <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+        </symbol>
+        
+        <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </symbol>
+        
+        <symbol id="icon-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/>
+        </symbol>
+        
+        <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </symbol>
+        
+        <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20,6 9,17 4,12"/>
+        </symbol>
+        
+        <symbol id="icon-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+        </symbol>
+    </svg>
+    <!-- Header usando el sistema de componentes del design system -->
+    <header class="header header--simple">
+        <div class="header__container">
+            <div class="header__brand">
+                <a href="#" class="header__logo">01234</a>
+                <span class="header__brand-text">Design System</span>
+            </div>
+            <nav class="header__nav">
+                <ul style="list-style: none; margin: 0; padding: 0; display: flex; gap: var(--space-6);">
+                    <li class="header__nav-item">
+                        <a href="#principios" class="header__nav-link">Principios</a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a href="#componentes" class="header__nav-link">Componentes</a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a href="#guia" class="header__nav-link">Guía</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Layout principal usando grid del sistema -->
+    <div class="container">
+        <div class="grid" style="grid-template-columns: 280px 1fr; gap: var(--space-8); margin-top: var(--space-6);">
+            <!-- Sidebar usando componente del sistema -->
+            <nav class="sidebar">
+                <div class="sidebar__header">
+                    <h3 class="sidebar__title">Navegación</h3>
+                    <p class="sidebar__subtitle">Documentación</p>
+                </div>
+                <div class="sidebar__group">
+                    <h4 class="sidebar__group-title">Fundamentos</h4>
+                    <ul class="sidebar__nav">
+                        <li class="sidebar__item">
+                            <a href="#principios" class="sidebar__link">
+                                <span class="sidebar__icon">📖</span>
+                                Principios
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#colores" class="sidebar__link">
+                                <span class="sidebar__icon">🎨</span>
+                                Colores
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#tipografia" class="sidebar__link">
+                                <span class="sidebar__icon">✍️</span>
+                                Tipografía
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#espaciado" class="sidebar__link">
+                                <span class="sidebar__icon">📐</span>
+                                Espaciado
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sidebar__group">
+                    <h4 class="sidebar__group-title">Componentes</h4>
+                    <ul class="sidebar__nav">
+                        <li class="sidebar__item">
+                            <a href="#botones" class="sidebar__link">
+                                <span class="sidebar__icon">🔘</span>
+                                Botones
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#cards" class="sidebar__link">
+                                <span class="sidebar__icon">🃏</span>
+                                Cards
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#grid" class="sidebar__link">
+                                <span class="sidebar__icon">⚏</span>
+                                Grid System
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#badges" class="sidebar__link">
+                                <span class="sidebar__icon">🏷️</span>
+                                Badges
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#alerts" class="sidebar__link">
+                                <span class="sidebar__icon">⚠️</span>
+                                Alerts
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#modals" class="sidebar__link">
+                                <span class="sidebar__icon">🪟</span>
+                                Modals
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#tabs" class="sidebar__link">
+                                <span class="sidebar__icon">📑</span>
+                                Tabs
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sidebar__group">
+                    <h4 class="sidebar__group-title">Avanzados</h4>
+                    <ul class="sidebar__nav">
+                        <li class="sidebar__item">
+                            <a href="#forms-avanzados" class="sidebar__link">
+                                <span class="sidebar__icon">📝</span>
+                                Forms
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#carousels" class="sidebar__link">
+                                <span class="sidebar__icon">🎠</span>
+                                Carousels
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#galleries" class="sidebar__link">
+                                <span class="sidebar__icon">🖼️</span>
+                                Galerías
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#heroes" class="sidebar__link">
+                                <span class="sidebar__icon">🦸</span>
+                                Heroes
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#spacing" class="sidebar__link">
+                                <span class="sidebar__icon">📏</span>
+                                Spacing
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sidebar__group">
+                    <h4 class="sidebar__group-title">Nuevos Componentes</h4>
+                    <ul class="sidebar__nav">
+                        <li class="sidebar__item">
+                            <a href="#footers" class="sidebar__link">
+                                <span class="sidebar__icon">🦶</span>
+                                Footers
+                                <span class="sidebar__badge">2</span>
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#features" class="sidebar__link">
+                                <span class="sidebar__icon">⭐</span>
+                                Features
+                                <span class="sidebar__badge">3</span>
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#icons" class="sidebar__link">
+                                <span class="sidebar__icon">🎨</span>
+                                Iconos SVG
+                                <span class="sidebar__badge">New</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Contenido principal -->
+            <main class="p-6">
+                <!-- Hero Section usando componente del sistema -->
+                <section class="hero hero--minimal">
+                    <div class="hero__container">
+                        <div class="hero__content">
+                            <h1 class="hero__title">Design System Atómico</h1>
+                            <p class="hero__subtitle">
+                                Sistema de diseño unificado para proyectos CEREBRO-DIGITAL.<br>
+                                Enfoque minimalista, tipografía como arquitectura y color con propósito.
+                            </p>
+                            <div class="hero__cta">
+                                <a href="#principios" class="btn btn--primary btn--lg">Explorar Principios</a>
+                                <a href="#componentes" class="btn btn--secondary btn--lg">Ver Componentes</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sección Principios usando componentes del sistema -->
+                <section id="principios" class="section">
+                    <div class="section__header">
+                        <h2 class="section__title">Principios Fundamentales</h2>
+                        <p class="section__subtitle">
+                            Base filosófica y metodológica del sistema de diseño
+                        </p>
+                    </div>
+                    
+                    <!-- Alert de demostracíon usando componente del sistema -->
+                    <div class="alert alert--info mb-6">
+                        <div class="alert__title">Sistema Auto-aplicado</div>
+                        <div class="alert__message">Esta documentación está construida usando los propios componentes del design system, demostrando coherencia y aplicación real.</div>
+                    </div>
+                    
+                    <!-- Grid de principios usando clases atómicas -->
+                    <div class="grid grid-2 mb-8">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3 class="text-lg mb-4" style="font-family: var(--font-mono); color: var(--color-accent-primary); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);">Tipografía como Arquitectura</h3>
+                                <p class="text-base mb-3" style="line-height: var(--line-height-relaxed);">La tipografía estructura el contenido y define la jerarquía visual.</p>
+                                <span class="badge badge--primary">Principio Core</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__body">
+                                <h3 class="text-lg mb-4" style="font-family: var(--font-mono); color: var(--color-accent-primary); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);">Color con Propósito</h3>
+                                <p class="text-base mb-3" style="line-height: var(--line-height-relaxed);">Base neutra (80%) + énfasis justificado (20%) para máxima claridad.</p>
+                                <span class="badge badge--secondary">80/20 Rule</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__body">
+                                <h3 class="text-lg mb-4" style="font-family: var(--font-mono); color: var(--color-accent-primary); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);">Funcionalidad > Ornamentación</h3>
+                                <p class="text-base mb-3" style="line-height: var(--line-height-relaxed);">Cada elemento debe servir una función específica y clara.</p>
+                                <span class="badge badge--success">Bauhaus</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__body">
+                                <h3 class="text-lg mb-4" style="font-family: var(--font-mono); color: var(--color-accent-primary); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);">Limpieza Extrema</h3>
+                                <p class="text-base mb-3" style="line-height: var(--line-height-relaxed);">Eliminar todo lo no esencial siguiendo principios de diseño minimalista.</p>
+                                <span class="badge badge--warning">Minimal</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Demostración práctica del spacing atómico -->
+                    <div class="card mt-8">
+                        <div class="card__header">
+                            <h3 style="font-family: var(--font-mono); color: var(--color-accent-primary);">Spacing Atómico en Acción</h3>
+                        </div>
+                        <div class="card__body">
+                            <p class="mb-4">Esta documentación usa clases atómicas como:</p>
+                            <div class="grid grid-3" style="gap: var(--space-4);">
+                                <div class="p-4" style="background: var(--color-surface-secondary); border-radius: var(--border-radius-base);">
+                                    <code class="text-sm" style="font-family: var(--font-mono); color: var(--color-accent-primary);">mb-4</code>
+                                    <p class="text-xs mt-2" style="color: var(--color-text-muted);">margin-bottom: 1rem</p>
+                                </div>
+                                <div class="p-4" style="background: var(--color-surface-secondary); border-radius: var(--border-radius-base);">
+                                    <code class="text-sm" style="font-family: var(--font-mono); color: var(--color-accent-primary);">grid grid-2</code>
+                                    <p class="text-xs mt-2" style="color: var(--color-text-muted);">display: grid + 2 columns</p>
+                                </div>
+                                <div class="p-4" style="background: var(--color-surface-secondary); border-radius: var(--border-radius-base);">
+                                    <code class="text-sm" style="font-family: var(--font-mono); color: var(--color-accent-primary);">text-lg</code>
+                                    <p class="text-xs mt-2" style="color: var(--color-text-muted);">font-size: 1.125rem</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="colores" class="section">
+                    <div class="section__header">
+                        <h2 class="section__title">Paleta de Colores</h2>
+                        <p class="section__subtitle">Sistema de colores neutros como base con acentos justificados por propósito</p>
+                    </div>
+                    
+                    <h3 class="text-xl mb-6" style="color: var(--color-text-primary);">Base Neutra (80% del diseño)</h3>
+                    <div class="grid grid-auto-fit-sm mb-8">
+                        <div class="card">
+                            <div class="p-4 text-center">
+                                <div class="mb-3" style="width: 100%; height: 80px; background: #ffffff; border-radius: var(--border-radius-lg); border: var(--border-width-thin) solid var(--color-gray-200);"></div>
+                                <div class="text-sm" style="font-family: var(--font-mono); font-weight: var(--font-weight-medium); margin-bottom: var(--space-1);">White</div>
+                                <div class="text-xs" style="font-family: var(--font-mono); color: var(--color-text-muted);">#ffffff</div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="p-4 text-center">
+                                <div class="mb-3" style="width: 100%; height: 80px; background: #fafafa; border-radius: var(--border-radius-lg); border: var(--border-width-thin) solid var(--color-gray-200);"></div>
+                                <div class="text-sm" style="font-family: var(--font-mono); font-weight: var(--font-weight-medium); margin-bottom: var(--space-1);">Gray 50</div>
+                                <div class="text-xs" style="font-family: var(--font-mono); color: var(--color-text-muted);">#fafafa</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #f5f5f5;"></div>
+                            <div class="color-name">Gray 100</div>
+                            <div class="color-value">#f5f5f5</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #e5e5e5;"></div>
+                            <div class="color-name">Gray 200</div>
+                            <div class="color-value">#e5e5e5</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #a3a3a3;"></div>
+                            <div class="color-name">Gray 400</div>
+                            <div class="color-value">#a3a3a3</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #525252;"></div>
+                            <div class="color-name">Gray 600</div>
+                            <div class="color-value">#525252</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #262626;"></div>
+                            <div class="color-name">Gray 800</div>
+                            <div class="color-value">#262626</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #171717;"></div>
+                            <div class="color-name">Gray 900</div>
+                            <div class="color-value">#171717</div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl mb-6" style="color: var(--color-text-primary);">Colores de Acento (20% - Solo uso justificado)</h3>
+                    <div class="grid grid-auto-fit-sm mb-8">
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #0066cc;"></div>
+                            <div class="color-name">Accent Primary</div>
+                            <div class="color-value">#0066cc</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #00aa44;"></div>
+                            <div class="color-name">Accent Secondary</div>
+                            <div class="color-value">#00aa44</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #ff6600;"></div>
+                            <div class="color-name">Accent Warning</div>
+                            <div class="color-value">#ff6600</div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background: #cc0000;"></div>
+                            <div class="color-name">Accent Error</div>
+                            <div class="color-value">#cc0000</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tipografia" class="section">
+                    <h2 class="section__title">Sistema Tipográfico</h2>
+                    
+                    <div class="grid grid-2 gap-lg">
+                        <div class="component-example">
+                            <div class="component-title">Fuente Primaria - Avenir Next</div>
+                            <div style="font-family: var(--font-primary); font-size: var(--text-2xl);">
+                                Avenir Next, Futura, System Sans
+                            </div>
+                            <p style="font-family: var(--font-primary); margin-top: var(--space-3);">
+                                Sans-serif limpia y moderna para interfaces, navegación y elementos UI. Perfecta legibilidad en pantallas.
+                            </p>
+                        </div>
+                        
+                        <div class="component-example">
+                            <div class="component-title">Fuente Secundaria - Crimson Text</div>
+                            <div style="font-family: var(--font-secondary); font-size: var(--text-2xl);">
+                                Crimson Text, Charter, Georgia
+                            </div>
+                            <p style="font-family: var(--font-secondary); margin-top: var(--space-3);">
+                                Serif elegante para contenido largo, artículos y textos literarios. Aporta calidez y elegancia editorial.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Escala Tipográfica - Fuente Primaria</div>
+                        <div class="space-y-md">
+                            <div style="font-size: var(--text-4xl); font-weight: var(--font-weight-light);" class="font-primary">
+                                Text 4XL - Títulos Hero
+                            </div>
+                            <div style="font-size: var(--text-3xl); font-weight: var(--font-weight-light);" class="font-primary">
+                                Text 3XL - Títulos Principales
+                            </div>
+                            <div style="font-size: var(--text-2xl); font-weight: var(--font-weight-base);" class="font-primary">
+                                Text 2XL - Subtítulos
+                            </div>
+                            <div style="font-size: var(--text-xl); font-weight: var(--font-weight-base);" class="font-primary">
+                                Text XL - Títulos de Sección
+                            </div>
+                            <div style="font-size: var(--text-base);" class="font-primary">
+                                Text Base - Cuerpo Principal
+                            </div>
+                            <div style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);" class="font-primary">
+                                Text SM - Navegación
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Escala Tipográfica - Fuente Secundaria</div>
+                        <div class="space-y-md">
+                            <div style="font-size: var(--text-4xl); font-weight: var(--font-weight-light);" class="font-secondary">
+                                Text 4XL - Títulos Editoriales
+                            </div>
+                            <div style="font-size: var(--text-3xl); font-weight: var(--font-weight-base);" class="font-secondary">
+                                Text 3XL - Títulos de Artículo
+                            </div>
+                            <div style="font-size: var(--text-2xl); font-weight: var(--font-weight-base);" class="font-secondary">
+                                Text 2XL - Subtítulos Editoriales
+                            </div>
+                            <div style="font-size: var(--text-xl); font-weight: var(--font-weight-base);" class="font-secondary">
+                                Text XL - Encabezados de Sección
+                            </div>
+                            <div style="font-size: var(--text-base); line-height: var(--line-height-relaxed);" class="font-secondary">
+                                Text Base - Cuerpo de texto largo, artículos, contenido editorial que requiere una lectura cómoda y elegante. La serif añade calidez y facilita la lectura continua.
+                            </div>
+                            <div style="font-size: var(--text-sm); font-style: italic;" class="font-secondary">
+                                Text SM - Citas y anotaciones
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Combinaciones Tipográficas</div>
+                        <div class="space-y-lg">
+                            <div>
+                                <h3 style="font-size: var(--text-2xl); margin-bottom: var(--space-3);" class="font-primary">
+                                    Título con Sans-serif
+                                </h3>
+                                <p style="font-size: var(--text-base); line-height: var(--line-height-relaxed);" class="font-secondary">
+                                    El cuerpo del artículo utiliza la serif para mejor legibilidad en textos largos. La combinación de sans-serif en títulos y serif en cuerpo es un patrón clásico editorial que funciona muy bien en web.
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <h3 style="font-size: var(--text-2xl); margin-bottom: var(--space-3);" class="font-secondary">
+                                    Título Editorial con Serif
+                                </h3>
+                                <p style="font-size: var(--text-base);" class="font-primary">
+                                    Para proyectos con enfoque más moderno, puedes usar serif en títulos y sans-serif en cuerpo. Esto aporta elegancia al título manteniendo claridad en el texto.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="espaciado" class="section">
+                    <h2 class="section__title">Sistema de Espaciado</h2>
+                    <p>Sistema basado en múltiplos de 8px para consistencia y armonía visual.</p>
+                    
+                    <div class="spacing-demo">
+                        <div class="spacing-item">
+                            <div class="spacing-label">--space-2 (8px)</div>
+                            <div class="spacing-visual" style="width: var(--space-2);"></div>
+                        </div>
+                        <div class="spacing-item">
+                            <div class="spacing-label">--space-4 (16px)</div>
+                            <div class="spacing-visual" style="width: var(--space-4);"></div>
+                        </div>
+                        <div class="spacing-item">
+                            <div class="spacing-label">--space-6 (24px)</div>
+                            <div class="spacing-visual" style="width: var(--space-6);"></div>
+                        </div>
+                        <div class="spacing-item">
+                            <div class="spacing-label">--space-8 (32px)</div>
+                            <div class="spacing-visual" style="width: var(--space-8);"></div>
+                        </div>
+                        <div class="spacing-item">
+                            <div class="spacing-label">--space-12 (48px)</div>
+                            <div class="spacing-visual" style="width: var(--space-12);"></div>
+                        </div>
+                        <div class="spacing-item">
+                            <div class="spacing-label">--space-16 (64px)</div>
+                            <div class="spacing-visual" style="width: var(--space-16);"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="componentes" class="section">
+                    <h2 class="section__title">Componentes Atómicos</h2>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Navegación</div>
+                        <nav class="nav">
+                            <div class="nav__item">
+                                <a href="#" class="nav__link nav__link--active">Inicio</a>
+                            </div>
+                            <div class="nav__item">
+                                <a href="#" class="nav__link">Proyectos</a>
+                            </div>
+                            <div class="nav__item">
+                                <a href="#" class="nav__link">Contacto</a>
+                            </div>
+                        </nav>
+                    </div>
+                </section>
+
+                <section id="botones" class="section">
+                    <h2 class="section__title">Botones</h2>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Estados de Botón</div>
+                        <div class="space-y-md">
+                            <div>
+                                <button class="btn btn--primary">Botón Primario</button>
+                                <button class="btn btn--secondary">Botón Secundario</button>
+                                <button class="btn btn--ghost">Botón Ghost</button>
+                            </div>
+                            <div>
+                                <button class="btn btn--primary btn--sm">Pequeño</button>
+                                <button class="btn btn--primary">Regular</button>
+                                <button class="btn btn--primary btn--lg">Grande</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="cards" class="section">
+                    <h2 class="section__title">Cards</h2>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Tarjeta de Proyecto</div>
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Portfolio Completo</h3>
+                            </div>
+                            <div class="card__body">
+                                <p>Implementación completa del sistema de diseño con tipografía Avenir Next y paleta neutra justificada.</p>
+                            </div>
+                            <div class="card__footer">
+                                <button class="btn btn--primary btn--sm">Ver Proyecto</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="responsive" class="section">
+                    <h2 class="section__title">Responsive Design</h2>
+                    <p>
+                        Enfoque mobile-first con breakpoints sistemáticos y tipografía fluida.
+                    </p>
+                    
+                    <div class="grid grid-2">
+                        <div class="component-example">
+                            <h3 class="component-title">Breakpoints</h3>
+                            <p>Mobile: 640px • Tablet: 768px • Desktop: 1024px • Wide: 1280px</p>
+                        </div>
+                        <div class="component-example">
+                            <h3 class="component-title">Tipografía Fluida</h3>
+                            <p>Escalado automático usando clamp() para legibilidad en todos los dispositivos.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="grid" class="section">
+                    <h2 class="section__title">Sistema de Grid Completo</h2>
+                    <p>Sistema de grid de 12 columnas con layouts automáticos y responsive completo.</p>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Grid 12 Columnas</div>
+                        <div class="grid grid-12 gap-sm" style="margin-bottom: var(--space-4);">
+                            <div style="background: var(--color-gray-200); padding: var(--space-2); text-align: center;">1</div>
+                            <div style="background: var(--color-gray-200); padding: var(--space-2); text-align: center;">2</div>
+                            <div style="background: var(--color-gray-200); padding: var(--space-2); text-align: center;">3</div>
+                            <div style="background: var(--color-gray-200); padding: var(--space-2); text-align: center;">4</div>
+                            <div style="background: var(--color-gray-200); padding: var(--space-2); text-align: center;">5</div>
+                            <div style="background: var(--color-gray-200); padding: var(--space-2); text-align: center;">6</div>
+                            <div style="background: var(--color-gray-200); padding: var(--space-2); text-align: center;">7</div>
+                            <div style="background: var(--color-gray-200); padding: var(--space-2); text-align: center;">8</div>
+                            <div style="background: var(--color-gray-200); padding: var(--space-2); text-align: center;">9</div>
+                            <div style="background: var(--color-gray-200); padding: var(--space-2); text-align: center;">10</div>
+                            <div style="background: var(--color-gray-200); padding: var(--space-2); text-align: center;">11</div>
+                            <div style="background: var(--color-gray-200); padding: var(--space-2); text-align: center;">12</div>
+                        </div>
+                    </div>
+
+                    <div class="component-example">
+                        <div class="component-title">Auto-fit Responsive</div>
+                        <div class="grid grid-auto-fit-md gap-md">
+                            <div style="background: var(--color-surface-secondary); padding: var(--space-4); text-align: center;">Card 1</div>
+                            <div style="background: var(--color-surface-secondary); padding: var(--space-4); text-align: center;">Card 2</div>
+                            <div style="background: var(--color-surface-secondary); padding: var(--space-4); text-align: center;">Card 3</div>
+                            <div style="background: var(--color-surface-secondary); padding: var(--space-4); text-align: center;">Card 4</div>
+                        </div>
+                    </div>
+
+                    <div class="component-example">
+                        <div class="component-title">Spanning Columns</div>
+                        <div class="grid grid-12 gap-sm">
+                            <div class="col-span-6" style="background: var(--color-accent-primary); color: white; padding: var(--space-4); text-align: center;">col-span-6</div>
+                            <div class="col-span-3" style="background: var(--color-accent-secondary); color: white; padding: var(--space-4); text-align: center;">col-span-3</div>
+                            <div class="col-span-3" style="background: var(--color-accent-warning); color: white; padding: var(--space-4); text-align: center;">col-span-3</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="badges" class="section">
+                    <h2 class="section__title">Badges</h2>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Estados de Badge</div>
+                        <div class="space-y-md">
+                            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+                                <span class="badge badge--primary">Primary</span>
+                                <span class="badge badge--secondary">Secondary</span>
+                                <span class="badge badge--success">Success</span>
+                                <span class="badge badge--warning">Warning</span>
+                                <span class="badge badge--error">Error</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="alerts" class="section">
+                    <h2 class="section__title">Alerts</h2>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Tipos de Alert</div>
+                        <div class="alert alert--info">
+                            <div class="alert__title">Información</div>
+                            <div class="alert__message">Este es un mensaje informativo para el usuario.</div>
+                        </div>
+                        <div class="alert alert--success">
+                            <div class="alert__title">Éxito</div>
+                            <div class="alert__message">La operación se completó correctamente.</div>
+                        </div>
+                        <div class="alert alert--warning">
+                            <div class="alert__title">Advertencia</div>
+                            <div class="alert__message">Ten cuidado con esta acción.</div>
+                        </div>
+                        <div class="alert alert--error">
+                            <div class="alert__title">Error</div>
+                            <div class="alert__message">Ha ocurrido un error en el sistema.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="modals" class="section">
+                    <h2 class="section__title">Modals</h2>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Modal Demo</div>
+                        <button class="btn btn--primary" onclick="openModal()">Abrir Modal</button>
+                    </div>
+                </section>
+
+                <section id="tabs" class="section">
+                    <h2 class="section__title">Tabs</h2>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Navegación por Pestañas</div>
+                        <div class="tabs">
+                            <ul class="tabs__list">
+                                <li class="tabs__item">
+                                    <a href="#tab1" class="tabs__trigger is-active">Tab 1</a>
+                                </li>
+                                <li class="tabs__item">
+                                    <a href="#tab2" class="tabs__trigger">Tab 2</a>
+                                </li>
+                                <li class="tabs__item">
+                                    <a href="#tab3" class="tabs__trigger">Tab 3</a>
+                                </li>
+                            </ul>
+                            <div class="tabs__content">
+                                <div id="tab1" class="tabs__panel is-active">
+                                    <p>Contenido de la primera pestaña.</p>
+                                </div>
+                                <div id="tab2" class="tabs__panel">
+                                    <p>Contenido de la segunda pestaña.</p>
+                                </div>
+                                <div id="tab3" class="tabs__panel">
+                                    <p>Contenido de la tercera pestaña.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tables" class="section">
+                    <h2 class="section__title">Tables</h2>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Tabla Responsive</div>
+                        <table class="table table--striped">
+                            <thead class="table__header">
+                                <tr class="table__row">
+                                    <th class="table__cell">Nombre</th>
+                                    <th class="table__cell">Email</th>
+                                    <th class="table__cell">Rol</th>
+                                    <th class="table__cell">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table__row">
+                                    <td class="table__cell">Sergio Forés</td>
+                                    <td class="table__cell">sergio@ejemplo.com</td>
+                                    <td class="table__cell">Desarrollador</td>
+                                    <td class="table__cell"><span class="badge badge--success">Activo</span></td>
+                                </tr>
+                                <tr class="table__row">
+                                    <td class="table__cell">Ana García</td>
+                                    <td class="table__cell">ana@ejemplo.com</td>
+                                    <td class="table__cell">Diseñadora</td>
+                                    <td class="table__cell"><span class="badge badge--primary">Activo</span></td>
+                                </tr>
+                                <tr class="table__row">
+                                    <td class="table__cell">Carlos López</td>
+                                    <td class="table__cell">carlos@ejemplo.com</td>
+                                    <td class="table__cell">Manager</td>
+                                    <td class="table__cell"><span class="badge badge--warning">Pendiente</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="forms-avanzados" class="section">
+                    <h2 class="section__title">Forms Avanzados</h2>
+                    
+                    <div class="component-example">
+                        <div class="component-title">Elementos de Formulario</div>
+                        <div class="grid grid-2 gap-lg">
+                            <div>
+                                <div class="form-group">
+                                    <label class="label">Switch</label>
+                                    <label class="switch">
+                                        <input type="checkbox" class="switch__input">
+                                        <span class="switch__slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="label">Chips Seleccionables</label>
+                                    <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+                                        <div class="chip">JavaScript</div>
+                                        <div class="chip is-selected">CSS</div>
+                                        <div class="chip">HTML</div>
+                                        <div class="chip">React</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="form-group">
+                                    <label class="label">Progress Bar</label>
+                                    <div class="progress">
+                                        <div class="progress__bar" style="width: 70%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="label">Loading States</label>
+                                    <div style="display: flex; gap: var(--space-4); align-items: center;">
+                                        <div class="loading"></div>
+                                        <div class="loading loading--lg"></div>
+                                        <span>Cargando...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="otros" class="section">
+                    <h2 class="section__title">Otros Componentes</h2>
+                    
+                    <div class="grid grid-2 gap-lg">
+                        <div class="component-example">
+                            <div class="component-title">Breadcrumbs</div>
+                            <nav>
+                                <ol class="breadcrumbs">
+                                    <li class="breadcrumbs__item">
+                                        <a href="#" class="breadcrumbs__link">Inicio</a>
+                                    </li>
+                                    <li class="breadcrumbs__item">
+                                        <a href="#" class="breadcrumbs__link">Proyectos</a>
+                                    </li>
+                                    <li class="breadcrumbs__item">
+                                        <span class="breadcrumbs__current">Design System</span>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                        
+                        <div class="component-example">
+                            <div class="component-title">Tooltip</div>
+                            <div class="tooltip">
+                                <button class="btn btn--secondary">Hover para tooltip</button>
+                                <div class="tooltip__content">Este es un tooltip informativo</div>
+                            </div>
+                        </div>
+                        
+                        <div class="component-example">
+                            <div class="component-title">Dividers</div>
+                            <p>Contenido arriba</p>
+                            <hr class="divider">
+                            <p>Contenido abajo</p>
+                            <hr class="divider divider--dashed">
+                            <p>Con línea discontinua</p>
+                        </div>
+                        
+                        <div class="component-example">
+                            <div class="component-title">Skeleton Loading</div>
+                            <div class="skeleton skeleton--title"></div>
+                            <div class="skeleton skeleton--text"></div>
+                            <div class="skeleton skeleton--text"></div>
+                            <div style="display: flex; gap: var(--space-3); align-items: center; margin-top: var(--space-4);">
+                                <div class="skeleton skeleton--avatar"></div>
+                                <div style="flex: 1;">
+                                    <div class="skeleton skeleton--text" style="width: 60%;"></div>
+                                    <div class="skeleton skeleton--text" style="width: 40%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Modal Demo -->
+    <div id="demoModal" class="modal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3 class="modal__title">Modal de Ejemplo</h3>
+                <button class="modal__close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal__body">
+                <p>Este es el contenido del modal. Puedes incluir cualquier contenido aquí: texto, formularios, imágenes, etc.</p>
+                <div class="alert alert--info">
+                    <div class="alert__message">Los modals son perfectos para contenido adicional sin cambiar de página.</div>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button class="btn btn--secondary" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn--primary">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- INTERACTIVE COMPONENTS - Componentes avanzados con JavaScript -->
+    
+    <!-- Carousels Section -->
+    <section id="carousels" class="section">
+        <h2 class="section__title">Carousels</h2>
+        <p class="section__subtitle">Carruseles de contenido con navegación manual, automática y soporte touch.</p>
+        
+        <div class="component-example">
+            <div class="component-title">Carousel Básico</div>
+            <div class="carousel" data-autoplay="false">
+                <div class="carousel__container">
+                    <div class="carousel__slide">
+                        <div class="carousel__content">
+                            <img class="carousel__image" src="https://picsum.photos/300/200?random=1" alt="Slide 1">
+                            <h3 class="carousel__title">Primera Slide</h3>
+                            <p class="carousel__text">Contenido de la primera slide del carousel. Navegación manual con controles laterales.</p>
+                        </div>
+                    </div>
+                    <div class="carousel__slide">
+                        <div class="carousel__content">
+                            <img class="carousel__image" src="https://picsum.photos/300/200?random=2" alt="Slide 2">
+                            <h3 class="carousel__title">Segunda Slide</h3>
+                            <p class="carousel__text">Segunda slide con diferente contenido. Sistema completamente responsive.</p>
+                        </div>
+                    </div>
+                    <div class="carousel__slide">
+                        <div class="carousel__content">
+                            <img class="carousel__image" src="https://picsum.photos/300/200?random=3" alt="Slide 3">
+                            <h3 class="carousel__title">Tercera Slide</h3>
+                            <p class="carousel__text">Última slide del ejemplo. Soporte para touch/swipe en móviles.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel__controls carousel__prev">
+                    <button class="carousel__btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="carousel__controls carousel__next">
+                    <button class="carousel__btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="carousel__indicators">
+                    <button class="carousel__indicator is-active"></button>
+                    <button class="carousel__indicator"></button>
+                    <button class="carousel__indicator"></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Carousel Automático</div>
+            <div class="carousel" data-autoplay="true" data-interval="3000">
+                <div class="carousel__container">
+                    <div class="carousel__slide">
+                        <div class="carousel__content">
+                            <h3 class="carousel__title">Auto-Play Activo</h3>
+                            <p class="carousel__text">Este carousel se mueve automáticamente cada 3 segundos. Se pausa al hacer hover.</p>
+                        </div>
+                    </div>
+                    <div class="carousel__slide">
+                        <div class="carousel__content">
+                            <h3 class="carousel__title">Segunda Automática</h3>
+                            <p class="carousel__text">Segundo slide con auto-play. Combina navegación manual y automática.</p>
+                        </div>
+                    </div>
+                    <div class="carousel__slide">
+                        <div class="carousel__content">
+                            <h3 class="carousel__title">Tercera y Loop</h3>
+                            <p class="carousel__text">Al llegar aquí, vuelve al inicio automáticamente creando un loop infinito.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel__indicators">
+                    <button class="carousel__indicator is-active"></button>
+                    <button class="carousel__indicator"></button>
+                    <button class="carousel__indicator"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Slideshows Section -->
+    <section id="slideshows" class="section">
+        <h2 class="section__title">Slideshows</h2>
+        <p class="section__subtitle">Presentaciones automáticas de imágenes con controles de reproducción y barra de progreso.</p>
+        
+        <div class="component-example">
+            <div class="component-title">Slideshow con Controles</div>
+            <div class="slideshow" data-autoplay="true" data-interval="4000">
+                <div class="slideshow__slide is-active">
+                    <img class="slideshow__image" src="https://picsum.photos/800/400?random=10" alt="Imagen 1">
+                    <div class="slideshow__overlay">
+                        <h3 class="slideshow__title">Primera Imagen</h3>
+                        <p class="slideshow__description">Descripción de la primera imagen del slideshow. Transiciones suaves entre slides.</p>
+                    </div>
+                </div>
+                <div class="slideshow__slide">
+                    <img class="slideshow__image" src="https://picsum.photos/800/400?random=11" alt="Imagen 2">
+                    <div class="slideshow__overlay">
+                        <h3 class="slideshow__title">Segunda Imagen</h3>
+                        <p class="slideshow__description">Segunda imagen con overlay de información. Controles de play/pause disponibles.</p>
+                    </div>
+                </div>
+                <div class="slideshow__slide">
+                    <img class="slideshow__image" src="https://picsum.photos/800/400?random=12" alt="Imagen 3">
+                    <div class="slideshow__overlay">
+                        <h3 class="slideshow__title">Tercera Imagen</h3>
+                        <p class="slideshow__description">Última imagen del ciclo. Incluye barra de progreso visual para timing.</p>
+                    </div>
+                </div>
+                
+                <div class="slideshow__controls">
+                    <button class="slideshow__control slideshow__play">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </button>
+                    <button class="slideshow__control slideshow__pause">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="slideshow__progress">
+                    <div class="slideshow__progress-bar"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sliders Section -->
+    <section id="sliders" class="section">
+        <h2 class="section__title">Sliders</h2>
+        <p class="section__subtitle">Controles deslizantes para valores numéricos y comparadores de imágenes.</p>
+        
+        <div class="component-example">
+            <div class="component-title">Range Slider</div>
+            <div class="slider-range">
+                <div class="slider-range__label">
+                    <span>Valor:</span>
+                    <span class="slider-range__value">50</span>
+                </div>
+                <div class="slider-range__track">
+                    <div class="slider-range__fill"></div>
+                    <div class="slider-range__thumb"></div>
+                    <input type="range" class="slider-range__input" min="0" max="100" value="50">
+                </div>
+                <div class="slider-range__marks">
+                    <span class="slider-range__mark">0</span>
+                    <span class="slider-range__mark">25</span>
+                    <span class="slider-range__mark">50</span>
+                    <span class="slider-range__mark">75</span>
+                    <span class="slider-range__mark">100</span>
+                </div>
+            </div>
+            
+            <div class="slider-range">
+                <div class="slider-range__label">
+                    <span>Precio ($):</span>
+                    <span class="slider-range__value">500$</span>
+                </div>
+                <div class="slider-range__track">
+                    <div class="slider-range__fill"></div>
+                    <div class="slider-range__thumb"></div>
+                    <input type="range" class="slider-range__input" min="0" max="1000" value="500" data-suffix="$">
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Comparison Slider - Antes/Después</div>
+            <div class="comparison-slider">
+                <div class="comparison-slider__container">
+                    <img class="comparison-slider__image" src="https://picsum.photos/600/400?random=20&grayscale" alt="Antes">
+                    <img class="comparison-slider__image comparison-slider__after" src="https://picsum.photos/600/400?random=20" alt="Después">
+                    
+                    <div class="comparison-slider__labels">
+                        <span class="comparison-slider__label">Antes</span>
+                        <span class="comparison-slider__label">Después</span>
+                    </div>
+                    
+                    <div class="comparison-slider__divider">
+                        <div class="comparison-slider__handle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M18 8L22 12L18 16"/>
+                                <path d="M6 8L2 12L6 16"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Galleries Section -->
+    <section id="galleries" class="section">
+        <h2 class="section__title">Galerías</h2>
+        <p class="section__subtitle">Galerías de imágenes con lightbox, hover effects y navegación por teclado.</p>
+        
+        <div class="component-example">
+            <div class="component-title">Image Gallery + Lightbox</div>
+            <div class="image-gallery">
+                <div class="image-gallery__item">
+                    <img class="image-gallery__image" src="https://picsum.photos/300/200?random=30" alt="Imagen de galería 1">
+                    <div class="image-gallery__overlay">
+                        <div class="image-gallery__caption">Primera imagen de la galería</div>
+                    </div>
+                </div>
+                <div class="image-gallery__item">
+                    <img class="image-gallery__image" src="https://picsum.photos/300/200?random=31" alt="Imagen de galería 2">
+                    <div class="image-gallery__overlay">
+                        <div class="image-gallery__caption">Segunda imagen con descripción</div>
+                    </div>
+                </div>
+                <div class="image-gallery__item">
+                    <img class="image-gallery__image" src="https://picsum.photos/300/200?random=32" alt="Imagen de galería 3">
+                    <div class="image-gallery__overlay">
+                        <div class="image-gallery__caption">Tercera imagen de muestra</div>
+                    </div>
+                </div>
+                <div class="image-gallery__item">
+                    <img class="image-gallery__image" src="https://picsum.photos/300/200?random=33" alt="Imagen de galería 4">
+                    <div class="image-gallery__overlay">
+                        <div class="image-gallery__caption">Cuarta imagen interactiva</div>
+                    </div>
+                </div>
+                <div class="image-gallery__item">
+                    <img class="image-gallery__image" src="https://picsum.photos/300/200?random=34" alt="Imagen de galería 5">
+                    <div class="image-gallery__overlay">
+                        <div class="image-gallery__caption">Quinta imagen con lightbox</div>
+                    </div>
+                </div>
+                <div class="image-gallery__item">
+                    <img class="image-gallery__image" src="https://picsum.photos/300/200?random=35" alt="Imagen de galería 6">
+                    <div class="image-gallery__overlay">
+                        <div class="image-gallery__caption">Sexta y última imagen</div>
+                    </div>
+                </div>
+            </div>
+            <p><strong>Instrucciones:</strong> Haz clic en cualquier imagen para abrir el lightbox. Usa las flechas del teclado para navegar, ESC para cerrar.</p>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Animated Counters</div>
+            <div class="grid grid-3 gap-lg" style="text-align: center;">
+                <div>
+                    <div class="animated-counter" data-target="1250" data-suffix="+">0</div>
+                    <div style="margin-top: var(--space-2); color: var(--color-text-muted);">Proyectos Completados</div>
+                </div>
+                <div>
+                    <div class="animated-counter" data-target="98" data-suffix="%">0</div>
+                    <div style="margin-top: var(--space-2); color: var(--color-text-muted);">Satisfacción Cliente</div>
+                </div>
+                <div>
+                    <div class="animated-counter" data-target="500" data-suffix="K+">0</div>
+                    <div style="margin-top: var(--space-2); color: var(--color-text-muted);">Líneas de Código</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sidebar Section -->
+    <section id="sidebar" class="section">
+        <h2 class="section__title">Sidebar Navigation</h2>
+        <p class="section__subtitle">Menús laterales navegables con soporte móvil, secciones colapsables y navegación por teclado.</p>
+        
+        <div class="component-example">
+            <div class="component-title">Sidebar Básico</div>
+            <div style="display: grid; grid-template-columns: 250px 1fr; gap: var(--space-6); height: 400px; border: var(--border-width-thin) solid var(--color-gray-200); border-radius: var(--border-radius-lg);">
+                <nav class="sidebar" style="position: static; height: 100%; margin: 0;">
+                    <div class="sidebar__header">
+                        <h3 class="sidebar__title">Design System</h3>
+                        <div class="sidebar__subtitle">Navegación</div>
+                    </div>
+                    
+                    <ul class="sidebar__nav">
+                        <li class="sidebar__item">
+                            <a href="#demo-principios" class="sidebar__link is-active">
+                                <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                    <path d="M2 17l10 5 10-5"/>
+                                    <path d="M2 12l10 5 10-5"/>
+                                </svg>
+                                Principios
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#demo-colores" class="sidebar__link">
+                                <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10"/>
+                                </svg>
+                                Colores
+                                <span class="sidebar__badge">8</span>
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#demo-tipografia" class="sidebar__link">
+                                <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M4 7V4h16v3"/>
+                                    <path d="M9 20h6"/>
+                                    <path d="M12 4v16"/>
+                                </svg>
+                                Tipografía
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#demo-componentes" class="sidebar__link">
+                                <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                    <rect x="9" y="9" width="6" height="6"/>
+                                </svg>
+                                Componentes
+                                <span class="sidebar__badge">12</span>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="sidebar__footer">
+                        CEREBRO-DIGITAL v2.0
+                    </div>
+                </nav>
+                
+                <div style="padding: var(--space-6); background: var(--color-surface-secondary); overflow-y: auto;">
+                    <h4>Contenido Principal</h4>
+                    <p>Esta es el área de contenido principal. El sidebar permite navegar entre diferentes secciones con highlighting automático del enlace activo.</p>
+                    <p>Características del sidebar:</p>
+                    <ul>
+                        <li>Navegación automática con scroll</li>
+                        <li>Highlighting de sección activa</li>
+                        <li>Badges informativos</li>
+                        <li>Iconografía consistente</li>
+                        <li>Footer informativo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Sidebar con Grupos Colapsables</div>
+            <div style="display: grid; grid-template-columns: 280px 1fr; gap: var(--space-6); height: 500px; border: var(--border-width-thin) solid var(--color-gray-200); border-radius: var(--border-radius-lg);">
+                <nav class="sidebar sidebar__collapsible" style="position: static; height: 100%; margin: 0;">
+                    <div class="sidebar__header">
+                        <h3 class="sidebar__title">Design System</h3>
+                        <div class="sidebar__subtitle">Completo</div>
+                    </div>
+                    
+                    <div class="sidebar__group">
+                        <div class="sidebar__group-title">
+                            Fundamentos
+                            <svg class="sidebar__collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                        <ul class="sidebar__nav">
+                            <li class="sidebar__item">
+                                <a href="#demo-principios2" class="sidebar__link">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                    </svg>
+                                    Principios
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#demo-colores2" class="sidebar__link">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <circle cx="12" cy="12" r="10"/>
+                                    </svg>
+                                    Colores
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#demo-tipografia2" class="sidebar__link">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M4 7V4h16v3"/>
+                                    </svg>
+                                    Tipografía
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar__group">
+                        <div class="sidebar__group-title">
+                            Componentes
+                            <svg class="sidebar__collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                        <ul class="sidebar__nav">
+                            <li class="sidebar__item">
+                                <a href="#demo-botones2" class="sidebar__link is-active">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                    </svg>
+                                    Botones
+                                    <span class="sidebar__badge">5</span>
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#demo-cards2" class="sidebar__link">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                    </svg>
+                                    Cards
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#demo-forms2" class="sidebar__link">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    </svg>
+                                    Formularios
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#demo-footers2" class="sidebar__link">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <rect x="3" y="20" width="18" height="2"/>
+                                        <path d="M3 18v-4h18v4"/>
+                                    </svg>
+                                    Footers
+                                    <span class="sidebar__badge">2</span>
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#demo-features2" class="sidebar__link">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <polygon points="12,2 15.09,8.26 22,9 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9 8.91,8.26"/>
+                                    </svg>
+                                    Features
+                                    <span class="sidebar__badge">3</span>
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#demo-icons2" class="sidebar__link">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <circle cx="12" cy="12" r="3"/>
+                                        <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
+                                    </svg>
+                                    Iconos SVG
+                                    <span class="sidebar__badge">New</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar__group is-collapsed">
+                        <div class="sidebar__group-title">
+                            Interactivos
+                            <svg class="sidebar__collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                        <ul class="sidebar__nav">
+                            <li class="sidebar__item">
+                                <a href="#demo-carousel2" class="sidebar__link">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                    </svg>
+                                    Carousels
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#demo-sliders2" class="sidebar__link">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <line x1="4" y1="21" x2="4" y2="14"/>
+                                        <line x1="4" y1="10" x2="4" y2="3"/>
+                                    </svg>
+                                    Sliders
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                
+                <div style="padding: var(--space-6); background: var(--color-surface-secondary); overflow-y: auto;">
+                    <h4>Sidebar con Grupos</h4>
+                    <p>Este sidebar organiza el contenido en grupos colapsables, ideal para navegaciones complejas con muchas secciones.</p>
+                    <p><strong>Funcionalidades:</strong></p>
+                    <ul>
+                        <li><strong>Grupos colapsables:</strong> Haz clic en los títulos de grupo para expandir/colapsar</li>
+                        <li><strong>Estados persistentes:</strong> Los grupos mantienen su estado</li>
+                        <li><strong>Iconografía descriptiva:</strong> Cada enlace tiene un icono representativo</li>
+                        <li><strong>Badges dinámicos:</strong> Contadores y etiquetas informativas</li>
+                        <li><strong>Organización jerárquica:</strong> Estructura clara de categorías</li>
+                    </ul>
+                    <p><strong>Instrucciones:</strong> Haz clic en "Fundamentos", "Componentes" o "Interactivos" para ver el comportamiento de colapso.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Sidebar Versiones Móvil</div>
+            <div style="position: relative; border: var(--border-width-thin) solid var(--color-gray-200); border-radius: var(--border-radius-lg); padding: var(--space-4); background: var(--color-surface-secondary);">
+                <!-- Simulación de header móvil -->
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) var(--space-4); background: var(--color-white); border-radius: var(--border-radius-base); margin-bottom: var(--space-4);">
+                    <h4 style="margin: 0; font-size: var(--text-lg);">Mi App</h4>
+                    <button class="sidebar__toggle" id="demo-sidebar-toggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <line x1="3" y1="12" x2="21" y2="12"/>
+                            <line x1="3" y1="18" x2="21" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Contenido principal -->
+                <div style="padding: var(--space-6); background: var(--color-white); border-radius: var(--border-radius-base); min-height: 300px;">
+                    <h4>Contenido Principal</h4>
+                    <p>Haz clic en el botón de hamburguesa (☰) arriba a la derecha para abrir el sidebar móvil.</p>
+                    <p>El sidebar móvil incluye:</p>
+                    <ul>
+                        <li>Overlay semitransparente</li>
+                        <li>Animación de slide desde la izquierda</li>
+                        <li>Botón de cierre</li>
+                        <li>Auto-cierre al seleccionar un enlace</li>
+                        <li>Cierre con ESC</li>
+                        <li>Navegación por teclado</li>
+                    </ul>
+                </div>
+                
+                <!-- Sidebar móvil oculto -->
+                <nav class="sidebar sidebar--mobile" id="demo-sidebar-mobile">
+                    <div class="sidebar__mobile-header">
+                        <h3 class="sidebar__title">Navegación</h3>
+                        <button class="sidebar__close">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <line x1="18" y1="6" x2="6" y2="18"/>
+                                <line x1="6" y1="6" x2="18" y2="18"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div style="padding: var(--space-6);">
+                        <ul class="sidebar__nav">
+                            <li class="sidebar__item">
+                                <a href="#demo-home" class="sidebar__link">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                    </svg>
+                                    Inicio
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#demo-products" class="sidebar__link">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M6 2L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                                    </svg>
+                                    Productos
+                                    <span class="sidebar__badge">24</span>
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#demo-services" class="sidebar__link">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <circle cx="12" cy="12" r="3"/>
+                                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 -1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                                    </svg>
+                                    Servicios
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#demo-contact" class="sidebar__link">
+                                    <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                    </svg>
+                                    Contacto
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar__footer">
+                        Versión 2.0.1
+                    </div>
+                </nav>
+                
+                <!-- Overlay -->
+                <div class="sidebar__overlay" id="demo-sidebar-overlay"></div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Sidebar Tema Oscuro y Compacto</div>
+            <div style="display: grid; grid-template-columns: 280px 1fr; gap: var(--space-6); height: 400px; border: var(--border-width-thin) solid var(--color-gray-200); border-radius: var(--border-radius-lg);">
+                <nav class="sidebar sidebar--dark" style="position: static; height: 100%; margin: 0;">
+                    <div class="sidebar__header">
+                        <h3 class="sidebar__title">Dark Mode</h3>
+                        <div class="sidebar__subtitle">Interface</div>
+                    </div>
+                    
+                    <ul class="sidebar__nav">
+                        <li class="sidebar__item">
+                            <a href="#demo-dashboard" class="sidebar__link is-active">
+                                <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="3" width="7" height="7"/>
+                                    <rect x="14" y="3" width="7" height="7"/>
+                                    <rect x="14" y="14" width="7" height="7"/>
+                                    <rect x="3" y="14" width="7" height="7"/>
+                                </svg>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#demo-analytics" class="sidebar__link">
+                                <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M3 3v18h18"/>
+                                    <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+                                </svg>
+                                Analytics
+                                <span class="sidebar__badge">Hot</span>
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#demo-users" class="sidebar__link">
+                                <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                Usuarios
+                                <span class="sidebar__badge">156</span>
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="#demo-settings" class="sidebar__link">
+                                <svg class="sidebar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="12" cy="12" r="3"/>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                                </svg>
+                                Configuración
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="sidebar__footer">
+                        Admin Panel v3.1
+                    </div>
+                </nav>
+                
+                <div style="padding: var(--space-6); background: var(--color-surface-secondary); overflow-y: auto;">
+                    <h4>Sidebar Tema Oscuro</h4>
+                    <p>Variante de sidebar con tema oscuro usando <code>.sidebar--dark</code>, ideal para aplicaciones de administración o interfaces profesionales.</p>
+                    <p><strong>Características del tema oscuro:</strong></p>
+                    <ul>
+                        <li>Fondo oscuro con contraste optimizado</li>
+                        <li>Estados hover más sutiles</li>
+                        <li>Badges adaptados al tema</li>
+                        <li>Iconografía con opacidad ajustada</li>
+                        <li>Excelente para uso prolongado</li>
+                    </ul>
+                    
+                    <div style="margin-top: var(--space-6); padding: var(--space-4); background: var(--color-white); border-radius: var(--border-radius-base);">
+                        <h5>Sidebar Compacto (Hover para expandir)</h5>
+                        <p>También disponible <code>.sidebar--compact</code> que se expande al hacer hover.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Demo sidebar móvil funcional
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('demo-sidebar-toggle');
+            const sidebar = document.getElementById('demo-sidebar-mobile');
+            const overlay = document.getElementById('demo-sidebar-overlay');
+            const closeBtn = sidebar.querySelector('.sidebar__close');
+            
+            function openSidebar() {
+                sidebar.classList.add('is-open');
+                overlay.classList.add('is-open');
+            }
+            
+            function closeSidebar() {
+                sidebar.classList.remove('is-open');
+                overlay.classList.remove('is-open');
+            }
+            
+            toggle.addEventListener('click', openSidebar);
+            closeBtn.addEventListener('click', closeSidebar);
+            overlay.addEventListener('click', closeSidebar);
+            
+            // Cerrar con ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && sidebar.classList.contains('is-open')) {
+                    closeSidebar();
+                }
+            });
+            
+            // Auto-cerrar al hacer clic en enlaces
+            sidebar.querySelectorAll('.sidebar__link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    closeSidebar();
+                });
+            });
+        });
+    </script>
+
+    <script>
+        function openModal() {
+            document.getElementById('demoModal').classList.add('is-open');
+        }
+        
+        function closeModal() {
+            document.getElementById('demoModal').classList.remove('is-open');
+        }
+        
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('demoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+
+    <!-- HEROES SECTION - Secciones principales de landing -->
+    <section id="heroes" class="section">
+        <h2 class="section__title">Heroes</h2>
+        <p class="section__subtitle">Secciones principales para landing pages con diferentes estilos y propósitos.</p>
+        
+        <div class="component-example">
+            <div class="component-title">Hero Minimalista</div>
+            <div class="hero hero--minimal">
+                <div class="container">
+                    <div class="hero__content">
+                        <h1 class="hero__title">Título Principal Centrado</h1>
+                        <p class="hero__subtitle">Subtítulo explicativo que complementa el mensaje principal con información adicional relevante para el usuario.</p>
+                        <div class="hero__actions">
+                            <a href="#" class="btn btn--primary btn--lg">Acción Principal</a>
+                            <a href="#" class="btn btn--secondary btn--lg">Saber Más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Hero con Imagen de Fondo</div>
+            <div class="hero hero--background">
+                <div class="container">
+                    <div class="hero__content">
+                        <h1 class="hero__title">Título Impactante</h1>
+                        <p class="hero__subtitle">Mensaje persuasivo sobre imagen de fondo que crea impacto visual y engagement emocional.</p>
+                        <div class="hero__actions">
+                            <a href="#" class="btn btn--primary btn--lg">Empezar Ahora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Hero Split (Contenido + Imagen)</div>
+            <div class="hero hero--split">
+                <div class="container">
+                    <div class="hero__container">
+                        <div class="hero__content">
+                            <h1 class="hero__title">Innovación Digital</h1>
+                            <p class="hero__subtitle">Transformamos ideas en experiencias digitales excepcionales mediante tecnología de vanguardia y diseño centrado en el usuario.</p>
+                            <div class="hero__features">
+                                <div class="hero__feature">
+                                    <h4>Desarrollo Rápido</h4>
+                                    <p>Prototipado y entrega acelerada</p>
+                                </div>
+                                <div class="hero__feature">
+                                    <h4>Diseño Premium</h4>
+                                    <p>Interfaces elegantes y funcionales</p>
+                                </div>
+                            </div>
+                            <div class="hero__actions">
+                                <a href="#" class="btn btn--primary btn--lg">Ver Portfolio</a>
+                                <a href="#" class="btn btn--ghost btn--lg">Contactar</a>
+                            </div>
+                        </div>
+                        <div class="hero__visual">
+                            <img src="https://picsum.photos/600/500?random=50" alt="Innovación Digital" class="hero__image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HEADERS SECTION - Cabeceras principales -->
+    <section id="headers" class="section">
+        <h2 class="section__title">Headers</h2>
+        <p class="section__subtitle">Cabeceras principales con navegación, logos y diferentes niveles de complejidad.</p>
+        
+        <div class="component-example">
+            <div class="component-title">Header Simple</div>
+            <header class="header header--simple">
+                <div class="container">
+                    <div class="header__container">
+                        <div class="header__logo">
+                            <h2>Logo</h2>
+                        </div>
+                        <nav class="header__nav">
+                            <ul class="header__nav-list">
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Inicio</a>
+                                </li>
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Servicios</a>
+                                </li>
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Portfolio</a>
+                                </li>
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Contacto</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Header con CTA</div>
+            <header class="header header--cta">
+                <div class="container">
+                    <div class="header__container">
+                        <div class="header__logo">
+                            <img src="https://picsum.photos/120/40?random=10" alt="Logo" class="header__logo-image">
+                        </div>
+                        <nav class="header__nav">
+                            <ul class="header__nav-list">
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Inicio</a>
+                                </li>
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Productos</a>
+                                </li>
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Soluciones</a>
+                                </li>
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Empresa</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="header__actions">
+                            <a href="#" class="btn btn--secondary btn--sm">Acceder</a>
+                            <a href="#" class="btn btn--primary btn--sm">Empezar Gratis</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Header Completo</div>
+            <header class="header header--complete">
+                <div class="container">
+                    <!-- Top bar -->
+                    <div class="header__top">
+                        <div class="header__top-content">
+                            <div class="header__contact">
+                                <span>📧 info@empresa.com</span>
+                                <span>📞 +34 900 123 456</span>
+                            </div>
+                            <div class="header__social">
+                                <a href="#" class="header__social-link">Twitter</a>
+                                <a href="#" class="header__social-link">LinkedIn</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Main header -->
+                    <div class="header__main">
+                        <div class="header__container">
+                            <div class="header__logo">
+                                <img src="https://picsum.photos/140/45?random=11" alt="Logo Empresa" class="header__logo-image">
+                            </div>
+                            
+                            <nav class="header__nav">
+                                <ul class="header__nav-list">
+                                    <li class="header__nav-item header__nav-item--dropdown">
+                                        <a href="#" class="header__nav-link">Productos</a>
+                                    </li>
+                                    <li class="header__nav-item">
+                                        <a href="#" class="header__nav-link">Soluciones</a>
+                                    </li>
+                                    <li class="header__nav-item">
+                                        <a href="#" class="header__nav-link">Recursos</a>
+                                    </li>
+                                    <li class="header__nav-item">
+                                        <a href="#" class="header__nav-link">Empresa</a>
+                                    </li>
+                                    <li class="header__nav-item">
+                                        <a href="#" class="header__nav-link">Soporte</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            
+                            <div class="header__utilities">
+                                <div class="header__search">
+                                    <input type="search" placeholder="Buscar..." class="header__search-input">
+                                </div>
+                                <div class="header__account">
+                                    <button class="header__account-btn">
+                                        <img src="https://picsum.photos/32/32?random=12" alt="Usuario" class="header__avatar">
+                                        <span>Mi Cuenta</span>
+                                    </button>
+                                </div>
+                                <div class="header__actions">
+                                    <a href="#" class="btn btn--ghost btn--sm">Acceder</a>
+                                    <a href="#" class="btn btn--primary btn--sm">Prueba Gratis</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </section>
+
+    <!-- SPACING ATÓMICO SECTION - Sistema completo de espaciado -->
+    <section id="spacing" class="section">
+        <h2 class="section__title">Sistema de Spacing Atómico</h2>
+        <p class="section__subtitle">Clases atómicas para margin, padding y espaciado entre elementos con escala consistente y soporte responsive.</p>
+        
+        <div class="component-example">
+            <div class="component-title">Escala de Espaciado Base</div>
+            <p class="mb-4">Sistema granular basado en incrementos de 4px desde 0 hasta 384px (96 en escala), con nomenclatura intuitiva y responsive.</p>
+            
+            <div class="grid grid-auto-fit-sm gap-md mb-6">
+                <!-- Espaciado básico -->
+                <div style="background: var(--color-gray-100); padding: var(--space-4); border-radius: var(--border-radius-lg);">
+                    <div class="component-title" style="margin-bottom: var(--space-2);">Espaciado XS</div>
+                    <div class="space-y-2">
+                        <div style="background: var(--color-accent-primary); height: 20px; width: var(--space-2);"></div>
+                        <code>.space-2, .space-xs</code>
+                        <div style="font-size: var(--text-sm); color: var(--color-text-muted);">8px</div>
+                    </div>
+                </div>
+                
+                <div style="background: var(--color-gray-100); padding: var(--space-4); border-radius: var(--border-radius-lg);">
+                    <div class="component-title" style="margin-bottom: var(--space-2);">Espaciado SM</div>
+                    <div class="space-y-2">
+                        <div style="background: var(--color-accent-primary); height: 20px; width: var(--space-4);"></div>
+                        <code>.space-4, .space-sm</code>
+                        <div style="font-size: var(--text-sm); color: var(--color-text-muted);">16px</div>
+                    </div>
+                </div>
+                
+                <div style="background: var(--color-gray-100); padding: var(--space-4); border-radius: var(--border-radius-lg);">
+                    <div class="component-title" style="margin-bottom: var(--space-2);">Espaciado MD</div>
+                    <div class="space-y-2">
+                        <div style="background: var(--color-accent-primary); height: 20px; width: var(--space-6);"></div>
+                        <code>.space-6, .space-md</code>
+                        <div style="font-size: var(--text-sm); color: var(--color-text-muted);">24px</div>
+                    </div>
+                </div>
+                
+                <div style="background: var(--color-gray-100); padding: var(--space-4); border-radius: var(--border-radius-lg);">
+                    <div class="component-title" style="margin-bottom: var(--space-2);">Espaciado LG</div>
+                    <div class="space-y-2">
+                        <div style="background: var(--color-accent-primary); height: 20px; width: var(--space-8);"></div>
+                        <code>.space-8, .space-lg</code>
+                        <div style="font-size: var(--text-sm); color: var(--color-text-muted);">32px</div>
+                    </div>
+                </div>
+                
+                <div style="background: var(--color-gray-100); padding: var(--space-4); border-radius: var(--border-radius-lg);">
+                    <div class="component-title" style="margin-bottom: var(--space-2);">Espaciado XL</div>
+                    <div class="space-y-2">
+                        <div style="background: var(--color-accent-primary); height: 20px; width: var(--space-12);"></div>
+                        <code>.space-12, .space-xl</code>
+                        <div style="font-size: var(--text-sm); color: var(--color-text-muted);">48px</div>
+                    </div>
+                </div>
+                
+                <div style="background: var(--color-gray-100); padding: var(--space-4); border-radius: var(--border-radius-lg);">
+                    <div class="component-title" style="margin-bottom: var(--space-2);">Espaciado 2XL</div>
+                    <div class="space-y-2">
+                        <div style="background: var(--color-accent-primary); height: 20px; width: var(--space-16);"></div>
+                        <code>.space-16, .space-2xl</code>
+                        <div style="font-size: var(--text-sm); color: var(--color-text-muted);">64px</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Margins Atómicos</div>
+            <p class="mb-4">Clases para margin en todas las direcciones con nomenclatura consistente: m (all), mx/my (axis), mt/mr/mb/ml (sides).</p>
+            
+            <div style="background: var(--color-gray-50); padding: var(--space-6); border-radius: var(--border-radius-lg);">
+                <!-- Margin All -->
+                <div class="mb-6">
+                    <h4 class="mb-2">Margin All Sides (.m-*)</h4>
+                    <div class="inline-md">
+                        <div class="m-0" style="background: var(--color-accent-primary); color: white; padding: var(--space-2); border-radius: var(--border-radius-base);">.m-0</div>
+                        <div class="m-2" style="background: var(--color-accent-primary); color: white; padding: var(--space-2); border-radius: var(--border-radius-base);">.m-2</div>
+                        <div class="m-4" style="background: var(--color-accent-primary); color: white; padding: var(--space-2); border-radius: var(--border-radius-base);">.m-4</div>
+                        <div class="m-6" style="background: var(--color-accent-primary); color: white; padding: var(--space-2); border-radius: var(--border-radius-base);">.m-6</div>
+                    </div>
+                </div>
+                
+                <!-- Margin Axis -->
+                <div class="mb-6">
+                    <h4 class="mb-2">Margin X-Axis (.mx-*)</h4>
+                    <div class="space-y-2">
+                        <div class="mx-0" style="background: var(--color-accent-secondary); color: white; padding: var(--space-2); border-radius: var(--border-radius-base); display: inline-block;">.mx-0</div>
+                        <div class="mx-4" style="background: var(--color-accent-secondary); color: white; padding: var(--space-2); border-radius: var(--border-radius-base); display: inline-block;">.mx-4</div>
+                        <div class="mx-8" style="background: var(--color-accent-secondary); color: white; padding: var(--space-2); border-radius: var(--border-radius-base); display: inline-block;">.mx-8</div>
+                    </div>
+                </div>
+                
+                <!-- Margin Auto -->
+                <div class="mb-6">
+                    <h4 class="mb-2">Margin Auto Centering</h4>
+                    <div class="space-y-2">
+                        <div class="mx-auto" style="background: var(--color-accent-warning); color: white; padding: var(--space-2); border-radius: var(--border-radius-base); width: 200px; text-align: center;">.mx-auto (centered)</div>
+                        <div class="ml-auto" style="background: var(--color-accent-warning); color: white; padding: var(--space-2); border-radius: var(--border-radius-base); width: 200px; text-align: center;">.ml-auto (right aligned)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Padding Atómico</div>
+            <p class="mb-4">Sistema completo de padding con la misma nomenclatura: p (all), px/py (axis), pt/pr/pb/pl (sides).</p>
+            
+            <div style="background: var(--color-gray-50); padding: var(--space-6); border-radius: var(--border-radius-lg);">
+                <div class="grid grid-auto-fit-sm gap-md">
+                    <div>
+                        <h4 class="mb-3">Padding All (.p-*)</h4>
+                        <div class="space-y-2">
+                            <div class="p-0" style="background: var(--color-accent-primary); color: white; border-radius: var(--border-radius-base);">.p-0</div>
+                            <div class="p-2" style="background: var(--color-accent-primary); color: white; border-radius: var(--border-radius-base);">.p-2</div>
+                            <div class="p-4" style="background: var(--color-accent-primary); color: white; border-radius: var(--border-radius-base);">.p-4</div>
+                            <div class="p-6" style="background: var(--color-accent-primary); color: white; border-radius: var(--border-radius-base);">.p-6</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="mb-3">Padding X-Axis (.px-*)</h4>
+                        <div class="space-y-2">
+                            <div class="px-0 py-2" style="background: var(--color-accent-secondary); color: white; border-radius: var(--border-radius-base);">.px-0</div>
+                            <div class="px-4 py-2" style="background: var(--color-accent-secondary); color: white; border-radius: var(--border-radius-base);">.px-4</div>
+                            <div class="px-8 py-2" style="background: var(--color-accent-secondary); color: white; border-radius: var(--border-radius-base);">.px-8</div>
+                            <div class="px-12 py-2" style="background: var(--color-accent-secondary); color: white; border-radius: var(--border-radius-base);">.px-12</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="mb-3">Padding Y-Axis (.py-*)</h4>
+                        <div class="space-y-2">
+                            <div class="py-0 px-4" style="background: var(--color-accent-warning); color: white; border-radius: var(--border-radius-base);">.py-0</div>
+                            <div class="py-2 px-4" style="background: var(--color-accent-warning); color: white; border-radius: var(--border-radius-base);">.py-2</div>
+                            <div class="py-4 px-4" style="background: var(--color-accent-warning); color: white; border-radius: var(--border-radius-base);">.py-4</div>
+                            <div class="py-6 px-4" style="background: var(--color-accent-warning); color: white; border-radius: var(--border-radius-base);">.py-6</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Space Between Elements</div>
+            <p class="mb-4">Utilidades para espaciado automático entre elementos hijos usando selectores adyacentes.</p>
+            
+            <div class="grid grid-2 gap-lg">
+                <div>
+                    <h4 class="mb-3">Vertical Spacing (.space-y-*)</h4>
+                    <div style="background: var(--color-gray-100); padding: var(--space-4); border-radius: var(--border-radius-lg);">
+                        <div class="space-y-4">
+                            <div style="background: var(--color-accent-primary); color: white; padding: var(--space-2); border-radius: var(--border-radius-base);">Elemento 1</div>
+                            <div style="background: var(--color-accent-primary); color: white; padding: var(--space-2); border-radius: var(--border-radius-base);">Elemento 2</div>
+                            <div style="background: var(--color-accent-primary); color: white; padding: var(--space-2); border-radius: var(--border-radius-base);">Elemento 3</div>
+                        </div>
+                        <code style="display: block; margin-top: var(--space-2); font-size: var(--text-sm);">.space-y-4</code>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="mb-3">Horizontal Spacing (.space-x-*)</h4>
+                    <div style="background: var(--color-gray-100); padding: var(--space-4); border-radius: var(--border-radius-lg);">
+                        <div class="space-x-3" style="display: flex;">
+                            <div style="background: var(--color-accent-secondary); color: white; padding: var(--space-2); border-radius: var(--border-radius-base);">Item 1</div>
+                            <div style="background: var(--color-accent-secondary); color: white; padding: var(--space-2); border-radius: var(--border-radius-base);">Item 2</div>
+                            <div style="background: var(--color-accent-secondary); color: white; padding: var(--space-2); border-radius: var(--border-radius-base);">Item 3</div>
+                        </div>
+                        <code style="display: block; margin-top: var(--space-2); font-size: var(--text-sm);">.space-x-3</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Spacing Responsive</div>
+            <p class="mb-4">Todas las clases de spacing tienen variantes responsive para sm:, md: y lg: breakpoints.</p>
+            
+            <div style="background: var(--color-gray-50); padding: var(--space-6); border-radius: var(--border-radius-lg);">
+                <div class="mb-6">
+                    <h4 class="mb-3">Ejemplo Responsive</h4>
+                    <div class="p-2 sm:p-4 md:p-6 lg:p-8" style="background: var(--color-accent-primary); color: white; border-radius: var(--border-radius-lg); text-align: center;">
+                        <div class="text-lg">Responsive Padding</div>
+                        <div class="mt-2" style="font-size: var(--text-sm); opacity: 0.9;">
+                            Mobile: p-2 • Tablet: sm:p-4 • Desktop: md:p-6 • Large: lg:p-8
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="mb-3">Margin Responsive</h4>
+                    <div class="space-y-2">
+                        <div class="mx-0 sm:mx-4 md:mx-8 lg:mx-16" style="background: var(--color-accent-secondary); color: white; padding: var(--space-3); border-radius: var(--border-radius-base); text-align: center;">
+                            mx-0 sm:mx-4 md:mx-8 lg:mx-16
+                        </div>
+                        <div class="mx-auto" style="background: var(--color-accent-warning); color: white; padding: var(--space-3); border-radius: var(--border-radius-base); text-align: center; width: 300px;">
+                            mx-auto (always centered)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="mb-3">Stack Utilities</h4>
+                    <div class="grid grid-3 gap-md">
+                        <div>
+                            <div class="stack-sm" style="background: var(--color-gray-100); padding: var(--space-3); border-radius: var(--border-radius-base);">
+                                <div style="background: var(--color-accent-primary); color: white; padding: var(--space-1); border-radius: var(--border-radius-sm);">Stack SM</div>
+                                <div style="background: var(--color-accent-primary); color: white; padding: var(--space-1); border-radius: var(--border-radius-sm);">Item 2</div>
+                                <div style="background: var(--color-accent-primary); color: white; padding: var(--space-1); border-radius: var(--border-radius-sm);">Item 3</div>
+                            </div>
+                            <code style="font-size: var(--text-xs);">.stack-sm</code>
+                        </div>
+                        
+                        <div>
+                            <div class="stack-md" style="background: var(--color-gray-100); padding: var(--space-3); border-radius: var(--border-radius-base);">
+                                <div style="background: var(--color-accent-secondary); color: white; padding: var(--space-1); border-radius: var(--border-radius-sm);">Stack MD</div>
+                                <div style="background: var(--color-accent-secondary); color: white; padding: var(--space-1); border-radius: var(--border-radius-sm);">Item 2</div>
+                                <div style="background: var(--color-accent-secondary); color: white; padding: var(--space-1); border-radius: var(--border-radius-sm);">Item 3</div>
+                            </div>
+                            <code style="font-size: var(--text-xs);">.stack-md</code>
+                        </div>
+                        
+                        <div>
+                            <div class="stack-lg" style="background: var(--color-gray-100); padding: var(--space-3); border-radius: var(--border-radius-base);">
+                                <div style="background: var(--color-accent-warning); color: white; padding: var(--space-1); border-radius: var(--border-radius-sm);">Stack LG</div>
+                                <div style="background: var(--color-accent-warning); color: white; padding: var(--space-1); border-radius: var(--border-radius-sm);">Item 2</div>
+                                <div style="background: var(--color-accent-warning); color: white; padding: var(--space-1); border-radius: var(--border-radius-sm);">Item 3</div>
+                            </div>
+                            <code style="font-size: var(--text-xs);">.stack-lg</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Escala Completa de Valores</div>
+            <p class="mb-4">Tabla de referencia rápida con todos los valores disponibles en el sistema de spacing atómico.</p>
+            
+            <div style="background: var(--color-surface-secondary); padding: var(--space-6); border-radius: var(--border-radius-lg); overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: var(--text-sm);">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--color-gray-300);">
+                            <th style="padding: var(--space-2); text-align: left;">Clase</th>
+                            <th style="padding: var(--space-2); text-align: left;">Valor rem</th>
+                            <th style="padding: var(--space-2); text-align: left;">Valor px</th>
+                            <th style="padding: var(--space-2); text-align: left;">Uso común</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--color-gray-200);">
+                            <td style="padding: var(--space-2);"><code>0</code></td>
+                            <td style="padding: var(--space-2);">0</td>
+                            <td style="padding: var(--space-2);">0px</td>
+                            <td style="padding: var(--space-2);">Reset margins/padding</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-gray-200);">
+                            <td style="padding: var(--space-2);"><code>px</code></td>
+                            <td style="padding: var(--space-2);">1px</td>
+                            <td style="padding: var(--space-2);">1px</td>
+                            <td style="padding: var(--space-2);">Bordes finos</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-gray-200);">
+                            <td style="padding: var(--space-2);"><code>1</code></td>
+                            <td style="padding: var(--space-2);">0.25rem</td>
+                            <td style="padding: var(--space-2);">4px</td>
+                            <td style="padding: var(--space-2);">Micro spacing</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-gray-200);">
+                            <td style="padding: var(--space-2);"><code>2, xs</code></td>
+                            <td style="padding: var(--space-2);">0.5rem</td>
+                            <td style="padding: var(--space-2);">8px</td>
+                            <td style="padding: var(--space-2);">Spacing mínimo</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-gray-200);">
+                            <td style="padding: var(--space-2);"><code>4, sm</code></td>
+                            <td style="padding: var(--space-2);">1rem</td>
+                            <td style="padding: var(--space-2);">16px</td>
+                            <td style="padding: var(--space-2);">Padding botones, gaps</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-gray-200);">
+                            <td style="padding: var(--space-2);"><code>6, md</code></td>
+                            <td style="padding: var(--space-2);">1.5rem</td>
+                            <td style="padding: var(--space-2);">24px</td>
+                            <td style="padding: var(--space-2);">Spacing entre secciones</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-gray-200);">
+                            <td style="padding: var(--space-2);"><code>8, lg</code></td>
+                            <td style="padding: var(--space-2);">2rem</td>
+                            <td style="padding: var(--space-2);">32px</td>
+                            <td style="padding: var(--space-2);">Separación componentes</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-gray-200);">
+                            <td style="padding: var(--space-2);"><code>12, xl</code></td>
+                            <td style="padding: var(--space-2);">3rem</td>
+                            <td style="padding: var(--space-2);">48px</td>
+                            <td style="padding: var(--space-2);">Margins mayores</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-gray-200);">
+                            <td style="padding: var(--space-2);"><code>16, 2xl</code></td>
+                            <td style="padding: var(--space-2);">4rem</td>
+                            <td style="padding: var(--space-2);">64px</td>
+                            <td style="padding: var(--space-2);">Separación secciones</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-gray-200);">
+                            <td style="padding: var(--space-2);"><code>20, 3xl</code></td>
+                            <td style="padding: var(--space-2);">5rem</td>
+                            <td style="padding: var(--space-2);">80px</td>
+                            <td style="padding: var(--space-2);">Hero padding</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-gray-200);">
+                            <td style="padding: var(--space-2);"><code>24, 4xl</code></td>
+                            <td style="padding: var(--space-2);">6rem</td>
+                            <td style="padding: var(--space-2);">96px</td>
+                            <td style="padding: var(--space-2);">Layout grandes</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: var(--space-2);"><code>32...96</code></td>
+                            <td style="padding: var(--space-2);">8rem...24rem</td>
+                            <td style="padding: var(--space-2);">128px...384px</td>
+                            <td style="padding: var(--space-2);">Layouts especiales</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUEVOS COMPONENTES - FOOTERS -->
+    <section id="footers" class="section">
+        <h2 class="section__title">Footers</h2>
+        <p class="section__subtitle">2 variantes de pie de página para diferentes necesidades - Simple minimalista y Completo con secciones múltiples.</p>
+        
+        <div class="component-example">
+            <div class="component-title">Footer Simple</div>
+            <footer class="footer--simple">
+                <div class="footer__content">
+                    <div class="footer__logo">SERGIO FORÉS</div>
+                    <p class="footer__tagline">Explorador de metodologías · Desarrollo colaborativo con IA</p>
+                    
+                    <div class="footer__social">
+                        <a href="#" class="footer__social-link">
+                            <svg class="icon icon--base"><use href="#icon-github"></use></svg>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <svg class="icon icon--base"><use href="#icon-instagram"></use></svg>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <svg class="icon icon--base"><use href="#icon-linkedin"></use></svg>
+                        </a>
+                        <a href="#" class="footer__social-link">
+                            <svg class="icon icon--base"><use href="#icon-youtube"></use></svg>
+                        </a>
+                    </div>
+                    
+                    <div class="footer__copyright">
+                        © 2025 Sergio Forés • Sistema 01234 • Design System
+                    </div>
+                </div>
+            </footer>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Footer Completo</div>
+            <footer class="footer--complete">
+                <div class="footer__main">
+                    <div class="footer__section">
+                        <div class="footer__brand">
+                            <div class="footer__brand-logo">SERGIO FORÉS</div>
+                            <p class="footer__brand-description">
+                                Explorador de nuevas metodologías de desarrollo. 
+                                26 años evolucionando código hacia colaboración inteligente con IA.
+                            </p>
+                        </div>
+                        <div class="footer__social-complete">
+                            <a href="#" class="footer__social-link">
+                                <svg class="icon icon--base"><use href="#icon-github"></use></svg>
+                            </a>
+                            <a href="#" class="footer__social-link">
+                                <svg class="icon icon--base"><use href="#icon-instagram"></use></svg>
+                            </a>
+                            <a href="#" class="footer__social-link">
+                                <svg class="icon icon--base"><use href="#icon-twitter"></use></svg>
+                            </a>
+                            <a href="#" class="footer__social-link">
+                                <svg class="icon icon--base"><use href="#icon-linkedin"></use></svg>
+                            </a>
+                            <a href="#" class="footer__social-link">
+                                <svg class="icon icon--base"><use href="#icon-youtube"></use></svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer__section">
+                        <h4 class="footer__section-title">Proyectos</h4>
+                        <ul class="footer__nav-list">
+                            <li class="footer__nav-item">
+                                <a href="#" class="footer__nav-link">CEREBRO-DIGITAL</a>
+                            </li>
+                            <li class="footer__nav-item">
+                                <a href="#" class="footer__nav-link">Filosofía 01234</a>
+                            </li>
+                            <li class="footer__nav-item">
+                                <a href="#" class="footer__nav-link">Sergio DEV</a>
+                            </li>
+                            <li class="footer__nav-item">
+                                <a href="#" class="footer__nav-link">Design System</a>
+                            </li>
+                            <li class="footer__nav-item">
+                                <a href="#" class="footer__nav-link">Portfolio Web</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__section">
+                        <h4 class="footer__section-title">Recursos</h4>
+                        <ul class="footer__nav-list">
+                            <li class="footer__nav-item">
+                                <a href="#" class="footer__nav-link">Documentación</a>
+                            </li>
+                            <li class="footer__nav-item">
+                                <a href="#" class="footer__nav-link">Componentes</a>
+                            </li>
+                            <li class="footer__nav-item">
+                                <a href="#" class="footer__nav-link">Design Tokens</a>
+                            </li>
+                            <li class="footer__nav-item">
+                                <a href="#" class="footer__nav-link">Iconos SVG</a>
+                            </li>
+                            <li class="footer__nav-item">
+                                <a href="#" class="footer__nav-link">Metodología</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__section">
+                        <h4 class="footer__section-title">Contacto</h4>
+                        <div class="footer__contact">
+                            <div class="footer__contact-item">
+                                <svg class="footer__contact-icon"><use href="#icon-email"></use></svg>
+                                <span>Colaboraciones IA</span>
+                            </div>
+                            <div class="footer__contact-item">
+                                <svg class="footer__contact-icon"><use href="#icon-location"></use></svg>
+                                <span>Valencia, España</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer__bottom">
+                    <p class="footer__copyright-complete">
+                        © 2025 Sergio Forés • CEREBRO-DIGITAL • Sistema 01234
+                    </p>
+                    <ul class="footer__legal">
+                        <li><a href="#" class="footer__legal-link">Términos</a></li>
+                        <li><a href="#" class="footer__legal-link">Privacidad</a></li>
+                        <li><a href="#" class="footer__legal-link">Cookies</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </section>
+    
+    <!-- NUEVOS COMPONENTES - FEATURES -->
+    <section id="features" class="section">
+        <h2 class="section__title">Features</h2>
+        <p class="section__subtitle">3 variantes para presentar características - Grid, Cards con imágenes y Highlight principal con secundarios.</p>
+        
+        <div class="component-example">
+            <div class="component-title">Features Grid</div>
+            <section class="features--grid">
+                <div class="features__container">
+                    <div class="features__header">
+                        <h2 class="features__title">Metodologías de Desarrollo 2024</h2>
+                        <p class="features__subtitle">
+                            Revolucionando el desarrollo web con IA generativa y vibe coding colaborativo
+                        </p>
+                    </div>
+                    
+                    <div class="features__grid">
+                        <div class="feature-item">
+                            <div class="feature-item__icon">
+                                <svg class="icon icon--lg"><use href="#icon-settings"></use></svg>
+                            </div>
+                            <h3 class="feature-item__title">Prototipado Ultrarrápido</h3>
+                            <p class="feature-item__description">
+                                De concepto a demo funcional en minutos. Iteración en tiempo real con validación instantánea.
+                            </p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-item__icon">
+                                <svg class="icon icon--lg"><use href="#icon-user"></use></svg>
+                            </div>
+                            <h3 class="feature-item__title">Colaboración IA</h3>
+                            <p class="feature-item__description">
+                                Claude Code, Windsurf y GitHub Copilot como miembros activos del equipo de desarrollo.
+                            </p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-item__icon">
+                                <svg class="icon icon--lg"><use href="#icon-star"></use></svg>
+                            </div>
+                            <h3 class="feature-item__title">Sistema 01234</h3>
+                            <p class="feature-item__description">
+                                Marco cognitivo aplicado a cada iteración. Desde potencial (0) hasta materialización (4).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Features Cards</div>
+            <section class="features--cards">
+                <div class="features__container">
+                    <div class="features__header">
+                        <h2 class="features__title">Herramientas IA Generativa</h2>
+                        <p class="features__subtitle">
+                            Toolkit completo para desarrollo, diseño y creación multimedia
+                        </p>
+                    </div>
+                    
+                    <div class="features__cards-grid">
+                        <div class="feature-card">
+                            <div class="feature-card__image">🛠️ Desarrollo</div>
+                            <div class="feature-card__content">
+                                <h3 class="feature-card__title">Desarrollo IA</h3>
+                                <p class="feature-card__description">
+                                    Claude Code, Windsurf, GitHub Copilot, VSCode + IA, Cursor para desarrollo colaborativo
+                                </p>
+                                <a href="#" class="feature-card__link">
+                                    Explorar herramientas
+                                    <svg class="icon icon--sm"><use href="#icon-arrow-right"></use></svg>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-card__image">🎨 Visual</div>
+                            <div class="feature-card__content">
+                                <h3 class="feature-card__title">Generación Visual</h3>
+                                <p class="feature-card__description">
+                                    Freepik AI, Leonardo.ai, Midjourney, DALL-E, Stable Diffusion para creatividad aumentada
+                                </p>
+                                <a href="#" class="feature-card__link">
+                                    Ver galería
+                                    <svg class="icon icon--sm"><use href="#icon-external"></use></svg>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-card__image">🎬 Multimedia</div>
+                            <div class="feature-card__content">
+                                <h3 class="feature-card__title">Multimedia IA</h3>
+                                <p class="feature-card__description">
+                                    Heygen, Suno AI, RunwayML, Luma AI, ElevenLabs para contenido multimedia avanzado
+                                </p>
+                                <a href="#" class="feature-card__link">
+                                    Descubrir más
+                                    <svg class="icon icon--sm"><use href="#icon-share"></use></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Features Highlight</div>
+            <section class="features--highlight">
+                <div class="features__container">
+                    <div class="features__main">
+                        <div class="features__main-content">
+                            <h2 class="features__main-title">Vibe Coding Avanzado</h2>
+                            <p class="features__main-description">
+                                Desarrollo orgánico donde la intuición y la IA colaboran para materializar visiones complejas en tiempo real.
+                            </p>
+                            
+                            <ul class="features__main-features">
+                                <li class="features__main-feature">
+                                    <div class="features__main-feature-icon">
+                                        <svg class="icon icon--xs"><use href="#icon-check"></use></svg>
+                                    </div>
+                                    Creatividad sin límites técnicos
+                                </li>
+                                <li class="features__main-feature">
+                                    <div class="features__main-feature-icon">
+                                        <svg class="icon icon--xs"><use href="#icon-check"></use></svg>
+                                    </div>
+                                    Velocidad exponencial de desarrollo
+                                </li>
+                                <li class="features__main-feature">
+                                    <div class="features__main-feature-icon">
+                                        <svg class="icon icon--xs"><use href="#icon-check"></use></svg>
+                                    </div>
+                                    Metodología orgánica y adaptativa
+                                </li>
+                                <li class="features__main-feature">
+                                    <div class="features__main-feature-icon">
+                                        <svg class="icon icon--xs"><use href="#icon-check"></use></svg>
+                                    </div>
+                                    Pensamiento sistémico 01234
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="features__main-image">
+                            Arquitectura Cognitiva 01234
+                        </div>
+                    </div>
+                    
+                    <div class="features__secondary">
+                        <div class="feature-secondary">
+                            <div class="feature-secondary__icon">
+                                <svg class="icon icon--lg"><use href="#icon-settings"></use></svg>
+                            </div>
+                            <h3 class="feature-secondary__title">Prototipado Funcional</h3>
+                            <p class="feature-secondary__description">
+                                Ciclos de desarrollo ultrarrápidos mediante colaboración IA
+                            </p>
+                        </div>
+                        
+                        <div class="feature-secondary">
+                            <div class="feature-secondary__icon">
+                                <svg class="icon icon--lg"><use href="#icon-star"></use></svg>
+                            </div>
+                            <h3 class="feature-secondary__title">Interfaces Generativas</h3>
+                            <p class="feature-secondary__description">
+                                UX contextual que emerge del propósito, no de templates
+                            </p>
+                        </div>
+                        
+                        <div class="feature-secondary">
+                            <div class="feature-secondary__icon">
+                                <svg class="icon icon--lg"><use href="#icon-user"></use></svg>
+                            </div>
+                            <h3 class="feature-secondary__title">Colaboración Abierta</h3>
+                            <p class="feature-secondary__description">
+                                Proyectos que requieren pensamiento no convencional
+                            </p>
+                        </div>
+                        
+                        <div class="feature-secondary">
+                            <div class="feature-secondary__icon">
+                                <svg class="icon icon--lg"><use href="#icon-heart"></use></svg>
+                            </div>
+                            <h3 class="feature-secondary__title">Sistemas Cognitivos</h3>
+                            <p class="feature-secondary__description">
+                                Aplicación de marcos de pensamiento sistémico
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    
+    <!-- NUEVOS COMPONENTES - ICONOS SVG -->
+    <section id="icons" class="section">
+        <h2 class="section__title">Sistema de Iconos SVG</h2>
+        <p class="section__subtitle">Iconografía Bauhaus geométrica optimizada con arquitectura modular. Más de 25 iconos con múltiples variantes de estilo.</p>
+        
+        <div class="component-example">
+            <div class="component-title">Tamaños de Iconos</div>
+            <div style="display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <svg class="icon icon--xs"><use href="#icon-star"></use></svg>
+                    <code>icon--xs (12px)</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <svg class="icon icon--sm"><use href="#icon-star"></use></svg>
+                    <code>icon--sm (16px)</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <svg class="icon icon--base"><use href="#icon-star"></use></svg>
+                    <code>icon--base (20px)</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <svg class="icon icon--lg"><use href="#icon-star"></use></svg>
+                    <code>icon--lg (24px)</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <svg class="icon icon--xl"><use href="#icon-star"></use></svg>
+                    <code>icon--xl (32px)</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <svg class="icon icon--2xl"><use href="#icon-star"></use></svg>
+                    <code>icon--2xl (40px)</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
+                    <svg class="icon icon--3xl"><use href="#icon-star"></use></svg>
+                    <code>icon--3xl (48px)</code>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Variantes de Color</div>
+            <div style="display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
+                <svg class="icon icon--lg icon--primary"><use href="#icon-heart"></use></svg>
+                <svg class="icon icon--lg icon--secondary"><use href="#icon-heart"></use></svg>
+                <svg class="icon icon--lg icon--muted"><use href="#icon-heart"></use></svg>
+                <svg class="icon icon--lg icon--success"><use href="#icon-heart"></use></svg>
+                <svg class="icon icon--lg icon--warning"><use href="#icon-heart"></use></svg>
+                <svg class="icon icon--lg icon--error"><use href="#icon-heart"></use></svg>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Iconos con Fondo</div>
+            <div style="display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
+                <div class="icon-bg icon-bg--primary">
+                    <svg class="icon icon--lg"><use href="#icon-user"></use></svg>
+                </div>
+                <div class="icon-bg icon-bg--secondary">
+                    <svg class="icon icon--lg"><use href="#icon-settings"></use></svg>
+                </div>
+                <div class="icon-bg icon-bg--light">
+                    <svg class="icon icon--lg"><use href="#icon-search"></use></svg>
+                </div>
+                <div class="icon-bg icon-bg--dark">
+                    <svg class="icon icon--lg"><use href="#icon-star"></use></svg>
+                </div>
+                <div class="icon-bg icon-bg--primary icon-bg--circle">
+                    <svg class="icon icon--lg"><use href="#icon-heart"></use></svg>
+                </div>
+                <div class="icon-bg icon-bg--secondary icon-bg--rounded">
+                    <svg class="icon icon--lg"><use href="#icon-share"></use></svg>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Biblioteca de Iconos Disponibles</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-6);">
+                <!-- Navigation -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-arrow-right"></use></svg>
+                    <code style="font-size: var(--text-xs);">arrow-right</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-arrow-left"></use></svg>
+                    <code style="font-size: var(--text-xs);">arrow-left</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-menu"></use></svg>
+                    <code style="font-size: var(--text-xs);">menu</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-close"></use></svg>
+                    <code style="font-size: var(--text-xs);">close</code>
+                </div>
+                
+                <!-- Actions -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-check"></use></svg>
+                    <code style="font-size: var(--text-xs);">check</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-search"></use></svg>
+                    <code style="font-size: var(--text-xs);">search</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-settings"></use></svg>
+                    <code style="font-size: var(--text-xs);">settings</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-download"></use></svg>
+                    <code style="font-size: var(--text-xs);">download</code>
+                </div>
+                
+                <!-- Contact -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-user"></use></svg>
+                    <code style="font-size: var(--text-xs);">user</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-email"></use></svg>
+                    <code style="font-size: var(--text-xs);">email</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-phone"></use></svg>
+                    <code style="font-size: var(--text-xs);">phone</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-location"></use></svg>
+                    <code style="font-size: var(--text-xs);">location</code>
+                </div>
+                
+                <!-- Social -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-github"></use></svg>
+                    <code style="font-size: var(--text-xs);">github</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-instagram"></use></svg>
+                    <code style="font-size: var(--text-xs);">instagram</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-linkedin"></use></svg>
+                    <code style="font-size: var(--text-xs);">linkedin</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-youtube"></use></svg>
+                    <code style="font-size: var(--text-xs);">youtube</code>
+                </div>
+                
+                <!-- Interaction -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-star"></use></svg>
+                    <code style="font-size: var(--text-xs);">star</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-heart"></use></svg>
+                    <code style="font-size: var(--text-xs);">heart</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-share"></use></svg>
+                    <code style="font-size: var(--text-xs);">share</code>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-3); border-radius: var(--border-radius-base); border: 1px solid var(--color-gray-200);">
+                    <svg class="icon icon--lg"><use href="#icon-external"></use></svg>
+                    <code style="font-size: var(--text-xs);">external</code>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-example">
+            <div class="component-title">Ejemplo de Uso</div>
+            <div style="background: var(--color-surface-secondary); padding: var(--space-4); border-radius: var(--border-radius-base); font-family: var(--font-mono); font-size: var(--text-sm);">
+                <pre style="margin: 0;"><code>&lt;!-- Uso básico --&gt;
+&lt;svg class="icon icon--lg"&gt;
+  &lt;use href="#icon-name"&gt;&lt;/use&gt;
+&lt;/svg&gt;
+
+&lt;!-- Con color y fondo --&gt;
+&lt;div class="icon-bg icon-bg--primary icon-bg--circle"&gt;
+  &lt;svg class="icon icon--base"&gt;
+    &lt;use href="#icon-star"&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+        
+        <!-- Ejemplo Práctico de Uso -->
+        <div class="component-example">
+            <div class="component-title">Ejemplo Práctico - Botones con Iconos</div>
+            <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-4);">
+                <button class="btn btn--primary">
+                    <svg class="icon icon--sm"><use href="#icon-check"></use></svg>
+                    Guardar
+                </button>
+                <button class="btn btn--secondary">
+                    <svg class="icon icon--sm"><use href="#icon-search"></use></svg>
+                    Buscar
+                </button>
+                <button class="btn btn--ghost">
+                    <svg class="icon icon--sm"><use href="#icon-settings"></use></svg>
+                    Configuración
+                </button>
+            </div>
+            
+            <div class="component-title">Iconos con Fondo</div>
+            <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-4);">
+                <div class="icon-bg icon-bg--primary icon-bg--circle">
+                    <svg class="icon icon--lg"><use href="#icon-zap"></use></svg>
+                </div>
+                <div class="icon-bg icon-bg--secondary icon-bg--rounded">
+                    <svg class="icon icon--lg"><use href="#icon-shield"></use></svg>
+                </div>
+                <div class="icon-bg icon-bg--light">
+                    <svg class="icon icon--lg"><use href="#icon-star"></use></svg>
+                </div>
+                <div class="icon-bg icon-bg--dark icon-bg--circle">
+                    <svg class="icon icon--lg"><use href="#icon-heart"></use></svg>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer usando componente del sistema -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__container">
+                <p class="footer__text">CEREBRO-DIGITAL • Sistema 01234 • Sergio Forés • 2025</p>
+                <div class="footer__links">
+                    <a href="#principios" class="footer__link">Principios</a>
+                    <a href="#componentes" class="footer__link">Componentes</a>
+                    <a href="#espaciado" class="footer__link">Espaciado</a>
+                    <a href="https://github.com/t0t" class="footer__link">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

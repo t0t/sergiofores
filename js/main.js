@@ -84,6 +84,25 @@ window.addEventListener('scroll', () => {
     toggleBackToTopButton();
 });
 
+// Mobile Menu Toggle
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
+
+if (menuToggle && mainNav) {
+    menuToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('open');
+        menuToggle.classList.toggle('open');
+    });
+
+    // Close menu when a nav link is clicked
+    mainNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mainNav.classList.remove('open');
+            menuToggle.classList.remove('open');
+        });
+    });
+}
+
 // Initialize on load
 toggleBackToTopButton();
 // ===== PERFORMANCE OPTIMIZATIONS =====

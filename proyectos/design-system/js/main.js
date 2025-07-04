@@ -1,127 +1,46 @@
-// Navegación lateral activa
-const navLinks = document.querySelectorAll('.nav-link');
-const sections = document.querySelectorAll('.section');
+// SERGIO FORÉS - DESIGN SYSTEM MAIN JAVASCRIPT
 
-function updateActiveNav() {
-    const scrollPos = window.scrollY + 150;
-    
-    sections.forEach((section, index) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            navLinks.forEach(link => link.classList.remove('active'));
-            const correspondingLink = document.querySelector(`a[href="#${section.id}"]`);
-            if (correspondingLink) {
-                correspondingLink.classList.add('active');
-            }
-        }
-    });
+// Load External SVG Sprite for better maintainability
+function loadSvgSprite(url) {
+    fetch(url)
+        .then(response => response.text())
+        .then(svg => {
+            const div = document.createElement('div');
+            div.innerHTML = svg;
+            div.style.display = 'none';
+            document.body.insertBefore(div, document.body.firstChild);
+        })
+        .catch(error => console.warn('SVG icons could not be loaded:', error));
 }
 
-window.addEventListener('scroll', updateActiveNav);
-updateActiveNav();
-
-// Smooth scrolling para navegación
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-            const offsetTop = targetSection.offsetTop - 120;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Efectos interactivos para formas geométricas
-const geoShapes = document.querySelectorAll('.geo-shape');
-geoShapes.forEach(shape => {
-    shape.addEventListener('mouseenter', () => {
-        shape.style.transform = 'scale(1.2) rotate(5deg)';
-    });
-    
-    shape.addEventListener('mouseleave', () => {
-        shape.style.transform = 'scale(1) rotate(0deg)';
-    });
-});
-
-// Animación de aparición para componentes
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Aplicar animación a elementos
-const animatedElements = document.querySelectorAll('.component-example, .color-swatch, .type-sample');
-animatedElements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
-
-// Sistema de Alert Elegante
-function showAlert(type, title, message) {
-    const overlay = document.getElementById('alertOverlay');
-    const icon = document.getElementById('alertIcon');
-    const titleEl = document.getElementById('alertTitle');
-    const messageEl = document.getElementById('alertMessage');
-    
-    // Configurar contenido
-    titleEl.textContent = title;
-    messageEl.textContent = message;
-    
-    // Configurar icono y estilo según tipo
-    icon.className = `alert-icon ${type}`;
-    switch(type) {
-        case 'development':
-            icon.textContent = '🚧';
-            break;
-        case 'info':
-            icon.textContent = 'ℹ️';
-            break;
-        case 'warning':
-            icon.textContent = '⚠️';
-            break;
-        default:
-            icon.textContent = '📢';
-    }
-    
-    // Mostrar alert
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
+// Back to top functionality
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function hideAlert() {
-    const overlay = document.getElementById('alertOverlay');
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-// Cerrar alert al hacer clic en el overlay
-document.getElementById('alertOverlay').addEventListener('click', (e) => {
-    if (e.target.id === 'alertOverlay') {
-        hideAlert();
+// Show/hide back to top button
+window.addEventListener('scroll', function() {
+    const backToTop = document.querySelector('.back-to-top');
+    if (backToTop) {
+        if (window.scrollY > 300) {
+            backToTop.classList.add('back-to-top--visible');
+        } else {
+            backToTop.classList.remove('back-to-top--visible');
+        }
     }
 });
 
-// Cerrar alert con ESC
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        hideAlert();
+// Initialize on DOM ready
+document.addEventListener('DOMContentLoaded', function() {
+    loadSvgSprite('sergio-icons.svg');
+
+    const menuToggle = document.querySelector('.header__menu-toggle');
+    const mainNavList = document.getElementById('main-nav-list');
+
+    if (menuToggle && mainNavList) {
+        menuToggle.addEventListener('click', function() {
+            mainNavList.classList.toggle('is-open');
+            this.setAttribute('aria-expanded', mainNavList.classList.contains('is-open'));
+        });
     }
 });

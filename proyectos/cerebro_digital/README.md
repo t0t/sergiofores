@@ -1,4 +1,4 @@
-# Proyecto: Cerebro Digital Vault
+# Proyecto: Cerebro Digital
 
 *Última actualización: 2025-06-29*
 

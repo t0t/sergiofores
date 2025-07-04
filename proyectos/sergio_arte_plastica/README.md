@@ -1,4 +1,4 @@
-# Proyecto: Cerebro Digital Vault
+# Proyecto: Sergio Arte Plástica
 
 *Última actualización: 2025-06-29*
 

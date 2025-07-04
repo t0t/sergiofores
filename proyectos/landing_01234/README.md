@@ -1,4 +1,4 @@
-# Proyecto: Cerebro Digital Vault
+# Proyecto: Landing 01234
 
 *Última actualización: 2025-06-29*
 

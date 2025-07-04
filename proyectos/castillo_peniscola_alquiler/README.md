@@ -1,4 +1,4 @@
-# Proyecto: Cerebro Digital Vault
+# Proyecto: Castillo Peñíscola Alquiler
 
 *Última actualización: 2025-06-29*
 

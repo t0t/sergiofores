@@ -1,4 +1,4 @@
-# Proyecto: Cerebro Digital Vault
+# Proyecto: Taller 01234 Blanes
 
 *Última actualización: 2025-06-29*
 

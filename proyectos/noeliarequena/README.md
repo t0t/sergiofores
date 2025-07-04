@@ -1,60 +1,78 @@
-# Noelia Requena - Portfolio Web
+# Proyecto: Noelia Requena
 
-Portfolio web minimalista para la artista Noelia Requena, desarrollado con Vite, HTML, CSS y JavaScript vanilla.
+*Última actualización: 2025-06-29*
 
-## Características
+---
 
-- Diseño limpio y minimalista
-- Galería de obras con lightbox
-- Soporte completo para dispositivos móviles
-- Optimización de rendimiento
+### CONTEXTO PARA IA (Prompt Inicial)
 
-## Estructura del Proyecto
+**Objetivo Actual:** *Definir la estructura inicial del proyecto.*
+**Estado Actual:** *Proyecto recién inicializado. Pendiente de definir funcionalidades y diseño.*
+**Próximos Pasos:** *Rellenar las secciones de Modelo/Esencia y Features Principales.*
 
+---
+
+## Nivel 1: Modelo/Esencia (El Qué y el Porqué)
+
+*Descripción concisa del propósito del proyecto. ¿Qué problema resuelve? ¿Cuál es su visión?*
+
+---
+
+## Nivel 2: Análisis/Estructura (Los Componentes)
+
+### Features Principales
+- [ ] Feature A: Descripción.
+- [ ] Feature B: Descripción.
+- [ ] Feature C: Descripción.
+
+### Stack Tecnológico
+- **Frontend:** HTML semántico, CSS (con variables y Grid), JavaScript vanilla (ES6+).
+- **Backend:** (si aplica)
+- **Despliegue:** Vercel / GitHub Pages.
+
+### Agentes Implicados
+*Lista de agentes de IA (`/.claude/agents/`) que participan en el proyecto.*
+- `product-manager.md`: Define el alcance y los requisitos.
+- `ui-designer.md`: Crea los wireframes y el diseño visual.
+- `frontend-architect.md`: Estructura el código del frontend.
+- `copywriter-specialist.md`: Redacta los textos.
+
+---
+
+## Nivel 3: Comunicación/Plan (La Hoja de Ruta)
+
+### Plan de Acción
+1.  **Fase 1 (Diseño):** Definición de la experiencia y diseño visual.
+2.  **Fase 2 (Desarrollo):** Maquetación y desarrollo de funcionalidades.
+3.  **Fase 3 (Lanzamiento):** Despliegue y pruebas finales.
+
+### Checklist de Tareas
+- [ ] **Diseño**
+    - [ ] Crear wireframes
+    - [ ] Definir paleta de colores y tipografía
+    - [ ] Diseñar componentes UI
+- [ ] **Desarrollo**
+    - [ ] Estructurar el proyecto (HTML, CSS, JS)
+    - [ ] Maquetar la página principal
+    - [ ] Implementar Feature A
+- [ ] **Lanzamiento**
+    - [ ] Configurar el despliegue en Vercel/GitHub Pages
+    - [ ] Realizar pruebas de usabilidad
+    - [ ] Publicar versión 1.0
+
+---
+
+## Nivel 4: Materialización/Ejecución (El Resultado)
+
+### URL Despliegue
+- **Producción:** [Enlace](https://)
+- **Staging:** [Enlace](https://)
+
+### Comandos Útiles
+```bash
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo
+npm run dev
 ```
-noeliarequena/
-├── src/           # Código fuente (Vite)
-├── public/        # Archivos estáticos (imágenes, CNAME)
-├── docs/          # Carpeta de build para producción (desplegada)
-└── package.json   # Dependencias y scripts
-```
-
-## Desarrollo Local
-
-1.  Clona el repositorio.
-2.  Instala las dependencias: `npm install`.
-3.  Ejecuta el servidor de desarrollo: `npm run dev`.
-
-## Despliegue en GitHub Pages
-
-Este proyecto está configurado para un despliegue manual y controlado en GitHub Pages.
-
-**Pasos para desplegar:**
-
-1.  **Construir el proyecto:**
-    Ejecuta el siguiente comando para generar la versión de producción del sitio en la carpeta `/docs`.
-    ```bash
-    npm run build
-    ```
-
-2.  **Subir los cambios:**
-    Añade la carpeta `/docs` al commit y sube los cambios a la rama `main`.
-    ```bash
-    git add .
-    git commit -m "Deploy: Actualizar build de producción"
-    git push origin main
-    ```
-
-3.  **Configurar GitHub Pages:**
-    En la configuración del repositorio (`Settings > Pages`), asegúrate de que la fuente de despliegue ("Source") sea **Deploy from a branch** y que la rama ("Branch") esté configurada en **main** y la carpeta **`/docs`**.
-
-## Tecnologías
-
-- Vite.js
-- HTML5
-- CSS3 (Grid, Flexbox)
-- JavaScript (ES6+)
-
-## Versión
-
-Ver [CHANGELOG.md](CHANGELOG.md) para detalles de los cambios en cada versión.

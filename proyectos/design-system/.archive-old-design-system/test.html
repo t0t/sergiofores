@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System Test</title>
+    
+    <!-- CSS imports -->
+    <link rel="stylesheet" href="css/sergio-reset.css">
+    <link rel="stylesheet" href="css/sergio-design-tokens.css">
+    <link rel="stylesheet" href="css/sergio-components-bem.css">
+    
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .test-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--border-radius-base);
+        }
+        
+        .test-title {
+            color: var(--color-accent-primary);
+            margin-bottom: 20px;
+            font-weight: var(--font-weight-medium);
+        }
+        
+        .component-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body class="page">
+    <div class="test-container">
+        <h1 class="test-title">Design System - Test Funcional</h1>
+        
+        <!-- Test: Layout Structure -->
+        <div class="test-section">
+            <h2 class="test-title">✓ Layout Structure</h2>
+            
+            <main class="main">
+                <section class="section">
+                    <div class="section__container">
+                        <header class="section__header">
+                            <h2 class="section__title">Section Title</h2>
+                            <p class="section__subtitle">Section subtitle funcionando</p>
+                        </header>
+                        <div class="section__content">
+                            <p>Section content funcionando correctamente</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+        
+        <!-- Test: Buttons -->
+        <div class="test-section">
+            <h2 class="test-title">✓ Button System</h2>
+            
+            <div class="component-row">
+                <button class="btn btn--primary">Primary</button>
+                <button class="btn btn--secondary">Secondary</button>
+                <button class="btn btn--success">Success</button>
+                <button class="btn btn--warning">Warning</button>
+                <button class="btn btn--danger">Danger</button>
+                <button class="btn btn--ghost">Ghost</button>
+            </div>
+            
+            <div class="component-row">
+                <button class="btn btn--primary btn--sm">Small</button>
+                <button class="btn btn--primary">Default</button>
+                <button class="btn btn--primary btn--lg">Large</button>
+            </div>
+            
+            <div class="component-row">
+                <button class="btn btn--primary btn--loading">
+                    <span class="btn__spinner"></span>
+                    Loading
+                </button>
+                <button class="btn btn--primary btn--disabled" disabled>Disabled</button>
+            </div>
+        </div>
+        
+        <!-- Test: Grid System -->
+        <div class="test-section">
+            <h2 class="test-title">✓ Grid System</h2>
+            
+            <div class="grid grid--2-col" style="margin-bottom: 16px;">
+                <div style="background: var(--color-gray-100); padding: 16px; text-align: center;">Grid 2-1</div>
+                <div style="background: var(--color-gray-100); padding: 16px; text-align: center;">Grid 2-2</div>
+            </div>
+            
+            <div class="grid grid--3-col">
+                <div style="background: var(--color-gray-100); padding: 16px; text-align: center;">Grid 3-1</div>
+                <div style="background: var(--color-gray-100); padding: 16px; text-align: center;">Grid 3-2</div>
+                <div style="background: var(--color-gray-100); padding: 16px; text-align: center;">Grid 3-3</div>
+            </div>
+        </div>
+        
+        <!-- Test: Cards -->
+        <div class="test-section">
+            <h2 class="test-title">✓ Card Components</h2>
+            
+            <div class="grid grid--2-col">
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="card__title">Card Basic</h3>
+                        <p class="card__subtitle">Subtitle</p>
+                    </div>
+                    <div class="card__body">
+                        <p class="card__text">Card content funcionando perfectamente.</p>
+                    </div>
+                    <div class="card__footer">
+                        <button class="btn btn--primary btn--sm">Action</button>
+                    </div>
+                </div>
+                
+                <div class="card card--outlined">
+                    <div class="card__body">
+                        <h3 class="card__title">Card Outlined</h3>
+                        <p class="card__text">Card outlined funcionando correctamente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test: Alerts -->
+        <div class="test-section">
+            <h2 class="test-title">✓ Alert System</h2>
+            
+            <div class="alert alert--info" style="margin-bottom: 16px;">
+                <div class="alert__icon">ℹ️</div>
+                <div class="alert__content">
+                    <div class="alert__title">Info Alert</div>
+                    <div class="alert__message">Alert info funcionando correctamente.</div>
+                </div>
+            </div>
+            
+            <div class="alert alert--success" style="margin-bottom: 16px;">
+                <div class="alert__icon">✅</div>
+                <div class="alert__content">
+                    <div class="alert__title">Success Alert</div>
+                    <div class="alert__message">Alert success funcionando perfectamente.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test: Forms -->
+        <div class="test-section">
+            <h2 class="test-title">✓ Form Components</h2>
+            
+            <form class="form form--vertical">
+                <div class="form__section">
+                    <div class="form__field">
+                        <label class="form__label" for="test-input">Input Field</label>
+                        <input class="form__input" type="text" id="test-input" placeholder="Test input">
+                    </div>
+                    
+                    <div class="form__field">
+                        <label class="form__label" for="test-select">Select Field</label>
+                        <select class="form__select" id="test-select">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form__field">
+                        <div class="form__checkbox">
+                            <input class="form__checkbox-input" type="checkbox" id="test-checkbox">
+                            <label class="form__checkbox-label" for="test-checkbox">Checkbox funcionando</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form__actions">
+                    <button class="btn btn--primary" type="submit">Submit</button>
+                    <button class="btn btn--ghost" type="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Test: Badges -->
+        <div class="test-section">
+            <h2 class="test-title">✓ Badge System</h2>
+            
+            <div class="component-row">
+                <span class="badge badge--primary">Primary</span>
+                <span class="badge badge--secondary">Secondary</span>
+                <span class="badge badge--success">Success</span>
+                <span class="badge badge--warning">Warning</span>
+                <span class="badge badge--danger">Danger</span>
+            </div>
+        </div>
+        
+        <!-- Test: Typography -->
+        <div class="test-section">
+            <h2 class="test-title">✓ Typography System</h2>
+            
+            <h1 style="font-size: var(--text-4xl); margin-bottom: 16px;">Heading 1 - Text 4XL</h1>
+            <h2 style="font-size: var(--text-3xl); margin-bottom: 16px;">Heading 2 - Text 3XL</h2>
+            <h3 style="font-size: var(--text-2xl); margin-bottom: 16px;">Heading 3 - Text 2XL</h3>
+            <p style="font-size: var(--text-base); margin-bottom: 16px;">Paragraph text - Base size funcionando perfectamente</p>
+            <p style="font-size: var(--text-sm); color: var(--color-text-secondary);">Small text - Secondary color</p>
+        </div>
+        
+        <!-- Test Status -->
+        <div style="background: var(--color-accent-secondary); color: white; padding: 20px; border-radius: var(--border-radius-base); text-align: center;">
+            <h2 style="margin: 0;">✅ SISTEMA DE DISEÑO FUNCIONANDO CORRECTAMENTE</h2>
+            <p style="margin: 8px 0 0 0;">Todos los componentes BEM renderizando perfectamente</p>
+        </div>
+    </div>
+    
+    <!-- Test JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-# Proyecto: Cerebro Digital Vault
+# Proyecto: Prototipos 01234
 
 *Última actualización: 2025-06-29*
 

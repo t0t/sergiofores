@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevos Componentes - Sistema de Diseño Sergio Forés</title>
+    <link rel="stylesheet" href="sergio-design-tokens.css">
+    <link rel="stylesheet" href="sergio-components.css">
+    <style>
+        /* Estilos específicos para la demo */
+        .demo-section {
+            margin-bottom: var(--space-3xl);
+            padding: var(--space-xl);
+            border: var(--border-width-thin) solid var(--color-gray-200);
+            border-radius: var(--border-radius-lg);
+        }
+        
+        .demo-title {
+            font-size: var(--text-2xl);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-6);
+            letter-spacing: var(--letter-spacing-base);
+        }
+        
+        .demo-description {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-8);
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .icon-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+        
+        .icon-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3);
+            background: var(--color-surface-secondary);
+            border-radius: var(--border-radius-base);
+        }
+        
+        .icon-code {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width: 1200px; margin: 0 auto; padding: var(--space-3xl) var(--space-md);">
+        
+        <!-- Header principal -->
+        <header style="text-align: center; margin-bottom: var(--space-3xl);">
+            <h1 style="font-family: var(--font-mono); font-size: var(--text-4xl); color: var(--color-text-primary); margin-bottom: var(--space-4); letter-spacing: var(--letter-spacing-wide);">
+                Nuevos Componentes
+            </h1>
+            <p style="font-size: var(--text-lg); color: var(--color-text-secondary); max-width: 600px; margin: 0 auto; line-height: var(--line-height-relaxed);">
+                Sistema de iconos SVG, componentes Footer y Features siguiendo los criterios de diseño Bauhaus/minimalista
+            </p>
+        </header>
+
+        <!-- Sistema de Iconos SVG -->
+        <section class="demo-section">
+            <h2 class="demo-title">Sistema de Iconos SVG</h2>
+            <p class="demo-description">
+                Sistema elegante y moderno de iconos SVG inline con múltiples tamaños, colores y estados interactivos.
+            </p>
+            
+            <!-- Tamaños de iconos -->
+            <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-4); color: var(--color-text-primary);">Tamaños Disponibles</h3>
+            <div style="display: flex; align-items: center; gap: var(--space-6); margin-bottom: var(--space-8);">
+                <span class="icon icon--check icon--xs"></span>
+                <span class="icon icon--check icon--sm"></span>
+                <span class="icon icon--check icon--base"></span>
+                <span class="icon icon--check icon--lg"></span>
+                <span class="icon icon--check icon--xl"></span>
+                <span class="icon icon--check icon--2xl"></span>
+            </div>
+            
+            <!-- Colores de iconos -->
+            <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-4); color: var(--color-text-primary);">Variantes de Color</h3>
+            <div style="display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-8);">
+                <span class="icon icon--heart icon--primary"></span>
+                <span class="icon icon--heart icon--secondary"></span>
+                <span class="icon icon--heart icon--success"></span>
+                <span class="icon icon--heart icon--warning"></span>
+                <span class="icon icon--heart icon--error"></span>
+                <span class="icon icon--heart icon--tech"></span>
+            </div>
+            
+            <!-- Iconos disponibles -->
+            <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-4); color: var(--color-text-primary);">Iconos Disponibles</h3>
+            <div class="icon-showcase">
+                <div class="icon-item">
+                    <span class="icon icon--arrow-right"></span>
+                    <code class="icon-code">icon--arrow-right</code>
+                </div>
+                <div class="icon-item">
+                    <span class="icon icon--arrow-left"></span>
+                    <code class="icon-code">icon--arrow-left</code>
+                </div>
+                <div class="icon-item">
+                    <span class="icon icon--check"></span>
+                    <code class="icon-code">icon--check</code>
+                </div>
+                <div class="icon-item">
+                    <span class="icon icon--close"></span>
+                    <code class="icon-code">icon--close</code>
+                </div>
+                <div class="icon-item">
+                    <span class="icon icon--star"></span>
+                    <code class="icon-code">icon--star</code>
+                </div>
+                <div class="icon-item">
+                    <span class="icon icon--heart"></span>
+                    <code class="icon-code">icon--heart</code>
+                </div>
+                <div class="icon-item">
+                    <span class="icon icon--mail"></span>
+                    <code class="icon-code">icon--mail</code>
+                </div>
+                <div class="icon-item">
+                    <span class="icon icon--location"></span>
+                    <code class="icon-code">icon--location</code>
+                </div>
+                <div class="icon-item">
+                    <span class="icon icon--instagram"></span>
+                    <code class="icon-code">icon--instagram</code>
+                </div>
+                <div class="icon-item">
+                    <span class="icon icon--github"></span>
+                    <code class="icon-code">icon--github</code>
+                </div>
+            </div>
+            
+            <!-- Icon con texto -->
+            <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-4); color: var(--color-text-primary);">Iconos con Texto</h3>
+            <div style="display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-6);">
+                <div class="icon-text">
+                    <span class="icon icon--mail icon--primary"></span>
+                    <span>sergiofores@email.com</span>
+                </div>
+                <div class="icon-text">
+                    <span class="icon icon--location icon--secondary"></span>
+                    <span>Madrid, España</span>
+                </div>
+                <div class="icon-text">
+                    <span class="icon icon--check icon--success"></span>
+                    <span>Proyecto completado</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Simple -->
+        <section class="demo-section">
+            <h2 class="demo-title">Footer Simple</h2>
+            <p class="demo-description">
+                Footer minimalista con navegación central, redes sociales y copyright.
+            </p>
+            
+            <div style="background: var(--color-gray-100); border-radius: var(--border-radius-lg); overflow: hidden;">
+                <footer class="footer footer--simple">
+                    <div class="footer__container">
+                        <div class="footer__content">
+                            <a href="#" class="footer__brand">SERGIO.01234</a>
+                            
+                            <nav class="footer__links">
+                                <a href="#" class="footer__link">Trabajo</a>
+                                <a href="#" class="footer__link">Sobre mí</a>
+                                <a href="#" class="footer__link">Filosofía</a>
+                                <a href="#" class="footer__link">Contacto</a>
+                            </nav>
+                            
+                            <div class="footer__social">
+                                <a href="#" class="footer__social-link">
+                                    <span class="icon icon--instagram"></span>
+                                </a>
+                                <a href="#" class="footer__social-link">
+                                    <span class="icon icon--github"></span>
+                                </a>
+                                <a href="#" class="footer__social-link">
+                                    <span class="icon icon--twitter"></span>
+                                </a>
+                                <a href="#" class="footer__social-link">
+                                    <span class="icon icon--youtube"></span>
+                                </a>
+                            </div>
+                            
+                            <p class="footer__copyright">
+                                © 2024 Sergio Forés. Sistema 01234 - Arquitectura cognitiva.
+                            </p>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </section>
+
+        <!-- Footer Completo -->
+        <section class="demo-section">
+            <h2 class="demo-title">Footer Completo</h2>
+            <p class="demo-description">
+                Footer avanzado con múltiples secciones, información de contacto y navegación estructurada.
+            </p>
+            
+            <div style="background: var(--color-gray-100); border-radius: var(--border-radius-lg); overflow: hidden;">
+                <footer class="footer footer--complete">
+                    <div class="footer__container">
+                        <div class="footer__main">
+                            <!-- Sección de marca -->
+                            <div class="footer__brand-section">
+                                <a href="#" class="footer__brand">SERGIO.01234</a>
+                                <p class="footer__description">
+                                    Explorador de metodologías de desarrollo. Arquitectura cognitiva aplicada a sistemas digitales y creatividad transdisciplinar.
+                                </p>
+                                <div class="footer__social">
+                                    <a href="#" class="footer__social-link">
+                                        <span class="icon icon--instagram"></span>
+                                    </a>
+                                    <a href="#" class="footer__social-link">
+                                        <span class="icon icon--github"></span>
+                                    </a>
+                                    <a href="#" class="footer__social-link">
+                                        <span class="icon icon--twitter"></span>
+                                    </a>
+                                    <a href="#" class="footer__social-link">
+                                        <span class="icon icon--linkedin"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Navegación -->
+                            <div class="footer__section">
+                                <h3 class="footer__section-title">Navegación</h3>
+                                <div class="footer__section-links">
+                                    <a href="#" class="footer__section-link">Inicio</a>
+                                    <a href="#" class="footer__section-link">Proyectos</a>
+                                    <a href="#" class="footer__section-link">Sistema 01234</a>
+                                    <a href="#" class="footer__section-link">Arte</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Recursos -->
+                            <div class="footer__section">
+                                <h3 class="footer__section-title">Recursos</h3>
+                                <div class="footer__section-links">
+                                    <a href="#" class="footer__section-link">Design System</a>
+                                    <a href="#" class="footer__section-link">Documentación</a>
+                                    <a href="#" class="footer__section-link">Herramientas IA</a>
+                                    <a href="#" class="footer__section-link">Blog</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Contacto -->
+                            <div class="footer__section">
+                                <h3 class="footer__section-title">Contacto</h3>
+                                <div class="footer__contact-item">
+                                    <span class="icon icon--mail footer__contact-icon"></span>
+                                    <span>hola@sergiofores.es</span>
+                                </div>
+                                <div class="footer__contact-item">
+                                    <span class="icon icon--location footer__contact-icon"></span>
+                                    <span>Madrid, España</span>
+                                </div>
+                                <div class="footer__contact-item">
+                                    <span class="icon icon--globe footer__contact-icon"></span>
+                                    <span>sergiofores.es</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Footer bottom -->
+                        <div class="footer__bottom">
+                            <p class="footer__copyright">
+                                © 2024 Sergio Forés. Todos los derechos reservados.
+                            </p>
+                            <div class="footer__legal">
+                                <a href="#" class="footer__legal-link">Privacidad</a>
+                                <a href="#" class="footer__legal-link">Términos</a>
+                                <a href="#" class="footer__legal-link">Cookies</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section class="demo-section">
+            <h2 class="demo-title">Features Grid</h2>
+            <p class="demo-description">
+                Grid de características con iconos, efectos de hover elegantes y animaciones sutiles.
+            </p>
+            
+            <section class="features features--grid">
+                <div class="features__container">
+                    <div class="features__header">
+                        <h2 class="features__title">Arquitectura Cognitiva 01234</h2>
+                        <p class="features__subtitle">
+                            Sistema representacional compartido que organiza desde el potencial hasta la materialización
+                        </p>
+                    </div>
+                    
+                    <div class="features__grid">
+                        <div class="features__item">
+                            <div class="features__icon">
+                                <span class="icon icon--star"></span>
+                            </div>
+                            <h3 class="features__item-title">Potencial Infinito</h3>
+                            <p class="features__item-description">
+                                Nivel 0 - Campo cuántico de posibilidades. Reservorio de información y matriz generativa de todo conocimiento.
+                            </p>
+                            <a href="#" class="features__item-link">
+                                Explorar concepto
+                                <span class="icon icon--arrow-right"></span>
+                            </a>
+                        </div>
+                        
+                        <div class="features__item">
+                            <div class="features__icon">
+                                <span class="icon icon--check"></span>
+                            </div>
+                            <h3 class="features__item-title">Claridad Esencial</h3>
+                            <p class="features__item-description">
+                                Nivel 1 - Modelo y esencia. Principio ordenador que define dirección, propósito e identidad fundamental.
+                            </p>
+                            <a href="#" class="features__item-link">
+                                Ver aplicación
+                                <span class="icon icon--arrow-right"></span>
+                            </a>
+                        </div>
+                        
+                        <div class="features__item">
+                            <div class="features__icon">
+                                <span class="icon icon--search"></span>
+                            </div>
+                            <h3 class="features__item-title">Análisis Profundo</h3>
+                            <p class="features__item-description">
+                                Nivel 2 - Diferenciación y procesamiento. Dominio de la dualidad y la fragmentación consciente.
+                            </p>
+                            <a href="#" class="features__item-link">
+                                Profundizar
+                                <span class="icon icon--arrow-right"></span>
+                            </a>
+                        </div>
+                        
+                        <div class="features__item">
+                            <div class="features__icon">
+                                <span class="icon icon--globe"></span>
+                            </div>
+                            <h3 class="features__item-title">Comunicación</h3>
+                            <p class="features__item-description">
+                                Nivel 3 - Expresión y relación. Tejedora de vínculos y generadora de significado contextual.
+                            </p>
+                            <a href="#" class="features__item-link">
+                                Conectar ideas
+                                <span class="icon icon--arrow-right"></span>
+                            </a>
+                        </div>
+                        
+                        <div class="features__item">
+                            <div class="features__icon">
+                                <span class="icon icon--external"></span>
+                            </div>
+                            <h3 class="features__item-title">Materialización</h3>
+                            <p class="features__item-description">
+                                Nivel 4 - Acción y manifestación. Cristalización en realidad concreta y experiencia tangible.
+                            </p>
+                            <a href="#" class="features__item-link">
+                                Implementar
+                                <span class="icon icon--arrow-right"></span>
+                            </a>
+                        </div>
+                        
+                        <div class="features__item">
+                            <div class="features__icon">
+                                <span class="icon icon--heart"></span>
+                            </div>
+                            <h3 class="features__item-title">Aplicación Integral</h3>
+                            <p class="features__item-description">
+                                Sistema completo aplicable a múltiples dominios: creatividad, desarrollo, vida personal y profesional.
+                            </p>
+                            <a href="#" class="features__item-link">
+                                Experimentar
+                                <span class="icon icon--arrow-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Features Cards -->
+        <section class="demo-section">
+            <h2 class="demo-title">Features Cards</h2>
+            <p class="demo-description">
+                Tarjetas destacadas con imágenes, categorías y efectos visuales sofisticados.
+            </p>
+            
+            <section class="features features--cards">
+                <div class="features__container">
+                    <div class="features__header">
+                        <h2 class="features__title">Proyectos Destacados</h2>
+                        <p class="features__subtitle">
+                            Aplicaciones prácticas del sistema 01234 en desarrollo web y herramientas cognitivas
+                        </p>
+                    </div>
+                    
+                    <div class="features__cards">
+                        <div class="features__card">
+                            <img src="https://picsum.photos/400/240?random=1" alt="CEREBRO-DIGITAL" class="features__card-image">
+                            <div class="features__card-overlay">
+                                <span class="icon icon--star"></span>
+                            </div>
+                            <div class="features__card-content">
+                                <span class="features__card-category">Sistema Cognitivo</span>
+                                <h3 class="features__card-title">CEREBRO-DIGITAL</h3>
+                                <p class="features__card-description">
+                                    Sistema de gestión de conocimiento personal que combina Obsidian, Claude Code y arquitectura 01234 para automatización inteligente.
+                                </p>
+                                <div class="features__card-footer">
+                                    <a href="#" class="features__card-link">
+                                        Ver proyecto
+                                        <span class="icon icon--external"></span>
+                                    </a>
+                                    <span class="features__card-meta">
+                                        <span class="icon icon--star"></span>
+                                        Nivel 4
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="features__card">
+                            <img src="https://picsum.photos/400/240?random=2" alt="Design System" class="features__card-image">
+                            <div class="features__card-overlay">
+                                <span class="icon icon--check"></span>
+                            </div>
+                            <div class="features__card-content">
+                                <span class="features__card-category">Design System</span>
+                                <h3 class="features__card-title">Sistema Atómico Sergio</h3>
+                                <p class="features__card-description">
+                                    Design system completo basado en criterios Bauhaus con tipografía perfecta, espaciado sistemático y componentes reutilizables.
+                                </p>
+                                <div class="features__card-footer">
+                                    <a href="#" class="features__card-link">
+                                        Explorar sistema
+                                        <span class="icon icon--external"></span>
+                                    </a>
+                                    <span class="features__card-meta">
+                                        <span class="icon icon--heart"></span>
+                                        Favorito
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="features__card">
+                            <img src="https://picsum.photos/400/240?random=3" alt="Landing 01234" class="features__card-image">
+                            <div class="features__card-overlay">
+                                <span class="icon icon--globe"></span>
+                            </div>
+                            <div class="features__card-content">
+                                <span class="features__card-category">Filosofía Web</span>
+                                <h3 class="features__card-title">Landing 01234</h3>
+                                <p class="features__card-description">
+                                    Presentación web del metamodelo cognitivo con interfaz minimalista y navegación intuitiva por los 5 niveles.
+                                </p>
+                                <div class="features__card-footer">
+                                    <a href="#" class="features__card-link">
+                                        Visitar sitio
+                                        <span class="icon icon--external"></span>
+                                    </a>
+                                    <span class="features__card-meta">
+                                        <span class="icon icon--globe"></span>
+                                        En vivo
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Features Highlight -->
+        <section class="demo-section">
+            <h2 class="demo-title">Features Highlight</h2>
+            <p class="demo-description">
+                Sección destacada de dos columnas con lista de características e imagen de apoyo.
+            </p>
+            
+            <section class="features features--highlight">
+                <div class="features__container">
+                    <div class="features__content">
+                        <div class="features__text">
+                            <h2 class="features__title">
+                                Desarrollo Potenciado por IA
+                            </h2>
+                            <p class="features__description">
+                                Nueva metodología que combina intuición humana con capacidades generativas para crear interfaces que emergen del propósito, no de templates.
+                            </p>
+                            
+                            <ul class="features__list">
+                                <li class="features__list-item">
+                                    <span class="icon icon--check features__list-icon"></span>
+                                    <div class="features__list-content">
+                                        <h4>Prototipado Ultrarrápido</h4>
+                                        <p>De concepto a demo funcional en minutos mediante colaboración IA</p>
+                                    </div>
+                                </li>
+                                
+                                <li class="features__list-item">
+                                    <span class="icon icon--star features__list-icon"></span>
+                                    <div class="features__list-content">
+                                        <h4>Vibe Coding Avanzado</h4>
+                                        <p>Desarrollo orgánico donde el flujo creativo dicta la arquitectura</p>
+                                    </div>
+                                </li>
+                                
+                                <li class="features__list-item">
+                                    <span class="icon icon--globe features__list-icon"></span>
+                                    <div class="features__list-content">
+                                        <h4>Pensamiento Sistémico</h4>
+                                        <p>Marco cognitivo 01234 aplicado a cada iteración de desarrollo</p>
+                                    </div>
+                                </li>
+                                
+                                <li class="features__list-item">
+                                    <span class="icon icon--heart features__list-icon"></span>
+                                    <div class="features__list-content">
+                                        <h4>Creatividad sin Límites</h4>
+                                        <p>Herramientas IA que extienden capacidades de materialización</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            
+                            <div class="features__cta">
+                                <a href="#" class="btn btn--primary">
+                                    Explorar metodología
+                                </a>
+                                <a href="#" class="btn btn--secondary">
+                                    Ver casos de uso
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="features__image">
+                            <img src="https://picsum.photos/600/500?random=4" alt="Desarrollo con IA">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+    </div>
+</body>
+</html>
