@@ -14,7 +14,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Header show/hide on scroll + Active navigation link highlighting
 const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-links a');
+const navLinkElements = document.querySelectorAll('.nav-links a');
 const navContainer = document.querySelector('.nav-container');
 let lastScrollY = window.scrollY;
 
@@ -44,7 +44,7 @@ window.addEventListener('scroll', () => {
         }
     });
 
-    navLinks.forEach(link => {
+    navLinkElements.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href').slice(1) === current) {
             link.classList.add('active');
@@ -173,10 +173,86 @@ backToTopButton.addEventListener('click', () => {
 
 window.addEventListener('scroll', debounce(toggleBackToTopButton, 100));
 
+// Mobile Navigation Toggle - VARIABLES GLOBALES
+let navHamburger = document.querySelector('.nav-hamburger');
+let navLinks = document.querySelector('.nav-links');
+const body = document.body;
+
+function toggleMobileNav() {
+    console.log('🔄 toggleMobileNav ejecutado');
+    
+    if (!navHamburger || !navLinks) {
+        console.error('❌ Variables no definidas:', navHamburger, navLinks);
+        return;
+    }
+    
+    navHamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    body.classList.toggle('nav-open');
+    
+    // Update aria-expanded attribute
+    const isExpanded = navHamburger.classList.contains('active');
+    navHamburger.setAttribute('aria-expanded', isExpanded);
+    
+    console.log('✅ Estado del menú:', isExpanded ? 'ABIERTO' : 'CERRADO');
+}
+
+// Close mobile nav when clicking on links
+navLinks.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+        navHamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        body.classList.remove('nav-open');
+        navHamburger.setAttribute('aria-expanded', 'false');
+    }
+});
+
+// Close mobile nav when clicking outside
+document.addEventListener('click', (e) => {
+    if (!navHamburger.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
+        navHamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        body.classList.remove('nav-open');
+        navHamburger.setAttribute('aria-expanded', 'false');
+    }
+});
+
+// Close mobile nav on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+        navHamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        body.classList.remove('nav-open');
+        navHamburger.setAttribute('aria-expanded', 'false');
+    }
+});
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+        navHamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        body.classList.remove('nav-open');
+        navHamburger.setAttribute('aria-expanded', 'false');
+    }
+});
+
 // Add loading state management and initialize typewriter
 document.addEventListener('DOMContentLoaded', () => {
     // Add loaded class to body for any CSS animations
     document.body.classList.add('loaded');
+    
+    // Initialize mobile navigation - FORZAR BÚSQUEDA EN DOM
+    navHamburger = document.querySelector('.nav-hamburger');
+    navLinks = document.querySelector('.nav-links');
+    
+    if (navHamburger && navLinks) {
+        navHamburger.addEventListener('click', toggleMobileNav);
+        console.log('✅ Menú hamburguesa inicializado correctamente');
+    } else {
+        console.error('❌ No se encontró el botón hamburguesa o nav-links');
+        console.error('hamburger:', navHamburger, 'navLinks:', navLinks);
+    }
     
     // Initialize typewriter effect on hero title
     const heroTitle = document.querySelector('.hero-title');
@@ -196,4 +272,9 @@ document.addEventListener('DOMContentLoaded', () => {
             el.style.animationDelay = `${index * 0.1}s`;
         });
     }, 100);
+    
+    // Add touch support for mobile interactions
+    if ('ontouchstart' in window) {
+        document.body.classList.add('touch-enabled');
+    }
 });
