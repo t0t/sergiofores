@@ -4,6 +4,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
+            // Cerrar menú móvil si está abierto
+            const hamburger = document.querySelector('.nav-hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks && navLinks.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.classList.remove('nav-open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                console.log('🔗 Menú cerrado por click en enlace');
+            }
+            
+            // Smooth scroll
             target.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -212,17 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Event listener para abrir/cerrar menú
         navHamburger.addEventListener('click', toggleMobileNav);
         
-        // Close mobile nav when clicking on links
-        navLinks.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A') {
-                console.log('🔗 Click en enlace:', e.target.href);
-                navHamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-                body.classList.remove('nav-open');
-                navHamburger.setAttribute('aria-expanded', 'false');
-                // NO PREVENIR DEFAULT - dejar que el enlace funcione
-            }
-        });
+        // Event listener para enlaces ya manejado en smooth scroll global
         
         // Close mobile nav when clicking outside
         document.addEventListener('click', (e) => {
