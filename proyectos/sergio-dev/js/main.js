@@ -197,45 +197,7 @@ function toggleMobileNav() {
     console.log('✅ Estado del menú:', isExpanded ? 'ABIERTO' : 'CERRADO');
 }
 
-// Close mobile nav when clicking on links
-navLinks.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') {
-        navHamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-        body.classList.remove('nav-open');
-        navHamburger.setAttribute('aria-expanded', 'false');
-    }
-});
-
-// Close mobile nav when clicking outside
-document.addEventListener('click', (e) => {
-    if (!navHamburger.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
-        navHamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-        body.classList.remove('nav-open');
-        navHamburger.setAttribute('aria-expanded', 'false');
-    }
-});
-
-// Close mobile nav on escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-        navHamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-        body.classList.remove('nav-open');
-        navHamburger.setAttribute('aria-expanded', 'false');
-    }
-});
-
-// Handle window resize
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-        navHamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-        body.classList.remove('nav-open');
-        navHamburger.setAttribute('aria-expanded', 'false');
-    }
-});
+// Estos event listeners se configurarán en DOMContentLoaded
 
 // Add loading state management and initialize typewriter
 document.addEventListener('DOMContentLoaded', () => {
@@ -247,7 +209,51 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks = document.querySelector('.nav-links');
     
     if (navHamburger && navLinks) {
+        // Event listener para abrir/cerrar menú
         navHamburger.addEventListener('click', toggleMobileNav);
+        
+        // Close mobile nav when clicking on links
+        navLinks.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                console.log('🔗 Click en enlace:', e.target.href);
+                navHamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.classList.remove('nav-open');
+                navHamburger.setAttribute('aria-expanded', 'false');
+                // NO PREVENIR DEFAULT - dejar que el enlace funcione
+            }
+        });
+        
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navHamburger.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
+                navHamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.classList.remove('nav-open');
+                navHamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Close mobile nav on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                navHamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.classList.remove('nav-open');
+                navHamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navHamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.classList.remove('nav-open');
+                navHamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
         console.log('✅ Menú hamburguesa inicializado correctamente');
     } else {
         console.error('❌ No se encontró el botón hamburguesa o nav-links');
