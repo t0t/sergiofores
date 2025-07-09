@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referencias de Diseño | Curated Design Showcase</title>
+    <meta name="description" content="Colección curada de referencias de diseño web excepcional, seleccionadas por su calidad estética y técnica para inspirar proyectos digitales de alta sofisticación.">
+    
+    <style>
+        /* Variables CSS - Modernismo Digital Sofisticado */
+        :root {
+            /* Colores - Neutros sofisticados */
+            --color-primary: #000000;
+            --color-secondary: #1a1a1a;
+            --color-text: #2d2d2d;
+            --color-text-light: #6b6b6b;
+            --color-text-meta: #9ca3af;
+            --color-surface: #ffffff;
+            --color-surface-alt: #fefefe;
+            --color-border: #e5e5e5;
+            --color-accent: #8b5cf6;
+            
+            /* Espaciado - Sistema 8px base */
+            --space-xs: 0.5rem;    /* 8px */
+            --space-sm: 1rem;      /* 16px */
+            --space-md: 1.5rem;    /* 24px */
+            --space-lg: 2rem;      /* 32px */
+            --space-xl: 3rem;      /* 48px */
+            --space-2xl: 4rem;     /* 64px */
+            --space-3xl: 6rem;     /* 96px */
+            --space-4xl: 8rem;     /* 128px */
+            
+            /* Tipografía - Jerarquía clara */
+            --font-size-xs: 0.8rem;    /* 13px */
+            --font-size-sm: 0.9rem;    /* 14px */
+            --font-size-base: 1rem;    /* 16px */
+            --font-size-lg: 1.2rem;    /* 19px */
+            --font-size-xl: 1.5rem;    /* 24px */
+            --font-size-2xl: 2rem;     /* 32px */
+            --font-size-3xl: 2.5rem;   /* 40px */
+            --font-size-4xl: 3rem;     /* 48px */
+            
+            /* Otros */
+            --border-radius: 2px;
+            --transition: all 0.2s ease;
+            --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Reset minimalista */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background: var(--color-surface);
+            font-size: var(--font-size-base);
+            font-weight: 400;
+        }
+        
+        /* Header minimalista */
+        .header {
+            padding: var(--space-lg) 0;
+            border-bottom: 1px solid var(--color-border);
+            background: var(--color-surface);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+        
+        .header-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 300;
+            color: var(--color-primary);
+            margin-bottom: var(--space-xs);
+            letter-spacing: -0.02em;
+        }
+        
+        .header-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-light);
+            font-weight: 400;
+            max-width: 600px;
+        }
+        
+        /* Navegación limpia */
+        .nav {
+            margin-top: var(--space-lg);
+        }
+        
+        .nav-filters {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+        
+        .nav-filter {
+            padding: var(--space-xs) var(--space-sm);
+            border: 1px solid var(--color-border);
+            background: transparent;
+            color: var(--color-text-light);
+            font-size: var(--font-size-sm);
+            font-weight: 400;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+        }
+        
+        .nav-filter:hover,
+        .nav-filter.active {
+            background: var(--color-primary);
+            color: var(--color-surface);
+            border-color: var(--color-primary);
+        }
+        
+        /* Main content */
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-4xl) var(--space-xl);
+        }
+        
+        /* Grid sofisticado */
+        .references-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--space-3xl);
+            margin-top: var(--space-2xl);
+        }
+        
+        .reference-card {
+            background: var(--color-surface);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .reference-card:hover {
+            transform: translateY(-1px);
+        }
+        
+        .reference-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+        
+        .reference-card:hover .reference-image {
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .reference-content {
+            padding: var(--space-lg) 0;
+        }
+        
+        .reference-title {
+            font-size: var(--font-size-xl);
+            font-weight: 500;
+            color: var(--color-primary);
+            margin-bottom: var(--space-xs);
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+        
+        .reference-url {
+            color: var(--color-text-meta);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-md);
+            font-family: 'SF Mono', Monaco, monospace;
+        }
+        
+        .reference-description {
+            color: var(--color-text-light);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+            margin-bottom: var(--space-md);
+        }
+        
+        .reference-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .reference-tag {
+            padding: var(--space-xs);
+            background: var(--color-surface-alt);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            font-size: var(--font-size-xs);
+            color: var(--color-text-light);
+            font-weight: 400;
+        }
+        
+        .reference-link {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--space-sm) var(--space-md);
+            background: var(--color-primary);
+            color: var(--color-surface);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .reference-link:hover {
+            background: var(--color-secondary);
+            transform: translateY(-1px);
+        }
+        
+        .reference-link::after {
+            content: "↗";
+            margin-left: var(--space-xs);
+            font-size: var(--font-size-xs);
+        }
+        
+        /* Stats minimalistas */
+        .stats {
+            display: flex;
+            gap: var(--space-xl);
+            margin-top: var(--space-xl);
+            padding-top: var(--space-xl);
+            border-top: 1px solid var(--color-border);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: var(--font-size-2xl);
+            font-weight: 300;
+            color: var(--color-primary);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-light);
+        }
+        
+        /* Responsive refinado */
+        @media (max-width: 768px) {
+            .header-content,
+            .main {
+                padding: var(--space-lg) var(--space-lg);
+            }
+            
+            .references-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-2xl);
+            }
+            
+            .reference-image {
+                height: 240px;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: var(--space-md);
+                text-align: left;
+            }
+            
+            .stat {
+                display: flex;
+                align-items: center;
+                gap: var(--space-sm);
+                text-align: left;
+            }
+            
+            .stat-number {
+                margin-bottom: 0;
+            }
+        }
+        
+        /* Estados de loading elegantes */
+        .loading {
+            text-align: center;
+            padding: var(--space-4xl);
+            color: var(--color-text-light);
+        }
+        
+        /* Micro-animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .reference-card {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .reference-card:nth-child(even) {
+            animation-delay: 0.1s;
+        }
+        
+        .reference-card:nth-child(3n) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1 class="header-title">Referencias de Diseño</h1>
+            <p class="header-subtitle">Colección curada de sitios web excepcionales, seleccionados por su calidad estética y excelencia técnica</p>
+            
+            <nav class="nav">
+                <div class="nav-filters">
+                    <a href="#" class="nav-filter active" data-filter="all">Todos</a>
+                    <a href="#" class="nav-filter" data-filter="portfolio">Portfolio</a>
+                    <a href="#" class="nav-filter" data-filter="agency">Agencias</a>
+                    <a href="#" class="nav-filter" data-filter="experimental">Experimental</a>
+                    <a href="#" class="nav-filter" data-filter="cultural">Cultural</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="references-grid">
+            <!-- Dept of Transformation (agrupado) -->
+            <div class="reference-card" data-category="experimental cultural">
+                <img src="screenshots/dept-of-transformation-org-library-microsolidarity.jpg" alt="Dept of Transformation" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">Dept of Transformation</h3>
+                    <p class="reference-url">dept-of-transformation.org</p>
+                    <p class="reference-description">Plataforma experimental que explora nuevas formas de organización social y transformación colectiva a través de microsolidaridad y pensamiento sistémico.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Experimental</span>
+                        <span class="reference-tag">Typography</span>
+                        <span class="reference-tag">Editorial</span>
+                        <span class="reference-tag">Cultural</span>
+                    </div>
+                    <a href="https://dept-of-transformation.org/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- CCNCN 2022 -->
+            <div class="reference-card" data-category="experimental">
+                <img src="screenshots/2022-ccncn-eu.jpg" alt="CCNCN 2022" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">CCNCN 2022</h3>
+                    <p class="reference-url">2022.ccncn.eu</p>
+                    <p class="reference-description">Evento digital con diseño audaz que combina tipografía experimental, interacciones dinámicas y una narrativa visual que refleja la innovación del contenido.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Event</span>
+                        <span class="reference-tag">Interactive</span>
+                        <span class="reference-tag">Bold</span>
+                        <span class="reference-tag">Animation</span>
+                    </div>
+                    <a href="https://2022.ccncn.eu/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Adrien Rovero -->
+            <div class="reference-card" data-category="portfolio">
+                <img src="screenshots/adrienrovero-com-spaces-spaces-by-year.jpg" alt="Adrien Rovero" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">Adrien Rovero</h3>
+                    <p class="reference-url">adrienrovero.com</p>
+                    <p class="reference-description">Portfolio arquitectónico que demuestra maestría en el uso del espacio blanco, navegación intuitiva y presentación elegante de proyectos complejos.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Architecture</span>
+                        <span class="reference-tag">Minimal</span>
+                        <span class="reference-tag">Gallery</span>
+                        <span class="reference-tag">Sophisticated</span>
+                    </div>
+                    <a href="http://adrienrovero.com/spaces/spaces-by-year/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Starbucks Creative -->
+            <div class="reference-card" data-category="agency">
+                <img src="screenshots/creative-starbucks-com.jpg" alt="Starbucks Creative" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">Starbucks Creative</h3>
+                    <p class="reference-url">creative.starbucks.com</p>
+                    <p class="reference-description">Showcase corporativo que eleva el branding a arte, con narrativa visual cohesiva y presentación impecable de proyectos creativos globales.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Brand</span>
+                        <span class="reference-tag">Corporate</span>
+                        <span class="reference-tag">Showcase</span>
+                        <span class="reference-tag">Global</span>
+                    </div>
+                    <a href="https://creative.starbucks.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- A Possible -->
+            <div class="reference-card" data-category="agency">
+                <img src="screenshots/apossible-com.jpg" alt="A Possible" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">A Possible</h3>
+                    <p class="reference-url">apossible.com</p>
+                    <p class="reference-description">Agencia digital que demuestra claridad conceptual a través de diseño limpio, navegación inteligente y enfoque en la experiencia del usuario.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Agency</span>
+                        <span class="reference-tag">Clean</span>
+                        <span class="reference-tag">Modern</span>
+                        <span class="reference-tag">UX</span>
+                    </div>
+                    <a href="https://apossible.com" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Make Ready -->
+            <div class="reference-card" data-category="agency">
+                <img src="screenshots/www-make-ready-co.jpg" alt="Make Ready" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">Make Ready</h3>
+                    <p class="reference-url">make-ready.co</p>
+                    <p class="reference-description">Estudio creativo con personalidad audaz que combina tipografía impactante, color estratégico y presentación de proyectos con narrativa visual fuerte.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Agency</span>
+                        <span class="reference-tag">Bold</span>
+                        <span class="reference-tag">Creative</span>
+                        <span class="reference-tag">Typography</span>
+                    </div>
+                    <a href="https://www.make-ready.co/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Commission Studio -->
+            <div class="reference-card" data-category="agency">
+                <img src="screenshots/www-commission-studio.jpg" alt="Commission Studio" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">Commission Studio</h3>
+                    <p class="reference-url">commission.studio</p>
+                    <p class="reference-description">Estudio de diseño que ejemplifica elegancia minimalista, con jerarquía tipográfica impecable y uso inteligente del espacio negativo.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Studio</span>
+                        <span class="reference-tag">Minimal</span>
+                        <span class="reference-tag">Elegant</span>
+                        <span class="reference-tag">Hierarchy</span>
+                    </div>
+                    <a href="https://www.commission.studio/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Flying Bisons -->
+            <div class="reference-card" data-category="agency">
+                <img src="screenshots/flyingbisons-com.jpg" alt="Flying Bisons" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">Flying Bisons</h3>
+                    <p class="reference-url">flyingbisons.com</p>
+                    <p class="reference-description">Agencia creativa que equilibra personalidad lúdica con profesionalismo, mostrando cómo la animación puede mejorar sin dominar la experiencia.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Agency</span>
+                        <span class="reference-tag">Playful</span>
+                        <span class="reference-tag">Animation</span>
+                        <span class="reference-tag">Balance</span>
+                    </div>
+                    <a href="https://flyingbisons.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Show and Tell -->
+            <div class="reference-card" data-category="agency">
+                <img src="screenshots/showandtell-agency.jpg" alt="Show and Tell" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">Show and Tell</h3>
+                    <p class="reference-url">showandtell.agency</p>
+                    <p class="reference-description">Agencia que demuestra storytelling visual a través de diseño cohesivo, navegación intuitiva y presentación excepcional de casos de estudio.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Agency</span>
+                        <span class="reference-tag">Storytelling</span>
+                        <span class="reference-tag">Case Studies</span>
+                        <span class="reference-tag">Cohesive</span>
+                    </div>
+                    <a href="https://showandtell.agency/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Paul Smith Foundation -->
+            <div class="reference-card" data-category="cultural">
+                <img src="screenshots/www-paulsmithsfoundation-org.jpg" alt="Paul Smith Foundation" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">Paul Smith Foundation</h3>
+                    <p class="reference-url">paulsmithsfoundation.org</p>
+                    <p class="reference-description">Fundación cultural que combina sofisticación editorial con accesibilidad, demostrando cómo presentar contenido serio con diseño atractivo.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Cultural</span>
+                        <span class="reference-tag">Editorial</span>
+                        <span class="reference-tag">Accessible</span>
+                        <span class="reference-tag">Sophisticated</span>
+                    </div>
+                    <a href="https://www.paulsmithsfoundation.org/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Moheim -->
+            <div class="reference-card" data-category="portfolio">
+                <img src="screenshots/moheim-com.jpg" alt="Moheim" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">Moheim</h3>
+                    <p class="reference-url">moheim.com</p>
+                    <p class="reference-description">Portfolio de diseño escandinavo que ejemplifica la filosofía "menos es más", con atención meticulosa a los detalles y experiencia de usuario refinada.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Portfolio</span>
+                        <span class="reference-tag">Scandinavian</span>
+                        <span class="reference-tag">Minimal</span>
+                        <span class="reference-tag">Refined</span>
+                    </div>
+                    <a href="https://moheim.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Slowness -->
+            <div class="reference-card" data-category="experimental">
+                <img src="screenshots/slowness-com.jpg" alt="Slowness" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">Slowness</h3>
+                    <p class="reference-url">slowness.com</p>
+                    <p class="reference-description">Proyecto experimental que explora el ritmo en el diseño web, usando transiciones deliberadas y pacing intencional para crear experiencias contemplativas.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Experimental</span>
+                        <span class="reference-tag">Contemplative</span>
+                        <span class="reference-tag">Transitions</span>
+                        <span class="reference-tag">Concept</span>
+                    </div>
+                    <a href="https://slowness.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- We Ain't Plastic -->
+            <div class="reference-card" data-category="experimental">
+                <img src="screenshots/weaintplastic-com.jpg" alt="We Ain't Plastic" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">We Ain't Plastic</h3>
+                    <p class="reference-url">weaintplastic.com</p>
+                    <p class="reference-description">Proyecto activista que demuestra cómo el diseño puede ser herramienta de cambio social, combinando estética impactante con mensaje poderoso.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Activist</span>
+                        <span class="reference-tag">Impactful</span>
+                        <span class="reference-tag">Social</span>
+                        <span class="reference-tag">Message</span>
+                    </div>
+                    <a href="https://weaintplastic.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Neverland Agency -->
+            <div class="reference-card" data-category="agency">
+                <img src="screenshots/neverland-agency.jpg" alt="Neverland Agency" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">Neverland Agency</h3>
+                    <p class="reference-url">neverland.agency</p>
+                    <p class="reference-description">Agencia digital que equilibra creatividad con funcionalidad, demostrando cómo presentar servicios complejos con claridad y personalidad distintiva.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Agency</span>
+                        <span class="reference-tag">Creative</span>
+                        <span class="reference-tag">Functional</span>
+                        <span class="reference-tag">Clarity</span>
+                    </div>
+                    <a href="https://neverland.agency/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Birch London -->
+            <div class="reference-card" data-category="agency">
+                <img src="screenshots/www-birchlondon-com-info.jpg" alt="Birch London" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">Birch London</h3>
+                    <p class="reference-url">birchlondon.com</p>
+                    <p class="reference-description">Estudio londinense que demuestra elegancia británica contemporánea, con tipografía refinada y presentación impecable de proyectos de branding.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Studio</span>
+                        <span class="reference-tag">British</span>
+                        <span class="reference-tag">Elegant</span>
+                        <span class="reference-tag">Branding</span>
+                    </div>
+                    <a href="https://www.birchlondon.com/info" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Official Business -->
+            <div class="reference-card" data-category="agency">
+                <img src="screenshots/www-official-business.jpg" alt="Official Business" class="reference-image">
+                <div class="reference-content">
+                    <h3 class="reference-title">Official Business</h3>
+                    <p class="reference-url">official.business</p>
+                    <p class="reference-description">Agencia que combina seriedad profesional con creatividad audaz, mostrando cómo el diseño puede comunicar autoridad sin sacrificar innovación.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Agency</span>
+                        <span class="reference-tag">Professional</span>
+                        <span class="reference-tag">Authority</span>
+                        <span class="reference-tag">Innovation</span>
+                    </div>
+                    <a href="https://www.official.business/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-number">16</span>
+                <span class="stat-label">Referencias curadas</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Calidad verificada</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">2024</span>
+                <span class="stat-label">Selección actual</span>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Filtrado sofisticado
+        document.querySelectorAll('.nav-filter').forEach(filter => {
+            filter.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Update active state
+                document.querySelectorAll('.nav-filter').forEach(f => f.classList.remove('active'));
+                filter.classList.add('active');
+                
+                // Filter cards
+                const category = filter.dataset.filter;
+                const cards = document.querySelectorAll('.reference-card');
+                
+                cards.forEach(card => {
+                    const cardCategories = card.dataset.category || '';
+                    const shouldShow = category === 'all' || cardCategories.includes(category);
+                    
+                    if (shouldShow) {
+                        card.style.display = 'block';
+                        card.style.opacity = '1';
+                    } else {
+                        card.style.opacity = '0';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 200);
+                    }
+                });
+            });
+        });
+
+        // Lazy loading elegante
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.style.opacity = '1';
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.reference-image').forEach(img => {
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.3s ease';
+                imageObserver.observe(img);
+            });
+        }
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

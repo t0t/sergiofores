@@ -1,0 +1,21 @@
+{
+  "name": "referencias-diseno",
+  "version": "1.0.0",
+  "description": "Showcase curado de referencias de diseño web con screenshots automatizados",
+  "main": "screenshot-generator.js",
+  "scripts": {
+    "screenshots": "node screenshot-generator.js",
+    "dev": "python -m http.server 8000",
+    "build": "echo 'Static site - no build needed'"
+  },
+  "keywords": [
+    "design",
+    "web",
+    "references",
+    "screenshots",
+    "showcase"
+  ],
+  "author": "Sergio Forés",
+  "license": "MIT",
+  "dependencies": {}
+}
