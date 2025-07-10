@@ -22,8 +22,6 @@ class HeaderScrollBehavior {
 
         this.bindEvents();
         this.updateHeaderHeight();
-        
-        console.log('🎯 Header scroll behavior inicializado');
     }
 
     bindEvents() {

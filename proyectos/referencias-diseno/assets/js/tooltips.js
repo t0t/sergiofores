@@ -16,8 +16,6 @@ class TooltipSystem {
     init() {
         this.setupEventListeners();
         this.scanAndInitialize();
-        
-        console.log('💬 Sistema de tooltips inicializado');
     }
 
     setupEventListeners() {

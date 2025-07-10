@@ -13,8 +13,6 @@ class ImageLoader {
 
     init() {
         this.enhanceExistingImages();
-        
-        console.log('🖼️ Sistema de carga de imágenes inicializado');
     }
 
     enhanceExistingImages() {

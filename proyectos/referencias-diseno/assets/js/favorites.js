@@ -16,9 +16,6 @@ class FavoritesSystem {
         this.addFavoriteButtons();
         this.setupStyles();
         this.updateAllButtons();
-        this.updateHeaderCounter();
-        
-        console.log('🎯 Sistema de favoritos inicializado:', this.favorites.length, 'favoritos');
     }
 
     // ===== GESTIÓN DE ESTADO =====
@@ -37,7 +34,6 @@ class FavoritesSystem {
         try {
             localStorage.setItem(this.storageKey, JSON.stringify(this.favorites));
             this.notifySubscribers();
-            this.updateHeaderCounter();
             return true;
         } catch (error) {
             console.error('Error guardando favoritos:', error);
@@ -71,15 +67,6 @@ class FavoritesSystem {
             this.saveFavorites();
             this.updateButton(id);
             
-            // Usar el nuevo sistema de notificaciones si está disponible
-            if (window.toast) {
-                window.toast.success('Referencia añadida a favoritos', {
-                    duration: 2000,
-                    title: '❤️ Favorito añadido'
-                });
-            } else {
-                this.showNotification(`Añadido a favoritos`, 'success');
-            }
             return true;
         }
         return false;
@@ -92,15 +79,6 @@ class FavoritesSystem {
             this.saveFavorites();
             this.updateButton(id);
             
-            // Usar el nuevo sistema de notificaciones si está disponible
-            if (window.toast) {
-                window.toast.info('Referencia quitada de favoritos', {
-                    duration: 2000,
-                    title: '🗑️ Favorito eliminado'
-                });
-            } else {
-                this.showNotification(`Quitado de favoritos`, 'info');
-            }
             return true;
         }
         return false;
@@ -312,17 +290,20 @@ class FavoritesSystem {
         });
     }
 
-    updateHeaderCounter() {
-        const counter = document.getElementById('favorites-count');
-        const favoritesCount = document.querySelector('.favorites-count');
-        
-        if (counter) {
-            counter.textContent = this.favorites.length;
+
+    getCardIdFromCard(card) {
+        // Obtener ID de la card (similar a getCardId pero desde la card directamente)
+        const link = card.querySelector('.reference-link');
+        if (link && link.href) {
+            return this.urlToId(link.href);
         }
         
-        if (favoritesCount) {
-            favoritesCount.classList.toggle('has-favorites', this.favorites.length > 0);
+        const title = card.querySelector('.reference-title');
+        if (title) {
+            return this.titleToId(title.textContent);
         }
+        
+        return `ref-${Array.from(document.querySelectorAll('.reference-card')).indexOf(card)}`;
     }
 
     // ===== ESTILOS =====
@@ -441,7 +422,7 @@ class FavoritesSystem {
             }
 
             /* Responsive Mobile */
-            @media (max-width: 768px) {
+            @media (max-width: 1024px) {
                 .favorite-btn {
                     width: 36px;
                     height: 36px;

@@ -19,8 +19,20 @@ document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.reference-card');
             
             cards.forEach(card => {
-                const cardCategories = card.dataset.category || '';
-                const shouldShow = category === 'all' || cardCategories.includes(category);
+                let shouldShow = false;
+                
+                if (category === 'all') {
+                    shouldShow = true;
+                } else if (category === 'favorites') {
+                    // Usar el sistema de favoritos para determinar si mostrar
+                    if (window.favorites) {
+                        const cardId = window.favorites.getCardIdFromCard(card);
+                        shouldShow = window.favorites.isFavorite(cardId);
+                    }
+                } else {
+                    const cardCategories = card.dataset.category || '';
+                    shouldShow = cardCategories.includes(category);
+                }
                 
                 if (shouldShow) {
                     card.style.display = 'block';

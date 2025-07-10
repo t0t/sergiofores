@@ -17,8 +17,6 @@ class MobileMenu {
         this.createElements();
         this.setupEventListeners();
         this.setupMediaQuery();
-        
-        console.log('📱 Sistema de menú móvil inicializado');
     }
 
     createElements() {
@@ -73,7 +71,7 @@ class MobileMenu {
 
         // Resize handler
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 768 && this.isOpen) {
+            if (window.innerWidth > 1024 && this.isOpen) {
                 this.closeMenu();
             }
         });
@@ -81,7 +79,7 @@ class MobileMenu {
         // Scroll para cerrar en móvil
         let scrollTimeout;
         window.addEventListener('scroll', () => {
-            if (this.isOpen && window.innerWidth <= 768) {
+            if (this.isOpen && window.innerWidth <= 1024) {
                 clearTimeout(scrollTimeout);
                 scrollTimeout = setTimeout(() => {
                     this.closeMenu();
@@ -92,7 +90,7 @@ class MobileMenu {
 
     setupMediaQuery() {
         // Media query listener para cambios de viewport
-        const mediaQuery = window.matchMedia('(max-width: 768px)');
+        const mediaQuery = window.matchMedia('(max-width: 1024px)');
         
         const handleMediaChange = (e) => {
             if (!e.matches && this.isOpen) {
@@ -132,8 +130,6 @@ class MobileMenu {
         
         // Focus management
         this.trapFocus();
-        
-        console.log('📱 Menú móvil abierto');
     }
 
     closeMenu() {
@@ -155,8 +151,6 @@ class MobileMenu {
         
         // Devolver focus al toggle
         this.menuToggle?.focus();
-        
-        console.log('📱 Menú móvil cerrado');
     }
 
     trapFocus() {
@@ -230,8 +224,6 @@ class MobileMenu {
         }
         
         document.body.style.overflow = '';
-        
-        console.log('📱 Sistema de menú móvil destruído');
     }
 }
 

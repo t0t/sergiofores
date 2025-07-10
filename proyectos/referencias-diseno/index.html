@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Referencias de Diseño | Curated Design Showcase</title>
+    <title>REFS | Curated Design Showcase</title>
     <meta name="description" content="Colección curada de referencias de diseño web excepcional, seleccionadas por su calidad estética y técnica para inspirar proyectos digitales de alta sofisticación.">
     
     <!-- Estilos -->
@@ -14,7 +14,7 @@
         <div class="header-content">
             <div class="header-main">
                 <div class="header-brand">
-                    <h1 class="header-title">Referencias de Diseño</h1>
+                    <h1 class="header-title">REFS</h1>
                     <p class="header-subtitle">Colección curada de sitios web excepcionales</p>
                 </div>
                 <nav class="header-nav">
@@ -35,13 +35,8 @@
                            data-tooltip="Diseños innovadores y experimentales" data-tooltip-position="bottom">Experimental</a>
                         <a href="#" class="nav-filter" data-filter="cultural" 
                            data-tooltip="Proyectos culturales y artísticos" data-tooltip-position="bottom">Cultural</a>
-                        <span class="favorites-count" 
-                              data-tooltip="Tus referencias favoritas guardadas" 
-                              data-tooltip-title="❤️ Favoritos" 
-                              data-tooltip-description="Haz clic en el corazón de cualquier tarjeta para guardar tus referencias preferidas"
-                              data-tooltip-position="bottom">
-                            <span id="favorites-count">0</span> favoritos
-                        </span>
+                        <a href="#" class="nav-filter" data-filter="favorites" 
+                           data-tooltip="Tus referencias favoritas guardadas" data-tooltip-position="bottom">Favoritos</a>
                     </div>
                 </nav>
             </div>
@@ -704,6 +699,20 @@
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu-overlay"></div>
 
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" aria-label="Desplázate para ver más contenido">
+        <div class="scroll-indicator-text">Scroll</div>
+        <div class="scroll-indicator-line"></div>
+        <div class="scroll-indicator-arrow">↓</div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top hidden" aria-label="Volver al inicio de la página" aria-hidden="true" tabindex="-1">
+        <div class="scroll-to-top-text">Top</div>
+        <div class="scroll-to-top-line"></div>
+        <div class="scroll-to-top-icon">↑</div>
+    </button>
+
     <!-- JavaScript -->
     <script src="assets/js/toast-notifications.js"></script>
     <script src="assets/js/tooltips.js"></script>
@@ -712,5 +721,6 @@
     <script src="assets/js/header-scroll.js"></script>
     <script src="assets/js/image-loader.js"></script>
     <script src="assets/js/mobile-menu.js"></script>
+    <script src="assets/js/scroll-indicator.js"></script>
 </body>
 </html>

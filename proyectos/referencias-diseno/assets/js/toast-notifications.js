@@ -16,8 +16,6 @@ class ToastNotifications {
     init() {
         this.createContainer();
         this.setupStyles();
-        
-        console.log('🔔 Sistema de notificaciones inicializado');
     }
 
     createContainer() {
