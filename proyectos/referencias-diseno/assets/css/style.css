@@ -67,13 +67,173 @@
     --transition-fast: all 0.15s ease;
 }
 
-/* Reset minimalista */
-* {
+/* ===== RESET CSS MODERNO PARA PIXEL PERFECT ===== */
+
+/* Reset universal con mejores defaults */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
+/* Evitar problemas de scroll horizontal */
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+/* Reset de body con mejores defaults */
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    line-height: 1;
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reset de elementos de bloque */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav, section {
+    display: block;
+}
+
+/* Reset de listas */
+ol, ul {
+    list-style: none;
+}
+
+/* Reset de quotes */
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+/* Reset de tablas */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Reset de elementos de formulario */
+input, button, textarea, select {
+    font: inherit;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+/* Reset de botones */
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    font: inherit;
+}
+
+/* Reset de enlaces */
+a {
+    color: inherit;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+/* Reset de imágenes */
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Reset de tipografía */
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+/* Eliminar outline en focus (lo personalizaremos después) */
+:focus {
+    outline: none;
+}
+
+/* Reset de elementos inline */
+b, strong {
+    font-weight: bolder;
+}
+
+i, em {
+    font-style: italic;
+}
+
+/* Reset de elementos de código */
+code, kbd, samp, pre {
+    font-family: monospace, monospace;
+    font-size: 1em;
+}
+
+/* Reset de elementos semánticos */
+mark {
+    background-color: transparent;
+    color: inherit;
+}
+
+/* Reset de elementos multimedia */
+audio, video {
+    display: inline-block;
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/* Reset para elementos hidden */
+[hidden] {
+    display: none !important;
+}
+
+/* Mejorar rendimiento de animaciones */
+*,
+*::before,
+*::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: revert !important;
+        animation-iteration-count: revert !important;
+        transition-duration: revert !important;
+        scroll-behavior: revert !important;
+    }
+}
+
+/* ===== CONFIGURACIÓN BASE DEL BODY ===== */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif;
     line-height: var(--line-height-normal);
@@ -82,9 +242,8 @@ body {
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-normal);
     letter-spacing: var(--letter-spacing-normal);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    /* Compensar fixed header - pixel perfect */
+    padding-top: 120px; /* Altura exacta del header + margen */
 }
 
 /* Header profesional con scroll behavior */
@@ -116,15 +275,13 @@ body {
     transform: translateY(-100%);
 }
 
-/* Compensar fixed header */
-body {
-    padding-top: 100px; /* Header compacto */
-}
 
 .header-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--space-xl);
+    padding: 0 var(--space-lg);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .header-main {
@@ -140,6 +297,7 @@ body {
     flex-direction: column;
     gap: var(--space-xs);
     flex: 1;
+    min-width: 0; /* Evita overflow */
 }
 
 .header-title {
@@ -295,37 +453,40 @@ body {
 .main {
     max-width: 1200px;
     margin: 0 auto;
-    padding: var(--space-lg) var(--space-xl);
+    padding: var(--space-2xl) var(--space-lg);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Grid sofisticado y fluido */
 .references-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
-    gap: var(--space-lg);
-    margin-top: var(--space-lg);
+    grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+    gap: var(--space-xl);
+    margin-top: 0;
     width: 100%;
+    align-items: start;
 }
 
 /* Variantes de grid para diferentes pantallas */
 @media (min-width: 1025px) {
     .references-grid {
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: var(--space-lg);
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        gap: var(--space-xl);
     }
 }
 
 @media (min-width: 1200px) {
     .references-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: var(--space-lg);
+        gap: var(--space-xl);
     }
 }
 
 @media (min-width: 1600px) {
     .references-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: var(--space-lg);
+        gap: var(--space-xl);
     }
 }
 
@@ -393,8 +554,8 @@ body {
 
 .reference-image {
     width: 100%;
-    height: clamp(240px, 25vw, 280px);
-    object-fit: cover;
+    height: auto;
+    object-fit: cover; /* Mantiene proporciones y llena el contenedor */
     object-position: center;
     display: block;
     border-radius: var(--border-radius);
@@ -403,6 +564,19 @@ body {
     position: relative;
     z-index: 2;
     transform-origin: center;
+    background: var(--color-surface-alt); /* Fondo para imágenes que no llenan completamente */
+}
+
+/* Variante para imágenes con aspect ratio diferente */
+.reference-image.aspect-ratio-wide {
+    aspect-ratio: 1.556; /* Para imágenes más cuadradas como moheim.com */
+}
+
+/* Clase para forzar object-fit: cover si se necesita específicamente */
+.reference-image.crop {
+    object-fit: cover;
+    height: clamp(240px, 25vw, 280px);
+    aspect-ratio: auto;
 }
 
 .reference-card:hover .reference-image {
@@ -411,7 +585,7 @@ body {
 }
 
 .reference-content {
-    padding: var(--space-lg) 0;
+    padding: var(--space-lg);
     position: relative;
     z-index: 4;
     opacity: 0;
@@ -419,6 +593,7 @@ body {
     transform: translateY(20px);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     transition-delay: 0.1s;
+    box-sizing: border-box;
 }
 
 .reference-card:hover .reference-content {
@@ -682,11 +857,11 @@ body {
     }
     
     .header-content {
-        padding: 0 var(--space-md);
+        padding: 0 var(--space-lg);
     }
     
     .main {
-        padding: var(--space-md) var(--space-md);
+        padding: var(--space-xl) var(--space-lg);
     }
     
     .header-main {
@@ -790,12 +965,10 @@ body {
     
     .references-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-lg);
+        gap: var(--space-xl);
     }
     
-    .reference-image {
-        height: clamp(200px, 30vw, 240px);
-    }
+    /* Eliminar aspect-ratio fijo en móvil para respetar proporciones naturales */
     
     .reference-image-container .reference-link {
         width: 36px !important;
@@ -1440,8 +1613,10 @@ body {
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--space-xl);
+    padding: 0 var(--space-lg);
     text-align: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .footer-text {
