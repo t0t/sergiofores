@@ -45,8 +45,16 @@ class ServiceWorkerManager {
                 return;
             }
             
-            this.registration = await navigator.serviceWorker.register('/sw.js', {
-                scope: '/'
+            // Detectar path correcto para el SW
+            const basePath = window.location.pathname.includes('/proyectos/') 
+                ? window.location.pathname.split('index.html')[0] 
+                : '/';
+            
+            const swPath = basePath.endsWith('/') ? basePath + 'sw.js' : basePath + '/sw.js';
+            const swScope = basePath;
+            
+            this.registration = await navigator.serviceWorker.register(swPath, {
+                scope: swScope
             });
             
             console.log('✅ Service Worker registrado exitosamente');

@@ -13,27 +13,27 @@ const STATIC_CACHE = 'refs-static-v1.0';
 
 // Assets críticos que deben cachearse inmediatamente
 const CRITICAL_ASSETS = [
-    '/',
-    '/index.html',
-    '/assets/css/style.css'
+    './',
+    './index.html',
+    './assets/css/style.css'
 ];
 
 // Assets estáticos con cache largo
 const STATIC_ASSETS = [
-    '/assets/js/main.js',
-    '/assets/js/favorites.js',
-    '/assets/js/mobile-menu.js',
-    '/assets/js/scroll-indicator.js',
-    '/assets/js/header-scroll.js',
-    '/assets/js/image-loader.js',
-    '/assets/js/toast-notifications.js',
-    '/assets/js/tooltips.js'
+    './assets/js/main.js',
+    './assets/js/favorites.js',
+    './assets/js/mobile-menu.js',
+    './assets/js/scroll-indicator.js',
+    './assets/js/header-scroll.js',
+    './assets/js/image-loader.js',
+    './assets/js/toast-notifications.js',
+    './assets/js/tooltips.js'
 ];
 
 // Patrones de imágenes optimizadas
 const IMAGE_PATTERNS = [
-    /\/optimized\/.*\.webp$/,
-    /\/screenshots\/.*\.(png|jpg|jpeg)$/
+    /optimized\/.*\.webp$/,
+    /screenshots\/.*\.(png|jpg|jpeg)$/
 ];
 
 self.addEventListener('install', event => {
@@ -321,9 +321,9 @@ async function prefetchCriticalResources() {
     console.log('🚀 Prefetching critical resources...');
     
     const criticalImages = [
-        '/optimized/temper-studio.webp',
-        '/optimized/seated-nyc.webp',
-        '/optimized/www-make-ready-co.webp'
+        './optimized/temper-studio.webp',
+        './optimized/seated-nyc.webp',
+        './optimized/www-make-ready-co.webp'
     ];
     
     const cache = await caches.open(IMAGES_CACHE);
