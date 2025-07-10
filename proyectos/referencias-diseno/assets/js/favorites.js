@@ -140,11 +140,17 @@ class FavoritesSystem {
             // Crear botón
             const button = this.createFavoriteButton(id);
             
-            // Insertar en la tarjeta (esquina superior derecha de la imagen)
-            const imageContainer = card.querySelector('.reference-image')?.parentNode;
+            // Insertar en el mismo contenedor que el botón de explorar
+            const imageContainer = card.querySelector('.reference-image-container');
             if (imageContainer) {
-                imageContainer.style.position = 'relative';
                 imageContainer.appendChild(button);
+            } else {
+                // Fallback para cards sin contenedor de imagen
+                const imageElement = card.querySelector('.reference-image');
+                if (imageElement && imageElement.parentNode) {
+                    imageElement.parentNode.style.position = 'relative';
+                    imageElement.parentNode.appendChild(button);
+                }
             }
         });
     }
@@ -329,12 +335,13 @@ class FavoritesSystem {
         style.textContent = `
             .favorite-btn {
                 position: absolute;
-                top: 12px;
-                right: 12px;
-                z-index: 10;
+                top: 50%;
+                right: calc(var(--space-md) + 20px);
+                transform: translateY(-50%) scale(0.8);
+                z-index: 25;
                 background: rgba(255, 255, 255, 0.9);
-                backdrop-filter: blur(8px);
-                border: 1px solid rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 50%;
                 width: 40px;
                 height: 40px;
@@ -342,14 +349,21 @@ class FavoritesSystem {
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
-                transition: all 0.3s ease;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                transition-delay: 0.2s;
                 color: #6b6b6b;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                opacity: 0;
             }
             
+            .reference-card:hover .favorite-btn {
+                opacity: 1;
+                transform: translateY(-50%) scale(1);
+            }
+
             .favorite-btn:hover {
                 background: rgba(255, 255, 255, 0.95);
-                transform: scale(1.1);
+                transform: translateY(-50%) scale(1.1) !important;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
                 color: #ef4444;
             }
@@ -362,7 +376,7 @@ class FavoritesSystem {
             
             .favorite-btn.is-favorite:hover {
                 background: rgba(239, 68, 68, 0.95);
-                transform: scale(1.1);
+                transform: translateY(-50%) scale(1.1) !important;
             }
             
             .favorite-btn svg {
@@ -424,6 +438,25 @@ class FavoritesSystem {
             
             .favorites-notification.info {
                 background: #3b82f6;
+            }
+
+            /* Responsive Mobile */
+            @media (max-width: 768px) {
+                .favorite-btn {
+                    width: 36px;
+                    height: 36px;
+                    right: calc(var(--space-sm) + 18px);
+                    opacity: 1;
+                    transform: translateY(-50%) scale(1);
+                }
+                
+                .favorite-btn:hover {
+                    transform: translateY(-50%) scale(1.05) !important;
+                }
+                
+                .favorite-btn.is-favorite:hover {
+                    transform: translateY(-50%) scale(1.05) !important;
+                }
             }
         `;
         
