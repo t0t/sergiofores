@@ -68,7 +68,13 @@ class ServiceWorkerManager {
     
     async checkServiceWorkerExists() {
         try {
-            const response = await fetch('/sw.js', { method: 'HEAD' });
+            // Detectar si estamos en subdirectorio (como /proyectos/referencias-diseno/)
+            const basePath = window.location.pathname.includes('/proyectos/') 
+                ? window.location.pathname.split('index.html')[0] 
+                : '/';
+            
+            const swPath = basePath.endsWith('/') ? basePath + 'sw.js' : basePath + '/sw.js';
+            const response = await fetch(swPath, { method: 'HEAD' });
             return response.ok;
         } catch (error) {
             return false;
