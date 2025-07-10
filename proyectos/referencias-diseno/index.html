@@ -12,18 +12,33 @@
 <body>
     <header class="header">
         <div class="header-content">
-            <h1 class="header-title">Referencias de Diseño</h1>
-            <p class="header-subtitle">Colección curada de sitios web excepcionales, seleccionados por su calidad estética y excelencia técnica</p>
-            
-            <nav class="nav">
-                <div class="nav-filters">
-                    <a href="#" class="nav-filter active" data-filter="all">Todos</a>
-                    <a href="#" class="nav-filter" data-filter="portfolio">Portfolio</a>
-                    <a href="#" class="nav-filter" data-filter="agency">Agencias</a>
-                    <a href="#" class="nav-filter" data-filter="experimental">Experimental</a>
-                    <a href="#" class="nav-filter" data-filter="cultural">Cultural</a>
+            <div class="header-main">
+                <div class="header-brand">
+                    <h1 class="header-title">Referencias de Diseño</h1>
+                    <p class="header-subtitle">Colección curada de sitios web excepcionales</p>
                 </div>
-            </nav>
+                <nav class="header-nav">
+                    <div class="nav-filters">
+                        <a href="#" class="nav-filter active" data-filter="all" 
+                           data-tooltip="Mostrar todas las referencias" data-tooltip-position="bottom">Todos</a>
+                        <a href="#" class="nav-filter" data-filter="portfolio" 
+                           data-tooltip="Portafolios creativos y profesionales" data-tooltip-position="bottom">Portfolio</a>
+                        <a href="#" class="nav-filter" data-filter="agency" 
+                           data-tooltip="Sitios web de agencias y estudios" data-tooltip-position="bottom">Agencias</a>
+                        <a href="#" class="nav-filter" data-filter="experimental" 
+                           data-tooltip="Diseños innovadores y experimentales" data-tooltip-position="bottom">Experimental</a>
+                        <a href="#" class="nav-filter" data-filter="cultural" 
+                           data-tooltip="Proyectos culturales y artísticos" data-tooltip-position="bottom">Cultural</a>
+                        <span class="favorites-count" 
+                              data-tooltip="Tus referencias favoritas guardadas" 
+                              data-tooltip-title="❤️ Favoritos" 
+                              data-tooltip-description="Haz clic en el corazón de cualquier tarjeta para guardar tus referencias preferidas"
+                              data-tooltip-position="bottom">
+                            <span id="favorites-count">0</span> favoritos
+                        </span>
+                    </div>
+                </nav>
+            </div>
         </div>
     </header>
 
@@ -31,7 +46,11 @@
         <section class="references-grid">
             <!-- Verde -->
             <div class="reference-card" data-category="minimalist portfolio">
-                <img src="screenshots/verde-io.png" alt="Screenshot de Verde, un estudio de diseño y desarrollo." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/verde-io.png" alt="Screenshot de Verde, un estudio de diseño y desarrollo." class="reference-image" loading="lazy">
+                    <a href="https://verde.io/" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Verde</h3>
                     <p class="reference-url">verde.io</p>
@@ -42,13 +61,16 @@
                         <span class="reference-tag">Development</span>
                         <span class="reference-tag">Clean</span>
                     </div>
-                    <a href="https://verde.io/" target="_blank" class="reference-link">Explorar sitio</a>
                 </div>
             </div>
 
             <!-- Olivier Guilleux -->
             <div class="reference-card" data-category="portfolio agency">
-                <img src="screenshots/olivier-guilleux.png" alt="Screenshot del portfolio de Olivier Guilleux." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/olivier-guilleux.png" alt="Screenshot del portfolio de Olivier Guilleux." class="reference-image" loading="lazy">
+                    <a href="https://www.olivier-guilleux.com/" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Olivier Guilleux</h3>
                     <p class="reference-url">olivier-guilleux.com</p>
@@ -59,13 +81,17 @@
                         <span class="reference-tag">Typography</span>
                         <span class="reference-tag">Bold</span>
                     </div>
-                    <a href="https://www.olivier-guilleux.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Temper Studio -->
             <div class="reference-card" data-category="e-commerce branding">
-                <img src="screenshots/temper-studio.png" alt="Screenshot de Temper Studio, una marca de tenis." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/temper-studio.png" alt="Screenshot de Temper Studio, una marca de tenis." class="reference-image" loading="lazy">
+                    <a href="https://temper.studio/" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Temper Studio</h3>
                     <p class="reference-url">temper.studio</p>
@@ -76,13 +102,17 @@
                         <span class="reference-tag">Bold</span>
                         <span class="reference-tag">Storytelling</span>
                     </div>
-                    <a href="https://temper.studio/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Seated -->
             <div class="reference-card" data-category="experimental cultural">
-                <img src="screenshots/seated-nyc.png" alt="Screenshot de Seated, una factoría culinaria creativa." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/seated-nyc.png" alt="Screenshot de Seated, una factoría culinaria creativa." class="reference-image" loading="lazy">
+                    <a href="https://seated.nyc" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Seated</h3>
                     <p class="reference-url">seated.nyc</p>
@@ -93,13 +123,17 @@
                         <span class="reference-tag">Textured</span>
                         <span class="reference-tag">Editorial</span>
                     </div>
-                    <a href="https://seated.nyc/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Mush Studios -->
             <div class="reference-card" data-category="e-commerce experimental">
-                <img src="screenshots/mushstudios-co.png" alt="Screenshot de Mush Studios, una tienda online." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/mushstudios-co.png" alt="Screenshot de Mush Studios, una tienda online." class="reference-image" loading="lazy">
+                    <a href="https://mushstudios.co" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Mush Studios</h3>
                     <p class="reference-url">mushstudios.co</p>
@@ -110,13 +144,17 @@
                         <span class="reference-tag">Playful</span>
                         <span class="reference-tag">Immersive</span>
                     </div>
-                    <a href="https://mushstudios.co/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Living House -->
             <div class="reference-card" data-category="corporate minimalist">
-                <img src="screenshots/livinghouse-nz.png" alt="Screenshot de Living House, un proyecto de arquitectura." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/livinghouse-nz.png" alt="Screenshot de Living House, un proyecto de arquitectura." class="reference-image" loading="lazy">
+                    <a href="https://livinghouse.nz" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Living House</h3>
                     <p class="reference-url">livinghouse.nz</p>
@@ -127,13 +165,17 @@
                         <span class="reference-tag">Structural</span>
                         <span class="reference-tag">Sustainable</span>
                     </div>
-                    <a href="https://livinghouse.nz/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Clue Perfumery -->
             <div class="reference-card" data-category="e-commerce branding">
-                <img src="screenshots/clueperfumery-com.png" alt="Screenshot de Clue Perfumery." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/clueperfumery-com.png" alt="Screenshot de Clue Perfumery." class="reference-image" loading="lazy">
+                    <a href="https://clueperfumery.com" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Clue Perfumery</h3>
                     <p class="reference-url">clueperfumery.com</p>
@@ -144,13 +186,17 @@
                         <span class="reference-tag">Typography</span>
                         <span class="reference-tag">Bold</span>
                     </div>
-                    <a href="https://www.clueperfumery.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Oui Oui Oui Studio -->
             <div class="reference-card" data-category="portfolio diy">
-                <img src="screenshots/ouiouioui-studio.png" alt="Screenshot de Oui Oui Oui Studio, un blog de DIY." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/ouiouioui-studio.png" alt="Screenshot de Oui Oui Oui Studio, un blog de DIY." class="reference-image" loading="lazy">
+                    <a href="https://ouiouiouistudio.fr" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Oui Oui Oui Studio</h3>
                     <p class="reference-url">ouiouiouistudio.fr</p>
@@ -161,13 +207,17 @@
                         <span class="reference-tag">Feminine</span>
                         <span class="reference-tag">Clean</span>
                     </div>
-                    <a href="https://ouiouiouistudio.fr/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Medusmo -->
             <div class="reference-card" data-category="corporate agency">
-                <img src="screenshots/medusmo-com.png" alt="Screenshot de Medusmo." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/medusmo-com.png" alt="Screenshot de Medusmo." class="reference-image" loading="lazy">
+                    <a href="https://medusmo.com" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Medusmo</h3>
                     <p class="reference-url">medusmo.com</p>
@@ -178,13 +228,17 @@
                         <span class="reference-tag">Clean</span>
                         <span class="reference-tag">Professional</span>
                     </div>
-                    <a href="https://www.medusmo.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Caladan -->
             <div class="reference-card" data-category="corporate experimental">
-                <img src="screenshots/caladan-bio.png" alt="Screenshot de Caladan, una empresa de bioingeniería." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/caladan-bio.png" alt="Screenshot de Caladan, una empresa de bioingeniería." class="reference-image" loading="lazy">
+                    <a href="https://caladan.bio" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Caladan</h3>
                     <p class="reference-url">caladan.bio</p>
@@ -195,13 +249,17 @@
                         <span class="reference-tag">Clean</span>
                         <span class="reference-tag">Typography</span>
                     </div>
-                    <a href="https://caladan.bio/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Camila Rosa -->
             <div class="reference-card" data-category="portfolio cultural">
-                <img src="screenshots/camilarosa-net.png" alt="Screenshot del portfolio de la ilustradora Camila Rosa." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/camilarosa-net.png" alt="Screenshot del portfolio de la ilustradora Camila Rosa." class="reference-image" loading="lazy">
+                    <a href="https://camilarosa.net" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Camila Rosa</h3>
                     <p class="reference-url">camilarosa.net</p>
@@ -212,13 +270,17 @@
                         <span class="reference-tag">Vibrant</span>
                         <span class="reference-tag">Grid</span>
                     </div>
-                    <a href="https://www.camilarosa.net/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Studio Lenzing -->
             <div class="reference-card" data-category="agency portfolio">
-                <img src="screenshots/studiolenzing-com.png" alt="Screenshot de Studio Lenzing." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/studiolenzing-com.png" alt="Screenshot de Studio Lenzing." class="reference-image" loading="lazy">
+                    <a href="https://studiolenzing.com" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Studio Lenzing</h3>
                     <p class="reference-url">studiolenzing.com</p>
@@ -229,13 +291,17 @@
                         <span class="reference-tag">Minimalist</span>
                         <span class="reference-tag">UX</span>
                     </div>
-                    <a href="https://www.studiolenzing.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- The Banshies -->
             <div class="reference-card" data-category="cultural minimalist">
-                <img src="screenshots/thebanshies-com.png" alt="Screenshot de The Banshies, un grupo de música." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/thebanshies-com.png" alt="Screenshot de The Banshies, un grupo de música." class="reference-image" loading="lazy">
+                    <a href="https://thebanshies.com" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">The Banshies</h3>
                     <p class="reference-url">thebanshies.com</p>
@@ -246,13 +312,17 @@
                         <span class="reference-tag">Elegant</span>
                         <span class="reference-tag">Typography</span>
                     </div>
-                    <a href="https://thebanshies.com/en" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Ben Elwyn -->
             <div class="reference-card" data-category="portfolio experimental">
-                <img src="screenshots/elwyn-co.png" alt="Screenshot del portfolio de Ben Elwyn." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/elwyn-co.png" alt="Screenshot del portfolio de Ben Elwyn." class="reference-image" loading="lazy">
+                    <a href="https://elwyn.co" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Ben Elwyn</h3>
                     <p class="reference-url">elwyn.co</p>
@@ -263,13 +333,17 @@
                         <span class="reference-tag">Experimental</span>
                         <span class="reference-tag">Interactive</span>
                     </div>
-                    <a href="https://www.elwyn.co/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Readymag Ancient Artifacts -->
             <div class="reference-card" data-category="experimental cultural">
-                <img src="screenshots/readymag-designs-5647067.png" alt="Screenshot de un diseño de Readymag sobre artefactos antiguos." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/readymag-designs-5647067.png" alt="Screenshot de un diseño de Readymag sobre artefactos antiguos." class="reference-image" loading="lazy">
+                    <a href="https://readymag.com/designs/5647067" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Ancient Artifacts</h3>
                     <p class="reference-url">readymag.com</p>
@@ -280,13 +354,17 @@
                         <span class="reference-tag">Typography</span>
                         <span class="reference-tag">Immersive</span>
                     </div>
-                    <a href="https://readymag.com/designs/5647067/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Minimal Gallery -->
             <div class="reference-card" data-category="minimalist agency">
-                <img src="screenshots/minimal-gallery.png" alt="Screenshot de Minimal Gallery." class="reference-image" loading="lazy">
+                <div class="reference-image-container">
+                    <img src="screenshots/minimal-gallery.png" alt="Screenshot de Minimal Gallery." class="reference-image" loading="lazy">
+                    <a href="https://minimal.gallery" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Minimal Gallery</h3>
                     <p class="reference-url">minimal.gallery</p>
@@ -297,12 +375,16 @@
                         <span class="reference-tag">Minimalist</span>
                         <span class="reference-tag">Functional</span>
                     </div>
-                    <a href="https://minimal.gallery/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
             <!-- Dept of Transformation (agrupado) -->
             <div class="reference-card" data-category="experimental cultural">
-                <img src="screenshots/dept-of-transformation-org-library-microsolidarity.jpg" alt="Dept of Transformation" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/dept-of-transformation-org-library-microsolidarity.jpg" alt="Dept of Transformation" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Dept of Transformation</h3>
                     <p class="reference-url">dept-of-transformation.org</p>
@@ -313,13 +395,17 @@
                         <span class="reference-tag">Editorial</span>
                         <span class="reference-tag">Cultural</span>
                     </div>
-                    <a href="https://dept-of-transformation.org/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- CCNCN 2022 -->
             <div class="reference-card" data-category="experimental">
-                <img src="screenshots/2022-ccncn-eu.jpg" alt="CCNCN 2022" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/2022-ccncn-eu.jpg" alt="CCNCN 2022" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">CCNCN 2022</h3>
                     <p class="reference-url">2022.ccncn.eu</p>
@@ -330,13 +416,17 @@
                         <span class="reference-tag">Bold</span>
                         <span class="reference-tag">Animation</span>
                     </div>
-                    <a href="https://2022.ccncn.eu/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Adrien Rovero -->
             <div class="reference-card" data-category="portfolio">
-                <img src="screenshots/adrienrovero-com-spaces-spaces-by-year.jpg" alt="Adrien Rovero" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/adrienrovero-com-spaces-spaces-by-year.jpg" alt="Adrien Rovero" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Adrien Rovero</h3>
                     <p class="reference-url">adrienrovero.com</p>
@@ -347,13 +437,17 @@
                         <span class="reference-tag">Gallery</span>
                         <span class="reference-tag">Sophisticated</span>
                     </div>
-                    <a href="http://adrienrovero.com/spaces/spaces-by-year/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Starbucks Creative -->
             <div class="reference-card" data-category="agency">
-                <img src="screenshots/creative-starbucks-com.jpg" alt="Starbucks Creative" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/creative-starbucks-com.jpg" alt="Starbucks Creative" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Starbucks Creative</h3>
                     <p class="reference-url">creative.starbucks.com</p>
@@ -364,13 +458,17 @@
                         <span class="reference-tag">Showcase</span>
                         <span class="reference-tag">Global</span>
                     </div>
-                    <a href="https://creative.starbucks.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- A Possible -->
             <div class="reference-card" data-category="agency">
-                <img src="screenshots/apossible-com.jpg" alt="A Possible" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/apossible-com.jpg" alt="A Possible" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">A Possible</h3>
                     <p class="reference-url">apossible.com</p>
@@ -381,13 +479,17 @@
                         <span class="reference-tag">Modern</span>
                         <span class="reference-tag">UX</span>
                     </div>
-                    <a href="https://apossible.com" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Make Ready -->
             <div class="reference-card" data-category="agency">
-                <img src="screenshots/www-make-ready-co.jpg" alt="Make Ready" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/www-make-ready-co.jpg" alt="Make Ready" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Make Ready</h3>
                     <p class="reference-url">make-ready.co</p>
@@ -398,13 +500,17 @@
                         <span class="reference-tag">Creative</span>
                         <span class="reference-tag">Typography</span>
                     </div>
-                    <a href="https://www.make-ready.co/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Commission Studio -->
             <div class="reference-card" data-category="agency">
-                <img src="screenshots/www-commission-studio.jpg" alt="Commission Studio" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/www-commission-studio.jpg" alt="Commission Studio" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Commission Studio</h3>
                     <p class="reference-url">commission.studio</p>
@@ -415,13 +521,17 @@
                         <span class="reference-tag">Elegant</span>
                         <span class="reference-tag">Hierarchy</span>
                     </div>
-                    <a href="https://www.commission.studio/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Flying Bisons -->
             <div class="reference-card" data-category="agency">
-                <img src="screenshots/flyingbisons-com.jpg" alt="Flying Bisons" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/flyingbisons-com.jpg" alt="Flying Bisons" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Flying Bisons</h3>
                     <p class="reference-url">flyingbisons.com</p>
@@ -432,13 +542,17 @@
                         <span class="reference-tag">Animation</span>
                         <span class="reference-tag">Balance</span>
                     </div>
-                    <a href="https://flyingbisons.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Show and Tell -->
             <div class="reference-card" data-category="agency">
-                <img src="screenshots/showandtell-agency.jpg" alt="Show and Tell" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/showandtell-agency.jpg" alt="Show and Tell" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Show and Tell</h3>
                     <p class="reference-url">showandtell.agency</p>
@@ -449,13 +563,17 @@
                         <span class="reference-tag">Case Studies</span>
                         <span class="reference-tag">Cohesive</span>
                     </div>
-                    <a href="https://showandtell.agency/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Paul Smith Foundation -->
             <div class="reference-card" data-category="cultural">
-                <img src="screenshots/www-paulsmithsfoundation-org.jpg" alt="Paul Smith Foundation" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/www-paulsmithsfoundation-org.jpg" alt="Paul Smith Foundation" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Paul Smith Foundation</h3>
                     <p class="reference-url">paulsmithsfoundation.org</p>
@@ -466,13 +584,17 @@
                         <span class="reference-tag">Accessible</span>
                         <span class="reference-tag">Sophisticated</span>
                     </div>
-                    <a href="https://www.paulsmithsfoundation.org/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Moheim -->
             <div class="reference-card" data-category="portfolio">
-                <img src="screenshots/moheim-com.jpg" alt="Moheim" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/moheim-com.jpg" alt="Moheim" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Moheim</h3>
                     <p class="reference-url">moheim.com</p>
@@ -483,13 +605,17 @@
                         <span class="reference-tag">Minimal</span>
                         <span class="reference-tag">Refined</span>
                     </div>
-                    <a href="https://moheim.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Slowness -->
             <div class="reference-card" data-category="experimental">
-                <img src="screenshots/slowness-com.jpg" alt="Slowness" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/slowness-com.jpg" alt="Slowness" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Slowness</h3>
                     <p class="reference-url">slowness.com</p>
@@ -500,13 +626,17 @@
                         <span class="reference-tag">Transitions</span>
                         <span class="reference-tag">Concept</span>
                     </div>
-                    <a href="https://slowness.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- We Ain't Plastic -->
             <div class="reference-card" data-category="experimental">
-                <img src="screenshots/weaintplastic-com.jpg" alt="We Ain't Plastic" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/weaintplastic-com.jpg" alt="We Ain't Plastic" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">We Ain't Plastic</h3>
                     <p class="reference-url">weaintplastic.com</p>
@@ -517,13 +647,17 @@
                         <span class="reference-tag">Social</span>
                         <span class="reference-tag">Message</span>
                     </div>
-                    <a href="https://weaintplastic.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Neverland Agency -->
             <div class="reference-card" data-category="agency">
-                <img src="screenshots/neverland-agency.jpg" alt="Neverland Agency" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/neverland-agency.jpg" alt="Neverland Agency" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Neverland Agency</h3>
                     <p class="reference-url">neverland.agency</p>
@@ -534,13 +668,17 @@
                         <span class="reference-tag">Functional</span>
                         <span class="reference-tag">Clarity</span>
                     </div>
-                    <a href="https://neverland.agency/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Birch London -->
             <div class="reference-card" data-category="agency">
-                <img src="screenshots/www-birchlondon-com-info.jpg" alt="Birch London" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/www-birchlondon-com-info.jpg" alt="Birch London" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Birch London</h3>
                     <p class="reference-url">birchlondon.com</p>
@@ -551,13 +689,17 @@
                         <span class="reference-tag">Elegant</span>
                         <span class="reference-tag">Branding</span>
                     </div>
-                    <a href="https://www.birchlondon.com/info" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
 
             <!-- Official Business -->
             <div class="reference-card" data-category="agency">
-                <img src="screenshots/www-official-business.jpg" alt="Official Business" class="reference-image">
+                <div class="reference-image-container">
+                    <img src="screenshots/www-official-business.jpg" alt="Official Business" class="reference-image">
+                    <a href="#" target="_blank" class="reference-link" 
+                       data-tooltip="Explorar sitio" data-tooltip-position="left">↗</a>
+                </div>
                 <div class="reference-content">
                     <h3 class="reference-title">Official Business</h3>
                     <p class="reference-url">official.business</p>
@@ -568,28 +710,29 @@
                         <span class="reference-tag">Authority</span>
                         <span class="reference-tag">Innovation</span>
                     </div>
-                    <a href="https://www.official.business/" target="_blank" class="reference-link">Explorar sitio</a>
+                    
                 </div>
             </div>
         </section>
-
-        <div class="stats">
-            <div class="stat">
-                <span class="stat-number">30</span>
-                <span class="stat-label">Referencias curadas</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">100%</span>
-                <span class="stat-label">Calidad verificada</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">2024</span>
-                <span class="stat-label">Selección actual</span>
-            </div>
-        </div>
     </main>
 
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">
+                Curado y creado por 
+                <a href="https://sergiofores.es" target="_blank" rel="noopener" class="footer-link">
+                    Sergio Forés
+                </a>
+            </p>
+        </div>
+    </footer>
+
     <!-- JavaScript -->
+    <script src="assets/js/toast-notifications.js"></script>
+    <script src="assets/js/tooltips.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/favorites.js"></script>
+    <script src="assets/js/header-scroll.js"></script>
+    <script src="assets/js/image-loader.js"></script>
 </body>
 </html>
