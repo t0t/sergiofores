@@ -495,8 +495,7 @@ body {
 }
 
 .reference-tag {
-    padding: var(--space-xs) var(--space-xs) var(--space-xs) var(--space-xs);
-    padding-top: calc(var(--space-xs) * 0.6);
+    padding: calc(var(--space-xs) * 0.6) var(--space-xs);
     background: var(--color-surface-alt);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
