@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#000"/>
+  <text x="50" y="55" font-family="Arial, sans-serif" font-size="30" font-weight="bold" text-anchor="middle" fill="#fff">R</text>
+  <text x="50" y="75" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#8b5cf6">REFS</text>
+</svg>

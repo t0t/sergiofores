@@ -38,6 +38,13 @@ class ServiceWorkerManager {
         try {
             console.log('📝 Registrando Service Worker...');
             
+            // Verificar si sw.js existe antes de registrar
+            const swExists = await this.checkServiceWorkerExists();
+            if (!swExists) {
+                console.log('⚠️ Service Worker no disponible en producción - funcionando sin cache');
+                return;
+            }
+            
             this.registration = await navigator.serviceWorker.register('/sw.js', {
                 scope: '/'
             });
@@ -54,7 +61,17 @@ class ServiceWorkerManager {
             await this.registration.update();
             
         } catch (error) {
-            console.error('❌ Error registrando Service Worker:', error);
+            console.warn('⚠️ Service Worker no disponible:', error.message);
+            console.log('🔄 Sitio funcionando sin cache offline');
+        }
+    }
+    
+    async checkServiceWorkerExists() {
+        try {
+            const response = await fetch('/sw.js', { method: 'HEAD' });
+            return response.ok;
+        } catch (error) {
+            return false;
         }
     }
     
