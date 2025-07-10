@@ -16,8 +16,7 @@ Galería curada de sitios web excepcionales seleccionados por su calidad estéti
 referencias-diseno/
 ├── README.md                      # Este archivo
 ├── index.html                     # Página principal optimizada
-├── sw.js                         # Service Worker para caching
-├── sw-register.js                # Gestor del Service Worker
+├── sw.js                         # Service Worker (debe estar en raíz)
 ├── package.json                  # Dependencias Node.js
 ├── assets/                       # Recursos estáticos
 │   ├── css/
@@ -27,6 +26,7 @@ referencias-diseno/
 │       ├── favorites.js         # Sistema de favoritos
 │       ├── mobile-menu.js       # Menú hamburguesa responsive
 │       ├── scroll-indicator.js  # Navegación de scroll
+│       ├── sw-register.js       # Gestor del Service Worker
 │       └── *.js                 # Otros módulos
 ├── screenshots/                  # Capturas originales (9.6MB)
 │   ├── *.jpg                    # Imágenes JPEG

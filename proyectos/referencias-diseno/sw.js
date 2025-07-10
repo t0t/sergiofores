@@ -1,6 +1,9 @@
 /**
  * 🚀 SERVICE WORKER PARA PERFORMANCE MÁXIMA
  * Estrategia de caching híbrida optimizada para referencias de diseño
+ * 
+ * NOTA: Este archivo DEBE estar en la raíz del proyecto para tener
+ * scope completo sobre todo el sitio. No mover a subdirectorios.
  */
 
 const CACHE_NAME = 'refs-v1.2.0';
