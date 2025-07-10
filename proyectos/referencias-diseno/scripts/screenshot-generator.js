@@ -42,7 +42,22 @@ const referencias = [
     'https://www.megan-ross.com/',
     'https://theodore-rousseau.dk/',
     'https://www.wokine.com/',
-    'https://www.thewayofcode.com/'
+    'https://www.thewayofcode.com/',
+    // Nuevas referencias agregadas
+    'https://verde.io/',
+    'https://temper.studio/',
+    'https://seated.nyc/',
+    'https://mushstudios.co/',
+    'https://livinghouse.nz/',
+    'https://www.clueperfumery.com/',
+    'https://www.medusmo.com/',
+    'https://caladan.bio/',
+    'https://www.camilarosa.net/',
+    'https://www.studiolenzing.com/',
+    'https://thebanshies.com/en',
+    'https://www.elwyn.co/',
+    'https://readymag.com/designs/5647067/',
+    'https://minimal.gallery/'
 ];
 
 // Función para generar nombre de archivo limpio

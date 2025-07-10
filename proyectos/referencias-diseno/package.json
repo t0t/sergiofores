@@ -4,9 +4,13 @@
   "description": "Showcase curado de referencias de diseño web con screenshots automatizados",
   "main": "screenshot-generator.js",
   "scripts": {
-    "screenshots": "node screenshot-generator.js",
-    "dev": "python -m http.server 8000",
-    "build": "echo 'Static site - no build needed'"
+    "dev": "python3 -m http.server 8000",
+    "screenshots": "python3 scripts/screenshot_generator.py",
+    "screenshots:js": "node scripts/screenshot-generator.js", 
+    "verify": "python3 scripts/verify_screenshots.py",
+    "setup": "./scripts/setup.sh",
+    "build": "echo 'Static site - no build needed'",
+    "clean": "rm -rf node_modules package-lock.json && npm install"
   },
   "keywords": [
     "design",
@@ -17,5 +21,7 @@
   ],
   "author": "Sergio Forés",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "puppeteer": "^24.12.1"
+  }
 }

@@ -6,314 +6,8 @@
     <title>Referencias de Diseño | Curated Design Showcase</title>
     <meta name="description" content="Colección curada de referencias de diseño web excepcional, seleccionadas por su calidad estética y técnica para inspirar proyectos digitales de alta sofisticación.">
     
-    <style>
-        /* Variables CSS - Modernismo Digital Sofisticado */
-        :root {
-            /* Colores - Neutros sofisticados */
-            --color-primary: #000000;
-            --color-secondary: #1a1a1a;
-            --color-text: #2d2d2d;
-            --color-text-light: #6b6b6b;
-            --color-text-meta: #9ca3af;
-            --color-surface: #ffffff;
-            --color-surface-alt: #fefefe;
-            --color-border: #e5e5e5;
-            --color-accent: #8b5cf6;
-            
-            /* Espaciado - Sistema 8px base */
-            --space-xs: 0.5rem;    /* 8px */
-            --space-sm: 1rem;      /* 16px */
-            --space-md: 1.5rem;    /* 24px */
-            --space-lg: 2rem;      /* 32px */
-            --space-xl: 3rem;      /* 48px */
-            --space-2xl: 4rem;     /* 64px */
-            --space-3xl: 6rem;     /* 96px */
-            --space-4xl: 8rem;     /* 128px */
-            
-            /* Tipografía - Jerarquía clara */
-            --font-size-xs: 0.8rem;    /* 13px */
-            --font-size-sm: 0.9rem;    /* 14px */
-            --font-size-base: 1rem;    /* 16px */
-            --font-size-lg: 1.2rem;    /* 19px */
-            --font-size-xl: 1.5rem;    /* 24px */
-            --font-size-2xl: 2rem;     /* 32px */
-            --font-size-3xl: 2.5rem;   /* 40px */
-            --font-size-4xl: 3rem;     /* 48px */
-            
-            /* Otros */
-            --border-radius: 2px;
-            --transition: all 0.2s ease;
-            --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.04);
-            --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        
-        /* Reset minimalista */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--color-text);
-            background: var(--color-surface);
-            font-size: var(--font-size-base);
-            font-weight: 400;
-        }
-        
-        /* Header minimalista */
-        .header {
-            padding: var(--space-lg) 0;
-            border-bottom: 1px solid var(--color-border);
-            background: var(--color-surface);
-        }
-        
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--space-xl);
-        }
-        
-        .header-title {
-            font-size: var(--font-size-2xl);
-            font-weight: 300;
-            color: var(--color-primary);
-            margin-bottom: var(--space-xs);
-            letter-spacing: -0.02em;
-        }
-        
-        .header-subtitle {
-            font-size: var(--font-size-lg);
-            color: var(--color-text-light);
-            font-weight: 400;
-            max-width: 600px;
-        }
-        
-        /* Navegación limpia */
-        .nav {
-            margin-top: var(--space-lg);
-        }
-        
-        .nav-filters {
-            display: flex;
-            gap: var(--space-md);
-            flex-wrap: wrap;
-        }
-        
-        .nav-filter {
-            padding: var(--space-xs) var(--space-sm);
-            border: 1px solid var(--color-border);
-            background: transparent;
-            color: var(--color-text-light);
-            font-size: var(--font-size-sm);
-            font-weight: 400;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            border-radius: var(--border-radius);
-        }
-        
-        .nav-filter:hover,
-        .nav-filter.active {
-            background: var(--color-primary);
-            color: var(--color-surface);
-            border-color: var(--color-primary);
-        }
-        
-        /* Main content */
-        .main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: var(--space-4xl) var(--space-xl);
-        }
-        
-        /* Grid sofisticado */
-        .references-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: var(--space-3xl);
-            margin-top: var(--space-2xl);
-        }
-        
-        .reference-card {
-            background: var(--color-surface);
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .reference-card:hover {
-            transform: translateY(-1px);
-        }
-        
-        .reference-image {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            display: block;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition);
-        }
-        
-        .reference-card:hover .reference-image {
-            box-shadow: var(--shadow-soft);
-        }
-        
-        .reference-content {
-            padding: var(--space-lg) 0;
-        }
-        
-        .reference-title {
-            font-size: var(--font-size-xl);
-            font-weight: 500;
-            color: var(--color-primary);
-            margin-bottom: var(--space-xs);
-            line-height: 1.3;
-            letter-spacing: -0.01em;
-        }
-        
-        .reference-url {
-            color: var(--color-text-meta);
-            font-size: var(--font-size-sm);
-            margin-bottom: var(--space-md);
-            font-family: 'SF Mono', Monaco, monospace;
-        }
-        
-        .reference-description {
-            color: var(--color-text-light);
-            font-size: var(--font-size-base);
-            line-height: 1.6;
-            margin-bottom: var(--space-md);
-        }
-        
-        .reference-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-xs);
-            margin-bottom: var(--space-lg);
-        }
-        
-        .reference-tag {
-            padding: var(--space-xs);
-            background: var(--color-surface-alt);
-            border: 1px solid var(--color-border);
-            border-radius: var(--border-radius);
-            font-size: var(--font-size-xs);
-            color: var(--color-text-light);
-            font-weight: 400;
-        }
-        
-        .reference-link {
-            display: inline-flex;
-            align-items: center;
-            padding: var(--space-sm) var(--space-md);
-            background: var(--color-primary);
-            color: var(--color-surface);
-            text-decoration: none;
-            border-radius: var(--border-radius);
-            font-size: var(--font-size-sm);
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        
-        .reference-link:hover {
-            background: var(--color-secondary);
-            transform: translateY(-1px);
-        }
-        
-        .reference-link::after {
-            content: "↗";
-            margin-left: var(--space-xs);
-            font-size: var(--font-size-xs);
-        }
-        
-        /* Stats minimalistas */
-        .stats {
-            display: flex;
-            gap: var(--space-xl);
-            margin-top: var(--space-xl);
-            padding-top: var(--space-xl);
-            border-top: 1px solid var(--color-border);
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-number {
-            display: block;
-            font-size: var(--font-size-2xl);
-            font-weight: 300;
-            color: var(--color-primary);
-            margin-bottom: var(--space-xs);
-        }
-        
-        .stat-label {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-light);
-        }
-        
-        /* Responsive refinado */
-        @media (max-width: 768px) {
-            .header-content,
-            .main {
-                padding: var(--space-lg) var(--space-lg);
-            }
-            
-            .references-grid {
-                grid-template-columns: 1fr;
-                gap: var(--space-2xl);
-            }
-            
-            .reference-image {
-                height: 240px;
-            }
-            
-            .stats {
-                flex-direction: column;
-                gap: var(--space-md);
-                text-align: left;
-            }
-            
-            .stat {
-                display: flex;
-                align-items: center;
-                gap: var(--space-sm);
-                text-align: left;
-            }
-            
-            .stat-number {
-                margin-bottom: 0;
-            }
-        }
-        
-        /* Estados de loading elegantes */
-        .loading {
-            text-align: center;
-            padding: var(--space-4xl);
-            color: var(--color-text-light);
-        }
-        
-        /* Micro-animaciones */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .reference-card {
-            animation: fadeIn 0.6s ease forwards;
-        }
-        
-        .reference-card:nth-child(even) {
-            animation-delay: 0.1s;
-        }
-        
-        .reference-card:nth-child(3n) {
-            animation-delay: 0.2s;
-        }
-    </style>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header class="header">
@@ -335,6 +29,277 @@
 
     <main class="main">
         <section class="references-grid">
+            <!-- Verde -->
+            <div class="reference-card" data-category="minimalist portfolio">
+                <img src="screenshots/verde-io.png" alt="Screenshot de Verde, un estudio de diseño y desarrollo." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Verde</h3>
+                    <p class="reference-url">verde.io</p>
+                    <p class="reference-description">Estudio de diseño y desarrollo centrado en estéticas de frontend refinadas. Minimalismo y elegancia en cada interacción.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Minimalist</span>
+                        <span class="reference-tag">Portfolio</span>
+                        <span class="reference-tag">Development</span>
+                        <span class="reference-tag">Clean</span>
+                    </div>
+                    <a href="https://verde.io/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Olivier Guilleux -->
+            <div class="reference-card" data-category="portfolio agency">
+                <img src="screenshots/olivier-guilleux.png" alt="Screenshot del portfolio de Olivier Guilleux." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Olivier Guilleux</h3>
+                    <p class="reference-url">olivier-guilleux.com</p>
+                    <p class="reference-description">Portfolio de un desarrollador front-end con un diseño audaz y una fuerte presencia tipográfica. Elegancia y modernidad.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Portfolio</span>
+                        <span class="reference-tag">Development</span>
+                        <span class="reference-tag">Typography</span>
+                        <span class="reference-tag">Bold</span>
+                    </div>
+                    <a href="https://www.olivier-guilleux.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Temper Studio -->
+            <div class="reference-card" data-category="e-commerce branding">
+                <img src="screenshots/temper-studio.png" alt="Screenshot de Temper Studio, una marca de tenis." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Temper Studio</h3>
+                    <p class="reference-url">temper.studio</p>
+                    <p class="reference-description">Marca de tenis que desafía lo convencional con una identidad visual fuerte y una narrativa potente.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Branding</span>
+                        <span class="reference-tag">E-commerce</span>
+                        <span class="reference-tag">Bold</span>
+                        <span class="reference-tag">Storytelling</span>
+                    </div>
+                    <a href="https://temper.studio/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Seated -->
+            <div class="reference-card" data-category="experimental cultural">
+                <img src="screenshots/seated-nyc.png" alt="Screenshot de Seated, una factoría culinaria creativa." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Seated</h3>
+                    <p class="reference-url">seated.nyc</p>
+                    <p class="reference-description">Fábrica culinaria creativa que transforma valores en storytelling comestible. Diseño editorial y texturizado.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Creative</span>
+                        <span class="reference-tag">Storytelling</span>
+                        <span class="reference-tag">Textured</span>
+                        <span class="reference-tag">Editorial</span>
+                    </div>
+                    <a href="https://seated.nyc/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Mush Studios -->
+            <div class="reference-card" data-category="e-commerce experimental">
+                <img src="screenshots/mushstudios-co.png" alt="Screenshot de Mush Studios, una tienda online." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Mush Studios</h3>
+                    <p class="reference-url">mushstudios.co</p>
+                    <p class="reference-description">Diseño vibrante y juguetón que escapa de la realidad. Una experiencia de e-commerce inmersiva y única.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">E-commerce</span>
+                        <span class="reference-tag">Vibrant</span>
+                        <span class="reference-tag">Playful</span>
+                        <span class="reference-tag">Immersive</span>
+                    </div>
+                    <a href="https://mushstudios.co/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Living House -->
+            <div class="reference-card" data-category="corporate minimalist">
+                <img src="screenshots/livinghouse-nz.png" alt="Screenshot de Living House, un proyecto de arquitectura." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Living House</h3>
+                    <p class="reference-url">livinghouse.nz</p>
+                    <p class="reference-description">Arquitectura de bajo coste y construcción rápida con un enfoque en el clima positivo. Diseño limpio y estructural.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Architecture</span>
+                        <span class="reference-tag">Clean</span>
+                        <span class="reference-tag">Structural</span>
+                        <span class="reference-tag">Sustainable</span>
+                    </div>
+                    <a href="https://livinghouse.nz/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Clue Perfumery -->
+            <div class="reference-card" data-category="e-commerce branding">
+                <img src="screenshots/clueperfumery-com.png" alt="Screenshot de Clue Perfumery." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Clue Perfumery</h3>
+                    <p class="reference-url">clueperfumery.com</p>
+                    <p class="reference-description">Una perfumería con una identidad visual distintiva y audaz. El branding y la tipografía son los protagonistas.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Branding</span>
+                        <span class="reference-tag">E-commerce</span>
+                        <span class="reference-tag">Typography</span>
+                        <span class="reference-tag">Bold</span>
+                    </div>
+                    <a href="https://www.clueperfumery.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Oui Oui Oui Studio -->
+            <div class="reference-card" data-category="portfolio diy">
+                <img src="screenshots/ouiouioui-studio.png" alt="Screenshot de Oui Oui Oui Studio, un blog de DIY." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Oui Oui Oui Studio</h3>
+                    <p class="reference-url">ouiouiouistudio.fr</p>
+                    <p class="reference-description">Un blog de DIY con un diseño limpio, femenino y muy cuidado. Fotografía y estilismo excelentes que inspiran a crear.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">DIY</span>
+                        <span class="reference-tag">Blog</span>
+                        <span class="reference-tag">Feminine</span>
+                        <span class="reference-tag">Clean</span>
+                    </div>
+                    <a href="https://ouiouiouistudio.fr/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Medusmo -->
+            <div class="reference-card" data-category="corporate agency">
+                <img src="screenshots/medusmo-com.png" alt="Screenshot de Medusmo." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Medusmo</h3>
+                    <p class="reference-url">medusmo.com</p>
+                    <p class="reference-description">Creación de equipos expertos para servicio al cliente. Diseño corporativo, limpio y directo que comunica confianza y profesionalidad.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Corporate</span>
+                        <span class="reference-tag">Service</span>
+                        <span class="reference-tag">Clean</span>
+                        <span class="reference-tag">Professional</span>
+                    </div>
+                    <a href="https://www.medusmo.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Caladan -->
+            <div class="reference-card" data-category="corporate experimental">
+                <img src="screenshots/caladan-bio.png" alt="Screenshot de Caladan, una empresa de bioingeniería." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Caladan</h3>
+                    <p class="reference-url">caladan.bio</p>
+                    <p class="reference-description">Empujando los límites de la bioingeniería con un diseño que equilibra lo orgánico y lo tecnológico. Tipografía y layout excelentes.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Bioengineering</span>
+                        <span class="reference-tag">Tech</span>
+                        <span class="reference-tag">Clean</span>
+                        <span class="reference-tag">Typography</span>
+                    </div>
+                    <a href="https://caladan.bio/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Camila Rosa -->
+            <div class="reference-card" data-category="portfolio cultural">
+                <img src="screenshots/camilarosa-net.png" alt="Screenshot del portfolio de la ilustradora Camila Rosa." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Camila Rosa</h3>
+                    <p class="reference-url">camilarosa.net</p>
+                    <p class="reference-description">Portfolio de una ilustradora con un estilo vibrante y un uso audaz del color y la composición. Grid y ritmo visual impecables.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Illustration</span>
+                        <span class="reference-tag">Portfolio</span>
+                        <span class="reference-tag">Vibrant</span>
+                        <span class="reference-tag">Grid</span>
+                    </div>
+                    <a href="https://www.camilarosa.net/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Studio Lenzing -->
+            <div class="reference-card" data-category="agency portfolio">
+                <img src="screenshots/studiolenzing-com.png" alt="Screenshot de Studio Lenzing." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Studio Lenzing</h3>
+                    <p class="reference-url">studiolenzing.com</p>
+                    <p class="reference-description">Creando interacciones mejores. Un estudio que da forma a nuevos estándares para productos y experiencias digitales. Minimalismo y enfoque en el detalle.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Agency</span>
+                        <span class="reference-tag">Digital Product</span>
+                        <span class="reference-tag">Minimalist</span>
+                        <span class="reference-tag">UX</span>
+                    </div>
+                    <a href="https://www.studiolenzing.com/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- The Banshies -->
+            <div class="reference-card" data-category="cultural minimalist">
+                <img src="screenshots/thebanshies-com.png" alt="Screenshot de The Banshies, un grupo de música." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">The Banshies</h3>
+                    <p class="reference-url">thebanshies.com</p>
+                    <p class="reference-description">Diseño elegante y clásico para un trío de música. El uso del espacio y la tipografía crean una atmósfera sofisticada y atemporal.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Music</span>
+                        <span class="reference-tag">Cultural</span>
+                        <span class="reference-tag">Elegant</span>
+                        <span class="reference-tag">Typography</span>
+                    </div>
+                    <a href="https://thebanshies.com/en" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Ben Elwyn -->
+            <div class="reference-card" data-category="portfolio experimental">
+                <img src="screenshots/elwyn-co.png" alt="Screenshot del portfolio de Ben Elwyn." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Ben Elwyn</h3>
+                    <p class="reference-url">elwyn.co</p>
+                    <p class="reference-description">Haciendo cosas buenas con código y otras tecnologías. Un portfolio que es en sí mismo un experimento visual y técnico.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Portfolio</span>
+                        <span class="reference-tag">Creative Developer</span>
+                        <span class="reference-tag">Experimental</span>
+                        <span class="reference-tag">Interactive</span>
+                    </div>
+                    <a href="https://www.elwyn.co/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Readymag Ancient Artifacts -->
+            <div class="reference-card" data-category="experimental cultural">
+                <img src="screenshots/readymag-designs-5647067.png" alt="Screenshot de un diseño de Readymag sobre artefactos antiguos." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Ancient Artifacts</h3>
+                    <p class="reference-url">readymag.com</p>
+                    <p class="reference-description">Exhibición digital de artefactos antiguos. El contraste entre la tipografía moderna y los objetos 3D crea una experiencia inmersiva y educativa.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">3D</span>
+                        <span class="reference-tag">Exhibition</span>
+                        <span class="reference-tag">Typography</span>
+                        <span class="reference-tag">Immersive</span>
+                    </div>
+                    <a href="https://readymag.com/designs/5647067/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
+
+            <!-- Minimal Gallery -->
+            <div class="reference-card" data-category="minimalist agency">
+                <img src="screenshots/minimal-gallery.png" alt="Screenshot de Minimal Gallery." class="reference-image" loading="lazy">
+                <div class="reference-content">
+                    <h3 class="reference-title">Minimal Gallery</h3>
+                    <p class="reference-url">minimal.gallery</p>
+                    <p class="reference-description">Por el amor a los sitios web bellos y funcionales. Una galería curada que es en sí misma un ejemplo de diseño minimalista y efectivo.</p>
+                    <div class="reference-tags">
+                        <span class="reference-tag">Gallery</span>
+                        <span class="reference-tag">Curation</span>
+                        <span class="reference-tag">Minimalist</span>
+                        <span class="reference-tag">Functional</span>
+                    </div>
+                    <a href="https://minimal.gallery/" target="_blank" class="reference-link">Explorar sitio</a>
+                </div>
+            </div>
             <!-- Dept of Transformation (agrupado) -->
             <div class="reference-card" data-category="experimental cultural">
                 <img src="screenshots/dept-of-transformation-org-library-microsolidarity.jpg" alt="Dept of Transformation" class="reference-image">
@@ -610,7 +575,7 @@
 
         <div class="stats">
             <div class="stat">
-                <span class="stat-number">16</span>
+                <span class="stat-number">30</span>
                 <span class="stat-label">Referencias curadas</span>
             </div>
             <div class="stat">
@@ -624,69 +589,7 @@
         </div>
     </main>
 
-    <script>
-        // Filtrado sofisticado
-        document.querySelectorAll('.nav-filter').forEach(filter => {
-            filter.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                // Update active state
-                document.querySelectorAll('.nav-filter').forEach(f => f.classList.remove('active'));
-                filter.classList.add('active');
-                
-                // Filter cards
-                const category = filter.dataset.filter;
-                const cards = document.querySelectorAll('.reference-card');
-                
-                cards.forEach(card => {
-                    const cardCategories = card.dataset.category || '';
-                    const shouldShow = category === 'all' || cardCategories.includes(category);
-                    
-                    if (shouldShow) {
-                        card.style.display = 'block';
-                        card.style.opacity = '1';
-                    } else {
-                        card.style.opacity = '0';
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 200);
-                    }
-                });
-            });
-        });
-
-        // Lazy loading elegante
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.style.opacity = '1';
-                        imageObserver.unobserve(img);
-                    }
-                });
-            });
-
-            document.querySelectorAll('.reference-image').forEach(img => {
-                img.style.opacity = '0';
-                img.style.transition = 'opacity 0.3s ease';
-                imageObserver.observe(img);
-            });
-        }
-
-        // Smooth scroll behavior
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
