@@ -6,8 +6,22 @@
     <title>REFS | Curated Design Showcase</title>
     <meta name="description" content="Colección curada de referencias de diseño web excepcional, seleccionadas por su calidad estética y técnica para inspirar proyectos digitales de alta sofisticación.">
     
-    <!-- Estilos -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Critical CSS Inline para FCP óptimo -->
+    <style data-critical>
+:root{--color-primary:#000000;--color-secondary:#1a1a1a;--color-text:#1f2937;--color-text-light:#4b5563;--color-surface:#ffffff;--color-surface-alt:#f9fafb;--color-border:#e5e7eb;--color-accent:#8b5cf6;--space-xs:clamp(0.25rem,1vw,0.5rem);--space-sm:clamp(0.75rem,2vw,1rem);--space-md:clamp(1rem,3vw,1.5rem);--space-lg:clamp(1.5rem,4vw,2rem);--space-xl:clamp(2rem,5vw,3rem);--space-2xl:clamp(3rem,6vw,4rem);--font-size-xs:clamp(0.75rem,1.5vw,0.8rem);--font-size-sm:clamp(0.875rem,2vw,0.9rem);--font-size-base:clamp(1rem,2.5vw,1rem);--font-size-xl:clamp(1.25rem,4vw,1.5rem);--font-size-2xl:clamp(1.5rem,5vw,2rem);--font-size-3xl:clamp(2rem,6vw,2.5rem);--font-weight-normal:400;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:700;--line-height-tight:1.2;--line-height-normal:1.5;--letter-spacing-normal:0em;--border-radius:6px;--transition:all 0.2s ease}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{overflow-x:hidden;scroll-behavior:smooth}body{margin:0;padding:0;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',Roboto,sans-serif;line-height:var(--line-height-normal);color:var(--color-text);background:var(--color-surface);font-size:var(--font-size-base);font-weight:var(--font-weight-normal);letter-spacing:var(--letter-spacing-normal);padding-top:120px}.header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:var(--space-md) 0;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:var(--transition);max-height:100px}.header-content{max-width:1200px;margin:0 auto;padding:0 var(--space-lg);width:100%;box-sizing:border-box}.header-main{display:flex;align-items:center;justify-content:space-between;gap:var(--space-lg)}.header-brand{display:flex;flex-direction:column;gap:var(--space-xs);flex:1;min-width:0}.header-title{font-size:var(--font-size-3xl);font-weight:900;color:var(--color-primary);letter-spacing:0.15em;margin:0;white-space:nowrap;line-height:0.9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter','SF Pro Display',system-ui,sans-serif;text-rendering:optimizeLegibility;text-transform:uppercase;background:linear-gradient(135deg,var(--color-primary) 0%,var(--color-secondary) 50%,var(--color-primary) 100%);background-size:200% 200%}@supports (-webkit-background-clip:text) or (background-clip:text){.header-title{-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent}}.header-subtitle{font-size:var(--font-size-sm);color:var(--color-text-light);font-weight:var(--font-weight-normal);margin:0;white-space:nowrap}.header-nav{display:flex;align-items:center;gap:var(--space-md)}.nav-filters{display:flex;gap:var(--space-xs);align-items:center;flex-wrap:nowrap}.nav-filter{padding:var(--space-xs) var(--space-sm);border:1px solid var(--color-border);background:transparent;color:var(--color-text-light);font-size:var(--font-size-xs);font-weight:500;cursor:pointer;text-decoration:none;border-radius:16px;transition:var(--transition)}.nav-filter.active{background:var(--color-primary);color:var(--color-surface);border-color:var(--color-primary)}.main{max-width:1200px;margin:0 auto;padding:var(--space-2xl) var(--space-lg);width:100%;box-sizing:border-box}.references-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:var(--space-xl);margin-top:0;width:100%;align-items:start}.reference-card{background:var(--color-surface);position:relative;border-radius:calc(var(--border-radius) * 2);overflow:visible;min-height:200px}.mobile-menu-toggle{display:none;flex-direction:column;justify-content:center;width:24px;height:24px;background:none;border:none;cursor:pointer;padding:0}.hamburger-line{width:100%;height:2px;background:var(--color-primary);margin:2px 0;transition:var(--transition)}@media (max-width:1024px){.header-content{padding:0 var(--space-lg)}.main{padding:var(--space-xl) var(--space-lg)}.header-title{font-size:var(--font-size-2xl);letter-spacing:0.12em}.header-subtitle{display:none}.references-grid{grid-template-columns:1fr;gap:var(--space-xl)}.nav-filters{display:none}.mobile-menu-toggle{display:flex}}
+    </style>
+    
+    <!-- Preload del CSS completo -->
+    <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
+    
+    <!-- CSS Async Loader para performance óptima -->
+    <script>
+    !function(){"use strict";function e(e,t,n,o){const a=window.document,l=a.createElement("link");let r=t||a.getElementsByTagName("script")[0];return l.rel="stylesheet",l.href=e,l.media=n||"all",o&&Object.keys(o).forEach(e=>{l.setAttribute(e,o[e])}),r.parentNode.insertBefore(l,r),l}function t(t,n,o){const a=e(t,null,o);return a.onload=function(){n&&n(),this.onload=null},a.onload||setTimeout(function(){n&&n()},100),a}function n(){const e=document.styleSheets;for(let t=0;t<e.length;t++)try{const n=e[t];if(n.href&&n.href.includes("critical"))return!0;if(!n.href&&n.cssRules&&n.cssRules.length>50)return!0}catch(e){}return!1}function o(){if(document.querySelector('link[href*="style.css"]'))return void console.log("✅ CSS completo ya cargado");console.log("🔄 Cargando CSS no crítico...");const e=performance.now();t("assets/css/style.css",function(){const t=performance.now()-e;console.log(`✅ CSS completo cargado en ${t.toFixed(2)}ms`),document.documentElement.classList.add("css-loaded"),document.dispatchEvent(new CustomEvent("cssLoaded",{detail:{loadTime:t}})),window.performance&&window.performance.mark&&performance.mark("css-complete")})}function a(){console.log("🎯 Iniciando carga asíncrona de CSS"),n()?(console.log("📦 CSS crítico detectado, cargando resto..."),o()):"loading"===document.readyState?document.addEventListener("DOMContentLoaded",function(){setTimeout(o,100)}):setTimeout(o,50),setTimeout(function(){document.querySelector('link[href*="style.css"]')||(console.log("⚠️ Fallback: Cargando CSS después de timeout"),o())},1e3)}console.log("🚀 Sistema de CSS asíncrono inicializado"),a(),document.addEventListener("cssLoaded",function(){setTimeout(function(){const e=document.querySelector("style[data-critical]");e&&(console.log("🧹 Limpiando CSS crítico inline"),e.remove())},500)}),window.cssAsyncLoader={loadNonCriticalCSS:o,isCriticalCSSLoaded:n}}();
+    </script>
+    
+    <!-- Service Worker para caching inteligente -->
+    <script src="sw-register.js" async></script>
 </head>
 <body>
     <header class="header">
@@ -87,7 +101,10 @@
             <!-- Temper Studio -->
             <div class="reference-card" data-category="e-commerce branding">
                 <div class="reference-image-container">
-                    <img src="screenshots/temper-studio.png" alt="Screenshot de Temper Studio, una marca de tenis." class="reference-image" loading="lazy">
+                    <picture>
+                        <source srcset="optimized/temper-studio.webp" type="image/webp">
+                        <img src="screenshots/temper-studio.png" alt="Screenshot de Temper Studio, una marca de tenis." class="reference-image" loading="lazy">
+                    </picture>
                     <a href="https://temper.studio/" target="_blank" class="reference-link">↗</a>
                 </div>
                 <div class="reference-content">
@@ -107,7 +124,10 @@
             <!-- Seated -->
             <div class="reference-card" data-category="experimental cultural">
                 <div class="reference-image-container">
-                    <img src="screenshots/seated-nyc.png" alt="Screenshot de Seated, una factoría culinaria creativa." class="reference-image" loading="lazy">
+                    <picture>
+                        <source srcset="optimized/seated-nyc.webp" type="image/webp">
+                        <img src="screenshots/seated-nyc.png" alt="Screenshot de Seated, una factoría culinaria creativa." class="reference-image" loading="lazy">
+                    </picture>
                     <a href="https://seated.nyc" target="_blank" class="reference-link">↗</a>
                 </div>
                 <div class="reference-content">
@@ -466,7 +486,10 @@
             <!-- Make Ready -->
             <div class="reference-card" data-category="agency">
                 <div class="reference-image-container">
-                    <img src="screenshots/www-make-ready-co.jpg" alt="Make Ready" class="reference-image">
+                    <picture>
+                        <source srcset="optimized/www-make-ready-co.webp" type="image/webp">
+                        <img src="screenshots/www-make-ready-co.jpg" alt="Make Ready" class="reference-image" loading="lazy">
+                    </picture>
                     <a href="#" target="_blank" class="reference-link">↗</a>
                 </div>
                 <div class="reference-content">
@@ -486,7 +509,10 @@
             <!-- Commission Studio -->
             <div class="reference-card" data-category="agency">
                 <div class="reference-image-container">
-                    <img src="screenshots/www-commission-studio.jpg" alt="Commission Studio" class="reference-image">
+                    <picture>
+                        <source srcset="optimized/www-commission-studio.webp" type="image/webp">
+                        <img src="screenshots/www-commission-studio.jpg" alt="Commission Studio" class="reference-image" loading="lazy">
+                    </picture>
                     <a href="#" target="_blank" class="reference-link">↗</a>
                 </div>
                 <div class="reference-content">
@@ -566,7 +592,10 @@
             <!-- Moheim -->
             <div class="reference-card" data-category="portfolio">
                 <div class="reference-image-container">
-                    <img src="screenshots/moheim-com.jpg" alt="Moheim" class="reference-image">
+                    <picture>
+                        <source srcset="optimized/moheim-com.webp" type="image/webp">
+                        <img src="screenshots/moheim-com.jpg" alt="Moheim" class="reference-image aspect-ratio-wide" loading="lazy">
+                    </picture>
                     <a href="#" target="_blank" class="reference-link">↗</a>
                 </div>
                 <div class="reference-content">
@@ -722,5 +751,42 @@
     <script src="assets/js/image-loader.js"></script>
     <script src="assets/js/mobile-menu.js"></script>
     <script src="assets/js/scroll-indicator.js"></script>
+    
+    <!-- Scripts no críticos cargados de forma asíncrona -->
+    <script>
+    // Cargar scripts no críticos después del CSS
+    document.addEventListener('cssLoaded', function() {
+        // Cargar performance measurement solo en desarrollo
+        if (window.location.hostname === 'localhost' || window.location.protocol === 'file:') {
+            const perfScript = document.createElement('script');
+            perfScript.src = 'scripts/testing/measure-performance.js';
+            perfScript.async = true;
+            document.head.appendChild(perfScript);
+            
+            // Test específico de Critical CSS
+            const criticalTest = document.createElement('script');
+            criticalTest.src = 'scripts/testing/critical-css-test.js';
+            criticalTest.async = true;
+            document.head.appendChild(criticalTest);
+        }
+    });
+    
+    // Fallback si cssLoaded no se dispara
+    setTimeout(function() {
+        if (window.location.hostname === 'localhost' || window.location.protocol === 'file:') {
+            if (!document.querySelector('script[src="measure-performance.js"]')) {
+                const perfScript = document.createElement('script');
+                perfScript.src = 'scripts/testing/measure-performance.js';
+                perfScript.async = true;
+                document.head.appendChild(perfScript);
+                
+                const criticalTest = document.createElement('script');
+                criticalTest.src = 'scripts/testing/critical-css-test.js';
+                criticalTest.async = true;
+                document.head.appendChild(criticalTest);
+            }
+        }
+    }, 2000);
+    </script>
 </body>
 </html>

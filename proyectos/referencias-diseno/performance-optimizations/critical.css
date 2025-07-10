@@ -1,0 +1,141 @@
+/* =============================================================================
+   CRITICAL CSS - INLINE EN <HEAD> PARA MEJORAR FCP
+   Solo los estilos necesarios para above-the-fold
+============================================================================= */
+
+/* Variables CSS críticas */
+:root {
+    --color-primary: #000000;
+    --color-surface: #ffffff;
+    --color-text: #1f2937;
+    --color-text-light: #4b5563;
+    --color-border: #e5e7eb;
+    --space-sm: clamp(0.75rem, 2vw, 1rem);
+    --space-md: clamp(1rem, 3vw, 1.5rem);
+    --space-lg: clamp(1.5rem, 4vw, 2rem);
+    --space-xl: clamp(2rem, 5vw, 3rem);
+    --font-size-base: clamp(1rem, 2.5vw, 1rem);
+    --font-size-xl: clamp(1.25rem, 4vw, 1.5rem);
+    --font-size-2xl: clamp(1.5rem, 5vw, 2rem);
+    --font-size-3xl: clamp(2rem, 6vw, 2.5rem);
+    --line-height-normal: 1.5;
+    --border-radius: 6px;
+}
+
+/* Reset crítico */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: var(--line-height-normal);
+    color: var(--color-text);
+    background: var(--color-surface);
+    font-size: var(--font-size-base);
+    padding-top: 120px;
+    min-height: 100vh;
+}
+
+/* Header crítico */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: var(--space-md) 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    max-height: 100px;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+    width: 100%;
+}
+
+.header-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+}
+
+.header-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 900;
+    color: var(--color-primary);
+    letter-spacing: 0.15em;
+    line-height: 0.9;
+    text-transform: uppercase;
+}
+
+.header-subtitle {
+    font-size: var(--font-size-base);
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+/* Main layout crítico */
+.main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-lg);
+    width: 100%;
+}
+
+/* Grid crítico - solo primera fila visible */
+.references-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+    gap: var(--space-xl);
+}
+
+@media (min-width: 1200px) {
+    .references-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Card básica */
+.reference-card {
+    background: var(--color-surface);
+    border-radius: calc(var(--border-radius) * 2);
+}
+
+.reference-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--border-radius);
+}
+
+/* Responsive crítico */
+@media (max-width: 1024px) {
+    body {
+        padding-top: 80px;
+    }
+    
+    .header {
+        padding: var(--space-sm) 0;
+        max-height: 80px;
+    }
+    
+    .references-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-title {
+        font-size: var(--font-size-2xl);
+    }
+}
