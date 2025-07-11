@@ -1,0 +1,364 @@
+{
+  "timestamp": "2025-07-11T01:13:52.311Z",
+  "project": "Sergio Forés - Fotografía",
+  "summary": {
+    "totalProcessed": 34,
+    "totalErrors": 0,
+    "totalSize": 120855811,
+    "averageSize": 3554583
+  },
+  "directories": {
+    "source": "img",
+    "target": "img/photographs",
+    "backup": "img/originals"
+  },
+  "files": [
+    {
+      "original": "10489546284_b9be21e654_o.jpg",
+      "semantic": "verdad-fotografica.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/10489546284_b9be21e654_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/verdad-fotografica.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/10489546284_b9be21e654_o.jpg",
+      "size": 6614465,
+      "sizeKB": 6459,
+      "processed": "2025-07-11T01:13:52.060Z"
+    },
+    {
+      "original": "10510444213_f5e8de7fca_o.jpg",
+      "semantic": "determinacion-luminosa.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/10510444213_f5e8de7fca_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/determinacion-luminosa.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/10510444213_f5e8de7fca_o.jpg",
+      "size": 8479199,
+      "sizeKB": 8280,
+      "processed": "2025-07-11T01:13:52.076Z"
+    },
+    {
+      "original": "10977538005_7e677b5930_o.jpg",
+      "semantic": "micro-universo.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/10977538005_7e677b5930_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/micro-universo.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/10977538005_7e677b5930_o.jpg",
+      "size": 6318379,
+      "sizeKB": 6170,
+      "processed": "2025-07-11T01:13:52.089Z"
+    },
+    {
+      "original": "12966540195_915d2c6298_o.jpg",
+      "semantic": "origen-multiple.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/12966540195_915d2c6298_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/origen-multiple.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/12966540195_915d2c6298_o.jpg",
+      "size": 6918897,
+      "sizeKB": 6757,
+      "processed": "2025-07-11T01:13:52.107Z"
+    },
+    {
+      "original": "14127260493_cf7ff599f5_o.jpg",
+      "semantic": "hallazgo-casual.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/14127260493_cf7ff599f5_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/hallazgo-casual.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/14127260493_cf7ff599f5_o.jpg",
+      "size": 11091149,
+      "sizeKB": 10831,
+      "processed": "2025-07-11T01:13:52.125Z"
+    },
+    {
+      "original": "15558789113_9674ebba7c_o.jpg",
+      "semantic": "textura-conceptual.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/15558789113_9674ebba7c_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/textura-conceptual.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/15558789113_9674ebba7c_o.jpg",
+      "size": 252276,
+      "sizeKB": 246,
+      "processed": "2025-07-11T01:13:52.130Z"
+    },
+    {
+      "original": "15995898390_0e0685bd3c_o.jpg",
+      "semantic": "busqueda-continua.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/15995898390_0e0685bd3c_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/busqueda-continua.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/15995898390_0e0685bd3c_o.jpg",
+      "size": 4921202,
+      "sizeKB": 4806,
+      "processed": "2025-07-11T01:13:52.141Z"
+    },
+    {
+      "original": "16154640526_8668c7d87c_o.jpg",
+      "semantic": "superficie-consciente.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/16154640526_8668c7d87c_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/superficie-consciente.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/16154640526_8668c7d87c_o.jpg",
+      "size": 11536984,
+      "sizeKB": 11267,
+      "processed": "2025-07-11T01:13:52.161Z"
+    },
+    {
+      "original": "16158087616_c2e9b13622_o.jpg",
+      "semantic": "dialogo-silencioso.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/16158087616_c2e9b13622_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/dialogo-silencioso.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/16158087616_c2e9b13622_o.jpg",
+      "size": 1937457,
+      "sizeKB": 1892,
+      "processed": "2025-07-11T01:13:52.171Z"
+    },
+    {
+      "original": "16180503202_7a927af4d2_o.jpg",
+      "semantic": "campo-infinito.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/16180503202_7a927af4d2_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/campo-infinito.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/16180503202_7a927af4d2_o.jpg",
+      "size": 3573721,
+      "sizeKB": 3490,
+      "processed": "2025-07-11T01:13:52.178Z"
+    },
+    {
+      "original": "4666179313_5c618e2d9a_o.jpg",
+      "semantic": "posibilidad-abierta.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/4666179313_5c618e2d9a_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/posibilidad-abierta.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/4666179313_5c618e2d9a_o.jpg",
+      "size": 132179,
+      "sizeKB": 129,
+      "processed": "2025-07-11T01:13:52.182Z"
+    },
+    {
+      "original": "4666183114_fc3090255b_o.jpg",
+      "semantic": "logos-fotografico.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/4666183114_fc3090255b_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/logos-fotografico.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/4666183114_fc3090255b_o.jpg",
+      "size": 2328807,
+      "sizeKB": 2274,
+      "processed": "2025-07-11T01:13:52.186Z"
+    },
+    {
+      "original": "6262732525_e9b9a4477d_o.jpg",
+      "semantic": "experiencia-directa.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/6262732525_e9b9a4477d_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/experiencia-directa.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/6262732525_e9b9a4477d_o.jpg",
+      "size": 3636008,
+      "sizeKB": 3551,
+      "processed": "2025-07-11T01:13:52.194Z"
+    },
+    {
+      "original": "8755643524_d8ffa18647_o.jpg",
+      "semantic": "honestidad-brutal.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/8755643524_d8ffa18647_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/honestidad-brutal.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/8755643524_d8ffa18647_o.jpg",
+      "size": 4021513,
+      "sizeKB": 3927,
+      "processed": "2025-07-11T01:13:52.201Z"
+    },
+    {
+      "original": "9486540377_0fe34070e5_o.jpg",
+      "semantic": "fragmento-temporal.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/9486540377_0fe34070e5_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/fragmento-temporal.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/9486540377_0fe34070e5_o.jpg",
+      "size": 9699889,
+      "sizeKB": 9473,
+      "processed": "2025-07-11T01:13:52.218Z"
+    },
+    {
+      "original": "9486824063_efec1e3ec1_o.jpg",
+      "semantic": "serendipidad-urbana.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/9486824063_efec1e3ec1_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/serendipidad-urbana.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/9486824063_efec1e3ec1_o.jpg",
+      "size": 8133134,
+      "sizeKB": 7943,
+      "processed": "2025-07-11T01:13:52.233Z"
+    },
+    {
+      "original": "9489489134_15409eb761_o.jpg",
+      "semantic": "simultaneidad-pura.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/9489489134_15409eb761_o.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/simultaneidad-pura.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/9489489134_15409eb761_o.jpg",
+      "size": 9781425,
+      "sizeKB": 9552,
+      "processed": "2025-07-11T01:13:52.252Z"
+    },
+    {
+      "original": "IMG_0798_Original.JPG",
+      "semantic": "quantum-fotografico.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/IMG_0798_Original.JPG",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/quantum-fotografico.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/IMG_0798_Original.JPG",
+      "size": 1318778,
+      "sizeKB": 1288,
+      "processed": "2025-07-11T01:13:52.254Z"
+    },
+    {
+      "original": "IMG_1666.JPG",
+      "semantic": "flujo-humano.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/IMG_1666.JPG",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/flujo-humano.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/IMG_1666.JPG",
+      "size": 5524930,
+      "sizeKB": 5395,
+      "processed": "2025-07-11T01:13:52.260Z"
+    },
+    {
+      "original": "IMG_6113.jpg",
+      "semantic": "momento-intimo.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/IMG_6113.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/momento-intimo.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/IMG_6113.jpg",
+      "size": 138215,
+      "sizeKB": 135,
+      "processed": "2025-07-11T01:13:52.264Z"
+    },
+    {
+      "original": "Teo_Original.JPG",
+      "semantic": "conexion-intuitiva.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/Teo_Original.JPG",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/conexion-intuitiva.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/Teo_Original.JPG",
+      "size": 273601,
+      "sizeKB": 267,
+      "processed": "2025-07-11T01:13:52.265Z"
+    },
+    {
+      "original": "avion.jpg",
+      "semantic": "expresion-autentica.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/avion.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/expresion-autentica.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/avion.jpg",
+      "size": 197749,
+      "sizeKB": 193,
+      "processed": "2025-07-11T01:13:52.268Z"
+    },
+    {
+      "original": "otto.jpg",
+      "semantic": "fragmento-temporal-1.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/otto.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/fragmento-temporal-1.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/otto.jpg",
+      "size": 1978468,
+      "sizeKB": 1932,
+      "processed": "2025-07-11T01:13:52.272Z"
+    },
+    {
+      "original": "otto_pilota.jpg",
+      "semantic": "momento-decisivo-1.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/otto_pilota.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/momento-decisivo-1.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/otto_pilota.jpg",
+      "size": 5711097,
+      "sizeKB": 5577,
+      "processed": "2025-07-11T01:13:52.281Z"
+    },
+    {
+      "original": "ottoalmonestir.jpg",
+      "semantic": "ritual-urbano-1.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/ottoalmonestir.jpg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/ritual-urbano-1.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/ottoalmonestir.jpg",
+      "size": 3760822,
+      "sizeKB": 3673,
+      "processed": "2025-07-11T01:13:52.291Z"
+    },
+    {
+      "original": "tumblr_nhjt1o3AZH1u45omzo1_1280.jpeg",
+      "semantic": "ciudad-neurologica.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/tumblr_nhjt1o3AZH1u45omzo1_1280.jpeg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/ciudad-neurologica.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/tumblr_nhjt1o3AZH1u45omzo1_1280.jpeg",
+      "size": 456425,
+      "sizeKB": 446,
+      "processed": "2025-07-11T01:13:52.298Z"
+    },
+    {
+      "original": "tumblr_nhk3m0tpqa1u45omzo1_1280.jpeg",
+      "semantic": "diferencia-sutil-1.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/tumblr_nhk3m0tpqa1u45omzo1_1280.jpeg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/diferencia-sutil-1.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/tumblr_nhk3m0tpqa1u45omzo1_1280.jpeg",
+      "size": 217746,
+      "sizeKB": 213,
+      "processed": "2025-07-11T01:13:52.299Z"
+    },
+    {
+      "original": "tumblr_nhk9353SBM1u45omzo1_1280.jpeg",
+      "semantic": "analisis-sensible.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/tumblr_nhk9353SBM1u45omzo1_1280.jpeg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/analisis-sensible.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/tumblr_nhk9353SBM1u45omzo1_1280.jpeg",
+      "size": 494460,
+      "sizeKB": 483,
+      "processed": "2025-07-11T01:13:52.301Z"
+    },
+    {
+      "original": "tumblr_nho4glfjzI1u45omzo1_1280.jpeg",
+      "semantic": "vida-publica.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/tumblr_nho4glfjzI1u45omzo1_1280.jpeg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/vida-publica.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/tumblr_nho4glfjzI1u45omzo1_1280.jpeg",
+      "size": 188271,
+      "sizeKB": 184,
+      "processed": "2025-07-11T01:13:52.302Z"
+    },
+    {
+      "original": "tumblr_nt0lsdW0UJ1u45omzo1_1280.jpeg",
+      "semantic": "campo-energetico.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/tumblr_nt0lsdW0UJ1u45omzo1_1280.jpeg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/campo-energetico.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/tumblr_nt0lsdW0UJ1u45omzo1_1280.jpeg",
+      "size": 228735,
+      "sizeKB": 223,
+      "processed": "2025-07-11T01:13:52.303Z"
+    },
+    {
+      "original": "tumblr_nt3cbbRFUO1u45omzo4_500.jpeg",
+      "semantic": "reservorio-visual.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/tumblr_nt3cbbRFUO1u45omzo4_500.jpeg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/reservorio-visual.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/tumblr_nt3cbbRFUO1u45omzo4_500.jpeg",
+      "size": 55544,
+      "sizeKB": 54,
+      "processed": "2025-07-11T01:13:52.304Z"
+    },
+    {
+      "original": "tumblr_nwgrt1yaC31u45omzo1_1280.jpeg",
+      "semantic": "micro-universo-1.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/tumblr_nwgrt1yaC31u45omzo1_1280.jpeg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/micro-universo-1.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/tumblr_nwgrt1yaC31u45omzo1_1280.jpeg",
+      "size": 263156,
+      "sizeKB": 257,
+      "processed": "2025-07-11T01:13:52.305Z"
+    },
+    {
+      "original": "tumblr_nwgrxaRfJs1u45omzo1_1280.jpeg",
+      "semantic": "textura-temporal.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/tumblr_nwgrxaRfJs1u45omzo1_1280.jpeg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/textura-temporal.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/tumblr_nwgrxaRfJs1u45omzo1_1280.jpeg",
+      "size": 229052,
+      "sizeKB": 224,
+      "processed": "2025-07-11T01:13:52.306Z"
+    },
+    {
+      "original": "tumblr_nxi8n4QXj81u45omzo1_1280.jpeg",
+      "semantic": "coherencia-narrativa.jpg",
+      "originalPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/tumblr_nxi8n4QXj81u45omzo1_1280.jpeg",
+      "targetPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/photographs/coherencia-narrativa.jpg",
+      "backupPath": "/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/proyectos/fotografia/img/originals/tumblr_nxi8n4QXj81u45omzo1_1280.jpeg",
+      "size": 442078,
+      "sizeKB": 432,
+      "processed": "2025-07-11T01:13:52.311Z"
+    }
+  ],
+  "errors": [],
+  "nextSteps": [
+    "Revisar fotografías en img/photographs/",
+    "Actualizar gallery-data.js con metadatos",
+    "Optimizar imágenes si es necesario",
+    "Probar la galería en navegador"
+  ]
+}

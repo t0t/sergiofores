@@ -1,0 +1,330 @@
+/* SERGIO FORÉS - FOTOGRAFÍA
+   Sistema de estilos complementario para la landing de fotografía
+   Integrado con design-system/sergio-design-tokens.css
+*/
+
+/* ================================
+   LIGHTBOX MODAL SYSTEM
+   ================================ */
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 95vh;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-xl);
+}
+
+.lightbox-info {
+    display: none;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: var(--border-radius);
+    transition: var(--transition-base);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: var(--space-4);
+    border-radius: var(--border-radius);
+    transition: var(--transition-base);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-weight: 300;
+    line-height: 1;
+    font-family: var(--font-primary);
+}
+
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-prev {
+    left: -80px;
+}
+
+.lightbox-next {
+    right: -80px;
+}
+
+/* ================================
+   GALLERY ENHANCEMENTS
+   ================================ */
+
+.photo-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.photo-card:hover::before {
+    transform: translateX(100%);
+}
+
+.photo-category {
+    display: none;
+}
+
+/* ================================
+   FILTER ANIMATIONS
+   ================================ */
+
+.photo-card {
+    opacity: 1;
+    transform: scale(1);
+    transition: all var(--transition-slow);
+}
+
+.photo-card.filtered-out {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+/* ================================
+   MOBILE OPTIMIZATIONS
+   ================================ */
+
+@media (max-width: 768px) {
+    .lightbox-content {
+        padding: var(--space-4);
+    }
+    
+    .lightbox-close {
+        top: -50px;
+        font-size: 1.5rem;
+        width: 36px;
+        height: 36px;
+    }
+    
+    .lightbox-nav {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .lightbox-prev {
+        left: -60px;
+    }
+    
+    .lightbox-next {
+        right: -60px;
+    }
+    
+    
+    .photo-category {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .lightbox-nav {
+        display: none;
+    }
+    
+    .lightbox-image {
+        max-height: 90vh;
+    }
+}
+
+/* ================================
+   PERFORMANCE OPTIMIZATIONS
+   ================================ */
+
+.photo-image {
+    will-change: transform;
+}
+
+.lightbox {
+    will-change: opacity, visibility;
+}
+
+.filter-btn {
+    will-change: background-color, border-color;
+}
+
+/* ================================
+   ACCESSIBILITY ENHANCEMENTS
+   ================================ */
+
+.lightbox:focus-within {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.filter-btn:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.photo-card:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* ================================
+   SCROLL BEHAVIOR
+   ================================ */
+
+.header.scrolled {
+    background: rgba(0, 0, 0, 0.95);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ================================
+   LOADING STATES
+   ================================ */
+
+.gallery-grid.loading {
+    pointer-events: none;
+}
+
+.gallery-grid.loading .photo-card {
+    opacity: 0.6;
+}
+
+/* ================================
+   PRINT STYLES
+   ================================ */
+
+@media print {
+    .header,
+    .lightbox,
+    .filter-btn {
+        display: none !important;
+    }
+    
+    .main {
+        padding-top: 0;
+    }
+    
+    .photo-card {
+        break-inside: avoid;
+        margin-bottom: var(--space-4);
+    }
+}
+
+/* ================================
+   HIGH CONTRAST MODE SUPPORT
+   ================================ */
+
+@media (prefers-contrast: high) {
+    .photo-card {
+        border: 2px solid var(--color-dark);
+    }
+    
+    .filter-btn {
+        border-width: 2px;
+    }
+    
+    .lightbox {
+        background: rgba(0, 0, 0, 1);
+    }
+}
+
+/* ================================
+   REDUCED MOTION SUPPORT
+   ================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .photo-card:hover {
+        transform: none;
+    }
+    
+    .photo-card:hover .photo-image {
+        transform: none;
+    }
+    
+    .photo-card::before {
+        display: none;
+    }
+}
