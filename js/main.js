@@ -1,11 +1,37 @@
-// Header transparente según scroll
+// Header transparente y hide/show según scroll - FUNCIONALIDAD COMPLETA
 const header = document.querySelector('.header');
+let lastScrollTop = 0;
+let ticking = false;
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
+function updateHeader() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Header transparente/opaco según scroll
+    if (scrollTop > 50) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
+    }
+    
+    // Hide/show header según dirección del scroll
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+        // Scrolling down - ocultar header
+        header.classList.add('hidden');
+        console.log('🔽 HEADER OCULTO - Scroll down:', scrollTop);
+    } else if (scrollTop < lastScrollTop) {
+        // Scrolling up - mostrar header
+        header.classList.remove('hidden');
+        console.log('🔼 HEADER VISIBLE - Scroll up:', scrollTop);
+    }
+    
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(updateHeader);
+        ticking = true;
     }
 });
 
@@ -28,17 +54,17 @@ window.addEventListener('scroll', () => {
 //     observer.observe(card);
 // });
 
-// Smooth scrolling para navegación con offset para header fijo
+// Smooth scrolling para navegación con offset preciso para header fijo
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        const headerHeight = document.querySelector('.header').offsetHeight;
-        const offset = headerHeight + 60; // Header + espaciado adicional
         
         if (target) {
+            // Cálculo pixel perfect del offset para ocultar completamente el video
+            const headerHeight = document.querySelector('.header').offsetHeight || 80;
             const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - offset;
+            const offsetPosition = elementPosition + window.pageYOffset - headerHeight + 69;
             
             window.scrollTo({
                 top: offsetPosition,
@@ -65,21 +91,98 @@ const updateProjectStatus = () => {
 
 updateProjectStatus();
 
-// Header hide/show on scroll (header ya declarado arriba)
-let lastScrollTop = 0;
-
-window.addEventListener('scroll', function() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
-        // Scrolling down
-        header.classList.add('hidden');
-    } else {
-        // Scrolling up
-        header.classList.remove('hidden');
+// Navigation Active State Management - ELEGANT INTERSECTION OBSERVER SOLUTION
+class NavigationManager {
+    constructor() {
+        this.currentSection = '';
+        this.navLinks = document.querySelectorAll('.main-nav a[href^="#"]');
+        this.sections = ['sergio', 'sistema01234', 'cerebro', 'playground'];
+        this.init();
     }
     
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    init() {
+        this.setupIntersectionObserver();
+        this.setupClickHandlers();
+    }
+    
+    setupIntersectionObserver() {
+        // Create observer with optimal settings for navigation
+        const observer = new IntersectionObserver((entries) => {
+            // Find the section with the largest intersection ratio
+            let maxRatio = 0;
+            let activeSection = '';
+            
+            entries.forEach(entry => {
+                if (entry.intersectionRatio > maxRatio) {
+                    maxRatio = entry.intersectionRatio;
+                    activeSection = entry.target.id;
+                }
+            });
+            
+            // Only update if we have a meaningful intersection AND we're not at the top
+            if (maxRatio > 0.5 && window.scrollY > 200) {
+                this.updateActiveLink(activeSection);
+            }
+        }, {
+            // Header offset (120px) converted to percentage
+            rootMargin: '-120px 0px -50% 0px',
+            threshold: [0, 0.1, 0.3, 0.5, 0.7, 1.0]
+        });
+        
+        // Observe all navigation sections
+        this.sections.forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                observer.observe(section);
+            }
+        });
+    }
+    
+    setupClickHandlers() {
+        this.navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Immediate visual feedback
+                const targetId = link.getAttribute('href').substring(1);
+                this.updateActiveLink(targetId);
+                
+                // Let the Intersection Observer handle the rest after scroll
+            });
+        });
+    }
+    
+    updateActiveLink(sectionId) {
+        if (this.currentSection === sectionId) return; // Avoid unnecessary updates
+        
+        this.currentSection = sectionId;
+        
+        // Update active states
+        this.navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            
+            if (href === `#${sectionId}`) {
+                link.classList.add('active');
+            }
+        });
+        
+        // Debug (remove in production)
+        console.log('🎯 Active section:', sectionId);
+    }
+    
+    clearActiveStates() {
+        // Remove all active states
+        this.navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        this.currentSection = '';
+    }
+}
+
+// Initialize the elegant navigation system
+document.addEventListener('DOMContentLoaded', () => {
+    const navManager = new NavigationManager();
+    // Start with no active states when page loads
+    navManager.clearActiveStates();
 });
 
 // Back to Top Button functionality

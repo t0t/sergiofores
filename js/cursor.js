@@ -64,16 +64,16 @@ class CustomCursor {
     }
     
     animate() {
-        // Animación suave con diferentes velocidades
-        this.cursorX += (this.mouseX - this.cursorX) * 0.1;
-        this.cursorY += (this.mouseY - this.cursorY) * 0.1;
+        // Animación más rápida y fluida
+        this.cursorX += (this.mouseX - this.cursorX) * 0.2;
+        this.cursorY += (this.mouseY - this.cursorY) * 0.2;
         
-        this.dotX += (this.mouseX - this.dotX) * 0.8;
-        this.dotY += (this.mouseY - this.dotY) * 0.8;
+        this.dotX += (this.mouseX - this.dotX) * 0.9;
+        this.dotY += (this.mouseY - this.dotY) * 0.9;
         
-        // Aplicar transformaciones
-        this.cursor.style.transform = `translate(${this.cursorX - 10}px, ${this.cursorY - 10}px)`;
-        this.cursorDot.style.transform = `translate(${this.dotX - 2}px, ${this.dotY - 2}px)`;
+        // Aplicar transformaciones con translate3d para mejor performance
+        this.cursor.style.transform = `translate3d(${this.cursorX - 10}px, ${this.cursorY - 10}px, 0)`;
+        this.cursorDot.style.transform = `translate3d(${this.dotX - 2}px, ${this.dotY - 2}px, 0)`;
         
         requestAnimationFrame(() => this.animate());
     }

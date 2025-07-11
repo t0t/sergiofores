@@ -179,7 +179,7 @@ select {
     cursor: none;
 }
 
-/* Cursor personalizado elegante - seguimiento directo */
+/* Cursor personalizado optimizado para performance */
 .custom-cursor {
     position: fixed;
     top: 0;
@@ -190,8 +190,12 @@ select {
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+    transition: width 0.1s ease, height 0.1s ease, border-color 0.1s ease;
     mix-blend-mode: difference;
+    /* Performance optimizations */
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .custom-cursor-dot {
@@ -205,7 +209,10 @@ select {
     pointer-events: none;
     z-index: 10000;
     mix-blend-mode: difference;
-    /* Sin transición para seguimiento directo */
+    /* Performance optimizations */
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 /* Estados del cursor en hover - círculo amarillo sólido para enlaces */
@@ -239,6 +246,11 @@ select {
     padding: 0 var(--space-lg);
 }
 
+/* Header container con max-width extendido */
+.header .container {
+    max-width: 2480px;
+}
+
 /* Main content container - especificidad mayor sin !important */
 main.main-container {
     background: #FDFBF7;
@@ -246,11 +258,145 @@ main.main-container {
     z-index: 1;
 }
 
+/* Secciones con altura completa del viewport */
+main.main-container section {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    justify-items: center;
+    align-content: start;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Book-banner como div: estilos específicos */
+main.main-container .book-banner {
+    min-height: auto;
+    display: block;
+    padding: var(--space-6);
+    margin: var(--space-4xl) auto;
+}
+
+/* Reset completo de márgenes/paddings para secciones 100vh */
+main.main-container section > *:not(.book-banner-content) {
+    margin: 0;
+    padding: 0;
+}
+
+/* Book banner content no debe ser afectado por el reset */
+main.main-container .book-banner * {
+    margin: revert;
+    padding: revert;
+}
+
+/* Asegurar que las secciones principales mantengan su espaciado correcto */
+main.main-container section:not(.book-banner) {
+    scroll-margin-top: 120px; /* Para navegación smooth scroll */
+}
+
+/* Mejorar detección de navegación activa */
+main.main-container section[id] {
+    position: relative;
+}
+
+/* Hero section también necesita scroll margin */
+#inicio {
+    scroll-margin-top: 0;
+}
+
+/* Contenedor con padding interno controlado y offset para header */
+main.main-container section {
+    padding: var(--space-lg) var(--space-lg) var(--space-lg);
+}
+
+/* Títulos de sección - Grid positioning */
+main.main-container section .section-title {
+    margin: 0 0 var(--space-md) 0;
+    padding: 0;
+    /* Resetear animaciones que causan problemas de layout */
+    opacity: 1;
+    transform: none;
+    animation: none;
+    
+    /* Grid positioning */
+    justify-self: right;
+    align-self: center;
+}
+
+/* Descripciones de sección - margen inferior pequeño */
+main.main-container section .section-description {
+    margin: 0 0 var(--space-lg) 0;
+    padding: 0;
+}
+
+/* Grids de proyectos - sin margen superior */
+main.main-container section .projects-grid {
+    margin: 0;
+    padding: 0;
+}
+
+/* Sistema 01234 Grid en sección SOY */
+.sistema-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-md);
+    width: 100%;
+    margin: var(--space-2xl) 0 0 0;
+    padding: 0 var(--space-lg);
+    justify-content: center;
+    justify-items: center;
+    align-items: start;
+    box-sizing: border-box;
+}
+
+.sistema-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-md);
+}
+
+.sistema-svg {
+    width: 100%;
+    height: 120px;
+    max-width: 120px;
+    margin-bottom: var(--space-md);
+    color: var(--color-black);
+    transition: transform 0.3s ease;
+}
+
+.sistema-item:hover .sistema-svg {
+    transform: scale(1.1);
+}
+
+.sistema-text {
+    font-size: var(--font-size-sm);
+    color: var(--color-black);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-small);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Responsive para mobile */
+@media (max-width: 768px) {
+    .sistema-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+        max-width: 100%;
+    }
+    
+    .sistema-item:last-child {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+}
+
 /* Sección con storytelling visual inspirado en Seated */
 .storytelling-section {
-    padding: var(--space-4xl) 0;
     background: linear-gradient(135deg, var(--color-surface-alt) 0%, var(--color-surface) 100%);
-    margin-bottom: var(--space-4xl);
 }
 
 /* Header */
@@ -273,7 +419,9 @@ main.main-container {
 }
 
 .header.hidden {
-    transform: translateY(-100%);
+    transform: translateY(-100%) !important;
+    opacity: 0;
+    pointer-events: none;
 }
 
 
@@ -388,16 +536,23 @@ main.main-container {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--accent-dark);
+    background: var(--color-black);
     transition: width 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .main-nav a:hover {
-    color: var(--accent-dark);
+    color: var(--color-black);
 }
 
-.main-nav a:hover::after {
+.main-nav a:hover::after,
+.main-nav a.active::after {
     width: 100%;
+}
+
+/* Estado activo para navegación */
+.main-nav a.active {
+    color: var(--color-black);
+    font-weight: var(--font-weight-semibold);
 }
 
 /* Mobile Menu Toggle */
@@ -614,7 +769,7 @@ main.main-container {
     letter-spacing: var(--letter-spacing-large);
     line-height: var(--line-height-tight);
     text-transform: uppercase;
-    text-align: center;
+    text-align: left;
 }
 
 .hero p {
@@ -869,11 +1024,6 @@ main.main-container {
     margin-top: var(--space-16);
 }
 
-.footer p {
-    color: var(--neutral-gray-600);
-    font-size: var(--text-medium);
-    letter-spacing: var(--letter-spacing-medium);
-}
 
 /* Responsive */
 @media (max-width: 1024px) { /* Changed breakpoint to 1024px */
@@ -1052,7 +1202,7 @@ button:focus {
 
 
 .section-description {
-    text-align: center;
+    text-align: left;
     color: var(--color-black);
     font-size: var(--text-small);
     margin-bottom: var(--space-2xl);
@@ -1100,6 +1250,44 @@ button:focus {
 
 .footer-social a:hover::after {
     width: 100%;
+}
+
+/* Footer links - estilos unificados para todos los enlaces */
+.footer a {
+    color: var(--neutral-gray-600);
+    text-decoration: none;
+    font-size: var(--text-medium);
+    letter-spacing: var(--letter-spacing-medium);
+    position: relative;
+    overflow: hidden;
+    transition: color 0.2s ease;
+}
+
+.footer a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-dark);
+    transition: width 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.footer a:hover {
+    color: var(--accent-dark);
+}
+
+.footer a:hover::after {
+    width: 100%;
+}
+
+/* Footer paragraphs - texto pequeño para URL y año */
+.footer p {
+    font-size: var(--text-small);
+    color: var(--neutral-gray-600);
+    margin: var(--space-sm) 0;
+    text-align: center;
 }
 /* ===== PERFORMANCE OPTIMIZATIONS ===== */
 /* =============================================
@@ -1251,14 +1439,21 @@ picture img {
     height: auto;
 }
 
-/* Banner Libro 01234 */
+/* Banner Libro 01234 - Fixed Layout */
 .book-banner {
     background: var(--color-primary);
-    margin: var(--space-8) 0;
+    margin: 0 auto;
     padding: var(--space-6);
     max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
+    width: calc(100% - 2 * var(--space-lg));
+    box-sizing: border-box;
+    /* Excluir del layout flex de las secciones */
+    flex-shrink: 0;
+    
+    /* Fix centering and prevent stretching */
+    position: relative;
+    align-self: center;
+    justify-self: center;
 }
 
 .book-banner-content {
@@ -1334,6 +1529,12 @@ picture img {
 
 /* Responsivo para Banner Libro */
 @media (max-width: 768px) {
+    .book-banner {
+        margin: var(--space-2xl) auto !important;
+        padding: var(--space-4) !important;
+        width: calc(100% - 2 * var(--space-md)) !important;
+    }
+    
     .book-banner-content {
         grid-template-columns: 1fr;
         text-align: center;
