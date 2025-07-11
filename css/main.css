@@ -251,6 +251,13 @@ select {
     max-width: 2480px;
 }
 
+/* Header container sin padding en mobile */
+@media (max-width: 768px) {
+    .header .container {
+        padding: 0;
+    }
+}
+
 /* Main content container - especificidad mayor sin !important */
 main.main-container {
     background: #FDFBF7;
@@ -258,11 +265,11 @@ main.main-container {
     z-index: 1;
 }
 
-/* Secciones con altura completa del viewport */
+/* Secciones con altura más compacta */
 main.main-container section {
-    min-height: 100vh;
+    min-height: 50vh;
     display: grid;
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto auto auto;
     justify-items: center;
     align-content: start;
     padding: 0;
@@ -312,7 +319,7 @@ main.main-container section {
 
 /* Títulos de sección - Grid positioning */
 main.main-container section .section-title {
-    margin: 0 0 var(--space-md) 0;
+    margin: 0 0 32px 0;
     padding: 0;
     /* Resetear animaciones que causan problemas de layout */
     opacity: 1;
@@ -326,7 +333,7 @@ main.main-container section .section-title {
 
 /* Descripciones de sección - margen inferior pequeño */
 main.main-container section .section-description {
-    margin: 0 0 var(--space-lg) 0;
+    margin: 0 0 32px 0;
     padding: 0;
 }
 
@@ -384,13 +391,49 @@ main.main-container section .projects-grid {
 @media (max-width: 768px) {
     .sistema-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-lg);
-        max-width: 100%;
+        gap: var(--space-md);
+        padding: 0 var(--space-md);
+        margin: var(--space-lg) 0 0 0;
+    }
+    
+    .sistema-item {
+        padding: var(--space-sm);
+    }
+    
+    .sistema-svg {
+        width: 80px;
+        height: 80px;
+        max-width: 80px;
+    }
+    
+    .sistema-text {
+        font-size: var(--font-size-xs);
+        line-height: 1.3;
     }
     
     .sistema-item:last-child {
         grid-column: 1 / -1;
         justify-self: center;
+        max-width: 50%;
+    }
+}
+
+/* Responsive para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .sistema-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-sm);
+        padding: 0 var(--space-sm);
+    }
+    
+    .sistema-svg {
+        width: 60px;
+        height: 60px;
+        max-width: 60px;
+    }
+    
+    .sistema-text {
+        font-size: 0.75rem;
     }
 }
 
@@ -728,8 +771,9 @@ main.main-container section .projects-grid {
         border: none;
         outline: none;
         box-shadow: none;
-        max-width: 90vw;
-        padding: var(--space-md);
+        max-width: 95vw;
+        width: 95vw;
+        padding: var(--space-sm);
     }
     
     .hero h1 {
