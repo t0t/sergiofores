@@ -167,6 +167,9 @@ class ImageOptimizer {
         // Set up intersection observer for animations
         this.setupIntersectionObserver();
         
+        // Setup logo scroll to top
+        this.setupLogoScrollToTop();
+        
         // Monitor performance
         this.monitorPerformance();
         
@@ -289,24 +292,29 @@ class ImageOptimizer {
         });
     }
 
-    // Intersection Observer optimizado - animación ultrarrápida
+    // Intersection Observer eliminado - mejor UX y performance
     setupIntersectionObserver() {
-        const animationObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                    // Unobserve after animation for better performance
-                    animationObserver.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.01, // Activar con solo 1% visible
-            rootMargin: '300px 0px 200px 0px' // Anticipar mucho antes
-        });
-
-        // Observe project cards for fade-in animation
+        // Mostrar todos los project cards inmediatamente
         const projectCards = document.querySelectorAll('.project-card');
-        projectCards.forEach(card => animationObserver.observe(card));
+        projectCards.forEach(card => {
+            card.classList.add('in-view');
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        });
+    }
+
+    // Setup logo scroll to top functionality
+    setupLogoScrollToTop() {
+        const logoLink = document.querySelector('.logo-link');
+        if (logoLink) {
+            logoLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
     }
 
     // Performance Monitoring

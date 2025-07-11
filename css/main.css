@@ -1,67 +1,71 @@
 /* Variables del Sistema de Diseño - Inspirado en REFS */
 :root {
-    /* Paleta inspirada en Moheim */
-    --color-primary: #32373c;  /* Moheim dark accent */
-    --color-secondary: #2a2f34; /* Darker variation */
-    --color-text: #32373c;
-    --color-text-light: #6b7280; /* Soft gray */
-    --color-text-meta: #9ca3af; /* Light gray */
-    --color-surface: #ffffff;
-    --color-surface-alt: #e0e1db; /* Moheim light grayish green */
-    --color-border: #d1d1d1; /* Moheim border gray */
+    /* Breakpoints y Media Queries */
+    --breakpoint-mobile: 768px;
+    --breakpoint-tablet: 1024px;
+    --breakpoint-desktop: 1200px;
+    --breakpoint-large: 1400px;
     
-    /* Acentos minimalistas inspirados en Moheim */
-    --accent-dark: #32373c;
-    --accent-medium: #4a5158;
-    --accent-light: #6b7280;
-    --accent-subtle: #e0e1db;
+    /* Colores Unificados del Sistema */
+    --color-black: #000000;           /* Negro puro - único negro del sistema */
+    --color-white: #ffffff;           /* Blanco puro - único blanco del sistema */
+    --color-cyan: #00FFFF;            /* Cyan puro - único cyan del sistema */
+    --color-yellow: #FFD100;          /* Amarillo puro - único amarillo del sistema */
     
-    /* Sistema de cyan para elementos destacados */
-    --turquoise-primary: #00FFFF;      /* Cyan puro para fondos */
-    --turquoise-dark: #00CCCC;         /* Cyan oscuro para texto/hover */
-    --turquoise-light: #66FFFF;        /* Cyan claro para estados sutiles */
+    /* Colores principales basados en unificados */
+    --color-primary: var(--color-black);
+    --color-text: var(--color-black);
+    --color-text-light: #6b7280;
+    --color-text-meta: #9ca3af;
+    --color-surface: var(--color-white);
+    --color-surface-alt: #e0e1db;
+    --color-border: #d1d1d1;
     
-    /* Tonos neutros Moheim */
-    --neutral-warm: #f8f9fa;
-    --neutral-cool: #e0e1db;
-    --neutral-mid: #d1d1d1;
+    /* Acentos basados en colores unificados */
+    --accent-primary: var(--color-black);
+    --accent-cyan: var(--color-cyan);
+    --accent-yellow: var(--color-yellow);
     
-    /* Acentos sutiles para interacciones */
-    --interaction-primary: #32373c;
-    --interaction-hover: #4a5158;
-    --interaction-active: #2a2f34;
-    --orange-01234: #32373c;
+    /* Compatibilidad - usando colores unificados */
+    --turquoise-primary: var(--color-cyan);
+    --turquoise-dark: #00CCCC;
+    --turquoise-light: #66FFFF;
     
-    /* Base Neutra (mantenemos colores existentes para compatibilidad) */
-    --neutral-white: #FEFEFE;
+    /* Tonos neutros */
+    --neutral-white: var(--color-white);
     --neutral-cream: #FDFBF7;
     --neutral-gray-50: #F8F6F0;
     --neutral-gray-200: #E5E7EB;
     --neutral-gray-400: #9CA3AF;
     --neutral-gray-600: #6B7280;
     --neutral-gray-800: #2C2C2C;
-    --neutral-black: #1A1A1A;
+    --neutral-black: var(--color-black);
     
-    /* Colores de Énfasis */
-    --accent-orange: var(--orange-temper);
+    /* Otros colores */
     --accent-red: #E30613;
     --accent-blue: #0066CC;
-    --accent-yellow: #FFD100;
     --accent-green: #9CAF88;
     
     /* Tipografía sans moderna inspirada en weaintplastic */
     --font-primary: 'Helvetica Neue', 'Arial', 'Segoe UI', sans-serif;
     --font-mono: 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
     
+    /* Font weights sistema */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
     /* Sistema de interletrado - 3 niveles alineados con tamaños de fuente */
-    --letter-spacing-small: 0.05em;   /* Para --text-small */
+    --letter-spacing-small: 0.08em;   /* Para --text-small - más espaciado */
     --letter-spacing-medium: 0.075em; /* Para --text-medium */
     --letter-spacing-large: 0.1em;    /* Para --text-large */
     
     /* Sistema de 3 tamaños jerarquía simplificada - Golden Ratio armónico */
     --text-large: clamp(2.618rem, 5.5vw, 3rem);        /* H1 principal (phi²) más armónico */
     --text-medium: clamp(1.618rem, 3.2vw, 1.82rem);    /* Para todos los títulos (phi) */
-    --text-small: clamp(1rem, 2vw, 1.125rem);          /* Para todo el resto (base) */
+    --text-small: clamp(1.125rem, 2.5vw, 1.25rem);     /* Para todo el resto (base) - más grande */
     
     /* Espaciado fluido - Sistema 8px base */
     --space-xs: clamp(0.25rem, 1vw, 0.5rem);
@@ -145,9 +149,9 @@ body {
     background: #FDFBF7;
     color: var(--neutral-gray-800);
     line-height: 1.7;
-    font-size: var(--text-medium);
-    font-weight: 300;
-    letter-spacing: var(--letter-spacing-medium);
+    font-size: var(--text-small);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-small);
 }
 
 /* Se reemplaza por main.main-container arriba */
@@ -209,7 +213,7 @@ select {
     width: 30px;
     height: 30px;
     border: none;
-    background: #FFD100;
+    background: var(--color-yellow);
     mix-blend-mode: normal;
 }
 
@@ -285,6 +289,13 @@ main.main-container {
     display: flex;
     align-items: center;
     gap: var(--space-xs);
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Logo no debe cambiar el cursor personalizado */
+.logo.logo-link {
+    cursor: pointer;
 }
 
 .geo-shape {
@@ -356,7 +367,7 @@ main.main-container {
 .main-nav a {
     font-family: var(--font-primary);
     font-size: var(--text-small);
-    color: var(--neutral-gray-600);
+    color: var(--color-black);
     text-decoration: none;
     font-weight: 400;
     letter-spacing: var(--letter-spacing-small);
@@ -500,7 +511,17 @@ main.main-container {
     box-shadow: none;
     text-align: center;
     font-weight: 100;
-    mix-blend-mode: color-burn;
+}
+
+/* Mix-blend-mode solo para desktop */
+@media (min-width: 769px) {
+    .hero-content {
+        mix-blend-mode: color-burn;
+    }
+    
+    .hero h1 {
+        mix-blend-mode: color-burn;
+    }
 }
 
 /* Fallback para navegadores sin soporte de video */
@@ -520,22 +541,30 @@ main.main-container {
 /* Optimizaciones móviles */
 @media (max-width: 768px) {
     .hero {
-        min-height: 80vh;
-        padding-top: var(--space-4xl);
+        min-height: 100vh;
+        padding: 0;
+        background-image: url('../img/sergio-arte-plastica.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
     
-    /* Pausar video en móvil para ahorrar batería/datos */
+    /* Ocultar completamente el contenedor de video en móvil */
+    .hero-video-container {
+        display: none !important;
+    }
+    
     .hero-video {
         display: none;
     }
     
     .hero-video-fallback {
-        display: block !important;
-        background-image: url('../img/sergio-portfolio-complete.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        z-index: 1;
+        display: none;
+    }
+    
+    /* Ocultar overlay en móvil */
+    .hero-overlay {
+        display: none !important;
     }
     
     .hero-content {
@@ -544,6 +573,20 @@ main.main-container {
         border: none;
         outline: none;
         box-shadow: none;
+        max-width: 90vw;
+        padding: var(--space-md);
+    }
+    
+    .hero h1 {
+        font-size: clamp(1.5rem, 8vw, 3rem);
+        line-height: 1.2;
+        letter-spacing: 0.02em;
+        color: white !important;
+    }
+    
+    /* Hamburger menu blanco en móvil */
+    .hamburger {
+        background: white !important;
     }
 }
 
@@ -567,7 +610,7 @@ main.main-container {
 
 .hero h1 {
     font-family: var(--font-primary);
-    color: var(--color-primary);
+    font-size: var(--text-large);
     letter-spacing: var(--letter-spacing-large);
     line-height: var(--line-height-tight);
     text-transform: uppercase;
@@ -1010,7 +1053,7 @@ button:focus {
 
 .section-description {
     text-align: center;
-    color: var(--color-text-light);
+    color: var(--color-black);
     font-size: var(--text-small);
     margin-bottom: var(--space-2xl);
     line-height: var(--line-height-relaxed);
@@ -1171,16 +1214,7 @@ button:focus {
 }
 
 /* Cards con animación rápida - sin demora */
-.project-card {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.15s ease, transform 0.15s ease;
-}
-
-.project-card.in-view {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* Efectos de aparición eliminados para mejor UX y performance */
 
 
 /* Critical images (above the fold) - no lazy loading */

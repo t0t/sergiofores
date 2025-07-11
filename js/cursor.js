@@ -26,8 +26,8 @@ class CustomCursor {
         // Event listeners
         document.addEventListener('mousemove', (e) => this.updatePosition(e));
         
-        // Hover states para elementos interactivos
-        const interactiveElements = document.querySelectorAll('a, button, .project-card, [role="button"]');
+        // Hover states para elementos interactivos (excluyendo el logo)
+        const interactiveElements = document.querySelectorAll('a:not(.logo-link), button, .project-card, [role="button"]');
         
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
