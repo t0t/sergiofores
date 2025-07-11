@@ -30,7 +30,11 @@ class CustomCursor {
         const interactiveElements = document.querySelectorAll('a, button, .project-card, [role="button"]');
         
         interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => this.setHoverState(true));
+            el.addEventListener('mouseenter', () => {
+                // Verificar si el enlace está en la sección 01234
+                const is01234Section = el.closest('#sistema01234');
+                this.setHoverState(true, is01234Section);
+            });
             el.addEventListener('mouseleave', () => this.setHoverState(false));
         });
         
@@ -43,12 +47,18 @@ class CustomCursor {
         this.mouseY = e.clientY;
     }
     
-    setHoverState(isHovering) {
+    setHoverState(isHovering, is01234Section = false) {
         if (isHovering) {
-            this.cursor.classList.add('hover');
+            if (is01234Section) {
+                this.cursor.classList.add('hover-01234');
+                this.cursor.classList.remove('hover');
+            } else {
+                this.cursor.classList.add('hover');
+                this.cursor.classList.remove('hover-01234');
+            }
             this.cursorDot.classList.add('hover');
         } else {
-            this.cursor.classList.remove('hover');
+            this.cursor.classList.remove('hover', 'hover-01234');
             this.cursorDot.classList.remove('hover');
         }
     }
