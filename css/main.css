@@ -191,7 +191,6 @@ select {
     pointer-events: none;
     z-index: 9999;
     transition: width 0.1s ease, height 0.1s ease, border-color 0.1s ease;
-    mix-blend-mode: difference;
     /* Performance optimizations */
     will-change: transform;
     transform: translateZ(0);
@@ -208,36 +207,13 @@ select {
     border-radius: 50%;
     pointer-events: none;
     z-index: 10000;
-    mix-blend-mode: difference;
     /* Performance optimizations */
     will-change: transform;
     transform: translateZ(0);
     backface-visibility: hidden;
 }
 
-/* Estados del cursor en hover - círculo amarillo sólido para enlaces */
-.custom-cursor.hover {
-    width: 30px;
-    height: 30px;
-    border: none;
-    background: var(--color-yellow);
-    mix-blend-mode: normal;
-}
-
-/* Cursor en forma de triángulo equilátero cyan puro para enlaces del proyecto 01234 */
-.custom-cursor.hover-01234 {
-    width: 30px;
-    height: 26px;
-    border: none;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 26"><polygon points="15,0 30,26 0,26" fill="%2300FFFF"/></svg>') no-repeat center;
-    background-size: contain;
-    border-radius: 0;
-    mix-blend-mode: normal;
-}
-
-.custom-cursor-dot.hover {
-    opacity: 0;
-}
+/* Estados hover del cursor movidos a media query desktop */
 
 /* Layout containers - siguiendo especificidad correcta */
 .container {
@@ -748,14 +724,46 @@ main.main-container section .projects-grid {
     font-weight: 100;
 }
 
-/* Mix-blend-mode solo para desktop */
-@media (min-width: 769px) {
+/* Mix-blend-mode solo para desktop - deshabilitado en móvil por problemas de rendimiento */
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
     .hero-content {
         mix-blend-mode: color-burn;
     }
     
     .hero h1 {
         mix-blend-mode: color-burn;
+    }
+    
+    /* Cursor mix-blend-mode solo en desktop */
+    .custom-cursor {
+        mix-blend-mode: difference;
+    }
+    
+    .custom-cursor-dot {
+        mix-blend-mode: difference;
+    }
+    
+    /* Estados hover del cursor solo en desktop */
+    .custom-cursor.hover {
+        width: 30px;
+        height: 30px;
+        border: none;
+        background: var(--color-yellow);
+        mix-blend-mode: normal;
+    }
+
+    .custom-cursor.hover-01234 {
+        width: 30px;
+        height: 26px;
+        border: none;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 26"><polygon points="15,0 30,26 0,26" fill="%2300FFFF"/></svg>') no-repeat center;
+        background-size: contain;
+        border-radius: 0;
+        mix-blend-mode: normal;
+    }
+
+    .custom-cursor-dot.hover {
+        opacity: 0;
     }
 }
 
@@ -1589,7 +1597,6 @@ picture img {
     box-shadow: none;
     border: none;
     transition: transform 0.3s ease;
-    mix-blend-mode: screen;
 }
 
 .book-banner-image img:hover {
