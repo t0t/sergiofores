@@ -27,11 +27,10 @@ Portfolio completo de Sergio Forés, explorador multifacético que navega entre 
 - ✅ **0 Chrome warnings** en producción
 
 ### **Contenido Organizado**
-- **Sergio Forés**: Portfolio personal y obra artística
-- **Sistema 01234**: Marco cognitivo de 5 niveles
-- **CEREBRO-DIGITAL**: Sistema de gestión de conocimiento
-- **Otros Proyectos**: Desarrollos comerciales y colaboraciones
-- **Playground**: Experimentos desplegados en producción
+- **Sergio Forés**: Portfolio personal con sistema visual 01234
+- **Sistema 01234**: Marco cognitivo con listas de definición semánticas  
+- **CEREBRO-DIGITAL**: Sistema PKM con automatización inteligente
+- **Hago**: Laboratorio de arte, desarrollo IA y experimentos web
 
 ## 🚀 Tecnologías
 
@@ -87,19 +86,22 @@ Marco cognitivo de 5 niveles para comprender patrones universales en creatividad
 - **Canonical URLs** y sitemap.xml
 - **Preload** de recursos críticos
 - **WebP images** con 62% reducción de peso promedio
+- **Mix-blend-mode** deshabilitado en móviles para mejor rendimiento
 
 ### **User Experience**
-- **Smooth scrolling** entre secciones
-- **Back to top** button con scroll detection
-- **Loading states** con shimmer effects
-- **Mobile navigation** optimizada
-- **Accessibility** con focus states y aria-labels
+- **Smooth scrolling** entre secciones con offset pixel-perfect
+- **Header hide/show** basado en dirección de scroll
+- **Navigation active states** con Intersection Observer
+- **Logo click** limpia estados active del menú
+- **Mobile navigation** optimizada con viewport real (100svh)
+- **Cursor personalizado** solo en desktop con hardware acceleration
 
 ### **Technical Excellence**
-- **Cross-browser compatibility** testado
-- **Security headers** implementados
+- **Semantic HTML** con listas de definición (`<dl><dt><dd>`)
+- **Sistema de 3 tamaños** de fuente unificado
+- **Grid layout** optimizado para mejor performance
+- **Cross-browser compatibility** testado en iPhone 16
 - **Performance monitoring** con Core Web Vitals
-- **Error handling** robusto
 - **Resource cleanup** automático
 
 ## 🛠️ Proceso de Desarrollo
@@ -128,6 +130,10 @@ Este proyecto ha sido optimizado utilizando un "ejército" de agentes especializ
 - ✅ 0 Chrome warnings
 - ✅ Lazy loading fluido
 - ✅ Core Web Vitals optimizados
+- ✅ HTML semántico con listas de definición
+- ✅ Performance móvil real optimizado (iPhone 16)
+- ✅ Mix-blend-mode solo en desktop
+- ✅ Sistema de diseño consistente (3 tamaños de fuente)
 
 ## 🎨 Filosofía de Diseño
 
