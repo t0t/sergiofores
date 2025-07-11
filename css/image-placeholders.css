@@ -1,0 +1,164 @@
+/* Image Loading Placeholders */
+.image-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 50%, #f5f5f5 100%);
+    background-size: 200% 200%;
+    animation: shimmer 2s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.image-placeholder.loaded {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.image-placeholder::before {
+    content: '';
+    width: 60px;
+    height: 60px;
+    border: 3px solid #e0e0e0;
+    border-top: 3px solid var(--turquoise-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.image-placeholder.with-icon::after {
+    content: '📷';
+    font-size: 2rem;
+    opacity: 0.3;
+    position: absolute;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Skeleton para project cards */
+.project-card.loading {
+    background: #f8f8f8;
+}
+
+.project-card.loading .project-screenshot {
+    background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 50%, #f0f0f0 100%);
+    background-size: 200% 200%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    position: relative;
+}
+
+.project-card.loading .project-screenshot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border: 4px solid #e0e0e0;
+    border-top: 4px solid var(--turquoise-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.project-card.loading .project-screenshot::after {
+    content: '🖼️';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    opacity: 0.2;
+    margin-top: 40px;
+}
+
+/* Diferentes tipos de placeholder */
+.placeholder-dots {
+    background: #f5f5f5;
+    position: relative;
+    overflow: hidden;
+}
+
+.placeholder-dots::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.6),
+        transparent
+    );
+    animation: wave 1.5s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Adaptive placeholder basado en la imagen */
+.project-screenshot.loading {
+    background-color: #f8f9fa;
+    background-image: 
+        radial-gradient(circle at 25% 25%, #e9ecef 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, #e9ecef 2px, transparent 2px);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
+    animation: drift 4s ease-in-out infinite;
+}
+
+@keyframes drift {
+    0%, 100% {
+        background-position: 0 0, 25px 25px;
+    }
+    50% {
+        background-position: 25px 25px, 0 0;
+    }
+}
+
+/* Placeholder para diferentes tipos de proyecto */
+.project-card[data-type="art"] .project-screenshot.loading {
+    background: linear-gradient(45deg, #ffeaa7 0%, #fab1a0 100%);
+}
+
+.project-card[data-type="tech"] .project-screenshot.loading {
+    background: linear-gradient(45deg, #74b9ff 0%, #0984e3 100%);
+}
+
+.project-card[data-type="cognitive"] .project-screenshot.loading {
+    background: linear-gradient(45deg, #a29bfe 0%, #6c5ce7 100%);
+}
+
+/* Progressive enhancement */
+.project-screenshot img {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.project-screenshot img.loaded {
+    opacity: 1;
+}

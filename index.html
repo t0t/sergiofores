@@ -28,6 +28,8 @@
     <meta name="twitter:site" content="@t0tinspire">
     <meta name="twitter:creator" content="@t0tinspire">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="css/image-placeholders.css">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/logo-01234.png">
@@ -82,11 +84,11 @@
                 </div>
                 <nav class="main-nav" id="mainNav">
                     <ul class="nav-links">
-                        <li><a href="#sergio">Sergio Forés</a></li>
+                        <li><a href="#sergio">SF</a></li>
                         <li><a href="#sistema01234">01234</a></li>
-                        <li><a href="#cerebro">Cerebro Digital</a></li>
-                        <li><a href="#otros">Otros Proyectos</a></li>
-                        <li><a href="#playground">Playground</a></li>
+                        <li><a href="#cerebro">CD</a></li>
+                        <li><a href="#otros">Otros</a></li>
+                        <li><a href="#playground">Lab</a></li>
                     </ul>
                 </nav>
                 <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
@@ -98,11 +100,23 @@
         </div>
     </header>
 
+    <!-- Hero fuera del contenedor para ocupar todo el viewport -->
+    <section id="inicio" class="hero storytelling-section">
+        <div class="hero-video-container">
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+                <source src="img/video-fondo.webm" type="video/webm">
+                <source src="img/video-fondo.mp4" type="video/mp4">
+                <!-- Fallback para navegadores sin soporte -->
+                <div class="hero-video-fallback"></div>
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Arte, IA, mente</h1>
+        </div>
+    </section>
+
     <main class="container">
-        <section id="inicio" class="hero">
-            <h1>Exploración transdisciplinar entre arte, tecnología y sistemas cognitivos</h1>
-            <p class="section-description">Un portfolio donde el desarrollo con IA, la obra plástica y la filosofía del sistema 01234 convergen.</p>
-        </section>
 
         <!-- SERGIO FORÉS -->
         <section id="sergio">
@@ -110,10 +124,10 @@
             <p class="section-description">Explorador multifacético navegando entre arte plástico, desarrollo front-end e investigación de sistemas cognitivos. Me gusta experimentar y descubrir nuevos registros.</p>
             
             <div class="projects-grid">
-                <a href="proyectos/proceso-cognitivo/index.html" class="project-card">
-                    <picture class="project-screenshot">
+                <a href="proyectos/proceso-cognitivo/index.html" class="project-card loading" data-type="cognitive">
+                    <picture class="project-screenshot loading">
                         <source srcset="img/proceso-cognitivo.webp" type="image/webp">
-                        <img src="img/proceso-cognitivo.jpg" alt="Visualización abstracta de datos para el proyecto Proceso Cognitivo de Sergio Forés.">
+                        <img src="img/proceso-cognitivo.jpg" alt="Visualización abstracta de datos para el proyecto Proceso Cognitivo de Sergio Forés." loading="eager">
                     </picture>
                     <div class="project-content">
                         <h3 class="project-title">Proceso Cognitivo</h3>
@@ -121,10 +135,10 @@
                     </div>
                 </a>
 
-                <a href="proyectos/sergio-dev/index.html" class="project-card">
-                    <picture class="project-screenshot">
+                <a href="proyectos/sergio-dev/index.html" class="project-card loading" data-type="tech">
+                    <picture class="project-screenshot loading">
                         <source srcset="img/sergio-dev.webp" type="image/webp">
-                        <img src="img/sergio-dev.jpg" alt="Interfaz de código y desarrollo para el proyecto dIAlogando con IA de Sergio Forés." loading="lazy">
+                        <img src="img/sergio-dev.jpg" alt="Interfaz de código y desarrollo para el proyecto dIAlogando con IA de Sergio Forés." loading="eager">
                     </picture>
                     <div class="project-content">
                         <h3 class="project-title">dIAlogando con IA</h3>
@@ -132,9 +146,9 @@
                     </div>
                 </a>
 
-                <a href="proyectos/sergio_arte_plastica/index.html" class="project-card">
-                    <picture class="project-screenshot">
-                        <img src="img/sergio-arte-plastica.jpg" alt="Galería de arte plástica de Sergio Forés con navegación por categorías." loading="lazy">
+                <a href="proyectos/sergio_arte_plastica/index.html" class="project-card loading" data-type="art">
+                    <picture class="project-screenshot loading">
+                        <img src="img/sergio-arte-plastica.jpg" alt="Galería de arte plástica de Sergio Forés con navegación por categorías." loading="eager">
                     </picture>
                     <div class="project-content">
                         <h3 class="project-title">Obra Plástica</h3>
@@ -142,9 +156,9 @@
                     </div>
                 </a>
 
-                <a href="proyectos/fotografia/index.html" class="project-card">
-                    <picture class="project-screenshot">
-                        <img src="img/fotografia.jpg" alt="Galería de fotografía personal de Sergio Forés con imágenes contemplativas." loading="lazy">
+                <a href="proyectos/fotografia/index.html" class="project-card loading" data-type="art">
+                    <picture class="project-screenshot loading">
+                        <img src="img/fotografia.jpg" alt="Galería de fotografía personal de Sergio Forés con imágenes contemplativas." loading="eager">
                     </picture>
                     <div class="project-content">
                         <h3 class="project-title">Exploración Fotográfica</h3>
@@ -192,6 +206,23 @@
                         <p class="project-description">Landing page para venta de taller vivencial de 3 días en Casa Blanes Almadrava. Inmersión profunda en el sistema cognitivo 01234 junto al Mediterráneo.</p>
                     </div>
                 </a>
+            </div>
+        </section>
+
+        <!-- BANNER LIBRO 01234 -->
+        <section class="book-banner" id="libro-banner">
+            <div class="book-banner-content">
+                <div class="book-banner-image">
+                    <img src="img/logo-01234.png" alt="Logo del sistema 01234 - El libro completo" loading="lazy">
+                </div>
+                <div class="book-banner-text">
+                    <h3 class="book-title">El Libro 01234</h3>
+                    <p class="book-subtitle">Un Sistema Vivo de Comprensión y Transformación</p>
+                    <p class="book-description">Descubre el marco cognitivo universal que organiza la existencia desde el potencial puro (0) hasta la materialización (4). Un viaje transformador a través de los 5 niveles fundamentales de la consciencia.</p>
+                    <a href="proyectos/01234_%20El%20Código%20Fuente%20de%20la%20Conciencia.pdf" class="book-cta" download>
+                        Descargar PDF
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -399,7 +430,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>CEREBRO-DIGITAL • Sistema 01234 • Sergio Forés • 2025</p>
+            <p>sergiofores.es • <span id="currentYear"></span></p>
             <div class="footer-social">
                 <a href="https://www.instagram.com/cuenta.01234/" target="_blank">Instagram</a>
                 <a href="https://x.com/t0tinspire" target="_blank">X (Twitter)</a>
@@ -416,7 +447,12 @@
         </svg>
     </button>
 
+    <script src="js/force-visibility.js"></script>
+    <script src="js/image-placeholders.js"></script>
+    <script src="js/loading.js"></script>
     <script src="js/image-loader.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/video-optimizer.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

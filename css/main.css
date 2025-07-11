@@ -1,6 +1,38 @@
-/* Variables del Sistema de Diseño */
+/* Variables del Sistema de Diseño - Inspirado en REFS */
 :root {
-    /* Base Neutra (80% del diseño) */
+    /* Paleta inspirada en Moheim */
+    --color-primary: #32373c;  /* Moheim dark accent */
+    --color-secondary: #2a2f34; /* Darker variation */
+    --color-text: #32373c;
+    --color-text-light: #6b7280; /* Soft gray */
+    --color-text-meta: #9ca3af; /* Light gray */
+    --color-surface: #ffffff;
+    --color-surface-alt: #e0e1db; /* Moheim light grayish green */
+    --color-border: #d1d1d1; /* Moheim border gray */
+    
+    /* Acentos minimalistas inspirados en Moheim */
+    --accent-dark: #32373c;
+    --accent-medium: #4a5158;
+    --accent-light: #6b7280;
+    --accent-subtle: #e0e1db;
+    
+    /* Sistema de turquesa para elementos destacados */
+    --turquoise-primary: #4ECDC4;      /* Turquesa principal para fondos */
+    --turquoise-dark: #2A8A7F;         /* Turquesa oscuro para texto/hover */
+    --turquoise-light: #7FE7DE;        /* Turquesa claro para estados sutiles */
+    
+    /* Tonos neutros Moheim */
+    --neutral-warm: #f8f9fa;
+    --neutral-cool: #e0e1db;
+    --neutral-mid: #d1d1d1;
+    
+    /* Acentos sutiles para interacciones */
+    --interaction-primary: #32373c;
+    --interaction-hover: #4a5158;
+    --interaction-active: #2a2f34;
+    --orange-01234: #32373c;
+    
+    /* Base Neutra (mantenemos colores existentes para compatibilidad) */
     --neutral-white: #FEFEFE;
     --neutral-cream: #FDFBF7;
     --neutral-gray-50: #F8F6F0;
@@ -10,33 +42,89 @@
     --neutral-gray-800: #2C2C2C;
     --neutral-black: #1A1A1A;
     
-    /* Colores de Énfasis (20% - Solo uso justificado) */
-    --accent-orange: #FF6B35;
+    /* Colores de Énfasis */
+    --accent-orange: var(--orange-temper);
     --accent-red: #E30613;
     --accent-blue: #0066CC;
     --accent-yellow: #FFD100;
     --accent-green: #9CAF88;
     
-    /* Tipografía */
-    --font-primary: 'Futura', 'Avenir Next', 'Helvetica Neue', sans-serif;
+    /* Tipografía sans moderna inspirada en weaintplastic */
+    --font-primary: 'Helvetica Neue', 'Arial', 'Segoe UI', sans-serif;
     --font-mono: 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
     
-    /* Spacing sistemático 8px */
-    --space-1: 0.5rem;   /* 8px */
-    --space-2: 1rem;     /* 16px */
-    --space-3: 1.5rem;   /* 24px */
-    --space-4: 2rem;     /* 32px */
-    --space-6: 3rem;     /* 48px */
-    --space-8: 4rem;     /* 64px */
-    --space-12: 6rem;    /* 96px */
-    --space-16: 8rem;    /* 128px */
+    /* Sistema de interletrado proporcional WeAintPlastic */
+    --letter-spacing-xs: 0.025em;   /* Para textos pequeños */
+    --letter-spacing-sm: 0.0625em;  /* Para textos base (1px más) */
+    --letter-spacing-md: 0.075em;   /* Para títulos medianos */
+    --letter-spacing-lg: 0.1em;     /* Para títulos grandes */
+    --letter-spacing-xl: 0.125em;   /* Para headers principales */
+    --letter-spacing-2xl: 0.15em;   /* Para displays grandes */
     
-    /* Tamaños fluidos */
-    --text-base: clamp(1rem, 1.2vw, 1.125rem);
-    --text-lg: clamp(1.125rem, 1.5vw, 1.25rem);
-    --text-xl: clamp(1.25rem, 2vw, 1.5rem);
-    --text-2xl: clamp(1.5rem, 3vw, 2rem);
-    --text-3xl: clamp(2rem, 4vw, 3rem);
+    /* Sistema de 3 tamaños jerarquía simplificada */
+    --text-large: clamp(4.236rem, 8.5vw, 4.76rem);     /* Solo para H1 principal (phi³) */
+    --text-medium: clamp(1.618rem, 3.2vw, 1.82rem);    /* Para todos los títulos */
+    --text-small: clamp(1rem, 2vw, 1.125rem);          /* Para todo el resto (16px base) */
+    
+    /* Espaciado fluido - Sistema 8px base */
+    --space-xs: clamp(0.25rem, 1vw, 0.5rem);
+    --space-sm: clamp(0.75rem, 2vw, 1rem);
+    --space-md: clamp(1rem, 3vw, 1.5rem);
+    --space-lg: clamp(1.5rem, 4vw, 2rem);
+    --space-xl: clamp(2rem, 5vw, 3rem);
+    --space-2xl: clamp(3rem, 6vw, 4rem);
+    --space-3xl: clamp(4rem, 8vw, 6rem);
+    --space-4xl: clamp(6rem, 10vw, 8rem);
+    
+    /* Compatibilidad con sistema anterior */
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --space-6: 3rem;
+    --space-8: 4rem;
+    --space-12: 6rem;
+    --space-16: 8rem;
+    
+    /* Tipografía fluida mejorada */
+    --font-size-xs: clamp(0.75rem, 1.5vw, 0.8rem);
+    --font-size-sm: clamp(0.875rem, 2vw, 0.9rem);
+    --font-size-base: clamp(1rem, 2.5vw, 1rem);
+    --font-size-lg: clamp(1.125rem, 3vw, 1.2rem);
+    --font-size-xl: clamp(1.25rem, 4vw, 1.5rem);
+    --font-size-2xl: clamp(1.5rem, 5vw, 2rem);
+    --font-size-3xl: clamp(2rem, 6vw, 2.5rem);
+    --font-size-4xl: clamp(2.5rem, 8vw, 3rem);
+    
+    /* Compatibilidad */
+    --text-base: var(--font-size-base);
+    --text-lg: var(--font-size-lg);
+    --text-xl: var(--font-size-xl);
+    --text-2xl: var(--font-size-2xl);
+    --text-3xl: var(--font-size-3xl);
+    
+    /* Pesos tipográficos */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Alturas de línea */
+    --line-height-tight: 1.2;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+    
+    /* Transiciones */
+    --transition: all 0.2s ease;
+    --transition-slow: all 0.3s ease;
+    --transition-fast: all 0.15s ease;
+    
+    /* Sin bordes redondeados ni sombras */
+    --border-radius: 0;
+    --border-radius-sm: 0;
+    --border-radius-lg: 0;
 }
 
 /* Reset y base */
@@ -51,21 +139,85 @@ body {
     background: #FDFBF7;
     color: var(--neutral-gray-800);
     line-height: 1.7;
-    font-size: var(--text-base);
+    font-size: var(--text-medium);
     font-weight: 300;
-    letter-spacing: 0.5px;
-    padding-top: 120px; /* Espacio para header fijo */
+    letter-spacing: var(--letter-spacing-md);
+}
+
+main.container {
+    margin-top: 100vh;
+    padding-top: var(--space-3xl);
+    background: #FDFBF7;
+    position: relative;
+    z-index: 1;
 }
 
 html {
     scroll-behavior: smooth;
+    cursor: none;
 }
 
-/* Layout principal */
+/* Eliminar cursors nativos en todos los elementos interactivos */
+*, *::before, *::after {
+    cursor: none !important;
+}
+
+a, button, [role="button"], .project-card, input, textarea, select {
+    cursor: none !important;
+}
+
+/* Cursor personalizado elegante */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-dark);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.1s ease;
+    mix-blend-mode: difference;
+}
+
+.custom-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background: var(--accent-dark);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transition: all 0.05s ease;
+}
+
+/* Estados del cursor en hover */
+.custom-cursor.hover {
+    width: 60px;
+    height: 60px;
+    border-color: var(--accent-medium);
+    background: rgba(74, 81, 88, 0.1);
+}
+
+.custom-cursor-dot.hover {
+    opacity: 0;
+}
+
+/* Layout principal - espaciado generoso de Verde.io */
 .container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--space-4);
+    padding: 0 var(--space-lg);
+}
+
+/* Sección con storytelling visual inspirado en Seated */
+.storytelling-section {
+    padding: var(--space-4xl) 0;
+    background: linear-gradient(135deg, var(--color-surface-alt) 0%, var(--color-surface) 100%);
+    margin-bottom: var(--space-4xl);
 }
 
 /* Header */
@@ -74,13 +226,17 @@ html {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(253, 251, 247, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--neutral-gray-200);
+    background: transparent;
+    backdrop-filter: none;
     padding: var(--space-2) 0;
     z-index: 1000;
     transform: translateY(0);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.header.scrolled {
+    background: rgba(253, 251, 247, 0.95);
+    backdrop-filter: blur(10px);
 }
 
 .header.hidden {
@@ -149,10 +305,10 @@ html {
 
 .logo-text {
     font-family: var(--font-mono);
-    font-size: var(--text-xl);
+    font-size: var(--text-large);
     font-weight: 600;
     color: var(--neutral-black);
-    letter-spacing: 4px;
+    letter-spacing: var(--letter-spacing-lg);
 }
 
 /* Navegación principal */
@@ -170,18 +326,38 @@ html {
 
 .main-nav a {
     font-family: var(--font-primary);
-    font-size: 0.875rem;
+    font-size: var(--text-small);
     color: var(--neutral-gray-600);
     text-decoration: none;
     font-weight: 400;
-    letter-spacing: 1px;
+    letter-spacing: var(--letter-spacing-sm);
     padding: var(--space-1) var(--space-2);
     transition: color 0.2s ease;
     text-transform: uppercase;
 }
 
+.main-nav a {
+    position: relative;
+    overflow: hidden;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-dark);
+    transition: width 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
 .main-nav a:hover {
-    color: var(--accent-orange);
+    color: var(--accent-dark);
+}
+
+.main-nav a:hover::after {
+    width: 100%;
 }
 
 /* Mobile Menu Toggle */
@@ -221,80 +397,202 @@ html {
     transform: rotate(-45deg);
 }
 
-/* Título principal */
+/* Hero con video de fondo optimizado */
 .hero {
-    text-align: center;
-    margin-bottom: var(--space-12);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -10;
+    overflow: hidden;
+}
+
+/* Contenedor del video optimizado */
+.hero-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+/* Video de fondo con optimizaciones de rendimiento */
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    object-position: center;
+    
+    /* Optimizaciones críticas para rendimiento */
+    will-change: auto;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    
+    /* Optimización para dispositivos móviles */
+    -webkit-transform: translate(-50%, -50%);
+    -webkit-backface-visibility: hidden;
+}
+
+/* Overlay para mejorar legibilidad */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+    z-index: -1;
+}
+
+/* Contenido del hero */
+.hero-content {
+    position: absolute;
+    top: var(--space-xl);
+    right: var(--space-xl);
+    z-index: 1;
+    max-width: 600px;
+    padding: var(--space-lg);
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    text-align: right;
+}
+
+/* Fallback para navegadores sin soporte de video */
+.hero-video-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-surface-alt) 0%, var(--color-surface) 100%);
+    display: none; /* Oculto por defecto, se muestra solo si el video falla */
+}
+
+/* Optimizaciones móviles */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 80vh;
+        padding-top: var(--space-4xl);
+    }
+    
+    /* Pausar video en móvil para ahorrar batería/datos */
+    .hero-video {
+        display: none;
+    }
+    
+    .hero-video-fallback {
+        display: block;
+    }
+    
+    .hero-content {
+        background: rgba(253, 251, 247, 0.98);
+        backdrop-filter: blur(5px);
+    }
+}
+
+/* Modo de ahorro de datos */
+@media (prefers-reduced-motion: reduce) {
+    .hero-video {
+        display: none;
+    }
+    
+    .hero-video-fallback {
+        display: block;
+    }
+}
+
+/* Optimización para conexiones lentas */
+@media (max-width: 480px) {
+    .hero-video {
+        display: none;
+    }
 }
 
 .hero h1 {
     font-family: var(--font-primary);
-    font-size: var(--text-3xl);
-    font-weight: 300;
-    color: var(--neutral-black);
-    letter-spacing: 4px;
+    font-size: calc(var(--text-large) * 2);
+    font-weight: 200;
+    color: var(--color-primary);
+    letter-spacing: var(--letter-spacing-lg);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-lg);
     text-transform: uppercase;
-    margin-bottom: var(--space-2);
+    transform: rotate(-1deg);
+    transition: var(--transition-slow);
+    text-align: right;
+}
+
+.hero h1:hover {
+    transform: rotate(0deg) scale(1.02);
+    color: var(--accent-medium);
 }
 
 .hero p {
-    font-size: var(--text-lg);
-    color: var(--neutral-gray-600);
-    max-width: 600px;
+    font-size: var(--text-small);
+    color: var(--color-text-light);
+    max-width: 700px;
     margin: 0 auto;
-    letter-spacing: 1px;
+    line-height: var(--line-height-relaxed);
+    font-weight: var(--font-weight-normal);
+    letter-spacing: var(--letter-spacing-sm);
 }
 
-/* Grid de proyectos */
+/* Grid dinámico inspirado en Show and Tell */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
-    justify-content: center;
-    gap: var(--space-6);
-    margin-bottom: var(--space-16);
+    grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-4xl);
+    width: 100%;
+    align-items: stretch;
 }
 
-/* Tarjetas de proyecto */
+/* Tarjetas de proyecto mejoradas */
 .project-card {
-    background: var(--neutral-white);
-    border: none;
-    transition: all 0.3s ease;
+    background: var(--color-surface);
     position: relative;
     overflow: hidden;
     display: block;
     text-decoration: none;
     color: inherit;
     cursor: pointer;
-    aspect-ratio: 16/10;
-    max-width: 400px; /* Fixed max width for consistent display */
     width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    
-    /* Better rendering */
+    height: 250px;
     transform: translateZ(0);
     backface-visibility: hidden;
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid rgba(0,0,0,0.1);
 }
 
 .project-card:hover {
-    /* Use GPU acceleration for smooth transforms */
-    transform: translateY(-6px) translateZ(0);
-    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.12);
-    
-    /* Ensure transforms don't cause blur */
-    backface-visibility: hidden;
+    transform: translateZ(0) scale(1.05);
+    z-index: 10;
+    border-color: var(--accent-dark);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
 .project-screenshot {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 250px;
     overflow: hidden;
     background: var(--neutral-gray-50);
     transition: all 0.3s ease;
-    /* Force GPU acceleration for crisp rendering */
     will-change: transform;
-    aspect-ratio: 16 / 10;
 }
 
 .project-screenshot img {
@@ -332,17 +630,21 @@ html {
     right: 0;
     bottom: 0;
     padding: var(--space-6);
-    background: rgba(0, 0, 0, 0.95);
-    color: var(--neutral-white);
-    display: none;
+    background: linear-gradient(135deg, rgba(50, 55, 60, 0.95) 0%, rgba(74, 81, 88, 0.95) 100%);
+    color: white;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
     overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .project-card:hover .project-content {
-    display: flex;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Ajustes para resoluciones grandes */
@@ -392,11 +694,11 @@ html {
 
 .project-title {
     font-family: var(--font-primary);
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: var(--text-medium);
     font-weight: 300;
     color: var(--neutral-white);
     margin-bottom: var(--space-2);
-    letter-spacing: 0.5px;
+    letter-spacing: var(--letter-spacing-md);
     text-transform: uppercase;
     line-height: 1.2;
 }
@@ -404,9 +706,10 @@ html {
 .project-description {
     color: var(--neutral-white);
     line-height: 1.5;
-    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-size: var(--text-small);
     font-weight: 300;
     opacity: 1;
+    letter-spacing: var(--letter-spacing-sm);
 }
 
 .project-actions {
@@ -417,23 +720,24 @@ html {
     font-family: var(--font-primary);
     font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: var(--letter-spacing-md);
     padding: var(--space-2) var(--space-4);
     border: none;
     text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
     display: inline-block;
-    font-size: 14px;
+    font-size: var(--text-small);
 }
 
 .btn-primary {
-    background: var(--accent-orange);
-    color: var(--neutral-white);
+    background: var(--turquoise-primary);
+    color: var(--neutral-black);
 }
 
 .btn-primary:hover {
-    background: var(--neutral-black);
+    background: var(--turquoise-dark);
+    color: white;
     transform: translateY(-2px);
 }
 
@@ -444,13 +748,12 @@ html {
 }
 
 .btn-secondary:hover {
-    border-color: var(--accent-orange);
-    color: var(--accent-orange);
+    border-color: var(--turquoise-primary);
+    color: var(--turquoise-dark);
 }
 
 /* Footer */
 .footer {
-    border-top: 1px solid var(--neutral-gray-200);
     padding: var(--space-8) 0;
     text-align: center;
     margin-top: var(--space-16);
@@ -458,8 +761,8 @@ html {
 
 .footer p {
     color: var(--neutral-gray-600);
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-size: var(--text-medium);
+    letter-spacing: var(--letter-spacing-md);
 }
 
 /* Responsive */
@@ -504,10 +807,11 @@ html {
     }
     
     .main-nav a {
-        font-size: 1rem;
+        font-size: var(--text-medium);
         padding: var(--space-2) var(--space-4);
         width: 100%;
         text-align: center;
+        letter-spacing: var(--letter-spacing-md);
     }
 
     .menu-toggle {
@@ -554,8 +858,8 @@ html {
     right: 2rem;
     width: 56px;
     height: 56px;
-    background: var(--accent-orange);
-    color: white;
+    background: var(--turquoise-primary);
+    color: var(--neutral-black);
     border: none;
     border-radius: 50%;
     display: flex;
@@ -567,7 +871,6 @@ html {
     visibility: hidden;
     transform: translateY(20px);
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
 }
 
 .back-to-top.visible {
@@ -577,9 +880,9 @@ html {
 }
 
 .back-to-top:hover {
-    background: var(--neutral-black);
+    background: var(--turquoise-dark);
+    color: white;
     transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
 }
 
 .back-to-top svg {
@@ -652,28 +955,56 @@ html {
 /* Estados de focus accesibles */
 a:focus,
 button:focus {
-    outline: 2px solid var(--accent-orange);
+    outline: 2px solid var(--accent-dark);
     outline-offset: 2px;
 }
 
-/* Clases para secciones */
+/* Secciones mejoradas */
 .section-title {
     font-family: var(--font-primary);
-    font-size: var(--text-2xl);
-    font-weight: 300;
-    color: var(--neutral-black);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin: var(--space-12) 0 var(--space-2) 0;
+    font-size: var(--text-medium);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    letter-spacing: var(--letter-spacing-md);
+    line-height: var(--line-height-tight);
+    margin: var(--space-4xl) 0 var(--space-lg) 0;
     text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--accent-dark);
 }
 
 .section-description {
     text-align: center;
-    color: var(--neutral-gray-600);
-    font-size: var(--text-base);
-    margin-bottom: var(--space-6);
-    font-style: italic;
+    color: var(--color-text-light);
+    font-size: var(--text-small);
+    margin-bottom: var(--space-2xl);
+    line-height: var(--line-height-relaxed);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: var(--font-weight-normal);
+    letter-spacing: var(--letter-spacing-sm);
 }
 
 /* Footer social links */
@@ -688,8 +1019,8 @@ button:focus {
 .footer-social a {
     color: var(--neutral-gray-600);
     text-decoration: none;
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-size: var(--text-medium);
+    letter-spacing: var(--letter-spacing-md);
 }
 /* ===== PERFORMANCE OPTIMIZATIONS ===== */
 /* =============================================
@@ -842,4 +1173,100 @@ picture {
 picture img {
     width: 100%;
     height: auto;
+}
+
+/* Banner Libro 01234 */
+.book-banner {
+    background: var(--color-primary);
+    margin: var(--space-8) 0;
+    padding: var(--space-6);
+}
+
+.book-banner-content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-4);
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.book-banner-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    transition: transform 0.3s ease;
+    mix-blend-mode: screen;
+}
+
+.book-banner-image img:hover {
+    transform: scale(1.05);
+}
+
+.book-banner-text {
+    padding: var(--space-2);
+}
+
+.book-title {
+    font-size: var(--text-medium);
+    font-weight: 600;
+    color: var(--neutral-white);
+    margin-bottom: var(--space-1);
+    letter-spacing: var(--letter-spacing-md);
+}
+
+.book-subtitle {
+    font-size: var(--text-small);
+    color: var(--turquoise-dark);
+    font-weight: 500;
+    margin-bottom: var(--space-2);
+    letter-spacing: var(--letter-spacing-sm);
+}
+
+.book-description {
+    font-size: var(--text-small);
+    color: var(--neutral-gray-400);
+    line-height: 1.6;
+    margin-bottom: var(--space-3);
+    letter-spacing: var(--letter-spacing-sm);
+}
+
+.book-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    background: var(--turquoise-primary);
+    color: var(--neutral-black);
+    padding: var(--space-2) var(--space-4);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--text-small);
+    transition: all 0.3s ease;
+    letter-spacing: var(--letter-spacing-sm);
+}
+
+.book-cta:hover {
+    background: var(--turquoise-dark);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Responsivo para Banner Libro */
+@media (max-width: 768px) {
+    .book-banner-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--space-3);
+    }
+    
+    .book-banner-image {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .book-banner-image img {
+        max-width: 150px;
+    }
 }

@@ -1,0 +1,193 @@
+/* Loading Screen WeAintPlastic Style Mejorado */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: all 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow: hidden;
+}
+
+.loading-screen.fade-out {
+    opacity: 0;
+    transform: scale(1.1);
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+.loading-content {
+    text-align: center;
+    transform: translateY(0);
+    transition: all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    color: white;
+    position: relative;
+}
+
+.loading-screen.fade-out .loading-content {
+    transform: translateY(-80px) scale(0.8);
+    opacity: 0;
+}
+
+/* Logo 01234 animado */
+.loading-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+    position: relative;
+}
+
+.loading-logo-image {
+    width: clamp(120px, 20vw, 200px);
+    height: auto;
+    filter: none;
+    animation: logoRotatePulse 3s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes logoRotatePulse {
+    0% { 
+        transform: rotate(0deg) scale(1);
+        opacity: 0.8;
+    }
+    25% { 
+        transform: rotate(90deg) scale(1.1);
+        opacity: 1;
+    }
+    50% { 
+        transform: rotate(180deg) scale(1);
+        opacity: 0.9;
+    }
+    75% { 
+        transform: rotate(270deg) scale(1.1);
+        opacity: 1;
+    }
+    100% { 
+        transform: rotate(360deg) scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* Contenedor del texto principal */
+.loading-text-container {
+    margin-bottom: var(--space-lg);
+}
+
+.loading-text {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 300;
+    color: white;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 2s ease-out 1s forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Barra de progreso WeAintPlastic style mejorada */
+.loading-progress {
+    width: 300px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: var(--space-xl) auto 0;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeInProgress 1s ease 2s forwards;
+    border-radius: 1px;
+    position: relative;
+}
+
+.loading-progress::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: progressShimmer 2s ease-in-out infinite;
+}
+
+@keyframes progressShimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.loading-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #4ECDC4, #7FE7DE, #4ECDC4);
+    background-size: 200% 100%;
+    animation: progressGradient 2s ease-in-out infinite;
+    transition: width 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-radius: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes progressGradient {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+@keyframes fadeInProgress {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Indicador minimalista */
+.loading-indicator {
+    margin-top: var(--space-xl);
+    opacity: 0;
+    animation: fadeInIndicator 0.6s ease 2.5s forwards;
+}
+
+.loading-indicator-text {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+@keyframes fadeInIndicator {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Cursor loading state */
+.loading-screen * {
+    cursor: wait !important;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .loading-logo {
+        font-size: clamp(1.5rem, 12vw, 3rem);
+    }
+    
+    .loading-progress {
+        width: 150px;
+    }
+}
