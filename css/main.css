@@ -61,10 +61,10 @@
     --letter-spacing-xl: 0.125em;   /* Para headers principales */
     --letter-spacing-2xl: 0.15em;   /* Para displays grandes */
     
-    /* Sistema de 3 tamaños jerarquía simplificada */
-    --text-large: clamp(4.236rem, 8.5vw, 4.76rem);     /* Solo para H1 principal (phi³) */
-    --text-medium: clamp(1.618rem, 3.2vw, 1.82rem);    /* Para todos los títulos */
-    --text-small: clamp(1rem, 2vw, 1.125rem);          /* Para todo el resto (16px base) */
+    /* Sistema de 3 tamaños jerarquía simplificada - Golden Ratio armónico */
+    --text-large: clamp(2.618rem, 5.5vw, 3rem);        /* H1 principal (phi²) más armónico */
+    --text-medium: clamp(1.618rem, 3.2vw, 1.82rem);    /* Para todos los títulos (phi) */
+    --text-small: clamp(1rem, 2vw, 1.125rem);          /* Para todo el resto (base) */
     
     /* Espaciado fluido - Sistema 8px base */
     --space-xs: clamp(0.25rem, 1vw, 0.5rem);
@@ -75,6 +75,10 @@
     --space-2xl: clamp(3rem, 6vw, 4rem);
     --space-3xl: clamp(4rem, 8vw, 6rem);
     --space-4xl: clamp(6rem, 10vw, 8rem);
+    
+    /* Layout viewport heights */
+    --viewport-full: 100vh;
+    --viewport-mobile: 100svh; /* Safe viewport height for mobile */
     
     /* Compatibilidad con sistema anterior */
     --space-1: 0.5rem;
@@ -116,10 +120,15 @@
     --line-height-normal: 1.5;
     --line-height-relaxed: 1.625;
     
-    /* Transiciones */
+    /* Transiciones - cross-browser */
     --transition: all 0.2s ease;
     --transition-slow: all 0.3s ease;
     --transition-fast: all 0.15s ease;
+    
+    /* Fallbacks para navegadores antiguos */
+    --webkit-transition: all 0.2s ease;
+    --moz-transition: all 0.2s ease;
+    --o-transition: all 0.2s ease;
     
     /* Sin bordes redondeados ni sombras */
     --border-radius: 0;
@@ -144,29 +153,32 @@ body {
     letter-spacing: var(--letter-spacing-md);
 }
 
-main.container {
-    margin-top: 100vh;
-    padding-top: var(--space-3xl);
-    background: #FDFBF7;
-    position: relative;
-    z-index: 1;
-}
+/* Se reemplaza por main.main-container arriba */
 
 html {
     scroll-behavior: smooth;
     cursor: none;
 }
 
-/* Eliminar cursors nativos en todos los elementos interactivos */
-*, *::before, *::after {
-    cursor: none !important;
+/* Eliminar cursors nativos - sin !important */
+*,
+*::before,
+*::after {
+    cursor: none;
 }
 
-a, button, [role="button"], .project-card, input, textarea, select {
-    cursor: none !important;
+/* Elementos interactivos con cursor personalizado */
+a,
+button,
+[role="button"],
+.project-card,
+input,
+textarea,
+select {
+    cursor: none;
 }
 
-/* Cursor personalizado elegante */
+/* Cursor personalizado elegante - seguimiento directo */
 .custom-cursor {
     position: fixed;
     top: 0;
@@ -177,7 +189,7 @@ a, button, [role="button"], .project-card, input, textarea, select {
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    transition: all 0.1s ease;
+    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
     mix-blend-mode: difference;
 }
 
@@ -191,10 +203,10 @@ a, button, [role="button"], .project-card, input, textarea, select {
     border-radius: 50%;
     pointer-events: none;
     z-index: 10000;
-    transition: all 0.05s ease;
+    /* Sin transición para seguimiento directo */
 }
 
-/* Estados del cursor en hover */
+/* Estados del cursor en hover - cross-browser */
 .custom-cursor.hover {
     width: 60px;
     height: 60px;
@@ -206,11 +218,18 @@ a, button, [role="button"], .project-card, input, textarea, select {
     opacity: 0;
 }
 
-/* Layout principal - espaciado generoso de Verde.io */
+/* Layout containers - siguiendo especificidad correcta */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--space-lg);
+}
+
+/* Main content container - especificidad mayor sin !important */
+main.main-container {
+    background: #FDFBF7;
+    position: relative;
+    z-index: 1;
 }
 
 /* Sección con storytelling visual inspirado en Seated */
@@ -397,14 +416,11 @@ a, button, [role="button"], .project-card, input, textarea, select {
     transform: rotate(-45deg);
 }
 
-/* Hero con video de fondo optimizado */
+/* Hero con video de fondo - no estático */
 .hero {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     height: 100vh;
-    z-index: -10;
     overflow: hidden;
 }
 
@@ -556,12 +572,14 @@ a, button, [role="button"], .project-card, input, textarea, select {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
     gap: var(--space-md);
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
     margin-bottom: var(--space-4xl);
     width: 100%;
     align-items: stretch;
 }
 
-/* Tarjetas de proyecto mejoradas */
+/* Tarjetas de proyecto - metodología BEM */
 .project-card {
     background: var(--color-surface);
     position: relative;
@@ -572,17 +590,42 @@ a, button, [role="button"], .project-card, input, textarea, select {
     cursor: pointer;
     width: 100%;
     height: 250px;
+    
+    /* Transform cross-browser */
     transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    
+    /* Backface visibility */
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    
+    /* Transitions cross-browser */
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border: 1px solid rgba(0,0,0,0.1);
+    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    -moz-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    -o-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+/* Project card hover state - BEM modifier */
 .project-card:hover {
+    /* Transform cross-browser */
     transform: translateZ(0) scale(1.05);
+    -webkit-transform: translateZ(0) scale(1.05);
+    -moz-transform: translateZ(0) scale(1.05);
+    -ms-transform: translateZ(0) scale(1.05);
+    
     z-index: 10;
     border-color: var(--accent-dark);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    
+    /* Box shadow cross-browser */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .project-screenshot {
@@ -893,62 +936,19 @@ a, button, [role="button"], .project-card, input, textarea, select {
     transform: translateY(-2px);
 }
 
-/* High-DPI display optimizations */
-@media (-webkit-min-device-pixel-ratio: 2), 
+/* High-DPI display optimizations - cross-browser */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (-moz-min-device-pixel-ratio: 2),
+       (-o-min-device-pixel-ratio: 2/1),
+       (min-device-pixel-ratio: 2),
        (min-resolution: 192dpi),
        (min-resolution: 2dppx) {
     .project-screenshot img {
-        /* Better image rendering for Retina displays */
         image-rendering: -webkit-optimize-contrast;
-        -webkit-transform: translateZ(0);
-        
-        /* Ensure crisp edges on high-DPI */
-        image-rendering: crisp-edges;
-    }
-}
-
-/* Ultra-high DPI displays (3x) */
-@media (-webkit-min-device-pixel-ratio: 3),
-       (min-resolution: 288dpi),
-       (min-resolution: 3dppx) {
-    .project-screenshot img {
-        /* Maximum quality for 3x displays */
-        image-rendering: -webkit-optimize-contrast;
-        transform: translateZ(0) scale(1.0001); /* Subtle scale to force crisp rendering */
-    }
-}
-
-/* Prevent blur on hover transforms */
-.project-card:hover .project-screenshot img {
-    /* Maintain image sharpness during hover */
-    transform: translateZ(0);
-    image-rendering: -webkit-optimize-contrast;
-}
-
-/* Browser-specific optimizations */
-/* Safari-specific fixes */
-@supports (-webkit-appearance: none) {
-    .project-screenshot img {
-        /* Safari tends to blur images, force crisp rendering */
-        image-rendering: -webkit-optimize-contrast;
-        -webkit-transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-    }
-}
-
-/* Firefox-specific fixes */
-@-moz-document url-prefix() {
-    .project-screenshot img {
         image-rendering: -moz-crisp-edges;
         image-rendering: crisp-edges;
-    }
-}
-
-/* Chrome-specific optimizations */
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-    .project-screenshot img {
-        image-rendering: -webkit-optimize-contrast;
         transform: translateZ(0);
+        -webkit-transform: translateZ(0);
     }
 }
 
@@ -1028,7 +1028,7 @@ button:focus {
    Performance enhancements for Sergio Forés Portfolio
    ============================================= */
 
-/* Progressive image loading with blur-up effect */
+/* Image container - optimized */
 .project-screenshot {
     position: relative;
     overflow: hidden;
@@ -1036,48 +1036,49 @@ button:focus {
     transition: opacity 0.3s ease;
 }
 
+/* Optimized image rendering - cross-browser */
 .project-screenshot img {
+    /* Estándar */
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     display: block;
-    transition: filter 0.3s ease, transform 0.3s ease;
-}
-
-/* CRITICAL FIX: Lazy loading placeholder - DISABLED FOR PRODUCTION */
-.project-screenshot img[loading="lazy"] {
-    /* DISABLED: filter: blur(5px); */
-    /* DISABLED: transform: scale(1.02); */
     
-    /* PRODUCTION FIX: No blur by default */
-    filter: none;
-    transform: none;
-    transition: filter 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
-}
-
-/* Image loaded state - OPTIMIZED FOR PRODUCTION */
-.project-screenshot img.loaded {
-    filter: none !important;
-    transform: none !important;
-    opacity: 1 !important;
+    /* Renderizado optimizado */
+    image-rendering: -webkit-optimize-contrast; /* Safari */
+    image-rendering: -moz-crisp-edges; /* Firefox */
+    image-rendering: crisp-edges; /* Chrome, Edge */
+    image-rendering: pixelated; /* Fallback */
     
-    /* Enhanced rendering for sharpness */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-}
-
-/* CRITICAL PRODUCTION FIX: Force remove blur from any stuck images */
-.project-screenshot img {
-    filter: none !important;
-    transform: none !important;
-    opacity: 1;
-    
-    /* Ensure crisp rendering */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    
-    /* Hardware acceleration for smooth rendering */
+    /* Performance */
     transform: translateZ(0);
+    -webkit-transform: translateZ(0);
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    
+    /* Transiciones suaves */
+    transition: filter 0.3s ease, transform 0.3s ease;
+    -webkit-transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Video autoplay en project cards */
+.project-screenshot video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    
+    /* Performance */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    
+    /* Transiciones suaves */
+    transition: filter 0.3s ease, transform 0.3s ease;
+    -webkit-transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 /* WebP support detection */
@@ -1123,11 +1124,11 @@ button:focus {
     }
 }
 
-/* Intersection Observer fade-in animation */
+/* Cards con animación rápida - sin demora */
 .project-card {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(10px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
 .project-card.in-view {
@@ -1135,11 +1136,6 @@ button:focus {
     transform: translateY(0);
 }
 
-/* Performance optimizations */
-.project-screenshot img {
-    content-visibility: auto;
-    contain-intrinsic-size: 400px;
-}
 
 /* Critical images (above the fold) - no lazy loading */
 .projects-grid > .project-card:first-child .project-screenshot img,
@@ -1180,6 +1176,9 @@ picture img {
     background: var(--color-primary);
     margin: var(--space-8) 0;
     padding: var(--space-6);
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .book-banner-content {
@@ -1212,14 +1211,14 @@ picture img {
 .book-title {
     font-size: var(--text-medium);
     font-weight: 600;
-    color: var(--neutral-white);
+    color: var(--turquoise-primary);
     margin-bottom: var(--space-1);
     letter-spacing: var(--letter-spacing-md);
 }
 
 .book-subtitle {
     font-size: var(--text-small);
-    color: var(--turquoise-dark);
+    color: var(--turquoise-primary);
     font-weight: 500;
     margin-bottom: var(--space-2);
     letter-spacing: var(--letter-spacing-sm);
@@ -1227,7 +1226,7 @@ picture img {
 
 .book-description {
     font-size: var(--text-small);
-    color: var(--neutral-gray-400);
+    color: var(--turquoise-primary);
     line-height: 1.6;
     margin-bottom: var(--space-3);
     letter-spacing: var(--letter-spacing-sm);

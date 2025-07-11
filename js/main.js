@@ -289,19 +289,19 @@ class ImageOptimizer {
         });
     }
 
-    // Intersection Observer for animations
+    // Intersection Observer optimizado - animación ultrarrápida
     setupIntersectionObserver() {
         const animationObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('in-view');
-                    // Optional: unobserve after animation
-                    // animationObserver.unobserve(entry.target);
+                    // Unobserve after animation for better performance
+                    animationObserver.unobserve(entry.target);
                 }
             });
         }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.01, // Activar con solo 1% visible
+            rootMargin: '300px 0px 200px 0px' // Anticipar mucho antes
         });
 
         // Observe project cards for fade-in animation

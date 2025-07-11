@@ -116,7 +116,7 @@
         </div>
     </section>
 
-    <main class="container">
+    <main class="main-container">
 
         <!-- SERGIO FORÉS -->
         <section id="sergio">
@@ -125,10 +125,12 @@
             
             <div class="projects-grid">
                 <a href="proyectos/proceso-cognitivo/index.html" class="project-card loading" data-type="cognitive">
-                    <picture class="project-screenshot loading">
-                        <source srcset="img/proceso-cognitivo.webp" type="image/webp">
-                        <img src="img/proceso-cognitivo.jpg" alt="Visualización abstracta de datos para el proyecto Proceso Cognitivo de Sergio Forés." loading="eager">
-                    </picture>
+                    <div class="project-screenshot loading">
+                        <video autoplay muted loop playsinline poster="img/proceso-cognitivo.jpg">
+                            <source src="img/proceso-cognitivo.webm" type="video/webm">
+                            <img src="img/proceso-cognitivo.jpg" alt="Visualización abstracta de datos para el proyecto Proceso Cognitivo de Sergio Forés.">
+                        </video>
+                    </div>
                     <div class="project-content">
                         <h3 class="project-title">Proceso Cognitivo</h3>
                         <p class="project-description">Laboratorio de consciencia cinematográfico · Galería inmersiva de arte generativo IA, videos experimentales y visualizaciones abstractas. Exploración multimedia donde algoritmo e intuición convergen.</p>
@@ -148,6 +150,7 @@
 
                 <a href="proyectos/sergio_arte_plastica/index.html" class="project-card loading" data-type="art">
                     <picture class="project-screenshot loading">
+                        <source srcset="img/sergio-arte-plastica.webp" type="image/webp">
                         <img src="img/sergio-arte-plastica.jpg" alt="Galería de arte plástica de Sergio Forés con navegación por categorías." loading="eager">
                     </picture>
                     <div class="project-content">
@@ -358,16 +361,6 @@
                     </div>
                 </a>
 
-                <a href="https://threesvelte.vercel.app/" target="_blank" class="project-card" rel="noopener">
-                    <picture class="project-screenshot">
-                        <source srcset="img/three-svelte.webp" type="image/webp">
-                        <img src="img/three-svelte.jpg" alt="Experimento de gráficos 3D con Three.js y Svelte." loading="lazy">
-                    </picture>
-                    <div class="project-content">
-                        <h3 class="project-title">Three Svelte</h3>
-                        <p class="project-description">Experimento de gráficos 3D con Three.js y Svelte. Exploración de visualizaciones interactivas y animaciones web avanzadas en tiempo real.</p>
-                    </div>
-                </a>
 
                 <a href="https://t0t.github.io/o1234-slidev/" target="_blank" class="project-card" rel="noopener">
                     <picture class="project-screenshot">
@@ -430,13 +423,14 @@
 
     <footer class="footer">
         <div class="container">
-            <p>sergiofores.es • <span id="currentYear"></span></p>
             <div class="footer-social">
                 <a href="https://www.instagram.com/cuenta.01234/" target="_blank">Instagram</a>
                 <a href="https://x.com/t0tinspire" target="_blank">X (Twitter)</a>
                 <a href="https://www.youtube.com/@0-1234" target="_blank">YouTube</a>
                 <a href="https://github.com/t0t" target="_blank">GitHub</a>
             </div>
+            <p>sergiofores.es</p>
+            <p><span id="currentYear"></span></p>
         </div>
     </footer>
 
@@ -447,7 +441,7 @@
         </svg>
     </button>
 
-    <script src="js/force-visibility.js"></script>
+    <!-- Removed force-visibility.js - causing inline style pollution -->
     <script src="js/image-placeholders.js"></script>
     <script src="js/loading.js"></script>
     <script src="js/image-loader.js"></script>
