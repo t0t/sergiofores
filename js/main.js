@@ -103,11 +103,19 @@ class NavigationManager {
     init() {
         this.setupIntersectionObserver();
         this.setupClickHandlers();
+        this.setupScrollListener();
     }
     
     setupIntersectionObserver() {
-        // Create observer with optimal settings for navigation
+        // Create observer with better settings for real-time navigation
         const observer = new IntersectionObserver((entries) => {
+            // Check if we're at the very top first
+            if (window.scrollY < 100) {
+                this.clearActiveStates();
+                console.log('🔝 At top - clearing all active states');
+                return;
+            }
+            
             // Find the section with the largest intersection ratio
             let maxRatio = 0;
             let activeSection = '';
@@ -119,14 +127,15 @@ class NavigationManager {
                 }
             });
             
-            // Only update if we have a meaningful intersection AND we're not at the top
-            if (maxRatio > 0.5 && window.scrollY > 200) {
+            // Update active state if we have any meaningful intersection
+            if (maxRatio > 0.1 && activeSection) {
                 this.updateActiveLink(activeSection);
+                console.log('🎯 Section active:', activeSection, 'ratio:', maxRatio.toFixed(2));
             }
         }, {
-            // Header offset (120px) converted to percentage
-            rootMargin: '-120px 0px -50% 0px',
-            threshold: [0, 0.1, 0.3, 0.5, 0.7, 1.0]
+            // Reduced root margin for better detection
+            rootMargin: '-80px 0px -40% 0px',
+            threshold: [0, 0.1, 0.25, 0.5, 0.75, 1.0]
         });
         
         // Observe all navigation sections
@@ -134,6 +143,9 @@ class NavigationManager {
             const section = document.getElementById(sectionId);
             if (section) {
                 observer.observe(section);
+                console.log('👀 Observing section:', sectionId);
+            } else {
+                console.warn('❌ Section not found:', sectionId);
             }
         });
     }
@@ -162,11 +174,18 @@ class NavigationManager {
             
             if (href === `#${sectionId}`) {
                 link.classList.add('active');
+                console.log('✅ Menu item activated:', link.textContent, 'for section:', sectionId);
             }
         });
-        
-        // Debug (remove in production)
-        console.log('🎯 Active section:', sectionId);
+    }
+    
+    setupScrollListener() {
+        // Additional scroll listener to handle top detection
+        window.addEventListener('scroll', () => {
+            if (window.scrollY < 100) {
+                this.clearActiveStates();
+            }
+        });
     }
     
     clearActiveStates() {
