@@ -1,0 +1,71 @@
+{
+  "name": "sergio-arte-plastica",
+  "version": "1.0.0",
+  "description": "Portfolio de arte plástico de Sergio Forés - Sistema de gestión de galería optimizado",
+  "main": "index.html",
+  "scripts": {
+    "gallery:full": "node js/gallery-manager.js full",
+    "gallery:optimize": "node js/gallery-manager.js optimize", 
+    "gallery:update": "node js/gallery-manager.js update",
+    "gallery:audit": "node js/gallery-manager.js audit",
+    "files:preview": "node js/file-normalizer.js preview",
+    "files:normalize": "node js/file-normalizer.js normalize",
+    "rename:preview": "node js/semantic-renamer.js preview",
+    "rename:semantic": "node js/semantic-renamer.js rename",
+    "accents:remove": "node js/remove-accents.js run",
+    "structure:organize": "node js/structure-organizer.js run",
+    "structure:clean": "node js/clean-duplicates.js run",
+    "gallery:update-links": "node js/gallery-updater.js run",
+    "gallery:test": "node js/gallery-test.js run",
+    "images:rename": "node -e \"const {ImageRenamer} = require('./js/image-utils'); new ImageRenamer().renameAllImages()\"",
+    "images:optimize": "node -e \"const {ImageOptimizer} = require('./js/image-utils'); new ImageOptimizer().optimizeAllImages()\"",
+    "images:webp": "node -e \"const {WebPGenerator} = require('./js/performance-optimizer'); new WebPGenerator().generateWebPVersions()\"",
+    "performance:analyze": "node -e \"const {PerformanceAnalyzer} = require('./js/performance-optimizer'); new PerformanceAnalyzer().analyzePerformance()\"",
+    "dev": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000",
+    "start": "python3 -m http.server 8000",
+    "lint:images": "node -e \"console.log('🔍 Verificando estructura de imágenes...'); const fs = require('fs'); const dirs = ['./images/obras', './images/gallery', './images/archive']; dirs.forEach(dir => { try { const files = fs.readdirSync(dir); console.log('✅ ' + dir + ': ' + files.length + ' archivos'); } catch(e) { console.log('❌ ' + dir + ': No existe'); } });\"",
+    "setup": "npm install && npm run lint:images && echo '✅ Setup completado - Ejecuta npm run gallery:full para procesar todas las imágenes'"
+  },
+  "keywords": [
+    "art",
+    "portfolio", 
+    "gallery",
+    "sergio-fores",
+    "arte-plastico",
+    "optimization",
+    "performance",
+    "webp",
+    "lazy-loading"
+  ],
+  "author": "Sergio Forés",
+  "license": "MIT",
+  "dependencies": {
+    "sharp": "^0.33.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sergiofores/sergio-arte-plastica"
+  },
+  "homepage": "https://sergiofores.github.io/sergio-arte-plastica",
+  "galleryConfig": {
+    "version": "1.0.0",
+    "supportedFormats": [".jpg", ".jpeg", ".png", ".webp"],
+    "maxImageSize": "500KB",
+    "optimizationQuality": 85,
+    "lazyLoadingEnabled": true,
+    "webpSupportEnabled": true,
+    "categories": {
+      "oil": "Óleo sobre lino belga",
+      "ink": "Tinta sobre papel japonés", 
+      "3dprinting": "Impresión 3D",
+      "drawing": "Dibujo y bocetos"
+    }
+  }
+}

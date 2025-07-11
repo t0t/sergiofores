@@ -1,0 +1,350 @@
+{
+  "timestamp": "2025-07-10T23:40:45.106Z",
+  "summary": {
+    "totalRenamed": 33,
+    "totalErrors": 0,
+    "oilWorks": 0,
+    "printWorks": 0,
+    "archiveWorks": 33
+  },
+  "semanticMapping": {
+    "mente-acustica-literal-1.png": "sinestesia-cognitiva.png",
+    "oleo-291224a.png": "flujo-temporal.png",
+    "tres-1.png": "triada-existencial.png",
+    "proceso-3.png": "genesis-cromática.png",
+    "proceso-2.png": "metamorfosis-interior.png",
+    "oleo-2911a.png": "resonancia-primordial.png",
+    "luz-2.png": "epifania-luminosa.png",
+    "autoocultamiento.png": "introspección-silenciosa.png",
+    "beraja.png": "turbulencia-esencial.png",
+    "shejina.png": "presencia-divina.png",
+    "cuadro-arena-oxido.jpg": "arqueología-temporal.jpg",
+    "escultura-3955c791-b166-42b0-aa5b-065b6cbc2dc0.jpg": "topografia-neural.jpg",
+    "escultura-87368654_498661417692348_2165792891719385088_o.jpg": "estructura-algoritmica.jpg",
+    "escultura-bg1.png": "matriz-generativa.png",
+    "img_0864-1.jpg": "fragmento-orgánico.jpg",
+    "img_0869-1.jpg": "tejido-molecular.jpg",
+    "img_0943-1.jpg": "forma-emergente.jpg",
+    "img_7883-1.jpg": "sedimento-digital.jpg",
+    "img_8631-1.jpg": "paisaje-micro.jpg",
+    "15995801610_b5f5c1cc9c_o.jpg": "cosmos-interior.jpg",
+    "5565562880_ccbf906149_o.jpg": "territorio-mental.jpg",
+    "8883340966_889ef73caf_o.jpg": "vibración-ancestral.jpg",
+    "croquis-modelo.jpg": "anatomia-creativa.jpg",
+    "img_0442-1.jpeg": "exploración-táctil.jpeg",
+    "img_0464-1.jpg": "proceso-emergente.jpg",
+    "img_0466-1.jpg": "materia-pensante.jpg",
+    "img_0474-1.jpeg": "gesto-primordial.jpeg",
+    "img_0726-1.jpg": "laboratorio-visual.jpg",
+    "img_0793-1.jpg": "textura-temporal.jpg",
+    "img_0794-1.jpg": "superficie-consciente.jpg",
+    "img_0853-1.jpg": "campo-energético.jpg",
+    "img_0856-1.jpg": "registro-sensorial.jpg",
+    "img_0870-1.jpg": "espacio-liminal.jpg",
+    "img_0877-1.jpg": "huella-cognitiva.jpg",
+    "img_1587-1.jpg": "intervalo-creativo.jpg",
+    "img_1619-1.jpg": "ritmo-visual.jpg",
+    "img_2121-1.jpg": "código-pictórico.jpg",
+    "img_2134-1.jpg": "síntesis-cromática.jpg",
+    "img_2135-1.jpg": "densidad-emocional.jpg",
+    "img_2141-1.jpg": "arqueología-gestual.jpg",
+    "img_2142-1.jpg": "memoria-plástica.jpg",
+    "img_2144-1.jpg": "territorio-onírico.jpg",
+    "img_2145-1.jpg": "cartografía-interior.jpg",
+    "img_5366-1.png": "abstracción-digital.png",
+    "img_5367-1.png": "código-visual.png",
+    "obra002.jpg": "origen-pictórico.jpg",
+    "project3.jpg": "experimento-3.jpg",
+    "retrato-sergio.png": "autorretrato-artista.png",
+    "sol-painting.jpg": "luminosidad-esencial.jpg",
+    "tumblr_ntv4wdy1hn1u45omzo1_1280-1.jpeg": "archivo-digital.jpeg"
+  },
+  "titleMapping": {
+    "sinestesia-cognitiva.png": "Sinestesia Cognitiva",
+    "flujo-temporal.png": "Flujo Temporal",
+    "triada-existencial.png": "Tríada Existencial",
+    "genesis-cromática.png": "Génesis Cromática",
+    "metamorfosis-interior.png": "Metamorfosis Interior",
+    "resonancia-primordial.png": "Resonancia Primordial",
+    "epifania-luminosa.png": "Epifanía Luminosa",
+    "introspección-silenciosa.png": "Introspección Silenciosa",
+    "turbulencia-esencial.png": "Turbulencia Esencial",
+    "presencia-divina.png": "Presencia Divina",
+    "arqueología-temporal.jpg": "Arqueología Temporal",
+    "topografia-neural.jpg": "Topografía Neural",
+    "estructura-algoritmica.jpg": "Estructura Algorítmica",
+    "matriz-generativa.png": "Matriz Generativa",
+    "fragmento-biologico.jpg": "Fragmento Biológico",
+    "tejido-molecular.jpg": "Tejido Molecular",
+    "geometria-organica.jpg": "Geometría Orgánica",
+    "sedimento-digital.jpg": "Sedimento Digital",
+    "paisaje-micro.jpg": "Paisaje Micro",
+    "cosmos-interior.jpg": "Cosmos Interior",
+    "territorio-mental.jpg": "Territorio Mental",
+    "vibración-ancestral.jpg": "Vibración Ancestral",
+    "anatomia-creativa.jpg": "Anatomía Creativa",
+    "exploración-táctil.jpeg": "Exploración Táctil",
+    "proceso-emergente.jpg": "Proceso Emergente",
+    "materia-pensante.jpg": "Materia Pensante",
+    "gesto-primordial.jpeg": "Gesto Primordial",
+    "laboratorio-visual.jpg": "Laboratorio Visual",
+    "textura-temporal.jpg": "Textura Temporal",
+    "superficie-consciente.jpg": "Superficie Consciente",
+    "campo-energético.jpg": "Campo Energético",
+    "registro-sensorial.jpg": "Registro Sensorial",
+    "fragmento-orgánico.jpg": "Fragmento Orgánico",
+    "espacio-liminal.jpg": "Espacio Liminal",
+    "huella-cognitiva.jpg": "Huella Cognitiva",
+    "forma-emergente.jpg": "Forma Emergente",
+    "intervalo-creativo.jpg": "Intervalo Creativo",
+    "ritmo-visual.jpg": "Ritmo Visual",
+    "código-pictórico.jpg": "Código Pictórico",
+    "síntesis-cromática.jpg": "Síntesis Cromática",
+    "densidad-emocional.jpg": "Densidad Emocional",
+    "arqueología-gestual.jpg": "Arqueología Gestual",
+    "memoria-plástica.jpg": "Memoria Plástica",
+    "territorio-onírico.jpg": "Territorio Onírico",
+    "cartografía-interior.jpg": "Cartografía Interior",
+    "abstracción-digital.png": "Abstracción Digital",
+    "código-visual.png": "Código Visual",
+    "origen-pictórico.jpg": "Origen Pictórico",
+    "experimento-3.jpg": "Experimento III",
+    "autorretrato-artista.png": "Autorretrato del Artista",
+    "luminosidad-esencial.jpg": "Luminosidad Esencial",
+    "archivo-digital.jpeg": "Archivo Digital"
+  },
+  "renamedFiles": [
+    {
+      "directory": "images/archive",
+      "originalName": "15995801610_b5f5c1cc9c_o.jpg",
+      "newName": "cosmos-interior.jpg",
+      "title": "Cosmos Interior",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "5565562880_ccbf906149_o.jpg",
+      "newName": "territorio-mental.jpg",
+      "title": "Territorio Mental",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "8883340966_889ef73caf_o.jpg",
+      "newName": "vibración-ancestral.jpg",
+      "title": "Vibración Ancestral",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "croquis-modelo.jpg",
+      "newName": "anatomia-creativa.jpg",
+      "title": "Anatomía Creativa",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_0442-1.jpeg",
+      "newName": "exploración-táctil.jpeg",
+      "title": "Exploración Táctil",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_0464-1.jpg",
+      "newName": "proceso-emergente.jpg",
+      "title": "Proceso Emergente",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_0466-1.jpg",
+      "newName": "materia-pensante.jpg",
+      "title": "Materia Pensante",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_0474-1.jpeg",
+      "newName": "gesto-primordial.jpeg",
+      "title": "Gesto Primordial",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_0726-1.jpg",
+      "newName": "laboratorio-visual.jpg",
+      "title": "Laboratorio Visual",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_0793-1.jpg",
+      "newName": "textura-temporal.jpg",
+      "title": "Textura Temporal",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_0794-1.jpg",
+      "newName": "superficie-consciente.jpg",
+      "title": "Superficie Consciente",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_0853-1.jpg",
+      "newName": "campo-energético.jpg",
+      "title": "Campo Energético",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_0856-1.jpg",
+      "newName": "registro-sensorial.jpg",
+      "title": "Registro Sensorial",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_0864-1.jpg",
+      "newName": "fragmento-orgánico.jpg",
+      "title": "Fragmento Orgánico",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_0870-1.jpg",
+      "newName": "espacio-liminal.jpg",
+      "title": "Espacio Liminal",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_0877-1.jpg",
+      "newName": "huella-cognitiva.jpg",
+      "title": "Huella Cognitiva",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_0943-1.jpg",
+      "newName": "forma-emergente.jpg",
+      "title": "Forma Emergente",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_1587-1.jpg",
+      "newName": "intervalo-creativo.jpg",
+      "title": "Intervalo Creativo",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_1619-1.jpg",
+      "newName": "ritmo-visual.jpg",
+      "title": "Ritmo Visual",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_2121-1.jpg",
+      "newName": "código-pictórico.jpg",
+      "title": "Código Pictórico",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_2134-1.jpg",
+      "newName": "síntesis-cromática.jpg",
+      "title": "Síntesis Cromática",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_2135-1.jpg",
+      "newName": "densidad-emocional.jpg",
+      "title": "Densidad Emocional",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_2141-1.jpg",
+      "newName": "arqueología-gestual.jpg",
+      "title": "Arqueología Gestual",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_2142-1.jpg",
+      "newName": "memoria-plástica.jpg",
+      "title": "Memoria Plástica",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_2144-1.jpg",
+      "newName": "territorio-onírico.jpg",
+      "title": "Territorio Onírico",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_2145-1.jpg",
+      "newName": "cartografía-interior.jpg",
+      "title": "Cartografía Interior",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_5366-1.png",
+      "newName": "abstracción-digital.png",
+      "title": "Abstracción Digital",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "img_5367-1.png",
+      "newName": "código-visual.png",
+      "title": "Código Visual",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "obra002.jpg",
+      "newName": "origen-pictórico.jpg",
+      "title": "Origen Pictórico",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "project3.jpg",
+      "newName": "experimento-3.jpg",
+      "title": "Experimento III",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "retrato-sergio.png",
+      "newName": "autorretrato-artista.png",
+      "title": "Autorretrato del Artista",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "sol-painting.jpg",
+      "newName": "luminosidad-esencial.jpg",
+      "title": "Luminosidad Esencial",
+      "category": "archive"
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "tumblr_ntv4wdy1hn1u45omzo1_1280-1.jpeg",
+      "newName": "archivo-digital.jpeg",
+      "title": "Archivo Digital",
+      "category": "archive"
+    }
+  ],
+  "errors": []
+}

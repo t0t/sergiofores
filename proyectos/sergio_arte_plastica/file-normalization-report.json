@@ -1,0 +1,529 @@
+{
+  "timestamp": "2025-07-10T23:33:20.576Z",
+  "summary": {
+    "totalProcessed": 59,
+    "totalErrors": 0,
+    "extensionChanges": 31,
+    "nameChanges": 59
+  },
+  "processedFiles": [
+    {
+      "directory": "images/obras",
+      "originalName": ".DS_Store",
+      "newName": ".ds_store",
+      "changes": [
+        "Nombre: .DS_Store → .ds_store"
+      ]
+    },
+    {
+      "directory": "images/obras",
+      "originalName": "2911a.png",
+      "newName": "composicion-2911.png",
+      "changes": [
+        "Nombre: 2911a → composicion-2911"
+      ]
+    },
+    {
+      "directory": "images/obras",
+      "originalName": "291224a.png",
+      "newName": "composicion-291224.png",
+      "changes": [
+        "Nombre: 291224a → composicion-291224"
+      ]
+    },
+    {
+      "directory": "images/obras",
+      "originalName": "3955C791-B166-42B0-AA5B-065B6CBC2DC0.jpg",
+      "newName": "3955c791-b166-42b0-aa5b-065b6cbc2dc0.jpg",
+      "changes": [
+        "Nombre: 3955C791-B166-42B0-AA5B-065B6CBC2DC0 → 3955c791-b166-42b0-aa5b-065b6cbc2dc0"
+      ]
+    },
+    {
+      "directory": "images/obras",
+      "originalName": "IMG_0864.jpg",
+      "newName": "img_0864.jpg",
+      "changes": [
+        "Nombre: IMG_0864 → img_0864"
+      ]
+    },
+    {
+      "directory": "images/obras",
+      "originalName": "IMG_0869.jpg",
+      "newName": "img_0869.jpg",
+      "changes": [
+        "Nombre: IMG_0869 → img_0869"
+      ]
+    },
+    {
+      "directory": "images/obras",
+      "originalName": "IMG_0943.jpg",
+      "newName": "img_0943.jpg",
+      "changes": [
+        "Nombre: IMG_0943 → img_0943"
+      ]
+    },
+    {
+      "directory": "images/obras",
+      "originalName": "IMG_7883.jpg",
+      "newName": "img_7883.jpg",
+      "changes": [
+        "Nombre: IMG_7883 → img_7883"
+      ]
+    },
+    {
+      "directory": "images/obras",
+      "originalName": "IMG_8631.jpg",
+      "newName": "img_8631.jpg",
+      "changes": [
+        "Nombre: IMG_8631 → img_8631"
+      ]
+    },
+    {
+      "directory": "images/obras",
+      "originalName": "luz2.png",
+      "newName": "luz-2.png",
+      "changes": [
+        "Nombre: luz2 → luz-2"
+      ]
+    },
+    {
+      "directory": "images/obras",
+      "originalName": "menteacusticaliteral1.png",
+      "newName": "mente-acustica-literal-1.png",
+      "changes": [
+        "Nombre: menteacusticaliteral1 → mente-acustica-literal-1"
+      ]
+    },
+    {
+      "directory": "images/obras",
+      "originalName": "proceso2.png",
+      "newName": "proceso-2.png",
+      "changes": [
+        "Nombre: proceso2 → proceso-2"
+      ]
+    },
+    {
+      "directory": "images/obras",
+      "originalName": "proceso3.png",
+      "newName": "proceso-3.png",
+      "changes": [
+        "Nombre: proceso3 → proceso-3"
+      ]
+    },
+    {
+      "directory": "images/obras",
+      "originalName": "tres1.png",
+      "newName": "tres-1.png",
+      "changes": [
+        "Nombre: tres1 → tres-1"
+      ]
+    },
+    {
+      "directory": "images/obras/oil",
+      "originalName": "2911a.png",
+      "newName": "oleo-2911a.png",
+      "changes": [
+        "Nombre: 2911a → oleo-2911a"
+      ]
+    },
+    {
+      "directory": "images/obras/oil",
+      "originalName": "291224a.png",
+      "newName": "oleo-291224a.png",
+      "changes": [
+        "Nombre: 291224a → oleo-291224a"
+      ]
+    },
+    {
+      "directory": "images/obras/oil",
+      "originalName": "CuadroArenaOxido.jpg",
+      "newName": "cuadro-arena-oxido.jpg",
+      "changes": [
+        "Nombre: CuadroArenaOxido → cuadro-arena-oxido"
+      ]
+    },
+    {
+      "directory": "images/obras/oil",
+      "originalName": "luz2.png",
+      "newName": "luz-2.png",
+      "changes": [
+        "Nombre: luz2 → luz-2"
+      ]
+    },
+    {
+      "directory": "images/obras/oil",
+      "originalName": "menteacusticaliteral1.png",
+      "newName": "mente-acustica-literal-1.png",
+      "changes": [
+        "Nombre: menteacusticaliteral1 → mente-acustica-literal-1"
+      ]
+    },
+    {
+      "directory": "images/obras/oil",
+      "originalName": "proceso2.png",
+      "newName": "proceso-2.png",
+      "changes": [
+        "Nombre: proceso2 → proceso-2"
+      ]
+    },
+    {
+      "directory": "images/obras/oil",
+      "originalName": "proceso3.png",
+      "newName": "proceso-3.png",
+      "changes": [
+        "Nombre: proceso3 → proceso-3"
+      ]
+    },
+    {
+      "directory": "images/obras/oil",
+      "originalName": "tres1.png",
+      "newName": "tres-1.png",
+      "changes": [
+        "Nombre: tres1 → tres-1"
+      ]
+    },
+    {
+      "directory": "images/obras/3dprinting",
+      "originalName": ".DS_Store",
+      "newName": "escultura-.ds_store",
+      "changes": [
+        "Extensión:  → .ds_store",
+        "Nombre: .DS_Store → escultura-"
+      ]
+    },
+    {
+      "directory": "images/obras/3dprinting",
+      "originalName": "3955C791-B166-42B0-AA5B-065B6CBC2DC0.JPG",
+      "newName": "escultura-3955c791-b166-42b0-aa5b-065b6cbc2dc0.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: 3955C791-B166-42B0-AA5B-065B6CBC2DC0 → escultura-3955c791-b166-42b0-aa5b-065b6cbc2dc0"
+      ]
+    },
+    {
+      "directory": "images/obras/3dprinting",
+      "originalName": "87368654_498661417692348_2165792891719385088_o.jpg",
+      "newName": "escultura-87368654_498661417692348_2165792891719385088_o.jpg",
+      "changes": [
+        "Nombre: 87368654_498661417692348_2165792891719385088_o → escultura-87368654_498661417692348_2165792891719385088_o"
+      ]
+    },
+    {
+      "directory": "images/obras/3dprinting",
+      "originalName": "IMG_0864.JPG",
+      "newName": "img_0864.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_0864 → img_0864"
+      ]
+    },
+    {
+      "directory": "images/obras/3dprinting",
+      "originalName": "IMG_0869.JPG",
+      "newName": "img_0869.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_0869 → img_0869"
+      ]
+    },
+    {
+      "directory": "images/obras/3dprinting",
+      "originalName": "IMG_0943.jpg",
+      "newName": "img_0943.jpg",
+      "changes": [
+        "Nombre: IMG_0943 → img_0943"
+      ]
+    },
+    {
+      "directory": "images/obras/3dprinting",
+      "originalName": "IMG_7883.JPG",
+      "newName": "img_7883.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_7883 → img_7883"
+      ]
+    },
+    {
+      "directory": "images/obras/3dprinting",
+      "originalName": "IMG_8631.JPG",
+      "newName": "img_8631.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_8631 → img_8631"
+      ]
+    },
+    {
+      "directory": "images/obras/3dprinting",
+      "originalName": "bg1.png",
+      "newName": "escultura-bg1.png",
+      "changes": [
+        "Nombre: bg1 → escultura-bg1"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_0442.jpeg",
+      "newName": "img_0442.jpeg",
+      "changes": [
+        "Nombre: IMG_0442 → img_0442"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_0464.JPG",
+      "newName": "img_0464.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_0464 → img_0464"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_0466.JPG",
+      "newName": "img_0466.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_0466 → img_0466"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_0474.jpeg",
+      "newName": "img_0474.jpeg",
+      "changes": [
+        "Nombre: IMG_0474 → img_0474"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_0726.JPG",
+      "newName": "img_0726.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_0726 → img_0726"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_0793.JPG",
+      "newName": "img_0793.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_0793 → img_0793"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_0794.JPG",
+      "newName": "img_0794.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_0794 → img_0794"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_0853.JPG",
+      "newName": "img_0853.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_0853 → img_0853"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_0856.JPG",
+      "newName": "img_0856.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_0856 → img_0856"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_0864.JPG",
+      "newName": "img_0864.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_0864 → img_0864"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_0870.JPG",
+      "newName": "img_0870.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_0870 → img_0870"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_0877.JPG",
+      "newName": "img_0877.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_0877 → img_0877"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_0943.JPG",
+      "newName": "img_0943.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_0943 → img_0943"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_1587.JPG",
+      "newName": "img_1587.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_1587 → img_1587"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_1619.JPG",
+      "newName": "img_1619.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_1619 → img_1619"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_2121.JPG",
+      "newName": "img_2121.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_2121 → img_2121"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_2134.JPG",
+      "newName": "img_2134.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_2134 → img_2134"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_2135.JPG",
+      "newName": "img_2135.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_2135 → img_2135"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_2141.JPG",
+      "newName": "img_2141.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_2141 → img_2141"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_2142.JPG",
+      "newName": "img_2142.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_2142 → img_2142"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_2144.JPG",
+      "newName": "img_2144.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_2144 → img_2144"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_2145.JPG",
+      "newName": "img_2145.jpg",
+      "changes": [
+        "Extensión: .JPG → .jpg",
+        "Nombre: IMG_2145 → img_2145"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_5366.PNG",
+      "newName": "img_5366.png",
+      "changes": [
+        "Extensión: .PNG → .png",
+        "Nombre: IMG_5366 → img_5366"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "IMG_5367.PNG",
+      "newName": "img_5367.png",
+      "changes": [
+        "Extensión: .PNG → .png",
+        "Nombre: IMG_5367 → img_5367"
+      ]
+    },
+    {
+      "directory": "images/archive",
+      "originalName": "tumblr_ntv4wdy1Hn1u45omzo1_1280.jpeg",
+      "newName": "tumblr_ntv4wdy1hn1u45omzo1_1280.jpeg",
+      "changes": [
+        "Nombre: tumblr_ntv4wdy1Hn1u45omzo1_1280 → tumblr_ntv4wdy1hn1u45omzo1_1280"
+      ]
+    },
+    {
+      "directory": "images/videos",
+      "originalName": "IMG_1626.MOV",
+      "newName": "img_1626.mov",
+      "changes": [
+        "Extensión: .MOV → .mov",
+        "Nombre: IMG_1626 → img_1626"
+      ]
+    },
+    {
+      "directory": "images/videos",
+      "originalName": "IMG_1938.MOV",
+      "newName": "img_1938.mov",
+      "changes": [
+        "Extensión: .MOV → .mov",
+        "Nombre: IMG_1938 → img_1938"
+      ]
+    },
+    {
+      "directory": "images/videos",
+      "originalName": "IMG_1940.MOV",
+      "newName": "img_1940.mov",
+      "changes": [
+        "Extensión: .MOV → .mov",
+        "Nombre: IMG_1940 → img_1940"
+      ]
+    }
+  ],
+  "errors": [],
+  "extensionMap": {
+    ".JPG": ".jpg",
+    ".JPEG": ".jpeg",
+    ".PNG": ".png",
+    ".WEBP": ".webp",
+    ".GIF": ".gif",
+    ".BMP": ".bmp",
+    ".TIFF": ".tiff",
+    ".SVG": ".svg",
+    ".MOV": ".mov",
+    ".MP4": ".mp4",
+    ".AVI": ".avi",
+    ".WEBM": ".webm"
+  }
+}

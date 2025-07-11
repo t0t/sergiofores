@@ -14,6 +14,8 @@
 
 ## Nivel 1: Modelo/Esencia (El Qué y el Porqué)
 
+Este proyecto explora la faceta artística de Sergio Forés, centrándose en la pintura como arteterapia y herramienta para el bienestar cerebral. La creación artística es vista como un proceso que fomenta la neuroplasticidad y la conexión mente-cuerpo. Le gusta experimentar y descubrir nuevos registros plásticos en cada obra.
+
 *Descripción concisa del propósito del proyecto. ¿Qué problema resuelve? ¿Cuál es su visión?*
 
 ---
