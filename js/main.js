@@ -181,6 +181,8 @@ class NavigationManager {
 // Initialize the elegant navigation system
 document.addEventListener('DOMContentLoaded', () => {
     const navManager = new NavigationManager();
+    // Make navManager globally accessible for logo click
+    window.navManager = navManager;
     // Start with no active states when page loads
     navManager.clearActiveStates();
 });
@@ -416,6 +418,13 @@ class ImageOptimizer {
                     top: 0,
                     behavior: 'smooth'
                 });
+                
+                // Desactivar estados active del menú directamente
+                const navLinks = document.querySelectorAll('.main-nav a[href^="#"]');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                console.log('🏠 Logo clicked - All nav states cleared');
             });
         }
     }
