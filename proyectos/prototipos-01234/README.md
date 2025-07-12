@@ -124,25 +124,41 @@ Este proyecto es la **demostración perfecta** de nuestra arquitectura CSS atóm
 
 ## 🎨 **SISTEMA DE COLORES MONOCROMÁTICO ELEGANTE**
 
-### **Base Monocromática (95% del diseño)**
+### **Paleta Definitiva Sergio Forés (ÚNICA FUENTE DE VERDAD)**
 ```css
---black: #000000;      /* Textos principales, autoridad */
---gray-900: #111111;   /* Textos secundarios */
---gray-600: #404040;   /* Textos terciarios */
---gray-200: #e5e7eb;   /* Bordes, separadores */
---white: #ffffff;      /* Fondos principales */
+/* COLORES PUROS SAGRADOS E INMUTABLES */
+--color-yellow: #FFFF00;   /* Amarillo puro */
+--color-cyan: #00FFFF;     /* Cyan puro */
+--color-red: #FF0000;      /* Rojo puro */
+--color-black: #000000;    /* Negro puro */
+--color-white: #FFFFFF;    /* Blanco puro */
+
+/* ESCALA MONOCROMÁTICA - 5 GRISES EXACTOS */
+--gray-1: #333333;  /* Gris oscuro */
+--gray-2: #666666;  /* Gris medio-oscuro */
+--gray-3: #999999;  /* Gris medio */
+--gray-4: #CCCCCC;  /* Gris medio-claro */
+--gray-5: #EEEEEE;  /* Gris claro */
 ```
 
-### **Acento Único 01234 (5% del diseño)**
+### **Colores Semánticos (Solo Paleta Sergio Forés)**
 ```css
---color-1: #FF6B35;    /* Naranja 01234 - ÚNICO color permitido */
+--color-primary: var(--color-black);
+--color-background: var(--color-white);
+--color-surface: var(--gray-5);
+--color-border: var(--gray-4);
+--color-text-primary: var(--color-black);
+--color-text-secondary: var(--gray-1);
+--color-text-muted: var(--gray-3);
+--color-accent: var(--color-yellow);  /* Único color permitido para acentos */
 ```
 
-**APLICACIÓN**:
-- **Links activos**: `var(--color-1)`
-- **Focus states**: `var(--color-1)`
-- **Hover borders**: `var(--color-1)`
-- **Todo lo demás**: Sistema monocromático
+**APLICACIÓN MONOCROMÁTICA ELEGANTE**:
+- **95% grises**: Escala exacta de 5 grises (#333, #666, #999, #CCC, #EEE)
+- **5% acentos**: Solo negro puro y blanco puro
+- **Colores puros**: Solo para casos específicos justificados
+- **Focus states**: `var(--color-accent)` (amarillo puro)
+- **Todo lo demás**: Sistema monocromático sagrado
 
 ## 🏗️ **LAYOUT Y GRID SYSTEMS**
 

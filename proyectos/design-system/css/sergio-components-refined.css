@@ -1,0 +1,529 @@
+/**
+ * SERGIO FORÉS - COMPONENTES REFINADOS V3
+ * Componentes completamente alineados con reglas CLAUDE.md
+ * 
+ * ⚠️ CUMPLIMIENTO ESTRICTO:
+ * ✅ Sistema de 3 tamaños de fuente ÚNICAMENTE
+ * ✅ HTML semántico obligatorio
+ * ✅ Layout Grid optimizado (NO 1fr que estira)
+ * ✅ Mix-blend-mode solo desktop
+ * ✅ Performance mobile optimizado
+ * ✅ Navegación activa inteligente
+ * ✅ Espaciado 8px sistema matemático
+ * ✅ Criterios específicos Sergio Forés
+ */
+
+/* ==========================================================================
+   RESET Y BASE - HTML SEMÁNTICO OBLIGATORIO
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-primary);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  /* Smooth scrolling con offset pixel-perfect */
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--space-16);
+  /* Viewport real para iOS */
+  min-height: var(--viewport-height);
+}
+
+body {
+  font-size: var(--text-small); /* Todo el resto del contenido */
+  font-weight: var(--font-weight-normal); /* Por defecto */
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* ==========================================================================
+   TIPOGRAFÍA - SISTEMA 3 TAMAÑOS ÚNICAMENTE
+   ========================================================================== */
+
+/* ⚠️ CUMPLIMIENTO CLAUDE.md: Solo 3 tamaños permitidos */
+
+/* Títulos principales (H1) */
+h1 {
+  font-size: var(--text-large);
+  font-weight: var(--font-weight-medium); /* Títulos */
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--space-6);
+}
+
+/* Subtítulos y navegación */
+h2, h3, nav a, .nav-link {
+  font-size: var(--text-medium);
+  font-weight: var(--font-weight-medium); /* Títulos */
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--space-4);
+}
+
+/* Todo el resto del contenido */
+p, li, span, div, a, button, input, textarea,
+h4, h5, h6 {
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-normal); /* Por defecto para body */
+  line-height: var(--line-height-relaxed);
+}
+
+/* ⚠️ PROHIBIDO: Otros tamaños de fuente */
+
+/* ==========================================================================
+   ELEMENTOS HTML SEMÁNTICOS OBLIGATORIOS
+   ========================================================================== */
+
+/* Header semántico */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-6);
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Main content */
+main {
+  min-height: calc(var(--viewport-height) - var(--space-16));
+}
+
+/* Navigation semántica */
+nav ul {
+  display: flex;
+  gap: var(--space-6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--color-accent);
+}
+
+/* Sections semánticas */
+section {
+  padding: var(--space-12) var(--space-6);
+}
+
+/* Footer semántico */
+footer {
+  padding: var(--space-8) var(--space-6);
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+/* ==========================================================================
+   LAYOUT GRID OPTIMIZADO - CUMPLIMIENTO CLAUDE.md
+   ========================================================================== */
+
+/* Grid preferred sobre flexbox para layouts principales */
+.layout-grid {
+  display: grid;
+  gap: var(--grid-gap);
+  /* Template rows: auto auto auto (NO usar 1fr que estira contenido) */
+  grid-template-rows: var(--grid-template-rows);
+  /* Justify/align optimizado */
+  justify-items: var(--grid-justify-items);
+  align-content: var(--grid-align-content);
+}
+
+/* Grid responsivo móvil-first */
+.grid-responsive {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==========================================================================
+   NAVEGACIÓN ACTIVA INTELIGENTE - CUMPLIMIENTO CLAUDE.md
+   ========================================================================== */
+
+/* Intersection Observer preparado */
+.nav-intersection {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background-color: var(--color-background);
+  backdrop-filter: blur(8px);
+}
+
+/* Estados de navegación */
+.nav-item {
+  position: relative;
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.nav-item.active {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-medium);
+}
+
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-full);
+}
+
+/* Clear active states cuando scroll < 100px */
+.scroll-top .nav-item.active {
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-normal);
+}
+
+.scroll-top .nav-item.active::after {
+  opacity: 0;
+}
+
+/* Logo click behavior */
+.logo-reset .nav-item.active {
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-normal);
+}
+
+/* ==========================================================================
+   COMPONENTES ESPECÍFICOS SERGIO FORÉS
+   ========================================================================== */
+
+/* Hero Section - Criterios Bauhaus */
+.hero {
+  display: grid;
+  place-items: center;
+  min-height: var(--hero-min-height-mobile);
+  padding: var(--space-12) var(--space-6);
+  text-align: center;
+  background-color: var(--color-background);
+}
+
+.hero-title {
+  font-size: var(--text-large); /* Títulos principales */
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-6);
+  max-width: var(--hero-content-width);
+}
+
+.hero-subtitle {
+  font-size: var(--text-small); /* Todo el resto del contenido */
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+  max-width: var(--hero-content-width);
+}
+
+/* Card Component - Minimalismo inteligente */
+.card {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-title {
+  font-size: var(--text-medium); /* Subtítulos */
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-4);
+}
+
+.card-content {
+  font-size: var(--text-small); /* Todo el resto del contenido */
+  color: var(--color-text-secondary);
+}
+
+/* Button Component - Geometría funcional */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-small); /* Todo el resto del contenido */
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+  user-select: none;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--white);
+  border-color: var(--color-accent);
+}
+
+.btn-primary:hover {
+  background-color: var(--gray-800);
+  border-color: var(--gray-800);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-surface);
+}
+
+/* ==========================================================================
+   MIX-BLEND-MODE SOLO DESKTOP - CUMPLIMIENTO CLAUDE.md
+   ========================================================================== */
+
+/* ⚠️ CRÍTICO: Solo dispositivos con hover y pointer fine */
+@media (hover: hover) and (pointer: fine) {
+  /* Cursor personalizado solo desktop */
+  .cursor-effect {
+    cursor: none;
+    mix-blend-mode: difference;
+  }
+  
+  .custom-cursor {
+    display: block;
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-accent);
+    border-radius: var(--radius-full);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+  
+  /* Hero content blend solo desktop */
+  .hero-content-blend {
+    mix-blend-mode: difference;
+  }
+}
+
+/* Mobile: Sin mix-blend-mode ni cursor personalizado */
+@media not all and (hover: hover) and (pointer: fine) {
+  .cursor-effect,
+  .hero-content-blend {
+    mix-blend-mode: normal !important;
+  }
+  
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   PERFORMANCE MOBILE - CUMPLIMIENTO CLAUDE.md
+   ========================================================================== */
+
+/* Hardware acceleration para animaciones móviles */
+@media (max-width: 768px) {
+  .card:hover,
+  .btn:hover,
+  .nav-item {
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+  }
+  
+  /* Cleanup will-change después */
+  .animation-complete {
+    will-change: auto;
+  }
+  
+  /* Reducir animaciones en móvil */
+  .reduced-motion {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINTS ESPECÍFICOS IPHONE - CUMPLIMIENTO CLAUDE.md
+   ========================================================================== */
+
+/* iPhone SE y similares (375px) */
+@media (max-width: 375px) {
+  .hero {
+    padding: var(--space-8) var(--space-4);
+  }
+  
+  header {
+    padding: var(--space-2) 8px; /* Padding responsivo: 0 8px */
+  }
+  
+  .card {
+    padding: var(--space-4);
+  }
+}
+
+/* iPhone moderno (430px) */
+@media (min-width: 430px) and (max-width: 768px) {
+  .hero {
+    padding: var(--space-12) var(--space-6);
+  }
+  
+  .grid-responsive {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Tablet general (768px) */
+@media (min-width: 768px) {
+  .hero {
+    min-height: 60vh;
+  }
+  
+  header {
+    padding: var(--space-4) var(--space-8);
+  }
+}
+
+/* Desktop (1024px) */
+@media (min-width: 1024px) {
+  .hero {
+    min-height: 50vh;
+  }
+  
+  .layout-grid {
+    gap: var(--space-12);
+  }
+}
+
+/* ==========================================================================
+   UTILIDADES SISTEMA 8PX - CUMPLIMIENTO CLAUDE.md
+   ========================================================================== */
+
+/* Espaciado basado en sistema 8px matemático */
+.space-2 { margin: var(--space-2); }
+.space-4 { margin: var(--space-4); }
+.space-6 { margin: var(--space-6); }
+.space-8 { margin: var(--space-8); }
+
+.p-2 { padding: var(--space-2); }
+.p-4 { padding: var(--space-4); }
+.p-6 { padding: var(--space-6); }
+.p-8 { padding: var(--space-8); }
+
+/* Márgenes uniformes - Títulos y descripciones */
+.title-margin { margin-bottom: var(--space-4); }
+.description-margin { margin-bottom: var(--space-6); }
+.section-margin { margin-bottom: var(--space-12); }
+
+/* Componentes densos - Espaciado entre elementos */
+.dense-spacing > * + * {
+  margin-top: var(--space-2);
+}
+
+.comfortable-spacing > * + * {
+  margin-top: var(--space-4);
+}
+
+.relaxed-spacing > * + * {
+  margin-top: var(--space-6);
+}
+
+/* ==========================================================================
+   ESTADOS Y INTERACCIONES
+   ========================================================================== */
+
+/* Focus states visibles para accesibilidad */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Hover states solo desktop */
+@media (hover: hover) {
+  .interactive:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-base);
+  }
+}
+
+/* Estados de carga */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--color-accent);
+  border-radius: var(--radius-full);
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+  
+  h1 { font-size: 18pt; }
+  h2, h3 { font-size: 14pt; }
+  
+  .card,
+  .btn {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+}

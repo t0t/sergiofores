@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo CLAUDE.md Compliance - Design System Sergio Forés</title>
+
+    <!-- Sistema de Diseño Completamente Adaptado a CLAUDE.md -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="css/sergio-design-tokens.css">
+    <link rel="stylesheet" href="css/sergio-components-refined.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- JavaScript - Navegación inteligente CLAUDE.md compliant -->
+    <script src="js/navigation-intelligence.js" defer></script>
+    <script src="validate-claude-compliance.js" defer></script>
+</head>
+<body>
+    <!-- Header semántico obligatorio -->
+    <header class="header nav-intersection">
+        <div class="header__container">
+            <div class="header__brand logo">
+                <span class="logo__mark">01234</span>
+                <span class="logo__text">CLAUDE.md Compliant</span>
+            </div>
+            <nav class="header__nav">
+                <ul>
+                    <li><a href="#hero" class="header__nav-link">Inicio</a></li>
+                    <li><a href="#tipografia" class="header__nav-link">Tipografía</a></li>
+                    <li><a href="#layout" class="header__nav-link">Layout</a></li>
+                    <li><a href="#mobile" class="header__nav-link">Mobile</a></li>
+                    <li><a href="#componentes" class="header__nav-link">Componentes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section - Viewport real para iOS -->
+        <section id="hero" class="hero">
+            <div class="hero__container">
+                <h1 class="hero-title">Sistema CLAUDE.md Compliant</h1>
+                <p class="hero-subtitle">
+                    Design System completamente adaptado a las reglas de CLAUDE.md.<br>
+                    <strong>Sistema de 3 tamaños de fuente ÚNICAMENTE</strong> • 
+                    <strong>Mix-blend-mode solo desktop</strong> • 
+                    <strong>Layout Grid optimizado</strong> • 
+                    <strong>Performance mobile</strong>
+                </p>
+                <div class="hero__actions">
+                    <button class="btn btn-primary">Explorar Demo</button>
+                    <button class="btn btn-secondary">Documentación</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tipografía - Sistema 3 tamaños ÚNICAMENTE -->
+        <section id="tipografia" class="section">
+            <div class="container">
+                <header class="section__header">
+                    <h2>Sistema de 3 Tamaños ÚNICAMENTE</h2>
+                    <p>CUMPLIMIENTO CLAUDE.md: Prohibido font-size-xs, font-size-sm, text-xl, etc.</p>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-3">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>--text-large</h3>
+                            <h1 style="margin: 0;">Títulos principales (H1)</h1>
+                            <p>Usado exclusivamente para H1 y títulos hero</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>--text-medium</h3>
+                            <h2 style="margin: 0;">Subtítulos y navegación</h2>
+                            <p>H2, H3, enlaces de navegación</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>--text-small</h3>
+                            <p style="margin: 0;">Todo el resto del contenido</p>
+                            <p>H4-H6, párrafos, listas, botones, formularios</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card m-6">
+                    <div class="card__body">
+                        <h3>Font-Weight Consistente</h3>
+                        <ul>
+                            <li><strong>Body:</strong> <code>--font-weight-normal</code> por defecto</li>
+                            <li><strong>Títulos:</strong> <code>--font-weight-medium</code> o <code>--font-weight-semibold</code></li>
+                            <li><strong>Emphasis:</strong> <code>--font-weight-bold</code> solo cuando sea estrictamente necesario</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Layout Grid Optimizado -->
+        <section id="layout" class="section">
+            <div class="container">
+                <header class="section__header">
+                    <h2>Layout Grid Optimizado</h2>
+                    <p>Grid preferred • Template rows: auto auto auto • NO usar 1fr que estira contenido</p>
+                </header>
+
+                <div class="layout-grid grid-cols-3">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Grid Preferred</h3>
+                            <p>display: grid sobre flexbox para layouts principales</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Auto Template Rows</h3>
+                            <p>grid-template-rows: auto auto auto (NO 1fr)</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Justify/Align</h3>
+                            <p>justify-items: center • align-content: start</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Optimizaciones Móviles -->
+        <section id="mobile" class="section">
+            <div class="container">
+                <header class="section__header">
+                    <h2>Optimizaciones Móviles Críticas</h2>
+                    <p>Viewport real iOS • Performance mobile • Breakpoints específicos iPhone</p>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Viewport Real iOS</h3>
+                            <ul>
+                                <li><strong>Safe viewport:</strong> 100svh en lugar de 100vh</li>
+                                <li><strong>Hero content:</strong> calc(100vw - 20px)</li>
+                                <li><strong>Padding responsivo:</strong> 0 8px en header móvil</li>
+                                <li><strong>Secciones compactas:</strong> min-height: 40vh móvil</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Performance Mobile</h3>
+                            <ul>
+                                <li><strong>Hardware acceleration:</strong> translate3d</li>
+                                <li><strong>Will-change cleanup:</strong> después de animación</li>
+                                <li><strong>Mix-blend-mode:</strong> deshabilitado móvil</li>
+                                <li><strong>Cursor personalizado:</strong> solo desktop</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Breakpoints iPhone</h3>
+                            <ul>
+                                <li><strong>375px:</strong> iPhone SE y similares</li>
+                                <li><strong>430px:</strong> iPhone moderno (14, 15, 16)</li>
+                                <li><strong>768px:</strong> Tablet general</li>
+                                <li><strong>1024px:</strong> Desktop</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card cursor-effect">
+                        <div class="card__body">
+                            <h3>Mix-Blend-Mode Solo Desktop</h3>
+                            <p>Esta card tiene mix-blend-mode solo en (hover: hover) and (pointer: fine)</p>
+                            <p><strong>En móvil:</strong> Comportamiento normal</p>
+                            <p><strong>En desktop:</strong> Efecto difference visible</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navegación Activa Inteligente -->
+        <section id="navegacion" class="section">
+            <div class="container">
+                <header class="section__header">
+                    <h2>Navegación Activa Inteligente</h2>
+                    <p>Intersection Observer • Clear active cuando scroll < 100px • Logo click behavior</p>
+                </header>
+
+                <div class="card">
+                    <div class="card__body">
+                        <h3>Características Implementadas</h3>
+                        <ul>
+                            <li><strong>Intersection Observer:</strong> Detecta secciones visibles automáticamente</li>
+                            <li><strong>Scroll detection:</strong> Clear active states cuando scroll < 100px</li>
+                            <li><strong>Logo click:</strong> Limpia estados active del menú</li>
+                            <li><strong>Smooth scrolling:</strong> Con offset pixel-perfect para header</li>
+                        </ul>
+                        
+                        <h4>Testing</h4>
+                        <p>Haz scroll hacia arriba hasta el top de la página y observa cómo se limpian los estados active cuando scroll < 100px.</p>
+                        <p>Haz click en el logo para ver el comportamiento de reset automático.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Componentes Específicos -->
+        <section id="componentes" class="section">
+            <div class="container">
+                <header class="section__header">
+                    <h2>Componentes Sergio Forés</h2>
+                    <p>Criterios Bauhaus • Minimalismo inteligente • Geometría funcional</p>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <!-- Botones -->
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Botones</h3>
+                            <div class="dense-spacing">
+                                <button class="btn btn-primary">Primario</button>
+                                <button class="btn btn-secondary">Secundario</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Espaciado Sistema 8px -->
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Sistema 8px</h3>
+                            <div class="comfortable-spacing">
+                                <div class="p-2" style="background: var(--gray-100);">Padding 8px</div>
+                                <div class="p-4" style="background: var(--gray-200);">Padding 16px</div>
+                                <div class="p-6" style="background: var(--gray-300);">Padding 24px</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HTML Semántico -->
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>HTML Semántico Obligatorio</h3>
+                            <dl>
+                                <dt>Estructura jerárquica</dt>
+                                <dd>H1 único, H2-H6 según jerarquía real</dd>
+                                
+                                <dt>Elementos sectioning</dt>
+                                <dd>&lt;header&gt;, &lt;main&gt;, &lt;section&gt;, &lt;nav&gt;, &lt;footer&gt;</dd>
+                                
+                                <dt>Listas de definición</dt>
+                                <dd>&lt;dl&gt;&lt;dt&gt;&lt;dd&gt; para conceptos/definiciones</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <!-- Estados Focus -->
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Accesibilidad</h3>
+                            <p>Todos los elementos interactivos tienen estados de focus visibles:</p>
+                            <div class="dense-spacing">
+                                <button class="btn btn-primary">Prueba Tab</button>
+                                <input type="text" placeholder="Focus visible" class="form-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer semántico -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>Design System Sergio Forés - Completamente adaptado a reglas CLAUDE.md</p>
+            <p>🎯 Sistema 3 tamaños • 🖱️ Mix-blend desktop • 📱 Performance móvil • ⚡ Navegación inteligente</p>
+        </div>
+    </footer>
+
+    <!-- Cursor personalizado (solo se renderiza en desktop) -->
+    <div class="custom-cursor"></div>
+
+    <style>
+        /* Estilos específicos para la demo */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        .section {
+            padding: var(--space-12) 0;
+        }
+
+        .section__header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .section__header h2 {
+            margin-bottom: var(--space-4);
+        }
+
+        .section__header p {
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form input para demo de accesibilidad */
+        .form-input {
+            padding: var(--space-3) var(--space-4);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            font-size: var(--text-small);
+        }
+
+        .form-input:focus {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 2px;
+            border-color: var(--color-accent);
+        }
+
+        /* Hero actions spacing */
+        .hero__actions {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+
+        /* Lista de definición semántica */
+        dl {
+            margin: var(--space-4) 0;
+        }
+
+        dt {
+            font-weight: var(--font-weight-medium);
+            margin-top: var(--space-3);
+            margin-bottom: var(--space-1);
+        }
+
+        dd {
+            color: var(--color-text-secondary);
+            margin-left: var(--space-4);
+            margin-bottom: var(--space-2);
+        }
+
+        /* Demostración visual del cursor effect */
+        .cursor-effect {
+            position: relative;
+        }
+
+        .cursor-effect::before {
+            content: '🖱️ Hover aquí (solo desktop)';
+            position: absolute;
+            top: var(--space-2);
+            right: var(--space-2);
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            opacity: 0;
+            transition: opacity var(--duration-base);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .cursor-effect::before {
+                opacity: 1;
+            }
+        }
+    </style>
+</body>
+</html>

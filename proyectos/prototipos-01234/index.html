@@ -51,7 +51,7 @@
         
         .header {
             background: var(--white);
-            box-shadow: 0 var(--space-2px) var(--space-20px) rgba(0, 0, 0, 0.05);  /* CONSONANT: Shadow */
+            /* SIN SOMBRAS: Pureza geométrica Bauhaus - separación por espaciado únicamente */
             padding: var(--nav-padding-v) 0;  /* --space-xs-s: Conexión fluida */
             margin-bottom: var(--essence-space);  /* --space-l-xl: Separación dramática */
         }
@@ -132,8 +132,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             grid-template-rows: auto;  /* Auto para mantener proporciones aspect-ratio */
-            gap: var(--space-xl);  /* CRÍTICO: Gap = Margin para armonía integral */
-            margin: 0 var(--space-xl);  /* CRÍTICO: Respiración horizontal = Gap */
+            gap: var(--space-xl);  /* CRÍTICO: Gap consistente con respiración container */
+            margin: 0;  /* CRÍTICO: Sin margin - ya dentro del container con padding */
             margin-bottom: var(--infinite-space);  /* --space-xl-2xl: Separación dramática */
             justify-items: stretch;  /* CRÍTICO: Cards ocupan todo el espacio */
             align-items: stretch;    /* CRÍTICO: Altura completa */
@@ -153,7 +153,7 @@
         
         .prototipo-card {
             background: var(--white);
-            border: var(--space-1px) solid var(--gray-200);  /* CONSONANT: Border */
+            /* SIN BORDES: Pureza geométrica Bauhaus - gradientes de fondo ya definen límites */
             transition: all var(--duration-slow) var(--ease-out);  /* CONSONANT: Timing */
             position: relative;
             overflow: hidden;
@@ -164,7 +164,7 @@
             cursor: pointer;
             aspect-ratio: 16/10;  /* Proporción áurea aproximada - consonancia visual */
             min-height: var(--space-48px);  /* CONSONANT: Touch targets WCAG */
-            border-radius: var(--radius-base);  /* CONSONANT: Border radius */
+            /* SIN BORDER-RADIUS: Geometría pura, líneas rectas Bauhaus */
             /* CRÍTICO: Sin width ni height - gobernado por grid container padre */
             /* Grid padre automáticamente asigna dimensiones óptimas */
         }
@@ -173,44 +173,44 @@
            COLORES DE FONDO POR NIVEL 01234 - SISTEMA MADRE
            ======================================================================== */
         
-        /* NIVEL 0 - Campo Cuántico: Negro profundo con opacity */
+        /* NIVEL 0 - Campo Cuántico: Monocromático elegante */
         .prototipo-card.nivel-0 {
             background: linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.05) 0%, 
-                rgba(0, 0, 0, 0.1) 100%);
-            border-color: var(--color-0);
+                var(--gray-5) 0%, 
+                var(--color-white) 100%);
+            /* SIN BORDES: Gradiente monocromático - contraste perfecto */
         }
         
-        /* NIVEL 1 - Esencia: Naranja vibrante con opacity */
+        /* NIVEL 1 - Esencia: Monocromático elegante */
         .prototipo-card.nivel-1 {
             background: linear-gradient(135deg, 
-                rgba(255, 107, 53, 0.05) 0%, 
-                rgba(255, 107, 53, 0.1) 100%);
-            border-color: var(--color-1);
+                var(--gray-5) 0%, 
+                var(--color-white) 100%);
+            /* SIN BORDES: Gradiente monocromático - contraste perfecto */
         }
         
-        /* NIVEL 2 - Análisis: Turquesa con opacity */
+        /* NIVEL 2 - Análisis: Monocromático elegante */
         .prototipo-card.nivel-2 {
             background: linear-gradient(135deg, 
-                rgba(78, 205, 196, 0.05) 0%, 
-                rgba(78, 205, 196, 0.1) 100%);
-            border-color: var(--color-2);
+                var(--gray-5) 0%, 
+                var(--color-white) 100%);
+            /* SIN BORDES: Gradiente monocromático - contraste perfecto */
         }
         
-        /* NIVEL 3 - Comunicación: Azul cielo con opacity */
+        /* NIVEL 3 - Comunicación: Monocromático elegante */
         .prototipo-card.nivel-3 {
             background: linear-gradient(135deg, 
-                rgba(69, 183, 209, 0.05) 0%, 
-                rgba(69, 183, 209, 0.1) 100%);
-            border-color: var(--color-3);
+                var(--gray-5) 0%, 
+                var(--color-white) 100%);
+            /* SIN BORDES: Gradiente monocromático - contraste perfecto */
         }
         
-        /* NIVEL 4 - Materialización: Verde salvia con opacity */
+        /* NIVEL 4 - Materialización: Monocromático elegante */
         .prototipo-card.nivel-4 {
             background: linear-gradient(135deg, 
-                rgba(150, 206, 180, 0.05) 0%, 
-                rgba(150, 206, 180, 0.1) 100%);
-            border-color: var(--color-4);
+                var(--gray-5) 0%, 
+                var(--color-white) 100%);
+            /* SIN BORDES: Gradiente monocromático - contraste perfecto */
         }
         
         /* TIPOS ESPECIALES - Colores complementarios */
@@ -218,7 +218,7 @@
             background: linear-gradient(135deg, 
                 var(--gray-50) 0%, 
                 var(--gray-100) 100%);
-            border-color: var(--gray-500);
+            /* SIN BORDES: Gradiente monocromático define elegancia */
         }
         
         .prototipo-card.nuclear {
@@ -248,14 +248,10 @@
         
         .prototipo-card:hover {
             transform: var(--transform-lift-medium); /* CONSONANT: -4px */
-            box-shadow: 0 var(--space-16px) var(--space-48px) rgba(0, 0, 0, 0.08);  /* CONSONANT: Shadow */
+            /* SIN SOMBRAS: Monocromático elegante - solo transform y background */
         }
         
-        .prototipo-card.nivel-0:hover { border-color: var(--color-0); background: rgba(0, 0, 0, 0.08); }
-        .prototipo-card.nivel-1:hover { border-color: var(--color-1); background: rgba(255, 107, 53, 0.08); }
-        .prototipo-card.nivel-2:hover { border-color: var(--color-2); background: rgba(78, 205, 196, 0.08); }
-        .prototipo-card.nivel-3:hover { border-color: var(--color-3); background: rgba(69, 183, 209, 0.08); }
-        .prototipo-card.nivel-4:hover { border-color: var(--color-4); background: rgba(150, 206, 180, 0.08); }
+        /* HOVER STATES SERÁN MOVIDOS AL FINAL PARA CASCADA CORRECTA */
         
         /* ========================================================================
            PREVIEW SECTION - GRID ROW 1 (INTELIGENTE)
@@ -282,7 +278,8 @@
             width: var(--space-32px);  /* CONSONANT: Size */
             height: var(--space-32px);  /* CONSONANT: Size */
             background: var(--white);
-            border: var(--space-2px) solid currentColor;  /* CONSONANT: Border */
+            color: var(--color-black);  /* CONTRASTE PERFECTO: Negro sobre blanco */
+            /* SIN BORDES: Pureza geométrica circular sin líneas adicionales */
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -306,7 +303,7 @@
             font-weight: var(--font-weight-medium);
             letter-spacing: var(--letter-spacing-wide);
             text-transform: uppercase;
-            color: var(--color-text-secondary);
+            color: var(--color-black);  /* CONTRASTE PERFECTO: Negro para máxima legibilidad */
         }
         
         .prototipo-content {
@@ -339,7 +336,8 @@
         }
         
         .prototipo-card:hover .prototipo-preview {
-            filter: brightness(0.7);
+            /* SIN FILTERS: Los filtros oscurecen y violan contraste - solo opacity permitida */
+            opacity: 0.8;
         }
         
         /* ========================================================================
@@ -383,14 +381,14 @@
         
         /* NIVEL 0 - Círculo outline (Campo Cuántico) */
         .circle-outline {
-            border: var(--space-3px) solid var(--color-0);  /* CONSONANT: Border */
+            /* SIN BORDES: Pureza geométrica - usar background para definir forma */
             border-radius: 50%;
-            background: transparent;
+            background: var(--gray-3);  /* Gris medio monocromático */
         }
         
         /* NIVEL 1 - Círculo sólido (Esencia) */
         .circle-solid {
-            background: var(--color-1);
+            background: var(--gray-1);  /* Gris oscuro monocromático */
             border-radius: 50%;
         }
         
@@ -398,7 +396,7 @@
         .line-horizontal {
             width: var(--space-48px);  /* CONSONANT: Width */
             height: var(--space-4px);  /* CONSONANT: Height */
-            background: var(--color-2);
+            background: var(--gray-2);  /* Gris medio-oscuro monocromático */
             margin: var(--space-20px) 0;  /* CONSONANT: Center vertical */
         }
         
@@ -408,14 +406,14 @@
             height: 0;
             border-left: var(--space-24px) solid transparent;  /* CONSONANT: Border */
             border-right: var(--space-24px) solid transparent;  /* CONSONANT: Border */
-            border-bottom: var(--space-32px) solid var(--color-3);  /* CONSONANT: Border */
+            border-bottom: var(--space-32px) solid var(--gray-1);  /* Gris oscuro monocromático */
         }
         
         /* NIVEL 4 - Cuadrado sólido (Materialización) */
         .square-solid {
             width: var(--space-32px);  /* CONSONANT: Size */
             height: var(--space-32px);  /* CONSONANT: Size */
-            background: var(--color-4);
+            background: var(--color-black);  /* Negro puro - contraste perfecto */
             margin: var(--space-8px) auto;  /* CONSONANT: Center */
         }
         
@@ -479,67 +477,67 @@
             padding: var(--detail-space);  /* CONSONANT: Padding */
             font-size: var(--detail-text);  /* CONSONANT: Typography */
             font-family: var(--font-mono);
-            border-radius: var(--radius-sm);  /* CONSONANT: Border radius */
+            /* SIN BORDER-RADIUS: Geometría pura rectangular */
             letter-spacing: var(--letter-spacing-tight);
             font-weight: var(--font-weight-medium);
-            border: var(--space-1px) solid transparent;  /* CONSONANT: Border */
+            /* SIN BORDES: Background ya define límites */
             transition: all var(--duration-base) var(--ease-out);  /* CONSONANT: Timing */
         }
         
-        /* Tech tags por nivel 01234 */
+        /* Tech tags por nivel 01234 - Sin bordes */
         .tech-tag.nivel-0 {
-            background: rgba(0, 0, 0, 0.1);
-            color: var(--color-0);
-            border-color: var(--color-0);
+            background: rgba(0, 0, 0, 0.1);  /* Fondo oscuro sutil */
+            color: var(--color-black);       /* Texto negro sobre fondo claro = CONTRASTE PERFECTO */
+            /* SIN BORDES: Fondo ya define pertenencia al nivel */
         }
         
         .tech-tag.nivel-1 {
-            background: rgba(255, 107, 53, 0.1);
-            color: var(--color-1);
-            border-color: var(--color-1);
+            background: rgba(255, 255, 0, 0.1);  /* Fondo amarillo sutil */
+            color: var(--color-black);           /* Texto negro sobre fondo claro = CONTRASTE PERFECTO */
+            /* SIN BORDES: Background amarillo puro ya define autoridad */
         }
         
         .tech-tag.nivel-2 {
-            background: rgba(78, 205, 196, 0.1);
-            color: var(--color-2);
-            border-color: var(--color-2);
+            background: rgba(0, 255, 255, 0.1);  /* Fondo cyan sutil */
+            color: var(--color-black);           /* Texto negro sobre fondo claro = CONTRASTE PERFECTO */
+            /* SIN BORDES: Background cyan puro ya fragmenta visualmente */
         }
         
         .tech-tag.nivel-3 {
-            background: rgba(69, 183, 209, 0.1);
-            color: var(--color-3);
-            border-color: var(--color-3);
+            background: rgba(255, 0, 0, 0.1);    /* Fondo rojo sutil */
+            color: var(--color-black);           /* Texto negro sobre fondo claro = CONTRASTE PERFECTO */
+            /* SIN BORDES: Background rojo puro ya conecta visualmente */
         }
         
         .tech-tag.nivel-4 {
-            background: rgba(150, 206, 180, 0.1);
-            color: var(--color-4);
-            border-color: var(--color-4);
+            background: rgba(0, 0, 0, 0.15);     /* Fondo negro más intenso */
+            color: var(--color-white);           /* Texto blanco sobre fondo oscuro = CONTRASTE PERFECTO */
+            /* SIN BORDES: Background negro puro ya materializa límites */
         }
         
-        /* Tech tags especiales */
+        /* Tech tags especiales - Sin bordes */
         .tech-tag.consonancia {
             background: var(--gray-100);
             color: var(--gray-700);
-            border-color: var(--gray-400);
+            /* SIN BORDES: Monocromático elegante */
         }
         
         .tech-tag.nuclear {
             background: rgba(255, 255, 0, 0.1);
             color: var(--gray-900);
-            border-color: var(--logo-1);
+            /* SIN BORDES: Background amarillo logo ya define estructura nuclear */
         }
         
         .tech-tag.respiracion {
             background: var(--color-surface);
             color: var(--color-text-secondary);
-            border-color: var(--gray-300);
+            /* SIN BORDES: Surface ya respira visualmente */
         }
         
         .tech-tag.monocromatico {
             background: var(--gray-200);
             color: var(--gray-800);
-            border-color: var(--gray-500);
+            /* SIN BORDES: Perfección monocromática sin líneas adicionales */
         }
         
         /* ========================================================================
@@ -549,8 +547,8 @@
         @media (max-width: 768px) {
             .prototipos-grid {
                 grid-template-columns: 1fr;
-                gap: var(--space-m);  /* CRÍTICO: Gap = Margin para armonía móvil */
-                margin: 0 var(--space-m);  /* CRÍTICO: Respiración horizontal = Gap */
+                gap: var(--space-m);  /* CRÍTICO: Gap consistente con respiración container móvil */
+                margin: 0;  /* CRÍTICO: Sin margin - ya dentro del container con padding */
             }
             
             .header-content {
@@ -870,10 +868,12 @@
         }
         
         .principio-card {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
+            background: linear-gradient(135deg, 
+                var(--gray-50) 0%, 
+                var(--gray-100) 100%);  /* Gradiente monocromático elegante */
+            /* SIN BORDES: Pureza geométrica - fondo ya define límites */
             padding: var(--analysis-space);  /* --space-s-m: Interno componentes */
-            transition: all 0.3s ease;
+            transition: all var(--duration-slow) var(--ease-out);  /* CONSONANT: Timing */
             /* CRÍTICO: Sin width ni height - gobernado por grid container padre */
             display: flex;
             flex-direction: column;
@@ -882,8 +882,11 @@
         }
         
         .principio-card:hover {
-            border-color: var(--color-1);  /* Naranja 01234 - único acento */
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);  /* Elegancia monocromática */
+            background: linear-gradient(135deg, 
+                var(--color-white) 0%, 
+                var(--gray-5) 100%);  /* Hover monocromático - contraste perfecto */
+            transform: var(--transform-lift-subtle);  /* CONSONANT: -1px */
+            /* SIN SOMBRAS: Pureza absoluta - solo transform y background permitidos */
         }
         
         .principio-title {
@@ -913,6 +916,17 @@
                 padding: var(--connection-space);  /* --space-xs-s: Padding reducido */
             }
         }
+        
+        /* ========================================================================
+           HOVER STATES FINALES - CASCADA CORRECTA SIN !IMPORTANT
+           MÁXIMA ESPECIFICIDAD Y POSICIÓN PARA SOBRESCRIBIR TODO
+           ======================================================================== */
+        
+        .prototipos-grid .prototipo-card.nivel-0:hover { background: var(--gray-5); }
+        .prototipos-grid .prototipo-card.nivel-1:hover { background: var(--gray-5); }
+        .prototipos-grid .prototipo-card.nivel-2:hover { background: var(--gray-5); }
+        .prototipos-grid .prototipo-card.nivel-3:hover { background: var(--gray-5); }
+        .prototipos-grid .prototipo-card.nivel-4:hover { background: var(--gray-5); }
     </style>
 
     <script src="js/main.js"></script>

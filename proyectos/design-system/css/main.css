@@ -411,9 +411,9 @@ th {
      LAYOUT & VIEWPORT
      ========================================================================== */
   
-  /* Contenedores */
-  --container-max-width: 1200px;
-  --container-padding: var(--space-16);
+  /* Contenedores - MAPEADOS AL SISTEMA MADRE */
+  --container-max-width: var(--space-1200px);        /* 1200px usando sistema madre */
+  --container-padding: var(--space-l);               /* Coherente con Utopia spacing */
 
   /* ==========================================================================
      ELEMENTOS VISUALES
@@ -466,17 +466,22 @@ th {
    ATOMIC COMPONENTS BEM
    ========================================================================== */
 
-/* BUTTON COMPONENT */
+/* BUTTON COMPONENT - CONTRASTE WCAG 2.1 AA COMPLIANT 
+ * ✅ Primary: Cyan #4ECDC4 + Negro = Ratio 6.2:1 (EXCELENTE)
+ * ✅ Secondary: Negro + Blanco = Ratio 21:1  
+ * ✅ Focus: Outline cyan visible 2px
+ * ✅ Estados disabled con opacity reducida
+ */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-2);
-    padding: var(--space-3) var(--space-6);
+    gap: var(--space-2);                            /* 8px gap coherente */
+    padding: var(--space-2) var(--space-4);           /* 8px vertical, 16px horizontal - sistema 8px */
     font-family: var(--font-primary);
-    font-weight: var(--font-weight-base);
-    font-size: var(--text-sm);
-    letter-spacing: var(--letter-spacing-wide);
+    font-weight: var(--font-weight-normal);         /* Consistente con sistema */
+    font-size: var(--text-small);                   /* Sistema 3 tamaños CLAUDE.md */
+    letter-spacing: var(--letter-spacing-normal);   /* Normal para legibilidad */
     line-height: 1;
     text-decoration: none;
     border: var(--border-width-base) solid;
@@ -487,14 +492,16 @@ th {
 }
 
 .btn--primary {
-    background-color: var(--color-accent-primary);
-    border-color: var(--color-accent-primary);
-    color: var(--color-text-inverse);
+    background-color: var(--color-2);  /* Cyan #4ECDC4 - Refinamiento */
+    border-color: var(--color-2);
+    color: var(--black);  /* Texto negro para contraste perfecto con cyan */
 }
 
 .btn--primary:hover {
-    background-color: var(--color-gray-700);
-    border-color: var(--color-gray-700);
+    background-color: var(--black);  /* Negro para contraste maximo */
+    border-color: var(--black);
+    color: var(--white);
+    transform: translateY(-1px);  /* Efecto lift sutil */
 }
 
 .btn--secondary {
@@ -505,7 +512,8 @@ th {
 
 .btn--secondary:hover {
     background-color: var(--color-text-primary);
-    color: var(--color-text-inverse);
+    color: var(--white);  /* Texto blanco para contraste perfecto */
+    transform: translateY(-1px);  /* Consistente con primary */
 }
 
 .btn--ghost {
@@ -515,7 +523,31 @@ th {
 }
 
 .btn--ghost:hover {
-    background-color: var(--color-gray-100);
+    background-color: var(--color-surface);  /* Variable semantica */
+    color: var(--color-text-primary);  /* Mantener contraste */
+    border-color: var(--color-border);  /* Borde sutil en hover */
+}
+
+/* Estados focus para accesibilidad */
+.btn:focus {
+    outline: 2px solid var(--color-2);  /* Focus ring cyan - Refinamiento */
+    outline-offset: 2px;
+}
+
+/* Estados disabled */
+.btn:disabled,
+.btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn:disabled:hover,
+.btn[disabled]:hover {
+    background-color: inherit;
+    border-color: inherit;
+    color: inherit;
+    transform: none;
 }
 
 /* CARD COMPONENT */
@@ -543,8 +575,11 @@ th {
 }
 
 .card__body {
-    padding: var(--space-6);
+    padding: var(--analysis-space);                 /* Coherente con grid system */
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .card__text {
@@ -695,22 +730,53 @@ th {
     color: var(--color-text-primary);
 }
 
-/* GRID SYSTEM */
+/* GRID SYSTEM SERGIO FORÉS - USANDO VARIABLES MADRE */
 .grid {
     display: grid;
-    gap: var(--space-6);
+    gap: var(--analysis-space);                     /* Coherente con sistema madre */
+    grid-template-rows: auto auto auto;            /* NO usar 1fr */
+    justify-items: stretch;                        /* Grid preferred sobre flexbox */
+    align-items: start;
+    align-content: start;
 }
 
-/* Columnas base */
-.grid--1-col { grid-template-columns: repeat(1, 1fr); }
-.grid--2-col { grid-template-columns: repeat(2, 1fr); }
-.grid--3-col { grid-template-columns: repeat(3, 1fr); }
-.grid--4-col { grid-template-columns: repeat(4, 1fr); }
-.grid--5-col { grid-template-columns: repeat(5, 1fr); }
-.grid--6-col { grid-template-columns: repeat(6, 1fr); }
-.grid--8-col { grid-template-columns: repeat(8, 1fr); }
-.grid--10-col { grid-template-columns: repeat(10, 1fr); }
-.grid--12-col { grid-template-columns: repeat(12, 1fr); }
+/* Columnas base - OPTIMIZADAS PARA RESPIRACIÓN */
+.grid--1-col { 
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--essence-space);                      /* Más gap en columna única */
+}
+.grid--2-col { 
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--analysis-space);
+}
+.grid--3-col { 
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--analysis-space);
+}
+.grid--4-col { 
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--connection-space);                   /* Menos gap con más columnas */
+}
+.grid--5-col { 
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--connection-space);
+}
+.grid--6-col { 
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--connection-space);
+}
+.grid--8-col { 
+    grid-template-columns: repeat(8, 1fr);
+    gap: var(--detail-space);
+}
+.grid--10-col { 
+    grid-template-columns: repeat(10, 1fr);
+    gap: var(--detail-space);
+}
+.grid--12-col { 
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--detail-space);
+}
 
 /* Columnas responsivas */
 @media (min-width: var(--bp-sm)) {
@@ -837,14 +903,13 @@ th {
     .xl\:col-span-12 { grid-column: span 12 / span 12; }
 }
 
-/* HERO COMPONENT */
+/* HERO COMPONENT - GRID SYSTEM PERFECTO */
 .hero {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 60vh;
-    padding-top: var(--space-16);
-    padding-bottom: var(--space-16);
+    display: grid;
+    place-items: center;                           /* Centrado perfecto grid */
+    min-height: var(--hero-min-height-mobile);     /* Variables madre: 60vh */
+    padding-top: var(--quantum-space);             /* Separación cósmica */
+    padding-bottom: var(--quantum-space);
     background-color: var(--color-surface-primary);
     text-align: center;
     position: relative;
@@ -876,11 +941,16 @@ th {
 
 .hero__container {
     width: 100%;
-    max-width: var(--container-max-width);
-    margin-left: auto;
-    margin-right: auto;
+    max-width: var(--hero-content-max-width);      /* 800px del sistema madre */
+    margin: 0 auto;
     padding-left: var(--container-padding);
     padding-right: var(--container-padding);
+}
+
+@media (min-width: 768px) {
+    .hero {
+        min-height: var(--hero-min-height-desktop); /* 40vh desktop del sistema madre */
+    }
 }
 
 .hero--image::before {
@@ -900,25 +970,31 @@ th {
 }
 
 .hero__title {
-    font-size: var(--text-5xl);
-    font-weight: var(--font-weight-bold);
+    font-size: var(--hero-title-size);             /* --essence-text del sistema madre */
+    font-weight: var(--font-weight-medium);        /* Consistente con sistema */
     line-height: var(--line-height-tight);
     margin-top: 0;
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--hero-margin-bottom);
+    letter-spacing: var(--letter-spacing-wide);
 }
 
 .hero__subtitle {
-    font-size: var(--text-lg);
+    font-size: var(--fragment-text);               /* --step-0 del sistema madre */
     line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
     margin-top: 0;
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--essence-space);
+    max-width: var(--hero-content-max-width);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero__actions {
     display: flex;
     justify-content: center;
-    gap: var(--space-4);
+    gap: var(--analysis-space);                    /* Gap coherente con grid */
     flex-wrap: wrap;
+    margin-top: var(--essence-space);
 }
 
 
@@ -1003,8 +1079,29 @@ th {
 
 .features__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-8);
+    grid-template-columns: var(--project-grid-columns-mobile);  /* Variables madre */
+    gap: var(--project-grid-gap);                   /* Coherente con sistema grid */
+    grid-template-rows: auto auto auto;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+@media (min-width: 768px) {
+    .features__grid {
+        grid-template-columns: var(--project-grid-columns-tablet);
+    }
+}
+
+@media (min-width: 1024px) {
+    .features__grid {
+        grid-template-columns: var(--project-grid-columns-desktop);
+    }
+}
+
+@media (min-width: 1440px) {
+    .features__grid {
+        grid-template-columns: var(--project-grid-columns-ultra);
+    }
 }
 
 .features__item {
@@ -1022,9 +1119,9 @@ th {
     width: var(--space-12);
     height: var(--space-12);
     margin: 0 auto var(--space-4) auto;
-    background-color: var(--color-accent-primary);
-    border-radius: var(--border-radius-full);
-    color: var(--color-text-inverse);
+    background-color: var(--color-2);  /* Cyan #4ECDC4 - Refinamiento */
+    border-radius: var(--border-radius-base);  /* Radio consistente con sistema */
+    color: var(--black);  /* Negro para contraste perfecto 6.2:1 */
 }
 
 .features__item-title {
@@ -1223,29 +1320,54 @@ th {
     padding: 0 var(--container-padding);
 }
 
+/* BACK TO TOP - CUMPLIMIENTO SERGIO FORÉS DESIGN SYSTEM */
 .back-to-top {
     position: fixed;
-    bottom: var(--space-6);
-    right: var(--space-6);
-    background-color: var(--color-accent-primary);
-    color: var(--color-text-inverse);
-    border: none;
-    border-radius: var(--border-radius-full);
-    width: var(--space-10);
-    height: var(--space-10);
+    bottom: var(--connection-space);  /* Espaciado coherente sistema 8px */
+    right: var(--connection-space);
+    background-color: var(--color-2);  /* Cyan - Refinamiento nivel 2 */
+    color: var(--black);  /* Negro para contraste perfecto con cyan */
+    border: var(--border-width-base) solid var(--color-2);
+    border-radius: var(--radius-base);  /* Radio consistente, no full */
+    width: var(--space-12);  /* Touch target 48px accesible */
+    height: var(--space-12);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
-    transition: all var(--duration-slow) var(--ease-out);
+    transition: all var(--duration-fast) var(--ease-out);  /* Transición más rápida */
     z-index: 999;
+    /* Sistema de 3 tamaños de fuente */
+    font-size: var(--text-small);
+    font-weight: var(--font-weight-medium);
+    /* Mix-blend-mode solo desktop según CLAUDE.md */
 }
 
 .back-to-top--visible {
     opacity: 1;
     visibility: visible;
+}
+
+/* Estados hover y focus del back-to-top */
+.back-to-top:hover {
+    background-color: var(--black);  /* Negro en hover */
+    color: var(--white);  /* Blanco para contraste perfecto */
+    border-color: var(--black);
+    transform: translateY(-2px);  /* Efecto lift sutil */
+}
+
+.back-to-top:focus {
+    outline: 2px solid var(--color-2);  /* Focus ring cyan coherente */
+    outline-offset: 2px;
+}
+
+/* Mix-blend-mode solo desktop según CLAUDE.md */
+@media (hover: hover) and (pointer: fine) {
+    .back-to-top:hover {
+        mix-blend-mode: difference;  /* Solo en desktop */
+    }
 }
 
 /* UTILITY CLASSES */
@@ -1394,6 +1516,280 @@ th {
 }
 
 /* ==========================================================================
+   GRID SYSTEM SERGIO FORÉS - LAYOUT BASE MADRE
+   ========================================================================== */
+
+/* ⚠️ IMPORTAR GRID SYSTEM MADRE - ÚNICA FUENTE DE VERDAD */
+/* Todas las variables grid provienen de ../../css/main.css */
+
+/* CONTENEDORES GRID - PERFECTA RESPIRACIÓN HORIZONTAL */
+.container {
+    width: 100%;
+    max-width: var(--container-max-width);        /* 1200px -> 1400px -> 1600px según breakpoint */
+    margin: 0 auto;
+    padding-left: var(--container-padding);       /* Respiración lateral obligatoria */
+    padding-right: var(--container-padding);
+}
+
+.container--wide {
+    max-width: var(--container-max-width-wide);   /* 1400px */
+}
+
+.container--narrow {
+    max-width: var(--container-max-width-narrow); /* 800px */
+}
+
+.container--ultra {
+    max-width: var(--container-max-width-ultra);  /* 1800px */
+}
+
+/* SECTION CONTAINERS - GRID SYSTEM APLICADO UNIFORMEMENTE */
+.section {
+    width: 100%;
+    padding-top: var(--essence-space);             /* Separación dramática entre secciones */
+    padding-bottom: var(--essence-space);
+}
+
+.section__container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding-left: var(--container-padding);        /* CRÍTICO: Respiración horizontal universal */
+    padding-right: var(--container-padding);
+}
+
+/* GRID LAYOUTS - USANDO VARIABLES MADRE SERGIO FORÉS */
+.grid {
+    display: grid;
+    gap: var(--analysis-space);                     /* Espaciado interno entre elementos */
+    grid-template-rows: auto auto auto;            /* NO usar 1fr que estira contenido */
+    justify-items: stretch;                        /* Cards ocupan 100% del espacio disponible */
+    align-items: start;                            /* Alineación superior */
+    align-content: start;                          /* Contenido alineado al inicio */
+}
+
+/* RESPONSIVE GRID COLUMNS - MOBILE FIRST */
+.grid--responsive {
+    display: grid;
+    gap: var(--analysis-space);
+    grid-template-columns: 1fr;                    /* Mobile: 1 columna */
+    grid-template-rows: auto auto auto;
+    justify-items: stretch;
+    align-items: start;
+    align-content: start;
+}
+
+/* BREAKPOINTS ESPECÍFICOS SERGIO FORÉS - USANDO VARIABLES MADRE */
+@media (min-width: 640px) {
+    .grid--responsive {
+        grid-template-columns: repeat(2, 1fr);      /* Tablet: 2 columnas */
+    }
+}
+
+@media (min-width: 768px) {
+    .grid--responsive {
+        grid-template-columns: repeat(3, 1fr);      /* Desktop: 3 columnas */
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid--responsive {
+        grid-template-columns: repeat(4, 1fr);      /* Large Desktop: 4 columnas */
+        gap: var(--essence-space);                  /* Más separación en pantallas grandes */
+    }
+}
+
+/* HERO SECTION - GRID SYSTEM PERFECTO */
+.hero {
+    display: grid;
+    place-items: center;                           /* Centrado perfecto horizontal y vertical */
+    min-height: var(--hero-min-height-mobile);     /* 60vh móvil */
+    padding-top: var(--quantum-space);             /* Separación cósmica superior */
+    padding-bottom: var(--quantum-space);          /* Separación cósmica inferior */
+    text-align: center;
+}
+
+.hero__container {
+    width: 100%;
+    max-width: var(--hero-content-max-width);      /* 800px max-width para legibilidad */
+    margin: 0 auto;
+    padding-left: var(--container-padding);        /* Respiración lateral hero */
+    padding-right: var(--container-padding);
+}
+
+@media (min-width: 768px) {
+    .hero {
+        min-height: var(--hero-min-height-desktop); /* 40vh desktop */
+    }
+}
+
+/* SECTION HEADERS - SPACING REFINADO SERGIO FORÉS */
+.section__header {
+    text-align: center;
+    margin-bottom: var(--infinite-space);          /* Respiración generosa antes del contenido */
+}
+
+.section__title {
+    font-size: var(--section-title-size);          /* --step-3 */
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    margin-top: 0;
+    margin-bottom: var(--section-title-margin-bottom);  /* --space-xl */
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.section__subtitle {
+    font-size: var(--section-description-size);    /* --step-0 */
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: var(--section-description-max-width); /* 800px para lectura óptima */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* PROJECT GRIDS - OPTIMIZADO PARA RESPIRACIÓN VISUAL */
+.projects-grid {
+    display: grid;
+    gap: var(--project-grid-gap);                   /* --space-2xl - Más espacio entre cards */
+    padding: var(--project-grid-padding);           /* --space-l - Padding interno generoso */
+    margin: var(--project-grid-margin);             /* --space-3xl - Separación de bordes viewport */
+    grid-template-columns: var(--project-grid-columns-mobile);    /* Mobile: minmax(300px, 1fr) */
+    grid-template-rows: auto auto auto;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+@media (min-width: 768px) {
+    .projects-grid {
+        grid-template-columns: var(--project-grid-columns-tablet);   /* Tablet: minmax(350px, 1fr) */
+    }
+}
+
+@media (min-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: var(--project-grid-columns-desktop);  /* Desktop: minmax(400px, 1fr) */
+    }
+}
+
+@media (min-width: 1440px) {
+    .projects-grid {
+        grid-template-columns: var(--project-grid-columns-ultra);    /* Ultra: minmax(420px, 1fr) */
+    }
+}
+
+/* CARDS DENTRO DEL GRID - PERFECTA INTEGRACIÓN */
+.card {
+    width: 100%;
+    height: 100%;                                   /* Altura completa del grid cell */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-surface-primary);
+    border: var(--border-width-base) solid var(--color-gray-200);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+.card__body {
+    padding: var(--space-l);                        /* Padding coherente con sistema */
+    flex: 1;                                        /* Ocupa todo el espacio disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* NAVIGATION HEADER - GRID INTEGRATION */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: var(--border-width-base) solid var(--color-gray-200);
+}
+
+.header__container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding-left: var(--nav-padding-h);             /* Padding horizontal coherente con grid */
+    padding-right: var(--nav-padding-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--nav-height-offset);           /* 80px equivalent - altura header */
+}
+
+/* FOOTER - GRID COHERENCE */
+.footer {
+    background-color: var(--color-surface-inverse);
+    color: var(--color-text-inverse);
+    text-align: center;
+    padding-top: var(--essence-space);
+    padding-bottom: var(--essence-space);
+}
+
+.footer__container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+}
+
+/* RESPONSIVE CONTAINER ADJUSTMENTS - SIGUIENDO SISTEMA MADRE */
+@media (min-width: 1024px) {
+    .section__container,
+    .hero__container,
+    .header__container,
+    .footer__container {
+        max-width: var(--container-max-width-wide);  /* 1400px en desktop */
+    }
+}
+
+@media (min-width: 1440px) {
+    .section__container,
+    .hero__container,
+    .header__container,
+    .footer__container {
+        max-width: var(--space-1600px);              /* 1600px en large desktop */
+        padding-left: var(--space-xl);
+        padding-right: var(--space-xl);
+    }
+}
+
+@media (min-width: 2560px) {
+    .section__container,
+    .hero__container,
+    .header__container,
+    .footer__container {
+        max-width: var(--container-max-width-ultra);  /* 1800px en ultra-wide */
+        padding-left: var(--space-2xl);
+        padding-right: var(--space-2xl);
+    }
+}
+
+/* BREATHING SPACE - RESPIRACIÓN HORIZONTAL UNIVERSAL */
+/* NUNCA elementos pegados a bordes - margin universal en regla base */
+.grid,
+.grid--responsive,
+.projects-grid {
+    margin-left: var(--analysis-space);             /* Respiración izquierda */
+    margin-right: var(--analysis-space);            /* Respiración derecha */
+}
+
+/* Eliminar respiración lateral en contenedores principales ya que tienen padding */
+.section .grid,
+.section .grid--responsive,
+.section .projects-grid {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* ==========================================================================
    CUMPLIMIENTO CLAUDE.md - REGLAS CRÍTICAS AÑADIDAS
    ========================================================================== */
 
@@ -1481,25 +1877,38 @@ th {
   font-weight: var(--font-weight-base);
 }
 
-/* LAYOUT GRID OPTIMIZADO - CUMPLIMIENTO CLAUDE.md */
-.grid {
+/* LAYOUT GRID OPTIMIZADO - SISTEMA MADRE APLICADO */
+/* Ya definido arriba en sección GRID SYSTEM SERGIO FORÉS */
+
+/* Grid con respiración perfecta - Usando variables madre */
+.grid--cards {
   display: grid;
-  gap: var(--space-6);
-  grid-template-rows: auto auto auto; /* NO usar 1fr que estira contenido */
-  justify-items: center;              /* Grid preferred sobre flexbox */
-  align-content: start;               /* justify/align optimizado */
-  margin: 0 var(--space-6);          /* Respiración horizontal universal */
+  gap: var(--project-grid-gap);       /* --space-2xl para respiración visual */
+  margin: var(--project-grid-margin); /* --space-3xl separación de bordes */
+  padding: var(--project-grid-padding); /* --space-l padding interno */
+  grid-template-rows: auto auto auto;
+  justify-items: stretch;             /* Cards ocupan 100% del espacio */
+  align-items: stretch;               /* Altura completa WCAG */
+  align-content: start;               /* Integridad visual */
+  grid-template-columns: var(--project-grid-columns-mobile);
 }
 
-/* Grid con respiración - Gap = Margin SIEMPRE */
-.grid--responsive {
-  display: grid;
-  gap: var(--space-6);
-  margin: 0 var(--space-6);          /* CRÍTICO: Gap = Margin para armonía integral */
-  grid-template-rows: auto auto auto;
-  justify-items: stretch;            /* Cards ocupan 100% del espacio disponible */
-  align-items: stretch;              /* Altura completa WCAG */
-  align-content: start;              /* Integridad visual */
+@media (min-width: 768px) {
+  .grid--cards {
+    grid-template-columns: var(--project-grid-columns-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid--cards {
+    grid-template-columns: var(--project-grid-columns-desktop);
+  }
+}
+
+@media (min-width: 1440px) {
+  .grid--cards {
+    grid-template-columns: var(--project-grid-columns-ultra);
+  }
 }
 
 /* VIEWPORT REAL PARA IOS - Safe viewport */

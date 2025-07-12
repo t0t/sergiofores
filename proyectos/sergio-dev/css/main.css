@@ -1,29 +1,28 @@
-/* CSS Variables - Sistema 01234 Refinado */
+/* IMPORT PALETA SAGRADA DESDE EL NÚCLEO */
+@import url('../../css/main.css');
+
+/* PALETA SAGRADA SERGIO FORÉS - PROYECTO SERGIO-DEV */
+/* ⚠️ USANDO EXCLUSIVAMENTE LA PALETA DEFINITIVA */
 :root {
-    /* Colores Base Neutra (80% del diseño) */
-    --neutral-white: #FEFEFE;
-    --neutral-cream: #FDFBF7;
-    --neutral-gray-50: #F8F6F0;
-    --neutral-gray-200: #E5E7EB;
-    --neutral-gray-400: #9CA3AF;
-    --neutral-gray-600: #6B7280;
-    --neutral-gray-800: #2C2C2C;
-    --neutral-black: #1A1A1A;
+    /* IMPORTAR DEL NÚCLEO - PALETA SAGRADA */
+    /* Usar variables del núcleo definidas en ../../css/main.css */
     
-    /* Paleta Tech Verde (Sergio Dev) */
-    --tech-primary: #00FF88;      /* Verde vibrante principal */
-    --tech-secondary: #00CC66;    /* Verde secundario */
-    --tech-accent: #00FFAA;       /* Verde claro accent */
-    --tech-dark: #004D33;         /* Verde oscuro */
-    --tech-glow: rgba(0, 255, 136, 0.3); /* Glow effect */
+    /* COLORES BASE NEUTRALES - SOLO PALETA SAGRADA */
+    --neutral-white: var(--color-white);      /* #FFFFFF */
+    --neutral-black: var(--color-black);      /* #000000 */
+    --neutral-gray-light: var(--gray-5);      /* #EEEEEE */
+    --neutral-gray-medium: var(--gray-3);     /* #999999 */
+    --neutral-gray-dark: var(--gray-1);       /* #333333 */
     
-    /* Compatibilidad con paleta legacy */
-    --accent-orange: #FF6B35;
-    --accent-blue: #0066CC;
-    --accent-green: #9CAF88;
-    --accent-copper: #B08D57;
-    --accent-tech-green: var(--tech-primary);
-    --accent-tech-green-dark: var(--tech-secondary);
+    /* COLORES TECH - MAPEADOS A PALETA SAGRADA */
+    --tech-primary: var(--color-cyan);        /* #00FFFF - Cyan puro */
+    --tech-secondary: var(--color-yellow);    /* #FFFF00 - Amarillo puro */
+    --tech-accent: var(--color-red);          /* #FF0000 - Rojo puro */
+    --tech-neutral: var(--gray-2);            /* #666666 - Gris medio-oscuro */
+    
+    /* ELIMINADAS VARIABLES OBSOLETAS QUE VIOLABAN LA PALETA SAGRADA */
+    /* --accent-orange, --accent-blue, --accent-green, --accent-copper */
+    /* SOLO EXISTEN LOS COLORES DE LA PALETA DEFINITIVA */
     
     /* Tipografía */
     --font-primary: 'Futura', 'Avenir Next', 'Inter', 'Helvetica Neue', sans-serif;

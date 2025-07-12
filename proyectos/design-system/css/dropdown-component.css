@@ -1,0 +1,436 @@
+/**
+ * DROPDOWN COMPONENT - SERGIO FORÉS DESIGN SYSTEM
+ * Componente reutilizable para navegación dropdown
+ * 
+ * CARACTERÍSTICAS:
+ * ✅ CSS puro sin JavaScript (hover y focus)
+ * ✅ Responsive y accessible (WCAG 2.1 AA)
+ * ✅ Consonancia con sistema 8px
+ * ✅ Paleta sagrada Sergio Forés
+ * ✅ Typography sistema 3 tamaños únicamente
+ * ✅ Grid system madre aplicado
+ */
+
+/* ==========================================================================
+   DROPDOWN CONTAINER - BASE ARCHITECTURE
+   ========================================================================== */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown trigger button */
+.dropdown__trigger {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);       /* 4px gap para la flecha */
+    padding: var(--space-2);  /* 8px padding uniforme - sistema 8px */
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: var(--text-medium);    /* Subtítulos y navegación */
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-primary);
+    letter-spacing: var(--letter-spacing-normal);  /* Normal para mejor legibilidad */
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);  /* Transición más rápida */
+    text-decoration: none;
+    border-radius: var(--radius-sm);  /* Radio más pequeño para sutileza */
+    white-space: nowrap;  /* Evitar que el texto se rompa */
+}
+
+/* Arrow indicator */
+.dropdown__arrow {
+    width: var(--space-16px);  /* CONSONANT: 16px icon */
+    height: var(--space-16px);
+    transition: transform var(--duration-base) var(--ease-out);
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+}
+
+/* ==========================================================================
+   DROPDOWN CONTENT - PERFECT SPACING
+   ========================================================================== */
+
+.dropdown__content {
+    position: absolute;
+    top: calc(100% + var(--detail-space));  /* Pequeño gap entre trigger y dropdown */
+    left: 0;
+    min-width: var(--space-200px);  /* CONSONANT: 200px minimum */
+    background: var(--color-background);  /* Usar variable semántica */
+    border: var(--border-width-base) solid var(--color-border);  /* Color border coherente */
+    border-radius: var(--radius-base);
+    box-shadow: var(--shadow-md);  /* Sombra más sutil */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(calc(-1 * var(--detail-space))) scale(0.98);  /* Movimiento más sutil */
+    transition: all var(--duration-fast) var(--ease-out);
+    z-index: var(--z-dropdown);
+    overflow: hidden;
+    /* Grid container para items */
+    display: grid;
+    grid-template-rows: auto;
+    gap: 0;  /* Sin gap, borders internos definen separación */
+}
+
+/* Dropdown items list */
+.dropdown__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;  /* Simplificar - no necesitamos grid aquí */
+    width: 100%;  /* Ocupar todo el ancho */
+}
+
+.dropdown__item {
+    /* Eliminar display block innecesario - el link ya maneja esto */
+    border-bottom: var(--border-width-base) solid var(--color-border);  /* Border semántico */
+    margin: 0;  /* Reset explícito */
+    padding: 0;  /* Reset explícito */
+}
+
+.dropdown__item:last-child {
+    border-bottom: none;
+}
+
+/* Dropdown links */
+.dropdown__link {
+    display: flex;
+    align-items: center;
+    padding: var(--space-2) var(--space-3);  /* 8px vertical, 12px horizontal - sistema 8px */
+    color: var(--color-text-primary);
+    font-size: var(--text-small);     /* Todo el resto del contenido */
+    font-weight: var(--font-weight-normal);
+    font-family: var(--font-primary);
+    letter-spacing: var(--letter-spacing-normal);
+    text-decoration: none;
+    transition: all var(--duration-fast) var(--ease-out);  /* Transición más rápida */
+    min-height: var(--space-40px);    /* Touch target más compacto pero accesible */
+    margin: 0;  /* Reset explícito */
+    width: 100%;  /* Ocupar todo el ancho disponible */
+    box-sizing: border-box;  /* Incluir padding en el width */
+}
+
+/* ==========================================================================
+   DROPDOWN STATES - HOVER & FOCUS
+   ========================================================================== */
+
+/* Trigger hover states */
+.dropdown__trigger:hover,
+.dropdown__trigger:focus {
+    color: var(--color-text-primary);
+    background: var(--color-surface);  /* Background semántico */
+    transform: translateY(-1px);  /* Efecto lift muy sutil */
+}
+
+/* Link hover states */
+.dropdown__link:hover,
+.dropdown__link:focus {
+    background: var(--color-surface);  /* Background semántico */
+    color: var(--color-text-primary);
+    padding-left: calc(var(--space-3) + var(--space-1));  /* 12px + 4px = 16px indent sistema 8px */
+    transform: translateX(1px);  /* Movimiento horizontal sutil */
+}
+
+/* Active dropdown states */
+.dropdown:hover .dropdown__content,
+.dropdown:focus-within .dropdown__content,
+.dropdown__trigger:focus + .dropdown__content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* Arrow rotation en hover */
+.dropdown:hover .dropdown__arrow,
+.dropdown:focus-within .dropdown__arrow {
+    transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   DROPDOWN VARIANTS - ORGANIZATIONAL TYPES
+   ========================================================================== */
+
+/* Right-aligned dropdown */
+.dropdown--right .dropdown__content {
+    left: auto;
+    right: 0;
+}
+
+/* Full-width dropdown */
+.dropdown--full .dropdown__content {
+    left: 0;
+    right: 0;
+    min-width: 100%;
+}
+
+/* Mega dropdown (wider) */
+.dropdown--mega .dropdown__content {
+    min-width: var(--space-400px);  /* CONSONANT: 400px mega */
+    max-width: var(--space-600px);
+}
+
+/* Compact dropdown */
+.dropdown--compact .dropdown__content {
+    min-width: var(--space-150px);  /* CONSONANT: 150px compact */
+}
+
+.dropdown--compact .dropdown__link {
+    padding: var(--detail-space) var(--connection-space);  /* Más compacto */
+    font-size: var(--text-small);
+}
+
+/* ==========================================================================
+   DROPDOWN GROUPS - ORGANIZATIONAL SECTIONS
+   ========================================================================== */
+
+.dropdown__group {
+    padding: var(--connection-space) 0;
+    border-bottom: var(--border-width-base) solid var(--gray-4);
+}
+
+.dropdown__group:last-child {
+    border-bottom: none;
+}
+
+.dropdown__group-title {
+    padding: var(--detail-space) var(--analysis-space);
+    font-size: var(--text-small);
+    font-weight: var(--font-weight-semibold);
+    color: var(--gray-2);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    margin-bottom: 0;
+}
+
+.dropdown__group .dropdown__item {
+    border-bottom: none;
+}
+
+.dropdown__group .dropdown__link {
+    padding-left: var(--space-l);  /* Indent para jerarquía */
+}
+
+/* ==========================================================================
+   RESPONSIVE BEHAVIOR - MOBILE OPTIMIZATION
+   ========================================================================== */
+
+/* Mobile: Stack dropdowns */
+@media (max-width: 768px) {
+    /* Header nav mobile behavior */
+    .header__nav ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 0;  /* Sin gap en móvil para stack compacto */
+    }
+    
+    .header__nav li {
+        width: 100%;
+        border-bottom: var(--border-width-base) solid var(--color-border);
+    }
+    
+    .header__nav li:last-child {
+        border-bottom: none;
+    }
+    
+    /* Regular nav links en móvil */
+    .header__nav-link {
+        display: block;
+        width: 100%;
+        padding: var(--connection-space);
+        text-align: left;
+    }
+    
+    /* Dropdown content en móvil */
+    .dropdown__content {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        border-top: var(--border-width-base) solid var(--color-border);
+        margin-top: 0;  /* Sin margin extra */
+        min-width: auto;
+        background: var(--color-surface);  /* Background semántico */
+    }
+    
+    .dropdown:hover .dropdown__content,
+    .dropdown:focus-within .dropdown__content {
+        display: block;
+    }
+    
+    .dropdown__content {
+        display: none;  /* Hidden by default on mobile */
+    }
+    
+    /* Mobile trigger adjustments */
+    .dropdown__trigger {
+        width: 100%;
+        justify-content: space-between;
+        text-align: left;
+        padding: var(--space-2);  /* 8px padding uniforme móvil */
+        background: transparent;
+    }
+    
+    /* Mobile links más compactos */
+    .dropdown__link {
+        padding: var(--space-2);  /* 8px padding uniforme móvil */
+        min-height: var(--space-12);  /* 48px touch target */
+        background: transparent;
+    }
+    
+    .dropdown__link:hover,
+    .dropdown__link:focus {
+        padding-left: calc(var(--space-2) + var(--space-1));  /* 8px + 4px = 12px indent móvil */
+        background: var(--color-surface);
+    }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY ENHANCEMENTS - WCAG 2.1 AA
+   ========================================================================== */
+
+/* Focus states clearly visible */
+.dropdown__trigger:focus,
+.dropdown__link:focus {
+    outline: 2px solid var(--color-2);  /* Cyan - Refinamiento coherente */
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .dropdown__content {
+        border-width: 2px;
+        border-color: var(--color-text-primary);
+        background: var(--color-background);
+    }
+    
+    .dropdown__trigger {
+        border: 1px solid var(--color-text-primary);
+    }
+    
+    .dropdown__link:hover,
+    .dropdown__link:focus {
+        background: var(--color-text-primary);
+        color: var(--color-background);
+    }
+    
+    .dropdown__item {
+        border-bottom-color: var(--color-text-primary);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .dropdown__content,
+    .dropdown__arrow,
+    .dropdown__link {
+        transition: none !important;
+    }
+}
+
+/* ==========================================================================
+   DROPDOWN HEADER INTEGRATION - FOR NAVIGATION
+   ========================================================================== */
+
+/* Integration with header component */
+.header__nav .dropdown {
+    display: inline-block;
+    margin: 0 var(--detail-space);  /* Espaciado entre dropdowns */
+}
+
+.header__nav .dropdown__trigger {
+    color: var(--color-text-secondary);
+    font-size: var(--text-medium);  /* Subtítulos y navegación */
+    font-weight: var(--font-weight-medium);
+    padding: var(--connection-space);  /* Padding consistente con nav links */
+}
+
+.header__nav .dropdown__trigger:hover {
+    color: var(--color-text-primary);
+}
+
+/* Active state when dropdown is open */
+.header__nav .dropdown:hover .dropdown__trigger,
+.header__nav .dropdown:focus-within .dropdown__trigger {
+    color: var(--color-text-primary);
+    background: var(--color-surface);  /* Consistente con el hover state semántico */
+}
+
+/* Header nav list integration */
+.header__nav ul {
+    display: flex;
+    align-items: center;
+    gap: var(--connection-space);  /* Gap consistente entre elementos */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header__nav li {
+    position: relative;  /* Para que los dropdowns se posicionen correctamente */
+}
+
+/* ==========================================================================
+   DROPDOWN UTILITIES - HELPER CLASSES
+   ========================================================================== */
+
+/* Hide dropdown on print */
+@media print {
+    .dropdown__content {
+        display: none !important;
+    }
+}
+
+/* JavaScript hooks for enhanced behavior */
+.dropdown--js-enabled .dropdown__content {
+    display: none;
+}
+
+.dropdown--js-enabled.dropdown--open .dropdown__content {
+    display: grid;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* ==========================================================================
+   MISSING VARIABLES DEFINITION - ENSURE CONSONANCE
+   ========================================================================== */
+
+/* Ensure we have all required spacing values */
+:root {
+    --space-150px: calc(var(--space-unit) * 18.75); /* 150px */
+    --space-600px: calc(var(--space-unit) * 75);    /* 600px */
+    --space-40px: calc(var(--space-unit) * 5);      /* 40px - Touch target compacto */
+    --space-1px: 1px;                               /* 1px - Micro movimientos */
+}
+
+/* ==========================================================================
+   COMPONENT DEMO HELPERS - FOR DESIGN SYSTEM SHOWCASE
+   ========================================================================== */
+
+.dropdown-demo {
+    padding: var(--space-8);
+    background: var(--gray-5);
+    border-radius: var(--radius-base);
+    margin-bottom: var(--space-6);
+}
+
+.dropdown-demo__title {
+    font-size: var(--text-medium);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-4);
+    color: var(--color-text-primary);
+}
+
+.dropdown-demo__description {
+    font-size: var(--text-small);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-6);
+    line-height: var(--line-height-relaxed);
+}

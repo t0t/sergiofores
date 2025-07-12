@@ -1,0 +1,377 @@
+/*
+ * SERGIO FORÉS - LAYOUT GRID SYSTEM MADRE
+ * Implementación perfecta del grid system master para Design System
+ * 
+ * ⚠️ APLICACIÓN DIRECTA DEL SISTEMA MADRE:
+ * ✅ Variables grid desde ../../css/main.css
+ * ✅ Respiración horizontal universal  
+ * ✅ Spacing matemáticamente perfecto
+ * ✅ Grid system como base arquitectónica
+ * ✅ Containers perfectamente contenidos
+ */
+
+/* ==========================================================================
+   IMPORTACIÓN CRÍTICA - VARIABLES MADRE
+   ========================================================================== */
+
+/* 
+   TODAS las variables grid provienen de ../../css/main.css
+   NO duplicar, SOLO aplicar las variables madre existentes
+*/
+
+/* ==========================================================================
+   ARQUITECTURA BASE - CONTAINER SYSTEM SERGIO FORÉS
+   ========================================================================== */
+
+/* Container Master - Aplica sistema madre completamente */
+.container-master {
+    width: 100%;
+    max-width: var(--container-max-width);          /* 1200px del sistema madre */
+    margin: 0 auto;
+    padding-left: var(--space-l);                   /* Respiración lateral Utopia */
+    padding-right: var(--space-l);
+}
+
+/* Container Wide - Para secciones amplias */
+.container-wide {
+    width: 100%;
+    max-width: var(--container-max-width-wide);     /* 1400px del sistema madre */
+    margin: 0 auto;
+    padding-left: var(--space-l);
+    padding-right: var(--space-l);
+}
+
+/* Container Narrow - Para lectura óptima */
+.container-narrow {
+    width: 100%;
+    max-width: var(--container-max-width-narrow);   /* 800px del sistema madre */
+    margin: 0 auto;
+    padding-left: var(--space-l);
+    padding-right: var(--space-l);
+}
+
+/* Container Ultra - Para pantallas ultra-wide */
+.container-ultra {
+    width: 100%;
+    max-width: var(--container-max-width-ultra);    /* 1800px del sistema madre */
+    margin: 0 auto;
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
+}
+
+/* ==========================================================================
+   SECTION WRAPPER - APLICACIÓN PERFECTA DEL GRID SYSTEM
+   ========================================================================== */
+
+/* Section Base - Usando variables madre para spacing */
+.section-grid {
+    width: 100%;
+    padding-top: var(--essence-space);              /* --space-l-xl del sistema madre */
+    padding-bottom: var(--essence-space);
+}
+
+/* Section Header - Perfectamente espaciado */
+.section-header-grid {
+    text-align: center;
+    margin-bottom: var(--infinite-space);           /* --space-xl-2xl del sistema madre */
+}
+
+.section-title-grid {
+    font-size: var(--section-title-size);           /* --core-text (step-3) */
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--section-title-margin-bottom) 0; /* --space-xl */
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.section-description-grid {
+    font-size: var(--section-description-size);     /* --fragment-text (step-0) */
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin: 0 auto;
+    max-width: var(--section-description-max-width); /* 800px lectura óptima */
+}
+
+/* ==========================================================================
+   GRID LAYOUTS - SISTEMA MADRE APLICADO PERFECTAMENTE
+   ========================================================================== */
+
+/* Grid Base - Fundación del sistema */
+.grid-master {
+    display: grid;
+    gap: var(--analysis-space);                     /* --space-s-m del sistema madre */
+    grid-template-rows: auto auto auto;            /* NO usar 1fr que estira */
+    justify-items: stretch;                        /* Grid preferred sobre flexbox */
+    align-items: start;
+    align-content: start;
+}
+
+/* Grid Responsive - Mobile First Perfect */
+.grid-responsive-master {
+    display: grid;
+    gap: var(--analysis-space);
+    grid-template-columns: 1fr;                    /* Mobile: 1 columna */
+    grid-template-rows: auto auto auto;
+    justify-items: stretch;
+    align-items: start;
+    align-content: start;
+}
+
+/* Responsive Breakpoints - Sistema Madre */
+@media (min-width: 640px) {
+    .grid-responsive-master {
+        grid-template-columns: repeat(2, 1fr);      /* Tablet: 2 columnas */
+    }
+}
+
+@media (min-width: 768px) {
+    .grid-responsive-master {
+        grid-template-columns: repeat(3, 1fr);      /* Desktop: 3 columnas */
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-responsive-master {
+        grid-template-columns: repeat(4, 1fr);      /* Large Desktop: 4 columnas */
+        gap: var(--essence-space);                  /* Más separación en pantallas grandes */
+    }
+}
+
+/* Grid Projects - Para portfolios y proyectos */
+.grid-projects-master {
+    display: grid;
+    gap: var(--project-grid-gap);                   /* --space-2xl del sistema madre */
+    padding: var(--project-grid-padding);           /* --space-l padding interno */
+    margin: var(--project-grid-margin);             /* --space-3xl separación bordes */
+    grid-template-columns: var(--project-grid-columns-mobile);
+    grid-template-rows: auto auto auto;
+    justify-items: stretch;
+    align-items: stretch;
+    align-content: start;
+}
+
+@media (min-width: 768px) {
+    .grid-projects-master {
+        grid-template-columns: var(--project-grid-columns-tablet);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-projects-master {
+        grid-template-columns: var(--project-grid-columns-desktop);
+    }
+}
+
+@media (min-width: 1440px) {
+    .grid-projects-master {
+        grid-template-columns: var(--project-grid-columns-ultra);
+    }
+}
+
+/* ==========================================================================
+   HERO SECTION - GRID SYSTEM PERFECTO
+   ========================================================================== */
+
+/* Hero Master - Centrado perfecto con grid */
+.hero-master {
+    display: grid;
+    place-items: center;                           /* Centrado perfecto horizontal y vertical */
+    min-height: var(--hero-min-height-mobile);     /* 60vh móvil */
+    padding-top: var(--quantum-space);             /* --space-2xl-3xl */
+    padding-bottom: var(--quantum-space);
+    text-align: center;
+    background-color: var(--color-surface-primary);
+}
+
+.hero-container-master {
+    width: 100%;
+    max-width: var(--hero-content-max-width);      /* 800px del sistema madre */
+    margin: 0 auto;
+    padding-left: var(--space-l);
+    padding-right: var(--space-l);
+}
+
+.hero-title-master {
+    font-size: var(--hero-title-size);             /* --essence-text (step-4) */
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--hero-margin-bottom) 0;
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.hero-subtitle-master {
+    font-size: var(--fragment-text);               /* --step-0 */
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin: 0 auto var(--essence-space) auto;
+    max-width: var(--hero-content-max-width);
+}
+
+.hero-actions-master {
+    display: flex;
+    justify-content: center;
+    gap: var(--analysis-space);
+    flex-wrap: wrap;
+    margin-top: var(--essence-space);
+}
+
+@media (min-width: 768px) {
+    .hero-master {
+        min-height: var(--hero-min-height-desktop); /* 40vh desktop */
+    }
+}
+
+/* ==========================================================================
+   NAVIGATION HEADER - GRID INTEGRATION
+   ========================================================================== */
+
+/* Header Master - Grid coherence */
+.header-master {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: var(--border-width-base) solid var(--color-gray-200);
+}
+
+.header-container-master {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding-left: var(--nav-padding-h);             /* Coherente con grid system */
+    padding-right: var(--nav-padding-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--nav-height-offset);           /* 80px altura header */
+}
+
+/* ==========================================================================
+   CARDS SYSTEM - GRID INTEGRATION PERFECT
+   ========================================================================== */
+
+/* Card Master - Perfecta integración con grid */
+.card-master {
+    width: 100%;
+    height: 100%;                                   /* Altura completa del grid cell */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-surface-primary);
+    border: var(--border-width-base) solid var(--color-gray-200);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    transition: all var(--duration-base) var(--ease-out);
+}
+
+.card-body-master {
+    padding: var(--analysis-space);                 /* Coherente con grid spacing */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.card-title-master {
+    font-size: var(--project-title-size);           /* --analysis-text (step-1) */
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--project-title-margin) 0;
+    line-height: var(--line-height-tight);
+}
+
+.card-text-master {
+    font-size: var(--project-description-size);     /* --connection-text (step--1) */
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+    flex: 1;
+}
+
+/* ==========================================================================
+   RESPONSIVE GRID ADJUSTMENTS - SISTEMA MADRE COMPLETO
+   ========================================================================== */
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .container-master,
+    .container-wide,
+    .container-narrow {
+        padding-left: var(--space-s);               /* Menos padding en móvil */
+        padding-right: var(--space-s);
+    }
+    
+    .section-grid {
+        padding-top: var(--space-xl);               /* Reduce spacing cosmic en móvil */
+        padding-bottom: var(--space-xl);
+    }
+    
+    .hero-title-master {
+        font-size: var(--step-3);                   /* Reduce hero title en móvil */
+    }
+}
+
+/* Desktop Optimizations */
+@media (min-width: 1024px) {
+    .container-master,
+    .hero-container-master,
+    .header-container-master {
+        max-width: var(--container-max-width-wide);  /* 1400px en desktop */
+    }
+}
+
+/* Large Desktop Optimizations */
+@media (min-width: 1440px) {
+    .container-master,
+    .hero-container-master,
+    .header-container-master {
+        max-width: var(--space-1600px);              /* 1600px en large desktop */
+        padding-left: var(--space-xl);
+        padding-right: var(--space-xl);
+    }
+}
+
+/* Ultra-wide Optimizations */
+@media (min-width: 2560px) {
+    .container-master,
+    .hero-container-master,
+    .header-container-master {
+        max-width: var(--container-max-width-ultra);  /* 1800px en ultra-wide */
+        padding-left: var(--space-2xl);
+        padding-right: var(--space-2xl);
+    }
+}
+
+/* ==========================================================================
+   UTILITIES - RESPIRACIÓN HORIZONTAL UNIVERSAL
+   ========================================================================== */
+
+/* Gap = Margin Consistency - Armonía integral */
+.breathing-horizontal {
+    margin-left: var(--analysis-space);
+    margin-right: var(--analysis-space);
+}
+
+/* Remove breathing cuando ya hay container con padding */
+.no-breathing {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Spacing semantic utilities usando variables madre */
+.spacing-quantum { margin: var(--quantum-space); }
+.spacing-infinite { margin: var(--infinite-space); }
+.spacing-essence { margin: var(--essence-space); }
+.spacing-analysis { margin: var(--analysis-space); }
+.spacing-connection { margin: var(--connection-space); }
+.spacing-detail { margin: var(--detail-space); }
+
+/* Padding utilities usando variables madre */
+.padding-quantum { padding: var(--quantum-space); }
+.padding-infinite { padding: var(--infinite-space); }
+.padding-essence { padding: var(--essence-space); }
+.padding-analysis { padding: var(--analysis-space); }
+.padding-connection { padding: var(--connection-space); }
+.padding-detail { padding: var(--detail-space); }

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Grid System - Sergio Forés</title>
+
+    <!-- IMPORTACIÓN SISTEMA MADRE COMPLETO -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="css/sergio-layout-grid.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        /* Demo específico para mostrar el grid system en acción */
+        .demo-section {
+            margin-bottom: var(--quantum-space);
+            padding: var(--essence-space);
+            border: 2px solid var(--color-accent-primary);
+            background-color: var(--color-surface-secondary);
+        }
+        
+        .demo-title {
+            font-size: var(--core-text);
+            color: var(--color-accent-primary);
+            margin-bottom: var(--analysis-space);
+            text-align: center;
+        }
+        
+        .demo-grid-item {
+            background-color: var(--color-surface-primary);
+            border: 1px solid var(--color-gray-300);
+            padding: var(--analysis-space);
+            text-align: center;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius-base);
+        }
+        
+        .system-info {
+            background-color: var(--color-yellow);
+            color: var(--color-black);
+            padding: var(--analysis-space);
+            margin: var(--essence-space) 0;
+            border-radius: var(--border-radius-base);
+            text-align: center;
+            font-weight: var(--font-weight-bold);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Grid System -->
+    <header class="header-master">
+        <div class="header-container-master">
+            <div class="header__brand">
+                <span style="font-size: var(--analysis-text); font-weight: var(--font-weight-bold);">01234</span>
+                <span style="font-size: var(--connection-text); color: var(--color-text-secondary);">Grid Demo</span>
+            </div>
+            <nav>
+                <span style="font-size: var(--connection-text);">Sistema Madre Aplicado</span>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section Demo -->
+        <section class="hero-master">
+            <div class="hero-container-master">
+                <h1 class="hero-title-master">Grid System Sergio Forés</h1>
+                <p class="hero-subtitle-master">
+                    Demostración práctica del layout base completamente integrado con el sistema madre de variables CSS.
+                    Respiración horizontal perfecta, spacing matemáticamente coherente, y grid system como arquitectura fundamental.
+                </p>
+                <div class="hero-actions-master">
+                    <button class="btn btn--primary">Sistema Aplicado</button>
+                    <button class="btn btn--secondary">Variables Madre</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Container System -->
+        <section class="section-grid">
+            <div class="demo-section">
+                <h2 class="demo-title">📐 CONTAINER SYSTEM - Variables Madre</h2>
+                
+                <div class="system-info">
+                    <p>Container Master: max-width: var(--container-max-width) = 1200px</p>
+                    <p>Padding: var(--space-l) = clamp(2.00rem, calc(1.85rem + 0.74vw), 2.50rem)</p>
+                </div>
+                
+                <div class="container-master">
+                    <div class="demo-grid-item">
+                        <strong>Container Master<br>Respiración lateral automática<br>Responsive fluido</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Grid Responsive -->
+        <section class="section-grid" style="background-color: var(--color-surface-secondary);">
+            <div class="container-master">
+                <div class="demo-section">
+                    <h2 class="demo-title">🔲 GRID RESPONSIVE - Sistema Madre</h2>
+                    
+                    <div class="system-info">
+                        <p>Gap: var(--analysis-space) = clamp(1.00rem, calc(0.69rem + 1.57vw), 1.88rem)</p>
+                        <p>Mobile: 1 col → Tablet: 2 cols → Desktop: 3 cols → Large: 4 cols</p>
+                    </div>
+                    
+                    <div class="grid-responsive-master">
+                        <div class="demo-grid-item">
+                            <strong>Item 1<br>Auto-responsive</strong>
+                        </div>
+                        <div class="demo-grid-item">
+                            <strong>Item 2<br>Mobile first</strong>
+                        </div>
+                        <div class="demo-grid-item">
+                            <strong>Item 3<br>Grid perfecto</strong>
+                        </div>
+                        <div class="demo-grid-item">
+                            <strong>Item 4<br>Variables madre</strong>
+                        </div>
+                        <div class="demo-grid-item">
+                            <strong>Item 5<br>Spacing coherente</strong>
+                        </div>
+                        <div class="demo-grid-item">
+                            <strong>Item 6<br>Respiración universal</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Cards System -->
+        <section class="section-grid">
+            <div class="container-master">
+                <div class="demo-section">
+                    <h2 class="demo-title">🎴 CARDS SYSTEM - Integración Perfecta</h2>
+                    
+                    <div class="system-info">
+                        <p>Cards Master: altura 100% del grid cell, flex-direction: column</p>
+                        <p>Padding: var(--analysis-space) coherente con grid spacing</p>
+                    </div>
+                    
+                    <div class="grid-responsive-master">
+                        <div class="card-master">
+                            <div class="card-body-master">
+                                <h3 class="card-title-master">🌟 Consonancia Sistémica</h3>
+                                <p class="card-text-master">
+                                    Armonía matemática perfecta entre todos los elementos del layout.
+                                    Variables madre garantizan coherencia total del sistema.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card-master">
+                            <div class="card-body-master">
+                                <h3 class="card-title-master">⚛️ Estructura Nuclear</h3>
+                                <p class="card-text-master">
+                                    Centro atómico inmutable: ../../css/main.css como única fuente de verdad.
+                                    Sin duplicación, solo propagación limpia.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card-master">
+                            <div class="card-body-master">
+                                <h3 class="card-title-master">🫁 Respiración Horizontal</h3>
+                                <p class="card-text-master">
+                                    Contenido NUNCA pegado a bordes. Margin universal automático.
+                                    Gap = Margin para armonía integral perfecta.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Spacing System -->
+        <section class="section-grid" style="background-color: var(--color-surface-secondary);">
+            <div class="container-master">
+                <div class="demo-section">
+                    <h2 class="demo-title">📏 SPACING SYSTEM - Variables Utopia</h2>
+                    
+                    <div class="system-info">
+                        <p>Filosofía 01234: Quantum → Infinite → Essence → Analysis → Connection → Detail</p>
+                        <p>Clamp() fluido: responsive perfecto sin media queries</p>
+                    </div>
+                    
+                    <div style="display: grid; gap: var(--connection-space); grid-template-columns: 1fr;">
+                        <div style="background: var(--color-surface-primary); padding: var(--quantum-space); text-align: center; border-radius: var(--border-radius-base);">
+                            <strong>Quantum Space</strong><br>var(--quantum-space) = --space-2xl-3xl<br>Hero sections, separaciones cósmicas
+                        </div>
+                        <div style="background: var(--color-surface-primary); padding: var(--infinite-space); text-align: center; border-radius: var(--border-radius-base);">
+                            <strong>Infinite Space</strong><br>var(--infinite-space) = --space-xl-2xl<br>Entre regiones mayores
+                        </div>
+                        <div style="background: var(--color-surface-primary); padding: var(--essence-space); text-align: center; border-radius: var(--border-radius-base);">
+                            <strong>Essence Space</strong><br>var(--essence-space) = --space-l-xl<br>Separación dramática de secciones
+                        </div>
+                        <div style="background: var(--color-surface-primary); padding: var(--analysis-space); text-align: center; border-radius: var(--border-radius-base);">
+                            <strong>Analysis Space</strong><br>var(--analysis-space) = --space-s-m<br>Spacing interno de componentes
+                        </div>
+                        <div style="background: var(--color-surface-primary); padding: var(--connection-space); text-align: center; border-radius: var(--border-radius-base);">
+                            <strong>Connection Space</strong><br>var(--connection-space) = --space-xs-s<br>Gap entre elementos relacionados
+                        </div>
+                        <div style="background: var(--color-surface-primary); padding: var(--detail-space); text-align: center; border-radius: var(--border-radius-base);">
+                            <strong>Detail Space</strong><br>var(--detail-space) = --space-3xs-2xs<br>Padding interno, refinamientos
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Breakpoints System -->
+        <section class="section-grid">
+            <div class="container-master">
+                <div class="demo-section">
+                    <h2 class="demo-title">📱 BREAKPOINTS SYSTEM - Responsive Perfecto</h2>
+                    
+                    <div class="system-info">
+                        <p>Mobile First: Container adapta automáticamente según breakpoints madre</p>
+                        <p>1024px+ → 1400px wide | 1440px+ → 1600px | 2560px+ → 1800px ultra</p>
+                    </div>
+                    
+                    <div style="display: grid; gap: var(--analysis-space); grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                        <div style="background: var(--color-surface-primary); padding: var(--analysis-space); text-align: center; border-radius: var(--border-radius-base);">
+                            <strong>Mobile < 768px</strong><br>Padding: var(--space-s)<br>Grid: 1 columna
+                        </div>
+                        <div style="background: var(--color-surface-primary); padding: var(--analysis-space); text-align: center; border-radius: var(--border-radius-base);">
+                            <strong>Tablet 768px+</strong><br>Padding: var(--space-l)<br>Grid: 2-3 columnas
+                        </div>
+                        <div style="background: var(--color-surface-primary); padding: var(--analysis-space); text-align: center; border-radius: var(--border-radius-base);">
+                            <strong>Desktop 1024px+</strong><br>Container: 1400px<br>Grid: 3-4 columnas
+                        </div>
+                        <div style="background: var(--color-surface-primary); padding: var(--analysis-space); text-align: center; border-radius: var(--border-radius-base);">
+                            <strong>Ultra 1440px+</strong><br>Container: 1600px<br>Padding: var(--space-xl)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Grid System -->
+    <footer style="background-color: var(--color-surface-inverse); color: var(--color-text-inverse); padding: var(--essence-space) 0; text-align: center;">
+        <div class="container-master">
+            <p style="margin: 0; font-size: var(--connection-text);">
+                GRID SYSTEM SERGIO FORÉS • Variables Madre • Respiración Universal • Layout Perfecto • 2025
+            </p>
+        </div>
+    </footer>
+
+    <style>
+        /* Indicator para mostrar breakpoints activos */
+        body::before {
+            content: "Mobile < 768px";
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: var(--color-accent-primary);
+            color: var(--color-black);
+            padding: var(--detail-space) var(--connection-space);
+            border-radius: var(--border-radius-base);
+            font-size: var(--connection-text);
+            font-weight: var(--font-weight-bold);
+            z-index: 1000;
+        }
+        
+        @media (min-width: 768px) {
+            body::before { content: "Tablet 768px+"; }
+        }
+        
+        @media (min-width: 1024px) {
+            body::before { content: "Desktop 1024px+"; }
+        }
+        
+        @media (min-width: 1440px) {
+            body::before { content: "Large 1440px+"; }
+        }
+        
+        @media (min-width: 2560px) {
+            body::before { content: "Ultra 2560px+"; }
+        }
+    </style>
+</body>
+</html>
