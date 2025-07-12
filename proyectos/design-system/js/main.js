@@ -2,13 +2,25 @@
 
 // Load External SVG Sprite for better maintainability
 function loadSvgSprite(url) {
+    // Check if we're in a local file:// environment
+    if (window.location.protocol === 'file:') {
+        console.log('Local file environment detected. SVG sprite loading skipped.');
+        return;
+    }
+    
     fetch(url)
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            return response.text();
+        })
         .then(svg => {
             const div = document.createElement('div');
             div.innerHTML = svg;
             div.style.display = 'none';
             document.body.insertBefore(div, document.body.firstChild);
+            console.log('SVG sprite loaded successfully');
         })
         .catch(error => console.warn('SVG icons could not be loaded:', error));
 }
@@ -32,7 +44,10 @@ window.addEventListener('scroll', function() {
 
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', function() {
-    loadSvgSprite('sergio-icons.svg');
+    // SVG sprite loading (only for server environments)
+    if (window.location.protocol !== 'file:') {
+        loadSvgSprite('sergio-icons.svg');
+    }
 
     const menuToggle = document.querySelector('.header__menu-toggle');
     const mainNavList = document.getElementById('main-nav-list');
@@ -43,4 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
             this.setAttribute('aria-expanded', mainNavList.classList.contains('is-open'));
         });
     }
+
+    console.log('Design System initialized successfully');
 });

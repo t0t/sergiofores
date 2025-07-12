@@ -211,14 +211,14 @@ ol {
 }
 
 li {
-    font-size: var(--text-base);
+    font-size: var(--text-small);  /* Todo el resto del contenido CLAUDE.md */
     line-height: var(--line-height-relaxed);
     color: var(--color-text-primary);
     margin-bottom: var(--space-2);
 }
 
 blockquote {
-    font-size: var(--text-lg);
+    font-size: var(--text-medium);  /* Subtítulos y navegación CLAUDE.md */
     line-height: var(--line-height-relaxed);
     color: var(--color-text-primary);
     margin: var(--space-8) 0;
@@ -227,7 +227,7 @@ blockquote {
 }
 
 blockquote footer {
-    font-size: var(--text-sm);
+    font-size: var(--text-small);  /* Todo el resto del contenido CLAUDE.md */
     color: var(--color-text-muted);
     margin-top: var(--space-2);
 }
@@ -485,7 +485,7 @@ th {
     line-height: 1;
     text-decoration: none;
     border: var(--border-width-base) solid;
-    border-radius: var(--border-radius-base);
+    /* Sin border-radius - estilo 01234 limpio */
     cursor: pointer;
     transition: all var(--duration-base) var(--ease-out);
     user-select: none;
@@ -556,7 +556,7 @@ th {
     flex-direction: column;
     background-color: var(--color-surface-primary);
     border: var(--border-width-base) solid var(--color-gray-200);
-    border-radius: var(--border-radius-lg);
+    /* Sin border-radius - estilo 01234 limpio */
     overflow: hidden;
     transition: all var(--duration-base) var(--ease-out);
 }
@@ -567,7 +567,7 @@ th {
 }
 
 .card__title {
-    font-size: var(--text-lg);
+    font-size: var(--text-medium);  /* Subtítulos y navegación CLAUDE.md */
     font-weight: var(--font-weight-semibold);
     color: var(--color-text-primary);
     margin-top: 0;
@@ -603,7 +603,7 @@ th {
 }
 
 .form__label {
-    font-size: var(--text-sm);
+    font-size: var(--text-small);  /* Todo el resto del contenido CLAUDE.md */
     font-weight: var(--font-weight-medium);
     color: var(--color-text-primary);
     margin-bottom: 0;
@@ -613,11 +613,11 @@ th {
     width: 100%;
     padding: var(--space-3) var(--space-4);
     font-family: var(--font-primary);
-    font-size: var(--text-base);
+    font-size: var(--text-small);  /* Todo el resto del contenido CLAUDE.md */
     color: var(--color-text-primary);
     background-color: var(--color-surface-primary);
     border: var(--border-width-base) solid var(--color-gray-300);
-    border-radius: var(--border-radius-base);
+    /* Sin border-radius - estilo 01234 limpio */
     transition: all var(--duration-base) var(--ease-out);
 }
 
@@ -720,7 +720,7 @@ th {
 .header__nav-link {
     text-decoration: none;
     color: var(--color-text-secondary);
-    font-size: var(--text-sm);
+    font-size: var(--text-small);  /* Todo el resto del contenido CLAUDE.md */
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--letter-spacing-wide);
     transition: color var(--duration-base) var(--ease-out);
@@ -1009,52 +1009,52 @@ th {
 .color-palette__group {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-2);  /* Más compacto entre grupos */
 }
 
 .color-palette__title {
-    font-size: var(--text-lg);
-    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-medium);  /* Subtítulos y navegación CLAUDE.md */
+    font-weight: var(--font-weight-medium);  /* Títulos consistente */
     color: var(--color-text-primary);
     margin-top: 0;
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-2);  /* Espaciado más compacto */
 }
 
 .color-palette__items {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));  /* Más compacto */
+    gap: 0;  /* Sin gap para compacidad máxima */
 }
 
 .color-swatch {
     display: flex;
     flex-direction: column;
-    border: var(--border-width-base) solid var(--color-gray-200);
-    border-radius: var(--border-radius-base);
+    /* Sin borders - los colores tienen suficiente presencia */
+    /* Sin border-radius - estilo 01234 limpio */
     overflow: hidden;
 }
 
 .color-swatch__color {
-    height: 60px;
+    height: var(--space-16);  /* 64px - más compacto y sistemático */
     flex-shrink: 0;
 }
 
 .color-swatch__info {
-    padding: var(--space-3);
-    background-color: var(--color-white);
+    padding: var(--space-1);  /* Padding uniforme más compacto */
+    background-color: var(--color-background);  /* Variable semántica */
 }
 
 .color-swatch__name {
-    font-size: var(--text-sm);
+    font-size: var(--text-small);  /* Tamaño más pequeño sistema 3 tamaños */
     font-weight: var(--font-weight-medium);
     color: var(--color-text-primary);
     margin-bottom: var(--space-1);
 }
 
 .color-swatch__value {
-    font-size: var(--text-xs);
+    font-size: var(--text-small);  /* Tamaño más pequeño sistema 3 tamaños */
     font-family: var(--font-mono);
-    color: var(--color-text-muted);
+    color: var(--color-text-secondary);  /* Variable semántica correcta */
 }
 
 
@@ -1062,15 +1062,15 @@ th {
 
 
 .features__title {
-    font-size: var(--text-4xl);
-    font-weight: var(--font-weight-bold);
+    font-size: var(--text-large);  /* Títulos principales CLAUDE.md */
+    font-weight: var(--font-weight-medium);  /* Títulos consistente */
     color: var(--color-text-primary);
     margin-top: 0;
     margin-bottom: var(--space-4);
 }
 
 .features__subtitle {
-    font-size: var(--text-lg);
+    font-size: var(--text-small);  /* Todo el resto del contenido CLAUDE.md */
     color: var(--color-text-secondary);
     line-height: var(--line-height-relaxed);
     margin-top: 0;
@@ -1106,26 +1106,36 @@ th {
 
 .features__item {
     text-align: center;
-    background-color: var(--color-surface-primary);
-    border: var(--border-width-base) solid var(--color-gray-200);
-    border-radius: var(--border-radius-lg);
-    padding: var(--space-8);
+    background-color: var(--color-surface);  /* Variable semántica */
+    /* Sin borders - estilo Sistema de Diseño minimalista */
+    /* Sin border-radius - estilo 01234 limpio */
+    padding: var(--space-4);  /* Padding más compacto - 16px */
 }
 
 .features__icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--space-12);
-    height: var(--space-12);
-    margin: 0 auto var(--space-4) auto;
+    width: var(--space-8);   /* 32px - más compacto */
+    height: var(--space-8);  /* 32px - más compacto */
+    margin: 0 auto var(--space-2) auto;  /* Margin más compacto */
     background-color: var(--color-2);  /* Cyan #4ECDC4 - Refinamiento */
-    border-radius: var(--border-radius-base);  /* Radio consistente con sistema */
+    /* Sin border-radius - estilo 01234 limpio */
     color: var(--black);  /* Negro para contraste perfecto 6.2:1 */
 }
 
+/* Asegurar que los iconos SVG hereden el color correctamente */
+.features__icon .icon {
+    color: inherit;  /* Heredar el color negro del contenedor */
+    stroke: currentColor;  /* Stroke usa currentColor */
+    fill: none;  /* Sin fill para iconos outline */
+    width: var(--space-4);   /* 16px - proporcional al contenedor compacto */
+    height: var(--space-4);  /* 16px - proporcional al contenedor compacto */
+    stroke-width: 2;  /* Grosor consistente */
+}
+
 .features__item-title {
-    font-size: var(--text-xl);
+    font-size: var(--text-medium);  /* Subtítulos y navegación CLAUDE.md */
     font-weight: var(--font-weight-semibold);
     color: var(--color-text-primary);
     margin-top: 0;
@@ -1133,7 +1143,7 @@ th {
 }
 
 .features__item-description {
-    font-size: var(--text-base);
+    font-size: var(--text-small);  /* Todo el resto del contenido CLAUDE.md */
     color: var(--color-text-secondary);
     line-height: var(--line-height-relaxed);
     margin-top: 0;
@@ -1149,7 +1159,7 @@ th {
     flex-direction: column;
     background-color: var(--color-surface-primary);
     border: var(--border-width-base) solid var(--color-gray-200);
-    border-radius: var(--border-radius-lg);
+    /* Sin border-radius - estilo 01234 limpio */
     overflow: hidden;
     position: relative;
 }
@@ -1186,22 +1196,24 @@ th {
 }
 
 .features__card-category {
-    font-size: var(--text-xs);
-    font-weight: var(--font-weight-medium);
+    font-size: var(--text-small);          /* Sistema 3 tamaños CLAUDE.md */
+    font-weight: var(--font-weight-semibold);  /* Títulos alternativos */
     text-transform: uppercase;
-    color: var(--color-accent-primary);
+    letter-spacing: var(--letter-spacing-wide);  /* Más espacio para uppercase */
+    color: var(--color-2);                  /* Cyan - Refinamiento coherente */
+    margin-bottom: var(--space-1);         /* Espaciado sistema 8px */
 }
 
 .features__card-title {
-    font-size: var(--text-lg);
-    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-medium);         /* Subtítulos y navegación CLAUDE.md */
+    font-weight: var(--font-weight-medium); /* Títulos consistente */
     color: var(--color-text-primary);
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: var(--space-2);         /* Espaciado sistema 8px */
 }
 
 .features__card-description {
-    font-size: var(--text-base);
+    font-size: var(--text-small);          /* Todo el resto del contenido CLAUDE.md */
     color: var(--color-text-secondary);
     line-height: var(--line-height-relaxed);
     margin-top: 0;
@@ -1225,7 +1237,7 @@ th {
 .features--highlight .features__image img {
     width: 100%;
     height: auto;
-    border-radius: var(--border-radius-lg);
+    /* Sin border-radius - estilo 01234 limpio */
 }
 
 .features__list {
@@ -1247,7 +1259,7 @@ th {
 }
 
 .features__list-content h4 {
-    font-size: var(--text-base);
+    font-size: var(--text-small);  /* Todo el resto del contenido CLAUDE.md */
     font-weight: var(--font-weight-semibold);
     color: var(--color-text-primary);
     margin-top: 0;
@@ -1255,7 +1267,7 @@ th {
 }
 
 .features__list-content p {
-    font-size: var(--text-sm);
+    font-size: var(--text-small);  /* Todo el resto del contenido CLAUDE.md */
     color: var(--color-text-secondary);
     line-height: var(--line-height-relaxed);
     margin-top: 0;
@@ -1311,7 +1323,7 @@ th {
     background-color: var(--color-gray-900);
     color: var(--color-text-inverse);
     text-align: center;
-    font-size: var(--text-sm);
+    font-size: var(--text-small);  /* Todo el resto del contenido CLAUDE.md */
 }
 
 .footer__container {
@@ -1328,7 +1340,7 @@ th {
     background-color: var(--color-2);  /* Cyan - Refinamiento nivel 2 */
     color: var(--black);  /* Negro para contraste perfecto con cyan */
     border: var(--border-width-base) solid var(--color-2);
-    border-radius: var(--radius-base);  /* Radio consistente, no full */
+    /* Sin border-radius - estilo 01234 limpio */
     width: var(--space-12);  /* Touch target 48px accesible */
     height: var(--space-12);
     display: flex;
@@ -1688,7 +1700,7 @@ th {
     flex-direction: column;
     background-color: var(--color-surface-primary);
     border: var(--border-width-base) solid var(--color-gray-200);
-    border-radius: var(--border-radius-lg);
+    /* Sin border-radius - estilo 01234 limpio */
     overflow: hidden;
     transition: all var(--duration-base) var(--ease-out);
 }
@@ -1811,7 +1823,7 @@ th {
     width: 20px;
     height: 20px;
     background-color: var(--color-accent-primary);
-    border-radius: var(--border-radius-full);
+    /* Sin border-radius - estilo 01234 limpio */
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);

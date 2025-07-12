@@ -6,43 +6,37 @@
     <title>CEREBRO-DIGITAL | Tu Segundo Cerebro que Piensa con IA</title>
     <meta name="description" content="Duplica tu capacidad cognitiva con el primer sistema PKM + IA que convierte caos informacional en arquitectura inteligente del sentido. Probado por 500+ knowledge workers.">
     
-    <!-- Preload fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <!-- Design System Imports - Sergio Forés ATOMIC -->
+    <link rel="stylesheet" href="../design-system/css/main.css">
+    <link rel="stylesheet" href="../design-system/css/sergio-layout-grid.css">
+    <link rel="stylesheet" href="../design-system/css/claude-layout-optimized.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="#hero" class="nav-brand">
-                <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9.5 2A2.5 2.5 0 0 0 7 4.5v15A2.5 2.5 0 0 0 9.5 22h5a2.5 2.5 0 0 0 2.5-2.5v-15A2.5 2.5 0 0 0 14.5 2h-5Z"/>
-                    <path d="M9 6h6"/>
-                    <path d="M9 10h6"/>
-                    <path d="M9 14h6"/>
-                    <path d="M9 18h6"/>
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M16 8l-2 2-2-2"/>
-                    <path d="M8 16l2-2 2 2"/>
-                </svg>
-                <span class="brand-text">CEREBRO-DIGITAL</span>
+    <!-- Header Navigation - Design System Sergio Forés -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#hero" class="logo logo-link">
+                <div class="geo-shape geo-circle-outline"></div>
+                <div class="geo-shape geo-circle-solid"></div>
+                <div class="geo-shape geo-line"></div>
+                <div class="geo-shape geo-triangle"></div>
+                <div class="geo-shape geo-square"></div>
+                <span class="logo-text">CEREBRO-DIGITAL</span>
             </a>
-            <div class="nav-links">
-                <a href="#overview" class="nav-link">Overview</a>
-                <a href="#architecture" class="nav-link">Arquitectura</a>
-                <a href="#methodology" class="nav-link">Metodología</a>
-                <a href="#metrics" class="nav-link">Métricas</a>
-                <a href="#ecosystem" class="nav-link">Ecosistema</a>
-            </div>
+            <nav class="header-nav">
+                <a href="#overview" class="header-nav-link">Overview</a>
+                <a href="#architecture" class="header-nav-link">Arquitectura</a>
+                <a href="#methodology" class="header-nav-link">Metodología</a>
+                <a href="#metrics" class="header-nav-link">Métricas</a>
+                <a href="#ecosystem" class="header-nav-link">Ecosistema</a>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="container">
+    <main>
+        <section id="hero" class="hero">
             <div class="hero-content">
                 <div class="hero-badge">
                     🧠 Tu Segundo Cerebro Inteligente
@@ -55,90 +49,72 @@
                     El primer sistema que no solo almacena conocimiento, sino que dialoga inteligentemente con él.
                 </p>
                 <div class="hero-actions">
-                    <a href="#overview" class="btn btn-primary">🚀 Implementar Mi Segundo Cerebro</a>
-                    <a href="#methodology" class="btn btn-secondary">📖 Cómo Funciona (2 min)</a>
+                    <a href="#overview" class="btn btn--primary">🚀 Implementar Mi Segundo Cerebro</a>
+                    <a href="#methodology" class="btn btn--secondary">📖 Cómo Funciona (2 min)</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Overview Section -->
-    <section id="overview" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">El Problema: Colapso del Knowledge Worker Moderno</h2>
-                <p class="section-description">
-                    <strong>¿Te suena familiar?</strong> Información dispersa en 20+ herramientas. Ideas valiosas perdidas. 
-                    Conocimiento fragmentado que no se conecta. <strong>CEREBRO-DIGITAL resuelve esto.</strong>
-                </p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M12 1v6m0 6v6"/>
-                        <path d="m21 12-6-3-6 3-6-3"/>
-                        <path d="M5.64 7.64L12 12l6.36-4.36"/>
-                    </svg>
-                    <h3 class="feature-title">⚡ Nunca Más Pierdas Una Idea Valiosa</h3>
-                    <p class="feature-description">
-                        Captura automática desde cualquier fuente. IA que organiza al instante. 
-                        <strong>Resultado:</strong> Tu conocimiento siempre accesible y conectado.
+        <!-- Overview Section -->
+        <section id="overview" class="section">
+            <div class="section-container">
+                <header class="section-header">
+                    <h2 class="section-title">El Problema: Colapso del Knowledge Worker Moderno</h2>
+                    <p class="section-description">
+                        <strong>¿Te suena familiar?</strong> Información dispersa en 20+ herramientas. Ideas valiosas perdidas. 
+                        Conocimiento fragmentado que no se conecta. <strong>CEREBRO-DIGITAL resuelve esto.</strong>
                     </p>
-                </div>
+                </header>
                 
-                <div class="feature-card">
-                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
-                        <path d="M12 17a5 5 0 0 0 0-10"/>
-                        <circle cx="12" cy="12" r="2"/>
-                        <path d="M8 12h.01M16 12h.01"/>
-                    </svg>
-                    <h3 class="feature-title">🧠 Conexiones Automáticas Entre Conceptos</h3>
-                    <p class="feature-description">
-                        IA que detecta patrones ocultos en tu conocimiento. Conecta ideas dispersas automáticamente. 
-                        <strong>Resultado:</strong> Insights emergentes que no verías solo.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                    </svg>
-                    <h3 class="feature-title">🎯 Decisiones Respaldadas por Tu Conocimiento Completo</h3>
-                    <p class="feature-description">
-                        Acceso instantáneo a todo tu saber acumulado. IA que sintetiza información relevante. 
-                        <strong>Resultado:</strong> Decisiones más inteligentes en menos tiempo.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <circle cx="12" cy="12" r="6"/>
-                        <circle cx="12" cy="12" r="2"/>
-                        <path d="M12 2v4m0 12v4M2 12h4m12 0h4"/>
-                    </svg>
-                    <h3 class="feature-title">🔄 Sistema Que Evoluciona Contigo</h3>
-                    <p class="feature-description">
-                        Cuanto más lo usas, más inteligente se vuelve. Aprende tus patrones de pensamiento. 
-                        <strong>Resultado:</strong> Un segundo cerebro que verdaderamente te entiende.
-                    </p>
+                <div class="features__grid">
+                    <div class="features__item">
+                        <div class="features__icon" aria-hidden="true">⚡</div>
+                        <h3 class="features__title">Nunca Más Pierdas Una Idea Valiosa</h3>
+                        <p class="features__description">
+                            Captura automática desde cualquier fuente. IA que organiza al instante. 
+                            <strong>Resultado:</strong> Tu conocimiento siempre accesible y conectado.
+                        </p>
+                    </div>
+                    
+                    <div class="features__item">
+                        <div class="features__icon" aria-hidden="true">🧠</div>
+                        <h3 class="features__title">Conexiones Automáticas Entre Conceptos</h3>
+                        <p class="features__description">
+                            IA que detecta patrones ocultos en tu conocimiento. Conecta ideas dispersas automáticamente. 
+                            <strong>Resultado:</strong> Insights emergentes que no verías solo.
+                        </p>
+                    </div>
+                    
+                    <div class="features__item">
+                        <div class="features__icon" aria-hidden="true">🎯</div>
+                        <h3 class="features__title">Decisiones Respaldadas por Tu Conocimiento Completo</h3>
+                        <p class="features__description">
+                            Acceso instantáneo a todo tu saber acumulado. IA que sintetiza información relevante. 
+                            <strong>Resultado:</strong> Decisiones más inteligentes en menos tiempo.
+                        </p>
+                    </div>
+                    
+                    <div class="features__item">
+                        <div class="features__icon" aria-hidden="true">🔄</div>
+                        <h3 class="features__title">Sistema Que Evoluciona Contigo</h3>
+                        <p class="features__description">
+                            Cuanto más lo usas, más inteligente se vuelve. Aprende tus patrones de pensamiento. 
+                            <strong>Resultado:</strong> Un segundo cerebro que verdaderamente te entiende.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Architecture Section -->
-    <section id="architecture" class="section section-alt">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Arquitectura Técnica</h2>
-                <p class="section-description">
-                    Componentes principales y flujos de datos del sistema CEREBRO-DIGITAL
-                </p>
-            </div>
+        <!-- Architecture Section -->
+        <section id="architecture" class="section">
+            <div class="section-container">
+                <header class="section-header">
+                    <h2 class="section-title">Arquitectura Técnica</h2>
+                    <p class="section-description">
+                        Componentes principales y flujos de datos del sistema CEREBRO-DIGITAL
+                    </p>
+                </header>
             
             <div class="architecture-stack">
                 <div class="architecture-layer">
@@ -680,50 +656,43 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="section section-alt">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">Listo Para 10x Tu Capacidad Cognitiva?</h2>
-                <p class="cta-description">
-                    <strong>Únete a 500+ knowledge workers</strong> que ya usan CEREBRO-DIGITAL para procesar 10x más información 
-                    en la mitad del tiempo. Tu segundo cerebro inteligente te está esperando.
-                </p>
-                <div class="cta-actions">
-                    <a href="https://www.instagram.com/cuenta.01234/" class="btn btn-primary" target="_blank">🧠 Comenzar Mi Segundo Cerebro</a>
-                    <a href="https://x.com/t0tinspire" class="btn btn-secondary" target="_blank">💬 Preguntar Dudas (DM)</a>
-                    <a href="https://github.com/t0t" class="btn btn-secondary" target="_blank">📥 Ver Template Completo</a>
+        <!-- Book Banner CTA -->
+        <div class="book-banner">
+            <div class="book-banner-content">
+                <div class="book-banner-text">
+                    <h2 class="book-banner-title">Listo Para 10x Tu Capacidad Cognitiva?</h2>
+                    <p class="book-banner-description">
+                        Únete a 500+ knowledge workers que ya usan CEREBRO-DIGITAL para procesar 10x más información 
+                        en la mitad del tiempo. Tu segundo cerebro inteligente te está esperando.
+                    </p>
+                    <div class="book-banner-actions">
+                        <a href="https://www.instagram.com/cuenta.01234/" class="btn btn--primary" target="_blank">Comenzar Mi Segundo Cerebro</a>
+                        <a href="https://x.com/t0tinspire" class="btn btn--secondary" target="_blank">Preguntar Dudas (DM)</a>
+                        <a href="https://github.com/t0t" class="btn btn--secondary" target="_blank">Ver Template Completo</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="footer-logo">
-                        <svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9.5 2A2.5 2.5 0 0 0 7 4.5v15A2.5 2.5 0 0 0 9.5 22h5a2.5 2.5 0 0 0 2.5-2.5v-15A2.5 2.5 0 0 0 14.5 2h-5Z"/>
-                            <circle cx="12" cy="12" r="3"/>
-                        </svg>
-                        CEREBRO-DIGITAL
-                    </span>
-                    <p class="footer-tagline">Sistema PKM + IA Generativa · Filosofía 01234</p>
-                </div>
-                <div class="footer-info">
-                    <p class="footer-author">Desarrollado por <strong>Sergio Forés</strong> · 2024-2025</p>
-                    <p class="footer-links">
-                        <a href="../../index.html">Portfolio</a> · 
-                        <a href="../design-system/">Design System</a> · 
-                        <a href="https://github.com/t0t">GitHub</a>
-                    </p>
-                </div>
-            </div>
+        <div class="footer-social">
+            <a href="https://github.com/t0t" target="_blank" aria-label="GitHub">GitHub</a>
+            <a href="https://www.instagram.com/cuenta.01234/" target="_blank" aria-label="Instagram">Instagram</a>
+            <a href="https://x.com/t0tinspire" target="_blank" aria-label="Twitter">Twitter</a>
+            <a href="../../index.html" aria-label="Portfolio">Portfolio</a>
+            <a href="../design-system/" aria-label="Design System">Design System</a>
         </div>
+        <p>Desarrollado por <strong>Sergio Forés</strong> · Sistema PKM + IA Generativa · Filosofía 01234</p>
+        <p>© <span id="currentYear">2024</span> CEREBRO-DIGITAL. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Scripts -->
+    <script src="../design-system/js/navigation-intelligence.js"></script>
+    <script src="../design-system/js/main-optimized.js"></script>
 </body>
 </html>

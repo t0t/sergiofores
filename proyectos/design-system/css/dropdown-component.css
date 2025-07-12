@@ -36,7 +36,7 @@
     cursor: pointer;
     transition: all var(--duration-fast) var(--ease-out);  /* Transición más rápida */
     text-decoration: none;
-    border-radius: var(--radius-sm);  /* Radio más pequeño para sutileza */
+    /* Sin border-radius - estilo 01234 limpio */
     white-space: nowrap;  /* Evitar que el texto se rompa */
 }
 
@@ -61,7 +61,7 @@
     min-width: var(--space-200px);  /* CONSONANT: 200px minimum */
     background: var(--color-background);  /* Usar variable semántica */
     border: var(--border-width-base) solid var(--color-border);  /* Color border coherente */
-    border-radius: var(--radius-base);
+    /* Sin border-radius - estilo 01234 limpio */
     box-shadow: var(--shadow-md);  /* Sombra más sutil */
     opacity: 0;
     visibility: hidden;
@@ -417,7 +417,7 @@
 .dropdown-demo {
     padding: var(--space-8);
     background: var(--gray-5);
-    border-radius: var(--radius-base);
+    /* Sin border-radius - estilo 01234 limpio */
     margin-bottom: var(--space-6);
 }
 
