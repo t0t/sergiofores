@@ -1,22 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
+/* IMPORT PALETA SAGRADA DESDE EL NÚCLEO */
+@import url('../../css/main.css');
+
 /* Tipografías modernas y nítidas únicamente */
 
-/* Paleta Ultra-Elegante */
+/* PALETA SAGRADA SERGIO FORÉS - PROYECTO ARTE PLÁSTICA */
+/* ⚠️ USANDO EXCLUSIVAMENTE LA PALETA DEFINITIVA */
 :root {
-    /* Neutros Galería */
-    --gallery-white: #FEFEFE;
-    --warm-white: #FEFCF9;
-    --paper-white: #FAF9F6;
-    --soft-gray: #F5F4F1;
-    --stone-gray: #E8E6E1;
-    --charcoal-gray: #8B8B8B;
-    --deep-charcoal: #4A4A4A;
-    --museum-black: #2B2B2B;
+    /* COLORES BASE - SOLO PALETA SAGRADA */
+    --gallery-white: var(--color-white);      /* #FFFFFF */
+    --museum-black: var(--color-black);       /* #000000 */
+    --soft-gray: var(--gray-5);               /* #EEEEEE */
+    --stone-gray: var(--gray-4);              /* #CCCCCC */
+    --charcoal-gray: var(--gray-3);           /* #999999 */
+    --deep-charcoal: var(--gray-2);           /* #666666 */
+    --dark-charcoal: var(--gray-1);           /* #333333 */
     
-    /* Acento Sutil */
-    --accent-copper: #B08D57;
-    --accent-warm: #D4B896;
+    /* ACENTOS ARTÍSTICOS - MAPEADOS A PALETA SAGRADA */
+    --accent-primary: var(--color-yellow);    /* #FFFF00 - Amarillo puro */
+    --accent-secondary: var(--color-red);     /* #FF0000 - Rojo puro */
+    --accent-tertiary: var(--color-cyan);     /* #00FFFF - Cyan puro */
+    
+    /* ELIMINADAS VARIABLES QUE VIOLABAN LA PALETA SAGRADA */
+    /* --accent-copper, --accent-warm y otros colores inventados */
     
     /* Tipografía Robusta y Limpia */
     --font-serif: var(--font-sans);

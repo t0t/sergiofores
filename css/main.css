@@ -44,42 +44,43 @@
      COLORES - Sistema 01234 + Monocromático
      ========================================================================== */
   
-  /* Colores 01234 */
-  --color-0: #000000;  /* Campo Cuántico - Negro profundo */
-  --color-1: #FF6B35;  /* Determinación - Naranja vibrante */
-  --color-2: #4ECDC4;  /* Refinamiento - Turquesa */
-  --color-3: #45B7D1;  /* Relacionamiento - Azul cielo */
-  --color-4: #96CEB4;  /* Materialización - Verde salvia */
+  /* PALETA DEFINITIVA SERGIO FORÉS - ÚNICA FUENTE DE VERDAD */
+  /* ⚠️ SAGRADA E INMUTABLE - Solo estos colores permitidos */
+  --color-yellow: #FFFF00;   /* Amarillo puro */
+  --color-cyan: #00FFFF;     /* Cyan puro */
+  --color-red: #FF0000;      /* Rojo puro */
+  --color-black: #000000;    /* Negro puro */
+  --color-white: #FFFFFF;    /* Blanco puro */
   
-  /* Colores específicos del logo 01234 */
-  --logo-0: #000000;  /* geo-circle-outline - Negro */
-  --logo-1: #FFFF00;  /* geo-circle-solid - Amarillo */
-  --logo-2: #FF0000;  /* geo-line - Rojo */
-  --logo-3: #00FFFF;  /* geo-triangle - Cyan puro */
-  --logo-4: #808080;  /* geo-square - Gris */
+  /* ESCALA MONOCROMÁTICA - 5 GRISES EXACTOS */
+  --gray-1: #333333;  /* Gris oscuro */
+  --gray-2: #666666;  /* Gris medio-oscuro */
+  --gray-3: #999999;  /* Gris medio */
+  --gray-4: #CCCCCC;  /* Gris medio-claro */
+  --gray-5: #EEEEEE;  /* Gris claro */
   
-  /* Escala Monocromática */
-  --black: #000000;
-  --gray-900: #111111;
-  --gray-800: #1f1f1f;
-  --gray-700: #2d2d2d;
-  --gray-600: #404040;
-  --gray-500: #6b6b6b;
-  --gray-400: #9ca3af;
-  --gray-300: #d1d5db;
-  --gray-200: #e5e7eb;
-  --gray-100: #f3f4f6;
-  --gray-50: #f9fafb;
-  --white: #ffffff;
+  /* COLORES SEMÁNTICOS - SOLO PALETA SERGIO FORÉS */
+  --color-primary: var(--color-black);
+  --color-background: var(--color-white);
+  --color-surface: var(--gray-5);
+  --color-border: var(--gray-4);
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--gray-1);
+  --color-text-muted: var(--gray-3);
+  --color-accent: var(--color-yellow);  /* Único color permitido para acentos */
   
-  /* Semantic Colors */
-  --color-primary: var(--black);
-  --color-background: var(--white);
-  --color-surface: var(--gray-50);
-  --color-border: var(--gray-300);
-  --color-text-primary: var(--gray-900);
-  --color-text-secondary: var(--gray-600);
-  --color-text-muted: var(--gray-400);
+  /* VARIABLES OBSOLETAS QUE USAN LA PALETA SAGRADA */
+  --color-1: var(--color-yellow);  /* Mapeado a amarillo puro */
+  --color-2: var(--color-cyan);    /* Mapeado a cyan puro */
+  --color-3: var(--color-red);     /* Mapeado a rojo puro */
+  --color-4: var(--color-black);   /* Mapeado a negro puro */
+  
+  /* LOGOS GEOMÉTRICOS - COLORES ESPECÍFICOS SERGIO FORÉS */
+  --logo-0: var(--color-black);    /* geo-circle-outline */
+  --logo-1: var(--color-yellow);   /* geo-circle-solid */
+  --logo-2: var(--color-red);      /* geo-line */
+  --logo-3: var(--color-cyan);     /* geo-triangle */
+  --logo-4: var(--gray-3);         /* geo-square */
   
   /* ==========================================================================
      UTOPIA VARIABLES - Ritmo Vertical Fluido
@@ -155,31 +156,31 @@
   --hero-min-height-desktop: 40vh;
   --hero-content-max-width: 800px;
   
-  /* Navigation */
+  /* Navigation - SPACING OPTIMIZADO SERGIO FORÉS */
   --nav-text-size: var(--analysis-text);           /* --step-1 */
-  --nav-padding-v: var(--connection-space);        /* --space-xs-s - Suficiente para header */
-  --nav-padding-h: var(--analysis-space);          /* --space-s-m - Mejor para enlaces */
+  --nav-padding-v: var(--space-m);                 /* Más padding vertical para mejor touch target */
+  --nav-padding-h: var(--space-xl);                /* Más padding horizontal para mejor respiración */
   --nav-height-offset: var(--space-64px);          /* 80px equivalent - header height */
   --nav-scroll-threshold: var(--space-64px);       /* 50px equivalent - scroll detection */
   --nav-mobile-toggle-width: var(--space-32px);    /* 30px equivalent - burger menu */
   --nav-mobile-toggle-height: var(--space-24px);   /* 25px equivalent - burger menu */
   --nav-hamburger-height: var(--detail-space);     /* 3px equivalent - hamburger lines */
-  --nav-indicator-height: var(--detail-space);     /* 2px equivalent - active indicator */
+  --nav-indicator-height: var(--space-3px);        /* 3px más visible para active indicator */
   
-  /* Section Headers */
+  /* Section Headers - SPACING REFINADO SERGIO FORÉS */
   --section-title-size: var(--core-text);          /* --step-3 */
-  --section-title-margin-top: var(--essence-space); /* --space-l-xl */
-  --section-title-margin-bottom: var(--space-xl); /* Consistent with universal spacing */
+  --section-title-margin-top: var(--space-2xl);    /* Más separación entre secciones */
+  --section-title-margin-bottom: var(--space-xl);  /* Respiración generous debajo del título */
   --section-description-size: var(--fragment-text); /* --step-0 */
-  --section-description-margin: var(--space-xl); /* Consistent with universal spacing */
+  --section-description-margin: var(--space-2xl);  /* Más espacio para respirar antes del contenido */
   --section-description-max-width: var(--hero-content-max-width); /* Consistent reading width */
   
-  /* Project Grids */
-  --project-grid-gap: var(--space-xl);             /* Consistent with horizontal breathing */
-  --project-grid-margin: var(--infinite-space);    /* --space-xl-2xl */
-  --project-grid-padding: var(--connection-space); /* --space-xs-s */
+  /* Project Grids - OPTIMIZADO PARA RESPIRACIÓN VISUAL */
+  --project-grid-gap: var(--space-2xl);            /* Más espacio entre cards para mejor respiración */
+  --project-grid-margin: var(--space-3xl);         /* Más separación de bordes del viewport */
+  --project-grid-padding: var(--space-l);          /* Padding interno más generous */
   --project-title-size: var(--analysis-text);      /* --step-1 */
-  --project-title-margin: var(--detail-space);     /* --space-3xs-2xs */
+  --project-title-margin: var(--space-s);          /* Más espacio debajo del título del proyecto */
   --project-description-size: var(--connection-text); /* --step--1 */
   --project-card-min-width-mobile: var(--space-80px); /* 300px equivalent */
   --project-card-min-width-tablet: var(--space-80px); /* 350px equivalent */ 

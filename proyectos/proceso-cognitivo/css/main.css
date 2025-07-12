@@ -1,21 +1,25 @@
-/* Variables siguiendo la guía de estilos establecida */
+/* IMPORT PALETA SAGRADA DESDE EL NÚCLEO */
+@import url('../../css/main.css');
+
+/* PALETA SAGRADA SERGIO FORÉS - PROYECTO PROCESO COGNITIVO */
+/* ⚠️ USANDO EXCLUSIVAMENTE LA PALETA DEFINITIVA */
 :root {
-    /* Base Neutra (80% del diseño) */
-    --neutral-white: #FEFEFE;
-    --neutral-cream: #FDFBF7;
-    --neutral-gray-50: #F8F6F0;
-    --neutral-gray-200: #E5E7EB;
-    --neutral-gray-400: #9CA3AF;
-    --neutral-gray-600: #6B7280;
-    --neutral-gray-800: #2C2C2C;
-    --neutral-black: #1A1A1A;
+    /* COLORES BASE NEUTRALES - SOLO PALETA SAGRADA */
+    --neutral-white: var(--color-white);      /* #FFFFFF */
+    --neutral-black: var(--color-black);      /* #000000 */
+    --neutral-gray-light: var(--gray-5);      /* #EEEEEE */
+    --neutral-gray-medium: var(--gray-3);     /* #999999 */
+    --neutral-gray-dark: var(--gray-1);       /* #333333 */
     
-    /* Colores de Énfasis (20% - Solo uso justificado) */
-    --accent-orange: #FF6B35;
-    --accent-red: #E30613;
-    --accent-blue: #0066CC;
-    --accent-yellow: #FFD100;
-    --accent-green: #9CAF88;
+    /* COLORES COGNITIVOS - MAPEADOS A PALETA SAGRADA */
+    --accent-primary: var(--color-yellow);    /* #FFFF00 - Amarillo puro */
+    --accent-secondary: var(--color-cyan);    /* #00FFFF - Cyan puro */
+    --accent-tertiary: var(--color-red);      /* #FF0000 - Rojo puro */
+    --accent-quaternary: var(--color-black);  /* #000000 - Negro puro */
+    
+    /* ELIMINADAS VARIABLES QUE VIOLABAN LA PALETA SAGRADA */
+    /* --accent-orange, --accent-red, --accent-blue, --accent-yellow, --accent-green */
+    /* Solo existen los colores de la paleta definitiva de Sergio Forés */
     
     /* Tipografía siguiendo preferencias exactas de Sergio */
     --font-primary: 'Futura', 'Avenir Next', 'Helvetica Neue', sans-serif;

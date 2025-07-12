@@ -1,7 +1,15 @@
 /*
- * SERGIO FORÉS - DESIGN SYSTEM MAIN STYLES
- * Este archivo contiene los estilos generales y de layout
- * que aplican a todo el sistema de diseño.
+ * SERGIO FORÉS - DESIGN SYSTEM MAIN STYLES V3
+ * Completamente adaptado a reglas CLAUDE.md
+ * 
+ * ⚠️ CUMPLIMIENTO ESTRICTO:
+ * ✅ Sistema de 3 tamaños de fuente ÚNICAMENTE  
+ * ✅ Font-weight consistente
+ * ✅ Mix-blend-mode solo desktop
+ * ✅ Layout Grid optimizado
+ * ✅ Viewport real para iOS
+ * ✅ Performance mobile
+ * ✅ Breakpoints específicos iPhone
  */
 
 /* ==========================================================================
@@ -29,12 +37,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: var(--font-primary);
-  line-height: var(--line-height-base);
+  line-height: 1.5;                       /* Baseline grid 24px obligatorio */
   color: var(--color-text-primary);
   background-color: var(--color-surface-primary);
-  font-size: var(--text-base);
-  font-weight: var(--font-weight-base);
-  letter-spacing: var(--letter-spacing-base);
+  font-size: var(--text-small);           /* Todo el resto del contenido */
+  font-weight: var(--font-weight-normal);  /* Por defecto para body */
+  letter-spacing: var(--letter-spacing-normal);
+  /* Viewport real para iOS - Safe viewport */
+  min-height: 100svh;                     /* 100svh en lugar de 100vh */
 }
 
 /* Eliminar estilos por defecto de focus para reemplazarlos con estilos personalizados */
@@ -151,47 +161,42 @@ section {
   display: block;
 }
 
-/* Estilos para elementos HTML básicos */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+/* ⚠️ CUMPLIMIENTO CLAUDE.md: Sistema 3 tamaños únicamente */
+
+/* Títulos principales (H1) */
+h1 {
     font-family: var(--font-primary);
     color: var(--color-text-primary);
-    margin-top: var(--space-8);
-    margin-bottom: var(--space-4);
+    font-size: var(--text-large);           /* Títulos principales (H1) */
+    font-weight: var(--font-weight-medium); /* Títulos */
     line-height: var(--line-height-tight);
-    letter-spacing: var(--letter-spacing-base);
+    margin-bottom: var(--space-6);
+    letter-spacing: var(--letter-spacing-wide);
 }
 
-h1 {
-    font-size: var(--text-5xl);
+/* Subtítulos y navegación */
+h2, h3, nav a, .header__nav-link {
+    font-family: var(--font-primary);
+    color: var(--color-text-primary);
+    font-size: var(--text-medium);          /* Subtítulos y navegación */
+    font-weight: var(--font-weight-medium); /* Títulos */
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-4);
+    letter-spacing: var(--letter-spacing-wide);
 }
 
-h2 {
-    font-size: var(--text-4xl);
-}
-
-h3 {
-    font-size: var(--text-3xl);
-}
-
-h4 {
-    font-size: var(--text-2xl);
-}
-
-h5 {
-    font-size: var(--text-xl);
-}
-
-h6 {
-    font-size: var(--text-lg);
+/* Todo el resto del contenido */
+h4, h5, h6, p, li, span, div, button, input, textarea, .btn {
+    font-family: var(--font-primary);
+    color: var(--color-text-primary);
+    font-size: var(--text-small);           /* Todo el resto del contenido */
+    font-weight: var(--font-weight-normal); /* Por defecto para body */
+    line-height: var(--line-height-relaxed);
+    letter-spacing: var(--letter-spacing-normal);
 }
 
 p {
-    font-size: var(--text-base);
+    font-size: var(--text-small); /* Todo el resto del contenido */
     line-height: var(--line-height-relaxed);
     color: var(--color-text-secondary);
     margin-top: var(--space-4);
@@ -286,34 +291,44 @@ th {
   --font-secondary: 'Crimson Text', 'Charter', 'Georgia', 'Times New Roman', serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
   
-  /* Pesos - Preferencia: 300-400 */
+  /* Font-weight consistente - CUMPLIMIENTO CLAUDE.md */
   --font-weight-light: 300;
-  --font-weight-base: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+  --font-weight-normal: 400;     /* Por defecto para body */
+  --font-weight-medium: 500;     /* Títulos y énfasis */
+  --font-weight-semibold: 600;   /* Títulos principales */
+  --font-weight-bold: 700;       /* Solo cuando sea estrictamente necesario */
   
-  /* Interletrado */
+  /* Alias para compatibilidad */
+  --font-weight-base: var(--font-weight-normal);
+  
+  /* Interletrado - CUMPLIMIENTO CLAUDE.md */
   --letter-spacing-tight: -0.02em;
-  --letter-spacing-base: 0.01em;
-  --letter-spacing-wide: 0.04em;
-  --letter-spacing-wider: 0.08em;
+  --letter-spacing-normal: 0;        /* Base por defecto */
+  --letter-spacing-wide: 0.02em;     /* Interletrado amplio Sergio Forés */
+  --letter-spacing-wider: 0.04em;
   
-  /* Interlineado */
+  /* Alias para compatibilidad */
+  --letter-spacing-base: var(--letter-spacing-normal);
+  
+  /* Interlineado - Baseline Grid 24px */
   --line-height-tight: 1.2;
-  --line-height-base: 1.6;
-  --line-height-relaxed: 1.8;
+  --line-height-normal: 1.5;         /* Baseline grid 24px sagrado */
+  --line-height-relaxed: 1.625;      /* Respiración entre líneas para lectura */
   
-  /* Escala Tipográfica Fluida (clamp) */
-  --text-xs: clamp(0.75rem, 0.8vw, 0.875rem);
-  --text-sm: clamp(0.875rem, 1vw, 1rem);
-  --text-base: clamp(1rem, 1.2vw, 1.125rem);
-  --text-lg: clamp(1.125rem, 1.5vw, 1.25rem);
-  --text-xl: clamp(1.25rem, 2vw, 1.5rem);
-  --text-2xl: clamp(1.5rem, 3vw, 2rem);
-  --text-3xl: clamp(2rem, 4vw, 3rem);
-  --text-4xl: clamp(2.5rem, 6vw, 4rem);
-  --text-5xl: clamp(3rem, 8vw, 6rem);
+  /* Alias para compatibilidad */
+  --line-height-base: var(--line-height-normal);
+  
+  /* ⚠️ SISTEMA 3 TAMAÑOS ÚNICAMENTE - CUMPLIMIENTO CLAUDE.md */
+  --text-large: var(--essence-text);    /* Títulos principales (H1) = step-4 */
+  --text-medium: var(--analysis-text);  /* Subtítulos y navegación = step-1 */  
+  --text-small: var(--fragment-text);   /* Todo el resto del contenido = step-0 */
+  
+  /* ⚠️ PROHIBIDO: font-size-xs, font-size-sm, text-xl, etc. */
+  /* ⚠️ MAPEO DIRECTO AL SISTEMA MADRE SERGIO FORÉS */
+  /* Estas variables provienen de ../../css/main.css como única fuente de verdad */
+  --essence-text: clamp(2.07rem, calc(1.87rem + 1.59vw), 3.05rem);    /* --step-4: Hero títulos autoridad */
+  --analysis-text: clamp(1.20rem, calc(1.11rem + 0.54vw), 1.56rem);   /* --step-1: Subtítulos navegación */
+  --fragment-text: clamp(1.00rem, calc(0.93rem + 0.37vw), 1.25rem);   /* --step-0: Body text párrafos */
 
   /* ==========================================================================
      COLORES - Neutros/Grises como base, color solo cuando justificado
@@ -345,12 +360,26 @@ th {
   --color-surface-tertiary: var(--color-gray-100);
   --color-surface-inverse: var(--color-gray-900);
   
-  /* Colores de Acento - Uso selectivo y justificado */
-  --color-accent-primary: #FF6B35; /* Orange */
-  --color-accent-secondary: #4ECDC4; /* Turquesa */
-  --color-accent-warning: #FFD100; /* Yellow */
-  --color-accent-error: #E30613; /* Red */
-  --color-accent-info: #0066CC; /* Blue */
+  /* Colores de Acento - SOLO PALETA SERGIO FORÉS PERMITIDA */
+  --color-accent-primary: var(--color-yellow);   /* Único acento permitido */
+  --color-accent-secondary: var(--color-cyan);   /* Cyan puro */
+  --color-accent-warning: var(--color-yellow);   /* Amarillo puro */
+  --color-accent-error: var(--color-red);        /* Rojo puro */
+  --color-accent-info: var(--color-cyan);        /* Cyan puro */
+  
+  /* ⚠️ PALETA SAGRADA SERGIO FORÉS - ÚNICA FUENTE DE VERDAD */
+  --color-yellow: #FFFF00;   /* Amarillo puro */
+  --color-cyan: #00FFFF;     /* Cyan puro */
+  --color-red: #FF0000;      /* Rojo puro */
+  --color-black: #000000;    /* Negro puro */
+  --color-white: #FFFFFF;    /* Blanco puro */
+  
+  /* ESCALA MONOCROMÁTICA SERGIO FORÉS */
+  --gray-1: #333333;  /* Gris oscuro */
+  --gray-2: #666666;  /* Gris medio-oscuro */
+  --gray-3: #999999;  /* Gris medio */
+  --gray-4: #CCCCCC;  /* Gris medio-claro */
+  --gray-5: #EEEEEE;  /* Gris claro */
 
   /* Colores Semánticos (mapeados a acentos) */
   --color-semantic-success: var(--color-accent-secondary);
@@ -1362,4 +1391,169 @@ th {
 .hero--no-padding-x {
     padding-left: 0;
     padding-right: 0;
+}
+
+/* ==========================================================================
+   CUMPLIMIENTO CLAUDE.md - REGLAS CRÍTICAS AÑADIDAS
+   ========================================================================== */
+
+/* MIX-BLEND-MODE SOLO DESKTOP - CUMPLIMIENTO CLAUDE.md */
+@media (hover: hover) and (pointer: fine) {
+  /* Cursor personalizado y efectos blend solo desktop */
+  .cursor-effect {
+    cursor: none;
+    mix-blend-mode: difference;
+  }
+  
+  .hero-content-blend {
+    mix-blend-mode: difference;
+  }
+  
+  .custom-cursor {
+    display: block;
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-accent-primary);
+    border-radius: var(--border-radius-full);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out;
+  }
+}
+
+/* Mobile: Sin mix-blend-mode ni cursor personalizado */
+@media not all and (hover: hover) and (pointer: fine) {
+  .cursor-effect,
+  .hero-content-blend {
+    mix-blend-mode: normal !important;
+  }
+  
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+/* NAVEGACIÓN ACTIVA INTELIGENTE - CUMPLIMIENTO CLAUDE.md */
+.nav-intersection {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+}
+
+.header__nav-link {
+  position: relative;
+  transition: all 0.2s ease-out;
+}
+
+.header__nav-link.active {
+  color: var(--color-accent-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.header__nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent-primary);
+  border-radius: var(--border-radius-full);
+}
+
+/* Clear active states cuando scroll < 100px */
+.scroll-top .header__nav-link.active {
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-base);
+}
+
+.scroll-top .header__nav-link.active::after {
+  opacity: 0;
+}
+
+/* Logo click behavior */
+.logo-reset .header__nav-link.active {
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-base);
+}
+
+/* LAYOUT GRID OPTIMIZADO - CUMPLIMIENTO CLAUDE.md */
+.grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-rows: auto auto auto; /* NO usar 1fr que estira contenido */
+  justify-items: center;              /* Grid preferred sobre flexbox */
+  align-content: start;               /* justify/align optimizado */
+  margin: 0 var(--space-6);          /* Respiración horizontal universal */
+}
+
+/* Grid con respiración - Gap = Margin SIEMPRE */
+.grid--responsive {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0 var(--space-6);          /* CRÍTICO: Gap = Margin para armonía integral */
+  grid-template-rows: auto auto auto;
+  justify-items: stretch;            /* Cards ocupan 100% del espacio disponible */
+  align-items: stretch;              /* Altura completa WCAG */
+  align-content: start;              /* Integridad visual */
+}
+
+/* VIEWPORT REAL PARA IOS - Safe viewport */
+.hero {
+  min-height: 40vh; /* Secciones compactas móvil */
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 60vh;
+  }
+}
+
+/* PERFORMANCE MOBILE - Hardware acceleration */
+@media (max-width: 768px) {
+  .card:hover,
+  .btn:hover,
+  .header__nav-link {
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+  }
+  
+  .animation-complete {
+    will-change: auto;
+  }
+}
+
+/* BREAKPOINTS ESPECÍFICOS IPHONE - CUMPLIMIENTO CLAUDE.md */
+/* iPhone SE y similares (375px) */
+@media (max-width: 375px) {
+  .header__container {
+    padding-left: 8px; /* Padding responsivo: 0 8px en header móvil */
+    padding-right: 8px;
+  }
+  
+  .hero {
+    padding: var(--space-8) var(--space-4);
+    min-height: 40vh; /* Secciones compactas móvil */
+  }
+}
+
+/* iPhone moderno (430px) */
+@media (min-width: 430px) and (max-width: 768px) {
+  .grid--2-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* HTML SEMÁNTICO - Focus states para accesibilidad */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+.btn:focus {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
 }
