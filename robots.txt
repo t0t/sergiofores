@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://sergiofores.es/sitemap.xml
+Sitemap: https://www.sergiofores.es/sitemap.xml
 
 # Optimize crawling
 Crawl-delay: 1
