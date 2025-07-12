@@ -5,12 +5,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🖼️ Image Loader - Detecting image load states');
-    
     const images = document.querySelectorAll('.project-screenshot img');
     let loadedCount = 0;
-    
-    console.log(`Found ${images.length} images to monitor`);
     
     images.forEach((img, index) => {
         // Check if image is already loaded (cached)
@@ -24,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             loadedCount++;
-            console.log(`✅ Image ${index + 1} already loaded: ${img.alt}`);
         } else {
             // Listen for load event
             img.addEventListener('load', function() {
@@ -37,27 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 loadedCount++;
-                console.log(`✅ Image ${index + 1} loaded: ${this.alt} (${loadedCount}/${images.length})`);
-                
-                // All images loaded
-                if (loadedCount === images.length) {
-                    console.log('🎉 All images loaded - shimmer animations stopped');
-                }
             });
             
             // Handle load errors
             img.addEventListener('error', function() {
                 this.classList.add('loaded', 'error');
                 loadedCount++;
-                console.warn(`❌ Image ${index + 1} failed to load: ${this.src}`);
+                // Image failed to load - continue silently
             });
         }
     });
     
-    // Log initial state
-    if (loadedCount === images.length) {
-        console.log('🎉 All images already loaded - no shimmer needed');
-    } else {
-        console.log(`⏳ Monitoring ${images.length - loadedCount} images still loading...`);
-    }
+    // Initial state check complete
 });
