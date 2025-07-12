@@ -57,16 +57,15 @@
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     
-    /* Interletrado mapeo a Utopia */
-    --letter-spacing-small: var(--letter-spacing-body);    /* Body text */
-    --letter-spacing-medium: var(--letter-spacing-heading); /* Section titles */
-    --letter-spacing-large: var(--letter-spacing-display);  /* Hero titles */
+    /* Sistema de interletrado - 3 niveles alineados con tamaños de fuente */
+    --letter-spacing-small: 0.08em;   /* Para --text-small - más espaciado */
+    --letter-spacing-medium: 0.075em; /* Para --text-medium */
+    --letter-spacing-large: 0.1em;    /* Para --text-large */
     
-    /* ===== MIGRACIÓN A UTOPIA VARIABLES ===== */
-    /* Mapeo semántico del sistema anterior a Utopia */
-    --text-large: var(--hero-title-size);     /* Hero titles → essence-text (step-4) */
-    --text-medium: var(--section-title-size); /* Section titles → core-text (step-3) */
-    --text-small: var(--fragment-text);       /* Body text → fragment-text (step-0) */
+    /* Sistema de 3 tamaños jerarquía simplificada - Golden Ratio armónico */
+    --text-large: clamp(2.618rem, 5.5vw, 3rem);        /* H1 principal (phi²) más armónico */
+    --text-medium: clamp(1.618rem, 3.2vw, 1.82rem);    /* Para todos los títulos (phi) */
+    --text-small: clamp(1.125rem, 2.5vw, 1.25rem);     /* Para todo el resto (base) - más grande */
     
     /* Espaciado fluido - Sistema 8px base */
     --space-xs: clamp(0.25rem, 1vw, 0.5rem);
@@ -92,7 +91,22 @@
     --space-12: 6rem;
     --space-16: 8rem;
     
-    /* Sistema unificado: Solo variables --text-* (eliminadas duplicadas --font-size-*) */
+    /* Tipografía fluida mejorada */
+    --font-size-xs: clamp(0.75rem, 1.5vw, 0.8rem);
+    --font-size-sm: clamp(0.875rem, 2vw, 0.9rem);
+    --font-size-base: clamp(1rem, 2.5vw, 1rem);
+    --font-size-lg: clamp(1.125rem, 3vw, 1.2rem);
+    --font-size-xl: clamp(1.25rem, 4vw, 1.5rem);
+    --font-size-2xl: clamp(1.5rem, 5vw, 2rem);
+    --font-size-3xl: clamp(2rem, 6vw, 2.5rem);
+    --font-size-4xl: clamp(2.5rem, 8vw, 3rem);
+    
+    /* Compatibilidad */
+    --text-base: var(--font-size-base);
+    --text-lg: var(--font-size-lg);
+    --text-xl: var(--font-size-xl);
+    --text-2xl: var(--font-size-2xl);
+    --text-3xl: var(--font-size-3xl);
     
     /* Pesos tipográficos */
     --font-weight-light: 300;
@@ -243,12 +257,11 @@ main.main-container {
     background: #FDFBF7;
     position: relative;
     z-index: 1;
-    min-height: 100vh;
 }
 
 /* Secciones con altura más compacta */
 main.main-container section {
-    min-height: 100vh;
+    min-height: 50vh;
     display: grid;
     grid-template-rows: auto auto auto;
     justify-items: center;
@@ -317,25 +330,22 @@ main.main-container section {
     padding: var(--space-lg) var(--space-lg) var(--space-lg);
 }
 
-/* Títulos de sección - Utopia spacing */
+/* Títulos de sección - Grid positioning */
 main.main-container section .section-title {
-    font-size: var(--section-title-size);
-    line-height: var(--line-height-heading);
-    letter-spacing: var(--letter-spacing-heading);
-    margin: 0 0 var(--section-title-margin-bottom) 0;
+    margin: 0 0 32px 0;
     padding: 0;
+    /* Resetear animaciones que causan problemas de layout */
     opacity: 1;
     transform: none;
     animation: none;
+    
+    /* Grid positioning */
     align-self: center;
 }
 
-/* Descripciones de sección - Utopia spacing */
+/* Descripciones de sección - margen inferior pequeño */
 main.main-container section .section-description {
-    font-size: var(--section-description-size);
-    line-height: var(--line-height-body);
-    letter-spacing: var(--letter-spacing-body);
-    margin: 0 0 var(--section-description-margin) 0;
+    margin: 0 0 32px 0;
     padding: 0;
 }
 

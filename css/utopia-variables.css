@@ -1,0 +1,132 @@
+/*
+  UTOPIA FLUID RESPONSIVE DESIGN SYSTEM
+  Portfolio Sergio Forés - Variables CSS optimizadas
+  Generado con: https://utopia.fyi/type/calculator/
+  
+  Configuración:
+  - Viewport: 320px → 1200px
+  - Base: 17px → 19px  
+  - Scale: 1.200 → 1.250 (Major Third)
+  - Optimizado para portfolio profesional
+*/
+
+:root {
+  /* 
+    UTOPIA TYPE SCALE 
+    Tipografía fluida matemáticamente coherente
+  */
+  --step--2: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.80rem);
+  --step--1: clamp(0.94rem, calc(0.92rem + 0.11vw), 1.00rem);
+  --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  --step-1: clamp(1.35rem, calc(1.28rem + 0.37vw), 1.56rem);
+  --step-2: clamp(1.62rem, calc(1.50rem + 0.58vw), 1.95rem);
+  --step-3: clamp(1.94rem, calc(1.77rem + 0.87vw), 2.44rem);
+  --step-4: clamp(2.33rem, calc(2.08rem + 1.25vw), 3.05rem);
+  --step-5: clamp(2.80rem, calc(2.45rem + 1.77vw), 3.81rem);
+
+  /* 
+    UTOPIA SPACE SCALE
+    Espaciado fluido basado en tipografía 
+  */
+  --space-3xs: clamp(0.31rem, calc(0.31rem + 0.00vw), 0.31rem);
+  --space-2xs: clamp(0.56rem, calc(0.54rem + 0.11vw), 0.63rem);
+  --space-xs: clamp(0.69rem, calc(0.65rem + 0.22vw), 0.81rem);
+  --space-s: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  --space-m: clamp(1.69rem, calc(1.62rem + 0.33vw), 1.88rem);
+  --space-l: clamp(2.25rem, calc(2.16rem + 0.43vw), 2.50rem);
+  --space-xl: clamp(3.38rem, calc(3.24rem + 0.65vw), 3.75rem);
+  --space-2xl: clamp(4.50rem, calc(4.33rem + 0.87vw), 5.00rem);
+  --space-3xl: clamp(6.75rem, calc(6.49rem + 1.30vw), 7.50rem);
+
+  /* 
+    UTOPIA SPACE PAIRS
+    Transiciones dramáticas para casos especiales
+  */
+  --space-3xs-2xs: clamp(0.31rem, calc(0.20rem + 0.54vw), 0.63rem);
+  --space-2xs-xs: clamp(0.56rem, calc(0.43rem + 0.65vw), 0.94rem);
+  --space-xs-s: clamp(0.69rem, calc(0.54rem + 0.76vw), 1.25rem);
+  --space-s-m: clamp(1.13rem, calc(0.86rem + 1.30vw), 1.88rem);
+  --space-m-l: clamp(1.69rem, calc(1.40rem + 1.41vw), 2.50rem);
+  --space-l-xl: clamp(2.25rem, calc(1.73rem + 2.61vw), 3.75rem);
+  --space-xl-2xl: clamp(3.38rem, calc(2.81rem + 2.83vw), 5.00rem);
+  --space-2xl-3xl: clamp(4.50rem, calc(3.46rem + 5.22vw), 7.50rem);
+
+  /* 
+    SEMANTIC MAPPING
+    Variables semánticas específicas del portfolio
+  */
+  
+  /* Tipografía */
+  --text-xs: var(--step--2);     /* Metadata, captions */
+  --text-sm: var(--step--1);     /* Pequeños textos */
+  --text-base: var(--step-0);    /* Texto principal */
+  --text-lg: var(--step-1);      /* Subtítulos */
+  --text-xl: var(--step-2);      /* Títulos sección */
+  --text-2xl: var(--step-3);     /* Títulos principales */
+  --text-3xl: var(--step-4);     /* Hero titles */
+  --text-4xl: var(--step-5);     /* Display titles */
+
+  /* Espaciado contextual */
+  --space-element: var(--space-3xs);     /* Entre elementos inline */
+  --space-component: var(--space-xs);    /* Dentro componentes */
+  --space-section: var(--space-s);       /* Entre secciones pequeñas */
+  --space-layout: var(--space-m);        /* Layout principal */
+  --space-region: var(--space-l);        /* Entre regiones */
+  --space-page: var(--space-xl);         /* Espaciado página */
+  --space-hero: var(--space-2xl);        /* Hero sections */
+  --space-mega: var(--space-3xl);        /* Separaciones dramáticas */
+
+  /* Line heights alineados al baseline */
+  --line-height-tight: calc(var(--baseline) / var(--step-2));     /* Múltiplo exacto */
+  --line-height-snug: calc(var(--baseline-2x) / var(--step-1));   /* Múltiplo exacto */
+  --line-height-normal: calc(var(--baseline) / var(--step-0));    /* Múltiplo exacto */
+  --line-height-relaxed: calc(var(--baseline-2x) / var(--step-0)); /* Múltiplo exacto */
+
+  /* BASELINE GRID MATEMÁTICO */
+  --baseline: var(--space-s);   /* 18px → 20px - Unidad base de ritmo */
+  --baseline-2x: calc(var(--baseline) * 2);   /* 36px → 40px */
+  --baseline-3x: calc(var(--baseline) * 3);   /* 54px → 60px */
+  --baseline-4x: calc(var(--baseline) * 4);   /* 72px → 80px */
+  --baseline-6x: calc(var(--baseline) * 6);   /* 108px → 120px */
+  --baseline-8x: calc(var(--baseline) * 8);   /* 144px → 160px */
+}
+
+/*
+  OVERRIDE LEGACY VARIABLES
+  Mapeo de compatibilidad con sistema anterior
+*/
+:root {
+  /* Mantener compatibilidad temporal */
+  --space-xs-legacy: var(--space-3xs);
+  --space-sm-legacy: var(--space-2xs);
+  --space-md-legacy: var(--space-xs);
+  --space-lg-legacy: var(--space-s);
+  --space-xl-legacy: var(--space-m);
+  --space-2xl-legacy: var(--space-l);
+  --space-3xl-legacy: var(--space-xl);
+  --space-4xl-legacy: var(--space-2xl);
+
+  /* Tipografía legacy mapping */
+  --text-small-legacy: var(--step--1);
+  --text-medium-legacy: var(--step-1);
+  --text-large-legacy: var(--step-3);
+}
+
+/*
+  RESPONSIVE ADJUSTMENTS
+  Optimizaciones específicas por viewport
+*/
+@media (max-width: 480px) {
+  :root {
+    /* Ajustes móvil pequeño */
+    --space-hero: var(--space-xl);
+    --space-mega: var(--space-2xl);
+  }
+}
+
+@media (min-width: 1400px) {
+  :root {
+    /* Escalado para pantallas grandes */
+    --space-hero: var(--space-3xl);
+  }
+}

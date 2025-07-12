@@ -1,0 +1,257 @@
+/*
+  UTOPIA CSS STRATEGIC OPTIMIZATION
+  Portfolio Sergio Forés - Sistema 01234 Implementation
+  Expert-level semantic mapping for maximum visual impact
+  
+  Configuración base:
+  - Viewport: 320px → 1200px
+  - Base: 17px → 19px  
+  - Scale: 1.200 → 1.250 (Major Third)
+  - Filosofía: Cada variable mapeada a nivel conceptual 01234
+*/
+
+:root {
+  /* 
+    UTOPIA TYPE SCALE - MANTENER BASE MATEMÁTICA
+    Tipografía fluida matemáticamente coherente - NO TOCAR
+  */
+  --step--2: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.80rem);
+  --step--1: clamp(0.94rem, calc(0.92rem + 0.11vw), 1.00rem);
+  --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  --step-1: clamp(1.35rem, calc(1.28rem + 0.37vw), 1.56rem);
+  --step-2: clamp(1.62rem, calc(1.50rem + 0.58vw), 1.95rem);
+  --step-3: clamp(1.94rem, calc(1.77rem + 0.87vw), 2.44rem);
+  --step-4: clamp(2.33rem, calc(2.08rem + 1.25vw), 3.05rem);
+  --step-5: clamp(2.80rem, calc(2.45rem + 1.77vw), 3.81rem);
+
+  /* 
+    UTOPIA SPACE SCALE - MANTENER BASE MATEMÁTICA
+    Espaciado fluido basado en tipografía - NO TOCAR
+  */
+  --space-3xs: clamp(0.31rem, calc(0.31rem + 0.00vw), 0.31rem);
+  --space-2xs: clamp(0.56rem, calc(0.54rem + 0.11vw), 0.63rem);
+  --space-xs: clamp(0.69rem, calc(0.65rem + 0.22vw), 0.81rem);
+  --space-s: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  --space-m: clamp(1.69rem, calc(1.62rem + 0.33vw), 1.88rem);
+  --space-l: clamp(2.25rem, calc(2.16rem + 0.43vw), 2.50rem);
+  --space-xl: clamp(3.38rem, calc(3.24rem + 0.65vw), 3.75rem);
+  --space-2xl: clamp(4.50rem, calc(4.33rem + 0.87vw), 5.00rem);
+  --space-3xl: clamp(6.75rem, calc(6.49rem + 1.30vw), 7.50rem);
+
+  /* 
+    UTOPIA SPACE PAIRS - MANTENER BASE MATEMÁTICA
+    Transiciones dramáticas para casos especiales - NO TOCAR
+  */
+  --space-3xs-2xs: clamp(0.31rem, calc(0.20rem + 0.54vw), 0.63rem);
+  --space-2xs-xs: clamp(0.56rem, calc(0.43rem + 0.65vw), 0.94rem);
+  --space-xs-s: clamp(0.69rem, calc(0.54rem + 0.76vw), 1.25rem);
+  --space-s-m: clamp(1.13rem, calc(0.86rem + 1.30vw), 1.88rem);
+  --space-m-l: clamp(1.69rem, calc(1.40rem + 1.41vw), 2.50rem);
+  --space-l-xl: clamp(2.25rem, calc(1.73rem + 2.61vw), 3.75rem);
+  --space-xl-2xl: clamp(3.38rem, calc(2.81rem + 2.83vw), 5.00rem);
+  --space-2xl-3xl: clamp(4.50rem, calc(3.46rem + 5.22vw), 7.50rem);
+
+  /* 
+    ================================================================
+    FILOSOFÍA 01234 - SEMANTIC MAPPING ESTRATÉGICO
+    Cada nivel conceptual tiene su expresión tipográfica y espacial
+    ================================================================
+  */
+  
+  /* NIVEL 0 - POTENCIAL CUÁNTICO: Cosmic spacing para separaciones dramáticas */
+  --quantum-space: var(--space-2xl-3xl);    /* Hero sections, cosmic separations */
+  --infinite-space: var(--space-xl-2xl);     /* Between major regions */
+  --potential-text: var(--step-5);          /* Maximum display impact (raramente usado) */
+  
+  /* NIVEL 1 - ESENCIA/MODELO: Core hierarchy elements */
+  --essence-text: var(--step-4);            /* Hero titles - máximo impacto cotidiano */
+  --core-text: var(--step-3);               /* Section titles - autoridad */
+  --essence-space: var(--space-l-xl);       /* Dramatic section spacing */
+  
+  /* NIVEL 2 - ANÁLISIS/DIFERENCIACIÓN: Content differentiation */
+  --analysis-text: var(--step-1);           /* Subtitles, navigation - diferenciación clara */
+  --fragment-text: var(--step-0);           /* Body text, paragraphs - contenido base */
+  --analysis-space: var(--space-s-m);       /* Component internal spacing - separación dramática */
+  
+  /* NIVEL 3 - COMUNICACIÓN/CONEXIÓN: Connection elements */
+  --connection-text: var(--step--1);        /* Metadata, captions - información secundaria */
+  --connection-space: var(--space-xs-s);    /* Related elements gap - conexiones sutiles */
+  
+  /* NIVEL 4 - MATERIALIZACIÓN/ACCIÓN: Final details */
+  --detail-text: var(--step--2);            /* Micro-copy, notes - detalles finales */
+  --detail-space: var(--space-3xs-2xs);     /* Internal padding, refinements - ajustes precisos */
+
+  /* 
+    ELEMENTOS ESPECÍFICOS DEL PORTFOLIO
+    Mapping directo de componentes a variables semánticas
+  */
+  
+  /* Hero Section - Máximo impacto visual */
+  --hero-title-size: var(--essence-text);          /* --step-4 */
+  --hero-padding: var(--quantum-space);            /* --space-2xl-3xl */
+  --hero-margin-bottom: var(--infinite-space);     /* --space-xl-2xl */
+  
+  /* Navigation - Precisión quirúrgica */
+  --nav-text-size: var(--analysis-text);           /* --step-1 */
+  --nav-padding-v: var(--detail-space);            /* --space-3xs-2xs */
+  --nav-padding-h: var(--connection-space);        /* --space-xs-s */
+  
+  /* Section Headers - Autoridad jerárquica */
+  --section-title-size: var(--core-text);          /* --step-3 */
+  --section-title-margin-top: var(--essence-space); /* --space-l-xl */
+  --section-title-margin-bottom: var(--analysis-space); /* --space-s-m */
+  --section-description-size: var(--fragment-text); /* --step-0 */
+  --section-description-margin: var(--analysis-space); /* --space-s-m */
+  
+  /* Project Grid - Ritmo matemático */
+  --project-grid-gap: var(--analysis-space);       /* --space-s-m */
+  --project-grid-margin: var(--infinite-space);    /* --space-xl-2xl */
+  --project-grid-padding: var(--connection-space); /* --space-xs-s */
+  --project-title-size: var(--analysis-text);      /* --step-1 */
+  --project-title-margin: var(--detail-space);     /* --space-3xs-2xs */
+  --project-description-size: var(--connection-text); /* --step--1 */
+  
+  /* Sistema 01234 Grid - Jerarquía filosófica */
+  --sistema-grid-gap: var(--analysis-space);       /* --space-s-m */
+  --sistema-grid-margin: var(--essence-space);     /* --space-l-xl */
+  --sistema-grid-padding: var(--connection-space); /* --space-xs-s */
+  --sistema-item-padding: var(--detail-space);     /* --space-3xs-2xs */
+  --sistema-concept-size: var(--connection-text);  /* --step--1 */
+  --sistema-definition-size: var(--detail-text);   /* --step--2 */
+  
+  /* Book Banner - Llamada épica */
+  --book-banner-margin: var(--infinite-space);     /* --space-xl-2xl */
+  --book-banner-padding: var(--essence-space);     /* --space-l-xl */
+  --book-title-size: var(--analysis-text);         /* --step-1 */
+  --book-title-margin: var(--detail-space);        /* --space-3xs-2xs */
+  --book-description-size: var(--fragment-text);   /* --step-0 */
+  
+  /* Footer - Cierre elegante */
+  --footer-padding: var(--essence-space);          /* --space-l-xl */
+  --footer-margin-top: var(--infinite-space);      /* --space-xl-2xl */
+  --footer-text-size: var(--connection-text);      /* --step--1 */
+
+  /* Line heights optimizados por uso */
+  --line-height-display: 1.0;       /* Para --step-4, --step-5 */
+  --line-height-heading: 1.1;       /* Para --step-3 */
+  --line-height-title: 1.2;         /* Para --step-1, --step-2 */
+  --line-height-body: 1.4;          /* Para --step-0 */
+  --line-height-caption: 1.3;       /* Para --step--1, --step--2 */
+
+  /* Letter spacing por contexto */
+  --letter-spacing-display: 0.12em; /* Hero, máximo drama */
+  --letter-spacing-heading: 0.1em;  /* Section titles */
+  --letter-spacing-title: 0.08em;   /* Subtítulos */
+  --letter-spacing-body: 0.06em;    /* Texto corrido */
+  --letter-spacing-caption: 0.04em; /* Metadata */
+
+  /* 
+    RESPONSIVE PHILOSOPHY
+    Adapt intensity based on viewport capacity - Sistema 01234
+  */
+  --mobile-scale: 0.85;              /* Reducción general móvil */
+  --tablet-scale: 0.95;              /* Reducción leve tablet */
+  --desktop-scale: 1.0;              /* Base desktop */
+  --large-scale: 1.15;               /* Amplificación pantallas grandes */
+}
+
+/* 
+  ===============================================
+  RESPONSIVE ADJUSTMENTS - FILOSOFÍA 01234
+  Adaptar intensidad según capacidad del viewport
+  ===============================================
+*/
+
+/* Mobile - Compresión inteligente manteniendo jerarquía */
+@media (max-width: 768px) {
+  :root {
+    /* Reducir espacios cósmicos para aprovechar viewport */
+    --quantum-space: var(--space-xl);        /* De 2xl-3xl a xl */
+    --infinite-space: var(--space-l);        /* De xl-2xl a l */
+    --essence-space: var(--space-m);         /* De l-xl a m */
+    
+    /* Reducir tipografía manteniendo proporción */
+    --essence-text: var(--step-3);           /* De step-4 a step-3 */
+    --core-text: var(--step-2);              /* De step-3 a step-2 */
+    
+    /* Ajustar componentes específicos */
+    --hero-title-size: var(--step-3);        /* Reducir hero */
+    --section-title-size: var(--step-2);     /* Reducir sections */
+    --hero-padding: var(--space-xl);         /* Menos épico */
+    --section-title-margin-top: var(--space-m); /* Más compacto */
+  }
+}
+
+/* Large Desktop - Amplificación dramática */
+@media (min-width: 1400px) {
+  :root {
+    /* Amplificar elementos épicos */
+    --quantum-space: var(--space-3xl);       /* Máximo cósmico disponible */
+    --essence-text: var(--step-5);           /* Acceso al step máximo */
+    --potential-text: var(--step-5);         /* Activar potencial máximo */
+    
+    /* Componentes específicos amplificados */
+    --hero-title-size: var(--step-5);        /* Máximo drama */
+    --hero-padding: var(--space-3xl);        /* Épico total */
+  }
+}
+
+/* Ultra-wide screens - Mantener proporciones */
+@media (min-width: 1800px) {
+  :root {
+    /* En pantallas muy grandes, mantener proporción sin exagerar */
+    --hero-padding: var(--space-3xl);        /* No escalar más */
+    --section-title-margin-top: var(--space-2xl); /* Espaciado generoso */
+  }
+}
+
+/* 
+  ===============================================
+  CLEANUP ZONE - ELIMINAR VARIABLES LEGACY
+  Variables deprecadas que deben ser removidas gradualmente
+  ===============================================
+*/
+
+/* 
+  TODO: Eliminar estas variables en fase de cleanup
+  --text-xs, --text-sm, --text-base, --text-lg, --text-xl, --text-2xl, --text-3xl, --text-4xl
+  --space-element, --space-component, --space-section, --space-layout, --space-region, --space-page, --space-hero, --space-mega
+  --text-small, --text-medium, --text-large (legacy del sistema anterior)
+  
+  Usar solo variables semánticas 01234 definidas arriba
+*/
+
+/* 
+  ===============================================
+  USAGE GUIDELINES - GUÍA DE USO
+  Cómo aplicar estas variables en componentes
+  ===============================================
+*/
+
+/*
+  EJEMPLO DE USO CORRECTO:
+
+  .hero h1 {
+    font-size: var(--hero-title-size);           // Semántico, claro
+    line-height: var(--line-height-display);     // Específico para display
+    letter-spacing: var(--letter-spacing-display); // Máximo drama
+    margin-bottom: var(--hero-margin-bottom);    // Separación épica
+  }
+
+  .section-title {
+    font-size: var(--section-title-size);        // Autoridad jerárquica
+    margin: var(--section-title-margin-top) 0 var(--section-title-margin-bottom) 0;
+    line-height: var(--line-height-heading);     // Optimizado para títulos
+  }
+
+  .project-grid {
+    gap: var(--project-grid-gap);                // Separación dramática
+    margin-bottom: var(--project-grid-margin);   // Cierre épico
+    padding: 0 var(--project-grid-padding);      // Frame lateral
+  }
+
+  USO INCORRECTO:
+  font-size: var(--step-2);                      // No semántico
+  margin: var(--space-m);                        // Sin contexto
+  gap: 2rem;                                     // Hardcoded, no fluido
+*/

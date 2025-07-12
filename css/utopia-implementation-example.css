@@ -1,0 +1,243 @@
+/* =============================================
+   EJEMPLO DE IMPLEMENTACIÓN UTOPIA
+   Migración práctica de componentes específicos
+   Sergio Forés Portfolio
+   ============================================= */
+
+/* Importar sistema Utopia */
+@import url('./utopia-variables.css');
+
+/* ===== EJEMPLO 1: HERO SECTION ===== */
+/* ANTES (sistema actual) */
+.hero h1.current-system {
+    font-size: clamp(2.618rem, 5.5vw, 3rem);
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+}
+
+/* DESPUÉS (sistema Utopia) */
+.hero h1.utopia-system {
+    font-size: var(--text-hero);          /* Más consistente y escalable */
+    margin-bottom: var(--rhythm-major);   /* Espaciado basado en tipografía */
+    line-height: 1.2;
+    
+    /* Beneficio: escalas matemáticamente relacionadas */
+}
+
+/* ===== EJEMPLO 2: TÍTULOS DE SECCIÓN ===== */
+/* ANTES */
+.section-title.current-system {
+    font-size: clamp(1.618rem, 3.2vw, 1.82rem);
+    margin: clamp(3rem, 6vw, 4rem) 0 clamp(1.5rem, 4vw, 2rem) 0;
+}
+
+/* DESPUÉS */
+.section-title.utopia-system {
+    font-size: var(--text-section-title);
+    margin: var(--rhythm-dramatic) 0 var(--rhythm-section) 0;
+    
+    /* Beneficio: ritmo vertical perfecto y coherente */
+}
+
+/* ===== EJEMPLO 3: NAVEGACIÓN ===== */
+/* ANTES */
+.main-nav a.current-system {
+    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+    padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem);
+}
+
+/* DESPUÉS */
+.main-nav a.utopia-system {
+    font-size: var(--text-navigation);
+    padding: var(--rhythm-related) var(--rhythm-default);
+    
+    /* Beneficio: consistencia con el resto del sistema */
+}
+
+/* ===== EJEMPLO 4: PROJECT CARDS ===== */
+/* ANTES */
+.project-title.current-system {
+    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+    margin-bottom: clamp(0.75rem, 2vw, 1rem);
+}
+
+.project-description.current-system {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.6;
+}
+
+/* DESPUÉS */
+.project-title.utopia-system {
+    font-size: var(--text-base);         /* Consistente con texto principal */
+    margin-bottom: var(--rhythm-tight);  /* Espaciado relacionado */
+}
+
+.project-description.utopia-system {
+    font-size: var(--text-small);        /* Jerarquía clara */
+    line-height: 1.6;
+    
+    /* Beneficio: jerarquía visual mejorada */
+}
+
+/* ===== EJEMPLO 5: SISTEMA 01234 GRID ===== */
+/* ANTES */
+.sistema-grid.current-system {
+    gap: clamp(1rem, 3vw, 1.5rem);
+    margin: clamp(3rem, 6vw, 4rem) 0 0 0;
+    padding: 0 clamp(1.5rem, 4vw, 2rem);
+}
+
+.sistema-text.current-system {
+    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+}
+
+/* DESPUÉS */
+.sistema-grid.utopia-system {
+    gap: var(--sistema-gap);           /* Consistente y semántico */
+    margin: var(--sistema-margin) 0 0 0;
+    padding: 0 var(--rhythm-section);
+}
+
+.sistema-text.utopia-system {
+    font-size: var(--text-base);       /* Alineado con jerarquía */
+    
+    /* Beneficio: sistema coherente y escalable */
+}
+
+/* ===== EJEMPLO 6: BOOK BANNER ===== */
+/* ANTES */
+.book-banner.current-system {
+    padding: clamp(2rem, 5vw, 3rem);
+    margin: clamp(1rem, 3vw, 1.5rem) auto;
+}
+
+.book-title.current-system {
+    font-size: clamp(1.618rem, 3.2vw, 1.82rem);
+    margin-bottom: clamp(0.75rem, 2vw, 1rem);
+}
+
+/* DESPUÉS */
+.book-banner.utopia-system {
+    padding: var(--book-padding);      /* Semántico y escalable */
+    margin: var(--book-margin) auto;
+}
+
+.book-title.utopia-system {
+    font-size: var(--text-subsection); /* Jerarquía clara */
+    margin-bottom: var(--book-gap);
+    
+    /* Beneficio: mantiene proporción con el resto del sistema */
+}
+
+/* ===== EJEMPLO 7: RESPONSIVE MEJORADO ===== */
+/* ANTES - Breakpoints manuales */
+@media (max-width: 768px) {
+    .section-title.current-system {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        margin: 24px 0;
+    }
+}
+
+/* DESPUÉS - Fluidez automática */
+/* No necesita media queries para tipografía - Utopia maneja todo */
+.section-title.utopia-system {
+    font-size: var(--text-section-title); /* Automáticamente responsive */
+    margin: var(--rhythm-section) 0;      /* Espaciado fluido automático */
+}
+
+/* Solo necesitamos media queries para cambios de layout */
+@media (max-width: 768px) {
+    .sistema-grid.utopia-system {
+        grid-template-columns: repeat(2, 1fr); /* Layout change */
+        /* Typography y spacing ya están optimizados por Utopia */
+    }
+}
+
+/* ===== EJEMPLO 8: VENTAJAS DEL SPACE PAIRS ===== */
+/* Para elementos que necesitan scaling dramático */
+
+/* ANTES - Scaling inconsistente */
+.projects-grid.current-system {
+    margin-bottom: clamp(4rem, 8vw, 6rem); /* Scaling manual */
+}
+
+/* DESPUÉS - Space pairs para scaling optimizado */
+.projects-grid.utopia-system {
+    margin-bottom: var(--space-l-xl);      /* Scaling matemáticamente perfecto */
+    
+    /* Beneficio: transición mucho más suave entre viewport sizes */
+}
+
+/* ===== COMPARACIÓN DE VALORES GENERADOS ===== */
+/*
+EJEMPLO EN 320px (mobile):
+- --text-hero: 2.33rem vs current clamp min: 2.618rem
+- --rhythm-section: 2.25rem vs current clamp min: 1.5rem
+
+EJEMPLO EN 768px (tablet):
+- --text-hero: ~2.7rem vs current clamp: ~4.2rem
+- --rhythm-section: ~2.4rem vs current clamp: ~2.8rem
+
+EJEMPLO EN 1200px (desktop):
+- --text-hero: 3.05rem vs current clamp max: 3rem
+- --rhythm-section: 2.5rem vs current clamp max: 2rem
+
+CONCLUSIÓN: Utopia ofrece transiciones más suaves y consistentes
+*/
+
+/* ===== MIGRATION STRATEGY ===== */
+/* Estrategia de migración gradual */
+
+/* Paso 1: Añadir clases .utopia-system a elementos específicos */
+/* Paso 2: A/B test visual comparison */
+/* Paso 3: Replace .current-system con .utopia-system */
+/* Paso 4: Remove old variables when all migrated */
+
+/* ===== DEBUGGING UTILITIES ===== */
+/* Para development y testing */
+.debug-utopia {
+    border: 1px solid red;
+    position: relative;
+}
+
+.debug-utopia::after {
+    content: 'Font: ' var(--text-base) ' | Space: ' var(--rhythm-default);
+    position: absolute;
+    top: -20px;
+    left: 0;
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    font-size: 10px;
+    padding: 2px 4px;
+    white-space: nowrap;
+}
+
+/* ===== BENEFITS SUMMARY ===== */
+/*
+UTOPIA BENEFITS DEMOSTRATED:
+
+1. MATHEMATICAL COHERENCE:
+   - All scales mathematically related
+   - Perfect rhythm vertical
+   - Consistent proportions
+
+2. BETTER RESPONSIVE:
+   - Smoother transitions
+   - No jarring jumps between breakpoints
+   - Automatic optimization
+
+3. MAINTAINABILITY:
+   - Semantic variable names
+   - Centralized scale management
+   - Easy to modify and extend
+
+4. PERFORMANCE:
+   - Fewer CSS variables
+   - More efficient calculations
+   - Better browser optimization
+
+5. PROFESSIONAL STANDARD:
+   - Industry best practice
+   - Design system methodology
+   - Future-proof approach
+*/
