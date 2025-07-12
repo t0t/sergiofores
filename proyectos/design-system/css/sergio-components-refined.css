@@ -227,14 +227,14 @@ footer {
   background-color: var(--color-background);
 }
 
-.hero-title {
+.hero__title {
   font-size: var(--text-large); /* Títulos principales */
   font-weight: var(--font-weight-medium);
   margin-bottom: var(--space-6);
   max-width: var(--hero-content-width);
 }
 
-.hero-subtitle {
+.hero__description {
   font-size: var(--text-small); /* Todo el resto del contenido */
   color: var(--color-text-secondary);
   margin-bottom: var(--space-8);

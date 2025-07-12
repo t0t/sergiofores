@@ -35,6 +35,25 @@
     }
 }
 
+.hero__badge {
+  display: inline-block;
+  padding: var(--detail-space) var(--connection-space);
+  background: var(--color-cyan);
+  color: var(--color-black);
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--analysis-space);
+  border: 1px solid var(--color-black);
+}
+
+.hero__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--analysis-space);
+  flex-wrap: wrap;
+  margin-top: var(--essence-space);
+}
+
 /* ==========================================================================
    LAYOUT GRID OPTIMIZADO - NUNCA 1FR
    ========================================================================== */
@@ -106,6 +125,41 @@
     .text-blend {
         mix-blend-mode: normal !important;
     }
+}
+
+/* Book Banner Specific Classes */
+.book-banner__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--essence-space);
+}
+
+.book-banner__text {
+  max-width: 800px;
+  margin-bottom: var(--analysis-space);
+}
+
+.book-banner__title {
+  font-size: var(--text-large);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--analysis-space);
+}
+
+.book-banner__description {
+  font-size: var(--text-small);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--essence-space);
+}
+
+.book-banner__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--analysis-space);
+  flex-wrap: wrap;
 }
 
 /* ==========================================================================
@@ -415,4 +469,13 @@ textarea:focus,
         animation: none !important;
         transition: none !important;
     }
+}
+
+/* Footer Social */
+.footer__social {
+  display: flex;
+  justify-content: center;
+  gap: var(--analysis-space);
+  flex-wrap: wrap;
+  margin-bottom: var(--analysis-space);
 }

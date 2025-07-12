@@ -174,7 +174,7 @@
    ========================================================================== */
 
 /* Hero Master - Centrado perfecto con grid */
-.hero-master {
+.hero {
     display: grid;
     place-items: center;                           /* Centrado perfecto horizontal y vertical */
     min-height: var(--hero-min-height-mobile);     /* 60vh móvil */
@@ -184,7 +184,7 @@
     background-color: var(--color-surface-primary);
 }
 
-.hero-container-master {
+.hero__container {
     width: 100%;
     max-width: var(--hero-content-max-width);      /* 800px del sistema madre */
     margin: 0 auto;
@@ -192,7 +192,7 @@
     padding-right: var(--space-l);
 }
 
-.hero-title-master {
+.hero__title {
     font-size: var(--hero-title-size);             /* --essence-text (step-4) */
     font-weight: var(--font-weight-medium);
     color: var(--color-text-primary);
@@ -201,7 +201,7 @@
     letter-spacing: var(--letter-spacing-wide);
 }
 
-.hero-subtitle-master {
+.hero__description {
     font-size: var(--fragment-text);               /* --step-0 */
     color: var(--color-text-secondary);
     line-height: var(--line-height-relaxed);
@@ -209,7 +209,7 @@
     max-width: var(--hero-content-max-width);
 }
 
-.hero-actions-master {
+.hero__actions {
     display: flex;
     justify-content: center;
     gap: var(--analysis-space);
@@ -218,7 +218,7 @@
 }
 
 @media (min-width: 768px) {
-    .hero-master {
+    .hero {
         min-height: var(--hero-min-height-desktop); /* 40vh desktop */
     }
 }
@@ -228,7 +228,7 @@
    ========================================================================== */
 
 /* Header Master - Grid coherence */
-.header-master {
+.header {
     position: sticky;
     top: 0;
     z-index: var(--z-header);
@@ -237,7 +237,7 @@
     border-bottom: var(--border-width-base) solid var(--color-gray-200);
 }
 
-.header-container-master {
+.header__container {
     width: 100%;
     max-width: var(--container-max-width);
     margin: 0 auto;
@@ -316,8 +316,8 @@
 /* Desktop Optimizations */
 @media (min-width: 1024px) {
     .container-master,
-    .hero-container-master,
-    .header-container-master {
+    .hero__container,
+    .header__container {
         max-width: var(--container-max-width-wide);  /* 1400px en desktop */
     }
 }
@@ -325,8 +325,8 @@
 /* Large Desktop Optimizations */
 @media (min-width: 1440px) {
     .container-master,
-    .hero-container-master,
-    .header-container-master {
+    .hero__container,
+    .header__container {
         max-width: var(--space-1600px);              /* 1600px en large desktop */
         padding-left: var(--space-xl);
         padding-right: var(--space-xl);
@@ -336,8 +336,8 @@
 /* Ultra-wide Optimizations */
 @media (min-width: 2560px) {
     .container-master,
-    .hero-container-master,
-    .header-container-master {
+    .hero__container,
+    .header__container {
         max-width: var(--container-max-width-ultra);  /* 1800px en ultra-wide */
         padding-left: var(--space-2xl);
         padding-right: var(--space-2xl);

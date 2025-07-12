@@ -15,7 +15,7 @@
 <body>
     <!-- Header Navigation - Design System Sergio Forés -->
     <header class="header">
-        <div class="header-content">
+        <div class="header__container">
             <a href="#hero" class="logo logo-link">
                 <div class="geo-shape geo-circle-outline"></div>
                 <div class="geo-shape geo-circle-solid"></div>
@@ -24,12 +24,12 @@
                 <div class="geo-shape geo-square"></div>
                 <span class="logo-text">CEREBRO-DIGITAL</span>
             </a>
-            <nav class="header-nav">
-                <a href="#overview" class="header-nav-link">Overview</a>
-                <a href="#architecture" class="header-nav-link">Arquitectura</a>
-                <a href="#methodology" class="header-nav-link">Metodología</a>
-                <a href="#metrics" class="header-nav-link">Métricas</a>
-                <a href="#ecosystem" class="header-nav-link">Ecosistema</a>
+            <nav class="header__nav">
+                <a href="#overview" class="header__nav-link">Overview</a>
+                <a href="#architecture" class="header__nav-link">Arquitectura</a>
+                <a href="#methodology" class="header__nav-link">Metodología</a>
+                <a href="#metrics" class="header__nav-link">Métricas</a>
+                <a href="#ecosystem" class="header__nav-link">Ecosistema</a>
             </nav>
         </div>
     </header>
@@ -37,18 +37,18 @@
     <!-- Hero Section -->
     <main>
         <section id="hero" class="hero">
-            <div class="hero-content">
-                <div class="hero-badge">
+            <div class="hero__content">
+                <div class="hero__badge">
                     🧠 Tu Segundo Cerebro Inteligente
                 </div>
-                <h1 class="hero-title">
+                <h1 class="hero__title">
                     Duplica Tu Capacidad Cognitiva con IA: PKM + LLM = Superinteligencia Personal
                 </h1>
-                <p class="hero-description">
+                <p class="hero__description">
                     Convierte el caos informacional en tu segundo cerebro que piensa, conecta y evoluciona contigo 24/7. 
                     El primer sistema que no solo almacena conocimiento, sino que dialoga inteligentemente con él.
                 </p>
-                <div class="hero-actions">
+                <div class="hero__actions">
                     <a href="#overview" class="btn btn--primary">🚀 Implementar Mi Segundo Cerebro</a>
                     <a href="#methodology" class="btn btn--secondary">📖 Cómo Funciona (2 min)</a>
                 </div>
@@ -57,16 +57,16 @@
 
         <!-- Overview Section -->
         <section id="overview" class="section">
-            <div class="section-container">
-                <header class="section-header">
-                    <h2 class="section-title">El Problema: Colapso del Knowledge Worker Moderno</h2>
-                    <p class="section-description">
+            <div class="section__container">
+                <header class="section__header">
+                    <h2 class="section__title">El Problema: Colapso del Knowledge Worker Moderno</h2>
+                    <p class="section__description">
                         <strong>¿Te suena familiar?</strong> Información dispersa en 20+ herramientas. Ideas valiosas perdidas. 
                         Conocimiento fragmentado que no se conecta. <strong>CEREBRO-DIGITAL resuelve esto.</strong>
                     </p>
                 </header>
                 
-                <div class="features__grid">
+                <div class="grid grid--responsive">
                     <div class="features__item">
                         <div class="features__icon" aria-hidden="true">⚡</div>
                         <h3 class="features__title">Nunca Más Pierdas Una Idea Valiosa</h3>
@@ -107,22 +107,22 @@
         </section>
 
         <!-- Architecture Section -->
-        <section id="architecture" class="section">
-            <div class="section-container">
-                <header class="section-header">
-                    <h2 class="section-title">Arquitectura Técnica</h2>
-                    <p class="section-description">
+        <section id="architecture" class="sf-section">
+            <div class="sf-container">
+                <header class="sf-section__header">
+                    <h2 class="sf-h2">Arquitectura Técnica</h2>
+                    <p class="sf-p">
                         Componentes principales y flujos de datos del sistema CEREBRO-DIGITAL
                     </p>
                 </header>
             
-            <div class="architecture-stack">
-                <div class="architecture-layer">
-                    <div class="layer-header">
-                        <h3 class="layer-title">Interface Layer</h3>
-                        <span class="layer-status active">●</span>
+            <div class="sf-architecture">
+                <div class="sf-architecture__layer">
+                    <div class="sf-architecture__layer-header">
+                        <h3 class="sf-architecture__layer-title">Interface Layer</h3>
+                        <span class="sf-architecture__layer-status active">●</span>
                     </div>
-                    <div class="layer-components">
+                    <div class="grid sm:grid--3-col">
                         <div class="component">
                             <svg class="component-logo obsidian-logo" viewBox="0 0 512 512" fill="none">
                                 <defs>
@@ -193,16 +193,16 @@
                     </div>
                 </div>
 
-                <div class="layer-connector">
-                    <div class="data-flow"></div>
+                <div class="sf-architecture__connector">
+                    <div class="sf-architecture__data-flow"></div>
                 </div>
 
-                <div class="architecture-layer">
-                    <div class="layer-header">
-                        <h3 class="layer-title">AI Processing Layer</h3>
-                        <span class="layer-status processing">●</span>
+                <div class="sf-architecture__layer">
+                    <div class="sf-architecture__layer-header">
+                        <h3 class="sf-architecture__layer-title">AI Processing Layer</h3>
+                        <span class="sf-architecture__layer-status processing">●</span>
                     </div>
-                    <div class="layer-components">
+                    <div class="grid sm:grid--3-col">
                         <div class="component">
                             <svg class="component-logo anthropic-logo" viewBox="0 0 100 100">
                                 <path d="m19.6 66.5 19.7-11 .3-1-.3-.5h-1l-3.3-.2-11.2-.3L14 53l-9.5-.5-2.4-.5L0 49l.2-1.5 2-1.3 2.9.2 6.3.5 9.5.6 6.9.4L38 49.1h1.6l.2-.7-.5-.4-.4-.4L29 41l-10.6-7-5.6-4.1-3-2-1.5-2-.6-4.2 2.7-3 3.7.3.9.2 3.7 2.9 8 6.1L37 36l1.5 1.2.6-.4.1-.3-.7-1.1L33 25l-6-10.4-2.7-4.3-.7-2.6c-.3-1-.4-2-.4-3l3-4.2L28 0l4.2.6L33.8 2l2.6 6 4.1 9.3L47 29.9l2 3.8 1 3.4.3 1h.7v-.5l.5-7.2 1-8.7 1-11.2.3-3.2 1.6-3.8 3-2L61 2.6l2 2.9-.3 1.8-1.1 7.7L59 27.1l-1.5 8.2h.9l1-1.1 4.1-5.4 6.9-8.6 3-3.5L77 13l2.3-1.8h4.3l3.1 4.7-1.4 4.9-4.4 5.6-3.7 4.7-5.3 7.1-3.2 5.7.3.4h.7l12-2.6 6.4-1.1 7.6-1.3 3.5 1.6.4 1.6-1.4 3.4-8.2 2-9.6 2-14.3 3.3-.2.1.2.3 6.4.6 2.8.2h6.8l12.6 1 3.3 2 1.9 2.7-.3 2-5.1 2.6-6.8-1.6-16-3.8-5.4-1.3h-.8v.4l4.6 4.5 8.3 7.5L89 80.1l.5 2.4-1.3 2-1.4-.2-9.2-7-3.6-3-8-6.8h-.5v.7l1.8 2.7 9.8 14.7.5 4.5-.7 1.4-2.6 1-2.7-.6-5.8-8-6-9-4.7-8.2-.5.4-2.9 30.2-1.3 1.5-3 1.2-2.5-2-1.4-3 1.4-6.2 1.6-8 1.3-6.4 1.2-7.9.7-2.6v-.2H49L43 72l-9 12.3-7.2 7.6-1.7.7-3-1.5.3-2.8L24 86l10-12.8 6-7.9 4-4.6-.1-.5h-.3L17.2 77.4l-4.7.6-2-2 .2-3 1-1 8-5.5Z"/>
@@ -237,16 +237,16 @@
                     </div>
                 </div>
 
-                <div class="layer-connector">
-                    <div class="data-flow"></div>
+                <div class="sf-architecture__connector">
+                    <div class="sf-architecture__data-flow"></div>
                 </div>
 
-                <div class="architecture-layer">
-                    <div class="layer-header">
-                        <h3 class="layer-title">Core System</h3>
-                        <span class="layer-status online">●</span>
+                <div class="sf-architecture__layer">
+                    <div class="sf-architecture__layer-header">
+                        <h3 class="sf-architecture__layer-title">Core System</h3>
+                        <span class="sf-architecture__layer-status online">●</span>
                     </div>
-                    <div class="layer-components">
+                    <div class="grid sm:grid--3-col">
                         <div class="component">
                             <svg class="component-logo obsidian-logo" viewBox="0 0 512 512" fill="none">
                                 <defs>
@@ -313,86 +313,86 @@
     </section>
 
     <!-- Methodology Section -->
-    <section id="methodology" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Cómo Funciona: 5 Niveles Cognitivos Para Procesar Cualquier Complejidad</h2>
-                <p class="section-description">
+    <section id="methodology" class="sf-section">
+        <div class="sf-container">
+            <div class="sf-section__header">
+                <h2 class="sf-h2">Cómo Funciona: 5 Niveles Cognitivos Para Procesar Cualquier Complejidad</h2>
+                <p class="sf-p">
                     <strong>Del Caos Mental a la Claridad Total:</strong> El sistema 01234 organiza tu pensamiento 
                     desde el potencial infinito (0) hasta la acción material (4). <strong>Usado por 500+ knowledge workers.</strong>
                 </p>
             </div>
             
-            <div class="methodology-timeline">
-                <div class="timeline-stage">
-                    <div class="stage-number">0</div>
-                    <div class="stage-content">
-                        <h3 class="stage-title">Campo de Posibilidades</h3>
-                        <p class="stage-description">Toda la información disponible. Tu IA recolecta de múltiples fuentes automáticamente.</p>
-                        <div class="stage-tools">
-                            <span class="tool-tag">Web Scraping</span>
-                            <span class="tool-tag">PDF Parsing</span>
-                            <span class="tool-tag">RSS Feeds</span>
+            <div class="grid md:grid--5-col">
+                <div class="sf-timeline__stage">
+                    <div class="sf-timeline__stage-number">0</div>
+                    <div class="sf-timeline__stage-content">
+                        <h3 class="sf-timeline__stage-title">Campo de Posibilidades</h3>
+                        <p class="sf-timeline__stage-description">Toda la información disponible. Tu IA recolecta de múltiples fuentes automáticamente.</p>
+                        <div class="sf-timeline__stage-tools">
+                            <span class="sf-tool-tag">Web Scraping</span>
+                            <span class="sf-tool-tag">PDF Parsing</span>
+                            <span class="sf-tool-tag">RSS Feeds</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="timeline-arrow">→</div>
+                <div class="sf-timeline__arrow">→</div>
 
-                <div class="timeline-stage">
-                    <div class="stage-number">1</div>
-                    <div class="stage-content">
-                        <h3 class="stage-title">Claridad Esencial</h3>
-                        <p class="stage-description">IA filtra lo importante. Solo lo que verdaderamente necesitas saber.</p>
-                        <div class="stage-tools">
-                            <span class="tool-tag">Claude Code</span>
-                            <span class="tool-tag">NLP Analysis</span>
-                            <span class="tool-tag">Pattern Detection</span>
+                <div class="sf-timeline__stage">
+                    <div class="sf-timeline__stage-number">1</div>
+                    <div class="sf-timeline__stage-content">
+                        <h3 class="sf-timeline__stage-title">Claridad Esencial</h3>
+                        <p class="sf-timeline__stage-description">IA filtra lo importante. Solo lo que verdaderamente necesitas saber.</p>
+                        <div class="sf-timeline__stage-tools">
+                            <span class="sf-tool-tag">Claude Code</span>
+                            <span class="sf-tool-tag">NLP Analysis</span>
+                            <span class="sf-tool-tag">Pattern Detection</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="timeline-arrow">→</div>
+                <div class="sf-timeline__arrow">→</div>
 
-                <div class="timeline-stage">
-                    <div class="stage-number">2</div>
-                    <div class="stage-content">
-                        <h3 class="stage-title">Análisis Profundo</h3>
-                        <p class="stage-description">Descompone ideas complejas. Encuentra matices y contradicciones ocultas.</p>
-                        <div class="stage-tools">
-                            <span class="tool-tag">Logic Analysis</span>
-                            <span class="tool-tag">Dependency Map</span>
-                            <span class="tool-tag">Coherence Check</span>
+                <div class="sf-timeline__stage">
+                    <div class="sf-timeline__stage-number">2</div>
+                    <div class="sf-timeline__stage-content">
+                        <h3 class="sf-timeline__stage-title">Análisis Profundo</h3>
+                        <p class="sf-timeline__stage-description">Descompone ideas complejas. Encuentra matices y contradicciones ocultas.</p>
+                        <div class="sf-timeline__stage-tools">
+                            <span class="sf-tool-tag">Logic Analysis</span>
+                            <span class="sf-tool-tag">Dependency Map</span>
+                            <span class="sf-tool-tag">Coherence Check</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="timeline-arrow">→</div>
+                <div class="sf-timeline__arrow">→</div>
 
-                <div class="timeline-stage">
-                    <div class="stage-number">3</div>
-                    <div class="stage-content">
-                        <h3 class="stage-title">Conexiones Inteligentes</h3>
-                        <p class="stage-description">Mapas visuales de tu conocimiento. Ve patrones que antes eran invisibles.</p>
-                        <div class="stage-tools">
-                            <span class="tool-tag">Canvas Creation</span>
-                            <span class="tool-tag">Link Automation</span>
-                            <span class="tool-tag">Graph Analysis</span>
+                <div class="sf-timeline__stage">
+                    <div class="sf-timeline__stage-number">3</div>
+                    <div class="sf-timeline__stage-content">
+                        <h3 class="sf-timeline__stage-title">Conexiones Inteligentes</h3>
+                        <p class="sf-timeline__stage-description">Mapas visuales de tu conocimiento. Ve patrones que antes eran invisibles.</p>
+                        <div class="sf-timeline__stage-tools">
+                            <span class="sf-tool-tag">Canvas Creation</span>
+                            <span class="sf-tool-tag">Link Automation</span>
+                            <span class="sf-tool-tag">Graph Analysis</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="timeline-arrow">→</div>
+                <div class="sf-timeline__arrow">→</div>
 
-                <div class="timeline-stage">
-                    <div class="stage-number">4</div>
-                    <div class="stage-content">
-                        <h3 class="stage-title">Acción Inteligente</h3>
-                        <p class="stage-description">De insights a resultados. Tu conocimiento se convierte en valor tangible.</p>
-                        <div class="stage-tools">
-                            <span class="tool-tag">Web Development</span>
-                            <span class="tool-tag">API Creation</span>
-                            <span class="tool-tag">Documentation</span>
+                <div class="sf-timeline__stage">
+                    <div class="sf-timeline__stage-number">4</div>
+                    <div class="sf-timeline__stage-content">
+                        <h3 class="sf-timeline__stage-title">Acción Inteligente</h3>
+                        <p class="sf-timeline__stage-description">De insights a resultados. Tu conocimiento se convierte en valor tangible.</p>
+                        <div class="sf-timeline__stage-tools">
+                            <span class="sf-tool-tag">Web Development</span>
+                            <span class="sf-tool-tag">API Creation</span>
+                            <span class="sf-tool-tag">Documentation</span>
                         </div>
                     </div>
                 </div>
@@ -401,165 +401,163 @@
     </section>
 
     <!-- Metrics Section -->
-    <section id="metrics" class="section section-alt">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Métricas del Sistema</h2>
-                <p class="section-description">
+    <section id="metrics" class="sf-section sf-section--alt">
+        <div class="sf-container">
+            <div class="sf-section__header">
+                <h2 class="sf-h2">Métricas del Sistema</h2>
+                <p class="sf-p">
                     Datos cuantitativos del rendimiento y evolución del sistema
                 </p>
             </div>
             
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="grid grid--responsive">
+                <div class="sf-metric-card">
+                    <svg class="sf-metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="18" cy="5" r="3"/>
                         <circle cx="6" cy="12" r="3"/>
                         <circle cx="18" cy="19" r="3"/>
                         <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
                         <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
                     </svg>
-                    <h3 class="metric-title">Arquitectura</h3>
-                    <div class="metric-stats">
-                        <div class="stat">
-                            <span class="stat-value">01234</span>
-                            <span class="stat-label">Marco filosófico</span>
+                    <h3 class="sf-metric-title">Arquitectura</h3>
+                    <div class="sf-metric-stats">
+                        <div class="sf-stat">
+                            <span class="sf-stat-value">01234</span>
+                            <span class="sf-stat-label">Marco filosófico</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-value">PKM + IA</span>
-                            <span class="stat-label">Paradigma híbrido</span>
+                        <div class="sf-stat">
+                            <span class="sf-stat-value">PKM + IA</span>
+                            <span class="sf-stat-label">Paradigma híbrido</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-value">Fractal</span>
-                            <span class="stat-label">Estructura recursiva</span>
+                        <div class="sf-stat">
+                            <span class="sf-stat-value">Fractal</span>
+                            <span class="sf-stat-label">Estructura recursiva</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="metric-card">
-                    <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <div class="sf-metric-card">
+                    <svg class="sf-metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="3" y="3" width="7" height="7"/>
                         <rect x="14" y="3" width="7" height="7"/>
                         <rect x="14" y="14" width="7" height="7"/>
                         <rect x="3" y="14" width="7" height="7"/>
                         <path d="M10.5 6.5h3M6.5 10.5v3M17.5 10.5v3M10.5 17.5h3"/>
                     </svg>
-                    <h3 class="metric-title">Stack Tecnológico</h3>
-                    <div class="metric-stats">
-                        <div class="stat">
-                            <span class="stat-value">Obsidian</span>
-                            <span class="stat-label">Base visual</span>
+                    <h3 class="sf-metric-title">Stack Tecnológico</h3>
+                    <div class="sf-metric-stats">
+                        <div class="sf-stat">
+                            <span class="sf-stat-value">Obsidian</span>
+                            <span class="sf-stat-label">Base visual</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-value">Claude Code</span>
-                            <span class="stat-label">IA contextual</span>
+                        <div class="sf-stat">
+                            <span class="sf-stat-value">Claude Code</span>
+                            <span class="sf-stat-label">IA contextual</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-value">Python + JS</span>
-                            <span class="stat-label">Automatización</span>
+                        <div class="sf-stat">
+                            <span class="sf-stat-value">Python + JS</span>
+                            <span class="sf-stat-label">Automatización</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="metric-card">
-                    <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <div class="sf-metric-card">
+                    <svg class="sf-metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
                         <circle cx="12" cy="12" r="2"/>
                     </svg>
-                    <h3 class="metric-title">Flujo Cognitivo</h3>
-                    <div class="metric-stats">
-                        <div class="stat">
-                            <span class="stat-value">0→4</span>
-                            <span class="stat-label">Materialización</span>
+                    <h3 class="sf-metric-title">Flujo Cognitivo</h3>
+                    <div class="sf-metric-stats">
+                        <div class="sf-stat">
+                            <span class="sf-stat-value">0→4</span>
+                            <span class="sf-stat-label">Materialización</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-value">4→0</span>
-                            <span class="stat-label">Abstracción</span>
+                        <div class="sf-stat">
+                            <span class="sf-stat-value">4→0</span>
+                            <span class="sf-stat-label">Abstracción</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-value">∞</span>
-                            <span class="stat-label">Iteraciones</span>
+                        <div class="sf-stat">
+                            <span class="sf-stat-value">∞</span>
+                            <span class="sf-stat-label">Iteraciones</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="metric-card">
-                    <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <div class="sf-metric-card">
+                    <svg class="sf-metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
                         <circle cx="12" cy="12" r="6"/>
                         <circle cx="12" cy="12" r="2"/>
                         <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
                         <path d="M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
                     </svg>
-                    <h3 class="metric-title">Ecosistema</h3>
-                    <div class="metric-stats">
-                        <div class="stat">
-                            <span class="stat-value">15+</span>
-                            <span class="stat-label">Proyectos conectados</span>
+                    <h3 class="sf-metric-title">Ecosistema</h3>
+                    <div class="sf-metric-stats">
+                        <div class="sf-stat">
+                            <span class="sf-stat-value">15+</span>
+                            <span class="sf-stat-label">Proyectos conectados</span>
                         </div>
-                        <div class="stat">
+                        <div class="sf-stat">
                             <span class="stat-value">Web3</span>
-                            <span class="stat-label">Desarrollo portfolio</span>
+                            <span class="sf-stat-label">Desarrollo portfolio</span>
                         </div>
-                        <div class="stat">
+                        <div class="sf-stat">
                             <span class="stat-value">Open</span>
-                            <span class="stat-label">Metodología abierta</span>
+                            <span class="sf-stat-label">Metodología abierta</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Evolution Timeline -->
-            <div class="evolution-section">
-                <h3 class="evolution-title">Evolución del Sistema</h3>
-                <div class="evolution-timeline">
-                    <div class="evolution-item">
-                        <div class="evolution-date">Q1 2024</div>
-                        <div class="evolution-content">
-                            <h4>Genesis</h4>
-                            <p>Creación del vault Obsidian inicial. Definición de REGLAS_SISTEMA.md</p>
+            <div class="sf-evolution-section">
+                <h3 class="sf-evolution-title">Evolución del Sistema</h3>
+                <div class="grid grid--responsive">
+                    <div class="sf-evolution-item">
+                        <div class="sf-evolution-date">Q1 2024</div>
+                        <div class="sf-evolution-content">
+                            <h4 class="sf-h4">Genesis</h4>
+                            <p class="sf-p">Creación del vault Obsidian inicial. Definición de REGLAS_SISTEMA.md</p>
                         </div>
                     </div>
-                    <div class="evolution-item">
-                        <div class="evolution-date">Q2 2024</div>
-                        <div class="evolution-content">
-                            <h4>IA Integration</h4>
-                            <p>Integración Claude Code. Desarrollo filosofía 01234. Primeros Canvas interactivos</p>
+                    <div class="sf-evolution-item">
+                        <div class="sf-evolution-date">Q2 2024</div>
+                        <div class="sf-evolution-content">
+                            <h4 class="sf-h4">IA Integration</h4>
+                            <p class="sf-p">Integración Claude Code. Desarrollo filosofía 01234. Primeros Canvas interactivos</p>
                         </div>
                     </div>
-                    <div class="evolution-item">
-                        <div class="evolution-date">Q3 2024</div>
-                        <div class="evolution-content">
-                            <h4>Automatización</h4>
-                            <p>Scripts Python para screenshots. Workflows automatizados. Expansión a 1,500+ notas</p>
+                    <div class="sf-evolution-item">
+                        <div class="sf-evolution-date">Q3 2024</div>
+                        <div class="sf-evolution-content">
+                            <h4 class="sf-h4">Automatización</h4>
+                            <p class="sf-p">Scripts Python para screenshots. Workflows automatizados. Expansión a 1,500+ notas</p>
                         </div>
                     </div>
-                    <div class="evolution-item">
-                        <div class="evolution-date">Q4 2024</div>
-                        <div class="evolution-content">
-                            <h4>Ecosystem</h4>
-                            <p>Portfolio sergiofores. Proyectos web integrados. 2,847 notas. Sistema maduro</p>
+                    <div class="sf-evolution-item">
+                        <div class="sf-evolution-date">Q4 2024</div>
+                        <div class="sf-evolution-content">
+                            <h4 class="sf-h4">Ecosystem</h4>
+                            <p class="sf-p">Portfolio sergiofores. Proyectos web integrados. 2,847 notas. Sistema maduro</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
     <!-- Ecosystem Section -->
-    <section id="ecosystem" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Ecosistema Integrado</h2>
-                <p class="section-description">
+    <section id="ecosystem" class="sf-section">
+        <div class="sf-container">
+            <div class="sf-section__header">
+                <h2 class="sf-h2">Ecosistema Integrado</h2>
+                <p class="sf-p">
                     Conexiones con el portfolio sergiofores y proyectos relacionados
                 </p>
             </div>
             
-            <div class="ecosystem-network">
-                <div class="network-center">
-                    <div class="center-node">
-                        <svg class="center-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="sf-ecosystem__network">
+                <div class="sf-ecosystem__network-center">
+                    <div class="sf-center-node">
+                        <svg class="sf-center-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M9.5 2A2.5 2.5 0 0 0 7 4.5v15A2.5 2.5 0 0 0 9.5 22h5a2.5 2.5 0 0 0 2.5-2.5v-15A2.5 2.5 0 0 0 14.5 2h-5Z"/>
                             <path d="M9 6h6"/>
                             <path d="M9 10h6"/>
@@ -569,56 +567,56 @@
                             <path d="M16 8l-2 2-2-2"/>
                             <path d="M8 16l2-2 2 2"/>
                         </svg>
-                        <span class="center-label">CEREBRO-DIGITAL</span>
+                        <span class="sf-center-label">CEREBRO-DIGITAL</span>
                     </div>
                 </div>
                 
-                <div class="network-connections">
-                    <div class="connection-item">
-                        <div class="connection-line"></div>
-                        <a href="../sergio-dev/" class="project-node">
-                            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <div class="sf-ecosystem__network-connections">
+                    <div class="sf-connection-item">
+                        <div class="sf-connection-line"></div>
+                        <a href="../sergio-dev/" class="sf-project-node">
+                            <svg class="sf-project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polyline points="16,18 22,12 16,6"/>
                                 <polyline points="8,6 2,12 8,18"/>
                                 <line x1="12" y1="2" x2="12" y2="22"/>
                             </svg>
-                            <span class="project-name">sergio-dev</span>
-                            <span class="project-desc">dIAlogando con IA</span>
-                            <span class="project-status active">●</span>
+                            <span class="sf-project-name">sergio-dev</span>
+                            <span class="sf-project-desc">dIAlogando con IA</span>
+                            <span class="sf-project-status active">●</span>
                         </a>
                     </div>
                     
-                    <div class="connection-item">
-                        <div class="connection-line"></div>
-                        <a href="../landing_01234/" class="project-node">
-                            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <div class="sf-connection-item">
+                        <div class="sf-connection-line"></div>
+                        <a href="../landing_01234/" class="sf-project-node">
+                            <svg class="sf-project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"/>
                                 <polygon points="10,8 16,12 10,16 10,8"/>
                                 <circle cx="12" cy="12" r="2"/>
                             </svg>
-                            <span class="project-name">Landing 01234</span>
-                            <span class="project-desc">Sistema cognitivo</span>
-                            <span class="project-status active">●</span>
+                            <span class="sf-project-name">Landing 01234</span>
+                            <span class="sf-project-desc">Sistema cognitivo</span>
+                            <span class="sf-project-status active">●</span>
                         </a>
                     </div>
                     
-                    <div class="connection-item">
-                        <div class="connection-line"></div>
-                        <a href="../proceso-cognitivo/" class="project-node">
-                            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <div class="sf-connection-item">
+                        <div class="sf-connection-line"></div>
+                        <a href="../proceso-cognitivo/" class="sf-project-node">
+                            <svg class="sf-project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="3"/>
                                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
                             </svg>
-                            <span class="project-name">Proceso Cognitivo</span>
-                            <span class="project-desc">Laboratorio consciencia</span>
-                            <span class="project-status active">●</span>
+                            <span class="sf-project-name">Proceso Cognitivo</span>
+                            <span class="sf-project-desc">Laboratorio consciencia</span>
+                            <span class="sf-project-status active">●</span>
                         </a>
                     </div>
                     
-                    <div class="connection-item">
-                        <div class="connection-line"></div>
-                        <a href="../cerebro_digital_vault/" class="project-node">
-                            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <div class="sf-connection-item">
+                        <div class="sf-connection-line"></div>
+                        <a href="../cerebro_digital_vault/" class="sf-project-node">
+                            <svg class="sf-project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
                                 <line x1="16" y1="2" x2="16" y2="6"/>
                                 <line x1="8" y1="2" x2="8" y2="6"/>
@@ -630,42 +628,40 @@
                                 <path d="M12 18h.01"/>
                                 <path d="M16 18h.01"/>
                             </svg>
-                            <span class="project-name">Vault Interface</span>
-                            <span class="project-desc">Dashboard navegación</span>
-                            <span class="project-status development">●</span>
+                            <span class="sf-project-name">Vault Interface</span>
+                            <span class="sf-project-desc">Dashboard navegación</span>
+                            <span class="sf-project-status development">●</span>
                         </a>
                     </div>
                     
                 </div>
             </div>
             
-            <div class="ecosystem-stats">
-                <div class="ecosystem-stat">
-                    <span class="stat-number">4</span>
-                    <span class="stat-label">Proyectos Activos</span>
+            <div class="sf-ecosystem__stats">
+                <div class="sf-ecosystem__stat">
+                    <span class="sf-stat-number">4</span>
+                    <span class="sf-stat-label">Proyectos Activos</span>
                 </div>
-                <div class="ecosystem-stat">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Integración 01234</span>
+                <div class="sf-ecosystem__stat">
+                    <span class="sf-stat-number">100%</span>
+                    <span class="sf-stat-label">Integración 01234</span>
                 </div>
-                <div class="ecosystem-stat">
-                    <span class="stat-number">3</span>
-                    <span class="stat-label">Tecnologías Stack</span>
+                <div class="sf-ecosystem__stat">
+                    <span class="sf-stat-number">3</span>
+                    <span class="sf-stat-label">Tecnologías Stack</span>
                 </div>
             </div>
-        </div>
-    </section>
 
         <!-- Book Banner CTA -->
         <div class="book-banner">
-            <div class="book-banner-content">
-                <div class="book-banner-text">
-                    <h2 class="book-banner-title">Listo Para 10x Tu Capacidad Cognitiva?</h2>
-                    <p class="book-banner-description">
+            <div class="book-banner__content">
+                <div class="book-banner__text">
+                    <h2 class="book-banner__title">Listo Para 10x Tu Capacidad Cognitiva?</h2>
+                    <p class="book-banner__description">
                         Únete a 500+ knowledge workers que ya usan CEREBRO-DIGITAL para procesar 10x más información 
                         en la mitad del tiempo. Tu segundo cerebro inteligente te está esperando.
                     </p>
-                    <div class="book-banner-actions">
+                    <div class="book-banner__actions">
                         <a href="https://www.instagram.com/cuenta.01234/" class="btn btn--primary" target="_blank">Comenzar Mi Segundo Cerebro</a>
                         <a href="https://x.com/t0tinspire" class="btn btn--secondary" target="_blank">Preguntar Dudas (DM)</a>
                         <a href="https://github.com/t0t" class="btn btn--secondary" target="_blank">Ver Template Completo</a>
@@ -677,7 +673,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-social">
+        <div class="footer__social">
             <a href="https://github.com/t0t" target="_blank" aria-label="GitHub">GitHub</a>
             <a href="https://www.instagram.com/cuenta.01234/" target="_blank" aria-label="Instagram">Instagram</a>
             <a href="https://x.com/t0tinspire" target="_blank" aria-label="Twitter">Twitter</a>
@@ -693,6 +689,6 @@
 
     <!-- Scripts -->
     <script src="../design-system/js/navigation-intelligence.js"></script>
-    <script src="../design-system/js/main-optimized.js"></script>
+    <script src="../design-system/js/main.js"></script>
 </body>
 </html>

@@ -1,3 +1,34 @@
+/* ============================================= */
+
+/* ! 1. ATOMIC GRID SYSTEM (Project Specific)    */
+
+/* ============================================= */
+.atomic-grid {
+    display: grid;
+    width: 100%;
+    gap: var(--grid-gap, var(--analysis-space));
+
+    /* Default to auto-fit for responsive columns */
+    grid-template-columns: repeat(auto-fit, minmax(var(--grid-item-min-width, 250px), 1fr));
+}
+
+/* Modifier for grids with a controlled number of columns */
+.atomic-grid--controlled {
+    grid-template-columns: repeat(var(--grid-columns-mobile, 1), 1fr);
+}
+
+@media (width >= 768px) {
+    .atomic-grid--controlled {
+        grid-template-columns: repeat(var(--grid-columns-tablet, 2), 1fr);
+    }
+}
+
+@media (width >= 1024px) {
+    .atomic-grid--controlled {
+        grid-template-columns: repeat(var(--grid-columns-desktop, 4), 1fr);
+    }
+}
+
 /**
  * CEREBRO-DIGITAL - SISTEMA DE DISEÑO SERGIO FORÉS V3
  * Paleta sagrada + sistema atómico + 3 tamaños únicamente
@@ -15,7 +46,7 @@
    ========================================================================== */
 
 /* Hero Badge */
-.hero-badge {
+.hero__badge {
   display: inline-block;
   padding: var(--detail-space) var(--connection-space);
   background: var(--color-cyan);
@@ -27,7 +58,7 @@
 }
 
 /* Hero Description Override */
-.hero-description {
+.hero__description {
   max-width: 65ch;
   margin: 0 auto var(--essence-space);
   color: var(--color-text-secondary);
@@ -35,437 +66,48 @@
   line-height: var(--line-height-relaxed);
 }
 
-/* Architecture Stack - Específico CEREBRO-DIGITAL */
-.architecture-stack {
-  display: grid;
-  gap: var(--space-2xl);
-  padding: var(--essence-space) 0;
-}
-
-.architecture-layer {
-  background: var(--color-surface);
-  padding: var(--analysis-space);
-  border: var(--border-width-base) solid var(--color-border);
-}
-
-.layer-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--analysis-space);
-}
-
-.layer-title {
-  font-size: var(--text-medium);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  margin: 0;
-}
-
-.layer-status {
-  width: var(--space-3);
-  height: var(--space-3);
-  border-radius: 50%;
-  font-size: 0;
-}
-
-.layer-status.active {
-  background: var(--color-green); /* Verde - Materialización activa */
-}
-
-.layer-status.processing {
-  background: var(--color-orange); /* Naranja - Procesamiento */
-}
-
-.layer-status.online {
-  background: var(--color-cyan); /* Cyan - Online */
-}
-
-.layer-components {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--analysis-space);
-}
-
-.component {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: var(--connection-space);
-  background: var(--color-background);
-  border: var(--border-width-base) solid var(--color-border);
-}
-
+/* Icon Sizes (Project Specific Adjustments) */
 .component-logo {
-  width: var(--space-12);
-  height: var(--space-12);
-  margin-bottom: var(--detail-space);
-  fill: var(--color-orange); /* Naranja para logos */
-}
-
-.obsidian-logo {
-  fill: #6c31e3; /* Color oficial Obsidian */
-}
-
-.anthropic-logo {
-  fill: var(--color-black);
-}
-
-.component-name {
-  font-size: var(--text-small);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--space-1);
-}
-
-.component-desc {
-  font-size: var(--text-small);
-  color: var(--color-text-secondary);
-}
-
-/* Layer Connectors */
-.layer-connector {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: var(--space-8);
-}
-
-.data-flow {
-  width: var(--space-1px);
-  height: 100%;
-  background: linear-gradient(to bottom, var(--color-cyan), var(--color-orange));
-  position: relative;
-}
-
-.data-flow::after {
-  content: '';
-  position: absolute;
-  bottom: -var(--space-1);
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: var(--space-1) solid transparent;
-  border-right: var(--space-1) solid transparent;
-  border-top: var(--space-2) solid var(--color-orange);
-}
-
-/* Methodology Timeline */
-.methodology-timeline {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--analysis-space);
-  align-items: start;
-  margin: var(--essence-space) 0;
-}
-
-.timeline-stage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.stage-number {
-  width: var(--space-16);
-  height: var(--space-16);
-  background: var(--color-orange);
-  color: var(--color-black);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--text-medium);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--analysis-space);
-}
-
-.stage-content {
-  max-width: 250px;
-}
-
-.stage-title {
-  font-size: var(--text-medium);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--connection-space);
-}
-
-.stage-description {
-  font-size: var(--text-small);
-  color: var(--color-text-secondary);
-  line-height: var(--line-height-relaxed);
-  margin-bottom: var(--analysis-space);
-}
-
-.stage-tools {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--detail-space);
-  justify-content: center;
-}
-
-.tool-tag {
-  padding: var(--space-1) var(--detail-space);
-  background: var(--color-cyan);
-  color: var(--color-black);
-  font-size: var(--text-small);
-  font-weight: var(--font-weight-medium);
-  border: 1px solid var(--color-black);
-}
-
-.timeline-arrow {
-  display: none; /* Hidden on mobile grid */
-}
-
-/* Metrics Grid */
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--analysis-space);
-  margin: var(--essence-space) 0;
-}
-
-.metric-card {
-  background: var(--color-surface);
-  padding: var(--analysis-space);
-  border: var(--border-width-base) solid var(--color-border);
-  text-align: center;
+  width: var(--space-8); /* 32px */
+  height: var(--space-8); /* 32px */
 }
 
 .metric-icon {
-  width: var(--space-12);
-  height: var(--space-12);
-  color: var(--color-orange);
-  margin: 0 auto var(--analysis-space);
-}
-
-.metric-title {
-  font-size: var(--text-medium);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--analysis-space);
-}
-
-.metric-stats {
-  display: grid;
-  gap: var(--connection-space);
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.stat-value {
-  font-size: var(--text-medium);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-orange);
-}
-
-.stat-label {
-  font-size: var(--text-small);
-  color: var(--color-text-secondary);
-}
-
-/* Evolution Timeline */
-.evolution-section {
-  margin-top: var(--essence-space);
-  padding-top: var(--essence-space);
-  border-top: var(--border-width-base) solid var(--color-border);
-}
-
-.evolution-title {
-  text-align: center;
-  font-size: var(--text-medium);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--essence-space);
-}
-
-.evolution-timeline {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--analysis-space);
-}
-
-.evolution-item {
-  text-align: center;
-}
-
-.evolution-date {
-  display: inline-block;
-  padding: var(--detail-space) var(--connection-space);
-  background: var(--color-cyan);
-  color: var(--color-black);
-  font-size: var(--text-small);
-  font-weight: var(--font-weight-semibold);
-  margin-bottom: var(--connection-space);
-  border: 1px solid var(--color-black);
-}
-
-.evolution-content h4 {
-  font-size: var(--text-medium);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--detail-space);
-}
-
-.evolution-content p {
-  font-size: var(--text-small);
-  color: var(--color-text-secondary);
-  line-height: var(--line-height-relaxed);
-}
-
-/* Ecosystem Network */
-.ecosystem-network {
-  display: grid;
-  place-items: center;
-  min-height: 400px;
-  position: relative;
-  margin: var(--essence-space) 0;
-}
-
-.network-center {
-  position: relative;
-  z-index: 2;
-}
-
-.center-node {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: var(--analysis-space);
-  background: var(--color-orange);
-  color: var(--color-black);
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  justify-content: center;
-  border: 2px solid var(--color-black);
-}
-
-.center-icon {
-  width: var(--space-8);
-  height: var(--space-8);
-  margin-bottom: var(--detail-space);
-}
-
-.center-label {
-  font-size: var(--text-small);
-  font-weight: var(--font-weight-bold);
-  text-align: center;
-}
-
-.network-connections {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: var(--analysis-space);
-  padding: var(--analysis-space);
-}
-
-.connection-item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.project-node {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: var(--connection-space);
-  background: var(--color-surface);
-  border: var(--border-width-base) solid var(--color-border);
-  text-decoration: none;
-  color: inherit;
-  width: 100%;
-  max-width: 200px;
-  transition: all var(--duration-base) var(--ease-out);
-}
-
-.project-node:hover {
-  background: var(--color-cyan);
-  color: var(--color-black);
-  transform: translateY(-2px);
+  width: var(--space-8); /* 32px */
+  height: var(--space-8); /* 32px */
 }
 
 .project-icon {
-  width: var(--space-8);
-  height: var(--space-8);
-  margin-bottom: var(--detail-space);
-  color: var(--color-orange);
+  width: var(--space-6); /* 24px */
+  height: var(--space-6); /* 24px */
 }
 
-.project-name {
-  font-size: var(--text-small);
-  font-weight: var(--font-weight-semibold);
-  margin-bottom: var(--space-1);
+.features__icon {
+  width: var(--space-8); /* 32px */
+  height: var(--space-8); /* 32px */
 }
 
-.project-desc {
-  font-size: var(--text-small);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--detail-space);
-}
-
-.project-status {
-  width: var(--space-2);
-  height: var(--space-2);
-  border-radius: 50%;
-  font-size: 0;
-}
-
-.project-status.active {
-  background: var(--color-green);
-}
-
-.project-status.development {
-  background: var(--color-orange);
-}
-
-/* Ecosystem Stats */
-.ecosystem-stats {
-  display: flex;
-  justify-content: center;
-  gap: var(--essence-space);
-  margin-top: var(--essence-space);
-}
-
-.ecosystem-stat {
-  text-align: center;
-}
-
-.stat-number {
-  display: block;
-  font-size: var(--text-large);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-orange);
+.center-icon {
+  width: var(--space-6); /* 24px */
+  height: var(--space-6); /* 24px */
 }
 
 /* Book Banner Specific Classes */
-.book-banner-title {
+.book-banner__title {
   font-size: var(--text-large);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
   margin-bottom: var(--analysis-space);
 }
 
-.book-banner-description {
+.book-banner__description {
   font-size: var(--text-small);
   color: var(--color-text-secondary);
   line-height: var(--line-height-relaxed);
   margin-bottom: var(--essence-space);
 }
 
-.book-banner-actions {
+.book-banner__actions {
   display: flex;
   justify-content: center;
   gap: var(--analysis-space);
@@ -477,7 +119,7 @@
    ========================================================================== */
 
 /* Mobile (375px) */
-@media (max-width: 375px) {
+@media (width <= 375px) {
   .stage-number {
     width: var(--space-12);
     height: var(--space-12);
@@ -496,7 +138,7 @@
 }
 
 /* Tablet (768px+) */
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .methodology-timeline {
     grid-template-columns: repeat(5, 1fr);
     gap: var(--connection-space);
@@ -523,7 +165,7 @@
 }
 
 /* Desktop (1024px+) */
-@media (min-width: 1024px) {
+@media (width >= 1024px) {
   .architecture-layer {
     padding: var(--essence-space);
   }
@@ -542,10 +184,10 @@
 }
 
 /* Large Desktop (1440px+) */
-@media (min-width: 1440px) {
+@media (width >= 1440px) {
   .component-logo {
-    width: var(--space-16);
-    height: var(--space-16);
+  width: var(--space-10);
+  height: var(--space-10);
   }
   
   .center-node {

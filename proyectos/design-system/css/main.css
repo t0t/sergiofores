@@ -99,6 +99,7 @@ button,
 [type="reset"],
 [type="submit"] {
   -webkit-appearance: button;
+  appearance: button;
 }
 
 button::-moz-focus-inner,
@@ -133,6 +134,7 @@ textarea {
 
 [type="search"] {
   -webkit-appearance: textfield;
+  appearance: textfield;
   outline-offset: -2px;
 }
 
@@ -628,31 +630,30 @@ th {
 }
 
 /* HEADER COMPONENT */
-.header {
+.header,
+.header-master {
+    position: sticky;
+    top: 0;
+    z-index: 1000;                                 /* Header por encima de todo */
+    background-color: rgba(255, 255, 255, 0.95);  /* Fondo semi-transparente */
+    backdrop-filter: blur(8px);                    /* Efecto blur moderno */
+    border-bottom: var(--border-width-base) solid var(--color-gray-200);
+}
+
+.header__container,
+.header-container-master {
+    width: 100%;
+    max-width: 1200px;                             /* Max width del contenedor */
+    margin: 0 auto;
+    padding-left: var(--space-6);                  /* Padding horizontal */
+    padding-right: var(--space-6);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--space-4) 0;
-    background-color: var(--color-surface-primary);
-    border-bottom: var(--border-width-base) solid var(--color-gray-200);
-    max-width: var(--container-max-width);
-    margin: 0 auto;
+    min-height: 80px;                              /* Altura mínima del header */
 }
 
-.header__container {
-    width: 100%;
-    padding-left: var(--container-padding);
-    padding-right: var(--container-padding);
-}
-
-.header__brand {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    text-decoration: none;
-    color: var(--color-text-primary);
-}
-
+.header__brand,
 .logo {
     display: flex;
     align-items: center;
@@ -661,10 +662,23 @@ th {
     color: var(--color-text-primary);
 }
 
-
-
-.header__nav {
+/* Logo 01234 styling */
+.logo__mark {
+    font-family: var(--font-mono);
+    font-size: var(--text-medium);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    letter-spacing: var(--letter-spacing-wide);
 }
+
+.logo__text {
+    font-size: var(--text-small);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    margin-left: var(--space-2);
+}
+
+
 
 .header__nav {
     display: flex;
@@ -682,6 +696,11 @@ th {
 @media (max-width: 768px) {
     .header__menu-toggle {
         display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: var(--space-2);
+        color: var(--color-text-primary);
     }
 
     .header__nav ul {
@@ -693,7 +712,8 @@ th {
         width: 100%;
         background-color: var(--color-surface-primary);
         border-top: var(--border-width-base) solid var(--color-gray-200);
-        padding: var(--space-4) var(--container-padding);
+        padding: var(--space-4) var(--space-6);
+        box-shadow: var(--shadow-lg);
     }
 
     .header__nav ul.is-open {
@@ -904,12 +924,13 @@ th {
 }
 
 /* HERO COMPONENT - GRID SYSTEM PERFECTO */
-.hero {
+.hero,
+.hero-master {
     display: grid;
     place-items: center;                           /* Centrado perfecto grid */
-    min-height: var(--hero-min-height-mobile);     /* Variables madre: 60vh */
-    padding-top: var(--quantum-space);             /* Separación cósmica */
-    padding-bottom: var(--quantum-space);
+    min-height: 60vh;                              /* 60vh móvil */
+    padding-top: var(--space-16);                  /* Separación cósmica superior */
+    padding-bottom: var(--space-16);               /* Separación cósmica inferior */
     background-color: var(--color-surface-primary);
     text-align: center;
     position: relative;
@@ -939,17 +960,19 @@ th {
     z-index: 1;
 }
 
-.hero__container {
+.hero__container,
+.hero-container-master {
     width: 100%;
-    max-width: var(--hero-content-max-width);      /* 800px del sistema madre */
+    max-width: 800px;                              /* 800px max-width */
     margin: 0 auto;
-    padding-left: var(--container-padding);
-    padding-right: var(--container-padding);
+    padding-left: var(--space-6);                  /* Padding lateral */
+    padding-right: var(--space-6);
 }
 
 @media (min-width: 768px) {
-    .hero {
-        min-height: var(--hero-min-height-desktop); /* 40vh desktop del sistema madre */
+    .hero,
+    .hero-master {
+        min-height: 40vh;                           /* 40vh desktop */
     }
 }
 
@@ -969,32 +992,76 @@ th {
     z-index: 2;
 }
 
-.hero__title {
-    font-size: var(--hero-title-size);             /* --essence-text del sistema madre */
+.hero__title,
+.hero-title-master {
+    font-size: var(--text-large);                  /* --essence-text del sistema */
     font-weight: var(--font-weight-medium);        /* Consistente con sistema */
     line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
     margin-top: 0;
-    margin-bottom: var(--hero-margin-bottom);
+    margin-bottom: var(--space-6);
     letter-spacing: var(--letter-spacing-wide);
 }
 
-.hero__subtitle {
-    font-size: var(--fragment-text);               /* --step-0 del sistema madre */
+.hero__subtitle,
+.hero-subtitle-master {
+    font-size: var(--text-small);                  /* --fragment-text del sistema */
     line-height: var(--line-height-relaxed);
     color: var(--color-text-secondary);
     margin-top: 0;
-    margin-bottom: var(--essence-space);
-    max-width: var(--hero-content-max-width);
+    margin-bottom: var(--space-8);
+    max-width: 800px;                               /* Max width para legibilidad */
     margin-left: auto;
     margin-right: auto;
 }
 
-.hero__actions {
+.hero__actions,
+.hero-actions-master {
     display: flex;
     justify-content: center;
-    gap: var(--analysis-space);                    /* Gap coherente con grid */
+    gap: var(--space-4);                           /* Gap coherente con sistema */
     flex-wrap: wrap;
-    margin-top: var(--essence-space);
+    margin-top: var(--space-8);
+}
+
+/* Hero with background image variants */
+.hero-master--image {
+    background-image: url('../../fotografia/img/photographs/quantum-fotografico.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Additional hero image variants */
+.hero-master--coherencia {
+    background-image: url('../../fotografia/img/photographs/coherencia-narrativa.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-master--determinacion {
+    background-image: url('../../fotografia/img/photographs/determinacion-luminosa.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-master--expresion {
+    background-image: url('../../fotografia/img/photographs/expresion-autentica.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* Inverse text colors for hero with image */
+.hero-title-master--inverse {
+    color: var(--color-white);                     /* Texto blanco para contraste */
+}
+
+.hero-subtitle-master--inverse {
+    color: var(--gray-4);                          /* Gris claro para subtítulo */
 }
 
 
