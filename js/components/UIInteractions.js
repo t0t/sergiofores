@@ -101,7 +101,7 @@ class UIInteractions {
     
     createCustomCursor() {
         // Buscar cursor existente o crear nuevo
-        this.customCursor = document.querySelector(this.config.cursorSelector);
+        this.customCursor = document.querySelector('.custom-cursor');
         
         if (!this.customCursor) {
             this.customCursor = document.createElement('div');
@@ -119,13 +119,15 @@ class UIInteractions {
             this.customCursor.style.top = e.clientY + 'px';
         });
         
-        // Mostrar/ocultar cursor
-        document.addEventListener('mouseenter', () => {
-            this.customCursor.style.opacity = '1';
-        });
-        
-        document.addEventListener('mouseleave', () => {
-            this.customCursor.style.opacity = '0';
+        // Hover en enlaces - cambiar a cyan
+        document.querySelectorAll('a, button, .nav-links a, .project-card').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                this.customCursor.classList.add('hover-link');
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                this.customCursor.classList.remove('hover-link');
+            });
         });
         
         // Hover effects para elementos interactivos

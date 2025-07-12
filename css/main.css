@@ -156,11 +156,11 @@
   --hero-min-height-desktop: 40vh;
   --hero-content-max-width: 800px;
   
-  /* Navigation - SPACING OPTIMIZADO SERGIO FORÉS */
+  /* Navigation - SPACING COHERENTE CON GRID SERGIO FORÉS */
   --nav-text-size: var(--analysis-text);           /* --step-1 */
-  --nav-padding-v: var(--space-m);                 /* Más padding vertical para mejor touch target */
-  --nav-padding-h: var(--space-xl);                /* Más padding horizontal para mejor respiración */
-  --nav-height-offset: var(--space-64px);          /* 80px equivalent - header height */
+  --nav-padding-h: var(--space-l);                 /* Padding horizontal coherente con sistema grid */
+  --nav-header-height: var(--space-2xl);           /* Altura harmónica = gap principal del proyecto */
+  --nav-height-offset: var(--space-2xl);           /* Mismo valor para scroll calculations */
   --nav-scroll-threshold: var(--space-64px);       /* 50px equivalent - scroll detection */
   --nav-mobile-toggle-width: var(--space-32px);    /* 30px equivalent - burger menu */
   --nav-mobile-toggle-height: var(--space-24px);   /* 25px equivalent - burger menu */

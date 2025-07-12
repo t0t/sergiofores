@@ -121,6 +121,7 @@ a {
   align-items: center;
   justify-content: space-between;
   padding: 0; /* Eliminado espacio sobrante contraproducente */
+  height: var(--nav-header-height); /* Altura harmónica = gap principal del proyecto */
 }
 
 /* Logo */
@@ -128,7 +129,8 @@ a {
   display: flex;
   align-items: center;
   gap: var(--detail-space);
-  padding: var(--nav-padding-v) var(--nav-padding-h);
+  padding: 0 var(--nav-padding-h); /* Solo horizontal, coherente con navegación */
+  height: 100%; /* Stretch para llenar toda la altura del header harmónico */
 }
 
 .geo-shape {
@@ -201,18 +203,24 @@ a {
   list-style: none;
   margin: 0;
   padding: 0;
+  height: 100%; /* Stretch vertical para ajustarse al contenedor */
+  align-items: stretch; /* Los elementos hijos se estiran verticalmente */
 }
 
 .nav-links a {
   font-size: var(--nav-text-size);
   font-weight: var(--font-weight-medium);
   letter-spacing: var(--letter-spacing-wide);
-  padding: var(--nav-padding-v) var(--nav-padding-h);
+  padding: 0 var(--nav-padding-h); /* Solo horizontal - vertical eliminado para evitar desbordamiento */
   /* border-radius removed */
   transition: all var(--duration-base) var(--ease-out);
   position: relative;
   /* Microinteracción de navegación */
   overflow: hidden;
+  /* Alineación coherente con grid sin desbordamiento vertical */
+  display: flex;
+  align-items: center;
+  height: 100%; /* Stretch para llenar toda la altura del contenedor nav-links */
 }
 
 /* Efecto de deslizamiento en navegación */
@@ -771,68 +779,29 @@ a {
   position: fixed;
   top: 0;
   left: 0;
-  width: var(--space-20px); /* CONSONANT: 20px */
-  height: var(--space-20px); /* CONSONANT: 20px */
-  border: var(--space-2px) solid var(--color-white); /* CONSONANT: 2px */
+  width: 20px;
+  height: 20px;
+  background: var(--color-yellow); /* Círculo amarillo como solicitas */
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  transition: width var(--duration-instant) ease, height var(--duration-instant) ease, border-color var(--duration-instant) ease; /* CONSONANT: 0.1s */
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+  transition: transform 0.1s ease;
+  transform: translate(-50%, -50%);
 }
 
-.custom-cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: var(--space-4px); /* CONSONANT: 4px */
-  height: var(--space-4px); /* CONSONANT: 4px */
-  background: var(--color-white);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Cursor styles only for desktop with hover capability */
+/* Cursor personalizado solo en desktop */
 @media (hover: hover) and (pointer: fine) {
-  /* Hide default cursor completely */
-  body, * {
+  /* Ocultar cursor del sistema completamente */
+  * {
     cursor: none !important;
   }
   
-  /* Mix blend mode for desktop only */
-  .custom-cursor {
-    mix-blend-mode: difference;
-  }
-  
-  .custom-cursor-dot {
-    mix-blend-mode: difference;
-  }
-  
-  /* Hover states */
-  .custom-cursor.hover {
-    width: var(--space-30px); /* CONSONANT: 30px */
-    height: var(--space-30px); /* CONSONANT: 30px */
-    border: none;
-    background: var(--logo-1);
-    border-radius: 50%;
-    mix-blend-mode: normal;
-  }
-  
-  /* Project hover cursor removed - no decorative hover effects */
-
-  .custom-cursor.hover-01234 {
-    width: var(--space-30px); /* CONSONANT: 30px */
-    height: var(--space-26px); /* CONSONANT: 26px */
-    border: none;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 26"><polygon points="15,0 30,26 0,26" fill="%2300FFFF"/></svg>') no-repeat center;
-    background-size: contain;
-    mix-blend-mode: normal;
+  /* Cursor personalizado hover en enlaces */
+  .custom-cursor.hover-link {
+    width: 30px;
+    height: 30px;
+    background: var(--color-cyan); /* Cyan para hover de enlaces */
+    transform: translate(-50%, -50%) scale(1.5);
   }
 }
 
