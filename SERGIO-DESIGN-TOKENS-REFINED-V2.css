@@ -1,0 +1,428 @@
+/**
+ * SERGIO FORÉS - DESIGN TOKENS REFINED V2.0
+ * Sistema de variables CSS basado en análisis crítico de implementaciones reales
+ * Síntesis pragmática entre teoría y práctica
+ * 
+ * ⚠️ IMPORTANTE: Estas variables reflejan patrones REALES encontrados en el código
+ * No son teóricas - están basadas en lo que REALMENTE funciona
+ */
+
+:root {
+  /* ==========================================================================
+     CONTEXTOS DE PROYECTO - Seleccionar uno por proyecto
+     ========================================================================== */
+  
+  /* 🎯 ACTIVAR SEGÚN CONTEXTO DEL PROYECTO */
+  --project-context: 'professional'; /* professional | artistic | conceptual | technical */
+  
+  /* ==========================================================================
+     TIPOGRAFÍA CONTEXTUAL REFINADA
+     ========================================================================== */
+  
+  /* Font Families Contextuales */
+  --font-professional: 'Avenir Next', 'Futura', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-artistic: 'Montserrat', 'Helvetica Neue', sans-serif;
+  --font-conceptual: 'Inter', 'System UI', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+  
+  /* Escala Tipográfica Real (6 tamaños máximo) */
+  --text-hero: clamp(2.5rem, 6vw, 4rem);        /* Máximo impacto */
+  --text-large: clamp(1.8rem, 4vw, 2.5rem);     /* Títulos principales H1 */
+  --text-medium: clamp(1.2rem, 3vw, 1.8rem);    /* Subtítulos H2-H3 */
+  --text-base: clamp(1rem, 2.5vw, 1.125rem);    /* Cuerpo de texto */
+  --text-small: clamp(0.875rem, 2vw, 1rem);     /* Metadatos, navegación */
+  --text-micro: clamp(0.75rem, 1.5vw, 0.875rem); /* Notas, copyright */
+  
+  /* Mapping Semántico 01234 */
+  --quantum-text: var(--text-hero);     /* Nivel 0 - Potencial infinito */
+  --essence-text: var(--text-large);    /* Nivel 1 - Claridad esencial */
+  --analysis-text: var(--text-medium);  /* Nivel 2 - Estructura analítica */
+  --connection-text: var(--text-base);  /* Nivel 3 - Comunicación fluida */
+  --detail-text: var(--text-small);     /* Nivel 4 - Materialización precisa */
+  
+  /* Font Weights Sistemáticos */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;    /* Base por defecto */
+  --font-weight-medium: 500;    /* Títulos */
+  --font-weight-semibold: 600;  /* Énfasis */
+  --font-weight-bold: 700;      /* Impacto máximo */
+  
+  /* Letter Spacing Característico */
+  --letter-spacing-tight: -0.02em;    /* Títulos grandes */
+  --letter-spacing-normal: 0;         /* Base */
+  --letter-spacing-wide: 0.02em;      /* Navegación */
+  --letter-spacing-wider: 0.04em;     /* Elementos destacados */
+  
+  /* Line Heights Funcionales */
+  --line-height-tight: 1.1;      /* Títulos */
+  --line-height-normal: 1.5;     /* Texto base */
+  --line-height-relaxed: 1.625;  /* Lectura larga */
+  
+  /* ==========================================================================
+     COLORES CONTEXTUALES REFINADOS
+     ========================================================================== */
+  
+  /* Paleta Base Profesional (Portfolio Principal) */
+  --sergio-black: #000000;
+  --sergio-gray-900: #111111;
+  --sergio-gray-800: #1f1f1f;
+  --sergio-gray-700: #2d2d2d;
+  --sergio-gray-600: #404040;
+  --sergio-gray-500: #6b6b6b;
+  --sergio-gray-400: #9ca3af;
+  --sergio-gray-300: #d1d5db;
+  --sergio-gray-200: #e5e7eb;
+  --sergio-gray-100: #f3f4f6;
+  --sergio-gray-50: #f9fafb;
+  --sergio-white: #ffffff;
+  
+  /* Paleta Museística (Arte Plástico) */
+  --gallery-white: #FEFEFE;
+  --warm-white: #FEFCF9;
+  --paper-white: #FAF9F6;
+  --soft-gray: #F5F4F1;
+  --stone-gray: #E8E6E1;
+  --charcoal-gray: #8B8B8B;
+  --deep-charcoal: #4A4A4A;
+  --museum-black: #2B2B2B;
+  --accent-copper: #B08D57;
+  --accent-warm: #D4B896;
+  
+  /* Paleta 01234 Conceptual (Landings Filosóficos) */
+  --quantum-violet: #8B7FF8;     /* Nivel 0 - Potencial */
+  --essence-coral: #F87171;      /* Nivel 1 - Determinación */
+  --analysis-blue: #60A5FA;      /* Nivel 2 - Análisis */
+  --connection-amber: #FBBF24;   /* Nivel 3 - Comunicación */
+  --material-green: #34D399;     /* Nivel 4 - Materialización */
+  
+  /* Colores Logo 01234 (Geométrico) */
+  --logo-0: #000000;  /* geo-circle-outline - Negro */
+  --logo-1: #FFFF00;  /* geo-circle-solid - Amarillo */
+  --logo-2: #FF0000;  /* geo-line - Rojo */
+  --logo-3: #00FFFF;  /* geo-triangle - Cyan puro */
+  --logo-4: #808080;  /* geo-square - Gris */
+  
+  /* ==========================================================================
+     ESPACIADO DUAL INTELIGENTE
+     ========================================================================== */
+  
+  /* Sistema Utopia (Proyectos Principales) */
+  --space-utopia-3xs: clamp(0.31rem, calc(0.31rem + 0.00vw), 0.31rem);
+  --space-utopia-2xs: clamp(0.56rem, calc(0.54rem + 0.11vw), 0.63rem);
+  --space-utopia-xs: clamp(0.69rem, calc(0.65rem + 0.22vw), 0.81rem);
+  --space-utopia-s: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  --space-utopia-m: clamp(1.69rem, calc(1.62rem + 0.33vw), 1.88rem);
+  --space-utopia-l: clamp(2.25rem, calc(2.16rem + 0.43vw), 2.50rem);
+  --space-utopia-xl: clamp(3.38rem, calc(3.24rem + 0.65vw), 3.75rem);
+  --space-utopia-2xl: clamp(4.50rem, calc(4.33rem + 0.87vw), 5.00rem);
+  --space-utopia-3xl: clamp(6.75rem, calc(6.49rem + 1.30vw), 7.50rem);
+  
+  /* Sistema 8px (Proyectos Específicos) */
+  --space-8px-xs: 0.5rem;   /* 8px */
+  --space-8px-sm: 1rem;     /* 16px */
+  --space-8px-md: 2rem;     /* 32px */
+  --space-8px-lg: 3rem;     /* 48px */
+  --space-8px-xl: 4rem;     /* 64px */
+  --space-8px-2xl: 6rem;    /* 96px */
+  --space-8px-3xl: 8rem;    /* 128px */
+  --space-8px-4xl: 12rem;   /* 192px */
+  
+  /* Alias Genéricos (Se mapean según contexto) */
+  --space-xs: var(--space-utopia-xs);
+  --space-sm: var(--space-utopia-s);
+  --space-md: var(--space-utopia-m);
+  --space-lg: var(--space-utopia-l);
+  --space-xl: var(--space-utopia-xl);
+  --space-2xl: var(--space-utopia-2xl);
+  --space-3xl: var(--space-utopia-3xl);
+  
+  /* Espaciado Filosófico 01234 */
+  --quantum-space: var(--space-3xl);      /* Nivel 0 - Separaciones cósmicas */
+  --essence-space: var(--space-xl);       /* Nivel 1 - Separación dramática */
+  --analysis-space: var(--space-md);      /* Nivel 2 - Espaciado interno */
+  --connection-space: var(--space-sm);    /* Nivel 3 - Gap entre elementos */
+  --detail-space: var(--space-xs);        /* Nivel 4 - Padding refinado */
+  
+  /* ==========================================================================
+     GEOMETRÍA CONTEXTUAL
+     ========================================================================== */
+  
+  /* Border Radius Contextual */
+  --radius-none: 0;                    /* Bauhaus estricto */
+  --radius-subtle: 4px;                /* Arte - sutileza */
+  --radius-medium: 8px;                /* Arte - expresividad */
+  --radius-expressive: 12px;           /* Conceptual - moderado */
+  --radius-dramatic: 20px;             /* Conceptual - impactante */
+  --radius-circle: 50%;                /* Círculos perfectos */
+  
+  /* ==========================================================================
+     EFECTOS Y ANIMACIONES
+     ========================================================================== */
+  
+  /* Timing Functions Signature */
+  --ease-sergio: cubic-bezier(0.0, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Durations Consistentes */
+  --duration-instant: 100ms;
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --duration-dramatic: 500ms;
+  
+  /* Transform Patterns */
+  --transform-lift-gentle: translateY(-4px) scale(1.02);
+  --transform-lift-dramatic: translateY(-6px) scale(1.05);
+  --transform-perspective: perspective(1000px) rotateY(5deg) translateY(-4px);
+  --transform-bounce: translateY(-2px) scale(1.01);
+  
+  /* Opacity States */
+  --opacity-hover: 0.8;
+  --opacity-focus: 0.9;
+  --opacity-disabled: 0.5;
+  --opacity-subtle: 0.7;
+  
+  /* ==========================================================================
+     LAYOUT Y CONTENEDORES
+     ========================================================================== */
+  
+  /* Container Widths Refinados */
+  --container-max-width: 1200px;       /* Standard para la mayoría */
+  --container-wide: 1400px;            /* Para contenido extenso */
+  --container-narrow: 800px;           /* Para lectura/texto */
+  --container-reading: 65ch;           /* Medida óptima lectura */
+  
+  /* Container Padding Responsive */
+  --container-padding: clamp(1rem, 4vw, 2rem);
+  --container-padding-mobile: 1rem;
+  --container-padding-desktop: 2rem;
+  
+  /* Grid Gaps Consistentes */
+  --grid-gap-tight: var(--space-sm);
+  --grid-gap-normal: var(--space-md);
+  --grid-gap-loose: var(--space-lg);
+  
+  /* ==========================================================================
+     BREAKPOINTS ESPECÍFICOS
+     ========================================================================== */
+  
+  /* Breakpoints Basados en Uso Real */
+  --breakpoint-xs: 375px;              /* iPhone SE */
+  --breakpoint-sm: 430px;              /* iPhone 14, 15, 16 */
+  --breakpoint-md: 768px;              /* Tablet/cambio principal */
+  --breakpoint-lg: 1024px;             /* Desktop pequeño */
+  --breakpoint-xl: 1280px;             /* Desktop grande */
+  --breakpoint-2xl: 1536px;            /* Desktop muy grande */
+  
+  /* ==========================================================================
+     CONTEXTOS ESPECÍFICOS - VARIABLES POR TIPO DE PROYECTO
+     ========================================================================== */
+  
+  /* Para usar con selección contextual */
+  --context-professional: 'professional';
+  --context-artistic: 'artistic';
+  --context-conceptual: 'conceptual';
+  --context-technical: 'technical';
+}
+
+/* ==========================================================================
+   CONFIGURACIONES CONTEXTUALES
+   ========================================================================== */
+
+/* Portfolio Profesional - Variables Activas */
+[data-context="professional"] {
+  --font-primary: var(--font-professional);
+  --color-primary: var(--sergio-black);
+  --color-background: var(--sergio-white);
+  --color-surface: var(--sergio-gray-50);
+  --color-border: var(--sergio-gray-300);
+  --color-text-primary: var(--sergio-gray-900);
+  --color-text-secondary: var(--sergio-gray-600);
+  --color-text-muted: var(--sergio-gray-400);
+  --border-radius-context: var(--radius-none);
+  --shadow-context: none;
+  --space-system: 'utopia';
+}
+
+/* Proyectos Artísticos - Variables Activas */
+[data-context="artistic"] {
+  --font-primary: var(--font-artistic);
+  --color-primary: var(--museum-black);
+  --color-background: var(--gallery-white);
+  --color-surface: var(--warm-white);
+  --color-border: var(--stone-gray);
+  --color-text-primary: var(--deep-charcoal);
+  --color-text-secondary: var(--charcoal-gray);
+  --color-text-muted: var(--stone-gray);
+  --color-accent: var(--accent-copper);
+  --border-radius-context: var(--radius-subtle);
+  --shadow-context: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --space-system: '8px';
+}
+
+/* Landings Conceptuales - Variables Activas */
+[data-context="conceptual"] {
+  --font-primary: var(--font-conceptual);
+  --color-primary: var(--sergio-gray-900);
+  --color-background: #F7F5F3;
+  --color-surface: var(--sergio-white);
+  --color-border: var(--sergio-gray-200);
+  --color-text-primary: #2C2C2C;
+  --color-text-secondary: #6B6B6B;
+  --color-text-muted: var(--sergio-gray-500);
+  --border-radius-context: var(--radius-expressive);
+  --shadow-context: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --space-system: 'utopia';
+}
+
+/* Herramientas Técnicas - Variables Activas */
+[data-context="technical"] {
+  --font-primary: var(--font-conceptual);
+  --font-code: var(--font-mono);
+  --color-primary: var(--sergio-gray-900);
+  --color-background: var(--sergio-white);
+  --color-surface: var(--sergio-gray-50);
+  --color-border: var(--sergio-gray-300);
+  --color-text-primary: var(--sergio-gray-900);
+  --color-text-secondary: var(--sergio-gray-600);
+  --color-text-muted: var(--sergio-gray-400);
+  --color-accent: var(--analysis-blue);
+  --border-radius-context: var(--radius-medium);
+  --shadow-context: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --space-system: '8px';
+}
+
+/* ==========================================================================
+   APLICACIÓN DE ESPACIADO SEGÚN CONTEXTO
+   ========================================================================== */
+
+/* Cuando space-system es 'utopia' */
+[data-space-system="utopia"] {
+  --space-xs: var(--space-utopia-xs);
+  --space-sm: var(--space-utopia-s);
+  --space-md: var(--space-utopia-m);
+  --space-lg: var(--space-utopia-l);
+  --space-xl: var(--space-utopia-xl);
+  --space-2xl: var(--space-utopia-2xl);
+  --space-3xl: var(--space-utopia-3xl);
+}
+
+/* Cuando space-system es '8px' */
+[data-space-system="8px"] {
+  --space-xs: var(--space-8px-xs);
+  --space-sm: var(--space-8px-sm);
+  --space-md: var(--space-8px-md);
+  --space-lg: var(--space-8px-lg);
+  --space-xl: var(--space-8px-xl);
+  --space-2xl: var(--space-8px-2xl);
+  --space-3xl: var(--space-8px-3xl);
+}
+
+/* ==========================================================================
+   OPTIMIZACIONES MÓVILES CRÍTICAS
+   ========================================================================== */
+
+/* Viewport real iOS */
+@supports (height: 100svh) {
+  :root {
+    --viewport-height: 100svh;
+  }
+}
+
+/* Fallback para navegadores sin soporte */
+:root {
+  --viewport-height: 100vh;
+}
+
+/* Variables móviles específicas */
+@media (max-width: 768px) {
+  :root {
+    --container-padding: var(--container-padding-mobile);
+    --text-hero: clamp(2rem, 8vw, 2.5rem);
+    --text-large: clamp(1.5rem, 6vw, 2rem);
+  }
+}
+
+/* iPhone específico */
+@media (max-width: 430px) {
+  :root {
+    --container-padding: 1rem;
+    --space-mobile-adjust: 0.8;
+  }
+}
+
+/* ==========================================================================
+   DESKTOP HOVER CAPABILITIES
+   ========================================================================== */
+
+/* Variables de hover solo para dispositivos capaces */
+@media (hover: hover) and (pointer: fine) {
+  :root {
+    --hover-opacity: 0.8;
+    --hover-scale: 1.02;
+    --hover-transform: var(--transform-lift-gentle);
+    --mix-blend-enabled: true;
+  }
+}
+
+/* Mobile - sin hover */
+@media (hover: none) {
+  :root {
+    --hover-opacity: 1;
+    --hover-scale: 1;
+    --hover-transform: none;
+    --mix-blend-enabled: false;
+  }
+}
+
+/* ==========================================================================
+   COMPONENTES ESPECÍFICOS - VALORES REFINADOS
+   ========================================================================== */
+
+/* Hero Section */
+:root {
+  --hero-height: var(--viewport-height);
+  --hero-min-height: 40vh;
+  --hero-content-max-width: calc(100vw - 20px);
+  --hero-padding: var(--space-xl) 0;
+}
+
+/* Navigation */
+:root {
+  --nav-height: 80px;
+  --nav-padding: 0 var(--container-padding);
+  --nav-link-spacing: var(--space-md);
+  --nav-active-indicator: 2px;
+}
+
+/* Cards y Proyectos */
+:root {
+  --card-padding: var(--space-lg);
+  --card-border-radius: var(--border-radius-context);
+  --card-shadow: var(--shadow-context);
+  --card-gap: var(--space-md);
+}
+
+/* Footer */
+:root {
+  --footer-padding: var(--space-2xl) 0 var(--space-xl) 0;
+  --footer-background: var(--color-surface);
+  --footer-border: 1px solid var(--color-border);
+}
+
+/**
+ * NOTAS DE USO:
+ * 
+ * 1. Establecer contexto en el HTML:
+ *    <body data-context="professional" data-space-system="utopia">
+ * 
+ * 2. Las variables se activan automáticamente según el contexto
+ * 
+ * 3. Para cambiar contexto dinámicamente:
+ *    document.body.setAttribute('data-context', 'artistic');
+ * 
+ * 4. Siempre usar variables CSS, nunca valores hardcoded
+ * 
+ * 5. Los breakpoints están optimizados para dispositivos iPhone reales
+ */

@@ -139,7 +139,6 @@ class VideoOptimizer {
     }
     
     disableVideo(reason) {
-        console.log(`Video disabled: ${reason}`);
         
         if (this.video) {
             this.video.pause();
@@ -168,7 +167,6 @@ class VideoOptimizer {
             
             // Intentar reproducir el video que ya está cargado
             this.video.play().then(() => {
-                console.log('Video resumed successfully');
             }).catch(e => {
                 console.warn('Video play failed on enable:', e);
             });
@@ -193,7 +191,6 @@ class VideoOptimizer {
             const currentSrc = this.video.currentSrc || this.video.src;
             isWebMFormat = currentSrc.includes('.webm');
             
-            console.log('Video format detected:', isWebMFormat ? 'WebM (loop-reverse)' : 'MP4 (normal loop)');
             
             if (isWebMFormat) {
                 // WebM: Deshabilitar loop nativo para loop-reverse
@@ -243,24 +240,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Debug: Verificar estado del video
     const video = document.querySelector('.hero-video');
     if (video) {
-        console.log('Video element found:', video);
-        console.log('Video src:', video.src);
-        console.log('Video readyState:', video.readyState);
         
         // Forzar reproducción después de un pequeño delay
         setTimeout(() => {
             video.play().then(() => {
-                console.log('Video playing successfully');
             }).catch(error => {
                 console.error('Video play failed:', error);
             });
         }, 1000);
         
         // Event listeners para debug
-        video.addEventListener('loadstart', () => console.log('Video: loadstart'));
-        video.addEventListener('loadeddata', () => console.log('Video: loadeddata'));
-        video.addEventListener('canplay', () => console.log('Video: canplay'));
-        video.addEventListener('playing', () => console.log('Video: playing'));
         video.addEventListener('error', (e) => console.error('Video error:', e));
     } else {
         console.error('Video element not found');

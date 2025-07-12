@@ -4,81 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prototipos 01234 | Laboratorio de Diseño Web</title>
+    
+    <!-- ========================================================================
+         ARQUITECTURA NUCLEAR OBLIGATORIA: Design System Sergio Forés
+         Ejemplo viviente de consonancia sistémica fractal + filosofía 01234
+         ======================================================================== -->
+    <link rel="stylesheet" href="../../css/main.css">
+    
     <style>
-        /* Variables del Sistema de Diseño */
-        :root {
-            /* Base Neutra (80% del diseño) */
-            --neutral-white: #FEFEFE;
-            --neutral-cream: #FDFBF7;
-            --neutral-gray-50: #F8F6F0;
-            --neutral-gray-200: #E5E7EB;
-            --neutral-gray-400: #9CA3AF;
-            --neutral-gray-600: #6B7280;
-            --neutral-gray-800: #2C2C2C;
-            --neutral-black: #1A1A1A;
-            
-            /* Colores de Énfasis (20% - Solo uso justificado) */
-            --accent-orange: #FF6B35;
-            --accent-red: #E30613;
-            --accent-blue: #0066CC;
-            --accent-yellow: #FFD100;
-            --accent-green: #9CAF88;
-            
-            /* Tipografía */
-            --font-primary: 'Futura', 'Avenir Next', 'Helvetica Neue', sans-serif;
-            --font-mono: 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
-            
-            /* Spacing sistemático 8px */
-            --space-1: 0.5rem;   /* 8px */
-            --space-2: 1rem;     /* 16px */
-            --space-3: 1.5rem;   /* 24px */
-            --space-4: 2rem;     /* 32px */
-            --space-6: 3rem;     /* 48px */
-            --space-8: 4rem;     /* 64px */
-            --space-12: 6rem;    /* 96px */
-            
-            /* Tamaños fluidos */
-            --text-base: clamp(1rem, 1.2vw, 1.125rem);
-            --text-lg: clamp(1.125rem, 1.5vw, 1.25rem);
-            --text-xl: clamp(1.25rem, 2vw, 1.5rem);
-            --text-2xl: clamp(1.5rem, 3vw, 2rem);
-            --text-3xl: clamp(2rem, 4vw, 3rem);
-        }
+        /* ========================================================================
+           PROTOTIPOS 01234 - ESPECIALIZACIÓN DEL SISTEMA NUCLEAR
+           Demostración perfecta de arquitectura CSS atómica + ESPACIADO MATEMÁTICAMENTE PERFECTO
+           ======================================================================== */
         
-        /* Reset y base */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ========================================================================
+           BODY OVERRIDE - TIPOGRAFÍA UTOPIA + BASELINE GRID 24px
+           ======================================================================== */
         
         body {
             font-family: var(--font-primary);
-            background: var(--neutral-white);
-            color: var(--neutral-gray-800);
-            line-height: 1.7;
-            font-size: var(--text-base);
-            font-weight: 300;
-            letter-spacing: 0.5px;
+            background: var(--white);
+            color: var(--color-text-primary);
+            font-size: var(--fragment-text);  /* --step-0: Base áurea sistémica */
+            line-height: 1.5;  /* Baseline grid 24px obligatorio - respiración nuclear */
+            font-weight: var(--font-weight-normal);
+            letter-spacing: var(--letter-spacing-normal);
         }
         
         html {
             scroll-behavior: smooth;
         }
         
-        /* Layout principal */
+        /* ========================================================================
+           LAYOUT PRINCIPAL - CONSONANCIA SISTÉMICA FRACTAL
+           ======================================================================== */
+        
         .container {
-            max-width: 1400px;
+            max-width: var(--container-max-width-wide);  /* CONSONANT: 1400px */
             margin: 0 auto;
-            padding: 0 var(--space-4);
+            padding: 0 var(--space-xl);  /* Respiración horizontal universal */
         }
         
-        /* Header */
+        /* ========================================================================
+           HEADER - NIVEL 3 COMUNICACIÓN/CONEXIÓN - Navegación fluida
+           ======================================================================== */
+        
         .header {
-            background: var(--neutral-white);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            padding: var(--space-3) 0;
-            margin-bottom: var(--space-8);
+            background: var(--white);
+            box-shadow: 0 var(--space-2px) var(--space-20px) rgba(0, 0, 0, 0.05);  /* CONSONANT: Shadow */
+            padding: var(--nav-padding-v) 0;  /* --space-xs-s: Conexión fluida */
+            margin-bottom: var(--essence-space);  /* --space-l-xl: Separación dramática */
         }
         
         .header-content {
@@ -89,99 +64,254 @@
         
         .logo-text {
             font-family: var(--font-primary);
-            font-size: var(--text-xl);
-            font-weight: 600;
-            color: var(--neutral-black);
-            letter-spacing: 2px;
+            font-size: var(--analysis-text);  /* --step-1: Navegación autoridad */
+            font-weight: var(--font-weight-semibold);
+            color: var(--black);  /* Negro puro - sistema monocromático */
+            letter-spacing: var(--letter-spacing-wide);
             text-transform: uppercase;
             text-decoration: none;
         }
         
         .back-link {
-            color: var(--accent-orange);
+            color: var(--color-1);  /* Naranja 01234 - ÚNICO color permitido */
             text-decoration: none;
-            font-weight: 400;
-            letter-spacing: 1px;
+            font-size: var(--connection-text);  /* --step--1: Metadata nivel */
+            font-weight: var(--font-weight-medium);
+            letter-spacing: var(--letter-spacing-normal);
             text-transform: uppercase;
-            transition: color 0.3s ease;
+            transition: color var(--duration-slow) var(--ease-out);  /* CONSONANT: Timing */
         }
         
         .back-link:hover {
-            color: var(--neutral-black);
+            color: var(--black);  /* Transición a negro puro */
         }
         
-        /* Hero */
+        /* ========================================================================
+           HERO - NIVEL 1 ESENCIA/MODELO - Máximo impacto cotidiano
+           ======================================================================== */
+        
         .hero {
             text-align: center;
-            margin-bottom: var(--space-12);
+            margin-bottom: var(--infinite-space);  /* --space-xl-2xl: Separación cósmica */
         }
         
         .hero h1 {
             font-family: var(--font-primary);
-            font-size: var(--text-3xl);
-            font-weight: 300;
-            color: var(--neutral-black);
-            letter-spacing: 4px;
+            font-size: var(--essence-text);  /* --step-4: Hero títulos autoridad */
+            font-weight: var(--font-weight-light);  /* 300: Impacto visual elegante */
+            color: var(--black);  /* Negro puro autoridad */
+            letter-spacing: var(--letter-spacing-ultra-wide);
             text-transform: uppercase;
-            margin-bottom: var(--space-4);
+            margin-bottom: var(--analysis-space);  /* --space-s-m: Componentes sistémicos */
         }
         
         .hero p {
-            font-size: var(--text-lg);
-            color: var(--neutral-gray-600);
-            max-width: 800px;
+            font-size: var(--analysis-text);  /* --step-1: Subtítulos navegación */
+            color: var(--color-text-secondary);  /* --gray-600: Sistema monocromático */
+            max-width: 65ch;  /* Línea óptima de lectura - legibilidad perfecta */
             margin: 0 auto;
-            letter-spacing: 1px;
+            letter-spacing: var(--letter-spacing-normal);
+            line-height: 1.6;  /* Respiración entre líneas para lectura */
         }
         
-        /* Grid de prototipos */
+        /* ========================================================================
+           GRID PRINCIPAL - RESPIRACIÓN HORIZONTAL UNIVERSAL OBLIGATORIA
+           Demostración perfecta de ARMONÍA INTEGRAL: Gap = Margin (SOLO GRID PRINCIPAL)
+           
+           PRINCIPIOS FUNDAMENTALES DE CONSONANCIA ESPACIAL SISTÉMICA:
+           - GRID PRINCIPAL: Gap = Margin horizontal (ambos --space-xl)
+           - SUBGRIDS: Solo gap, margin: 0 (sin respiración adicional)
+           - En móvil: Gap principal = Margin principal (ambos --space-m)
+           - NUNCA gaps diferentes a margins EN GRID PRINCIPAL = DISONANCIA
+           - Cards ocupan 100% del espacio disponible = UNIFORMIDAD
+           - justify-items: stretch + align-items: stretch = INTEGRIDAD
+           - Esta jerarquía crea RITMO VISUAL PERFECTO
+           ======================================================================== */
+        
         .prototipos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: var(--space-6);
-            margin-bottom: var(--space-12);
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-rows: auto;  /* Auto para mantener proporciones aspect-ratio */
+            gap: var(--space-xl);  /* CRÍTICO: Gap = Margin para armonía integral */
+            margin: 0 var(--space-xl);  /* CRÍTICO: Respiración horizontal = Gap */
+            margin-bottom: var(--infinite-space);  /* --space-xl-2xl: Separación dramática */
+            justify-items: stretch;  /* CRÍTICO: Cards ocupan todo el espacio */
+            align-items: stretch;    /* CRÍTICO: Altura completa */
+            align-content: start;    /* Contenido alineado al inicio */
         }
         
+        /* ========================================================================
+           PROTOTIPO CARDS - ARQUITECTURA CSS GRID INTELIGENTE + CONSONANCIA 01234
+           
+           ESTRUCTURA GRID INTELIGENTE:
+           - Card = Grid container con template-rows: 1fr auto
+           - Preview = Grid row 1 (ocupa espacio disponible automáticamente)
+           - Content = Overlay absoluto para hover (no interfiere con grid)
+           - Sin heights hardcodeados - todo gobernado por grid padre
+           - Cada nivel con color específico del sistema madre 01234
+           ======================================================================== */
+        
         .prototipo-card {
-            background: var(--neutral-white);
-            border: 1px solid var(--neutral-gray-200);
-            transition: all 0.3s ease;
+            background: var(--white);
+            border: var(--space-1px) solid var(--gray-200);  /* CONSONANT: Border */
+            transition: all var(--duration-slow) var(--ease-out);  /* CONSONANT: Timing */
             position: relative;
             overflow: hidden;
-            display: block;
+            display: grid;  /* CRÍTICO: Grid container inteligente */
+            grid-template-rows: 1fr auto;  /* Preview toma espacio disponible, content auto */
             text-decoration: none;
             color: inherit;
             cursor: pointer;
-            aspect-ratio: 16/10;
+            aspect-ratio: 16/10;  /* Proporción áurea aproximada - consonancia visual */
+            min-height: var(--space-48px);  /* CONSONANT: Touch targets WCAG */
+            border-radius: var(--radius-base);  /* CONSONANT: Border radius */
+            /* CRÍTICO: Sin width ni height - gobernado por grid container padre */
+            /* Grid padre automáticamente asigna dimensiones óptimas */
         }
+        
+        /* ========================================================================
+           COLORES DE FONDO POR NIVEL 01234 - SISTEMA MADRE
+           ======================================================================== */
+        
+        /* NIVEL 0 - Campo Cuántico: Negro profundo con opacity */
+        .prototipo-card.nivel-0 {
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.05) 0%, 
+                rgba(0, 0, 0, 0.1) 100%);
+            border-color: var(--color-0);
+        }
+        
+        /* NIVEL 1 - Esencia: Naranja vibrante con opacity */
+        .prototipo-card.nivel-1 {
+            background: linear-gradient(135deg, 
+                rgba(255, 107, 53, 0.05) 0%, 
+                rgba(255, 107, 53, 0.1) 100%);
+            border-color: var(--color-1);
+        }
+        
+        /* NIVEL 2 - Análisis: Turquesa con opacity */
+        .prototipo-card.nivel-2 {
+            background: linear-gradient(135deg, 
+                rgba(78, 205, 196, 0.05) 0%, 
+                rgba(78, 205, 196, 0.1) 100%);
+            border-color: var(--color-2);
+        }
+        
+        /* NIVEL 3 - Comunicación: Azul cielo con opacity */
+        .prototipo-card.nivel-3 {
+            background: linear-gradient(135deg, 
+                rgba(69, 183, 209, 0.05) 0%, 
+                rgba(69, 183, 209, 0.1) 100%);
+            border-color: var(--color-3);
+        }
+        
+        /* NIVEL 4 - Materialización: Verde salvia con opacity */
+        .prototipo-card.nivel-4 {
+            background: linear-gradient(135deg, 
+                rgba(150, 206, 180, 0.05) 0%, 
+                rgba(150, 206, 180, 0.1) 100%);
+            border-color: var(--color-4);
+        }
+        
+        /* TIPOS ESPECIALES - Colores complementarios */
+        .prototipo-card.consonancia {
+            background: linear-gradient(135deg, 
+                var(--gray-50) 0%, 
+                var(--gray-100) 100%);
+            border-color: var(--gray-500);
+        }
+        
+        .prototipo-card.nuclear {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 0, 0.03) 0%, 
+                rgba(255, 255, 0, 0.08) 100%);
+            border-color: var(--logo-1);
+        }
+        
+        .prototipo-card.respiracion {
+            background: linear-gradient(135deg, 
+                var(--color-surface) 0%, 
+                var(--gray-100) 100%);
+            border-color: var(--gray-400);
+        }
+        
+        .prototipo-card.monocromatico {
+            background: linear-gradient(135deg, 
+                var(--gray-100) 0%, 
+                var(--gray-200) 100%);
+            border-color: var(--gray-600);
+        }
+        
+        /* ========================================================================
+           HOVER STATES - INTENSIFICACIÓN DE COLORES
+           ======================================================================== */
         
         .prototipo-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-            border-color: var(--accent-orange);
+            transform: var(--transform-lift-medium); /* CONSONANT: -4px */
+            box-shadow: 0 var(--space-16px) var(--space-48px) rgba(0, 0, 0, 0.08);  /* CONSONANT: Shadow */
         }
         
+        .prototipo-card.nivel-0:hover { border-color: var(--color-0); background: rgba(0, 0, 0, 0.08); }
+        .prototipo-card.nivel-1:hover { border-color: var(--color-1); background: rgba(255, 107, 53, 0.08); }
+        .prototipo-card.nivel-2:hover { border-color: var(--color-2); background: rgba(78, 205, 196, 0.08); }
+        .prototipo-card.nivel-3:hover { border-color: var(--color-3); background: rgba(69, 183, 209, 0.08); }
+        .prototipo-card.nivel-4:hover { border-color: var(--color-4); background: rgba(150, 206, 180, 0.08); }
+        
+        /* ========================================================================
+           PREVIEW SECTION - GRID ROW 1 (INTELIGENTE)
+           Sin dimensiones fijas - tamaño gobernado por grid container padre
+           ======================================================================== */
+        
         .prototipo-preview {
-            width: 100%;
-            height: 100%;
-            background: var(--neutral-gray-50);
+            /* CRÍTICO: Sin width ni height - gobernado por grid container padre */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all var(--duration-base) var(--ease-out);
+            padding: var(--analysis-space);  /* CONSONANT: Internal spacing */
+            /* Grid row 1 - ocupa todo el espacio disponible automáticamente */
+        }
+        
+        /* Indicador de nivel */
+        .nivel-indicator {
+            position: absolute;
+            top: var(--space-16px);  /* CONSONANT: Position */
+            right: var(--space-16px);  /* CONSONANT: Position */
+            width: var(--space-32px);  /* CONSONANT: Size */
+            height: var(--space-32px);  /* CONSONANT: Size */
+            background: var(--white);
+            border: var(--space-2px) solid currentColor;  /* CONSONANT: Border */
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--neutral-gray-400);
-            font-size: var(--text-lg);
-            letter-spacing: 2px;
+            font-size: var(--connection-text);  /* CONSONANT: Typography */
+            font-weight: var(--font-weight-bold);
+            font-family: var(--font-mono);
+        }
+        
+        /* Contenido central del preview */
+        .preview-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--connection-space);  /* CONSONANT: Gap */
+        }
+        
+        .preview-label {
+            font-size: var(--connection-text);  /* CONSONANT: Typography */
+            font-weight: var(--font-weight-medium);
+            letter-spacing: var(--letter-spacing-wide);
             text-transform: uppercase;
-            transition: all 0.3s ease;
+            color: var(--color-text-secondary);
         }
         
         .prototipo-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            padding: var(--space-4) var(--space-6) var(--space-6) var(--space-6);
+            /* CRÍTICO: Grid row 2 - tamaño automático basado en contenido */
+            padding: var(--analysis-space);  /* --space-s-m: Componentes internos */
             background: linear-gradient(
                 to top, 
                 rgba(0, 0, 0, 0.95) 0%, 
@@ -189,13 +319,19 @@
                 rgba(0, 0, 0, 0.5) 80%,
                 rgba(0, 0, 0, 0.2) 100%
             );
-            color: var(--neutral-white);
+            color: var(--white);
             transform: translateY(100%);
-            transition: transform 0.3s ease;
+            transition: transform var(--duration-slow) var(--ease-out);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             overflow: hidden;
+            /* Positioned overlay sobre el grid - comportamiento hover */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
         
         .prototipo-card:hover .prototipo-content {
@@ -206,60 +342,268 @@
             filter: brightness(0.7);
         }
         
+        /* ========================================================================
+           CONTENIDO CARDS - JERARQUÍA TIPOGRÁFICA UTOPIA PERFECTA
+           ======================================================================== */
+        
         .prototipo-title {
             font-family: var(--font-primary);
-            font-size: var(--text-xl);
-            font-weight: 400;
-            color: var(--neutral-white);
-            margin-bottom: var(--space-2);
-            letter-spacing: 1px;
+            font-size: var(--analysis-text);  /* --step-1: Subtítulos autoridad */
+            font-weight: var(--font-weight-medium);
+            color: var(--white);
+            margin-bottom: var(--connection-space);  /* --space-xs-s: Elementos conectados */
+            letter-spacing: var(--letter-spacing-normal);
             text-transform: uppercase;
         }
         
         .prototipo-description {
-            color: var(--neutral-white);
-            margin-bottom: var(--space-3);
-            line-height: 1.6;
-            font-size: var(--text-base);
+            color: var(--white);
+            margin-bottom: var(--connection-space);  /* --space-xs-s: Flujo conectado */
+            line-height: 1.6;  /* Respiración entre líneas para lectura */
+            font-size: var(--fragment-text);  /* --step-0: Body text párrafos */
             opacity: 0.9;
         }
         
         .prototipo-tech {
             display: flex;
             flex-wrap: wrap;
-            gap: var(--space-1);
+            gap: var(--detail-space);  /* --space-3xs-2xs: Micro-espaciado atómico */
         }
+        
+        /* ========================================================================
+           FORMAS GEOMÉTRICAS 01234
+           ======================================================================== */
+        
+        .geometric-shape {
+            width: var(--space-48px);  /* CONSONANT: Icon size */
+            height: var(--space-48px);  /* CONSONANT: Icon size */
+            position: relative;
+            margin-bottom: var(--space-8px);  /* CONSONANT: Margin */
+        }
+        
+        /* NIVEL 0 - Círculo outline (Campo Cuántico) */
+        .circle-outline {
+            border: var(--space-3px) solid var(--color-0);  /* CONSONANT: Border */
+            border-radius: 50%;
+            background: transparent;
+        }
+        
+        /* NIVEL 1 - Círculo sólido (Esencia) */
+        .circle-solid {
+            background: var(--color-1);
+            border-radius: 50%;
+        }
+        
+        /* NIVEL 2 - Línea horizontal (Análisis) */
+        .line-horizontal {
+            width: var(--space-48px);  /* CONSONANT: Width */
+            height: var(--space-4px);  /* CONSONANT: Height */
+            background: var(--color-2);
+            margin: var(--space-20px) 0;  /* CONSONANT: Center vertical */
+        }
+        
+        /* NIVEL 3 - Triángulo (Comunicación) */
+        .triangle-up {
+            width: 0;
+            height: 0;
+            border-left: var(--space-24px) solid transparent;  /* CONSONANT: Border */
+            border-right: var(--space-24px) solid transparent;  /* CONSONANT: Border */
+            border-bottom: var(--space-32px) solid var(--color-3);  /* CONSONANT: Border */
+        }
+        
+        /* NIVEL 4 - Cuadrado sólido (Materialización) */
+        .square-solid {
+            width: var(--space-32px);  /* CONSONANT: Size */
+            height: var(--space-32px);  /* CONSONANT: Size */
+            background: var(--color-4);
+            margin: var(--space-8px) auto;  /* CONSONANT: Center */
+        }
+        
+        /* FORMAS ESPECIALES */
+        .fibonacci-spiral {
+            width: var(--space-48px);  /* CONSONANT: Size */
+            height: var(--space-48px);  /* CONSONANT: Size */
+            border: var(--space-2px) solid var(--gray-500);  /* CONSONANT: Border */
+            border-radius: 50% 0 0 0;
+            background: linear-gradient(45deg, transparent 40%, var(--gray-300) 100%);
+        }
+        
+        .atom-structure::before,
+        .atom-structure::after {
+            content: '';
+            position: absolute;
+            width: var(--space-32px);  /* CONSONANT: Size */
+            height: var(--space-32px);  /* CONSONANT: Size */
+            border: var(--space-1px) solid var(--logo-1);  /* CONSONANT: Border */
+            border-radius: 50%;
+            top: var(--space-8px);  /* CONSONANT: Position */
+            left: var(--space-8px);  /* CONSONANT: Position */
+        }
+        
+        .atom-structure::after {
+            transform: rotate(60deg);
+        }
+        
+        .breathing-lines {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-8px);  /* CONSONANT: Gap */
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .breathing-lines::before,
+        .breathing-lines::after {
+            content: '';
+            width: var(--space-32px);  /* CONSONANT: Width */
+            height: var(--space-2px);  /* CONSONANT: Height */
+            background: var(--gray-400);
+            display: block;
+        }
+        
+        .gradient-scale {
+            background: linear-gradient(90deg, 
+                var(--gray-900) 0%, 
+                var(--gray-600) 25%, 
+                var(--gray-400) 50%, 
+                var(--gray-200) 75%, 
+                var(--gray-50) 100%);
+            border-radius: var(--radius-base);  /* CONSONANT: Border radius */
+        }
+        
+        /* ========================================================================
+           TECH TAGS CONSONANTES CON COLORES POR NIVEL
+           ======================================================================== */
         
         .tech-tag {
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--neutral-white);
-            padding: 4px 8px;
-            font-size: 11px;
+            padding: var(--detail-space);  /* CONSONANT: Padding */
+            font-size: var(--detail-text);  /* CONSONANT: Typography */
             font-family: var(--font-mono);
-            border-radius: 4px;
-            letter-spacing: 0.5px;
-            backdrop-filter: blur(4px);
+            border-radius: var(--radius-sm);  /* CONSONANT: Border radius */
+            letter-spacing: var(--letter-spacing-tight);
+            font-weight: var(--font-weight-medium);
+            border: var(--space-1px) solid transparent;  /* CONSONANT: Border */
+            transition: all var(--duration-base) var(--ease-out);  /* CONSONANT: Timing */
         }
         
-        /* Responsive */
+        /* Tech tags por nivel 01234 */
+        .tech-tag.nivel-0 {
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--color-0);
+            border-color: var(--color-0);
+        }
+        
+        .tech-tag.nivel-1 {
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--color-1);
+            border-color: var(--color-1);
+        }
+        
+        .tech-tag.nivel-2 {
+            background: rgba(78, 205, 196, 0.1);
+            color: var(--color-2);
+            border-color: var(--color-2);
+        }
+        
+        .tech-tag.nivel-3 {
+            background: rgba(69, 183, 209, 0.1);
+            color: var(--color-3);
+            border-color: var(--color-3);
+        }
+        
+        .tech-tag.nivel-4 {
+            background: rgba(150, 206, 180, 0.1);
+            color: var(--color-4);
+            border-color: var(--color-4);
+        }
+        
+        /* Tech tags especiales */
+        .tech-tag.consonancia {
+            background: var(--gray-100);
+            color: var(--gray-700);
+            border-color: var(--gray-400);
+        }
+        
+        .tech-tag.nuclear {
+            background: rgba(255, 255, 0, 0.1);
+            color: var(--gray-900);
+            border-color: var(--logo-1);
+        }
+        
+        .tech-tag.respiracion {
+            background: var(--color-surface);
+            color: var(--color-text-secondary);
+            border-color: var(--gray-300);
+        }
+        
+        .tech-tag.monocromatico {
+            background: var(--gray-200);
+            color: var(--gray-800);
+            border-color: var(--gray-500);
+        }
+        
+        /* ========================================================================
+           RESPONSIVE - MOBILE FIRST MATEMÁTICAMENTE PERFECTO
+           ======================================================================== */
+        
         @media (max-width: 768px) {
             .prototipos-grid {
                 grid-template-columns: 1fr;
-                gap: var(--space-4);
+                gap: var(--space-m);  /* CRÍTICO: Gap = Margin para armonía móvil */
+                margin: 0 var(--space-m);  /* CRÍTICO: Respiración horizontal = Gap */
             }
             
             .header-content {
                 flex-direction: column;
                 text-align: center;
-                gap: var(--space-2);
+                gap: var(--connection-space);  /* --space-xs-s: Elementos conectados */
+            }
+            
+            .hero h1 {
+                font-size: var(--core-text);  /* --step-3: Móvil más compacto */
+            }
+            
+            .hero p {
+                font-size: var(--fragment-text);  /* --step-0: Body estándar */
+            }
+            
+            .container {
+                padding: 0 var(--space-m);  /* Respiración móvil ajustada */
             }
         }
         
-        /* Estados de focus accesibles */
+        /* ========================================================================
+           ACCESIBILIDAD WCAG 2.1 AA - ESTADOS FOCUS VISIBLES
+           ======================================================================== */
+        
         a:focus {
-            outline: 2px solid var(--accent-orange);
-            outline-offset: 2px;
+            outline: 2px solid var(--color-1);  /* Naranja 01234 - ÚNICA excepción color */
+            outline-offset: var(--detail-space);  /* --space-3xs-2xs: Offset matemático */
         }
+        
+        /* Touch targets mínimo 44px para accesibilidad móvil */
+        .back-link {
+            min-height: var(--space-48px);  /* CONSONANT: Touch target */
+            display: flex;
+            align-items: center;
+        }
+        
+        /* ========================================================================
+           FILOSOFÍA 01234 APLICADA - MAPPING SEMÁNTICO PERFECTO
+           
+           NIVEL 0 - POTENCIAL CUÁNTICO: Layout general, espacios infinitos
+           NIVEL 1 - ESENCIA/MODELO: Hero section, máximo impacto
+           NIVEL 2 - ANÁLISIS/DIFERENCIACIÓN: Cards, componentes fragmentados
+           NIVEL 3 - COMUNICACIÓN/CONEXIÓN: Header, navegación fluida
+           NIVEL 4 - MATERIALIZACIÓN/ACCIÓN: Detalles, micro-interacciones
+           
+           CONSONANCIA SISTÉMICA FRACTAL:
+           - Tipografía Utopia: Fibonacci tipográfico perfecto
+           - Espaciado matemático: Proporciones áureas + clamp() fluido
+           - Colores monocromáticos: Solo --color-1 como acento único
+           - Grid con respiración: CRÍTICO horizontal universal
+           - Baseline 24px: Ritmo vertical sagrado
+           ======================================================================== */
     </style>
 </head>
 <body>
@@ -274,126 +618,302 @@
 
     <main class="container">
         <section class="hero">
-            <h1>Laboratorio de Diseño Web</h1>
-            <p>Experimentación con diferentes corrientes estéticas aplicadas al diseño web. Cada prototipo explora principios específicos de diseño, tipografía y composición visual.</p>
+            <h1>Laboratorio 01234</h1>
+            <p>Experimentación con consonancia sistémica fractal aplicada al diseño web. Cada prototipo demuestra principios atómicos de espaciado matemáticamente perfecto, tipografía Utopia y arquitectura CSS nuclear.</p>
         </section>
 
         <section class="prototipos-grid">
             
-            <!-- Prototipo Bauhaus -->
-            <a href="02-bauhaus.html" class="prototipo-card">
+            <!-- NIVEL 0 - CAMPO CUÁNTICO: Potencial infinito -->
+            <article class="prototipo-card nivel-0" data-nivel="0">
                 <div class="prototipo-preview">
-                    Bauhaus
-                </div>
-                <div class="prototipo-content">
-                    <h2 class="prototipo-title">Bauhaus Puro</h2>
-                    <p class="prototipo-description">Geometría funcional, tipografía sans-serif, colores primarios. Principios de la escuela alemana aplicados al diseño web contemporáneo.</p>
-                    <div class="prototipo-tech">
-                        <span class="tech-tag">Geometría</span>
-                        <span class="tech-tag">Funcional</span>
-                        <span class="tech-tag">Minimalista</span>
+                    <div class="nivel-indicator">0</div>
+                    <div class="preview-content">
+                        <div class="geometric-shape circle-outline"></div>
+                        <span class="preview-label">Campo Cuántico</span>
                     </div>
                 </div>
-            </a>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Potencial Infinito</h2>
+                    <p class="prototipo-description">Matrices generativas. Datos preexistentes. Curiosidad sin límites que contiene todas las posibilidades simultáneas.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag nivel-0">Cuántico</span>
+                        <span class="tech-tag nivel-0">Matrices</span>
+                        <span class="tech-tag nivel-0">Infinito</span>
+                    </div>
+                </div>
+            </article>
 
-            <!-- Prototipo Editorial -->
-            <a href="12-editorial.html" class="prototipo-card">
+            <!-- NIVEL 1 - ESENCIA: Claridad y determinación -->
+            <article class="prototipo-card nivel-1" data-nivel="1">
                 <div class="prototipo-preview">
-                    Editorial
-                </div>
-                <div class="prototipo-content">
-                    <h2 class="prototipo-title">Editorial</h2>
-                    <p class="prototipo-description">Jerarquía tipográfica clara, espaciado sistemático, legibilidad óptima. Principios de diseño editorial adaptados al medio digital.</p>
-                    <div class="prototipo-tech">
-                        <span class="tech-tag">Tipografía</span>
-                        <span class="tech-tag">Jerarquía</span>
-                        <span class="tech-tag">Legibilidad</span>
+                    <div class="nivel-indicator">1</div>
+                    <div class="preview-content">
+                        <div class="geometric-shape circle-solid"></div>
+                        <span class="preview-label">Esencia</span>
                     </div>
                 </div>
-            </a>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Claridad Esencial</h2>
+                    <p class="prototipo-description">Principio ordenador. Decisiones fundamentales. Autoridad que reduce complejidad a lo absolutamente esencial.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag nivel-1">Logos</span>
+                        <span class="tech-tag nivel-1">Autoridad</span>
+                        <span class="tech-tag nivel-1">Esencial</span>
+                    </div>
+                </div>
+            </article>
 
-            <!-- Prototipo Mid-Century -->
-            <a href="16-midcentury.html" class="prototipo-card">
+            <!-- NIVEL 2 - ANÁLISIS: Diferenciación y memoria -->
+            <article class="prototipo-card nivel-2" data-nivel="2">
                 <div class="prototipo-preview">
-                    Mid-Century
-                </div>
-                <div class="prototipo-content">
-                    <h2 class="prototipo-title">Mid-Century Modern</h2>
-                    <p class="prototipo-description">Formas orgánicas, colores tierra, equilibrio asimétrico. Estética de los años 50-60 reinterpretada para interfaces digitales.</p>
-                    <div class="prototipo-tech">
-                        <span class="tech-tag">Orgánico</span>
-                        <span class="tech-tag">Retro</span>
-                        <span class="tech-tag">Equilibrio</span>
+                    <div class="nivel-indicator">2</div>
+                    <div class="preview-content">
+                        <div class="geometric-shape line-horizontal"></div>
+                        <span class="preview-label">Análisis</span>
                     </div>
                 </div>
-            </a>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Diferenciación Precisa</h2>
+                    <p class="prototipo-description">Fragmentación controlada. Memoria activa. Procesamiento que distingue matices y preserva la información.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag nivel-2">Memoria</span>
+                        <span class="tech-tag nivel-2">Paradoja</span>
+                        <span class="tech-tag nivel-2">Matices</span>
+                    </div>
+                </div>
+            </article>
 
-            <!-- Prototipo Bauhaus-Editorial -->
-            <a href="24-bauhaus-editorial.html" class="prototipo-card">
+            <!-- NIVEL 3 - COMUNICACIÓN: Conexión y síntesis -->
+            <article class="prototipo-card nivel-3" data-nivel="3">
                 <div class="prototipo-preview">
-                    Bauhaus + Editorial
-                </div>
-                <div class="prototipo-content">
-                    <h2 class="prototipo-title">Bauhaus Editorial</h2>
-                    <p class="prototipo-description">Combinación de principios bauhaus con técnicas editoriales avanzadas. Funcionalidad geométrica aplicada a contenidos textuales.</p>
-                    <div class="prototipo-tech">
-                        <span class="tech-tag">Funcional</span>
-                        <span class="tech-tag">Editorial</span>
-                        <span class="tech-tag">Sistemático</span>
+                    <div class="nivel-indicator">3</div>
+                    <div class="preview-content">
+                        <div class="geometric-shape triangle-up"></div>
+                        <span class="preview-label">Comunicación</span>
                     </div>
                 </div>
-            </a>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Síntesis Relacional</h2>
+                    <p class="prototipo-description">Tejedora de vínculos. Lenguaje fluido. Traduce y conecta elementos dispersos en coherencia sistémica.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag nivel-3">Redes</span>
+                        <span class="tech-tag nivel-3">Traduce</span>
+                        <span class="tech-tag nivel-3">Coherencia</span>
+                    </div>
+                </div>
+            </article>
 
-            <!-- Prototipo Mid-Century Académico -->
-            <a href="25-midcentury-academic.html" class="prototipo-card">
+            <!-- NIVEL 4 - MATERIALIZACIÓN: Acción y mejora -->
+            <article class="prototipo-card nivel-4" data-nivel="4">
                 <div class="prototipo-preview">
-                    Mid-Century + Académico
-                </div>
-                <div class="prototipo-content">
-                    <h2 class="prototipo-title">Mid-Century Académico</h2>
-                    <p class="prototipo-description">Estética mid-century con rigor académico. Presentación formal de contenidos con sensibilidad visual de mediados del siglo XX.</p>
-                    <div class="prototipo-tech">
-                        <span class="tech-tag">Académico</span>
-                        <span class="tech-tag">Formal</span>
-                        <span class="tech-tag">Vintage</span>
+                    <div class="nivel-indicator">4</div>
+                    <div class="preview-content">
+                        <div class="geometric-shape square-solid"></div>
+                        <span class="preview-label">Materialización</span>
                     </div>
                 </div>
-            </a>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Acción Evolutiva</h2>
+                    <p class="prototipo-description">Implementación tangible. Mejora continua. Cristalización que permite autoevolución permanente del sistema.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag nivel-4">Funciona</span>
+                        <span class="tech-tag nivel-4">Evolución</span>
+                        <span class="tech-tag nivel-4">Tangible</span>
+                    </div>
+                </div>
+            </article>
 
-            <!-- Prototipo Orgánico-Bauhaus Puro -->
-            <a href="27-organic-bauhaus-pure.html" class="prototipo-card">
+            <!-- CONSONANCIA MATEMÁTICA: Sistema de variables -->
+            <article class="prototipo-card consonancia" data-tipo="sistema">
                 <div class="prototipo-preview">
-                    Orgánico + Bauhaus
-                </div>
-                <div class="prototipo-content">
-                    <h2 class="prototipo-title">Orgánico Bauhaus Puro</h2>
-                    <p class="prototipo-description">Reversión del experimento híbrido. Formas naturales como base con elementos geométricos bauhaus como acentos funcionales.</p>
-                    <div class="prototipo-tech">
-                        <span class="tech-tag">Natural</span>
-                        <span class="tech-tag">Puro</span>
-                        <span class="tech-tag">Sintético</span>
+                    <div class="nivel-indicator">∞</div>
+                    <div class="preview-content">
+                        <div class="geometric-shape fibonacci-spiral"></div>
+                        <span class="preview-label">Consonancia</span>
                     </div>
                 </div>
-            </a>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Variables Consonantes</h2>
+                    <p class="prototipo-description">Armonía matemática perfecta. Sistema 8px expandido. Cada medida justificada por proporciones áureas universales.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag consonancia">Fibonacci</span>
+                        <span class="tech-tag consonancia">Utopia</span>
+                        <span class="tech-tag consonancia">Áurea</span>
+                    </div>
+                </div>
+            </article>
 
-            <!-- Prototipo Mid-Century Editorial Refinado -->
-            <a href="28-midcentury-editorial-refined.html" class="prototipo-card">
+            <!-- ARQUITECTURA ATÓMICA: Design System nuclear -->
+            <article class="prototipo-card nuclear" data-tipo="arquitectura">
                 <div class="prototipo-preview">
-                    Mid-Century + Editorial
-                </div>
-                <div class="prototipo-content">
-                    <h2 class="prototipo-title">Mid-Century Editorial Refinado</h2>
-                    <p class="prototipo-description">Síntesis final combinando lo mejor del mid-century con técnicas editoriales refinadas. Elegancia vintage con legibilidad contemporánea.</p>
-                    <div class="prototipo-tech">
-                        <span class="tech-tag">Refinado</span>
-                        <span class="tech-tag">Elegante</span>
-                        <span class="tech-tag">Síntesis</span>
+                    <div class="nivel-indicator">⚛</div>
+                    <div class="preview-content">
+                        <div class="geometric-shape atom-structure"></div>
+                        <span class="preview-label">Nuclear</span>
                     </div>
                 </div>
-            </a>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Estructura Atómica</h2>
+                    <p class="prototipo-description">Centro inmutable desde el cual se propaga todo. Una sola fuente de verdad. Composición sin duplicación.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag nuclear">Atómico</span>
+                        <span class="tech-tag nuclear">Nuclear</span>
+                        <span class="tech-tag nuclear">Inmutable</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- RESPIRACIÓN HORIZONTAL: Espaciado universal -->
+            <article class="prototipo-card respiracion" data-tipo="layout">
+                <div class="prototipo-preview">
+                    <div class="nivel-indicator">⇔</div>
+                    <div class="preview-content">
+                        <div class="geometric-shape breathing-lines"></div>
+                        <span class="preview-label">Respiración</span>
+                    </div>
+                </div>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Horizontalidad Sagrada</h2>
+                    <p class="prototipo-description">Gap = Margin siempre. Grids jamás pegados a bordes. Armonía integral que crea ritmo visual perfecto.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag respiracion">Universal</span>
+                        <span class="tech-tag respiracion">Sagrado</span>
+                        <span class="tech-tag respiracion">Ritmo</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- MONOCROMÁTICO ELEGANTE: Sistema de colores -->
+            <article class="prototipo-card monocromatico" data-tipo="color">
+                <div class="prototipo-preview">
+                    <div class="nivel-indicator">◐</div>
+                    <div class="preview-content">
+                        <div class="geometric-shape gradient-scale"></div>
+                        <span class="preview-label">Monocromático</span>
+                    </div>
+                </div>
+                <div class="prototipo-content">
+                    <h2 class="prototipo-title">Elegancia Constraint</h2>
+                    <p class="prototipo-description">95% grises + 5% naranja 01234. Sofisticación through constraint. Único acento color permitido.</p>
+                    <div class="prototipo-tech">
+                        <span class="tech-tag monocromatico">Elegante</span>
+                        <span class="tech-tag monocromatico">Constraint</span>
+                        <span class="tech-tag monocromatico">Acento</span>
+                    </div>
+                </div>
+            </article>
 
         </section>
+
+        <!-- Sección de Principios Fundamentales -->
+        <section class="principios-section">
+            <h2 class="section-title">Principios Fundamentales Aplicados</h2>
+            <div class="principios-grid">
+                <div class="principio-card">
+                    <h3 class="principio-title">Consonancia Sistémica</h3>
+                    <p class="principio-description">Armonía matemática perfecta entre tipografía, espaciado y layout. Cada elemento resuena con el conjunto total.</p>
+                </div>
+                <div class="principio-card">
+                    <h3 class="principio-title">Estructura Nuclear</h3>
+                    <p class="principio-description">Centro atómico inmutable desde el cual se propaga todo. Una sola fuente de verdad para cada concepto.</p>
+                </div>
+                <div class="principio-card">
+                    <h3 class="principio-title">Fibonacci Tipográfico</h3>
+                    <p class="principio-description">Escalas Utopia con progresiones naturales. Clamp() fluido garantiza proporciones áureas perfectas.</p>
+                </div>
+                <div class="principio-card">
+                    <h3 class="principio-title">Respiración Horizontal</h3>
+                    <p class="principio-description">Grids JAMÁS pegados a bordes. Margin universal en regla base, no media queries específicos.</p>
+                </div>
+                <div class="principio-card">
+                    <h3 class="principio-title">Baseline Grid 24px</h3>
+                    <p class="principio-description">Ritmo vertical sagrado line-height 1.5. Todo alineado a múltiplos del baseline para respiración perfecta.</p>
+                </div>
+                <div class="principio-card">
+                    <h3 class="principio-title">Monocromático Elegante</h3>
+                    <p class="principio-description">95% grises + 5% color-1. Sofisticación through constraint. Único acento naranja 01234 permitido.</p>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <style>
+        /* ========================================================================
+           PRINCIPIOS SECTION - NIVEL 2 ANÁLISIS/DIFERENCIACIÓN
+           ======================================================================== */
+        
+        .principios-section {
+            margin-top: var(--essence-space);  /* --space-l-xl: Separación dramática */
+            margin-bottom: var(--infinite-space);  /* --space-xl-2xl: Separación final */
+        }
+        
+        .section-title {
+            font-size: var(--core-text);  /* --step-3: Autoridad de sección */
+            font-weight: var(--font-weight-medium);
+            color: var(--black);
+            text-align: center;
+            margin-bottom: var(--analysis-space);  /* --space-s-m: Componentes */
+            letter-spacing: var(--letter-spacing-wide);
+            text-transform: uppercase;
+        }
+        
+        .principios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-rows: auto;  /* Auto para mantener proporciones naturales */
+            gap: var(--space-xl);  /* Consistente con grid principal */
+            margin: 0;  /* CRÍTICO: Subgrid sin margin - ya está dentro del container */
+            justify-items: stretch;  /* CRÍTICO: Cards ocupan todo el espacio */
+            align-items: stretch;    /* CRÍTICO: Altura uniforme */
+            align-content: start;    /* Contenido alineado al inicio */
+        }
+        
+        .principio-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            padding: var(--analysis-space);  /* --space-s-m: Interno componentes */
+            transition: all 0.3s ease;
+            /* CRÍTICO: Sin width ni height - gobernado por grid container padre */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            /* Grid padre automáticamente asigna dimensiones óptimas */
+        }
+        
+        .principio-card:hover {
+            border-color: var(--color-1);  /* Naranja 01234 - único acento */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);  /* Elegancia monocromática */
+        }
+        
+        .principio-title {
+            font-size: var(--analysis-text);  /* --step-1: Subtítulos autoridad */
+            font-weight: var(--font-weight-semibold);
+            color: var(--black);
+            margin-bottom: var(--connection-space);  /* --space-xs-s: Elementos conectados */
+            letter-spacing: var(--letter-spacing-normal);
+        }
+        
+        .principio-description {
+            font-size: var(--fragment-text);  /* --step-0: Body text */
+            color: var(--color-text-secondary);  /* --gray-600 */
+            line-height: 1.6;  /* Respiración entre líneas */
+            margin: 0;
+        }
+        
+        /* Mobile responsivo */
+        @media (max-width: 768px) {
+            .principios-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-m);  /* Consistente con grid principal móvil */
+                margin: 0;  /* CRÍTICO: Subgrid sin margin en móvil también */
+            }
+            
+            .principio-card {
+                padding: var(--connection-space);  /* --space-xs-s: Padding reducido */
+            }
+        }
+    </style>
 
     <script src="js/main.js"></script>
 </body>

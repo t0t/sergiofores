@@ -30,7 +30,6 @@ class ImagePlaceholderManager {
             
             card.setAttribute('data-type', type);
             
-            console.log(`Project card ${index} setup with type: ${type}`);
         });
     }
     
@@ -48,7 +47,6 @@ class ImagePlaceholderManager {
             
             // Handler para cuando la imagen se carga
             const handleImageLoad = () => {
-                console.log(`Image ${index} loaded successfully`);
                 
                 // Añadir clase loaded a la imagen
                 img.classList.add('loaded');
@@ -141,13 +139,11 @@ class ImagePlaceholderManager {
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
     window.imagePlaceholderManager = new ImagePlaceholderManager();
-    console.log('Image Placeholder Manager initialized');
 });
 
 // También inicializar si el DOM ya está listo
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
     window.imagePlaceholderManager = new ImagePlaceholderManager();
-    console.log('Image Placeholder Manager initialized (DOM already ready)');
 }
 
 // Reinicializar después del loading screen

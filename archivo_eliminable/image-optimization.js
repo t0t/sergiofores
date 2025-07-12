@@ -102,7 +102,6 @@ class ImageOptimizer {
             // Performance measurement
             if ('performance' in window) {
                 const loadTime = performance.now();
-                console.log(`Image loaded: ${img.alt || img.src} in ${loadTime.toFixed(2)}ms`);
             }
         });
 
@@ -146,7 +145,6 @@ class ImageOptimizer {
                 const lcpObserver = new PerformanceObserver((list) => {
                     const entries = list.getEntries();
                     const lastEntry = entries[entries.length - 1];
-                    console.log('LCP:', lastEntry.startTime.toFixed(2) + 'ms');
                 });
                 lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
 
@@ -154,7 +152,6 @@ class ImageOptimizer {
                 const fidObserver = new PerformanceObserver((list) => {
                     const entries = list.getEntries();
                     entries.forEach(entry => {
-                        console.log('FID:', entry.processingStart - entry.startTime + 'ms');
                     });
                 });
                 fidObserver.observe({ entryTypes: ['first-input'] });
@@ -168,7 +165,6 @@ class ImageOptimizer {
                             cls += entry.value;
                         }
                     });
-                    console.log('CLS:', cls.toFixed(4));
                 });
                 clsObserver.observe({ entryTypes: ['layout-shift'] });
 
@@ -213,7 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
         // Resume optimizations if needed
-        console.log('Page visible - resuming optimizations');
     }
 });
 

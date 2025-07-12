@@ -124,7 +124,6 @@ const needsLoading = () => {
     // Mostrar loading solo en carga inicial real (no refresh, no cache, no back/forward)
     const shouldShow = isPageLoading && !isRefresh && !isBackForward && !fromCache;
     
-    console.log('Loading decision:', {
         isPageLoading,
         isRefresh,
         isBackForward,
@@ -152,7 +151,6 @@ const forceVisibility = () => {
         section.style.transition = 'none';
     });
     
-    console.log('Content forced visible');
 };
 
 // Ejecutar inmediatamente si el DOM ya está listo
@@ -167,10 +165,8 @@ setTimeout(forceVisibility, 200);
 
 // Inicializar loading solo si la página está cargando
 if (needsLoading()) {
-    console.log('Page is loading - showing loading screen');
     new LoadingScreen();
 } else {
-    console.log('Page already loaded - skipping loading screen');
     
     // Trigger el event inmediatamente para compatibilidad
     setTimeout(() => {

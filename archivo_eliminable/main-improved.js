@@ -30,7 +30,6 @@ window.PortfolioApp = (function() {
             this.heroVideo = document.querySelector('.hero-video');
             this.currentYearSpan = document.getElementById('currentYear');
             
-            console.log('✅ DOM Cache initialized');
         }
     };
     
@@ -47,7 +46,6 @@ window.PortfolioApp = (function() {
             if (!DOMCache.header) return;
             
             this.setupScrollListener();
-            console.log('✅ HeaderManager initialized');
         },
         
         setupScrollListener() {
@@ -153,7 +151,6 @@ window.PortfolioApp = (function() {
         
         init() {
             this.setupSmoothScrolling();
-            console.log('✅ SmoothScrollManager initialized');
         },
         
         setupSmoothScrolling() {
@@ -171,7 +168,6 @@ window.PortfolioApp = (function() {
             const elementPosition = target.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerHeight + this.offset;
             
-            console.log('📍 Scrolling to:', target.id, 'with offset:', this.offset);
 
             window.scrollTo({
                 top: offsetPosition,
@@ -181,7 +177,6 @@ window.PortfolioApp = (function() {
         
         setOffset(offset) {
             this.offset = offset;
-            console.log('🎯 Scroll offset set to:', offset);
         },
         
         scrollToTop() {
@@ -204,7 +199,6 @@ window.PortfolioApp = (function() {
             if (!this.menuToggle || !this.mainNav) return;
             
             this.setupToggleListener();
-            console.log('✅ MobileMenuManager initialized');
         },
         
         setupToggleListener() {
@@ -235,11 +229,9 @@ window.PortfolioApp = (function() {
     // =============================================================================
     const UtilitiesManager = {
         init() {
-            console.log('🔧 Initializing UtilitiesManager...');
             this.preserveHeroVideo();
             this.setupFooterYear();
             this.setupBackToTop();
-            console.log('✅ UtilitiesManager initialized');
         },
         
         preserveHeroVideo() {
@@ -248,9 +240,7 @@ window.PortfolioApp = (function() {
                 heroVideo.muted = true;
                 heroVideo.playsInline = true;
                 if (heroVideo.paused) {
-                    heroVideo.play().catch(e => console.log('Hero video autoplay prevented:', e));
                 }
-                console.log('🎬 Hero video preserved');
             }
         },
         
@@ -277,7 +267,6 @@ window.PortfolioApp = (function() {
     // =============================================================================
     const AppController = {
         async init() {
-            console.log('🚀 Initializing Sergio Forés Portfolio...');
             
             // Initialize DOM cache first (OPTIMIZACIÓN)
             DOMCache.init();
@@ -291,13 +280,11 @@ window.PortfolioApp = (function() {
             // Configuration
             this.configureDefaults();
             
-            console.log('✅ Portfolio initialized successfully');
         },
         
         // Cleanup method para page unload
         destroy() {
             HeaderManager.destroy();
-            console.log('🧹 Portfolio cleaned up');
         },
         
         configureDefaults() {
@@ -351,4 +338,3 @@ window.PortfolioApp = (function() {
     
 })();
 
-console.log('🎉 Sergio Forés Portfolio - Optimized Architecture Loaded!');

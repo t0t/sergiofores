@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug ScrollToTop y SmoothScrolling</title>
+    <style>
+        body { margin: 0; padding: 20px; font-family: Arial, sans-serif; }
+        .debug-panel { 
+            position: fixed; 
+            top: 10px; 
+            right: 10px; 
+            background: black; 
+            color: white; 
+            padding: 15px; 
+            border-radius: 8px; 
+            z-index: 9999;
+            font-size: 12px;
+            max-width: 300px;
+        }
+        .status { margin: 5px 0; }
+        .section { height: 100vh; padding: 20px; margin: 20px 0; border: 2px solid #ddd; }
+        #sergio { background: #f0f0f0; }
+        #sistema01234 { background: #e0e0e0; }
+        #cerebro { background: #d0d0d0; }
+        #playground { background: #c0c0c0; }
+        
+        /* Botón scroll to top básico para testing */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-panel" id="debugPanel">
+        <h3>Debug Panel - Scroll & Navigation</h3>
+        <div class="status" id="cssVars"></div>
+        <div class="status" id="scrollPos"></div>
+        <div class="status" id="scrollToTopStatus"></div>
+        <div class="status" id="smoothScrollStatus"></div>
+        <div class="status" id="componentsStatus"></div>
+        <button onclick="testScrollToTop()">Test ScrollToTop</button>
+        <button onclick="testSmoothScroll()">Test SmoothScroll</button>
+    </div>
+
+    <header style="position: fixed; top: 0; left: 0; right: 0; height: 80px; background: white; border-bottom: 1px solid #ddd; z-index: 100;">
+        <nav style="padding: 20px;">
+            <a href="#sergio">Sergio</a> |
+            <a href="#sistema01234">01234</a> |
+            <a href="#cerebro">Cerebro</a> |
+            <a href="#playground">Playground</a>
+        </nav>
+    </header>
+
+    <div style="height: 80px;"></div> <!-- Spacer for fixed header -->
+
+    <section id="sergio" class="section">
+        <h2>Sección Sergio</h2>
+        <p>Esta es la sección de Sergio. Scroll para ver el comportamiento.</p>
+    </section>
+
+    <section id="sistema01234" class="section">
+        <h2>Sección 01234</h2>
+        <p>Esta es la sección del sistema 01234.</p>
+    </section>
+
+    <section id="cerebro" class="section">
+        <h2>Sección Cerebro</h2>
+        <p>Esta es la sección del cerebro digital.</p>
+    </section>
+
+    <section id="playground" class="section">
+        <h2>Sección Playground</h2>
+        <p>Esta es la sección del playground.</p>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Volver arriba">
+        ↑
+    </button>
+
+    <!-- Definir variables CSS que usa el sistema -->
+    <style>
+        :root {
+            --space-unit: 8px;
+            --space-300px: calc(var(--space-unit) * 37.5); /* 300px */
+            --nav-height-offset: 80px;
+        }
+    </style>
+
+    <!-- Importar componentes JavaScript -->
+    <script src="js/components/ScrollToTop.js"></script>
+    <script src="js/components/SmoothScrolling.js"></script>
+
+    <script>
+        // Debug script
+        let scrollToTopComponent = null;
+        let smoothScrollComponent = null;
+
+        function initDebug() {
+            // Obtener valores de CSS
+            const cssVars = {
+                space300: getComputedStyle(document.documentElement).getPropertyValue('--space-300px'),
+                navOffset: getComputedStyle(document.documentElement).getPropertyValue('--nav-height-offset')
+            };
+
+            document.getElementById('cssVars').innerHTML = 
+                `CSS Vars: --space-300px: ${cssVars.space300}, --nav-height-offset: ${cssVars.navOffset}`;
+
+            // Inicializar componentes
+            try {
+                scrollToTopComponent = new ScrollToTop({
+                    showThresholdProperty: '--space-300px',
+                    visibleClass: 'visible'
+                });
+                document.getElementById('scrollToTopStatus').innerHTML = 
+                    `ScrollToTop: ✅ Initialized (threshold: ${scrollToTopComponent.scrollThreshold}px)`;
+            } catch (error) {
+                document.getElementById('scrollToTopStatus').innerHTML = 
+                    `ScrollToTop: ❌ Error: ${error.message}`;
+            }
+
+            try {
+                smoothScrollComponent = new SmoothScrolling({
+                    sections: ['sergio', 'sistema01234', 'cerebro', 'playground'],
+                    activeClass: 'active',
+                    headerSelector: 'header'
+                });
+                document.getElementById('smoothScrollStatus').innerHTML = 
+                    `SmoothScrolling: ✅ Initialized (${smoothScrollComponent.sections.length} sections)`;
+            } catch (error) {
+                document.getElementById('smoothScrollStatus').innerHTML = 
+                    `SmoothScrolling: ❌ Error: ${error.message}`;
+            }
+
+            // Monitor scroll position
+            window.addEventListener('scroll', () => {
+                const scrollY = window.pageYOffset;
+                document.getElementById('scrollPos').innerHTML = 
+                    `Scroll: ${scrollY}px`;
+                
+                const backToTopVisible = scrollToTopComponent ? scrollToTopComponent.isVisible : false;
+                document.getElementById('componentsStatus').innerHTML = 
+                    `BackToTop visible: ${backToTopVisible ? '✅' : '❌'}`;
+            }, { passive: true });
+        }
+
+        function testScrollToTop() {
+            if (scrollToTopComponent) {
+                scrollToTopComponent.scrollToTop();
+            }
+        }
+
+        function testSmoothScroll() {
+            if (smoothScrollComponent) {
+                smoothScrollComponent.scrollToSection('cerebro');
+            }
+        }
+
+        // Inicializar cuando DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initDebug);
+        } else {
+            initDebug();
+        }
+    </script>
+</body>
+</html>

@@ -27,10 +27,11 @@
     <meta name="twitter:image" content="https://sergiofores.es/img/sergio-portfolio-complete.jpg">
     <meta name="twitter:site" content="@t0tinspire">
     <meta name="twitter:creator" content="@t0tinspire">
-    <link rel="stylesheet" href="css/utopia-optimized-variables.css">
+    <!-- CSS Import -->
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/loading.css">
-    <link rel="stylesheet" href="css/image-placeholders.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- <link rel="stylesheet" href="css/loading.css"> Deshabilitado temporalmente -->
+    <!-- <link rel="stylesheet" href="css/image-placeholders.css"> Redundante con main.js -->
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/logo-01234.png">
@@ -38,6 +39,7 @@
     
     <!-- Preload critical resources -->
     <link rel="preload" href="css/main.css" as="style">
+    <link rel="preload" href="css/styles.css" as="style">
     <link rel="prefetch" href="img/sergio-portfolio-complete.jpg">
     
     <!-- Structured Data - Person Schema -->
@@ -73,22 +75,22 @@
     </script>
 </head>
 <body>
-    <header class="header">
+    <header class="header" role="banner">
         <div class="container">
             <div class="header-content">
-                <a href="#inicio" class="logo logo-link">
-                    <div class="geo-shape geo-circle-outline"></div>
-                    <div class="geo-shape geo-circle-solid"></div>
-                    <div class="geo-shape geo-line"></div>
-                    <div class="geo-shape geo-triangle"></div>
-                    <div class="geo-shape geo-square" style="border-radius: 0;"></div>
+                <a href="#inicio" class="logo logo-link" aria-label="Ir al inicio - Sistema 01234">
+                    <div class="geo-shape geo-circle-outline" aria-hidden="true"></div>
+                    <div class="geo-shape geo-circle-solid" aria-hidden="true"></div>
+                    <div class="geo-shape geo-line" aria-hidden="true"></div>
+                    <div class="geo-shape geo-triangle" aria-hidden="true"></div>
+                    <div class="geo-shape geo-square" style="border-radius: 0;" aria-hidden="true"></div>
                 </a>
-                <nav class="main-nav" id="mainNav">
-                    <ul class="nav-links">
-                        <li><a href="#sergio">SOY</a></li>
-                        <li><a href="#sistema01234">01234</a></li>
-                        <li><a href="#cerebro">cerebro digital</a></li>
-                        <li><a href="#playground">Hago</a></li>
+                <nav class="main-nav" id="mainNav" role="navigation" aria-label="Navegación principal">
+                    <ul class="nav-links" role="list">
+                        <li role="listitem"><a href="#sergio">Soy</a></li>
+                        <li role="listitem"><a href="#sistema01234">01234</a></li>
+                        <li role="listitem"><a href="#cerebro">Cerebro Digital</a></li>
+                        <li role="listitem"><a href="#playground">Hago</a></li>
                     </ul>
                 </nav>
                 <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
@@ -101,115 +103,109 @@
     </header>
 
     <!-- Hero fuera del contenedor para ocupar todo el viewport -->
-    <section id="inicio" class="hero storytelling-section">
+    <section id="inicio" class="hero storytelling-section" role="banner" aria-labelledby="hero-title">
         <div class="hero-video-container">
-            <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
                 <source src="img/video-fondo.webm" type="video/webm">
                 <source src="img/video-fondo.mp4" type="video/mp4">
                 <!-- Fallback para navegadores sin soporte -->
-                <div class="hero-video-fallback"></div>
+                <div class="hero-video-fallback" role="img" aria-label="Video de fondo con efectos visuales abstractos"></div>
             </video>
-            <div class="hero-overlay"></div>
+            <div class="hero-overlay" aria-hidden="true"></div>
         </div>
         <div class="hero-content">
-            <h1>Traducir visiones en objetos y abrir ventanas al próximo asombro.</h1>
+            <h1 id="hero-title">Traducir visiones en objetos y abrir ventanas al próximo asombro.</h1>
         </div>
     </section>
 
-    <main class="main-container">
+    <main class="main-container" role="main">
 
         <!-- SERGIO FORÉS -->
-        <section id="sergio">
-            <h2 class="section-title">Sergio Forés</h2>
+        <section id="sergio" class="section" role="region" aria-labelledby="sergio-title">
+            <h2 id="sergio-title" class="section-title">Sergio Forés</h2>
             <p class="section-description">Explorador multifacético entre arte plástico, desarrollo con IA e investigación de sistemas cognitivos transformadores aplicados a la creatividad.</p>
             
             <div class="sistema-grid">
                 <div class="sistema-item">
-                    <svg class="sistema-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="sistema-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="nivel-0-title">
+                        <title id="nivel-0-title">Campo Cuántico - Nivel 0</title>
                         <circle cx="30" cy="30" r="25" fill="none" stroke="currentColor" stroke-width="3"/>
                     </svg>
-                    <p class="sistema-text">
+                    <div class="sistema-text">
                         <dl>
                             <dt>Potencial infinito</dt>
                             <dd>Curiosidad</dd>
                         </dl>
-                    </p>
+                    </div>
                 </div>
                 
                 <div class="sistema-item">
-                    <svg class="sistema-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="30" cy="30" r="18" fill="var(--color-yellow)"/>
+                    <svg class="sistema-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="nivel-1-title">
+                        <title id="nivel-1-title">Esencia - Nivel 1</title>
+                        <circle cx="30" cy="30" r="18" fill="var(--color-1)"/>
                     </svg>
-                    <p class="sistema-text">
+                    <div class="sistema-text">
                         <dl>
                             <dt>Esencia</dt>
                             <dd>Claridad</dd>
                             <dd>Propósito</dd>
                         </dl>
-                    </p>
+                    </div>
                 </div>
                 
                 <div class="sistema-item">
-                    <svg class="sistema-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="15" y="27" width="30" height="6" rx="3" fill="var(--accent-red)"/>
+                    <svg class="sistema-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="nivel-2-title">
+                        <title id="nivel-2-title">Análisis - Nivel 2</title>
+                        <rect x="15" y="27" width="30" height="6" rx="3" fill="var(--color-2)"/>
                     </svg>
-                    <p class="sistema-text">
+                    <div class="sistema-text">
                         <dl>
                             <dt>Análisis</dt>
                             <dd>Diferenciación</dd>
                             <dd>Memoria</dd>
                         </dl>
-                    </p>
+                    </div>
                 </div>
                 
                 <div class="sistema-item">
-                    <svg class="sistema-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="30,15 45,45 15,45" fill="var(--color-cyan)"/>
+                    <svg class="sistema-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="nivel-3-title">
+                        <title id="nivel-3-title">Comunicación - Nivel 3</title>
+                        <polygon points="30,15 45,45 15,45" fill="var(--color-3)"/>
                     </svg>
-                    <p class="sistema-text">
+                    <div class="sistema-text">
                         <dl>
                             <dt>Comunicación</dt>
                             <dd>Conexión</dd>
                             <dd>Síntesis</dd>
                         </dl>
-                    </p>
+                    </div>
                 </div>
                 
                 <div class="sistema-item">
-                    <svg class="sistema-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="24" y="24" width="12" height="12" rx="0" fill="var(--neutral-gray-600)"/>
+                    <svg class="sistema-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="nivel-4-title">
+                        <title id="nivel-4-title">Materialización - Nivel 4</title>
+                        <rect x="24" y="24" width="12" height="12" rx="0" fill="var(--color-4)"/>
                     </svg>
-                    <p class="sistema-text">
+                    <div class="sistema-text">
                         <dl>
                             <dt>Materialización</dt>
                             <dd>Acción</dd>
                             <dd>Mejora</dd>
                         </dl>
-                    </p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- 01234 -->
-        <section id="sistema01234">
+        <section id="sistema01234" class="section">
             <h2 class="section-title">01234</h2>
             <p class="section-description">Sistema representacional compartido · Marco cognitivo de 5 niveles para comprender patrones universales de consciencia y transformación</p>
             
             <div class="projects-grid">
-                <a href="proyectos/landing_01234/index.html" class="project-card">
-                    <picture class="project-screenshot">
-                        <source srcset="/img/landing-01234.webp" type="image/webp">
-                        <img src="img/landing-01234.jpg" alt="Página de presentación del sistema cognitivo 01234 de Sergio Forés." loading="lazy">
-                    </picture>
-                    <div class="project-content">
-                        <h3 class="project-title">Landing 01234</h3>
-                        <p class="project-description">Introducción sistema cognitivo 01234</p>
-                    </div>
-                </a>
-
                 <a href="https://o1234.lovable.app/" target="_blank" class="project-card" rel="noopener">
                     <picture class="project-screenshot">
-                        <source srcset="/img/o1234-lovable.webp" type="image/webp">
+                        <source srcset="img/o1234-lovable.webp" type="image/webp">
                         <img src="img/o1234-lovable.jpg" alt="Aplicación web interactiva para explorar el sistema 01234 en Lovable." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -239,14 +235,14 @@
         </div>
 
         <!-- CEREBRO DIGITAL -->
-        <section id="cerebro">
+        <section id="cerebro" class="section">
             <h2 class="section-title">Cerebro Digital</h2>
             <p class="section-description">Sistema de gestión de conocimiento personal · Obsidian + Claude Code + Python para automatización inteligente y productividad avanzada</p>
             
             <div class="projects-grid">
                 <a href="proyectos/cerebro_digital_vault/index.html" class="project-card">
                     <picture class="project-screenshot">
-                        <source srcset="/img/cerebro-digital-vault.webp" type="image/webp">
+                        <source srcset="img/cerebro-digital-vault.webp" type="image/webp">
                         <img src="img/cerebro-digital-vault.jpg" alt="Dashboard de navegación del Cerebro Digital Vault de Sergio Forés." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -257,7 +253,7 @@
 
                 <a href="proyectos/cerebro_digital/index.html" class="project-card">
                     <picture class="project-screenshot">
-                        <source srcset="/img/cerebro-digital.webp" type="image/webp">
+                        <source srcset="img/cerebro-digital.webp" type="image/webp">
                         <img src="img/cerebro-digital.jpg" alt="Mapa conceptual del sistema CEREBRO-DIGITAL de Sergio Forés." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -268,7 +264,7 @@
 
                 <a href="proyectos/cerebro_digital_ia/index.html" class="project-card">
                     <picture class="project-screenshot">
-                        <source srcset="/img/cerebro-digital-ia.webp" type="image/webp">
+                        <source srcset="img/cerebro-digital-ia.webp" type="image/webp">
                         <img src="img/cerebro-digital-ia.jpg" alt="Documentación técnica del sistema CEREBRO-DIGITAL IA." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -281,7 +277,7 @@
 
 
         <!-- LAB -->
-        <section id="playground">
+        <section id="playground" class="section">
             <h2 class="section-title">Hago</h2>
             <p class="section-description">Arte plástico, desarrollo colaborativo con IA, fotografía contemplativa, e-commerce mediterráneo y experimentos web interactivos de vanguardia digital.</p>
             
@@ -301,7 +297,7 @@
 
                 <a href="proyectos/sergio-dev/index.html" class="project-card" data-type="tech">
                     <picture class="project-screenshot">
-                        <source srcset="/img/sergio-dev.webp" type="image/webp">
+                        <source srcset="img/sergio-dev.webp" type="image/webp">
                         <img src="img/sergio-dev.jpg" alt="Interfaz de código y desarrollo para el proyecto dIAlogando con IA de Sergio Forés." loading="eager">
                     </picture>
                     <div class="project-content">
@@ -312,7 +308,7 @@
 
                 <a href="proyectos/sergio_arte_plastica/index.html" class="project-card" data-type="art">
                     <picture class="project-screenshot">
-                        <source srcset="/img/sergio-arte-plastica.webp" type="image/webp">
+                        <source srcset="img/sergio-arte-plastica.webp" type="image/webp">
                         <img src="img/sergio-arte-plastica.jpg" alt="Galería de arte plástica de Sergio Forés con navegación por categorías." loading="eager">
                     </picture>
                     <div class="project-content">
@@ -333,7 +329,7 @@
 
                 <a href="proyectos/taller_01234_blanes/index.html" class="project-card">
                     <picture class="project-screenshot">
-                        <source srcset="/img/taller-01234-blanes.webp" type="image/webp">
+                        <source srcset="img/taller-01234-blanes.webp" type="image/webp">
                         <img src="img/taller-01234-blanes.jpg" alt="Landing page del Taller Vivencial 01234 en Blanes." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -344,7 +340,7 @@
 
                 <a href="proyectos/tienda-peniscola/index.html" class="project-card">
                     <picture class="project-screenshot">
-                        <source srcset="/img/tienda-peniscola.webp" type="image/webp">
+                        <source srcset="img/tienda-peniscola.webp" type="image/webp">
                         <img src="img/tienda-peniscola.jpg" alt="E-commerce de una tienda con productos mediterráneos en Peñíscola." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -355,7 +351,7 @@
 
                 <a href="proyectos/castillo_peniscola_alquiler/index.html" class="project-card">
                     <picture class="project-screenshot">
-                        <source srcset="/img/castillo-peniscola-alquiler.webp" type="image/webp">
+                        <source srcset="img/castillo-peniscola-alquiler.webp" type="image/webp">
                         <img src="img/castillo-peniscola-alquiler.jpg" alt="Apartamento turístico en el castillo de Peñíscola para alquiler." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -366,7 +362,7 @@
 
                 <a href="https://noeliarequena.com/" target="_blank" class="project-card" rel="noopener">
                     <picture class="project-screenshot">
-                        <source srcset="/img/noeliarequena-com.webp" type="image/webp">
+                        <source srcset="img/noeliarequena-com.webp" type="image/webp">
                         <img src="img/noeliarequena-com.jpg" alt="Portfolio de la artista Noelia Requena." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -376,7 +372,7 @@
                 </a>
                 <a href="https://t0t.github.io/o1234-nng/" target="_blank" class="project-card" rel="noopener">
                     <picture class="project-screenshot">
-                        <source srcset="/img/o1234-nng.webp" type="image/webp">
+                        <source srcset="img/o1234-nng.webp" type="image/webp">
                         <img src="img/o1234-nng.jpg" alt="Aplicación web experimental del sistema 01234 en GitHub Pages." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -387,7 +383,7 @@
 
                 <a href="https://gematriaapp.vercel.app/" target="_blank" class="project-card" rel="noopener">
                     <picture class="project-screenshot">
-                        <source srcset="/img/gematria-app.webp" type="image/webp">
+                        <source srcset="img/gematria-app.webp" type="image/webp">
                         <img src="img/gematria-app.jpg" alt="Aplicación web para cálculo de gematría y numerología." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -398,7 +394,7 @@
 
                 <a href="https://t0t.github.io/repositorio_01234_v4/" target="_blank" class="project-card" rel="noopener">
                     <picture class="project-screenshot">
-                        <source srcset="/img/repositorio-01234-v4.webp" type="image/webp">
+                        <source srcset="img/repositorio-01234-v4.webp" type="image/webp">
                         <img src="img/repositorio-01234-v4.jpg" alt="Repositorio digital de la cuarta versión del sistema 01234." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -409,7 +405,7 @@
 
                 <a href="https://t0t.github.io/podcast_API/" target="_blank" class="project-card" rel="noopener">
                     <picture class="project-screenshot">
-                        <source srcset="/img/podcast-api.webp" type="image/webp">
+                        <source srcset="img/podcast-api.webp" type="image/webp">
                         <img src="img/podcast-api.jpg" alt="Interfaz de una aplicación para explorar podcasts mediante API." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -421,7 +417,7 @@
 
                 <a href="https://t0t.github.io/o1234-slidev/" target="_blank" class="project-card" rel="noopener">
                     <picture class="project-screenshot">
-                        <source srcset="/img/o1234-slidev.webp" type="image/webp">
+                        <source srcset="img/o1234-slidev.webp" type="image/webp">
                         <img src="img/o1234-slidev.jpg" alt="Presentación interactiva del sistema 01234 con Slidev." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -432,7 +428,7 @@
 
                 <a href="https://t0t.github.io/blog-cerebro-digital/" target="_blank" class="project-card" rel="noopener">
                     <picture class="project-screenshot">
-                        <source srcset="/img/blog-cerebro-digital-v2.webp" type="image/webp">
+                        <source srcset="img/blog-cerebro-digital-v2.webp" type="image/webp">
                         <img src="img/blog-cerebro-digital-v2.jpg" alt="Bitácora y blog del CEREBRO-DIGITAL de Sergio Forés." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -443,7 +439,7 @@
 
                 <a href="https://github.com/t0t" target="_blank" class="project-card" rel="noopener">
                     <picture class="project-screenshot">
-                        <source srcset="/img/github-t0t.webp" type="image/webp">
+                        <source srcset="img/github-t0t.webp" type="image/webp">
                         <img src="img/github-t0t.jpg" alt="Perfil de GitHub de Sergio Forés (t0t) con sus proyectos de código abierto." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -454,7 +450,7 @@
 
                 <a href="proyectos/design-system/index.html" class="project-card">
                     <picture class="project-screenshot">
-                        <source srcset="/img/design-system.webp" type="image/webp">
+                        <source srcset="img/design-system.webp" type="image/webp">
                         <img src="img/design-system.jpg" alt="Guía de estilos del sistema de diseño del CEREBRO-DIGITAL." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -465,7 +461,7 @@
 
                 <a href="proyectos/prototipos-01234/index.html" class="project-card">
                     <picture class="project-screenshot">
-                        <source srcset="/img/prototipos-01234.webp" type="image/webp">
+                        <source srcset="img/prototipos-01234.webp" type="image/webp">
                         <img src="img/prototipos-01234.jpg" alt="Prototipos de diseño web con diferentes estilos y aproximaciones." loading="lazy">
                     </picture>
                     <div class="project-content">
@@ -509,12 +505,11 @@
         </svg>
     </button>
 
-    <!-- Removed force-visibility.js - causing inline style pollution -->
-    <script src="js/image-placeholders.js"></script>
-    <script src="js/loading.js"></script>
-    <script src="js/image-loader.js"></script>
-    <script src="js/cursor.js"></script>
-    <script src="js/video-optimizer.js"></script>
-    <script src="js/main.js"></script>
+    <!-- Sistema de Componentes Modulares -->
+    <script src="js/components/ScrollToTop.js"></script>
+    <script src="js/components/ResponsiveMenu.js"></script>
+    <script src="js/components/SmoothScrolling.js"></script>
+    <script src="js/components/UIInteractions.js"></script>
+    <script src="js/PortfolioApp.js"></script>
 </body>
 </html>

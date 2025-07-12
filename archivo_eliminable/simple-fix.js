@@ -5,7 +5,6 @@
 
 // Wait for DOM to be ready
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🔧 Simple Production Fix - Removing all blur effects');
     
     // Remove blur from all images immediately
     const allImages = document.querySelectorAll('img');
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Remove loading="lazy" attribute that might be causing issues
         img.removeAttribute('loading');
         
-        console.log(`✅ Cleaned image ${index + 1}: ${img.alt || 'No alt'}`);
     });
     
     // Also remove blur from CSS
@@ -36,5 +34,4 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
     
-    console.log('🎯 All blur effects removed - images should be crisp in production');
 });

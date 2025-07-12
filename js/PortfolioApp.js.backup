@@ -1,0 +1,70 @@
+/**
+ * PORTFOLIO APP - COORDINADOR PRINCIPAL
+ * Sistema modular que coordina todos los componentes JavaScript
+ * Implementa arquitectura de componentes reutilizables
+ */
+
+class PortfolioApp {
+    constructor(options = {}) {
+        // Configuración global
+        this.config = {
+            enableScrollToTop: true,
+            enableResponsiveMenu: true,
+            enableSmoothScrolling: true,
+            enableUIInteractions: true,
+            enableVideoOptimizer: true,
+            enableCustomCursor: true,
+            autoInit: true,
+            debug: false,
+            ...options
+        };
+        
+        // Componentes registrados
+        this.components = {
+            scrollToTop: null,
+            responsiveMenu: null,
+            smoothScrolling: null,
+            uiInteractions: null,
+            videoOptimizer: null
+        };
+        
+        // Estado de la aplicación
+        this.isInitialized = false;
+        this.activeComponents = [];
+        
+        if (this.config.autoInit) {
+            this.init();
+        }
+    }
+    
+    init() {
+        if (this.isInitialized) {
+            this.log('App already initialized');
+            return;
+        }
+        
+        this.log('Initializing Portfolio App...');
+        
+        // Verificar disponibilidad de componentes
+        this.checkDependencies();
+        
+        // Inicializar componentes según configuración
+        this.initializeComponents();
+        
+        // Setup event listeners globales
+        this.setupGlobalEvents();
+        
+        this.isInitialized = true;
+        this.log('Portfolio App initialized successfully');
+        
+        // Emit event de inicialización completa
+        document.dispatchEvent(new CustomEvent('portfolioAppReady', {
+            detail: { 
+                app: this,
+                components: this.activeComponents
+            }
+        }));
+    }
+    
+    checkDependencies() {
+        const requiredClasses = [];\n        \n        if (this.config.enableScrollToTop && typeof ScrollToTop === 'undefined') {\n            requiredClasses.push('ScrollToTop');\n        }\n        if (this.config.enableResponsiveMenu && typeof ResponsiveMenu === 'undefined') {\n            requiredClasses.push('ResponsiveMenu');\n        }\n        if (this.config.enableSmoothScrolling && typeof SmoothScrolling === 'undefined') {\n            requiredClasses.push('SmoothScrolling');\n        }\n        if (this.config.enableUIInteractions && typeof UIInteractions === 'undefined') {\n            requiredClasses.push('UIInteractions');\n        }\n        \n        if (requiredClasses.length > 0) {\n            console.warn('PortfolioApp: Missing dependencies:', requiredClasses);\n        }\n    }\n    \n    initializeComponents() {\n        // ScrollToTop Component\n        if (this.config.enableScrollToTop && typeof ScrollToTop !== 'undefined') {\n            try {\n                this.components.scrollToTop = new ScrollToTop({\n                    showThreshold: 300,\n                    visibleClass: 'visible'\n                });\n                this.activeComponents.push('scrollToTop');\n                this.log('ScrollToTop component initialized');\n            } catch (error) {\n                console.error('Failed to initialize ScrollToTop:', error);\n            }\n        }\n        \n        // ResponsiveMenu Component\n        if (this.config.enableResponsiveMenu && typeof ResponsiveMenu !== 'undefined') {\n            try {\n                this.components.responsiveMenu = new ResponsiveMenu({\n                    toggleButtonId: 'menuToggle',\n                    menuId: 'mainNav',\n                    closeOnLinkClick: true\n                });\n                this.activeComponents.push('responsiveMenu');\n                this.log('ResponsiveMenu component initialized');\n            } catch (error) {\n                console.error('Failed to initialize ResponsiveMenu:', error);\n            }\n        }\n        \n        // SmoothScrolling Component\n        if (this.config.enableSmoothScrolling && typeof SmoothScrolling !== 'undefined') {\n            try {\n                this.components.smoothScrolling = new SmoothScrolling({\n                    sections: ['sergio', 'sistema01234', 'cerebro', 'playground'],\n                    activeClass: 'active'\n                });\n                this.activeComponents.push('smoothScrolling');\n                this.log('SmoothScrolling component initialized');\n            } catch (error) {\n                console.error('Failed to initialize SmoothScrolling:', error);\n            }\n        }\n        \n        // UIInteractions Component\n        if (this.config.enableUIInteractions && typeof UIInteractions !== 'undefined') {\n            try {\n                this.components.uiInteractions = new UIInteractions({\n                    enableCustomCursor: this.config.enableCustomCursor,\n                    optimizeOnInit: true\n                });\n                this.activeComponents.push('uiInteractions');\n                this.log('UIInteractions component initialized');\n            } catch (error) {\n                console.error('Failed to initialize UIInteractions:', error);\n            }\n        }\n        \n        // VideoOptimizer (legacy compatibility)\n        if (this.config.enableVideoOptimizer) {\n            this.initializeVideoOptimizer();\n        }\n    }\n    \n    initializeVideoOptimizer() {\n        const video = document.querySelector('.hero-video');\n        if (!video) return;\n        \n        try {\n            // Configuración básica de video\n            video.muted = true;\n            video.playsInline = true;\n            \n            // Intentar reproducir con delay\n            setTimeout(() => {\n                video.play().catch(() => {\n                    this.showVideoFallback(video);\n                });\n            }, 100);\n            \n            // Pausar video cuando no es visible (performance)\n            const handleVideoVisibility = () => {\n                const rect = video.getBoundingClientRect();\n                const isVisible = rect.bottom >= 0 && rect.top <= window.innerHeight;\n                \n                if (isVisible && video.paused) {\n                    video.play().catch(() => {});\n                } else if (!isVisible && !video.paused) {\n                    video.pause();\n                }\n            };\n            \n            window.addEventListener('scroll', handleVideoVisibility, { passive: true });\n            \n            this.activeComponents.push('videoOptimizer');\n            this.log('VideoOptimizer initialized');\n            \n        } catch (error) {\n            console.error('Failed to initialize VideoOptimizer:', error);\n        }\n    }\n    \n    showVideoFallback(video) {\n        const fallback = document.querySelector('.hero-video-fallback');\n        if (fallback) {\n            fallback.style.display = 'block';\n            video.style.display = 'none';\n        }\n    }\n    \n    setupGlobalEvents() {\n        // Coordinar componentes mediante eventos personalizados\n        \n        // Cuando se hace scroll to top, limpiar navegación\n        document.addEventListener('scrollToTop', () => {\n            if (this.components.smoothScrolling) {\n                this.components.smoothScrolling.clearActiveStates();\n            }\n        });\n        \n        // Cuando se hace click en logo, limpiar navegación\n        document.addEventListener('logoClick', () => {\n            if (this.components.smoothScrolling) {\n                this.components.smoothScrolling.clearActiveStates();\n            }\n        });\n        \n        // Cerrar menú móvil en scroll (opcional)\n        let lastScrollTop = 0;\n        window.addEventListener('scroll', () => {\n            const scrollTop = window.pageYOffset;\n            \n            // Si scroll rápido hacia abajo, cerrar menú móvil\n            if (scrollTop > lastScrollTop + 100 && this.components.responsiveMenu) {\n                this.components.responsiveMenu.forceClose();\n            }\n            \n            lastScrollTop = scrollTop;\n        }, { passive: true });\n    }\n    \n    // Métodos públicos para control de componentes\n    \n    getComponent(name) {\n        return this.components[name] || null;\n    }\n    \n    isComponentActive(name) {\n        return this.activeComponents.includes(name);\n    }\n    \n    enableComponent(name) {\n        this.config[`enable${name.charAt(0).toUpperCase() + name.slice(1)}`] = true;\n        \n        // Re-inicializar si es necesario\n        if (!this.isComponentActive(name)) {\n            this.initializeComponents();\n        }\n    }\n    \n    disableComponent(name) {\n        const component = this.components[name];\n        if (component && typeof component.destroy === 'function') {\n            component.destroy();\n            this.components[name] = null;\n            this.activeComponents = this.activeComponents.filter(c => c !== name);\n        }\n    }\n    \n    // Método para reinicializar toda la app\n    reinitialize(newConfig = {}) {\n        this.destroy();\n        this.config = { ...this.config, ...newConfig };\n        this.isInitialized = false;\n        this.init();\n    }\n    \n    // Método para debugging\n    getStatus() {\n        return {\n            isInitialized: this.isInitialized,\n            activeComponents: this.activeComponents,\n            config: this.config,\n            components: Object.keys(this.components).reduce((acc, key) => {\n                acc[key] = this.components[key] !== null;\n                return acc;\n            }, {})\n        };\n    }\n    \n    // Logger condicional\n    log(message, ...args) {\n        if (this.config.debug) {\n            console.log(`[PortfolioApp] ${message}`, ...args);\n        }\n    }\n    \n    // Destruir toda la aplicación\n    destroy() {\n        Object.keys(this.components).forEach(key => {\n            const component = this.components[key];\n            if (component && typeof component.destroy === 'function') {\n                component.destroy();\n            }\n        });\n        \n        this.components = {};\n        this.activeComponents = [];\n        this.isInitialized = false;\n        \n        this.log('Portfolio App destroyed');\n    }\n}\n\n// Auto-inicialización cuando el DOM esté listo\nif (typeof document !== 'undefined') {\n    const initApp = () => {\n        // Verificar si ya existe una instancia global\n        if (!window.portfolioApp) {\n            window.portfolioApp = new PortfolioApp({\n                debug: false // Cambiar a true para debugging\n            });\n        }\n    };\n    \n    if (document.readyState === 'loading') {\n        document.addEventListener('DOMContentLoaded', initApp);\n    } else {\n        initApp();\n    }\n}\n\n// Export para módulos ES6 o definición global\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = PortfolioApp;\n} else {\n    window.PortfolioApp = PortfolioApp;\n}"

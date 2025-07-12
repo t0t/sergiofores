@@ -87,7 +87,6 @@ class NavigationManager {
             // Check if we're at the very top first
             if (window.scrollY < 100) {
                 this.clearActiveStates();
-                console.log('🔝 At top - clearing all active states');
                 return;
             }
             
@@ -105,7 +104,6 @@ class NavigationManager {
             // Update active state if we have any meaningful intersection
             if (maxRatio > 0.1 && activeSection) {
                 this.updateActiveLink(activeSection);
-                console.log('🎯 Section active:', activeSection, 'ratio:', maxRatio.toFixed(2));
             }
         }, {
             // Reduced root margin for better detection
@@ -118,7 +116,6 @@ class NavigationManager {
             const section = document.getElementById(sectionId);
             if (section) {
                 observer.observe(section);
-                console.log('👀 Observing section:', sectionId);
             } else {
                 console.warn('❌ Section not found:', sectionId);
             }
@@ -149,7 +146,6 @@ class NavigationManager {
             
             if (href === `#${sectionId}`) {
                 link.classList.add('active');
-                console.log('✅ Menu item activated:', link.textContent, 'for section:', sectionId);
             }
         });
     }
@@ -252,7 +248,6 @@ class ImageOptimizer {
     }
 
     async init() {
-        console.log('🚀 Image Optimizer initializing...');
         
         // CRITICAL FIX: Remove blur from all images immediately
         this.fixBlurredImages();
@@ -272,7 +267,6 @@ class ImageOptimizer {
         // Monitor performance
         this.monitorPerformance();
         
-        console.log('✅ Image Optimizer ready!');
     }
 
     // WebP Support Detection
@@ -353,7 +347,6 @@ class ImageOptimizer {
             // Performance measurement
             if ('performance' in window) {
                 const loadTime = performance.now();
-                console.log(`✅ Image loaded: ${img.alt || img.src} in ${loadTime.toFixed(2)}ms`);
             }
         });
 
@@ -379,7 +372,6 @@ class ImageOptimizer {
         // Add loaded class
         img.classList.add('loaded');
         
-        console.log(`🔧 Blur removed from: ${img.alt || img.src}`);
     }
     
     // Fallback: load all images
@@ -418,7 +410,6 @@ class ImageOptimizer {
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                 });
-                console.log('🏠 Logo clicked - All nav states cleared');
             });
         }
     }
@@ -431,7 +422,6 @@ class ImageOptimizer {
                 const lcpObserver = new PerformanceObserver((list) => {
                     const entries = list.getEntries();
                     const lastEntry = entries[entries.length - 1];
-                    console.log('LCP:', lastEntry.startTime.toFixed(2) + 'ms');
                 });
                 lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
 
@@ -439,7 +429,6 @@ class ImageOptimizer {
                 const fidObserver = new PerformanceObserver((list) => {
                     const entries = list.getEntries();
                     entries.forEach(entry => {
-                        console.log('FID:', entry.processingStart - entry.startTime + 'ms');
                     });
                 });
                 fidObserver.observe({ entryTypes: ['first-input'] });
@@ -453,7 +442,6 @@ class ImageOptimizer {
                             cls += entry.value;
                         }
                     });
-                    console.log('CLS:', cls.toFixed(4));
                 });
                 clsObserver.observe({ entryTypes: ['layout-shift'] });
 
@@ -505,17 +493,14 @@ class ImageOptimizer {
 
     // CRITICAL FIX: Remove blur from all images immediately
     fixBlurredImages() {
-        console.log('🔧 Fixing blurred images...');
         
         // Find all potentially blurred images
         const allImages = document.querySelectorAll('.project-screenshot img, img[loading="lazy"]');
         
         allImages.forEach((img, index) => {
             this.removeBlurFilter(img);
-            console.log(`🔧 Fixed image ${index + 1}: ${img.alt || 'No alt'}`);
         });
         
-        console.log(`✅ Fixed ${allImages.length} images`);
     }
     
     // Resource cleanup
@@ -535,7 +520,6 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
         // Resume optimizations if needed
-        console.log('Page visible - resuming optimizations');
     }
 });
 

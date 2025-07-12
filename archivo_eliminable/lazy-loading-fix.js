@@ -25,7 +25,6 @@ class LazyLoadingFix {
 
     init() {
         console.group('🚀 LAZY LOADING FIX - INITIALIZING');
-        console.log('Fixing permanent blur issue...');
         
         // Remove any existing broken lazy loading
         this.cleanupExistingLazyLoading();
@@ -39,7 +38,6 @@ class LazyLoadingFix {
         // Monitor performance
         this.setupPerformanceMonitoring();
         
-        console.log(`✅ Initialized - ${this.totalImages} images detected`);
         console.groupEnd();
     }
 
@@ -53,7 +51,6 @@ class LazyLoadingFix {
             img.style.transform = 'none';
             img.classList.remove('lazy-loading');
             
-            console.log(`🧹 Cleaned image ${index + 1}: ${img.alt || 'No alt'}`);
         });
     }
 
@@ -131,7 +128,6 @@ class LazyLoadingFix {
         const startTime = performance.now();
         this.loadingQueue.add(img);
         
-        console.log(`📸 Loading image: ${img.alt || img.dataset.originalSrc}`);
         
         // Create new image element to preload
         const tempImage = new Image();
@@ -187,7 +183,6 @@ class LazyLoadingFix {
             img.addEventListener('transitionend', () => {
                 const transitionTime = performance.now() - transitionStart;
                 this.performanceMetrics.blurTransitionTimes.push(transitionTime);
-                console.log(`✨ Transition completed in ${transitionTime.toFixed(2)}ms`);
             }, { once: true });
         });
         
@@ -195,8 +190,6 @@ class LazyLoadingFix {
         this.imageLoadedCount++;
         this.performanceMetrics.imageLoadTimes.push(loadTime);
         
-        console.log(`✅ Image loaded in ${loadTime.toFixed(2)}ms: ${img.alt || 'No alt'}`);
-        console.log(`📊 Progress: ${this.imageLoadedCount}/${this.totalImages} images loaded`);
         
         // Trigger load complete check
         if (this.imageLoadedCount === this.totalImages) {
@@ -234,7 +227,6 @@ class LazyLoadingFix {
     }
 
     loadImageImmediately(img) {
-        console.log(`⚡ Loading critical image immediately: ${img.alt}`);
         
         // Remove any lazy loading artifacts
         img.style.filter = 'none';
@@ -275,7 +267,6 @@ class LazyLoadingFix {
             this.loadImageImmediately(img);
         });
         
-        console.log('🔄 Fallback: All images loaded immediately');
     }
 
     createPlaceholderDataURL(width, height) {
@@ -304,7 +295,6 @@ class LazyLoadingFix {
                 const lcpObserver = new PerformanceObserver((list) => {
                     const entries = list.getEntries();
                     const lastEntry = entries[entries.length - 1];
-                    console.log(`📊 LCP: ${lastEntry.startTime.toFixed(2)}ms`);
                 });
                 lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
             } catch (error) {
@@ -317,21 +307,15 @@ class LazyLoadingFix {
         const totalTime = performance.now() - this.performanceMetrics.startTime;
         
         console.group('🎉 ALL IMAGES LOADED');
-        console.log(`⏱️ Total loading time: ${totalTime.toFixed(2)}ms`);
-        console.log(`✅ Successfully loaded: ${this.imageLoadedCount - this.failedImages.size}`);
-        console.log(`❌ Failed to load: ${this.failedImages.size}`);
         
         if (this.performanceMetrics.imageLoadTimes.length > 0) {
             const avgLoadTime = this.performanceMetrics.imageLoadTimes.reduce((a, b) => a + b) / this.performanceMetrics.imageLoadTimes.length;
-            console.log(`📈 Average load time: ${avgLoadTime.toFixed(2)}ms`);
         }
         
         if (this.performanceMetrics.blurTransitionTimes.length > 0) {
             const avgTransitionTime = this.performanceMetrics.blurTransitionTimes.reduce((a, b) => a + b) / this.performanceMetrics.blurTransitionTimes.length;
-            console.log(`✨ Average transition time: ${avgTransitionTime.toFixed(2)}ms`);
         }
         
-        console.log('🚀 Lazy loading optimization complete!');
         console.groupEnd();
         
         // Cleanup
@@ -352,7 +336,6 @@ class LazyLoadingFix {
 
     // Public API for manual intervention
     forceLoadAll() {
-        console.log('🔧 Force loading all remaining images...');
         
         const stillLoading = document.querySelectorAll('.project-screenshot img.lazy-loading');
         stillLoading.forEach(img => {
@@ -381,20 +364,15 @@ document.addEventListener('DOMContentLoaded', () => {
         window.forceLoadAllImages = () => window.lazyLoadingFix.forceLoadAll();
         window.getLazyLoadingStatus = () => window.lazyLoadingFix.getStatus();
         
-        console.log('💡 Manual controls available:');
-        console.log('  window.forceLoadAllImages() - Force load all remaining images');
-        console.log('  window.getLazyLoadingStatus() - Get loading status');
     }, 100);
 });
 
 // Handle visibility changes
 document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible' && window.lazyLoadingFix) {
-        console.log('👁️ Page visible - checking lazy loading status');
         
         const status = window.lazyLoadingFix.getStatus();
         if (!status.isComplete) {
-            console.log(`⚡ Auto-loading remaining ${status.total - status.loaded} images`);
             window.lazyLoadingFix.forceLoadAll();
         }
     }

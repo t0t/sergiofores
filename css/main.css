@@ -214,7 +214,7 @@
   --space-200px: calc(var(--space-unit) * 25);  /* 200px - book banner image */
   --space-220px: calc(var(--space-unit) * 27.5); /* 220px - sistema grid min */
   --space-250px: calc(var(--space-unit) * 31.25); /* 250px - sistema grid large */
-  --space-300px: calc(var(--space-unit) * 37.5); /* 300px - project cards */
+  --space-300px: calc(var(--space-unit) * 37.5); /* 300px - project cards & back-to-top threshold */
   --space-350px: calc(var(--space-unit) * 43.75); /* 350px - project cards tablet */
   --space-400px: calc(var(--space-unit) * 50);   /* 400px - project cards desktop */
   --space-420px: calc(var(--space-unit) * 52.5); /* 420px - project cards ultra */
@@ -257,9 +257,6 @@
   --space-1440px: calc(var(--space-unit) * 180);   /* 1440px */
   --space-1800px: calc(var(--space-unit) * 225);   /* 1800px */
   --space-2560px: calc(var(--space-unit) * 320);   /* 2560px */
-  
-  /* Variables adicionales encontradas en el análisis */
-  --space-300px: calc(var(--space-unit) * 37.5);   /* 300px - back-to-top threshold */
   
   /* ==========================================================================
      COMPONENTES

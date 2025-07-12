@@ -6,6 +6,7 @@
     <title>Design System - Sergio Forés</title>
 
     <!-- Sistema de Diseño Atómico -->
+    <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="css/main.css">
 
     <!-- JavaScript -->
@@ -28,6 +29,7 @@
                 </button>
                 <ul id="main-nav-list">
                     <li><a href="#hero" class="header__nav-link">Inicio</a></li>
+                    <li><a href="#principios" class="header__nav-link">Principios</a></li>
                     <li><a href="#tipografia" class="header__nav-link">Tipografía</a></li>
                     <li><a href="#elementos-html" class="header__nav-link">HTML Básico</a></li>
                     <li><a href="#colores" class="header__nav-link">Colores</a></li>
@@ -49,8 +51,9 @@
             <div class="hero__container">
                 <h1 class="hero__title">Design System Atómico</h1>
                 <p class="hero__subtitle">
-                    Sistema de diseño unificado para proyectos CEREBRO-DIGITAL.<br>
-                    Enfoque minimalista, tipografía como arquitectura y color con propósito.
+                    Sistema de consonancia sistémica fractal para proyectos CEREBRO-DIGITAL.<br>
+                    Estructura nuclear que se propaga sin duplicación, consonancia matemáticamente perfecta y proporciones áureas como fundamento universal.<br>
+                    <strong>La arquitectura atómica funciona: eliminamos ruido, mantenemos solo fuentes de verdad.</strong>
                 </p>
                 <div class="hero__actions">
                     <button class="btn btn--primary">Explorar</button>
@@ -71,12 +74,81 @@
             </div>
         </section>
 
+        <!-- Principios Fundamentales Section -->
+        <section id="principios" class="section section--spacing-lg">
+            <div class="section__container">
+                <header class="section__header">
+                    <h2 class="section__title">Principios Fundamentales</h2>
+                    <p class="section__subtitle">Filosofía de diseño que prioriza la consistencia, las proporciones matemáticas y la eliminación de redundancias.</p>
+                </header>
+                <div class="section__content">
+                    <div class="grid md:grid--2-col">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>⚛️ Centralización</h3>
+                                <p>Una sola fuente de verdad para variables. <code>/css/main.css</code> contiene todas las variables base que luego se reutilizan en el resto del sistema.</p>
+                                <strong>Principio:</strong> Si existe en el core, úsalo. Si no existe, créalo ahí.
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>🌀 Consistencia</h3>
+                                <p>Los mismos patrones funcionan a cualquier escala. Lo que vale para un botón, vale para una sección completa.</p>
+                                <strong>Principio:</strong> Mantener coherencia visual en todos los niveles.
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>📏 Proporciones Matemáticas</h3>
+                                <p>Escalas basadas en progresiones matemáticas que crean armonía visual natural. Usamos ratios probados como 1.618 (proporción áurea).</p>
+                                <strong>Principio:</strong> Las buenas proporciones se sienten bien, aunque no sepas por qué.
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>⚡ Espaciado Fluido</h3>
+                                <p>Sistema responsivo que se adapta suavemente a cualquier pantalla. Usamos clamp() y variables CSS en lugar de valores fijos.</p>
+                                <strong>Principio:</strong> El espaciado debe fluir, no saltar.
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>🔄 Sin Duplicación</h3>
+                                <p>Cada concepto se define una sola vez y se reutiliza. Esto hace el sistema más fácil de mantener y cambiar.</p>
+                                <strong>Principio:</strong> No te repitas (DRY).
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>📐 Ritmo Vertical</h3>
+                                <p>Los elementos se alinean a una cuadrícula invisible. Esto crea una sensación de orden y facilita la lectura.</p>
+                                <strong>Principio:</strong> El buen ritmo se siente, aunque no se vea.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content--spacing-lg">
+                        <h3>Regla de Oro</h3>
+                        <blockquote>
+                            <p>"Si ya existe, no lo vuelvas a crear. Si no existe, créalo donde tenga sentido. Elimina todo lo que no añada valor."</p>
+                            <footer>— Sergio Forés</footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Typography Section -->
         <section id="tipografia" class="section section--spacing-lg">
             <div class="section__container">
                 <header class="section__header">
                     <h2 class="section__title">Tipografía</h2>
-                    <p class="section__subtitle">Escalas, pesos y estilos de texto.</p>
+                    <p class="section__subtitle">Escalas fluidas basadas en progresiones matemáticas. Sistema Utopia para tipografía responsiva perfecta.</p>
                 </header>
                 <div class="section__content">
                     <h1>H1 - Título Principal</h1>
@@ -131,7 +203,7 @@
 
                     <h3>Citas</h3>
                     <blockquote>
-                        <p>La tipografía es la arquitectura del contenido.</p>
+                        <p>La tipografía es la arquitectura del contenido. Un buen sistema tipográfico permite que la información fluya naturalmente, respetando las proporciones matemáticas que hacen que la lectura sea cómoda y efectiva.</p>
                         <footer>— Sergio Forés</footer>
                     </blockquote>
 
@@ -165,13 +237,75 @@
         <section id="colores" class="section section--spacing-lg">
             <div class="section__container">
                 <header class="section__header">
-                    <h2 class="section__title">Paleta de Colores</h2>
-                    <p class="section__subtitle">Colores definidos en los design tokens.</p>
+                    <h2 class="section__title">Sistema de Colores Nuclear</h2>
+                    <p class="section__subtitle">Única fuente de verdad definida en <code>/css/main.css</code>. Sistema 01234 con significado conceptual + escala monocromática para máxima versatilidad.</p>
                 </header>
                 <div class="section__content">
                     <div class="color-palette">
                         <div class="color-palette__group">
-                            <h3 class="color-palette__title">Colores de Acento</h3>
+                            <h3 class="color-palette__title">Sistema 01234 - Colores Conceptuales</h3>
+                            <p class="text-sm" style="margin-bottom: var(--space-s);">Cinco colores principales con significado específico, mapeados al framework cognitivo 01234:</p>
+                            <div class="color-palette__items">
+                                <div class="color-swatch">
+                                    <div class="color-swatch__color" style="background-color: #000000;"></div>
+                                    <div class="color-swatch__info">
+                                        <div class="color-swatch__name">0 - Potencial</div>
+                                        <div class="color-swatch__value">Base, datos, exploración</div>
+                                    </div>
+                                </div>
+                                <div class="color-swatch">
+                                    <div class="color-swatch__color" style="background-color: var(--color-1, #FF6B35);"></div>
+                                    <div class="color-swatch__info">
+                                        <div class="color-swatch__name">1 - Acción</div>
+                                        <div class="color-swatch__value">Foco, decisión, claridad</div>
+                                    </div>
+                                </div>
+                                <div class="color-swatch">
+                                    <div class="color-swatch__color" style="background-color: var(--color-2, #4ECDC4);"></div>
+                                    <div class="color-swatch__info">
+                                        <div class="color-swatch__name">2 - Análisis</div>
+                                        <div class="color-swatch__value">Refinamiento, diferenciación</div>
+                                    </div>
+                                </div>
+                                <div class="color-swatch">
+                                    <div class="color-swatch__color" style="background-color: var(--color-3, #45B7D1);"></div>
+                                    <div class="color-swatch__info">
+                                        <div class="color-swatch__name">3 - Comunicación</div>
+                                        <div class="color-swatch__value">Conexión, síntesis, flujo</div>
+                                    </div>
+                                </div>
+                                <div class="color-swatch">
+                                    <div class="color-swatch__color" style="background-color: var(--color-4, #96CEB4);"></div>
+                                    <div class="color-swatch__info">
+                                        <div class="color-swatch__name">4 - Materialización</div>
+                                        <div class="color-swatch__value">Resultado, implementación</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="color-palette__group">
+                            <h3 class="color-palette__title">Estructura Nuclear</h3>
+                            <p class="text-sm" style="margin-bottom: var(--space-s);">Arquitectura de propagación desde el núcleo:</p>
+                            <div class="card">
+                                <div class="card__body">
+                                    <h4>📂 Fuente Única de Verdad</h4>
+                                    <p><code>/css/main.css</code> contiene TODAS las variables de color base.</p>
+                                    
+                                    <h4 style="margin-top: var(--space-s);">🔄 Propagación Sistémica</h4>
+                                    <p>Los proyectos específicos importan el núcleo, nunca duplican colores.</p>
+                                    
+                                    <h4 style="margin-top: var(--space-s);">🎯 Aplicación Práctica</h4>
+                                    <p>Usar <code>var(--color-1)</code> en lugar de <code>#FF6B35</code> hardcodeado.</p>
+                                    
+                                    <h4 style="margin-top: var(--space-s);">✅ Regla de Oro</h4>
+                                    <p><strong>Si existe en el núcleo, úsalo. Si no existe, créalo ahí.</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="color-palette__group">
+                            <h3 class="color-palette__title">Colores Semánticos</h3>
                             <div class="color-palette__items">
                                 <div class="color-swatch">
                                     <div class="color-swatch__color" style="background-color: var(--color-accent-primary);"></div>
@@ -280,7 +414,8 @@
                         </div>
 
                         <div class="color-palette__group">
-                            <h3 class="color-palette__title">Colores Grises</h3>
+                            <h3 class="color-palette__title">Escala Monocromática Nuclear</h3>
+                            <p class="text-sm" style="margin-bottom: var(--space-s);">Base neutra para texto, fondos y superficies. Definida en el núcleo y usada universalmente:</p>
                             <div class="color-palette__items">
                                 <div class="color-swatch">
                                     <div class="color-swatch__color" style="background-color: var(--color-gray-50);"></div>
@@ -371,7 +506,7 @@
             <div class="section__container">
                 <header class="section__header">
                     <h2 class="section__title">Sistema de Grid</h2>
-                    <p class="section__subtitle">Ejemplos de grid responsivo con Grid CSS.</p>
+                    <p class="section__subtitle">Grid CSS como base para layouts. Uso inteligente del espacio con respiración horizontal y gaps consistentes.</p>
                 </header>
                 <div class="section__content">
                     <h3>Grid de 4 Columnas</h3>
@@ -408,13 +543,14 @@
             <div class="section__container">
                 <header class="section__header">
                     <h2 class="section__title">Layout Container</h2>
-                    <p class="section__subtitle">Contenedor principal con márgenes horizontales para el contenido.</p>
+                    <p class="section__subtitle">Contenedor principal con márgenes inteligentes. El contenido nunca toca los bordes del navegador en ninguna resolución.</p>
                 </header>
                 <div class="section__content">
                     <div class="layout-example">
                         <div class="container">
                             <p>Este es un ejemplo de contenido dentro del contenedor principal.</p>
-                            <p>Observa cómo el contenido no toca los bordes de la ventana del navegador, gracias a los márgenes y padding definidos en la clase <code>.container</code>.</p>
+                            <p>Observa cómo el contenido mantiene márgenes cómodos en todas las resoluciones. Esto se consigue usando <code>margin: 0 var(--space-xl);</code> en la regla base, no solo en media queries específicos.</p>
+                            <p><strong>Principio:</strong> El contenido necesita respirar. Los márgenes no son opcionales, son esenciales para la legibilidad.</p>
                         </div>
                     </div>
                 </div>
@@ -426,7 +562,7 @@
             <div class="section__container">
                 <header class="section__header">
                     <h2 class="section__title">Espaciado Semántico</h2>
-                    <p class="section__subtitle">Ejemplos de clases de espaciado vertical para secciones y contenido.</p>
+                    <p class="section__subtitle">Sistema de espaciado fluido basado en progresiones matemáticas. Ritmo vertical consistente y espaciado responsivo con clamp().</p>
                 </header>
                 <div class="section__content">
                     <h3>Espaciado de Sección (padding vertical)</h3>
@@ -455,7 +591,7 @@
             <div class="section__container">
                 <header class="section__header">
                     <h2 class="section__title">Componentes Básicos</h2>
-                    <p class="section__subtitle">Ejemplos de componentes esenciales del sistema.</p>
+                    <p class="section__subtitle">Elementos reutilizables que heredan del sistema base. Construcción modular sin duplicación de código.</p>
                 </header>
                 <div class="section__content">
                     <h3>Botones</h3>
