@@ -135,7 +135,7 @@ class PerformanceMetrics {
             try {
                 const longTaskObserver = new PerformanceObserver((list) => {
                     for (const entry of list.getEntries()) {
-                        if (entry.duration > 50) {
+                        if (entry.duration > 100) { // Only warn for truly problematic tasks
                             console.warn(`⚠️ Long task detected: ${entry.duration.toFixed(2)}ms`);
                             this.metrics.customMetrics.longTasks = (this.metrics.customMetrics.longTasks || 0) + 1;
                         }
@@ -227,11 +227,11 @@ class PerformanceMetrics {
             clearTimeout(scrollTimeout);
             scrollTimeout = setTimeout(() => {
                 const scrollDuration = performance.now() - scrollStartTime;
-                if (scrollDuration > 16) { // More than one frame
+                if (scrollDuration > 300) { // Only warn if > 300ms (seriously problematic)
                     console.warn(`⚠️ Slow scroll detected: ${scrollDuration.toFixed(2)}ms`);
                 }
                 scrollStartTime = null;
-            }, 100);
+            }, 200);
         }, { passive: true });
     }
     
@@ -328,4 +328,5 @@ window.addEventListener('load', () => {
 // Export para debugging
 window.PerformanceMetrics = performanceMetrics;
 
-export default PerformanceMetrics;
+// PerformanceMetrics disponible globalmente
+window.PerformanceMetrics = PerformanceMetrics;

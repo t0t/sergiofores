@@ -1,5 +1,5 @@
 /* IMPORT PALETA SAGRADA DESDE EL NÚCLEO */
-@import url('../../css/main.css');
+@import url('../../../css/main.css');
 
 /* PALETA SAGRADA SERGIO FORÉS - PROYECTO PROCESO COGNITIVO */
 /* ⚠️ USANDO EXCLUSIVAMENTE LA PALETA DEFINITIVA */
@@ -17,9 +17,17 @@
     --accent-tertiary: var(--color-red);      /* #FF0000 - Rojo puro */
     --accent-quaternary: var(--color-black);  /* #000000 - Negro puro */
     
-    /* ELIMINADAS VARIABLES QUE VIOLABAN LA PALETA SAGRADA */
-    /* --accent-orange, --accent-red, --accent-blue, --accent-yellow, --accent-green */
-    /* Solo existen los colores de la paleta definitiva de Sergio Forés */
+    /* MAPEO SEMÁNTICO PARA COMPATIBILIDAD */
+    --accent-orange: var(--color-yellow);     /* Usar amarillo para acentos */
+    --accent-blue: var(--color-cyan);         /* Usar cyan para elementos azules */
+    --accent-green: var(--color-cyan);        /* Usar cyan para elementos verdes */
+    
+    /* GRISES EXPANDIDOS DE LA PALETA SAGRADA */
+    --neutral-gray-200: var(--gray-4);        /* #CCCCCC */
+    --neutral-gray-300: var(--gray-3);        /* #999999 */
+    --neutral-gray-400: var(--gray-2);        /* #666666 */
+    --neutral-gray-600: var(--gray-1);        /* #333333 */
+    --neutral-gray-800: var(--gray-1);        /* #333333 */
     
     /* Tipografía siguiendo preferencias exactas de Sergio */
     --font-primary: 'Futura', 'Avenir Next', 'Helvetica Neue', sans-serif;
@@ -59,6 +67,8 @@ html {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* GPU acceleration for smooth scrolling */
+    transform: translateZ(0);
 }
 
 body {
@@ -70,8 +80,10 @@ body {
     font-weight: 300;
     letter-spacing: 0.5px;
     overflow-x: hidden;
-    /* Performance hints */
-    will-change: scroll-position;
+    /* Performance optimizations for smooth scrolling */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 /* Critical rendering path optimizations */
@@ -114,14 +126,15 @@ img[loading="lazy"]:not(.image-loaded) {
 /* Performance-optimized animations */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 30px, 0);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     will-change: opacity, transform;
+    backface-visibility: hidden;
 }
 
 .reveal.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
     will-change: auto;
 }
 
@@ -136,12 +149,21 @@ img[loading="lazy"]:not(.image-loaded) {
     will-change: auto;
 }
 
-/* Contenct-visibility para performance */
+/* Content-visibility para performance */
 .gallery-mosaic,
 .ia-grid,
 .audio-container {
     content-visibility: auto;
     contain-intrinsic-size: 500px;
+    contain: layout style paint;
+}
+
+/* Optimización de capas para scroll suave */
+.gallery,
+.ia-section,
+.audio-section {
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 /* Reduce motion para accessibility y performance */
@@ -159,6 +181,22 @@ img[loading="lazy"]:not(.image-loaded) {
     
     .logo-shape {
         animation: none;
+    }
+}
+
+/* Performance mode para dispositivos lentos */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+    .reveal {
+        transition-duration: 0.3s; /* Animaciones más rápidas en móvil */
+    }
+    
+    .hero-video {
+        opacity: 0.2; /* Menos opacidad para mejor performance */
+    }
+    
+    .mosaic-item:hover {
+        transform: none; /* Remover hover effects en mobile */
+        box-shadow: none;
     }
 }
 
@@ -332,7 +370,7 @@ img[loading="lazy"]:not(.image-loaded) {
 
 .mosaic-item:hover {
     transform: scale(1.02);
-    box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
+    box-shadow: 0 20px 60px rgba(255, 255, 0, 0.2);
 }
 
 .mosaic-item.large {
@@ -413,7 +451,7 @@ img[loading="lazy"]:not(.image-loaded) {
 
 .ia-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 25px 80px rgba(0, 102, 204, 0.3);
+    box-shadow: 0 25px 80px rgba(0, 255, 255, 0.3);
 }
 
 .ia-item img {
@@ -435,7 +473,7 @@ img[loading="lazy"]:not(.image-loaded) {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 255, 0, 0.1) 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -455,7 +493,7 @@ img[loading="lazy"]:not(.image-loaded) {
     max-width: 800px;
     margin: 0 auto;
     padding: var(--space-8);
-    background: linear-gradient(135deg, rgba(154, 175, 136, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 255, 0, 0.1) 100%);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -524,7 +562,7 @@ img[loading="lazy"]:not(.image-loaded) {
 .portfolio-item:hover {
     transform: translateY(-4px);
     border-color: var(--accent-orange);
-    box-shadow: 0 15px 40px rgba(255, 107, 53, 0.1);
+    box-shadow: 0 15px 40px rgba(255, 255, 0, 0.1);
 }
 
 .portfolio-image {
@@ -565,7 +603,7 @@ img[loading="lazy"]:not(.image-loaded) {
     max-width: 900px;
     margin: 0 auto;
     padding: var(--space-8);
-    background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(0, 102, 204, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 0, 0.05) 0%, rgba(0, 255, 255, 0.05) 100%);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -614,7 +652,7 @@ img[loading="lazy"]:not(.image-loaded) {
     margin: 0 auto;
     padding: var(--space-6);
     border-left: 2px solid var(--accent-orange);
-    background: rgba(255, 107, 53, 0.03);
+    background: rgba(255, 255, 0, 0.03);
 }
 
 .interludio-contemplativo-1-blockquote {
@@ -637,7 +675,7 @@ img[loading="lazy"]:not(.image-loaded) {
     margin: 0 auto;
     padding: var(--space-6);
     border-left: 2px solid var(--accent-blue);
-    background: rgba(0, 102, 204, 0.03);
+    background: rgba(0, 255, 255, 0.03);
 }
 
 .interludio-contemplativo-2-blockquote {
@@ -660,7 +698,7 @@ img[loading="lazy"]:not(.image-loaded) {
     margin: 0 auto;
     padding: var(--space-6);
     border-left: 2px solid var(--accent-green);
-    background: rgba(154, 175, 136, 0.03);
+    background: rgba(0, 255, 255, 0.03);
 }
 
 .interludio-contemplativo-3-blockquote {
@@ -682,9 +720,9 @@ img[loading="lazy"]:not(.image-loaded) {
     max-width: 750px;
     margin: 0 auto;
     padding: var(--space-8);
-    border: 1px solid rgba(255, 107, 53, 0.2);
+    border: 1px solid rgba(255, 255, 0, 0.2);
     border-radius: 8px;
-    background: rgba(255, 107, 53, 0.02);
+    background: rgba(255, 255, 0, 0.02);
 }
 
 .interludio-contemplativo-4-blockquote {
