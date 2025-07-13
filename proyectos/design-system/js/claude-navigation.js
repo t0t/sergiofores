@@ -12,10 +12,10 @@
 class ClaudeNavigation {
     constructor(options = {}) {
         this.config = {
-            headerSelector: '.header-master, .header',
-            navLinksSelector: '.header__nav-link, .dropdown__link',
-            logoSelector: '.logo',
-            activeClass: 'active',
+            headerSelector: '.pageheader, .header-master, .header',
+            navLinksSelector: '.menu__link, .header__nav-link, .dropdown__link',
+            logoSelector: '.pageheader__logo, .logo',
+            activeClass: 'menu__link--active',
             scrollTopClass: 'scroll-top',
             logoResetClass: 'logo-reset',
             clearThreshold: 100,

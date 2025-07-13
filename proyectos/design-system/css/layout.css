@@ -22,6 +22,69 @@
 }
 
 /* ==========================================================================
+   MOBILE FIRST RESET - RESOLUCIONES MENORES A 480px
+   ========================================================================== */
+
+/* Reset completo mobile-first para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  /* Todos los grids se vuelven una sola columna */
+  .grid,
+  .grid--2-col,
+  .grid--3-col,
+  .grid--4-col,
+  .grid--responsive,
+  .grid--responsive-phi,
+  .grid--cards,
+  .grid-flex {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: var(--space-4) !important;
+    padding: 0 var(--space-4) !important;
+    margin: 0 !important;
+  }
+  
+  /* Sub-grids simplificados a una columna */
+  .sub-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-2) !important;
+    padding: var(--space-2) !important;
+  }
+  
+  /* Contenedores simplificados */
+  .container,
+  .container-master {
+    padding: 0 var(--space-4) !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+  
+  /* Headers de grid ocupan ancho completo */
+  .grid-flex__header {
+    flex-basis: 100% !important;
+    min-width: 100% !important;
+  }
+  
+  /* Tipografía compacta */
+  .sub-grid > div,
+  .sub-grid > div strong {
+    font-size: 0.75rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  /* Espaciado reducido */
+  .section {
+    padding: var(--space-4) 0 !important;
+  }
+  
+  /* Cards stack verticalmente */
+  .features__item,
+  .features__card,
+  .card {
+    margin-bottom: var(--space-4) !important;
+  }
+}
+
+/* ==========================================================================
    CONTAINER SYSTEM - 3 ESCALAS CONSONANTES
    ========================================================================== */
 
@@ -62,8 +125,8 @@
   width: 100%;
   max-width: var(--container-max-width);
   margin: 0 auto;
-  padding-left: var(--container-padding-wide);      /* AMPLIA: φ³ = 4.236rem */
-  padding-right: var(--container-padding-wide);     /* AMPLIA: φ³ = 4.236rem */
+  margin-left: var(--space-xl);     /* CONSONANCIA PERFECTA: Idéntico al grid-flex y pageheader */
+  margin-right: var(--space-xl);    /* CONSONANCIA PERFECTA: Idéntico al grid-flex y pageheader */
 }
 
 /* ==========================================================================
@@ -86,7 +149,7 @@
 
 .grid--3-col {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr; /* Mobile first: 1 columna */
   gap: var(--space-6);
   grid-template-rows: auto auto auto;
   justify-items: stretch;
@@ -123,14 +186,6 @@
   align-content: start;
 }
 
-.grid--3-col-phi {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6); /* φ = 1.618rem */
-  grid-template-rows: auto auto auto;
-  justify-items: stretch;
-  align-content: start;
-}
 
 .grid--4-col-phi {
   display: grid;
@@ -224,14 +279,14 @@
 
 .grid--cards {
   display: grid;
-  gap: var(--space-8);
-  margin: var(--space-12);
-  padding: var(--space-8);
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0 var(--space-6);
   grid-template-rows: auto auto auto;
   justify-items: stretch;
   align-items: stretch;
   align-content: start;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 /* ==========================================================================
@@ -277,8 +332,7 @@
 
 .section {
   width: 100%;
-  padding-top: var(--space-16);
-  padding-bottom: var(--space-16);
+  /* Sin padding por defecto - usar modificadores para spacing específico */
 }
 
 .section--spacing-lg {
@@ -298,17 +352,9 @@
 
 .section-grid {
   width: 100%;
-  padding-top: var(--space-16);
-  padding-bottom: var(--space-16);
+  /* Sin padding por defecto - usar modificadores para spacing específico */
 }
 
-.section__container {
-  width: 100%;
-  max-width: var(--container-max-width);
-  margin: 0 auto;
-  padding-left: var(--space-6);  /* Mobile: φ = 1.618rem - IDENTICO al grid */
-  padding-right: var(--space-6); /* Mobile: φ = 1.618rem - IDENTICO al grid */
-}
 
 .section__header {
   text-align: center;
@@ -344,7 +390,7 @@ hr.separator {
   border: none;
   background: none;
   height: 0;
-  margin: var(--space-16) 0 0 0;  /* φ³ = 4.236rem gap amplio */
+  margin: var(--space-xl) 0 0 0;  /* var(--space-xl) = consonancia grid perfecta */
   padding: 0;
 }
 
@@ -386,11 +432,28 @@ hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separac
   max-width: 100%;                        /* Evita overflow */
 }
 
-/* ELEMENTO FEATURED - Ocupa 2 columnas por defecto */
-.grid-flex > .card--featured {
+/* ELEMENTO HEADER - Ocupa 2 columnas por defecto */
+.grid-flex__header {
   flex-basis: calc(500px + var(--space-6)); /* 2 × 250px + 1 gap = espacio de 2 columnas */
   flex-grow: 2;                           /* Crece 2 veces más que elementos normales */
   min-width: calc(500px + var(--space-6)); /* Mínimo para mantener proporción */
+}
+
+/* MOBILE FIX - Header ocupa dos tercios incluso en móvil */
+@media (max-width: 640px) {
+  .grid-flex__header {
+    flex-basis: calc(66.667% - var(--space-6)/2); /* MÓVIL: Dos tercios de la fila */
+    flex-grow: 2;                         /* Mantiene proporción 2:1 */
+    min-width: 250px;                     /* Mínimo realista para móvil */
+    max-width: 66.667%;                   /* No excede dos tercios */
+  }
+}
+
+/* EXTRA SMALL MOBILE FIX - iPhone SE y pantallas muy pequeñas */
+@media (max-width: 400px) {
+  .grid-flex__header {
+    min-width: 200px;                     /* Mínimo aún más pequeño para pantallas muy estrechas */
+  }
 }
 
 /* Responsive: ajustes de flex-basis para diferentes viewports */
@@ -404,7 +467,7 @@ hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separac
     flex-basis: 300px;                    /* Tablet: base más generosa */
   }
   
-  .grid-flex > .card--featured {
+  .grid-flex__header {
     flex-basis: calc(600px + var(--space-8)); /* 2 × 300px + 1 gap tablet */
     min-width: calc(600px + var(--space-8));
   }
@@ -420,7 +483,7 @@ hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separac
     flex-basis: 320px;                    /* Desktop: base premium */
   }
   
-  .grid-flex > .card--featured {
+  .grid-flex__header {
     flex-basis: calc(640px + var(--space-10)); /* 2 × 320px + 1 gap desktop */
     min-width: calc(640px + var(--space-10));
   }
@@ -436,7 +499,7 @@ hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separac
     flex-basis: 350px;                    /* Desktop: base premium óptima */
   }
   
-  .grid-flex > .card--featured {
+  .grid-flex__header {
     flex-basis: calc(700px + var(--space-xl)); /* 2 × 350px + 1 gap desktop */
     min-width: calc(700px + var(--space-xl));
   }
@@ -452,7 +515,7 @@ hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separac
     flex-basis: 400px;                    /* Ultra-wide: base premium máxima */
   }
   
-  .grid-flex > .card--featured {
+  .grid-flex__header {
     flex-basis: calc(800px + var(--space-2xl)); /* 2 × 400px + 1 gap ultra-wide */
     min-width: calc(800px + var(--space-2xl));
   }
@@ -465,62 +528,121 @@ hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separac
 /* Grid anidado líquido y responsive dentro de elementos flexbox */
 .sub-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(87px, 1fr)); /* LÍQUIDO: Se adapta automáticamente */
-  gap: var(--space-1);                     /* Gap más compacto para mejor aprovechamiento */
+  grid-template-columns: repeat(3, 1fr);   /* 3 columnas: permite flujo natural a 2 filas */
+  grid-auto-rows: minmax(var(--space-8), auto); /* Filas automáticas con altura mínima */
+  gap: var(--space-1);                     /* Gap compacto para mejor aprovechamiento */
   width: 100%;                             /* CRÍTICO: Usa todo el ancho disponible */
   box-sizing: border-box;                  /* Incluye padding en el cálculo */
+  align-content: start;                    /* Alineación natural del contenido */
 }
 
 /* Elementos individuales del sub-grid - totalmente fluidos */
-.sub-grid-item {
+.sub-grid > div {
   display: flex;
   flex-direction: column;
-  min-height: var(--space-8);              /* Altura mínima reducida pero proporcional */
-  aspect-ratio: 1;                         /* NUEVO: Mantiene proporción cuadrada */
+  align-items: center;
+  text-align: center;
+  padding: var(--space-1);
+  min-height: var(--space-8);              /* Altura mínima proporcional */
 }
 
+/* Sub-grid normalizado para paletas de colores */
+.sub-grid--color-palette {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Auto-fit responsive con mínimo 120px */
+  gap: 0;                                  /* Sin gap para mejor visualización de colores */
+  grid-auto-rows: auto;                    /* Altura automática */
+}
 
-.sub-grid-item strong {
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-bold);    /* Más bold para mejor legibilidad */
-  color: var(--color-black);
+.sub-grid--color-palette > div {
+  padding: var(--space-xl);                /* Padding generoso y consistente */
+  text-align: center;                      /* Texto centrado */
+  display: flex;                           /* Flexbox para centrado perfecto */
+  align-items: center;                     /* Centrado vertical */
+  justify-content: center;                 /* Centrado horizontal */
+  min-height: var(--space-2xl);           /* Altura mínima para consistencia */
+  font-weight: var(--font-weight-normal); /* Peso de fuente normal */
+  font-size: var(--text-small);           /* Tamaño consistente */
+}
+
+.sub-grid > div strong {
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
   margin-bottom: var(--space-1);
-  line-height: 1;                          /* Line-height compacto */
+  line-height: 1;
+  display: block;
 }
 
-.sub-grid-item small {
-  font-size: var(--text-xs);
-  color: var(--gray-600);
+/* ESTILOS ESPECÍFICOS POR CONTEXTO TIPOGRÁFICO */
+
+/* Sistema Nuclear - Tamaños diferenciados */
+.typography-group:nth-of-type(1) .sub-grid > div:nth-child(1) strong { font-size: var(--text-large); font-weight: var(--font-weight-bold); }   /* Large */
+.typography-group:nth-of-type(1) .sub-grid > div:nth-child(2) strong { font-size: var(--text-medium); font-weight: var(--font-weight-medium); } /* Medium */
+.typography-group:nth-of-type(1) .sub-grid > div:nth-child(3) strong { font-size: var(--text-small); font-weight: var(--font-weight-normal); }  /* Small */
+.typography-group:nth-of-type(1) .sub-grid > div:nth-child(4) strong { font-family: var(--font-mono); font-size: var(--text-small); }           /* Mono */
+
+/* Jerarquía H1-H6 - Tamaños jerárquicos */
+.typography-group:nth-of-type(2) .sub-grid > div:nth-child(1) strong { font-size: var(--text-large); font-weight: var(--font-weight-bold); }    /* H1 */
+.typography-group:nth-of-type(2) .sub-grid > div:nth-child(2) strong { font-size: var(--text-medium); font-weight: var(--font-weight-bold); }   /* H2 */
+.typography-group:nth-of-type(2) .sub-grid > div:nth-child(3) strong { font-size: var(--text-small); font-weight: var(--font-weight-semibold); }/* H3 */
+.typography-group:nth-of-type(2) .sub-grid > div:nth-child(4) strong { font-size: var(--text-small); font-weight: var(--font-weight-medium); }   /* H4 */
+.typography-group:nth-of-type(2) .sub-grid > div:nth-child(5) strong { font-size: var(--text-small); font-weight: var(--font-weight-medium); }   /* H5 */
+.typography-group:nth-of-type(2) .sub-grid > div:nth-child(6) strong { font-size: var(--text-small); font-weight: var(--font-weight-normal); }   /* H6 */
+
+/* Font Weights - Pesos diferenciados */
+.typography-group:nth-of-type(3) .sub-grid > div:nth-child(1) strong { font-weight: var(--font-weight-light); }    /* Light */
+.typography-group:nth-of-type(3) .sub-grid > div:nth-child(2) strong { font-weight: var(--font-weight-normal); }   /* Normal */
+.typography-group:nth-of-type(3) .sub-grid > div:nth-child(3) strong { font-weight: var(--font-weight-medium); }   /* Medium */
+.typography-group:nth-of-type(3) .sub-grid > div:nth-child(4) strong { font-weight: var(--font-weight-semibold); } /* Semibold */
+.typography-group:nth-of-type(3) .sub-grid > div:nth-child(5) strong { font-weight: var(--font-weight-bold); }     /* Bold */
+
+/* Espaciado y Ritmo - Letter spacing y line height diferenciados */
+.typography-group:nth-of-type(4) .sub-grid > div:nth-child(1) strong { letter-spacing: -0.02em; }    /* Tight */
+.typography-group:nth-of-type(4) .sub-grid > div:nth-child(2) strong { letter-spacing: 0; }          /* Normal */
+.typography-group:nth-of-type(4) .sub-grid > div:nth-child(3) strong { letter-spacing: 0.05em; }     /* Wide */
+.typography-group:nth-of-type(4) .sub-grid > div:nth-child(4) strong { line-height: 1.2; }           /* Line 1.2 */
+.typography-group:nth-of-type(4) .sub-grid > div:nth-child(5) strong { line-height: 1.5; }           /* Line 1.5 */
+.typography-group:nth-of-type(4) .sub-grid > div:nth-child(6) strong { line-height: 1.625; }         /* Line 1.625 */
+
+.sub-grid > div .text-xs {
+  color: var(--color-text-secondary);
   font-weight: var(--font-weight-normal);
-  line-height: 1.2;                        /* Line-height compacto */
+  line-height: 1.2;
 }
 
-/* Responsive del sub-grid - mejoras para móviles */
+/* Responsive del sub-grid - ajustes suaves para móviles */
 @media (max-width: 640px) {
   .sub-grid {
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Móvil: mínimo más pequeño */
-    gap: var(--space-1);                   /* Gap aún más compacto en móvil */
-    padding: var(--space-1);               /* Padding mínimo en móvil */
+    grid-template-columns: repeat(2, 1fr); /* Móvil: 2 columnas para mejor flujo */
+    grid-auto-rows: minmax(var(--space-6), auto); /* Filas más compactas en móvil */
+    gap: var(--space-1);
   }
   
-  .sub-grid-item {
-    min-height: var(--space-6);            /* Altura menor en móvil */
-    padding: var(--space-1);               /* Padding mínimo en móvil */
+  .sub-grid > div {
+    min-height: var(--space-6);            /* Altura reducida para móvil */
+    padding: var(--space-1);
+    font-size: var(--text-xs) !important; /* Reset font-size base para móvil */
   }
   
-  .sub-grid-item strong {
-    font-size: var(--text-xs);             /* Texto más pequeño en móvil */
+  .sub-grid > div strong {
+    font-size: var(--text-xs) !important; /* Reset todos los strong en móvil */
   }
   
-  .sub-grid-item small {
-    font-size: 0.625rem;                   /* Extra pequeño en móvil */
+  .sub-grid > div .text-xs {
+    font-size: 0.625rem;                   /* Extra pequeño pero legible */
+  }
+  
+  /* Reset específico para elementos con font-size inline o tipografía específica */
+  .typography-group .sub-grid > div strong {
+    font-size: var(--text-xs) !important; /* Override todas las reglas específicas */
   }
 }
 
 /* Optimización para contenedores muy estrechos */
 @media (max-width: 400px) {
   .sub-grid {
-    grid-template-columns: repeat(5, 1fr); /* En móviles muy pequeños: 5 columnas */
+    grid-template-columns: repeat(5, 1fr); /* En móviles muy pequeños: 5 columnas fijas */
+    grid-auto-rows: minmax(var(--space-4), auto); /* Filas aún más compactas */
     gap: 2px;                              /* Gap mínimo */
   }
 }
@@ -553,9 +675,27 @@ hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separac
    RESPONSIVE MEDIA QUERIES
    ========================================================================== */
 
+/* Mobile extra small - phones in portrait */
+@media (max-width: 480px) {
+  .grid--cards {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    padding: 0 var(--space-4);
+  }
+  
+  .grid--3-col {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
 @media (min-width: 640px) {
   .grid--responsive,
   .grid-responsive-master {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid--3-col {
     grid-template-columns: repeat(2, 1fr);
   }
   
@@ -569,6 +709,10 @@ hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separac
 @media (min-width: 768px) {
   .grid--responsive,
   .grid-responsive-master {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .grid--3-col {
     grid-template-columns: repeat(3, 1fr);
   }
   
@@ -590,7 +734,9 @@ hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separac
   }
   
   .grid--cards {
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-8);
+    padding: 0 var(--space-8);
   }
   
   .md\:grid--2-col {
@@ -603,15 +749,11 @@ hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separac
   }
 
   /* RESPONSIVE BREATHING - 3 ESCALAS CONSONANTES CONTAINERS */
-  .section__container,
   .container-master {
     padding-left: var(--space-10);  /* Tablet: φ² = 2.618rem - CONSONANCIA PERFECTA */
     padding-right: var(--space-10); /* Tablet: φ² = 2.618rem - CONSONANCIA PERFECTA */
   }
 
-  /* Responsive: más compacto en móvil */
-  hr.separator { margin-top: var(--space-3); /* Más compacto en móvil */ }
-  hr.separator--wide { margin-top: var(--space-6); /* Reduce separación amplia en móvil */ }
 }
 
 @media (min-width: 1024px) {
@@ -638,10 +780,11 @@ hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separac
   }
   
   .grid--cards {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-xl);
+    padding: 0 var(--space-xl);
   }
 
-  .section__container,
   .container-master {
     padding-left: var(--space-2xl);  /* Desktop: φ³ = 4.236rem - CONSONANCIA PERFECTA */
     padding-right: var(--space-2xl); /* Desktop: φ³ = 4.236rem - CONSONANCIA PERFECTA */
@@ -681,6 +824,13 @@ hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separac
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Ultra-wide: 400px premium */
     gap: var(--space-2xl);   /* Ultra-wide: máximo espaciado de lujo */
     padding: 0 var(--space-2xl); /* padding = gap consonancia ultra */
+  }
+  
+  /* Grid cards - ultra-wide optimization */
+  .grid--cards {
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: var(--space-2xl);
+    padding: 0 var(--space-2xl);
   }
   
   /* Sistema grid - fluid 5 columns with consistent spacing */

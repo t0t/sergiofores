@@ -14,11 +14,11 @@
 class DropdownComponent {
     constructor(options = {}) {
         this.config = {
-            dropdownSelector: '.dropdown',
-            triggerSelector: '.dropdown__trigger',
-            contentSelector: '.dropdown__content',
-            linkSelector: '.dropdown__link',
-            activeClass: 'dropdown--open',
+            dropdownSelector: '.menu__item--dropdown, .dropdown',
+            triggerSelector: '.menu__link[href*="#"], .dropdown__trigger',
+            contentSelector: '.menu__submenu, .dropdown__content',
+            linkSelector: '.menu__link, .dropdown__link',
+            activeClass: 'menu__item--open',
             jsEnabledClass: 'dropdown--js-enabled',
             closeOnOutsideClick: true,
             closeOnEscape: true,

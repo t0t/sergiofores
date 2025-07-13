@@ -49,13 +49,63 @@ document.addEventListener('DOMContentLoaded', function() {
         loadSvgSprite('assets/sergio-icons.svg');
     }
 
-    const menuToggle = document.querySelector('.header__menu-toggle');
-    const mainNavList = document.getElementById('main-nav-list');
+    // Legacy menu toggle (mantener por compatibilidad)
+    const legacyMenuToggle = document.querySelector('.header__menu-toggle');
+    const legacyMainNavList = document.getElementById('main-nav-list');
 
-    if (menuToggle && mainNavList) {
+    if (legacyMenuToggle && legacyMainNavList) {
+        legacyMenuToggle.addEventListener('click', function() {
+            legacyMainNavList.classList.toggle('is-open');
+            this.setAttribute('aria-expanded', legacyMainNavList.classList.contains('is-open'));
+        });
+    }
+
+    // NEW: PageHeader + Menu BEM toggle functionality
+    const menuToggle = document.querySelector('.menu__toggle');
+    const menu = document.querySelector('.menu--mobile-toggle');
+
+    if (menuToggle && menu) {
         menuToggle.addEventListener('click', function() {
-            mainNavList.classList.toggle('is-open');
-            this.setAttribute('aria-expanded', mainNavList.classList.contains('is-open'));
+            const isOpen = menu.classList.contains('menu--open');
+            
+            // Toggle menu state
+            menu.classList.toggle('menu--open');
+            
+            // Update aria-expanded
+            this.setAttribute('aria-expanded', !isOpen);
+            
+            // Update icon if needed (optional)
+            const icon = this.querySelector('.menu__icon');
+            if (icon) {
+                icon.style.transform = !isOpen ? 'rotate(90deg)' : 'rotate(0deg)';
+            }
+            
+            console.log('Menu toggled:', !isOpen ? 'open' : 'closed');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!menu.contains(event.target) && menu.classList.contains('menu--open')) {
+                menu.classList.remove('menu--open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                const icon = menuToggle.querySelector('.menu__icon');
+                if (icon) {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            }
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && menu.classList.contains('menu--open')) {
+                menu.classList.remove('menu--open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.focus(); // Return focus to toggle button
+                const icon = menuToggle.querySelector('.menu__icon');
+                if (icon) {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            }
         });
     }
 

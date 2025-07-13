@@ -272,6 +272,388 @@
   opacity: 1;
 }
 
+/* Features Card Variation 2: Centered text, no category, no hover */
+.features__card--centered {
+  text-align: center;
+}
+
+.features__card--centered .features__card-content {
+  align-items: center;
+}
+
+.features__card--centered .features__card-title,
+.features__card--centered .features__card-description {
+  text-align: center;
+}
+
+/* Disable hover effects for centered card */
+.features__card--centered:hover .features__card-overlay,
+.features__card--centered .features__card-overlay {
+  display: none;
+}
+
+/* Features Card Variation 3: Background image only with hover overlay */
+.features__card--bg-only {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: var(--space-220px); /* Same height as card images */
+  border: none; /* Remove border for full image effect */
+}
+
+.features__card--bg-only .features__card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4), transparent);
+  color: var(--color-white);
+  padding: var(--space-6);
+  transform: translateY(100%);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.features__card--bg-only .features__card-content--overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6), transparent);
+  color: var(--color-white);
+  padding: var(--space-6);
+  transform: translateY(100%);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.features__card--bg-only:hover .features__card-content--overlay {
+  transform: translateY(0);
+}
+
+.features__card--bg-only .features__card-title {
+  color: var(--color-white);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.features__card--bg-only .features__card-description {
+  color: var(--gray-4);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Features Card Variation 2: Centered text, no category, no hover */
+.features__card--centered {
+  text-align: center;
+}
+
+.features__card--centered .features__card-content {
+  align-items: center;
+}
+
+.features__card--centered .features__card-title,
+.features__card--centered .features__card-description {
+  text-align: center;
+}
+
+/* Disable hover effects for centered card */
+.features__card--centered:hover .features__card-overlay,
+.features__card--centered .features__card-overlay {
+  display: none;
+}
+
+/* Features Card Variation 3: Background image only with hover overlay */
+.features__card--bg-only {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: var(--space-220px); /* Same height as card images */
+  border: none; /* Remove border for full image effect */
+}
+
+.features__card--bg-only .features__card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4), transparent);
+  color: var(--color-white);
+  padding: var(--space-6);
+  transform: translateY(100%);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.features__card--bg-only .features__card-content--overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6), transparent);
+  color: var(--color-white);
+  padding: var(--space-6);
+  transform: translateY(100%);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.features__card--bg-only:hover .features__card-content--overlay {
+  transform: translateY(0);
+}
+
+.features__card--bg-only .features__card-title {
+  color: var(--color-white);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.features__card--bg-only .features__card-description {
+  color: var(--gray-4);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Features Card Variation 4: Color background, no image */
+.features__card--color-bg {
+  background-color: var(--color-cyan);
+  color: var(--color-black);
+  border: none;
+  min-height: var(--space-220px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.features__card--color-bg .features__card-content {
+  text-align: center;
+  color: var(--color-black);
+}
+
+.features__card--color-bg .features__card-title {
+  color: var(--color-black);
+  font-weight: var(--font-weight-bold);
+}
+
+.features__card--color-bg .features__card-description {
+  color: var(--color-black);
+  opacity: 0.8;
+}
+
+.features__card--color-bg .features__card-category {
+  color: var(--color-black);
+  opacity: 0.9;
+  font-weight: var(--font-weight-bold);
+}
+
+/* Features Card Variation 5: Circular card with centered content */
+.features__card--circular {
+  border-radius: 50%;
+  width: calc(var(--space-220px) + var(--space-xl) * 2);
+  height: calc(var(--space-220px) + var(--space-xl) * 2);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+  border: none;
+  aspect-ratio: 1;
+  padding: var(--space-xl);
+  box-sizing: border-box;
+}
+
+.features__card--circular .features__card-content {
+  text-align: center;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.features__card--circular .features__card-title {
+  color: var(--color-black);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-medium);
+}
+
+.features__card--circular .features__card-description {
+  color: var(--color-black);
+  opacity: 0.8;
+  font-size: var(--text-small);
+}
+
+.features__card--circular .features__card-category {
+  color: var(--color-black);
+  opacity: 0.9;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-2);
+}
+
+/* Features Card Variation 6: Fully clickable with background image */
+.features__card--clickable {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: var(--space-220px);
+  border: none;
+  cursor: pointer;
+  transition: transform var(--duration-base) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.features__card--clickable::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+  z-index: 1;
+}
+
+.features__card--clickable .features__card-content {
+  position: relative;
+  z-index: 2;
+  color: var(--color-white);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-6);
+}
+
+.features__card--clickable .features__card-title {
+  color: var(--color-white);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: var(--font-weight-bold);
+}
+
+.features__card--clickable .features__card-description {
+  color: var(--gray-4);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.features__card--clickable .features__card-category {
+  color: var(--color-cyan);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  font-weight: var(--font-weight-bold);
+}
+
+.features__card--clickable:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.features__card--clickable:hover::before {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+}
+
+/* Features Card Variation 7: Two columns layout - image left, content right */
+.features__card--two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  min-height: var(--space-220px);
+  background-color: var(--color-surface-primary);
+  border: var(--border-width-base) solid var(--color-gray-200);
+  overflow: hidden;
+  align-items: stretch;
+  grid-column: 1 / -1; /* Ocupa todo el ancho disponible del grid padre */
+}
+
+.features__card--two-cols .features__card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  grid-column: 1;
+}
+
+.features__card--two-cols .features__card-content {
+  grid-column: 2;
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.features__card--two-cols .features__card-title {
+  margin-bottom: var(--space-3);
+}
+
+.features__card--two-cols .features__card-description {
+  margin-bottom: var(--space-2);
+}
+
+/* Features Card Variation 8: Two columns layout - content left, image right */
+.features__card--two-cols-reverse {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: var(--space-220px);
+  background-color: var(--color-surface-primary);
+  border: none;
+  overflow: hidden;
+  align-items: stretch;
+  grid-column: 1 / -1; /* Ocupa todo el ancho disponible del grid padre */
+}
+
+.features__card--two-cols-reverse .features__card-content {
+  grid-column: 1;
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.features__card--two-cols-reverse .features__card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  grid-column: 2;
+}
+
+.features__card--two-cols-reverse .features__card-title {
+  margin-bottom: var(--space-3);
+}
+
+.features__card--two-cols-reverse .features__card-description {
+  margin-bottom: var(--space-2);
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 640px) {
+  .features__card--two-cols {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  
+  .features__card--two-cols .features__card-image {
+    grid-column: 1;
+    grid-row: 1;
+    height: 200px;
+  }
+  
+  .features__card--two-cols .features__card-content {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  .features__card--two-cols-reverse {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  
+  .features__card--two-cols-reverse .features__card-content {
+    grid-column: 1;
+    grid-row: 1;
+    order: 1;
+  }
+  
+  .features__card--two-cols-reverse .features__card-image {
+    grid-column: 1;
+    grid-row: 2;
+    height: 200px;
+    order: 2;
+  }
+}
+
 /* ==========================================================================
    NOTIFICACIONES Y ESTADOS
    ========================================================================== */
@@ -641,11 +1023,11 @@ a {
 }
 
 .p2 {
-  padding: var(--space-6);                /* Estándar: 1.618rem = ~26px (φ) */
+  padding: var(--space-xl);               /* Estándar: var(--space-xl) = consonancia grid */
 }
 
 .p3 {
-  padding: var(--space-8);                /* Grande: 2rem = 32px */
+  padding: var(--space-xl);               /* CONSONANCIA PERFECTA: Idéntico al gap del grid-flex desktop */
 }
 
 /* MARGIN UTILITIES - 3 escalas consonantes con variables del sistema */
@@ -658,7 +1040,7 @@ a {
 }
 
 .m2 {
-  margin: var(--space-6);                 /* Estándar: 1.618rem = ~26px (φ) */
+  margin: var(--space-xl);                /* Estándar: var(--space-xl) = consonancia grid */
 }
 
 .m3 {
@@ -668,59 +1050,80 @@ a {
 /* PADDING DIRECCIONAL - Para control específico por lado */
 .pt0 { padding-top: 0px; }
 .pt1 { padding-top: var(--space-3); }
-.pt2 { padding-top: var(--space-6); }
+.pt2 { padding-top: var(--space-xl); }
 
 .pb0 { padding-bottom: 0px; }
 .pb1 { padding-bottom: var(--space-3); }
-.pb2 { padding-bottom: var(--space-6); }
+.pb2 { padding-bottom: var(--space-xl); }
 
 .pl0 { padding-left: 0px; }
 .pl1 { padding-left: var(--space-3); }
-.pl2 { padding-left: var(--space-6); }
+.pl2 { padding-left: var(--space-xl); }
 
 .pr0 { padding-right: 0px; }
 .pr1 { padding-right: var(--space-3); }
-.pr2 { padding-right: var(--space-6); }
+.pr2 { padding-right: var(--space-xl); }
 
 /* PADDING X e Y - Para control de ejes */
 .px0 { padding-left: 0px; padding-right: 0px; }
 .px1 { padding-left: var(--space-3); padding-right: var(--space-3); }
-.px2 { padding-left: var(--space-6); padding-right: var(--space-6); }
+.px2 { padding-left: var(--space-xl); padding-right: var(--space-xl); }
 
 .py0 { padding-top: 0px; padding-bottom: 0px; }
 .py1 { padding-top: var(--space-3); padding-bottom: var(--space-3); }
-.py2 { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+.py2 { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
 
 /* MARGIN DIRECCIONAL - Para control específico por lado */
 .mt0 { margin-top: 0px; }
 .mt1 { margin-top: var(--space-3); }
-.mt2 { margin-top: var(--space-6); }
+.mt2 { margin-top: var(--space-xl); }
 
 .mb0 { margin-bottom: 0px; }
 .mb1 { margin-bottom: var(--space-3); }
-.mb2 { margin-bottom: var(--space-6); }
+.mb2 { margin-bottom: var(--space-xl); }
 
 .ml0 { margin-left: 0px; }
 .ml1 { margin-left: var(--space-3); }
-.ml2 { margin-left: var(--space-6); }
+.ml2 { margin-left: var(--space-xl); }
 
 .mr0 { margin-right: 0px; }
 .mr1 { margin-right: var(--space-3); }
-.mr2 { margin-right: var(--space-6); }
+.mr2 { margin-right: var(--space-xl); }
 
 /* MARGIN X e Y - Para control de ejes */
 .mx0 { margin-left: 0px; margin-right: 0px; }
 .mx1 { margin-left: var(--space-3); margin-right: var(--space-3); }
-.mx2 { margin-left: var(--space-6); margin-right: var(--space-6); }
+.mx2 { margin-left: var(--space-xl); margin-right: var(--space-xl); }
 
 .my0 { margin-top: 0px; margin-bottom: 0px; }
 .my1 { margin-top: var(--space-3); margin-bottom: var(--space-3); }
-.my2 { margin-top: var(--space-6); margin-bottom: var(--space-6); }
+.my2 { margin-top: var(--space-xl); margin-bottom: var(--space-xl); }
 
 /* MARGIN AUTO - Para centrado */
 .mx-auto { margin-left: auto; margin-right: auto; }
 .ml-auto { margin-left: auto; }
 .mr-auto { margin-right: auto; }
+
+/* ==========================================================================
+   DESTACADO DE GRUPOS TIPOGRÁFICOS
+   ========================================================================== */
+
+/* Grupo tipográfico destacado con fondo claro/amarillo y sin bordes */
+.typography-group--highlighted {
+  background-color: var(--color-yellow);  /* Fondo amarillo como solicitado */
+  border: none;                           /* Sin bordes */
+  padding: var(--space-6);                /* Padding interno para respiración */
+}
+
+/* Asegurar que el contenido interno mantiene buena legibilidad */
+.typography-group--highlighted .sub-grid > div strong {
+  color: var(--color-black);              /* Texto negro para contraste con amarillo */
+}
+
+.typography-group--highlighted .sub-grid > div .text-xs {
+  color: var(--color-black);              /* Descripción también en negro */
+  opacity: 0.8;                           /* Ligeramente transparente para jerarquía */
+}
 
 /* ==========================================================================
    TIPOGRAFÍA UTILITARIA - TAMAÑOS ESPECIALES

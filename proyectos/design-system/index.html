@@ -11,111 +11,107 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.svg">
 
     <!-- Sistema de Diseño Atómico - Arquitectura Modular -->
-    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/design-system.css?v=13">
 
     <!-- JavaScript - Navegación inteligente CLAUDE.md compliant -->
     <script src="js/claude-navigation.js" defer></script>
     <script src="js/dropdown-component.js" defer></script>
+    <script src="js/pageheader-scroll.js" defer></script>
     <script src="js/main.js" defer></script>
 </head>
 
 <body>
-    <header class="header-master">
-        <div class="header-container-master">
-            <a href="#hero" class="header__brand logo">
-                <span class="logo__mark">01234</span>
-                <span class="logo__text">Design System</span>
+    <!-- PageHeader BEM - Demo viviente del sistema -->
+    <header class="pageheader pageheader--sticky pageheader--dynamic">
+        <div class="pageheader__container">
+            <a href="#hero" class="pageheader__logo pageheader__logo--custom">
+                Design System
             </a>
-            <nav class="header__nav">
-                <button class="header__menu-toggle" aria-label="Toggle navigation">
-                    <svg class="icon icon--lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </button>
-                <ul id="main-nav-list">
-
-                    <!-- Fundamentos Dropdown -->
-                    <li class="dropdown">
-                        <button class="dropdown__trigger" aria-label="Fundamentos del sistema">
-                            Fundamentos
-                            <svg class="dropdown__arrow" viewBox="0 0 16 16">
-                                <path d="M4 6L8 10L12 6" stroke="currentColor" fill="none" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                        <div class="dropdown__content">
-                            <ul class="dropdown__list">
-                                <li class="dropdown__item">
-                                    <a href="#tipografia" class="dropdown__link">Tipografía</a>
+            <div class="pageheader__menu">
+                <nav class="menu menu--mobile-toggle" id="main-menu">
+                    <button class="menu__toggle" aria-label="Toggle navigation" aria-expanded="false">
+                        <svg class="menu__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    <ul class="menu__list" id="main-nav-list">
+                        <!-- Fundamentos Dropdown - Ejemplo menu__item--dropdown -->
+                        <li class="menu__item menu__item--dropdown">
+                            <a href="#fundamentos" class="menu__link">
+                                Fundamentos
+                                <svg class="menu__icon" viewBox="0 0 16 16">
+                                    <path d="M4 6L8 10L12 6" stroke="currentColor" fill="none" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </a>
+                            <ul class="menu__submenu">
+                                <li class="menu__item">
+                                    <a href="#tipografia" class="menu__link">Tipografía</a>
                                 </li>
-                                <li class="dropdown__item">
-                                    <a href="#colores" class="dropdown__link">Colores</a>
+                                <li class="menu__item">
+                                    <a href="#colores" class="menu__link">Colores</a>
                                 </li>
-                                <li class="dropdown__item">
-                                    <a href="#elementos-html" class="dropdown__link">HTML Básico</a>
+                                <li class="menu__item">
+                                    <a href="#elementos-html" class="menu__link">HTML Básico</a>
                                 </li>
-                                <li class="dropdown__item">
-                                    <a href="#espaciado" class="dropdown__link">Espaciado</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <!-- Layout & Grid Dropdown -->
-                    <li class="dropdown">
-                        <button class="dropdown__trigger" aria-label="Layout y grid systems">
-                            Layout
-                            <svg class="dropdown__arrow" viewBox="0 0 16 16">
-                                <path d="M4 6L8 10L12 6" stroke="currentColor" fill="none" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                        <div class="dropdown__content">
-                            <ul class="dropdown__list">
-                                <li class="dropdown__item">
-                                    <a href="#grid" class="dropdown__link">Grid System</a>
-                                </li>
-                                <li class="dropdown__item">
-                                    <a href="#layout" class="dropdown__link">Layout Container</a>
+                                <li class="menu__item">
+                                    <a href="#espaciado" class="menu__link">Espaciado</a>
                                 </li>
                             </ul>
-                        </div>
-                    </li>
+                        </li>
 
-                    <!-- Componentes Dropdown -->
-                    <li class="dropdown">
-                        <button class="dropdown__trigger" aria-label="Componentes y elementos">
-                            Componentes
-                            <svg class="dropdown__arrow" viewBox="0 0 16 16">
-                                <path d="M4 6L8 10L12 6" stroke="currentColor" fill="none" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                        <div class="dropdown__content">
-                            <ul class="dropdown__list">
-                                <li class="dropdown__item">
-                                    <a href="#componentes" class="dropdown__link">Componentes Básicos</a>
+                        <!-- Layout & Grid Dropdown -->
+                        <li class="menu__item menu__item--dropdown">
+                            <a href="#layout" class="menu__link">
+                                Layout
+                                <svg class="menu__icon" viewBox="0 0 16 16">
+                                    <path d="M4 6L8 10L12 6" stroke="currentColor" fill="none" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </a>
+                            <ul class="menu__submenu">
+                                <li class="menu__item">
+                                    <a href="#grid" class="menu__link">Grid System</a>
                                 </li>
-                                <li class="dropdown__item">
-                                    <a href="#formulario" class="dropdown__link">Formulario</a>
-                                </li>
-                                <li class="dropdown__item">
-                                    <a href="#features" class="dropdown__link">Features</a>
+                                <li class="menu__item">
+                                    <a href="#layout" class="menu__link">Layout Container</a>
                                 </li>
                             </ul>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+                        </li>
+
+                        <!-- Componentes Dropdown -->
+                        <li class="menu__item menu__item--dropdown">
+                            <a href="#componentes" class="menu__link">
+                                Componentes
+                                <svg class="menu__icon" viewBox="0 0 16 16">
+                                    <path d="M4 6L8 10L12 6" stroke="currentColor" fill="none" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </a>
+                            <ul class="menu__submenu">
+                                <li class="menu__item">
+                                    <a href="#componentes" class="menu__link">Componentes</a>
+                                </li>
+                                <li class="menu__item">
+                                    <a href="#formulario" class="menu__link">Formulario</a>
+                                </li>
+                                <li class="menu__item">
+                                    <a href="#features" class="menu__link">Features</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section - .hero-master -->
-        <section class="hero-master hero-master--image"
+        <!-- Hero Section - .hero-master con fullscreen overlap -->
+        <section class="hero-master hero-master--fullscreen hero-master--image"
             style="background-image: url('../fotografia/img/photographs/determinacion-luminosa.jpg');">
             <div class="hero-container-master">
                 <h2 class="hero-title-master hero-title-master--inverse">Cosmovisión aplicada al diseño</h2>
@@ -124,831 +120,442 @@
                     cada elemento encaja en una geometría fractal que guía la lectura y potencia la intención de diseño.
                 </p>
                 <div class="hero-actions-master">
-                    <button class="btn btn--primary">Explorar Sistema</button>
+                    <a href="#features" class="btn btn--primary">Explorar Sistema</a>
                 </div>
             </div>
         </section>
 
-        <!-- Principios Fundamentales Section - GRID RESPONSIVE PHI PREMIUM -->
-        <section id="principios" class="section">
-            <div class="grid-flex m0 p3">
-                <!-- Elemento Hero/Featured - Ocupa 2 columnas por defecto -->
-                <div class="card card--featured p2">
-                    <div class="card__body m0">
-                        <h1 class="mb1">Sistema de Diseño Atómico</h1>
-                        <p class="card__text mb1">Filosofía de diseño que prioriza la consonancia sistémica, las
-                            proporciones áureas y la estructura nuclear.</p>
-                    </div>
-                </div>
+        <!-- Principios Fundamentales - GRID RESPONSIVE PHI PREMIUM directamente anidado -->
+        <div class="grid-flex m0 p3">
+            <!-- Elemento Header - Ocupa 2 columnas por defecto -->
+            <div class="card grid-flex__header">
+                <h1 class="mb1">Sistema de Diseño Atómico</h1>
+                <p class="card__text mb1">Filosofía de diseño que prioriza la consonancia sistémica, las
+                    proporciones áureas y la estructura nuclear.</p>
+            </div>
 
-                <div class="card p1">
-                    <div class="card__body m0">
-                        <h3 class="card__title mb1">Consonancia Sistémica</h3>
-                        <p class="card__text mb1">Armonía matemática perfecta entre tipografía, espaciado y layout.
-                            Cada elemento resuena con el conjunto total.</p>
-                        <p class="card__text mb0"><strong>Principio:</strong> Como una sinfonía, todos los elementos
-                            deben vibrar en la misma frecuencia.</p>
-                    </div>
-                </div>
-
-                <div class="card p1">
-                    <div class="card__body m0">
-                        <h3 class="card__title mb1">Estructura Nuclear</h3>
-                        <p class="card__text mb1">Centro atómico inmutable desde el cual se propaga todo. Una sola
-                            fuente de verdad para cada concepto.</p>
-                        <p class="card__text mb0"><strong>Principio:</strong> Todo emana del núcleo, nada se
-                            duplica.</p>
-                    </div>
-                </div>
-
-                <div class="card p1">
-                    <div class="card__body m0">
-                        <h3 class="card__title mb1">Paleta Sagrada</h3>
-                        <p class="card__text mb1">Solo 5 colores puros + 5 grises exactos. NUNCA inventar colores
-                            fuera de esta paleta inmutable.</p>
-                        <p class="card__text mb0"><strong>Principio:</strong> La paleta es la biblia visual. Si no
-                            está aquí, no existe.</p>
-                    </div>
-                </div>
-
-                <div class="card p1">
-                    <div class="card__body m0">
-                        <h3 class="card__title mb1">Espaciado Matemáticamente Perfecto</h3>
-                        <p class="card__text mb1">Fibonacci y proporciones áureas en tipografía y espaciado. Sistema
-                            Utopia como núcleo fluido.</p>
-                        <p class="card__text mb0"><strong>Principio:</strong> Cada píxel debe estar justificado
-                            matemáticamente.</p>
-                    </div>
-                </div>
-
-                <div class="card p1">
-                    <div class="card__body m0">
-                        <h3 class="card__title mb1">Fibonacci Tipográfico</h3>
-                        <p class="card__text mb1">Escalas Utopia con progresiones naturales. Clamp() fluido
-                            garantiza proporciones áureas perfectas.</p>
-                        <p class="card__text mb0"><strong>Principio:</strong> La naturaleza ya resolvió las
-                            proporciones. Solo hay que aplicarlas.</p>
-                    </div>
-                </div>
-
-                <div class="card p1">
-                    <div class="card__body m0">
-                        <h3 class="card__title mb1">Respiración Horizontal</h3>
-                        <p class="card__text mb1">Grids JAMÁS pegados a bordes. Margin universal en regla base, no
-                            media queries específicos.</p>
-                        <p class="card__text mb0"><strong>Principio:</strong> El contenido necesita aire para
-                            existir dignamente.</p>
-                    </div>
-                </div>
-
-                <div class="card p1">
-                    <div class="card__body m0">
-                        <h3 class="card__title mb1">Baseline Grid 24px</h3>
-                        <p class="card__text mb1">Ritmo vertical sagrado line-height 1.5. Todo alineado a múltiplos
-                            del baseline para respiración perfecta.</p>
-                        <p class="card__text mb0"><strong>Principio:</strong> El ritmo vertical es la columna
-                            vertebral del diseño.</p>
-                    </div>
-                </div>
-
-                <!-- ELEMENTO SEXTO - Sub-grid con 5 elementos -->
-                <!-- Sub-grid con 5 elementos (niveles 01234) -->
-                <div class="sub-grid mt0">
-                    <div>
-                        <strong>0</strong> <span class="text-xs">Campo cuántico - Potencial infinito y curiosidad</span>
-                    </div>
-                    <div>
-                        <strong>1</strong> <span class="text-xs">Esencia - Claridad y decisiones nucleares</span>
-                    </div>
-                    <div>
-                        <strong>2</strong> <span class="text-xs">Análisis - Diferenciación y memoria</span>
-                    </div>
-                    <div>
-                        <strong>3</strong> <span class="text-xs">Comunicación - Conexión y síntesis</span>
-                    </div>
-                    <div>
-                        <strong>4</strong> <span class="text-xs">Materialización - Acción y resultados</span>
-                    </div>
-                </div>
-
-
-                <div class="card">
-                    <div class="card__body">
-                        <h3 class="card__title">Monocromático Elegante</h3>
-                        <p class="card__text">95% grises + 5% color-1. Sofisticación through constraint. Único
-                            acento naranja 01234 permitido.</p>
-                        <p class="card__text"><strong>Principio:</strong> La verdadera elegancia reside en la
-                            restricción inteligente.</p>
-                    </div>
-                </div>
-
-                <!-- ELEMENTO CON FONDO DE IMAGEN - Solo imagen, sin contenido -->
-                <div class="card card--image-only p0">
-                </div>
-
-                <div class="card p2" style="background-color: var(--color-black); color: var(--color-white);">
-                    <div class="card__body m0">
-                        <h3 class="card__title mb1" style="color: var(--color-cyan);">Último Elemento Inteligente</h3>
-                        <p class="card__text mb1">Como último elemento del grid, automáticamente me expando a toda la
-                            fila disponible. El grid container controla este comportamiento con :last-child.</p>
-                        <p class="card__text mb0"><strong>Principio:</strong> CSS Grid permite comportamientos
-                            inteligentes sin clases adicionales, solo desde el contenedor.</p>
-                    </div>
+            <div class="card">
+                <div class="card__body m0">
+                    <h3 class="card__title mb1">Consonancia Sistémica</h3>
+                    <p class="card__text mb1">Armonía matemática perfecta entre tipografía, espaciado y layout.
+                        Cada elemento resuena con el conjunto total.</p>
+                    <p class="card__text mb0"><strong>Principio:</strong> Como una sinfonía, todos los elementos
+                        deben vibrar en la misma frecuencia.</p>
                 </div>
             </div>
 
-        </section>
+            <div class="card">
+                <div class="card__body m0">
+                    <h3 class="card__title mb1">Estructura Nuclear</h3>
+                    <p class="card__text mb1">Centro atómico inmutable desde el cual se propaga todo. Una sola
+                        fuente de verdad para cada concepto.</p>
+                    <p class="card__text mb0"><strong>Principio:</strong> Todo emana del núcleo, nada se
+                        duplica.</p>
+                </div>
+            </div>
 
+            <div class="card">
+                <div class="card__body m0">
+                    <h3 class="card__title mb1">Paleta Sagrada</h3>
+                    <p class="card__text mb1">Solo 5 colores puros + 5 grises exactos. NUNCA inventar colores
+                        fuera de esta paleta inmutable.</p>
+                    <p class="card__text mb0"><strong>Principio:</strong> La paleta es la biblia visual. Si no
+                        está aquí, no existe.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card__body m0">
+                    <h3 class="card__title mb1">Espaciado Matemáticamente Perfecto</h3>
+                    <p class="card__text mb1">Fibonacci y proporciones áureas en tipografía y espaciado. Sistema
+                        Utopia como núcleo fluido.</p>
+                    <p class="card__text mb0"><strong>Principio:</strong> Cada píxel debe estar justificado
+                        matemáticamente.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card__body m0">
+                    <h3 class="card__title mb1">Fibonacci Tipográfico</h3>
+                    <p class="card__text mb1">Escalas Utopia con progresiones naturales. Clamp() fluido
+                        garantiza proporciones áureas perfectas.</p>
+                    <p class="card__text mb0"><strong>Principio:</strong> La naturaleza ya resolvió las
+                        proporciones. Solo hay que aplicarlas.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card__body m0">
+                    <h3 class="card__title mb1">Respiración Horizontal</h3>
+                    <p class="card__text mb1">Grids JAMÁS pegados a bordes. Margin universal en regla base, no
+                        media queries específicos.</p>
+                    <p class="card__text mb0"><strong>Principio:</strong> El contenido necesita aire para
+                        existir dignamente.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card__body m0">
+                    <h3 class="card__title mb1">Baseline Grid 24px</h3>
+                    <p class="card__text mb1">Ritmo vertical sagrado line-height 1.5. Todo alineado a múltiplos
+                        del baseline para respiración perfecta.</p>
+                    <p class="card__text mb0"><strong>Principio:</strong> El ritmo vertical es la columna
+                        vertebral del diseño.</p>
+                </div>
+            </div>
+
+            <!-- ELEMENTO SEXTO - Sub-grid con 5 elementos -->
+            <!-- Sub-grid con 5 elementos (niveles 01234) -->
+            <div class="sub-grid">
+                <div>
+                    <strong>0</strong> <span class="text-xs">Campo cuántico - Potencial infinito y curiosidad</span>
+                </div>
+                <div>
+                    <strong>1</strong> <span class="text-xs">Esencia - Claridad y decisiones nucleares</span>
+                </div>
+                <div>
+                    <strong>2</strong> <span class="text-xs">Análisis - Diferenciación y memoria</span>
+                </div>
+                <div>
+                    <strong>3</strong> <span class="text-xs">Comunicación - Conexión y síntesis</span>
+                </div>
+                <div>
+                    <strong>4</strong> <span class="text-xs">Materialización - Acción y resultados</span>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card__body">
+                    <h3 class="card__title">Monocromático Elegante</h3>
+                    <p class="card__text">95% grises + 5% color-1. Sofisticación through constraint. Único
+                        acento naranja 01234 permitido.</p>
+                    <p class="card__text"><strong>Principio:</strong> La verdadera elegancia reside en la
+                        restricción inteligente.</p>
+                </div>
+            </div>
+
+            <!-- ELEMENTO CON FONDO DE IMAGEN - Solo imagen, sin contenido -->
+            <div class="card card--image-only p0">
+            </div>
+
+            <div class="card p3" style="background-color: var(--color-gray-100);">
+                <div class="card__body m0">
+                    <h3 class="card__title mb1" style="color: var(--color-text-primary);">Último Elemento Inteligente
+                    </h3>
+                    <p class="card__text mb1">Como último elemento del grid, automáticamente me expando a toda la
+                        fila disponible. El grid container controla este comportamiento con :last-child.</p>
+                    <p class="card__text mb0"><strong>Principio:</strong> CSS Grid permite comportamientos
+                        inteligentes sin clases adicionales, solo desde el contenedor.</p>
+                </div>
+            </div>
+        </div>
 
         <!-- Basic HTML Elements Section - CONTAINER GRID APLICADO -->
-        <section id="elementos-html" class="section" style="background-color: var(--color-surface-secondary);">
-            <div class="section__container">
+        <section id="elementos-html" class="section pt2 pb2" style="background-color: var(--color-surface-secondary);">
+            <div class="container-master">
                 <header class="section__header">
                     <h2 class="section__title">Elementos HTML Básicos</h2>
                     <p class="section__subtitle">Estilos para elementos HTML comunes.</p>
                 </header>
-                <div class="section__content">
-                    <div class="grid grid--3-col-phi">
-                        <div>
-                            <h3>Párrafos y Enlaces</h3>
-                            <p>Este es un párrafo de ejemplo con un <a href="#">enlace de texto</a>. Los enlaces deben
-                                ser claros y distinguibles.</p>
-                            <p><strong>Texto en negrita</strong> y <em>texto en cursiva</em> para énfasis.</p>
-                        </div>
-                        <div>
-                            <h3>Lista no ordenada</h3>
-                            <ul>
-                                <li>Primer elemento de la lista</li>
-                                <li>Segundo elemento de la lista</li>
-                                <li>Tercer elemento de la lista</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>Lista ordenada</h3>
-                            <ol>
-                                <li>Primer elemento ordenado</li>
-                                <li>Segundo elemento ordenado</li>
-                                <li>Tercer elemento ordenado</li>
-                            </ol>
-                        </div>
+                <div class="grid-flex">
+                    
+                    <div>
+                        <h3>Lista no ordenada</h3>
+                        <ul>
+                            <li>Primer elemento de la lista</li>
+                            <li>Segundo elemento de la lista</li>
+                            <li>Tercer elemento de la lista</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Lista ordenada</h3>
+                        <ol>
+                            <li>Primer elemento ordenado</li>
+                            <li>Segundo elemento ordenado</li>
+                            <li>Tercer elemento ordenado</li>
+                        </ol>
                     </div>
 
-                    <h3>Citas</h3>
-                    <blockquote>
-                        <p>La tipografía es la arquitectura del contenido. Un buen sistema tipográfico permite que la
-                            información fluya naturalmente, respetando las proporciones matemáticas que hacen que la
-                            lectura sea cómoda y efectiva.</p>
-                        <footer>— Sergio Forés</footer>
-                    </blockquote>
-
-                    <hr class="separator">
-                    <!-- Typography Variables Showcase -->
-                    <hr class="separator">
-
-                    <div class="typography-complete-showcase grid--responsive-phi">
-
-                        <!-- Sistema Nuclear - 3 Tamaños + Mono -->
-                        <div class="typography-group">
-                            <h4>Sistema Nuclear - 3 Tamaños</h4>
-                            <div class="text-large-demo">Texto Large - φ² (2.618)</div>
-                            <div class="text-medium-demo">Texto Medium - φ (1.618)</div>
-                            <div class="text-small-demo">Texto Small - Base (1.0)</div>
-                            <div class="text-mono-demo">Font Mono - Técnico</div>
-                            <p><small>Proporciones áureas matemáticamente perfectas</small></p>
-                        </div>
-
-                        <!-- Jerarquía Visual H1-H6 -->
-                        <div class="typography-group">
-                            <h4>Jerarquía HTML Completa</h4>
-                            <h1>H1 - Potencial Cuántico</h1>
-                            <h2>H2 - Esencia Nuclear</h2>
-                            <h3>H3 - Análisis Sistémico</h3>
-                            <h4>H4 - Comunicación</h4>
-                            <h5>H5 - Materialización</h5>
-                            <h6>H6 - Detalle Fractal</h6>
-                        </div>
-
-                        <!-- Font Weights Esenciales -->
-                        <div class="typography-group">
-                            <h4>Font Weights Esenciales</h4>
-                            <div class="font-weight-light-demo">Light (300) - Elegancia</div>
-                            <div class="font-weight-normal-demo">Normal (400) - Base</div>
-                            <div class="font-weight-medium-demo">Medium (500) - Títulos</div>
-                            <div class="font-weight-semibold-demo">Semibold (600) - Énfasis</div>
-                            <div class="font-weight-bold-demo">Bold (700) - Impacto</div>
-                        </div>
-
-                        <!-- Espaciado y Ritmo -->
-                        <div class="typography-group">
-                            <h4>Espaciado y Ritmo</h4>
-                            <div class="letter-spacing-tight-demo">Letter Tight - Compacto</div>
-                            <div class="letter-spacing-normal-demo">Letter Normal - Estándar</div>
-                            <div class="letter-spacing-wide-demo">Letter Wide - Respiración</div>
-                            <br>
-                            <div class="line-height-tight-demo">Line Tight (1.2) - Títulos</div>
-                            <div class="line-height-normal-demo">Line Normal (1.5) - Cuerpo</div>
-                            <div class="line-height-relaxed-demo">Line Relaxed (1.625) - Lectura</div>
-                        </div>
-
-                        <!-- Variables CSS Técnicas -->
-                        <div class="typography-group">
-                            <h4>Variables CSS Técnicas</h4>
-                            <div class="typography-variables">
-                                <div class="variable-item">
-                                    <strong>--text-large:</strong> clamp(2.618rem, ...)
-                                </div>
-                                <div class="variable-item">
-                                    <strong>--text-medium:</strong> clamp(1.618rem, ...)
-                                </div>
-                                <div class="variable-item">
-                                    <strong>--text-small:</strong> clamp(1rem, ...)
-                                </div>
-                            </div>
-                            <p><small>Escalas fluidas con clamp() responsivo</small></p>
-                        </div>
-
-                        <!-- Principios del Sistema -->
-                        <div class="typography-group">
-                            <h4>Principios del Sistema</h4>
-                            <p><strong>Baseline Grid:</strong> 24px (1.5rem) - Ritmo vertical sagrado</p>
-                            <p><strong>Progresión:</strong> Secuencia áurea φ para escalas</p>
-                            <p><strong>Responsividad:</strong> Clamp() para fluidez total</p>
-                            <p><strong>Restricción:</strong> Solo 3 tamaños principales</p>
-                            <p><strong>Coherencia:</strong> Variables CSS como única fuente</p>
-                        </div>
-
+                    <div>
+                        <h3>Párrafos y Enlaces</h3>
+                        <p>Este es un párrafo de ejemplo con un <a href="#">enlace de texto</a>. Los enlaces deben
+                            ser claros y distinguibles.</p>
+                        <p><strong>Texto en negrita</strong> y <em>texto en cursiva</em> para énfasis.</p>
                     </div>
                 </div>
-            </div>
+
+                <hr class="separator">
+
+                <h3>Citas</h3>
+                <blockquote>
+                    <p>La tipografía es la arquitectura del contenido. Un buen sistema tipográfico permite que la
+                        información fluya naturalmente, respetando las proporciones matemáticas que hacen que la
+                        lectura sea cómoda y efectiva.</p>
+                    <footer>— Sergio Forés</footer>
+                </blockquote>
+
         </section>
 
-        <!-- Color Palette Section - ESCALA AMPLIA PARA RESPIRACIÓN VISUAL -->
-        <section id="colores" class="section">
-            <div class="container-master--wide">
-                <header class="section__header">
-                    <h2 class="section__title">PALETA</h2>
-                    <p class="section__subtitle">Paleta de colores definida en el sistema de diseño. Colores puros y
-                        escala monocromática para máxima coherencia visual.</p>
-                </header>
-                <div class="section__content">
-                    <div class="color-palette">
-                        <!-- PALETA DEFINITIVA -->
-                        <div class="color-palette__group">
-                            <h3 class="color-palette__title">Colores puros</h3>
-                            <div class="color-palette__items">
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-yellow);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Amarillo Puro</div>
-                                        <div class="color-swatch__value">--color-yellow: #FFFF00</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-cyan);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Cyan Puro</div>
-                                        <div class="color-swatch__value">--color-cyan: #00FFFF</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-magenta);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Magenta Puro</div>
-                                        <div class="color-swatch__value">--color-magenta: #FF00FF</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-black);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Negro Puro</div>
-                                        <div class="color-swatch__value">--color-black: #000000</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color"
-                                        style="background-color: var(--color-white); border: 1px solid var(--gray-4);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Blanco Puro</div>
-                                        <div class="color-swatch__value">--color-white: #FFFFFF</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <hr class="separator">
 
-                        <!-- ESCALA DE GRISES -->
-                        <div class="color-palette__group">
-                            <h3 class="color-palette__title">🔘 Escala monocromática</h3>
-                            <div class="color-palette__items">
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--gray-1);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gris Oscuro</div>
-                                        <div class="color-swatch__value">--gray-1: #333333</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--gray-2);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gris Medio-Oscuro</div>
-                                        <div class="color-swatch__value">--gray-2: #666666</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--gray-3);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gris Medio</div>
-                                        <div class="color-swatch__value">--gray-3: #999999</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--gray-4);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gris Medio-Claro</div>
-                                        <div class="color-swatch__value">--gray-4: #CCCCCC</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--gray-5);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gris Claro</div>
-                                        <div class="color-swatch__value">--gray-5: #EEEEEE</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Typography Section -->
+        <section id="tipografia" class="section">
+            <header class="section__header">
+                <h2 class="section__title">Tipografía</h2>
+            </header>
 
-                        <div class="color-palette__group">
-                            <h3 class="color-palette__title">Colores Semánticos</h3>
-                            <div class="color-palette__items">
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color"
-                                        style="background-color: var(--color-accent-primary);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Accent Primary</div>
-                                        <div class="color-swatch__value">--color-accent-primary</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color"
-                                        style="background-color: var(--color-accent-secondary);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Accent Secondary</div>
-                                        <div class="color-swatch__value">--color-accent-secondary</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color"
-                                        style="background-color: var(--color-accent-warning);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Accent Warning</div>
-                                        <div class="color-swatch__value">--color-accent-warning</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color"
-                                        style="background-color: var(--color-accent-error);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Accent Error</div>
-                                        <div class="color-swatch__value">--color-accent-error</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color"
-                                        style="background-color: var(--color-accent-info);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Accent Info</div>
-                                        <div class="color-swatch__value">--color-accent-info</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="grid-flex">
 
-                        <div class="color-palette__group">
-                            <h3 class="color-palette__title">Colores de Texto</h3>
-                            <div class="color-palette__items">
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color"
-                                        style="background-color: var(--color-text-primary);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Text Primary</div>
-                                        <div class="color-swatch__value">--color-text-primary</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color"
-                                        style="background-color: var(--color-text-secondary);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Text Secondary</div>
-                                        <div class="color-swatch__value">--color-text-secondary</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-text-muted);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Text Muted</div>
-                                        <div class="color-swatch__value">--color-text-muted</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color"
-                                        style="background-color: var(--color-text-inverse);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Text Inverse</div>
-                                        <div class="color-swatch__value">--color-text-inverse</div>
-                                    </div>
-                                </div>
-                            </div>
+                <!-- 3 Tamaños -->
+                    <div class="sub-grid">
+                        <div style="font-size: var(--text-large);">
+                            Large Text
                         </div>
-
-                        <div class="color-palette__group">
-                            <h3 class="color-palette__title">Colores de Superficie</h3>
-                            <div class="color-palette__items">
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color"
-                                        style="background-color: var(--color-surface-primary);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Surface Primary</div>
-                                        <div class="color-swatch__value">--color-surface-primary</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color"
-                                        style="background-color: var(--color-surface-secondary);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Surface Secondary</div>
-                                        <div class="color-swatch__value">--color-surface-secondary</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color"
-                                        style="background-color: var(--color-surface-tertiary);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Surface Tertiary</div>
-                                        <div class="color-swatch__value">--color-surface-tertiary</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color"
-                                        style="background-color: var(--color-surface-inverse);"></div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Surface Inverse</div>
-                                        <div class="color-swatch__value">--color-surface-inverse</div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div style="font-size: var(--text-medium);">
+                            Medium Text
                         </div>
-
-                        <div class="color-palette__group">
-                            <h3 class="color-palette__title">Escala Monocromática Nuclear</h3>
-                            <p class="text-sm" style="margin-bottom: var(--space-s);">Base neutra para texto, fondos y
-                                superficies. Definida en el núcleo y usada universalmente:</p>
-                            <div class="color-palette__items">
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-gray-50);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gray 50</div>
-                                        <div class="color-swatch__value">--color-gray-50</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-gray-100);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gray 100</div>
-                                        <div class="color-swatch__value">--color-gray-100</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-gray-200);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gray 200</div>
-                                        <div class="color-swatch__value">--color-gray-200</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-gray-300);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gray 300</div>
-                                        <div class="color-swatch__value">--color-gray-300</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-gray-400);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gray 400</div>
-                                        <div class="color-swatch__value">--color-gray-400</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-gray-500);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gray 500</div>
-                                        <div class="color-swatch__value">--color-gray-500</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-gray-600);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gray 600</div>
-                                        <div class="color-swatch__value">--color-gray-600</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-gray-700);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gray 700</div>
-                                        <div class="color-swatch__value">--color-gray-700</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-gray-800);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gray 800</div>
-                                        <div class="color-swatch__value">--color-gray-800</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-gray-900);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Gray 900</div>
-                                        <div class="color-swatch__value">--color-gray-900</div>
-                                    </div>
-                                </div>
-                                <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-black);">
-                                    </div>
-                                    <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Black</div>
-                                        <div class="color-swatch__value">--color-black</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Grid System Section - GRID SYSTEM MADRE DEMOSTRACIÓN -->
-        <section id="grid" class="section" style="background-color: var(--color-surface-secondary);">
-            <div class="container-master">
-                <header class="section__header">
-                    <h2 class="section__title">Sistema de Grid Madre</h2>
-                    <p class="section__subtitle">Grid CSS consonante con respiración horizontal perfecta. Gaps =
-                        Paddings para armonía visual total.</p>
-                </header>
-                <div class="section__content">
-                    <!-- Demo del Sistema Consonante Original -->
-                    <h3>Demo Grid Estándar</h3>
-                    <div class="grid grid--3-col">
-                        <div class="card" style="background-color: var(--color-surface-secondary);">
-                            <div class="card__body">
-                                <p class="card__text">Gap basado en φ = 1.618rem para consonancia matemática perfecta
-                                </p>
-                                <div
-                                    style="background-color: var(--color-yellow); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-black); font-weight: bold;">
-                                    φ = 1.618</div>
-                            </div>
-                        </div>
-                        <div class="card" style="background-color: var(--color-surface-tertiary);">
-                            <div class="card__body">
-                                <p class="card__text">Container padding = Grid gap para armonía visual total</p>
-                                <div
-                                    style="background-color: var(--color-cyan); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-black); font-weight: bold;">
-                                    Margin = Gap</div>
-                            </div>
-                        </div>
-                        <div class="card" style="background-color: var(--color-surface-secondary);">
-                            <div class="card__body">
-                                <p class="card__text">1 col (mobile) → 3 cols (tablet) → 4 cols (desktop)</p>
-                                <div
-                                    style="background-color: var(--gray-3); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-white); font-weight: bold;">
-                                    Auto-adapt</div>
-                            </div>
-                        </div>
-                        <div class="card" style="background-color: var(--color-surface-tertiary);">
-                            <div class="card__body">
-                                <p class="card__text">Variables progresivas: φ → φ² → φ³ según breakpoint</p>
-                                <div
-                                    style="background-color: var(--color-magenta); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-white); font-weight: bold;">
-                                    φ → φ² → φ³</div>
-                            </div>
-                        </div>
-                        <div class="card" style="background-color: var(--color-surface-secondary);">
-                            <div class="card__body">
-                                <p class="card__text">Estructura nuclear que se propaga sin duplicación</p>
-                                <div
-                                    style="background-color: var(--color-black); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-yellow); font-weight: bold;">
-                                    Nuclear Core</div>
-                            </div>
-                        </div>
-                        <div class="card" style="background-color: var(--color-surface-tertiary);">
-                            <div class="card__body">
-                                <p class="card__text">CSS clamp() para fluidez total en todos los dispositivos</p>
-                                <div
-                                    style="background-color: var(--gray-2); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-white); font-weight: bold;">
-                                    Fluid Scale</div>
-                            </div>
-                        </div>
-                        <div class="card" style="background-color: var(--color-surface-secondary);">
-                            <div class="card__body">
-                                <p class="card__text">Consonancia sistémica en tipografía y espaciado</p>
-                                <div
-                                    style="background-color: var(--color-white); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-black); font-weight: bold; border: 1px solid var(--gray-3);">
-                                    Harmony</div>
-                            </div>
-                        </div>
-                        <div class="card" style="background-color: var(--color-surface-tertiary);">
-                            <div class="card__body">
-                                <p class="card__text">Auto-fit minmax para distribución inteligente</p>
-                                <div
-                                    style="background-color: var(--gray-4); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-black); font-weight: bold;">
-                                    Smart Grid</div>
-                            </div>
+                        <div style="font-size: var(--text-small);">
+                            Small Text
                         </div>
                     </div>
 
-                    <hr class="separator">
-                    <!-- AQUI Grid Variants -->
-                    <h3>Grid 2 Columnas</h3>
-                    <div class="grid grid--2-col">
-                        <div class="card" style="background-color: var(--color-surface-secondary);">
-                            <div class="card__body">
-                                <p class="card__text">Gap proporcional: φ = 1.618rem</p>
-                                <div
-                                    style="background-color: var(--color-cyan); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-black); font-weight: bold;">
-                                    2 Cols</div>
-                            </div>
+                <!-- Jerarquía HTML -->
+                    <div class="sub-grid">
+                        <div>
+                            <h1 style="margin: 0;">Título H1</h1>
                         </div>
-                        <div class="card" style="background-color: var(--color-surface-tertiary);">
-                            <div class="card__body">
-                                <p class="card__text">Distribución equilibrada 50% / 50%</p>
-                                <div
-                                    style="background-color: var(--color-yellow); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-black); font-weight: bold;">
-                                    50% + 50%</div>
-                            </div>
+                        <div>
+                            <h2 style="margin: 0;">Título H2</h2>
                         </div>
-                    </div>
-
-                    <h3>Grid Auto-Fit (Responsive Inteligente)</h3>
-                    <div class="grid grid--cards">
-                        <div class="card" style="background-color: var(--color-surface-secondary);">
-                            <div class="card__body">
-                                <p class="card__text">Auto-fit con minmax(250px, 1fr)</p>
-                                <div
-                                    style="background-color: var(--color-magenta); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-white); font-weight: bold;">
-                                    Auto-Fit</div>
-                            </div>
+                        <div>
+                            <h3 style="margin: 0;">Título H3</h3>
                         </div>
-                        <div class="card" style="background-color: var(--color-surface-tertiary);">
-                            <div class="card__body">
-                                <p class="card__text">Se adapta automáticamente al contenido</p>
-                                <div
-                                    style="background-color: var(--gray-3); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-white); font-weight: bold;">
-                                    Smart</div>
-                            </div>
+                        <div>
+                            <h4 style="margin: 0;">Título H4</h4>
                         </div>
-                        <div class="card" style="background-color: var(--color-surface-secondary);">
-                            <div class="card__body">
-                                <p class="card__text">Ideal para portfolios y galerías</p>
-                                <div
-                                    style="background-color: var(--color-black); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-yellow); font-weight: bold;">
-                                    Gallery</div>
-                            </div>
+                        <div>
+                            <h5 style="margin: 0;">Título H5</h5>
+                        </div>
+                        <div>
+                            <h6 style="margin: 0;">Título H6</h6>
                         </div>
                     </div>
 
-                </div>
-            </div>
-        </section>
-
-        <!-- Layout Section - CONTAINER GRID APLICADO -->
-        <section id="layout" class="section">
-            <div class="section__container">
-                <header class="section__header">
-                    <h2 class="section__title">Layout Container</h2>
-                    <p class="section__subtitle">Contenedor principal con márgenes inteligentes. El contenido nunca toca
-                        los bordes del navegador en ninguna resolución.</p>
-                </header>
-                <div class="section__content">
-                    <div class="layout-example">
-                        <div class="container">
-                            <p>Este es un ejemplo de contenido dentro del contenedor principal.</p>
-                            <p>Observa cómo el contenido mantiene márgenes cómodos en todas las resoluciones. Esto se
-                                consigue usando <code>margin: 0 var(--space-xl);</code> en la regla base, no solo en
-                                media queries específicos.</p>
-                            <p><strong>Principio:</strong> El contenido necesita respirar. Los márgenes no son
-                                opcionales, son esenciales para la legibilidad.</p>
+                <!-- Font Weights -->
+                    <div class="sub-grid">
+                        <div style="font-weight: var(--font-weight-light);">
+                            Light Weight
+                        </div>
+                        <div style="font-weight: var(--font-weight-normal);">
+                            Normal Weight
+                        </div>
+                        <div style="font-weight: var(--font-weight-medium);">
+                            Medium Weight
+                        </div>
+                        <div style="font-weight: var(--font-weight-semibold);">
+                            Semibold Weight
+                        </div>
+                        <div style="font-weight: var(--font-weight-bold);">
+                            Bold Weight
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
         <hr class="separator">
-        <!-- Spacing Section - CONTAINER GRID APLICADO -->
-        <section id="espaciado" class="section" style="background-color: var(--color-surface-secondary);">
-            <div class="section__container">
-                <header class="section__header">
-                    <h2 class="section__title">Espaciado Semántico</h2>
-                    <p class="section__subtitle">Sistema de espaciado fluido basado en progresiones matemáticas. Ritmo
-                        vertical consistente y espaciado responsivo con clamp().</p>
-                </header>
-                <div class="section__content">
-                    <h3>Espaciado de Sección (padding vertical)</h3>
-                    <div class="section--spacing-sm spacing-example-section">
-                        <p><code>.section--spacing-sm</code> (padding vertical pequeño)</p>
-                    </div>
-                    <div class="section--spacing-md spacing-example-section">
-                        <p><code>.section--spacing-md</code> (padding vertical medio)</p>
-                    </div>
-                    <div class="section--spacing-lg spacing-example-section">
-                        <p><code>.section--spacing-lg</code> (padding vertical grande)</p>
-                    </div>
 
-                    <h3>Espaciado de Contenido (margin vertical)</h3>
-                    <p class="content--spacing-sm spacing-example-content-inner"><code>.content--spacing-sm</code>
-                        (margin vertical pequeño)</p>
-                    <p class="content--spacing-md spacing-example-content-inner"><code>.content--spacing-md</code>
-                        (margin vertical medio)</p>
-                    <p class="content--spacing-lg spacing-example-content-inner"><code>.content--spacing-lg</code>
-                        (margin vertical grande)</p>
+        <!-- Color Palette Section - GRID-FLEX PARA LAYOUT PRINCIPAL -->
+        <section id="colores" class="section pt2">
+            <header class="section__header">
+                <h2 class="section__title">Paleta de Colores</h2>
+                <p class="section__subtitle">Paleta de colores definida en el sistema de diseño. Colores puros y
+                    escala monocromática para máxima coherencia visual.</p>
+            </header>
 
+            <!-- GRID-FLEX: Layout principal para grupos de colores -->
+            <div class="grid-flex">
+
+                <!-- Colores Puros -->
+                <div>
+                    <h4>Colores Puros</h4>
+                    <div class="sub-grid sub-grid--color-palette">
+                        <div style="background: var(--color-yellow); color: var(--color-black);">
+                            Amarillo
+                        </div>
+                        <div style="background: var(--color-cyan); color: var(--color-black);">
+                            Cyan
+                        </div>
+                        <div style="background: var(--color-magenta); color: var(--color-white);">
+                            Magenta
+                        </div>
+                        <div style="background: var(--color-black); color: var(--color-white);">
+                            Negro
+                        </div>
+                        <div style="background: var(--color-white); color: var(--color-black);">
+                            Blanco
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Escala Monocromática -->
+                <div>
+                    <h4>Escala Monocromática</h4>
+                    <div class="sub-grid sub-grid--color-palette">
+                        <div style="background: var(--gray-1); color: var(--color-white);">
+                            Gray 1
+                        </div>
+                        <div style="background: var(--gray-2); color: var(--color-white);">
+                            Gray 2
+                        </div>
+                        <div style="background: var(--gray-3); color: var(--color-white);">
+                            Gray 3
+                        </div>
+                        <div style="background: var(--gray-4); color: var(--color-black);">
+                            Gray 4
+                        </div>
+                        <div style="background: var(--gray-5); color: var(--color-black);">
+                            Gray 5
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colores Semánticos -->
+                <div>
+                    <h4>Colores Semánticos</h4>
+                    <div class="sub-grid sub-grid--color-palette">
+                        <div style="background: var(--color-accent-primary); color: var(--color-white);">
+                            Primary
+                        </div>
+                        <div style="background: var(--color-accent-secondary); color: var(--color-white);">
+                            Secondary
+                        </div>
+                        <div style="background: var(--color-accent-warning); color: var(--color-black);">
+                            Warning
+                        </div>
+                        <div style="background: var(--color-accent-error); color: var(--color-white);">
+                            Error
+                        </div>
+                        <div style="background: var(--color-accent-info); color: var(--color-white);">
+                            Info
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
         </section>
 
+        <hr class="separator">
+
+        <!-- Grid System Section - GRID-FLEX PARA LAYOUT PRINCIPAL -->
+        <section id="grid" class="section pt2 pb2" style="background-color: var(--color-surface-secondary);">
+
+            <header class="section__header">
+                <h2 class="section__title">Sistema de Grid</h2>
+                <p class="section__subtitle">Grid CSS responsive con proporción áurea φ = 1.618rem para consonancia matemática perfecta.</p>
+            </header>
+
+            <!-- GRID-FLEX: Layout principal para tipos de grid -->
+            <div class="grid-flex" style="border: 4px dashed var(--color-magenta); background: rgba(255, 0, 255, 0.05);">
+
+                <!-- Grid Header - Ocupa doble espacio -->
+                <div class="grid-flex__header" style="border: 2px solid var(--color-black); background: rgba(0, 0, 0, 0.05); padding: var(--space-xl);">
+                    <h4>Grid Container (Magenta)</h4>
+                    <p>Header Element (Negro) - Ocupa 2 columnas automáticamente</p>
+                </div>
+
+                <!-- Grid Elemento 1 -->
+                <div style="border: 2px solid var(--color-cyan); background: rgba(0, 255, 255, 0.05); padding: var(--space-xl);">
+                    <h4>Grid Item 1</h4>
+                    <p>Elemento estándar (Cyan) - Se adapta automáticamente</p>
+                </div>
+
+                <!-- Grid Elemento 2 -->
+                <div style="border: 2px solid var(--color-cyan); background: rgba(0, 255, 255, 0.05); padding: var(--space-xl);">
+                    <h4>Grid Item 2</h4>
+                    <p>Auto-fit minmax(250px, 1fr) - Responsive inteligente</p>
+                </div>
+
+                <!-- Grid Elemento 3 -->
+                <div style="border: 2px solid var(--color-cyan); background: rgba(0, 255, 255, 0.05); padding: var(--space-xl);">
+                    <h4>Grid Item 3</h4>
+                    <p>Gap φ = 1.618rem - Consonancia matemática</p>
+                </div>
+
+                <!-- Grid Elemento 4 -->
+                <div style="border: 2px solid var(--color-cyan); background: rgba(0, 255, 255, 0.05); padding: var(--space-xl);">
+                    <h4>Grid Item 4</h4>
+                    <p>Mobile → Tablet → Desktop - Breakpoints fluidos</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ELIMINADA Layout Section - GRID-FLEX PARA LAYOUT PRINCIPAL -->
+
+        <hr class="separator">
+
         <!-- Components Section - CONTAINER GRID APLICADO -->
         <section id="componentes" class="section">
-            <div class="section__container">
-                <header class="section__header">
-                    <h2 class="section__title">Componentes Básicos</h2>
-                    <p class="section__subtitle">Elementos reutilizables que heredan del sistema base. Construcción
-                        modular sin duplicación de código.</p>
-                </header>
-                <div class="section__content">
+            <header class="section__header">
+                <h2 class="section__title">Componentes</h2>
+                <p class="section__subtitle">Elementos reutilizables que heredan del sistema base. Construcción
+                    modular sin duplicación de código.</p>
+            </header>
+
+            <div class="grid-flex">
+
+                <!-- Botones -->
+                <div class="grid">
                     <h3>Botones</h3>
                     <button class="btn btn--primary">Botón Primario</button>
                     <button class="btn btn--secondary">Botón Secundario</button>
                     <button class="btn btn--ghost">Botón Ghost</button>
                     <button class="btn btn--cta-hero">CTA Hero</button>
-
-                    <hr class="separator">
-                    <h3>Tarjetas</h3>
-                    <div class="card">
-                        <div class="card__header">
-                            <h4 class="card__title">Título de Tarjeta</h4>
-                        </div>
-                        <div class="card__body">
-                            <p class="card__text">Este es el contenido de la tarjeta.</p>
-                        </div>
-                    </div>
+                    <button class="btn btn--back-to-top" title="Scroll to Top">
+                        <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="transform: rotate(-90deg);">
+                            <polyline points="9,18 15,12 9,6" />
+                        </svg>
+                    </button>
+                    <button class="btn btn--circular" title="Botón Circular">
+                        <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="16"/>
+                            <line x1="8" y1="12" x2="16" y2="12"/>
+                        </svg>
+                    </button>
                 </div>
-        </section>
-
-        <!-- Form Section - CONTAINER GRID APLICADO -->
-        <section id="formulario" class="section" style="background-color: var(--color-surface-secondary);">
-            <div class="section__container">
-                <header class="section__header">
-                    <h2 class="section__title">Formulario</h2>
-                </header>
-                <div class="section__content">
-                    <form class="form form--constrained">
-                        <div class="form__field">
-                            <label for="nombre" class="form__label">Nombre:</label>
-                            <input type="text" id="nombre" class="form__input" placeholder="Tu nombre">
-                        </div>
-                        <button class="btn btn--primary" type="submit">Enviar</button>
-                    </form>
+                
+                <div>
+                <h3>Formulario</h3>
+                <form class="form form--constrained">
+                    <div class="form__field">
+                        <label for="nombre" class="form__label">Nombre:</label>
+                        <input type="text" id="nombre" class="form__input" placeholder="Tu nombre">
+                    </div>
+                    <button class="btn btn--primary" type="submit">Enviar</button>
+                </form>
                 </div>
             </div>
         </section>
 
-        <!-- Features Section - CONTAINER GRID APLICADO -->
-        <section id="features" class="section" style="background-color: var(--color-surface-secondary);">
-            <div class="section__container">
-                <header class="section__header">
-                    <h2 class="section__title">Features Sections</h2>
-                    <p class="section__subtitle">Secciones de características y ventajas.</p>
-                </header>
-                <div class="section__content">
-                    <h3>Features Grid - Grid System Aplicado</h3>
-                    <div class="grid grid--3-col">
+        <hr class="separator">
+
+        <!-- Features Section -->
+        <section id="features" class="section pt2 pb2" style="background-color: var(--color-surface-secondary);">
+            <header class="section__header">
+                <h2 class="section__title">Feature Cards</h2>
+                <p class="section__subtitle">Secciones de características y ventajas.</p>
+            </header>
+            
+                
+                <!-- Features Grid -->
+                    <div class="grid--3-col">
                         <div class="features__item">
                             <div class="features__icon">
                                 <svg class="icon icon--lg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -984,7 +591,7 @@
                         </div>
                     </div>
 
-                    <h3>Features Cards - Grid System Aplicado</h3>
+                <!-- Features Cards -->
                     <div class="grid--cards">
                         <div class="features__card">
                             <img src="../fotografia/img/photographs/coherencia-narrativa.jpg"
@@ -1002,93 +609,70 @@
                                 <p class="features__card-description">Breve descripción del contenido de la tarjeta.</p>
                             </div>
                         </div>
-                        <div class="features__card">
+                        <div class="features__card features__card--centered">
                             <img src="../fotografia/img/photographs/determinacion-luminosa.jpg"
                                 alt="Determinación Luminosa - Sergio Forés" class="features__card-image">
-                            <div class="features__card-overlay">
-                                <svg class="icon icon--xl" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M18,13v6a2,2,0,0,1-2,2H5a2,2,0,0,1-2-2V8A2,2,0,0,1,5,6h6" />
-                                    <polyline points="15,3 21,3 21,9" />
-                                    <line x1="10" y1="14" x2="21" y2="3" />
-                                </svg>
-                            </div>
                             <div class="features__card-content">
-                                <span class="features__card-category">Categoría</span>
-                                <h4 class="features__card-title">Otra Tarjeta</h4>
+                                <h4 class="features__card-title">Simple Tarjeta</h4>
                                 <p class="features__card-description">Contenido relevante para la segunda tarjeta.</p>
                             </div>
                         </div>
-                        <div class="features__card">
-                            <img src="../fotografia/img/photographs/expresion-autentica.jpg"
-                                alt="Expresión Auténtica - Sergio Forés" class="features__card-image">
-                            <div class="features__card-overlay">
-                                <svg class="icon icon--xl" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M12,2L22,7L22,17L12,22L2,17L2,7Z" />
-                                    <polygon points="12,2 22,7 12,12 2,7 12,2" />
-                                    <polyline points="2,17 12,22 22,17" />
-                                    <polyline points="2,7 12,12 22,7" />
-                                </svg>
-                            </div>
-                            <div class="features__card-content">
+                        <div class="features__card features__card--bg-only" style="background-image: url('../fotografia/img/photographs/expresion-autentica.jpg');">
+                            <div class="features__card-content features__card-content--overlay">
                                 <span class="features__card-category">Sistema</span>
                                 <h4 class="features__card-title">Design System</h4>
                                 <p class="features__card-description">Sistema de diseño atómico con consonancia
                                     matemática perfecta.</p>
                             </div>
                         </div>
-                    </div>
-
-                    <h3>Features Highlight</h3>
-                    <div class="features__content">
-                        <div class="features__text">
-                            <h4 class="features__item-title">Cosmos Fractal de Experiencias</h4>
-                            <p class="features__item-description">Fusiono lógica, arte y tecnología para construir
-                                interfaces que resuenan con la proporción áurea, la paleta CMYBK y una jerarquía
-                                tipográfica triádica. Cada componente se acopla como un fractal coherente que escala sin
-                                perder identidad.</p>
-                            <ul class="features__list">
-                                <li class="features__list-item">
-                                    <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <polyline points="9,11 12,14 22,4" />
-                                    </svg>
-                                    <div class="features__list-content">
-                                        <h4>Geometría Áurea</h4>
-                                        <p>La retícula, el espaciado y la tipografía siguen la secuencia φ para guiar la
-                                            lectura y aportar ritmo visual.</p>
-                                    </div>
-                                </li>
-                                <li class="features__list-item">
-                                    <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <polygon
-                                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2" />
-                                    </svg>
-                                    <div class="features__list-content">
-                                        <h4>Paleta Sagrada</h4>
-                                        <p>Los cinco colores puros (amarillo, cyan, magenta, negro y blanco) gobiernan
-                                            todo el sistema, garantizando contraste y coherencia cromática.</p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="features__cta">
-                                <button class="btn btn--primary">Más Información</button>
+                        <div class="features__card features__card--color-bg">
+                            <div class="features__card-content">
+                                <span class="features__card-category">Digital</span>
+                                <h4 class="features__card-title">Color Card</h4>
+                                <p class="features__card-description">Tarjeta con fondo de color puro y alto contraste visual.</p>
                             </div>
                         </div>
-                        <div class="features__image">
-                            <img src="../fotografia/img/photographs/expresion-autentica.jpg"
-                                alt="Expresión Auténtica - Sergio Forés">
+                        <div class="features__card features__card--circular">
+                            <div class="features__card-content">
+                                <span class="features__card-category">Forma</span>
+                                <h4 class="features__card-title">Circular</h4>
+                                <p class="features__card-description">Diseño circular centrado y equilibrado.</p>
+                            </div>
                         </div>
-                    </div>
+                        <div class="features__card features__card--clickable" style="background-image: url('../fotografia/img/photographs/coherencia-narrativa.jpg');" onclick="alert('Card clicked!')">
+                            <div class="features__card-content">
+                                <span class="features__card-category">Interacción</span>
+                                <h4 class="features__card-title">Clickable Card</h4>
+                                <p class="features__card-description">Toda la tarjeta es interactiva con efectos visuales al hover.</p>
+                            </div>
+                        </div>
+                        <div class="features__card features__card--two-cols">
+                            <img src="../fotografia/img/photographs/determinacion-luminosa.jpg"
+                                alt="Determinación Luminosa - Sergio Forés" class="features__card-image">
+                            <div class="features__card-content">
+                                <span class="features__card-category">Layout</span>
+                                <h4 class="features__card-title">Two Columns</h4>
+                                <p class="features__card-description">Layout de dos columnas con imagen a la izquierda y contenido a la derecha. Se adapta responsivamente apilándose en móvil para mantener la legibilidad perfecta.</p>
+                                <p class="features__card-description">El grid CSS permite un control preciso del layout manteniendo las proporciones áureas del sistema de diseño.</p>
+                            </div>
+                        </div>
+                        <div class="features__card features__card--two-cols-reverse">
+                            <div class="features__card-content">
+                                <span class="features__card-category">Layout</span>
+                                <h4 class="features__card-title">Two Columns Reverse</h4>
+                                <p class="features__card-description">Variación inversa con contenido a la izquierda e imagen a la derecha. Perfecta para crear ritmo visual alternado en layouts complejos.</p>
+                                <p class="features__card-description">Esta alternancia crea una lectura en zigzag que mejora la experiencia del usuario y añade dinamismo visual al conjunto.</p>
+                            </div>
+                            <img src="../fotografia/img/photographs/expresion-autentica.jpg"
+                                alt="Expresión Auténtica - Sergio Forés" class="features__card-image">
+                        </div>
                 </div>
-            </div>
-        </section>
+
+            </section>
 
         <!-- Showcase TODAS las Variables - Testing Completo -->
         <section id="variables-showcase" class="section" style="display: none;">
-            <div class="section__container">
+            <div class="container-master">
                 <header class="section__header">
                     <h2 class="section__title">🧪 Showcase Completo de Variables</h2>
                     <p class="section__subtitle">Representación visual de TODAS las variables CSS del sistema. Esto nos
@@ -1295,155 +879,80 @@
             </div>
         </section>
 
-        <!-- SPACING UTILITIES SECTION - DEMO DE NUEVAS UTILIDADES -->
-        <section id="spacing-utilities" class="section">
-            <div class="container-master">
-                <header class="section__header">
-                    <h2 class="section__title">Utilidades de Spacing</h2>
-                    <p class="section__subtitle">Sistema utilitario de 3 escalas consonantes para padding y margin.
-                        Control granular con variables del sistema.</p>
-                </header>
-                <div class="section__content">
-
-                    <!-- Demostración de Padding -->
-                    <h3>🎯 Padding Utilities (.p0, .p1, .p2)</h3>
-                    <div class="spacing-complete-showcase">
-                        <div class="spacing-demo">
-                            <div class="p0"
-                                style="background: var(--color-cyan); min-height: 60px; display: flex; align-items: center; justify-content: center;">
-                                .p0 = 0px
-                            </div>
-                        </div>
-                        <div class="spacing-demo">
-                            <div class="p1"
-                                style="background: var(--color-yellow); color: var(--color-black); display: flex; align-items: center; justify-content: center;">
-                                .p1 = var(--space-3)
-                            </div>
-                        </div>
-                        <div class="spacing-demo">
-                            <div class="p2"
-                                style="background: var(--color-red); color: var(--color-white); display: flex; align-items: center; justify-content: center;">
-                                .p2 = var(--space-6)
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Demostración de Margin -->
-                    <h3>📏 Margin Utilities (.m0, .m1, .m2)</h3>
-                    <div class="spacing-complete-showcase">
-                        <div style="background: var(--color-gray-200); padding: var(--space-2);">
-                            <div class="m0"
-                                style="background: var(--color-cyan); padding: var(--space-2); text-align: center;">
-                                .m0 = 0px margin
-                            </div>
-                        </div>
-                        <div style="background: var(--color-gray-200); padding: var(--space-2);">
-                            <div class="m1"
-                                style="background: var(--color-yellow); color: var(--color-black); padding: var(--space-2); text-align: center;">
-                                .m1 = var(--space-3) margin
-                            </div>
-                        </div>
-                        <div style="background: var(--color-gray-200); padding: var(--space-2);">
-                            <div class="m2"
-                                style="background: var(--color-red); color: var(--color-white); padding: var(--space-2); text-align: center;">
-                                .m2 = var(--space-6) margin
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Demostración Direccional -->
-                    <h3>🧭 Direccionales (.pt1, .pr2, .mx1, etc.)</h3>
-                    <div class="spacing-complete-showcase">
-                        <div class="spacing-demo">
-                            <div class="pt2 pb1 px2" style="background: var(--color-cyan); text-align: center;">
-                                .pt2 .pb1 .px2<br>
-                                <small>Top: space-6, Bottom: space-3, X-axis: space-6</small>
-                            </div>
-                        </div>
-                        <div class="spacing-demo">
-                            <div class="my1 px0"
-                                style="background: var(--color-yellow); color: var(--color-black); text-align: center;">
-                                .my1 .px0<br>
-                                <small>Y-axis: space-3, X-axis: 0</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tabla de Referencia -->
-                    <h3>📋 Tabla de Referencia Completa</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Clase</th>
-                                <th>CSS Property</th>
-                                <th>Variable</th>
-                                <th>Valor Aproximado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code>.p0</code></td>
-                                <td>padding</td>
-                                <td>0px</td>
-                                <td>0px</td>
-                            </tr>
-                            <tr>
-                                <td><code>.p1</code></td>
-                                <td>padding</td>
-                                <td>var(--space-3)</td>
-                                <td>12px</td>
-                            </tr>
-                            <tr>
-                                <td><code>.p2</code></td>
-                                <td>padding</td>
-                                <td>var(--space-6)</td>
-                                <td>26px (φ)</td>
-                            </tr>
-                            <tr>
-                                <td><code>.m0</code></td>
-                                <td>margin</td>
-                                <td>0px</td>
-                                <td>0px</td>
-                            </tr>
-                            <tr>
-                                <td><code>.m1</code></td>
-                                <td>margin</td>
-                                <td>var(--space-3)</td>
-                                <td>12px</td>
-                            </tr>
-                            <tr>
-                                <td><code>.m2</code></td>
-                                <td>margin</td>
-                                <td>var(--space-6)</td>
-                                <td>26px (φ)</td>
-                            </tr>
-                            <tr>
-                                <td><code>.px1, .py2, .mt1, etc.</code></td>
-                                <td>direccionales</td>
-                                <td>Combinaciones</td>
-                                <td>Control granular</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <!-- Info Card -->
-                    <div class="notification notification--warning">
-                        <h6>🎯 Sistema de 3 Escalas Consonantes</h6>
-                        <p><strong>Nivel 0:</strong> Reset completo (0px) - Para eliminar espaciado</p>
-                        <p><strong>Nivel 1:</strong> Compacto (--space-3 = 12px) - Para espaciado interno</p>
-                        <p><strong>Nivel 2:</strong> Estándar (--space-6 = φ = 26px) - Para separación visual</p>
-                        <p><strong>Direccionales:</strong> Control específico por lado (.pt1, .mr2, .px0, .my1, etc.)
-                        </p>
-                        <p><strong>Auto:</strong> Para centrado (.mx-auto, .ml-auto, .mr-auto)</p>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer class="footer">
         <div class="footer__container">
-            <p>CEREBRO-DIGITAL • Sistema 01234 • Sergio Forés • 2025</p>
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <h3 class="footer__brand-title">Design System</h3>
+                    <p class="footer__brand-description">
+                        Sistema atómico con consonancia matemática perfecta. Codiseñado con IA para crear experiencias digitales coherentes basadas en proporciones áureas y filosofía 01234.
+                    </p>
+                    <div class="footer__social">
+                        <a href="#" class="footer__social-link" aria-label="GitHub">
+                            <svg class="footer__social-icon" viewBox="0 0 24 24">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="LinkedIn">
+                            <svg class="footer__social-icon" viewBox="0 0 24 24">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Twitter">
+                            <svg class="footer__social-icon" viewBox="0 0 24 24">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Instagram">
+                            <svg class="footer__social-icon" viewBox="0 0 24 24">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer__links">
+                    <div class="footer__links-group">
+                        <h4 class="footer__links-title">Sistema 01234</h4>
+                        <ul class="footer__links-list">
+                            <li><a href="#" class="footer__link">Filosofía 01234</a></li>
+                            <li><a href="#" class="footer__link">Design System</a></li>
+                            <li><a href="#" class="footer__link">Consonancia</a></li>
+                            <li><a href="#" class="footer__link">Paleta Sagrada</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__links-group">
+                        <h4 class="footer__links-title">Proyectos</h4>
+                        <ul class="footer__links-list">
+                            <li><a href="#" class="footer__link">Portfolio</a></li>
+                            <li><a href="#" class="footer__link">Fotografía</a></li>
+                            <li><a href="#" class="footer__link">Desarrollo Web</a></li>
+                            <li><a href="#" class="footer__link">IA & Automatización</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer__links-group">
+                        <h4 class="footer__links-title">Contacto</h4>
+                        <ul class="footer__links-list">
+                            <li><a href="#" class="footer__link">Email</a></li>
+                            <li><a href="#" class="footer__link">Consultoría</a></li>
+                            <li><a href="#" class="footer__link">Colaboraciones</a></li>
+                            <li><a href="#" class="footer__link">Soporte</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>© 2025 <a href="https://sergiofores.es" class="footer__link">Sergio Forés</a> • Sistema 01234</p>
+            </div>
         </div>
     </footer>
 

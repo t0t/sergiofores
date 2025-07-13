@@ -18,6 +18,8 @@ html {
   font-family: sans-serif;
   line-height: 1.15;
   scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -31,6 +33,8 @@ body {
   font-weight: var(--font-weight-normal);
   letter-spacing: var(--letter-spacing-normal);
   min-height: 100svh;
+  margin: 0;
+  padding: 0;
 }
 
 /* ==========================================================================
@@ -43,6 +47,7 @@ h1 {
   font-size: var(--text-large);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-tight);
+  margin-top: 0;
   margin-bottom: var(--space-6);
   letter-spacing: var(--letter-spacing-wide);
 }
@@ -53,6 +58,7 @@ h2, h3 {
   font-size: var(--text-medium);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-tight);
+  margin-top: 0;
   margin-bottom: var(--space-4);
   letter-spacing: var(--letter-spacing-wide);
 }
@@ -68,16 +74,21 @@ h4, h5, h6, p, li, span, div, button, input, textarea {
   letter-spacing: var(--letter-spacing-normal);
 }
 
+h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: var(--space-4);
+}
+
 p {
   font-size: var(--text-small);
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
-  margin-top: var(--space-4);
+  margin-top: 0;
   margin-bottom: var(--space-4);
 }
 
 ul, ol {
-  margin-top: var(--space-4);
+  margin-top: 0;
   margin-bottom: var(--space-4);
   padding-left: var(--space-6);
 }
@@ -167,11 +178,6 @@ blockquote footer {
    SHOWCASE TIPOGRÁFICO - TESTING COMPLETO
    ========================================================================== */
 
-.typography-complete-showcase {
-  display: grid;
-  gap: var(--space-4);
-  margin: var(--space-8) 0;
-}
 
 .text-large-demo { font-size: var(--text-large); font-weight: var(--font-weight-bold); }
 .text-medium-demo { font-size: var(--text-medium); font-weight: var(--font-weight-medium); }
