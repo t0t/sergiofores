@@ -1,0 +1,703 @@
+/**
+ * LAYOUT Y GRIDS - SISTEMA PROPORCIONAL ÁUREO
+ * Sistema de Diseño Sergio Forés
+ * 
+ * Layout system basado en:
+ * - Grid CSS con proporciones áureas
+ * - Container system con 3 escalas
+ * - Espaciado consonante
+ * - Responsive design mobile-first
+ */
+
+/* ==========================================================================
+   BASE RESET LAYOUT
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   CONTAINER SYSTEM - 3 ESCALAS CONSONANTES
+   ========================================================================== */
+
+/* LAYOUT & CONTAINER - SISTEMA 3 ESCALAS CONSONANTES */
+:root {
+  --container-max-width: 1236px;           /* φ⁵ × base × 18 = 1236px */
+  --container-max-width-narrow: 50rem;     /* 800px = 50 × base - Contenido Hero */
+  --container-padding-compact: 0;          /* ESCALA COMPACTA: Sin respiración */
+  --container-padding-standard: var(--space-6);  /* ESCALA ESTÁNDAR: φ = 1.618rem */
+  --container-padding-wide: var(--space-2xl);    /* ESCALA AMPLIA: φ³ = 4.236rem */
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+.container-master {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: var(--container-padding-standard);  /* DEFAULT: φ = 1.618rem */
+  padding-right: var(--container-padding-standard); /* DEFAULT: φ = 1.618rem */
+}
+
+.container-master--compact {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: var(--container-padding-compact);   /* COMPACTA: 0 - SIN RESPIRACIÓN */
+  padding-right: var(--container-padding-compact);  /* COMPACTA: 0 - SIN RESPIRACIÓN */
+}
+
+.container-master--wide {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: var(--container-padding-wide);      /* AMPLIA: φ³ = 4.236rem */
+  padding-right: var(--container-padding-wide);     /* AMPLIA: φ³ = 4.236rem */
+}
+
+/* ==========================================================================
+   GRID SYSTEM BASE
+   ========================================================================== */
+
+.grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-rows: auto auto auto;
+  justify-items: stretch;
+  align-items: start;
+  align-content: start;
+}
+
+.grid--2-col {
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+
+.grid--3-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  grid-template-rows: auto auto auto;
+  justify-items: stretch;
+  align-content: start;
+}
+
+.grid--4-col {
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+.grid--12-col {
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-2);
+}
+
+/* Grid span utilities */
+.col-span-3 { grid-column: span 3 / span 3; }
+.col-span-4 { grid-column: span 4 / span 4; }
+.col-span-6 { grid-column: span 6 / span 6; }
+.col-span-8 { grid-column: span 8 / span 8; }
+.col-span-9 { grid-column: span 9 / span 9; }
+
+/* ==========================================================================
+   GRID SYSTEM PROPORCIONAL - ÁUREO φ
+   ========================================================================== */
+
+.grid--2-col-phi {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6); /* φ = 1.618rem */
+  grid-template-rows: auto auto auto;
+  justify-items: stretch;
+  align-content: start;
+}
+
+.grid--3-col-phi {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6); /* φ = 1.618rem */
+  grid-template-rows: auto auto auto;
+  justify-items: stretch;
+  align-content: start;
+}
+
+.grid--4-col-phi {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6); /* φ = 1.618rem */
+  grid-template-rows: auto auto auto;
+  justify-items: stretch;
+  align-content: start;
+}
+
+/* ==========================================================================
+   GRID SISTEMA CONSONANTE - 3 ESCALAS
+   ========================================================================== */
+
+.grid--responsive {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  justify-items: stretch;
+  align-items: start;
+  align-content: start;
+}
+
+.grid-responsive-master {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  justify-items: stretch;
+  align-items: start;
+  align-content: start;
+}
+
+/* GRID RESPONSIVE PHI - GRID PREMIUM DEL SISTEMA 
+   ========================================================================== 
+   CARACTERÍSTICAS:
+   - MINMAX FLOW: auto-fit + minmax para flujo inteligente
+   - CONSONANCIA PERFECTA: padding = gap en todas las resoluciones
+   - RESPONSIVE INTELIGENTE: Se adapta automáticamente al contenido
+   - FILOSOFÍA 01234: Proporciones áureas escaladas por viewport
+   - CLAUDE.md COMPLIANT: grid-template-rows auto, justify-items stretch
+   - VIEWPORT COMPLETO: Usa todo el ancho disponible (100vw) sin limitaciones
+   - EXPANSIÓN AUTOMÁTICA: Se expande fuera de contenedores padre cuando es necesario
+   - SIN HUECOS VACÍOS: Elementos se expanden automáticamente para llenar el espacio
+   - COMPORTAMIENTO UNIVERSAL: Controlado desde el contenedor, no elementos individuales
+   ========================================================================== */
+
+.grid--responsive-phi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* AUTO-FIT: Expansión automática con elementos impares */
+  gap: var(--space-6);                /* Gap consonante: φ = 1.618rem */
+  padding: 0 var(--space-6);          /* CRÍTICO: padding = gap para consonancia perfecta */
+  justify-items: stretch;
+  align-content: start;
+  width: 100vw;                       /* CRÍTICO: usa todo el ancho del viewport */
+  max-width: none;                    /* Sin limitaciones de contenedor */
+  margin-left: calc(-50vw + 50%);     /* Expansión completa desde contenedor padre */
+  margin-right: calc(-50vw + 50%);    /* Expansión completa desde contenedor padre */
+  box-sizing: border-box;             /* Incluye padding en el cálculo del ancho */
+}
+
+.grid--responsive-compact {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0; /* COMPACTA: Sin gap, sin respiración */
+  margin: 0; /* Margen = gap = 0 */
+  grid-template-rows: auto auto auto;
+  justify-items: stretch;
+  align-content: start;
+}
+
+.grid--responsive-wide {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl); /* AMPLIA: φ³ = 4.236rem en mobile */
+  margin: 0 var(--space-2xl); /* Margen horizontal = gap para máxima respiración */
+  grid-template-rows: auto auto auto;
+  justify-items: stretch;
+  align-content: start;
+}
+
+.grid--auto-phi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--space-250px), 1fr)); /* Minmax φ⁶ = 15.326rem */
+  gap: var(--space-6); /* φ = 1.618rem */
+  grid-template-rows: auto auto auto;
+  justify-items: stretch;
+  align-content: start;
+}
+
+.grid--cards {
+  display: grid;
+  gap: var(--space-8);
+  margin: var(--space-12);
+  padding: var(--space-8);
+  grid-template-rows: auto auto auto;
+  justify-items: stretch;
+  align-items: stretch;
+  align-content: start;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* ==========================================================================
+   GRID AVANZADO - SISTEMA Y PROYECTOS
+   ========================================================================== */
+
+/* GRID COLUMNS RESPONSIVOS - CONSONANCIA SISTÉMICA FRACTAL */
+:root {
+  --project-grid-columns-mobile: repeat(auto-fit, minmax(300px, 1fr));   /* Base: 300px consonante */
+  --project-grid-columns-tablet: repeat(auto-fit, minmax(350px, 1fr));   /* Tablet: 350px consonante */
+  --project-grid-columns-desktop: repeat(auto-fit, minmax(400px, 1fr));  /* Desktop: 400px consonante */
+  --project-grid-columns-ultra: repeat(auto-fit, minmax(420px, 1fr));    /* Ultra: 420px consonante */
+  --project-grid-gap: var(--space-xl); /* CONSONANCIA PERFECTA: gap = margin horizontal */
+}
+
+/* Sistema Grid - CONSONANCIA SISTÉMICA APLICADA */
+.sistema-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* CONSONANTE: 250px base */
+  gap: var(--space-xl);               /* Gap interno consonante */
+  margin: 0 var(--space-xl);          /* Respiración horizontal = gap */
+  margin-bottom: var(--essence-space); /* Separación de sección */
+  grid-template-rows: auto auto auto; /* CLAUDE.md compliant: nunca 1fr */
+  justify-items: stretch;
+  align-content: start;
+}
+
+/* Projects Grid - CONSONANCIA PERFECTA OBLIGATORIA */
+.projects-grid {
+  display: grid;
+  grid-template-columns: var(--project-grid-columns-mobile); 
+  gap: var(--project-grid-gap);       /* --space-xl = consonancia sistémica */
+  margin: 0 var(--space-xl);          /* CRÍTICO: margin = gap para respiración perfecta */
+  padding: var(--space-xl) 0;         /* Padding vertical consonante */
+  grid-template-rows: auto auto auto; /* CLAUDE.md compliant: nunca 1fr */
+  justify-items: stretch;
+  align-content: start;
+}
+
+/* ==========================================================================
+   SECTIONS Y SPACING
+   ========================================================================== */
+
+.section {
+  width: 100%;
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+}
+
+.section--spacing-lg {
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+}
+
+.section--spacing-md {
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-12);
+}
+
+.section--spacing-sm {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+.section-grid {
+  width: 100%;
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+}
+
+.section__container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: var(--space-6);  /* Mobile: φ = 1.618rem - IDENTICO al grid */
+  padding-right: var(--space-6); /* Mobile: φ = 1.618rem - IDENTICO al grid */
+}
+
+.section__header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.section-header-grid {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+/* Content spacing utilities */
+.content--spacing-lg {
+  margin-top: var(--space-16);   /* CONSONANTE: Mismo valor que section--spacing-lg padding */
+  margin-bottom: var(--space-16); /* CONSONANTE: Mismo valor que section--spacing-lg padding */
+}
+
+.content--spacing-md {
+  margin-top: var(--space-12);   /* CONSONANTE: Mismo valor que section--spacing-md padding */
+  margin-bottom: var(--space-12); /* CONSONANTE: Mismo valor que section--spacing-md padding */
+}
+
+.content--spacing-sm {
+  margin-top: var(--space-8);    /* CONSONANTE: Mismo valor que section--spacing-sm padding */
+  margin-bottom: var(--space-8);  /* CONSONANTE: Mismo valor que section--spacing-sm padding */
+}
+
+/* ==========================================================================
+   HR INVISIBLE - SEPARADOR VERTICAL CONSONANTE
+   ========================================================================== */
+
+hr.separator {
+  border: none;
+  background: none;
+  height: 0;
+  margin: var(--space-16) 0 0 0;  /* φ³ = 4.236rem gap amplio */
+  padding: 0;
+}
+
+/* Variantes con diferentes gaps consonantes */
+hr.separator--compact { margin-top: var(--space-3);  /* 1/φ = 0.618rem - separación compacta */ }
+hr.separator--standard { margin-top: var(--space-6);  /* φ = 1.618rem - separación estándar */ }
+hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separación amplia */ }
+
+/* ==========================================================================
+   FLEXBOX INTELLIGENT EXPANSION - COMPORTAMIENTO PERFECTO SERGIO FORÉS
+   ========================================================================== */
+
+/* FLEX PREMIUM - Sistema inteligente que hace exactamente lo que queremos:
+   - Elementos se expanden automáticamente para llenar espacios disponibles
+   - Sin huecos vacíos nunca
+   - Comportamiento universal controlado desde el contenedor
+   - Consonancia perfecta con variables del sistema
+   ========================================================================== */
+
+.grid-flex {
+  display: flex;                          /* Activamos Flexbox */
+  flex-wrap: wrap;                        /* Permitimos salto a siguiente línea */
+  gap: var(--space-6);                    /* Gap consonante: φ = 1.618rem */
+  padding: 0 var(--space-6);              /* CRÍTICO: padding = gap para consonancia perfecta */
+  justify-content: flex-start;            /* Alineación izquierda natural */
+  align-items: stretch;                   /* Misma altura para todos */
+  width: 100vw;                           /* CRÍTICO: usa todo el ancho del viewport */
+  max-width: none;                        /* Sin limitaciones de contenedor */
+  margin-left: calc(-50vw + 50%);         /* Expansión completa desde contenedor padre */
+  margin-right: calc(-50vw + 50%);        /* Expansión completa desde contenedor padre */
+  box-sizing: border-box;                 /* Incluye padding en el cálculo del ancho */
+}
+
+/* Comportamiento de elementos dentro del flex inteligente */
+.grid-flex > * {
+  flex-grow: 1;                           /* CLAVE: Elementos crecen para llenar espacio */
+  flex-basis: 250px;                      /* Base mínima: 250px consonante */
+  min-width: 250px;                       /* Mínimo absoluto para legibilidad */
+  max-width: 100%;                        /* Evita overflow */
+}
+
+/* ELEMENTO FEATURED - Ocupa 2 columnas por defecto */
+.grid-flex > .card--featured {
+  flex-basis: calc(500px + var(--space-6)); /* 2 × 250px + 1 gap = espacio de 2 columnas */
+  flex-grow: 2;                           /* Crece 2 veces más que elementos normales */
+  min-width: calc(500px + var(--space-6)); /* Mínimo para mantener proporción */
+}
+
+/* Responsive: ajustes de flex-basis para diferentes viewports */
+@media (min-width: 640px) {
+  .grid-flex {
+    gap: var(--space-8);                  /* Tablet: más espacio, mejor respiración */
+    padding: 0 var(--space-8);            /* padding = gap siempre */
+  }
+  
+  .grid-flex > * {
+    flex-basis: 300px;                    /* Tablet: base más generosa */
+  }
+  
+  .grid-flex > .card--featured {
+    flex-basis: calc(600px + var(--space-8)); /* 2 × 300px + 1 gap tablet */
+    min-width: calc(600px + var(--space-8));
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-flex {
+    gap: var(--space-10);                 /* Desktop: φ² = 2.618rem */
+    padding: 0 var(--space-10);           /* padding = gap consonancia perfecta */
+  }
+  
+  .grid-flex > * {
+    flex-basis: 320px;                    /* Desktop: base premium */
+  }
+  
+  .grid-flex > .card--featured {
+    flex-basis: calc(640px + var(--space-10)); /* 2 × 320px + 1 gap desktop */
+    min-width: calc(640px + var(--space-10));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-flex {
+    gap: var(--space-xl);                 /* Desktop: espaciado generoso consonante */
+    padding: 0 var(--space-xl);           /* padding = gap consonancia sistémica */
+  }
+  
+  .grid-flex > * {
+    flex-basis: 350px;                    /* Desktop: base premium óptima */
+  }
+  
+  .grid-flex > .card--featured {
+    flex-basis: calc(700px + var(--space-xl)); /* 2 × 350px + 1 gap desktop */
+    min-width: calc(700px + var(--space-xl));
+  }
+}
+
+@media (min-width: 2560px) {
+  .grid-flex {
+    gap: var(--space-2xl);                /* Ultra-wide: máximo espaciado de lujo */
+    padding: 0 var(--space-2xl);          /* padding = gap consonancia ultra */
+  }
+  
+  .grid-flex > * {
+    flex-basis: 400px;                    /* Ultra-wide: base premium máxima */
+  }
+  
+  .grid-flex > .card--featured {
+    flex-basis: calc(800px + var(--space-2xl)); /* 2 × 400px + 1 gap ultra-wide */
+    min-width: calc(800px + var(--space-2xl));
+  }
+}
+
+/* ==========================================================================
+   SUB-GRID ANIDADO 3x2 - LAYOUT HÍBRIDO AVANZADO
+   ========================================================================== */
+
+/* Grid anidado líquido y responsive dentro de elementos flexbox */
+.sub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(87px, 1fr)); /* LÍQUIDO: Se adapta automáticamente */
+  gap: var(--space-1);                     /* Gap más compacto para mejor aprovechamiento */
+  width: 100%;                             /* CRÍTICO: Usa todo el ancho disponible */
+  box-sizing: border-box;                  /* Incluye padding en el cálculo */
+}
+
+/* Elementos individuales del sub-grid - totalmente fluidos */
+.sub-grid-item {
+  display: flex;
+  flex-direction: column;
+  min-height: var(--space-8);              /* Altura mínima reducida pero proporcional */
+  aspect-ratio: 1;                         /* NUEVO: Mantiene proporción cuadrada */
+}
+
+
+.sub-grid-item strong {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);    /* Más bold para mejor legibilidad */
+  color: var(--color-black);
+  margin-bottom: var(--space-1);
+  line-height: 1;                          /* Line-height compacto */
+}
+
+.sub-grid-item small {
+  font-size: var(--text-xs);
+  color: var(--gray-600);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.2;                        /* Line-height compacto */
+}
+
+/* Responsive del sub-grid - mejoras para móviles */
+@media (max-width: 640px) {
+  .sub-grid {
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Móvil: mínimo más pequeño */
+    gap: var(--space-1);                   /* Gap aún más compacto en móvil */
+    padding: var(--space-1);               /* Padding mínimo en móvil */
+  }
+  
+  .sub-grid-item {
+    min-height: var(--space-6);            /* Altura menor en móvil */
+    padding: var(--space-1);               /* Padding mínimo en móvil */
+  }
+  
+  .sub-grid-item strong {
+    font-size: var(--text-xs);             /* Texto más pequeño en móvil */
+  }
+  
+  .sub-grid-item small {
+    font-size: 0.625rem;                   /* Extra pequeño en móvil */
+  }
+}
+
+/* Optimización para contenedores muy estrechos */
+@media (max-width: 400px) {
+  .sub-grid {
+    grid-template-columns: repeat(5, 1fr); /* En móviles muy pequeños: 5 columnas */
+    gap: 2px;                              /* Gap mínimo */
+  }
+}
+
+/* ==========================================================================
+   ELEMENTO CON FONDO DE IMAGEN - SOLO IMAGEN SIN CONTENIDO
+   ========================================================================== */
+
+/* Card que es puramente imagen de fondo */
+.card--image-only {
+  background-image: url('../assets/campo-energetico.jpg');
+  background-size: cover;                  /* Cubre todo el elemento */
+  background-position: center;             /* Centrado perfecto */
+  background-repeat: no-repeat;            /* Sin repetición */
+  border: none;                            /* Sin bordes para que sea pura imagen */
+  padding: 0;                              /* Sin padding para imagen completa */
+  overflow: hidden;                        /* Evita desbordamiento */
+  min-height: 200px;                       /* Altura mínima para visibilidad */
+}
+
+/* Responsive: ajustar comportamiento en móviles */
+@media (max-width: 640px) {
+  .card--image-only {
+    background-size: cover;                /* Mantiene cover en móvil también */
+    min-height: 150px;                     /* Altura menor en móvil */
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+@media (min-width: 640px) {
+  .grid--responsive,
+  .grid-responsive-master {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid--responsive-phi {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Tablet: 300px mínimo */
+    gap: var(--space-8);    /* Tablet: más espacio, mejor respiración */
+    padding: 0 var(--space-8); /* padding = gap siempre */
+  }
+}
+
+@media (min-width: 768px) {
+  .grid--responsive,
+  .grid-responsive-master {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .grid--responsive-phi {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Tablet: 320px mínimo óptimo */
+    gap: var(--space-10);   /* φ² = 2.618rem en tablet */
+    padding: 0 var(--space-10); /* padding = gap consonancia perfecta */
+  }
+  
+  .grid--responsive-compact {
+    grid-template-columns: repeat(3, 1fr);
+    /* gap y margin siguen siendo 0 en todas las resoluciones */
+  }
+  
+  .grid--responsive-wide {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xl); /* AMPLIA: Mantiene φ³ = 4.236rem en tablet */
+    margin: 0 var(--space-2xl); /* Margen = gap para máxima respiración */
+  }
+  
+  .grid--cards {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+  
+  .md\:grid--2-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects-grid {
+    grid-template-columns: var(--project-grid-columns-tablet); /* Solo cambio de columnas */
+    /* gap y margin ya son --space-xl en regla base */
+  }
+
+  /* RESPONSIVE BREATHING - 3 ESCALAS CONSONANTES CONTAINERS */
+  .section__container,
+  .container-master {
+    padding-left: var(--space-10);  /* Tablet: φ² = 2.618rem - CONSONANCIA PERFECTA */
+    padding-right: var(--space-10); /* Tablet: φ² = 2.618rem - CONSONANCIA PERFECTA */
+  }
+
+  /* Responsive: más compacto en móvil */
+  hr.separator { margin-top: var(--space-3); /* Más compacto en móvil */ }
+  hr.separator--wide { margin-top: var(--space-6); /* Reduce separación amplia en móvil */ }
+}
+
+@media (min-width: 1024px) {
+  .grid--responsive,
+  .grid-responsive-master {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+  }
+  
+  .grid--responsive-phi {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Desktop: 350px mínimo premium */
+    gap: var(--space-xl);   /* Desktop: espaciado generoso pero consonante */
+    padding: 0 var(--space-xl); /* padding = gap consonancia sistémica */
+  }
+  
+  .grid--responsive-compact {
+    grid-template-columns: repeat(4, 1fr);
+    /* gap y margin siguen siendo 0 en desktop */
+  }
+  
+  .grid--responsive-wide {
+    grid-template-columns: repeat(4, 1fr);
+    /* gap y margin ya son var(--space-2xl) desde mobile */
+  }
+  
+  .grid--cards {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  .section__container,
+  .container-master {
+    padding-left: var(--space-2xl);  /* Desktop: φ³ = 4.236rem - CONSONANCIA PERFECTA */
+    padding-right: var(--space-2xl); /* Desktop: φ³ = 4.236rem - CONSONANCIA PERFECTA */
+  }
+}
+
+/* Large desktop grid optimizations */
+@media (min-width: 1440px) {
+  .projects-grid {
+    grid-template-columns: var(--project-grid-columns-desktop); /* Solo cambio de columnas */
+    /* gap ya es --space-xl en regla base - CONSONANCIA MANTENIDA */
+  }
+  
+  .sistema-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Solo cambio de columnas */
+    /* gap y margin ya son --space-xl en regla base - CONSONANCIA MANTENIDA */
+  }
+}
+
+/* Ultra-wide optimizations - 2560px+ */
+@media (min-width: 2560px) {
+  /* Fluid layout with consistent horizontal breathing */
+  .container {
+    padding: 0 var(--space-xl); /* Same as grid gap */
+    max-width: none; /* Remove max-width for true fluidity */
+  }
+  
+  /* Projects grid - enhanced for ultra-wide */
+  .projects-grid {
+    grid-template-columns: var(--project-grid-columns-ultra); /* Solo cambio de columnas */
+    /* gap ya es --space-xl en regla base - CONSONANCIA PERFECTA */
+    /* margin already set in base rule */
+  }
+  
+  /* Grid responsive phi - ultra-wide premium */
+  .grid--responsive-phi {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Ultra-wide: 400px premium */
+    gap: var(--space-2xl);   /* Ultra-wide: máximo espaciado de lujo */
+    padding: 0 var(--space-2xl); /* padding = gap consonancia ultra */
+  }
+  
+  /* Sistema grid - fluid 5 columns with consistent spacing */
+  .sistema-grid {
+    grid-template-columns: repeat(5, 1fr);
+    /* gap y padding ya son --space-xl en regla base */
+    max-width: 1600px; /* CONSONANT: 1600px */
+    margin: 0 auto;
+  }
+}
+
+/* ==========================================================================
+   LAYOUT EXAMPLES Y SHOWCASE
+   ========================================================================== */
+
+.layout-example {
+  background-color: var(--color-surface-secondary);
+  padding: var(--space-8);
+  text-align: center;
+}

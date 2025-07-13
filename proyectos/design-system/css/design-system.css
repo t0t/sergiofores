@@ -1,0 +1,80 @@
+/**
+ * SISTEMA DE DISEÑO SERGIO FORÉS - ARQUITECTURA MODULAR
+ * 
+ * Archivo principal que importa todos los módulos del design system
+ * siguiendo la filosofía atómica y estructura nuclear:
+ * 
+ * 1. tokens.css     - Variables núcleo (colores, espaciado, tipografía)
+ * 2. typography.css - Sistema tipográfico 3 tamaños
+ * 3. layout.css     - Grids, containers y layout system
+ * 4. components.css - Componentes UI reutilizables
+ * 5. utilities.css  - Helpers y clases utilitarias
+ * 
+ * ⚠️ ORDEN CRÍTICO: No cambiar el orden de imports
+ * Los tokens deben cargarse primero para que las variables estén disponibles
+ */
+
+/* ==========================================================================
+   1. DESIGN TOKENS - ESTRUCTURA NUCLEAR
+   Variables CSS fundamentales del sistema
+   ========================================================================== */
+@import url('./tokens.css');
+
+/* ==========================================================================
+   2. TIPOGRAFÍA - SISTEMA 3 TAMAÑOS
+   Sistema tipográfico basado en proporciones áureas
+   ========================================================================== */
+@import url('./typography.css');
+
+/* ==========================================================================
+   3. LAYOUT Y GRIDS - ESPACIADO MATEMÁTICAMENTE PERFECTO
+   Grid system, containers y responsive design
+   ========================================================================== */
+@import url('./layout.css');
+
+/* ==========================================================================
+   4. COMPONENTES - ELEMENTOS UI REUTILIZABLES
+   Botones, cards, navegación y formularios
+   ========================================================================== */
+@import url('./components.css');
+
+/* ==========================================================================
+   5. UTILIDADES - HELPERS Y CLASES ESPECÍFICAS
+   Espaciado, colores, features y showcase
+   ========================================================================== */
+@import url('./utilities.css');
+
+/**
+ * ==========================================================================
+ * NOTES DE IMPLEMENTACIÓN
+ * ==========================================================================
+ * 
+ * CÓMO USAR ESTE SISTEMA MODULAR:
+ * 
+ * 1. IMPORTACIÓN COMPLETA:
+ *    <link rel="stylesheet" href="css/design-system.css">
+ * 
+ * 2. IMPORTACIÓN SELECTIVA:
+ *    <link rel="stylesheet" href="css/tokens.css">
+ *    <link rel="stylesheet" href="css/typography.css">
+ *    <link rel="stylesheet" href="css/layout.css">
+ * 
+ * 3. PROYECTOS ESPECÍFICOS:
+ *    - Siempre importar tokens.css primero
+ *    - Añadir solo los módulos necesarios
+ *    - Crear archivo proyecto-específico.css para extensiones
+ * 
+ * VENTAJAS DE LA MODULARIZACIÓN:
+ * - ✅ Mantenimiento más sencillo
+ * - ✅ Debugging específico por área
+ * - ✅ Carga selectiva según necesidades
+ * - ✅ Colaboración en equipo por módulos
+ * - ✅ Testing independiente de cada área
+ * - ✅ Versionado granular
+ * 
+ * ESTRUCTURA ATÓMICA MANTENIDA:
+ * - tokens.css = Núcleo atómico inmutable
+ * - Otros archivos = Especialización y propagación
+ * - Sin duplicación de variables
+ * - Consistencia sistémica garantizada
+ */

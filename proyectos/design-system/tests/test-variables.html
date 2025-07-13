@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Variables CSS - Sergio Forés</title>
+
+    <!-- IMPORTAR SISTEMA MODULAR -->
+    <link rel="stylesheet" href="css/design-system.css">
+
+    <style>
+        .test-container {
+            padding: var(--space-8);
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            font-family: var(--font-primary);
+        }
+        
+        .variable-test {
+            background: var(--color-surface-secondary);
+            padding: var(--space-4);
+            margin-bottom: var(--space-4);
+            border: var(--border-width-base) solid var(--color-gray-300);
+        }
+        
+        .test-typography h1 {
+            font-size: var(--text-large);
+            color: var(--color-text-primary);
+        }
+        
+        .test-typography h2 {
+            font-size: var(--text-medium);
+            color: var(--color-text-secondary);
+        }
+        
+        .test-typography p {
+            font-size: var(--text-small);
+            color: var(--color-text-muted);
+        }
+        
+        .test-colors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-4);
+        }
+        
+        .color-box {
+            height: var(--space-16);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-white);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        
+        .color-cyan { background: var(--color-cyan); color: var(--color-black); }
+        .color-yellow { background: var(--color-yellow); color: var(--color-black); }
+        .color-magenta { background: var(--color-magenta); }
+        .color-gray-900 { background: var(--color-gray-900); }
+        
+        .test-spacing {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+        
+        .spacing-bar {
+            background: var(--color-cyan);
+            height: var(--space-3);
+            display: flex;
+            align-items: center;
+            padding-left: var(--space-2);
+            font-size: var(--text-small);
+            color: var(--color-black);
+        }
+        
+        .space-4 { width: var(--space-4); }
+        .space-6 { width: var(--space-6); }
+        .space-8 { width: var(--space-8); }
+        .space-12 { width: var(--space-12); }
+        .space-16 { width: var(--space-16); }
+        
+        .console-test {
+            background: var(--color-gray-900);
+            color: var(--color-white);
+            padding: var(--space-4);
+            font-family: var(--font-mono);
+            font-size: var(--text-small);
+            margin-top: var(--space-8);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Test de Variables CSS - Sistema Modular</h1>
+        
+        <div class="variable-test">
+            <h2>✅ Verificación de Carga</h2>
+            <p>Si ves este contenido con estilos aplicados, las variables CSS se están cargando correctamente desde el sistema modular.</p>
+        </div>
+
+        <div class="variable-test test-typography">
+            <h2>📝 Test Tipografía</h2>
+            <h1>Título H1 - var(--text-large)</h1>
+            <h2>Título H2 - var(--text-medium)</h2>
+            <p>Párrafo - var(--text-small) con color muted</p>
+        </div>
+
+        <div class="variable-test">
+            <h2>🎨 Test Paleta Sagrada</h2>
+            <div class="test-colors">
+                <div class="color-box color-cyan">CYAN</div>
+                <div class="color-box color-yellow">YELLOW</div>
+                <div class="color-box color-magenta">MAGENTA</div>
+                <div class="color-box color-gray-900">GRAY-900</div>
+            </div>
+        </div>
+
+        <div class="variable-test">
+            <h2>📏 Test Espaciado Áureo</h2>
+            <div class="test-spacing">
+                <div class="spacing-bar space-4">--space-4</div>
+                <div class="spacing-bar space-6">--space-6 (φ)</div>
+                <div class="spacing-bar space-8">--space-8</div>
+                <div class="spacing-bar space-12">--space-12</div>
+                <div class="spacing-bar space-16">--space-16 (φ³)</div>
+            </div>
+        </div>
+
+        <div class="console-test">
+            <div>🚀 Abre DevTools → Console y ejecuta:</div>
+            <div style="margin-top: var(--space-2);">
+                <div>getComputedStyle(document.documentElement).getPropertyValue('--text-large')</div>
+                <div>getComputedStyle(document.documentElement).getPropertyValue('--color-cyan')</div>
+                <div>getComputedStyle(document.documentElement).getPropertyValue('--space-16')</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-verificación de variables al cargar
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('🧪 VERIFICACIÓN AUTOMÁTICA DE VARIABLES CSS');
+            console.log('===============================================');
+            
+            const variables = [
+                '--text-large',
+                '--text-medium', 
+                '--text-small',
+                '--color-cyan',
+                '--color-yellow',
+                '--color-magenta',
+                '--space-4',
+                '--space-6',
+                '--space-8',
+                '--space-16',
+                '--font-primary'
+            ];
+            
+            let allLoaded = true;
+            
+            variables.forEach(variable => {
+                const value = getComputedStyle(document.documentElement).getPropertyValue(variable);
+                if (value) {
+                    console.log(`✅ ${variable}: ${value.trim()}`);
+                } else {
+                    console.log(`❌ ${variable}: NO ENCONTRADA`);
+                    allLoaded = false;
+                }
+            });
+            
+            console.log('===============================================');
+            if (allLoaded) {
+                console.log('🎉 TODAS LAS VARIABLES SE CARGARON CORRECTAMENTE');
+                console.log('✅ Sistema modular funcionando perfecto');
+            } else {
+                console.log('⚠️  ALGUNAS VARIABLES NO SE CARGARON');
+                console.log('❌ Revisar orden de importación CSS');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -46,7 +46,7 @@ window.addEventListener('scroll', function() {
 document.addEventListener('DOMContentLoaded', function() {
     // SVG sprite loading (only for server environments)
     if (window.location.protocol !== 'file:') {
-        loadSvgSprite('sergio-icons.svg');
+        loadSvgSprite('assets/sergio-icons.svg');
     }
 
     const menuToggle = document.querySelector('.header__menu-toggle');

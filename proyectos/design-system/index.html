@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Design System - Sergio Forés</title>
 
-    <!-- Sistema de Diseño Atómico - CSS Consolidado Único -->
-    <link rel="stylesheet" href="css/main-system.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.svg">
+
+    <!-- Sistema de Diseño Atómico - Arquitectura Modular -->
+    <link rel="stylesheet" href="css/design-system.css">
 
     <!-- JavaScript - Navegación inteligente CLAUDE.md compliant -->
     <script src="js/claude-navigation.js" defer></script>
@@ -32,7 +36,6 @@
                     </svg>
                 </button>
                 <ul id="main-nav-list">
-
 
                     <!-- Fundamentos Dropdown -->
                     <li class="dropdown">
@@ -102,7 +105,7 @@
                                 <li class="dropdown__item">
                                     <a href="#features" class="dropdown__link">Features</a>
                                 </li>
-                                                            </ul>
+                            </ul>
                         </div>
                     </li>
                 </ul>
@@ -111,22 +114,7 @@
     </header>
 
     <main>
-        <!-- Hero Section - GRID SYSTEM MADRE APLICADO -->
-        <section id="hero" class="hero-master">
-            <div class="hero-container-master">
-                <h1 class="hero-title-master">Design System Atómico</h1>
-                <p class="hero-subtitle-master">
-                    Sistema de consonancia sistémica fractal para proyectos CEREBRO-DIGITAL. Estructura nuclear que se
-                    propaga sin duplicación, consonancia matemáticamente perfecta y proporciones áureas como fundamento
-                    universal.
-                </p>
-                <div class="hero-actions-master">
-                    <button class="btn btn--primary">Explorar</button>
-                    <button class="btn btn--secondary">Documentación</button>
-                </div>
-            </div>
-        </section>
-
+        <!-- Hero Section - .hero-master -->
         <section class="hero-master hero-master--image"
             style="background-image: url('../fotografia/img/photographs/determinacion-luminosa.jpg');">
             <div class="hero-container-master">
@@ -141,108 +129,134 @@
             </div>
         </section>
 
-        <!-- Principios Fundamentales Section - SISTEMA CONSONANTE AMPLIO -->
+        <!-- Principios Fundamentales Section - GRID RESPONSIVE PHI PREMIUM -->
         <section id="principios" class="section">
-            <div class="container-master--wide">
-                <header class="section__header">
-                    <h2 class="section__title">Principios Fundamentales</h2>
-                    <p class="section__subtitle">Filosofía de diseño que prioriza la consonancia sistémica, las
-                        proporciones áureas y la estructura nuclear.</p>
-                </header>
-                <div class="section__content">
-                    <div class="grid grid--cards">
-                        <div class="card">
-                            <div class="card__body">
-                                <h3 class="card__title">Consonancia Sistémica</h3>
-                                <p class="card__text">Armonía matemática perfecta entre tipografía, espaciado y layout.
-                                    Cada elemento resuena con el conjunto total.</p>
-                                <p class="card__text"><strong>Principio:</strong> Como una sinfonía, todos los elementos
-                                    deben vibrar en la misma frecuencia.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card__body">
-                                <h3 class="card__title">Estructura Nuclear</h3>
-                                <p class="card__text">Centro atómico inmutable desde el cual se propaga todo. Una sola
-                                    fuente de verdad para cada concepto.</p>
-                                <p class="card__text"><strong>Principio:</strong> Todo emana del núcleo, nada se
-                                    duplica.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card__body">
-                                <h3 class="card__title">Paleta Sagrada</h3>
-                                <p class="card__text">Solo 5 colores puros + 5 grises exactos. NUNCA inventar colores
-                                    fuera de esta paleta inmutable.</p>
-                                <p class="card__text"><strong>Principio:</strong> La paleta es la biblia visual. Si no
-                                    está aquí, no existe.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card__body">
-                                <h3 class="card__title">Espaciado Matemáticamente Perfecto</h3>
-                                <p class="card__text">Fibonacci y proporciones áureas en tipografía y espaciado. Sistema
-                                    Utopia como núcleo fluido.</p>
-                                <p class="card__text"><strong>Principio:</strong> Cada píxel debe estar justificado
-                                    matemáticamente.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card__body">
-                                <h3 class="card__title">Fibonacci Tipográfico</h3>
-                                <p class="card__text">Escalas Utopia con progresiones naturales. Clamp() fluido
-                                    garantiza proporciones áureas perfectas.</p>
-                                <p class="card__text"><strong>Principio:</strong> La naturaleza ya resolvió las
-                                    proporciones. Solo hay que aplicarlas.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card__body">
-                                <h3 class="card__title">Respiración Horizontal</h3>
-                                <p class="card__text">Grids JAMÁS pegados a bordes. Margin universal en regla base, no
-                                    media queries específicos.</p>
-                                <p class="card__text"><strong>Principio:</strong> El contenido necesita aire para
-                                    existir dignamente.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card__body">
-                                <h3 class="card__title">Baseline Grid 24px</h3>
-                                <p class="card__text">Ritmo vertical sagrado line-height 1.5. Todo alineado a múltiplos
-                                    del baseline para respiración perfecta.</p>
-                                <p class="card__text"><strong>Principio:</strong> El ritmo vertical es la columna
-                                    vertebral del diseño.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card__body">
-                                <h3 class="card__title">Monocromático Elegante</h3>
-                                <p class="card__text">95% grises + 5% color-1. Sofisticación through constraint. Único
-                                    acento naranja 01234 permitido.</p>
-                                <p class="card__text"><strong>Principio:</strong> La verdadera elegancia reside en la
-                                    restricción inteligente.</p>
-                            </div>
-                        </div>
+            <div class="grid-flex m0 p3">
+                <!-- Elemento Hero/Featured - Ocupa 2 columnas por defecto -->
+                <div class="card card--featured p2">
+                    <div class="card__body m0">
+                        <h1 class="mb1">Sistema de Diseño Atómico</h1>
+                        <p class="card__text mb1">Filosofía de diseño que prioriza la consonancia sistémica, las
+                            proporciones áureas y la estructura nuclear.</p>
                     </div>
+                </div>
 
-                    <!-- Regla de Oro - Modernizada -->
-                    <div class="notification notification--warning">
-                        <h6>Regla de Oro del Sistema</h6>
-                        <blockquote>
-                            <p>"Si ya existe, no lo vuelvas a crear. Si no existe, créalo donde tenga sentido. Elimina
-                                todo lo que no añada valor."</p>
-                            <footer><strong>— Sergio Forés</strong></footer>
-                        </blockquote>
+                <div class="card p1">
+                    <div class="card__body m0">
+                        <h3 class="card__title mb1">Consonancia Sistémica</h3>
+                        <p class="card__text mb1">Armonía matemática perfecta entre tipografía, espaciado y layout.
+                            Cada elemento resuena con el conjunto total.</p>
+                        <p class="card__text mb0"><strong>Principio:</strong> Como una sinfonía, todos los elementos
+                            deben vibrar en la misma frecuencia.</p>
+                    </div>
+                </div>
+
+                <div class="card p1">
+                    <div class="card__body m0">
+                        <h3 class="card__title mb1">Estructura Nuclear</h3>
+                        <p class="card__text mb1">Centro atómico inmutable desde el cual se propaga todo. Una sola
+                            fuente de verdad para cada concepto.</p>
+                        <p class="card__text mb0"><strong>Principio:</strong> Todo emana del núcleo, nada se
+                            duplica.</p>
+                    </div>
+                </div>
+
+                <div class="card p1">
+                    <div class="card__body m0">
+                        <h3 class="card__title mb1">Paleta Sagrada</h3>
+                        <p class="card__text mb1">Solo 5 colores puros + 5 grises exactos. NUNCA inventar colores
+                            fuera de esta paleta inmutable.</p>
+                        <p class="card__text mb0"><strong>Principio:</strong> La paleta es la biblia visual. Si no
+                            está aquí, no existe.</p>
+                    </div>
+                </div>
+
+                <div class="card p1">
+                    <div class="card__body m0">
+                        <h3 class="card__title mb1">Espaciado Matemáticamente Perfecto</h3>
+                        <p class="card__text mb1">Fibonacci y proporciones áureas en tipografía y espaciado. Sistema
+                            Utopia como núcleo fluido.</p>
+                        <p class="card__text mb0"><strong>Principio:</strong> Cada píxel debe estar justificado
+                            matemáticamente.</p>
+                    </div>
+                </div>
+
+                <div class="card p1">
+                    <div class="card__body m0">
+                        <h3 class="card__title mb1">Fibonacci Tipográfico</h3>
+                        <p class="card__text mb1">Escalas Utopia con progresiones naturales. Clamp() fluido
+                            garantiza proporciones áureas perfectas.</p>
+                        <p class="card__text mb0"><strong>Principio:</strong> La naturaleza ya resolvió las
+                            proporciones. Solo hay que aplicarlas.</p>
+                    </div>
+                </div>
+
+                <div class="card p1">
+                    <div class="card__body m0">
+                        <h3 class="card__title mb1">Respiración Horizontal</h3>
+                        <p class="card__text mb1">Grids JAMÁS pegados a bordes. Margin universal en regla base, no
+                            media queries específicos.</p>
+                        <p class="card__text mb0"><strong>Principio:</strong> El contenido necesita aire para
+                            existir dignamente.</p>
+                    </div>
+                </div>
+
+                <div class="card p1">
+                    <div class="card__body m0">
+                        <h3 class="card__title mb1">Baseline Grid 24px</h3>
+                        <p class="card__text mb1">Ritmo vertical sagrado line-height 1.5. Todo alineado a múltiplos
+                            del baseline para respiración perfecta.</p>
+                        <p class="card__text mb0"><strong>Principio:</strong> El ritmo vertical es la columna
+                            vertebral del diseño.</p>
+                    </div>
+                </div>
+
+                <!-- ELEMENTO SEXTO - Sub-grid con 5 elementos -->
+                <!-- Sub-grid con 5 elementos (niveles 01234) -->
+                <div class="sub-grid mt0">
+                    <div>
+                        <strong>0</strong> <span class="text-xs">Campo cuántico - Potencial infinito y curiosidad</span>
+                    </div>
+                    <div>
+                        <strong>1</strong> <span class="text-xs">Esencia - Claridad y decisiones nucleares</span>
+                    </div>
+                    <div>
+                        <strong>2</strong> <span class="text-xs">Análisis - Diferenciación y memoria</span>
+                    </div>
+                    <div>
+                        <strong>3</strong> <span class="text-xs">Comunicación - Conexión y síntesis</span>
+                    </div>
+                    <div>
+                        <strong>4</strong> <span class="text-xs">Materialización - Acción y resultados</span>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="card__body">
+                        <h3 class="card__title">Monocromático Elegante</h3>
+                        <p class="card__text">95% grises + 5% color-1. Sofisticación through constraint. Único
+                            acento naranja 01234 permitido.</p>
+                        <p class="card__text"><strong>Principio:</strong> La verdadera elegancia reside en la
+                            restricción inteligente.</p>
+                    </div>
+                </div>
+
+                <!-- ELEMENTO CON FONDO DE IMAGEN - Solo imagen, sin contenido -->
+                <div class="card card--image-only p0">
+                </div>
+
+                <div class="card p2" style="background-color: var(--color-black); color: var(--color-white);">
+                    <div class="card__body m0">
+                        <h3 class="card__title mb1" style="color: var(--color-cyan);">Último Elemento Inteligente</h3>
+                        <p class="card__text mb1">Como último elemento del grid, automáticamente me expando a toda la
+                            fila disponible. El grid container controla este comportamiento con :last-child.</p>
+                        <p class="card__text mb0"><strong>Principio:</strong> CSS Grid permite comportamientos
+                            inteligentes sin clases adicionales, solo desde el contenedor.</p>
                     </div>
                 </div>
             </div>
+
         </section>
 
 
@@ -288,62 +302,11 @@
                     </blockquote>
 
                     <hr class="separator">
-                    <h3>Tablas</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Encabezado 1</th>
-                                <th>Encabezado 2</th>
-                                <th>Encabezado 3</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Dato 1</td>
-                                <td>Dato 2</td>
-                                <td>Dato 3</td>
-                            </tr>
-                            <tr>
-                                <td>Dato 4</td>
-                                <td>Dato 5</td>
-                                <td>Dato 6</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
                     <!-- Typography Variables Showcase -->
                     <hr class="separator">
-                    <h3 id="tipografia">🔤 Tipografía Sistema Completo</h3>
-                    
-                    <!-- Sistema 3 Tamaños - Grid Compacto -->
-                    <div class="container-master">
-                        <p>Sistema de 3 tamaños únicamente. Grid compacto sin gaps para máxima densidad tipográfica:</p>
-                        <div class="grid grid--responsive-compact">
-                            <div class="card">
-                                <div class="card__body">
-                                    <h3 class="card__title">Texto Large</h3>
-                                    <p class="card__text"><small>H1 títulos principales - Clamp responsivo (φ²)</small></p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card__body">
-                                    <h3 class="card__title">Texto Medium</h3>
-                                    <p class="card__text"><small>H2-H3 subtítulos - Progresión áurea (φ)</small></p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card__body">
-                                    <h3 class="card__title">Texto Small</h3>
-                                    <p class="card__text"><small>Body y párrafos - Fundamento sistémico (base)</small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <hr class="separator">
-                    
                     <div class="typography-complete-showcase grid--responsive-phi">
-                        
+
                         <!-- Sistema Nuclear - 3 Tamaños + Mono -->
                         <div class="typography-group">
                             <h4>Sistema Nuclear - 3 Tamaños</h4>
@@ -449,7 +412,8 @@
                                     </div>
                                 </div>
                                 <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-magenta);"></div>
+                                    <div class="color-swatch__color" style="background-color: var(--color-magenta);">
+                                    </div>
                                     <div class="color-swatch__info">
                                         <div class="color-swatch__name">Magenta Puro</div>
                                         <div class="color-swatch__value">--color-magenta: #FF00FF</div>
@@ -918,13 +882,13 @@
                     </div>
 
                     <h3>Espaciado de Contenido (margin vertical)</h3>
-                        <p class="content--spacing-sm spacing-example-content-inner"><code>.content--spacing-sm</code>
-                            (margin vertical pequeño)</p>
-                        <p class="content--spacing-md spacing-example-content-inner"><code>.content--spacing-md</code>
-                            (margin vertical medio)</p>
-                        <p class="content--spacing-lg spacing-example-content-inner"><code>.content--spacing-lg</code>
-                            (margin vertical grande)</p>
-                    
+                    <p class="content--spacing-sm spacing-example-content-inner"><code>.content--spacing-sm</code>
+                        (margin vertical pequeño)</p>
+                    <p class="content--spacing-md spacing-example-content-inner"><code>.content--spacing-md</code>
+                        (margin vertical medio)</p>
+                    <p class="content--spacing-lg spacing-example-content-inner"><code>.content--spacing-lg</code>
+                        (margin vertical grande)</p>
+
                 </div>
             </div>
         </section>
@@ -1070,7 +1034,8 @@
                             <div class="features__card-content">
                                 <span class="features__card-category">Sistema</span>
                                 <h4 class="features__card-title">Design System</h4>
-                                <p class="features__card-description">Sistema de diseño atómico con consonancia matemática perfecta.</p>
+                                <p class="features__card-description">Sistema de diseño atómico con consonancia
+                                    matemática perfecta.</p>
                             </div>
                         </div>
                     </div>
@@ -1079,7 +1044,10 @@
                     <div class="features__content">
                         <div class="features__text">
                             <h4 class="features__item-title">Cosmos Fractal de Experiencias</h4>
-                            <p class="features__item-description">Fusiono lógica, arte y tecnología para construir interfaces que resuenan con la proporción áurea, la paleta CMYBK y una jerarquía tipográfica triádica. Cada componente se acopla como un fractal coherente que escala sin perder identidad.</p>
+                            <p class="features__item-description">Fusiono lógica, arte y tecnología para construir
+                                interfaces que resuenan con la proporción áurea, la paleta CMYBK y una jerarquía
+                                tipográfica triádica. Cada componente se acopla como un fractal coherente que escala sin
+                                perder identidad.</p>
                             <ul class="features__list">
                                 <li class="features__list-item">
                                     <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1088,7 +1056,8 @@
                                     </svg>
                                     <div class="features__list-content">
                                         <h4>Geometría Áurea</h4>
-                                        <p>La retícula, el espaciado y la tipografía siguen la secuencia φ para guiar la lectura y aportar ritmo visual.</p>
+                                        <p>La retícula, el espaciado y la tipografía siguen la secuencia φ para guiar la
+                                            lectura y aportar ritmo visual.</p>
                                     </div>
                                 </li>
                                 <li class="features__list-item">
@@ -1099,7 +1068,8 @@
                                     </svg>
                                     <div class="features__list-content">
                                         <h4>Paleta Sagrada</h4>
-                                        <p>Los cinco colores puros (amarillo, cyan, magenta, negro y blanco) gobiernan todo el sistema, garantizando contraste y coherencia cromática.</p>
+                                        <p>Los cinco colores puros (amarillo, cyan, magenta, negro y blanco) gobiernan
+                                            todo el sistema, garantizando contraste y coherencia cromática.</p>
                                     </div>
                                 </li>
                             </ul>
@@ -1320,6 +1290,151 @@
                             <p><strong>Ejemplo:</strong> El header tiene exactamente la misma altura que el gap entre
                                 elementos del grid, creando armonía visual perfecta.</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPACING UTILITIES SECTION - DEMO DE NUEVAS UTILIDADES -->
+        <section id="spacing-utilities" class="section">
+            <div class="container-master">
+                <header class="section__header">
+                    <h2 class="section__title">Utilidades de Spacing</h2>
+                    <p class="section__subtitle">Sistema utilitario de 3 escalas consonantes para padding y margin.
+                        Control granular con variables del sistema.</p>
+                </header>
+                <div class="section__content">
+
+                    <!-- Demostración de Padding -->
+                    <h3>🎯 Padding Utilities (.p0, .p1, .p2)</h3>
+                    <div class="spacing-complete-showcase">
+                        <div class="spacing-demo">
+                            <div class="p0"
+                                style="background: var(--color-cyan); min-height: 60px; display: flex; align-items: center; justify-content: center;">
+                                .p0 = 0px
+                            </div>
+                        </div>
+                        <div class="spacing-demo">
+                            <div class="p1"
+                                style="background: var(--color-yellow); color: var(--color-black); display: flex; align-items: center; justify-content: center;">
+                                .p1 = var(--space-3)
+                            </div>
+                        </div>
+                        <div class="spacing-demo">
+                            <div class="p2"
+                                style="background: var(--color-red); color: var(--color-white); display: flex; align-items: center; justify-content: center;">
+                                .p2 = var(--space-6)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Demostración de Margin -->
+                    <h3>📏 Margin Utilities (.m0, .m1, .m2)</h3>
+                    <div class="spacing-complete-showcase">
+                        <div style="background: var(--color-gray-200); padding: var(--space-2);">
+                            <div class="m0"
+                                style="background: var(--color-cyan); padding: var(--space-2); text-align: center;">
+                                .m0 = 0px margin
+                            </div>
+                        </div>
+                        <div style="background: var(--color-gray-200); padding: var(--space-2);">
+                            <div class="m1"
+                                style="background: var(--color-yellow); color: var(--color-black); padding: var(--space-2); text-align: center;">
+                                .m1 = var(--space-3) margin
+                            </div>
+                        </div>
+                        <div style="background: var(--color-gray-200); padding: var(--space-2);">
+                            <div class="m2"
+                                style="background: var(--color-red); color: var(--color-white); padding: var(--space-2); text-align: center;">
+                                .m2 = var(--space-6) margin
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Demostración Direccional -->
+                    <h3>🧭 Direccionales (.pt1, .pr2, .mx1, etc.)</h3>
+                    <div class="spacing-complete-showcase">
+                        <div class="spacing-demo">
+                            <div class="pt2 pb1 px2" style="background: var(--color-cyan); text-align: center;">
+                                .pt2 .pb1 .px2<br>
+                                <small>Top: space-6, Bottom: space-3, X-axis: space-6</small>
+                            </div>
+                        </div>
+                        <div class="spacing-demo">
+                            <div class="my1 px0"
+                                style="background: var(--color-yellow); color: var(--color-black); text-align: center;">
+                                .my1 .px0<br>
+                                <small>Y-axis: space-3, X-axis: 0</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabla de Referencia -->
+                    <h3>📋 Tabla de Referencia Completa</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Clase</th>
+                                <th>CSS Property</th>
+                                <th>Variable</th>
+                                <th>Valor Aproximado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>.p0</code></td>
+                                <td>padding</td>
+                                <td>0px</td>
+                                <td>0px</td>
+                            </tr>
+                            <tr>
+                                <td><code>.p1</code></td>
+                                <td>padding</td>
+                                <td>var(--space-3)</td>
+                                <td>12px</td>
+                            </tr>
+                            <tr>
+                                <td><code>.p2</code></td>
+                                <td>padding</td>
+                                <td>var(--space-6)</td>
+                                <td>26px (φ)</td>
+                            </tr>
+                            <tr>
+                                <td><code>.m0</code></td>
+                                <td>margin</td>
+                                <td>0px</td>
+                                <td>0px</td>
+                            </tr>
+                            <tr>
+                                <td><code>.m1</code></td>
+                                <td>margin</td>
+                                <td>var(--space-3)</td>
+                                <td>12px</td>
+                            </tr>
+                            <tr>
+                                <td><code>.m2</code></td>
+                                <td>margin</td>
+                                <td>var(--space-6)</td>
+                                <td>26px (φ)</td>
+                            </tr>
+                            <tr>
+                                <td><code>.px1, .py2, .mt1, etc.</code></td>
+                                <td>direccionales</td>
+                                <td>Combinaciones</td>
+                                <td>Control granular</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Info Card -->
+                    <div class="notification notification--warning">
+                        <h6>🎯 Sistema de 3 Escalas Consonantes</h6>
+                        <p><strong>Nivel 0:</strong> Reset completo (0px) - Para eliminar espaciado</p>
+                        <p><strong>Nivel 1:</strong> Compacto (--space-3 = 12px) - Para espaciado interno</p>
+                        <p><strong>Nivel 2:</strong> Estándar (--space-6 = φ = 26px) - Para separación visual</p>
+                        <p><strong>Direccionales:</strong> Control específico por lado (.pt1, .mr2, .px0, .my1, etc.)
+                        </p>
+                        <p><strong>Auto:</strong> Para centrado (.mx-auto, .ml-auto, .mr-auto)</p>
                     </div>
                 </div>
             </div>

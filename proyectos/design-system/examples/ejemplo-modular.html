@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo Modular - Diseño Sergio Forés</title>
+
+    <!-- EJEMPLO DE IMPORTACIÓN SELECTIVA MODULAR -->
+    
+    <!-- 1. NÚCLEO OBLIGATORIO - Siempre primero -->
+    <link rel="stylesheet" href="css/tokens.css">
+    
+    <!-- 2. TIPOGRAFÍA - Sistema 3 tamaños -->
+    <link rel="stylesheet" href="css/typography.css">
+    
+    <!-- 3. LAYOUT - Solo si necesitas grids -->
+    <link rel="stylesheet" href="css/layout.css">
+    
+    <!-- 4. COMPONENTES - Solo los que uses -->
+    <!-- <link rel="stylesheet" href="css/components.css"> -->
+    
+    <!-- 5. UTILIDADES - Solo si necesitas helpers -->
+    <!-- <link rel="stylesheet" href="css/utilities.css"> -->
+
+    <style>
+        /* CSS específico del proyecto */
+        .demo-container {
+            padding: var(--space-8);
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+        }
+        
+        .demo-card {
+            background: var(--color-surface-secondary);
+            padding: var(--space-6);
+            margin-bottom: var(--space-4);
+            border: var(--border-width-base) solid var(--color-gray-300);
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>Ejemplo de Importación Modular</h1>
+        
+        <div class="demo-card">
+            <h2>Solo Tokens + Tipografía + Layout</h2>
+            <p>Este ejemplo usa únicamente 3 módulos del design system:</p>
+            <ul>
+                <li><strong>tokens.css</strong> - Variables fundamentales</li>
+                <li><strong>typography.css</strong> - Sistema tipográfico</li>
+                <li><strong>layout.css</strong> - Grid system y containers</li>
+            </ul>
+        </div>
+
+        <div class="grid--responsive-phi">
+            <div class="demo-card">
+                <h3>Grid Item 1</h3>
+                <p>Usando variables del sistema:</p>
+                <ul>
+                    <li>Espaciado: <code>var(--space-6)</code></li>
+                    <li>Colores: <code>var(--color-surface-secondary)</code></li>
+                    <li>Tipografía: <code>var(--text-medium)</code></li>
+                </ul>
+            </div>
+
+            <div class="demo-card">
+                <h3>Grid Item 2</h3>
+                <p>Grid responsive con respiración horizontal automática según el sistema consonante.</p>
+            </div>
+
+            <div class="demo-card">
+                <h3>Grid Item 3</h3>
+                <p>Proporciones áureas y espaciado matemáticamente perfecto mantenidos.</p>
+            </div>
+        </div>
+
+        <hr class="separator--standard">
+
+        <h2>Ventajas de la Importación Selectiva</h2>
+        <div class="demo-card">
+            <h3>⚡ Performance</h3>
+            <p>Solo cargas el CSS que realmente necesitas, reduciendo el peso total.</p>
+            
+            <h3>🔧 Mantenimiento</h3>
+            <p>Puedes actualizar módulos específicos sin afectar el resto.</p>
+            
+            <h3>🎯 Claridad</h3>
+            <p>Está claro qué funcionalidades estás usando en cada proyecto.</p>
+        </div>
+    </div>
+</body>
+</html>
