@@ -262,13 +262,6 @@
   opacity: 0.8;
 }
 
-/* Logo Custom - Estilos personalizados específicos del diseño */
-.pageheader__logo--custom {
-  font-weight: 600;
-  font-size: 0.875rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
 
 .pageheader__menu {
   display: flex;
@@ -314,21 +307,21 @@
 .pageheader--dynamic .logo__mark,
 .pageheader--dynamic .logo__text {
   color: var(--color-white) !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7) !important;
+  text-shadow: none !important;
   transition: all var(--duration-base) var(--ease-out);
 }
 
 /* Custom logo styling - Maintains dynamic behavior */
 .pageheader__logo--custom {
   font-weight: 600 !important;
-  font-size: 0.875rem !important;
+  font-size: 1.125rem !important; /* Aumentado de 0.875rem a 1.125rem */
   letter-spacing: 0.1em !important;
   text-transform: uppercase !important;
 }
 
 .pageheader--dynamic .menu__link {
   color: var(--color-gray-200);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
   transition: all var(--duration-base) var(--ease-out);
 }
 
@@ -339,13 +332,13 @@
 
 .pageheader--dynamic .menu__toggle {
   color: var(--color-white);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
   transition: all var(--duration-base) var(--ease-out);
 }
 
 .pageheader--dynamic .menu__icon {
   stroke: currentColor;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+  filter: none;
   transition: all var(--duration-base) var(--ease-out);
 }
 
@@ -388,7 +381,7 @@
 .pageheader--dynamic .menu__submenu .menu__link {
   color: var(--color-gray-200);
   border-bottom: none;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  text-shadow: none;
 }
 
 .pageheader--dynamic .menu__submenu .menu__link:hover {
@@ -510,6 +503,14 @@
   min-height: var(--space-10); /* Altura mínima para centrado consistente */
   margin: 0 !important; /* Anular cualquier margin global en enlaces */
   margin-bottom: 0 !important; /* Anular margin-bottom específico */
+}
+
+/* Enlaces principales del dropdown - mismo estilo que logo */
+.menu__item--dropdown > .menu__link {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.125rem;
+  letter-spacing: 0.1em;
 }
 
 .menu__link:hover,
@@ -695,7 +696,8 @@
     max-width: 100vw;
     margin-left: calc(-1 * var(--space-4));
     margin-right: calc(-1 * var(--space-4));
-    background-color: var(--color-surface-primary);
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(12px);
     border-top: none;
     box-shadow: var(--shadow-lg);
     z-index: 1000;
@@ -733,6 +735,12 @@
     width: 100%;
     font-size: var(--text-medium);
     min-height: var(--space-12); /* Mayor altura en móvil para touch targets */
+    color: var(--color-gray-200);
+  }
+  
+  .menu--mobile-toggle .menu__link:hover {
+    color: var(--color-white);
+    background-color: rgba(255, 255, 255, 0.1);
   }
   
   /* Submenus en móvil - mostrar inline, desactivar hover behavior */
@@ -740,7 +748,7 @@
     position: static;
     display: flex;
     flex-direction: column;
-    background-color: var(--color-gray-50);
+    background-color: transparent;
     border: none;
     box-shadow: none;
     margin-left: var(--space-4);
@@ -766,6 +774,17 @@
   
   .menu--mobile-toggle .menu__item--dropdown {
     flex-direction: column;
+  }
+  
+  /* Enlaces de submenu en móvil con colores legibles sobre fondo oscuro */
+  .menu--mobile-toggle .menu__submenu .menu__link {
+    color: var(--color-gray-300);
+    padding-left: var(--space-8); /* Más indentación para submenús */
+  }
+  
+  .menu--mobile-toggle .menu__submenu .menu__link:hover {
+    color: var(--color-white);
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -969,13 +988,15 @@
 }
 
 .hero-title-master {
-  font-size: var(--text-large);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-tight);
+  font-size: clamp(3rem, 8vw, 6rem); /* φ⁵ = espectacularmente grande pero responsivo */
+  font-weight: var(--font-weight-bold);
+  line-height: 0.9; /* Muy compacto para dramatismo */
   color: var(--color-text-primary);
   margin-top: 0;
-  margin-bottom: var(--space-6);
-  letter-spacing: var(--letter-spacing-wide);
+  margin-bottom: var(--space-xl);
+  letter-spacing: -0.02em; /* Tracking negativo para tamaños grandes */
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .hero-title-master--inverse {
@@ -986,8 +1007,9 @@
 }
 
 .hero-subtitle-master {
-  font-size: var(--text-small);
-  line-height: var(--line-height-relaxed);
+  font-size: var(--text-medium);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-tight);
   color: var(--color-text-secondary);
   margin-top: 0;
   margin-bottom: var(--space-8);
@@ -998,7 +1020,7 @@
 
 .hero-subtitle-master--inverse {
   color: var(--gray-4);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.5); /* Sombra para mejor legibilidad */
+  text-shadow: none;
   position: relative;
   z-index: 2; /* Por encima del overlay */
 }
@@ -1009,6 +1031,29 @@
   gap: var(--space-4);
   flex-wrap: wrap;
   margin-top: var(--space-8);
+}
+
+/* ==========================================================================
+   H1 PRINCIPAL DEL SITIO - ESPECTACULARMENTE GRANDE
+   ========================================================================== */
+
+/* H1 principal en el grid header - Sistema de Diseño Atómico */
+.grid-flex__header h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem); /* φ⁴ = muy grande pero proporcional */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.0; /* Compacto para dramatismo */
+  letter-spacing: -0.01em; /* Tracking ligeramente negativo */
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-l);
+}
+
+@media (max-width: 768px) {
+  .grid-flex__header h1 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem); /* Móvil: más pequeño pero dramático */
+    line-height: 1.1;
+  }
 }
 
 @media (min-width: 768px) {

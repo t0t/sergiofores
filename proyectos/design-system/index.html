@@ -18,6 +18,40 @@
     <script src="js/dropdown-component.js" defer></script>
     <script src="js/pageheader-scroll.js" defer></script>
     <script src="js/main.js" defer></script>
+    
+    <!-- Smooth scroll con offset para header sticky -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Manejar todos los enlaces con hash
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Calcular offset basado en altura del header
+                        const header = document.querySelector('.pageheader');
+                        const headerHeight = header ? header.offsetHeight : 0;
+                        const offset = headerHeight + 20; // 20px extra para respiración
+                        
+                        // Calcular posición con offset
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+                        
+                        // Smooth scroll
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -41,11 +75,7 @@
                         <!-- Fundamentos Dropdown - Ejemplo menu__item--dropdown -->
                         <li class="menu__item menu__item--dropdown">
                             <a href="#fundamentos" class="menu__link">
-                                Fundamentos
-                                <svg class="menu__icon" viewBox="0 0 16 16">
-                                    <path d="M4 6L8 10L12 6" stroke="currentColor" fill="none" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                FUNDAMENTOS
                             </a>
                             <ul class="menu__submenu">
                                 <li class="menu__item">
@@ -57,27 +87,17 @@
                                 <li class="menu__item">
                                     <a href="#elementos-html" class="menu__link">HTML Básico</a>
                                 </li>
-                                <li class="menu__item">
-                                    <a href="#espaciado" class="menu__link">Espaciado</a>
-                                </li>
                             </ul>
                         </li>
 
                         <!-- Layout & Grid Dropdown -->
                         <li class="menu__item menu__item--dropdown">
                             <a href="#layout" class="menu__link">
-                                Layout
-                                <svg class="menu__icon" viewBox="0 0 16 16">
-                                    <path d="M4 6L8 10L12 6" stroke="currentColor" fill="none" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                LAYOUT
                             </a>
                             <ul class="menu__submenu">
                                 <li class="menu__item">
                                     <a href="#grid" class="menu__link">Grid System</a>
-                                </li>
-                                <li class="menu__item">
-                                    <a href="#layout" class="menu__link">Layout Container</a>
                                 </li>
                             </ul>
                         </li>
@@ -85,18 +105,11 @@
                         <!-- Componentes Dropdown -->
                         <li class="menu__item menu__item--dropdown">
                             <a href="#componentes" class="menu__link">
-                                Componentes
-                                <svg class="menu__icon" viewBox="0 0 16 16">
-                                    <path d="M4 6L8 10L12 6" stroke="currentColor" fill="none" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                                COMPONENTES
                             </a>
                             <ul class="menu__submenu">
                                 <li class="menu__item">
-                                    <a href="#componentes" class="menu__link">Componentes</a>
-                                </li>
-                                <li class="menu__item">
-                                    <a href="#formulario" class="menu__link">Formulario</a>
+                                    <a href="#componentes" class="menu__link">Formulario</a>
                                 </li>
                                 <li class="menu__item">
                                     <a href="#features" class="menu__link">Features</a>
@@ -112,7 +125,7 @@
     <main>
         <!-- Hero Section - .hero-master con fullscreen overlap -->
         <section class="hero-master hero-master--fullscreen hero-master--image"
-            style="background-image: url('../fotografia/img/photographs/determinacion-luminosa.jpg');">
+            style="background-image: url('assets/images/geometric-1.jpg');">
             <div class="hero-container-master">
                 <h2 class="hero-title-master hero-title-master--inverse">Cosmovisión aplicada al diseño</h2>
                 <p class="hero-subtitle-master hero-subtitle-master--inverse">
@@ -120,7 +133,7 @@
                     cada elemento encaja en una geometría fractal que guía la lectura y potencia la intención de diseño.
                 </p>
                 <div class="hero-actions-master">
-                    <a href="#features" class="btn btn--primary">Explorar Sistema</a>
+                    <a href="#colores" class="btn btn--primary">Explorar Sistema</a>
                 </div>
             </div>
         </section>
@@ -594,8 +607,8 @@
                 <!-- Features Cards -->
                     <div class="grid--cards">
                         <div class="features__card">
-                            <img src="../fotografia/img/photographs/coherencia-narrativa.jpg"
-                                alt="Coherencia Narrativa - Sergio Forés" class="features__card-image">
+                            <img src="assets/images/abstract-1.jpg"
+                                alt="Conceptual Design - AI System" class="features__card-image">
                             <div class="features__card-overlay">
                                 <svg class="icon icon--xl" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
@@ -610,14 +623,14 @@
                             </div>
                         </div>
                         <div class="features__card features__card--centered">
-                            <img src="../fotografia/img/photographs/determinacion-luminosa.jpg"
-                                alt="Determinación Luminosa - Sergio Forés" class="features__card-image">
+                            <img src="assets/images/ia-optimus-humanoid.jpg"
+                                alt="AI Design Process" class="features__card-image">
                             <div class="features__card-content">
                                 <h4 class="features__card-title">Simple Tarjeta</h4>
                                 <p class="features__card-description">Contenido relevante para la segunda tarjeta.</p>
                             </div>
                         </div>
-                        <div class="features__card features__card--bg-only" style="background-image: url('../fotografia/img/photographs/expresion-autentica.jpg');">
+                        <div class="features__card features__card--bg-only" style="background-image: url('assets/images/img-015.jpeg');">
                             <div class="features__card-content features__card-content--overlay">
                                 <span class="features__card-category">Sistema</span>
                                 <h4 class="features__card-title">Design System</h4>
@@ -639,7 +652,7 @@
                                 <p class="features__card-description">Diseño circular centrado y equilibrado.</p>
                             </div>
                         </div>
-                        <div class="features__card features__card--clickable" style="background-image: url('../fotografia/img/photographs/coherencia-narrativa.jpg');" onclick="alert('Card clicked!')">
+                        <div class="features__card features__card--clickable" style="background-image: url('assets/images/img-025.jpeg');" onclick="alert('Card clicked!')">
                             <div class="features__card-content">
                                 <span class="features__card-category">Interacción</span>
                                 <h4 class="features__card-title">Clickable Card</h4>
@@ -647,8 +660,8 @@
                             </div>
                         </div>
                         <div class="features__card features__card--two-cols">
-                            <img src="../fotografia/img/photographs/determinacion-luminosa.jpg"
-                                alt="Determinación Luminosa - Sergio Forés" class="features__card-image">
+                            <img src="assets/images/img-040.jpeg"
+                                alt="AI Collaboration" class="features__card-image">
                             <div class="features__card-content">
                                 <span class="features__card-category">Layout</span>
                                 <h4 class="features__card-title">Two Columns</h4>
@@ -663,8 +676,8 @@
                                 <p class="features__card-description">Variación inversa con contenido a la izquierda e imagen a la derecha. Perfecta para crear ritmo visual alternado en layouts complejos.</p>
                                 <p class="features__card-description">Esta alternancia crea una lectura en zigzag que mejora la experiencia del usuario y añade dinamismo visual al conjunto.</p>
                             </div>
-                            <img src="../fotografia/img/photographs/expresion-autentica.jpg"
-                                alt="Expresión Auténtica - Sergio Forés" class="features__card-image">
+                            <img src="assets/images/img-015.jpeg"
+                                alt="Minimalist AI Design" class="features__card-image">
                         </div>
                 </div>
 

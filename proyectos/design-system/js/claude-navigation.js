@@ -21,7 +21,7 @@ class ClaudeNavigation {
             clearThreshold: 100,
             headerOffsetProperty: '--nav-height-offset',
             smoothScrollDuration: 800,
-            scrollOffsetBuffer: 20,
+            scrollOffsetBuffer: 0, // Pixel perfect sin buffer
             ...options
         };
         
@@ -136,6 +136,22 @@ class ClaudeNavigation {
         this.lastActiveSection = null;
     }
     
+    closeAllSubmenus() {
+        // Cerrar todos los submenus abiertos
+        const dropdownItems = document.querySelectorAll('.menu__item--dropdown');
+        dropdownItems.forEach(item => {
+            item.classList.remove('menu__item--open');
+        });
+        
+        // También cerrar menu móvil si está abierto
+        const mobileMenu = document.querySelector('.menu--mobile-toggle');
+        if (mobileMenu) {
+            mobileMenu.classList.remove('menu--open');
+        }
+        
+        console.log('ClaudeNavigation: All submenus closed');
+    }
+    
     setupEventListeners() {
         // Scroll detection para clear states
         let scrollTimer = null;
@@ -172,6 +188,9 @@ class ClaudeNavigation {
                 if (href && href.startsWith('#')) {
                     e.preventDefault();
                     this.smoothScrollToSection(href.substring(1));
+                    
+                    // Cerrar submenus si el enlace está dentro de uno
+                    this.closeAllSubmenus();
                 }
             });
         });
@@ -237,23 +256,32 @@ class ClaudeNavigation {
     }
     
     getHeaderOffset() {
-        // Primero intentar obtener de CSS variables
+        // Obtener altura exacta del pageheader desde CSS
         const rootStyles = getComputedStyle(document.documentElement);
-        const cssOffset = rootStyles.getPropertyValue(this.config.headerOffsetProperty).replace('px', '').trim();
         
+        // Calcular height exacto: var(--space-xl) * 2 = 48px * 2 = 96px
+        const spaceXl = parseFloat(rootStyles.getPropertyValue('--space-xl'));
+        if (spaceXl && !isNaN(spaceXl)) {
+            // Convertir rem a px (1rem = 16px por defecto)
+            const spaceXlPx = spaceXl * 16; // 3rem * 16 = 48px
+            const exactHeaderHeight = spaceXlPx * 2; // 48px * 2 = 96px
+            return exactHeaderHeight; // Sin buffer - pixel perfect
+        }
+        
+        // Fallback: usar CSS variable nav-height-offset si existe
+        const cssOffset = rootStyles.getPropertyValue(this.config.headerOffsetProperty).replace('px', '').trim();
         if (cssOffset && !isNaN(parseFloat(cssOffset))) {
-            return parseFloat(cssOffset) + this.config.scrollOffsetBuffer;
+            return parseFloat(cssOffset);
         }
         
         // Fallback: medir la altura real del header
         if (this.header) {
             const headerHeight = this.header.getBoundingClientRect().height;
-            // Añadir buffer configurable para asegurar que no se tapa
-            return Math.ceil(headerHeight) + this.config.scrollOffsetBuffer;
+            return Math.ceil(headerHeight); // Sin buffer para pixel perfect
         }
         
-        // Fallback final con buffer
-        return 90 + this.config.scrollOffsetBuffer;
+        // Fallback final: altura teórica exacta
+        return 96; // calc(var(--space-xl) * 2) = 96px
     }
     
     // Método público para control externo
@@ -268,13 +296,14 @@ class ClaudeNavigation {
     debugOffset() {
         const offset = this.getHeaderOffset();
         const headerHeight = this.header ? this.header.getBoundingClientRect().height : 'N/A';
+        const spaceXl = getComputedStyle(document.documentElement).getPropertyValue('--space-xl');
         
-        console.log(`ClaudeNavigation Debug:
+        console.log(`ClaudeNavigation Debug (Pixel Perfect):
         - Header element: ${this.header ? 'Found' : 'Not found'}
         - Header actual height: ${headerHeight}px
-        - Calculated offset: ${offset}px
-        - CSS variable value: ${getComputedStyle(document.documentElement).getPropertyValue(this.config.headerOffsetProperty)}
-        - Buffer applied: ${this.config.scrollOffsetBuffer}px`);
+        - CSS --space-xl: ${spaceXl}
+        - Calculated offset: ${offset}px (should be 96px)
+        - Buffer applied: ${this.config.scrollOffsetBuffer}px (0 for pixel perfect)`);
     }
     
     // Destructor para cleanup
