@@ -42,7 +42,7 @@
   /* PALETA SAGRADA SERGIO FORÉS - ÚNICA FUENTE DE VERDAD */
   --color-yellow: #FFFF00;   /* Amarillo puro */
   --color-cyan: #00FFFF;     /* Cyan puro */
-  --color-red: #FF0000;      /* Rojo puro */
+  --color-magenta: #FF00FF;      /* Magenta */
   --color-black: #000000;    /* Negro puro */
   --color-white: #FFFFFF;    /* Blanco puro */
   
@@ -65,6 +65,13 @@
   --color-gray-800: #262626;
   --color-gray-900: #171717;
   
+  /* Nuevos Colores Base de Acento */
+  --accent-primary: #0055ff;      /* Azul vivo */
+  --accent-secondary: #00bfa6;    /* Turquesa */
+  --accent-warning: #ffb300;      /* Ámbar */
+  --accent-error: #ff1744;        /* Rojo vivo */
+  --accent-info: #2196f3;         /* Azul informativo */
+  
   /* Colores Semánticos */
   --color-text-primary: var(--color-gray-900);
   --color-text-secondary: var(--color-gray-600);
@@ -74,11 +81,11 @@
   --color-surface-secondary: var(--color-gray-50);
   --color-surface-tertiary: var(--color-gray-100);
   --color-surface-inverse: var(--color-gray-900);
-  --color-accent-primary: var(--color-yellow);
-  --color-accent-secondary: var(--color-cyan);
-  --color-accent-warning: var(--color-yellow);
-  --color-accent-error: var(--color-red);
-  --color-accent-info: var(--color-cyan);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-warning: var(--accent-warning);
+  --color-accent-error: var(--accent-error);
+  --color-accent-info: var(--accent-info);
   
   
   /* ESPACIADO - PROPORCIONAL ÁUREO BASE 1REM */
@@ -154,7 +161,7 @@
   /* TRANSITIONS */
   --duration-fast: 0.15s;
   --duration-base: 0.2s;
-  --duration-slow: 0.3s;
+  --duration-slow: 0.6s;
   --ease-linear: linear;
   --ease-out: ease-out;
   --ease-custom: cubic-bezier(0.4, 0, 0.2, 1);
@@ -350,7 +357,7 @@ body {
 }
 
 .card--warning {
-    border-left: 4px solid var(--color-red);
+    border-left: 4px solid var(--color-magenta);
 }
 
 .card-body-master,
@@ -1935,7 +1942,6 @@ textarea:focus,
   padding: var(--space-4);
   background: var(--color-gray-200);
   text-align: center;
-  border: var(--border-width-base) solid var(--color-gray-400);
 }
 
 .border-radius-none-demo { border-radius: var(--border-radius-none); }
@@ -1966,6 +1972,10 @@ textarea:focus,
 .shadow-lg-demo { box-shadow: var(--shadow-lg); }
 .shadow-xl-demo { box-shadow: var(--shadow-xl); }
 
+.color-swatch__name{
+  display:none;
+}
+
 /* Transiciones y Animaciones */
 .transitions-showcase {
   display: grid;
@@ -1991,7 +2001,26 @@ textarea:focus,
 
 .transition-demo:hover {
   background: var(--color-yellow);
-  transform: var(--transform-lift-strong) var(--transform-scale-gentle);
+}
+
+/* Variaciones específicas de ejemplo */
+.duration-fast-demo:hover {
+  transform: translateY(-0.5rem);
+}
+.duration-base-demo:hover {
+  transform: translateY(-0.5rem) scale(1.05);
+}
+.duration-slow-demo:hover {
+  transform: translateY(-0.5rem) scale(1.1) rotate(3deg);
+}
+.ease-linear-demo:hover {
+  transform: scale(1.05);
+}
+.ease-out-demo:hover {
+  transform: scale(1.1) rotate(2deg);
+}
+.ease-custom-demo:hover {
+  transform: translateY(-0.5rem) rotate(-3deg) scale(1.08);
 }
 
 /* Grid System Showcase */
@@ -2003,8 +2032,7 @@ textarea:focus,
   display: grid;
   gap: var(--project-grid-gap);
   margin: var(--space-2xl) 0;  /* CONSONANTE: Mismo valor que gap (--space-2xl) */
-  padding: var(--space-4);
-  background: var(--color-gray-100);
+  background: var(--color-gray-300);
 }
 
 .grid-mobile-demo { grid-template-columns: var(--project-grid-columns-mobile); }
@@ -2014,10 +2042,9 @@ textarea:focus,
 
 .grid-item-demo {
   padding: var(--space-4);
-  background: var(--color-red);
+  background: var(--color-magenta);
   color: var(--color-white);
   text-align: center;
-  border-radius: var(--border-radius-base);
 }
 
 /* Container Showcase */

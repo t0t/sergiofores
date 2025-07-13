@@ -7,7 +7,7 @@
     <title>Design System - Sergio Forés</title>
 
     <!-- Sistema de Diseño Atómico - CSS Consolidado Único -->
-    <link rel="stylesheet" href="css/backup-integrado-sistemadiseno.css">
+    <link rel="stylesheet" href="css/main-system.css">
 
     <!-- JavaScript - Navegación inteligente CLAUDE.md compliant -->
     <script src="js/claude-navigation.js" defer></script>
@@ -32,7 +32,7 @@
                     </svg>
                 </button>
                 <ul id="main-nav-list">
-                    <li><a href="#principios" class="header__nav-link">Principios</a></li>
+
 
                     <!-- Fundamentos Dropdown -->
                     <li class="dropdown">
@@ -102,13 +102,7 @@
                                 <li class="dropdown__item">
                                     <a href="#features" class="dropdown__link">Features</a>
                                 </li>
-                                <li class="dropdown__item">
-                                    <a href="#iconos" class="dropdown__link">Iconos</a>
-                                </li>
-                                <li class="dropdown__item">
-                                    <a href="#variables-showcase" class="dropdown__link">🧪 Variables Testing</a>
-                                </li>
-                            </ul>
+                                                            </ul>
                         </div>
                     </li>
                 </ul>
@@ -126,10 +120,6 @@
                     propaga sin duplicación, consonancia matemáticamente perfecta y proporciones áureas como fundamento
                     universal.
                 </p>
-                <p class="hero-subtitle-master">
-                    <strong>La arquitectura atómica funciona: eliminamos ruido, mantenemos solo fuentes de
-                        verdad.</strong>
-                </p>
                 <div class="hero-actions-master">
                     <button class="btn btn--primary">Explorar</button>
                     <button class="btn btn--secondary">Documentación</button>
@@ -140,10 +130,10 @@
         <section class="hero-master hero-master--image"
             style="background-image: url('../fotografia/img/photographs/determinacion-luminosa.jpg');">
             <div class="hero-container-master">
-                <h2 class="hero-title-master hero-title-master--inverse">Determinación Luminosa</h2>
+                <h2 class="hero-title-master hero-title-master--inverse">Cosmovisión aplicada al diseño</h2>
                 <p class="hero-subtitle-master hero-subtitle-master--inverse">
-                    Filosofía 01234 aplicada al diseño. Cada elemento emerge del nivel 1 de determinación, creando
-                    interfaces con propósito claro y ejecución precisa.
+                    La cosmovisión 01234 fusiona lógica, arte y tecnología para tejer experiencias digitales coherentes;
+                    cada elemento encaja en una geometría fractal que guía la lectura y potencia la intención de diseño.
                 </p>
                 <div class="hero-actions-master">
                     <button class="btn btn--primary">Explorar Sistema</button>
@@ -193,7 +183,7 @@
 
                         <div class="card">
                             <div class="card__body">
-                                <h3 class="card__title">ESPACIADO MATEMÁTICAMENTE PERFECTO</h3>
+                                <h3 class="card__title">Espaciado Matemáticamente Perfecto</h3>
                                 <p class="card__text">Fibonacci y proporciones áureas en tipografía y espaciado. Sistema
                                     Utopia como núcleo fluido.</p>
                                 <p class="card__text"><strong>Principio:</strong> Cada píxel debe estar justificado
@@ -323,7 +313,7 @@
 
                     <!-- Typography Variables Showcase -->
                     <hr class="separator">
-                    <h3>🔤 Tipografía Sistema Completo</h3>
+                    <h3 id="tipografia">🔤 Tipografía Sistema Completo</h3>
                     
                     <!-- Sistema 3 Tamaños - Grid Compacto -->
                     <div class="container-master">
@@ -433,7 +423,7 @@
         <section id="colores" class="section">
             <div class="container-master--wide">
                 <header class="section__header">
-                    <h2 class="section__title">PALETA SAGRADA</h2>
+                    <h2 class="section__title">PALETA</h2>
                     <p class="section__subtitle">Paleta de colores definida en el sistema de diseño. Colores puros y
                         escala monocromática para máxima coherencia visual.</p>
                 </header>
@@ -441,9 +431,7 @@
                     <div class="color-palette">
                         <!-- PALETA DEFINITIVA -->
                         <div class="color-palette__group">
-                            <h3 class="color-palette__title">PALETA DEFINITIVA - 5 COLORES PUROS</h3>
-                            <p class="text-sm" style="margin-bottom: var(--space-s);">Colores puros según la visión
-                                estética personal de Sergio Forés:</p>
+                            <h3 class="color-palette__title">Colores puros</h3>
                             <div class="color-palette__items">
                                 <div class="color-swatch">
                                     <div class="color-swatch__color" style="background-color: var(--color-yellow);">
@@ -461,10 +449,10 @@
                                     </div>
                                 </div>
                                 <div class="color-swatch">
-                                    <div class="color-swatch__color" style="background-color: var(--color-red);"></div>
+                                    <div class="color-swatch__color" style="background-color: var(--color-magenta);"></div>
                                     <div class="color-swatch__info">
-                                        <div class="color-swatch__name">Rojo Puro</div>
-                                        <div class="color-swatch__value">--color-red: #FF0000</div>
+                                        <div class="color-swatch__name">Magenta Puro</div>
+                                        <div class="color-swatch__value">--color-magenta: #FF00FF</div>
                                     </div>
                                 </div>
                                 <div class="color-swatch">
@@ -489,9 +477,7 @@
 
                         <!-- ESCALA DE GRISES -->
                         <div class="color-palette__group">
-                            <h3 class="color-palette__title">🔘 ESCALA MONOCROMÁTICA - 5 GRISES EXACTOS</h3>
-                            <p class="text-sm" style="margin-bottom: var(--space-s);">Escala monocromática definida por
-                                Sergio Forés para neutrales:</p>
+                            <h3 class="color-palette__title">🔘 Escala monocromática</h3>
                             <div class="color-palette__items">
                                 <div class="color-swatch">
                                     <div class="color-swatch__color" style="background-color: var(--gray-1);"></div>
@@ -795,7 +781,7 @@
                             <div class="card__body">
                                 <p class="card__text">Variables progresivas: φ → φ² → φ³ según breakpoint</p>
                                 <div
-                                    style="background-color: var(--color-red); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-white); font-weight: bold;">
+                                    style="background-color: var(--color-magenta); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-white); font-weight: bold;">
                                     φ → φ² → φ³</div>
                             </div>
                         </div>
@@ -861,7 +847,7 @@
                             <div class="card__body">
                                 <p class="card__text">Auto-fit con minmax(250px, 1fr)</p>
                                 <div
-                                    style="background-color: var(--color-red); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-white); font-weight: bold;">
+                                    style="background-color: var(--color-magenta); padding: var(--space-1); margin-top: var(--space-2); text-align: center; color: var(--color-white); font-weight: bold;">
                                     Auto-Fit</div>
                             </div>
                         </div>
@@ -932,14 +918,13 @@
                     </div>
 
                     <h3>Espaciado de Contenido (margin vertical)</h3>
-                    <div class="spacing-example-content">
                         <p class="content--spacing-sm spacing-example-content-inner"><code>.content--spacing-sm</code>
                             (margin vertical pequeño)</p>
                         <p class="content--spacing-md spacing-example-content-inner"><code>.content--spacing-md</code>
                             (margin vertical medio)</p>
                         <p class="content--spacing-lg spacing-example-content-inner"><code>.content--spacing-lg</code>
                             (margin vertical grande)</p>
-                    </div>
+                    
                 </div>
             </div>
         </section>
@@ -957,7 +942,7 @@
                     <button class="btn btn--primary">Botón Primario</button>
                     <button class="btn btn--secondary">Botón Secundario</button>
                     <button class="btn btn--ghost">Botón Ghost</button>
-                    <button class="btn btn--cta-hero">CTA Hero - Doble Tamaño</button>
+                    <button class="btn btn--cta-hero">CTA Hero</button>
 
                     <hr class="separator">
                     <h3>Tarjetas</h3>
@@ -1093,10 +1078,8 @@
                     <h3>Features Highlight</h3>
                     <div class="features__content">
                         <div class="features__text">
-                            <h4 class="features__item-title">Título Destacado</h4>
-                            <p class="features__item-description">Descripción principal de la sección destacada. Aquí
-                                puedes poner un texto más largo para explicar los beneficios o características clave.
-                            </p>
+                            <h4 class="features__item-title">Cosmos Fractal de Experiencias</h4>
+                            <p class="features__item-description">Fusiono lógica, arte y tecnología para construir interfaces que resuenan con la proporción áurea, la paleta CMYBK y una jerarquía tipográfica triádica. Cada componente se acopla como un fractal coherente que escala sin perder identidad.</p>
                             <ul class="features__list">
                                 <li class="features__list-item">
                                     <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1104,8 +1087,8 @@
                                         <polyline points="9,11 12,14 22,4" />
                                     </svg>
                                     <div class="features__list-content">
-                                        <h4>Punto Clave 1</h4>
-                                        <p>Detalle del primer punto clave.</p>
+                                        <h4>Geometría Áurea</h4>
+                                        <p>La retícula, el espaciado y la tipografía siguen la secuencia φ para guiar la lectura y aportar ritmo visual.</p>
                                     </div>
                                 </li>
                                 <li class="features__list-item">
@@ -1115,8 +1098,8 @@
                                             points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2" />
                                     </svg>
                                     <div class="features__list-content">
-                                        <h4>Punto Clave 2</h4>
-                                        <p>Detalle del segundo punto clave.</p>
+                                        <h4>Paleta Sagrada</h4>
+                                        <p>Los cinco colores puros (amarillo, cyan, magenta, negro y blanco) gobiernan todo el sistema, garantizando contraste y coherencia cromática.</p>
                                     </div>
                                 </li>
                             </ul>
@@ -1134,7 +1117,7 @@
         </section>
 
         <!-- Showcase TODAS las Variables - Testing Completo -->
-        <section id="variables-showcase" class="section">
+        <section id="variables-showcase" class="section" style="display: none;">
             <div class="section__container">
                 <header class="section__header">
                     <h2 class="section__title">🧪 Showcase Completo de Variables</h2>
@@ -1214,10 +1197,6 @@
                             <span>--space-250px (250px) - Grid específico</span>
                         </div>
 
-                        <hr class="separator">
-                        <h4>Espaciado Semántico</h4>
-                        <div class="detail-space-demo">--detail-space: Padding para detalles</div>
-                        <div class="essence-space-demo">--essence-space: Padding para autoridad</div>
                     </div>
 
                     <!-- HR Separator Invisible - UTILIDAD CONSONANTE -->
@@ -1325,16 +1304,7 @@
                         Navigation Height Offset + Navigation Padding Horizontal
                     </div>
 
-                    <!-- Breakpoints Info -->
-                    <h3>📱 Breakpoints (Solo informativos)</h3>
-                    <div class="breakpoints-showcase">
-                        <div>--bp-sm: 640px</div>
-                        <div>--bp-md: 768px</div>
-                        <div>--bp-lg: 1024px</div>
-                        <div>--bp-xl: 1280px</div>
-                    </div>
-
-                    <div class="card card--warning" style="margin-top: var(--space-12);">
+                    <div class="card card--warning">
                         <div class="card__header">
                             <h4>📐 SISTEMA PROPORCIONAL ÁUREO</h4>
                         </div>
