@@ -34,7 +34,6 @@
     font-family: var(--font-primary);
     letter-spacing: var(--letter-spacing-normal);  /* Normal para mejor legibilidad */
     cursor: pointer;
-    transition: all var(--duration-fast) var(--ease-out);  /* Transición más rápida */
     text-decoration: none;
     /* Sin border-radius - estilo 01234 limpio */
     white-space: nowrap;  /* Evitar que el texto se rompa */
@@ -44,7 +43,6 @@
 .dropdown__arrow {
     width: var(--space-16px);  /* CONSONANT: 16px icon */
     height: var(--space-16px);
-    transition: transform var(--duration-base) var(--ease-out);
     stroke: currentColor;
     fill: none;
     stroke-width: 2;
@@ -65,8 +63,6 @@
     box-shadow: var(--shadow-md);  /* Sombra más sutil */
     opacity: 0;
     visibility: hidden;
-    transform: translateY(calc(-1 * var(--detail-space))) scale(0.98);  /* Movimiento más sutil */
-    transition: all var(--duration-fast) var(--ease-out);
     z-index: var(--z-dropdown);
     overflow: hidden;
     /* Grid container para items */
@@ -99,6 +95,8 @@
 .dropdown__link {
     display: flex;
     align-items: center;
+    justify-content: flex-start;  /* Alinear a la izquierda */
+    text-align: left;  /* Texto alineado a la izquierda */
     padding: var(--space-2) var(--space-3);  /* 8px vertical, 12px horizontal - sistema 8px */
     color: var(--color-text-primary);
     font-size: var(--text-small);     /* Todo el resto del contenido */
@@ -106,7 +104,6 @@
     font-family: var(--font-primary);
     letter-spacing: var(--letter-spacing-normal);
     text-decoration: none;
-    transition: all var(--duration-fast) var(--ease-out);  /* Transición más rápida */
     min-height: var(--space-40px);    /* Touch target más compacto pero accesible */
     margin: 0;  /* Reset explícito */
     width: 100%;  /* Ocupar todo el ancho disponible */
@@ -121,17 +118,12 @@
 .dropdown__trigger:hover,
 .dropdown__trigger:focus {
     color: var(--color-text-primary);
-    background: var(--color-surface);  /* Background semántico */
-    transform: translateY(-1px);  /* Efecto lift muy sutil */
 }
 
 /* Link hover states */
 .dropdown__link:hover,
 .dropdown__link:focus {
-    background: var(--color-surface);  /* Background semántico */
     color: var(--color-text-primary);
-    padding-left: calc(var(--space-3) + var(--space-1));  /* 12px + 4px = 16px indent sistema 8px */
-    transform: translateX(1px);  /* Movimiento horizontal sutil */
 }
 
 /* Active dropdown states */
@@ -140,14 +132,9 @@
 .dropdown__trigger:focus + .dropdown__content {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0) scale(1);
 }
 
-/* Arrow rotation en hover */
-.dropdown:hover .dropdown__arrow,
-.dropdown:focus-within .dropdown__arrow {
-    transform: rotate(180deg);
-}
+/* Arrow rotation en hover - eliminado */
 
 /* ==========================================================================
    DROPDOWN VARIANTS - ORGANIZATIONAL TYPES

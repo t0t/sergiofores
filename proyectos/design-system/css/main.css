@@ -455,6 +455,14 @@ th {
   --ease-custom: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* ==========================================================================
+     LAYOUT & NAVIGATION
+     ========================================================================== */
+  
+  /* Header height for scroll offset calculation */
+  --nav-height-offset: 57px;
+  --nav-padding-h: var(--space-6);
+
+  /* ==========================================================================
      BREAKPOINTS - Mobile-first responsive
      ========================================================================== */
   
@@ -637,7 +645,6 @@ th {
     z-index: 1000;                                 /* Header por encima de todo */
     background-color: rgba(255, 255, 255, 0.95);  /* Fondo semi-transparente */
     backdrop-filter: blur(8px);                    /* Efecto blur moderno */
-    border-bottom: var(--border-width-base) solid var(--color-gray-200);
 }
 
 .header__container,
@@ -660,6 +667,13 @@ th {
     gap: var(--space-3);
     text-decoration: none;
     color: var(--color-text-primary);
+    transition: opacity var(--duration-base) var(--ease-out);
+    cursor: pointer;
+}
+
+.header__brand:hover,
+.logo:hover {
+    opacity: 0.8;
 }
 
 /* Logo 01234 styling */
@@ -729,12 +743,20 @@ th {
     }
 }
 
-.header__nav ul {
+.header__nav > ul,
+#main-nav-list {
     display: flex;
-    gap: var(--space-6);
     list-style: none;
     margin: 0;
     padding: 0;
+    gap: 0;
+}
+
+/* Asegurar que dropdown lists se muestren en columna */
+.dropdown__list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
 }
 
 .header__nav-link {
@@ -743,7 +765,6 @@ th {
     font-size: var(--text-small);  /* Todo el resto del contenido CLAUDE.md */
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--letter-spacing-wide);
-    transition: color var(--duration-base) var(--ease-out);
 }
 
 .header__nav-link:hover {
@@ -1766,7 +1787,6 @@ th {
     display: flex;
     flex-direction: column;
     background-color: var(--color-surface-primary);
-    border: var(--border-width-base) solid var(--color-gray-200);
     /* Sin border-radius - estilo 01234 limpio */
     overflow: hidden;
     transition: all var(--duration-base) var(--ease-out);
@@ -1787,7 +1807,6 @@ th {
     z-index: var(--z-header);
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
-    border-bottom: var(--border-width-base) solid var(--color-gray-200);
 }
 
 .header__container {
@@ -1817,6 +1836,100 @@ th {
     margin: 0 auto;
     padding-left: var(--container-padding);
     padding-right: var(--container-padding);
+}
+
+/* ==========================================================================
+   NOTIFICATION COMPONENTS - SISTEMA DE ALERTAS
+   ========================================================================== */
+
+/* Base notification class */
+.notification {
+    margin-top: var(--space-l);
+    padding: var(--analysis-space);
+    border-radius: 0; /* Sin border-radius - estilo 01234 limpio */
+    font-weight: var(--font-weight-normal);
+}
+
+.notification h4,
+.notification h5,
+.notification h6 {
+    color: inherit;
+    margin-top: 0;
+    margin-bottom: var(--space-s);
+}
+
+.notification p,
+.notification ol,
+.notification ul {
+    color: inherit;
+    margin-bottom: var(--space-s);
+}
+
+.notification ol,
+.notification ul {
+    padding-left: var(--space-m);
+}
+
+.notification ol li,
+.notification ul li {
+    margin-bottom: var(--space-2xs);
+}
+
+/* Alert variants usando paleta sagrada Sergio Forés */
+.notification--warning {
+    background-color: var(--color-yellow);
+    color: var(--color-black);
+}
+
+.notification--warning h4,
+.notification--warning h5,
+.notification--warning h6,
+.notification--warning p,
+.notification--warning ol,
+.notification--warning ul {
+    color: var(--color-black);
+}
+
+.notification--danger {
+    background-color: var(--color-red);
+    color: var(--color-white);
+}
+
+.notification--danger h4,
+.notification--danger h5,
+.notification--danger h6,
+.notification--danger p,
+.notification--danger ol,
+.notification--danger ul {
+    color: var(--color-white);
+}
+
+.notification--info {
+    background-color: var(--color-cyan);
+    color: var(--color-black);
+}
+
+.notification--info h4,
+.notification--info h5,
+.notification--info h6,
+.notification--info p,
+.notification--info ol,
+.notification--info ul {
+    color: var(--color-black);
+}
+
+.notification--neutral {
+    background-color: var(--gray-5);
+    color: var(--color-black);
+}
+
+.notification--neutral h4,
+.notification--neutral h5,
+.notification--neutral h6,
+.notification--neutral p,
+.notification--neutral ol,
+.notification--neutral ul {
+    color: var(--color-black);
 }
 
 /* RESPONSIVE CONTAINER ADJUSTMENTS - SIGUIENDO SISTEMA MADRE */
@@ -1925,19 +2038,8 @@ th {
 }
 
 .header__nav-link.active {
-  color: var(--color-accent-primary);
+  color: var(--color-cyan);
   font-weight: var(--font-weight-medium);
-}
-
-.header__nav-link.active::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--color-accent-primary);
-  border-radius: var(--border-radius-full);
 }
 
 /* Clear active states cuando scroll < 100px */

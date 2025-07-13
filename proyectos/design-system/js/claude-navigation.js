@@ -12,8 +12,8 @@
 class ClaudeNavigation {
     constructor(options = {}) {
         this.config = {
-            headerSelector: 'header',
-            navLinksSelector: '.header__nav-link',
+            headerSelector: '.header-master, .header',
+            navLinksSelector: '.header__nav-link, .dropdown__link',
             logoSelector: '.logo',
             activeClass: 'active',
             scrollTopClass: 'scroll-top',
@@ -21,6 +21,7 @@ class ClaudeNavigation {
             clearThreshold: 100,
             headerOffsetProperty: '--nav-height-offset',
             smoothScrollDuration: 800,
+            scrollOffsetBuffer: 20,
             ...options
         };
         
@@ -46,6 +47,7 @@ class ClaudeNavigation {
         this.handleScrollPosition();
         
         console.log('ClaudeNavigation: Initialized with CLAUDE.md compliance');
+        this.debugOffset();
     }
     
     setupSections() {
@@ -147,8 +149,19 @@ class ClaudeNavigation {
         // Logo click behavior - CUMPLIMIENTO CLAUDE.md
         if (this.logo) {
             this.logo.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.handleLogoClick();
+                const href = this.logo.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    // Si es un enlace a sección específica, hacer smooth scroll
+                    if (href === '#hero') {
+                        this.handleLogoClick();
+                    } else {
+                        this.smoothScrollToSection(href.substring(1));
+                    }
+                } else {
+                    e.preventDefault();
+                    this.handleLogoClick();
+                }
             });
         }
         
@@ -177,22 +190,32 @@ class ClaudeNavigation {
     }
     
     handleLogoClick() {
-        // Logo click behavior - limpiar navegación y ir al top
+        // Logo click behavior - limpiar navegación y ir al hero
         document.body.classList.add(this.config.logoResetClass);
         this.clearAllActiveStates();
         
-        // Smooth scroll to top
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        // Smooth scroll to hero section (top)
+        const heroSection = document.getElementById('hero');
+        if (heroSection) {
+            // Scroll to hero with minimal offset since it's at the top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        } else {
+            // Fallback to top if no hero section
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
         
         // Limpiar clase después de la animación
         setTimeout(() => {
             document.body.classList.remove(this.config.logoResetClass);
         }, this.config.smoothScrollDuration);
         
-        console.log('ClaudeNavigation: Logo click - cleared all states');
+        console.log('ClaudeNavigation: Logo click - scrolled to hero and cleared all states');
     }
     
     smoothScrollToSection(sectionId) {
@@ -214,16 +237,23 @@ class ClaudeNavigation {
     }
     
     getHeaderOffset() {
-        // Leer offset desde CSS variables - CUMPLIMIENTO CLAUDE.md
+        // Primero intentar obtener de CSS variables
         const rootStyles = getComputedStyle(document.documentElement);
-        const cssOffset = parseInt(rootStyles.getPropertyValue(this.config.headerOffsetProperty));
+        const cssOffset = rootStyles.getPropertyValue(this.config.headerOffsetProperty).replace('px', '').trim();
         
-        // Fallback a medición DOM si no existe la variable
-        if (cssOffset && !isNaN(cssOffset)) {
-            return cssOffset;
+        if (cssOffset && !isNaN(parseFloat(cssOffset))) {
+            return parseFloat(cssOffset) + this.config.scrollOffsetBuffer;
         }
         
-        return this.header ? this.header.getBoundingClientRect().height : 80;
+        // Fallback: medir la altura real del header
+        if (this.header) {
+            const headerHeight = this.header.getBoundingClientRect().height;
+            // Añadir buffer configurable para asegurar que no se tapa
+            return Math.ceil(headerHeight) + this.config.scrollOffsetBuffer;
+        }
+        
+        // Fallback final con buffer
+        return 90 + this.config.scrollOffsetBuffer;
     }
     
     // Método público para control externo
@@ -232,6 +262,19 @@ class ClaudeNavigation {
         if (targetSection) {
             this.setActiveSection(targetSection);
         }
+    }
+    
+    // Debug function para verificar offset
+    debugOffset() {
+        const offset = this.getHeaderOffset();
+        const headerHeight = this.header ? this.header.getBoundingClientRect().height : 'N/A';
+        
+        console.log(`ClaudeNavigation Debug:
+        - Header element: ${this.header ? 'Found' : 'Not found'}
+        - Header actual height: ${headerHeight}px
+        - Calculated offset: ${offset}px
+        - CSS variable value: ${getComputedStyle(document.documentElement).getPropertyValue(this.config.headerOffsetProperty)}
+        - Buffer applied: ${this.config.scrollOffsetBuffer}px`);
     }
     
     // Destructor para cleanup
