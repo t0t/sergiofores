@@ -1,0 +1,1138 @@
+/**
+ * UTILIDADES Y HELPERS - SISTEMA DE DISEÑO SERGIO FORÉS
+ * Sistema de Diseño Sergio Forés
+ * 
+ * Clases utilitarias para:
+ * - Espaciado y márgenes
+ * - Colores y paletas
+ * - Features y elementos específicos
+ * - Notificaciones y estados
+ * - Testing y showcase
+ */
+
+/* ==========================================================================
+   UTILIDADES DE ESPACIADO
+   ========================================================================== */
+
+.spacing-example-content {
+  background-color: var(--color-surface-secondary);
+  padding: var(--space-4);
+  border: 1px solid var(--color-gray-300);
+  margin-bottom: var(--space-4);
+}
+
+.spacing-example-content-inner {
+  background-color: var(--color-white);
+  border: 1px dashed var(--color-gray-400);
+  text-align: center;
+}
+
+.spacing-example-section {
+  background-color: var(--color-gray-100);
+  border: 1px solid var(--color-gray-300);
+  text-align: center;
+}
+
+/* Margin-bottom consonante con el padding de cada escala */
+.spacing-example-section.section--spacing-sm {
+  margin-bottom: var(--space-8);   /* CONSONANTE: Mismo valor que su padding-top/bottom */
+}
+
+.spacing-example-section.section--spacing-md {
+  margin-bottom: var(--space-12);  /* CONSONANTE: Mismo valor que su padding-top/bottom */
+}
+
+.spacing-example-section.section--spacing-lg {
+  margin-bottom: var(--space-16);  /* CONSONANTE: Mismo valor que su padding-top/bottom */
+}
+
+/* ==========================================================================
+   PALETA DE COLORES Y SWATCHES
+   ========================================================================== */
+
+.color-palette {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);  /* CONSONANTE: Armoniza con ritmo vertical principal */
+}
+
+.color-palette__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.color-palette__title {
+  font-size: var(--text-medium);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+}
+
+.color-palette__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 0;
+}
+
+.color-swatch {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.color-swatch__color {
+  height: var(--space-16);
+  flex-shrink: 0;
+}
+
+.color-swatch__info {
+  padding: var(--space-1);
+  background-color: var(--color-surface-secondary);
+}
+
+.color-swatch__name {
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+  display: none; /* Oculto por defecto */
+}
+
+.color-swatch__value {
+  font-size: var(--text-small);
+  font-family: var(--font-mono);
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   FEATURES Y ELEMENTOS ESPECÍFICOS
+   ========================================================================== */
+
+.features__content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.features__text {
+  flex: 1;
+}
+
+.features__image {
+  flex: 1;
+}
+
+.features__image img {
+  width: 100%;
+  height: auto;
+}
+
+.features__list {
+  list-style: none;
+  margin: var(--space-6) 0;
+  padding: 0;
+}
+
+.features__list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.features__list-content h4 {
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: var(--space-1);
+}
+
+.features__list-content p {
+  font-size: var(--text-small);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.features__cta {
+  margin-top: var(--space-8);
+  display: flex;
+  gap: var(--space-4);
+}
+
+.features__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-8);
+  height: var(--space-8);
+  margin: 0 auto var(--space-2) auto;
+  background-color: var(--color-cyan);
+  color: var(--color-black);
+}
+
+.features__icon .icon {
+  color: inherit;
+  stroke: currentColor;
+  fill: none;
+  width: var(--space-4);
+  height: var(--space-4);
+  stroke-width: 2;
+}
+
+.features__item {
+  text-align: center;
+  background-color: var(--color-surface-secondary);
+}
+
+.features__item-title {
+  font-size: var(--text-medium);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+}
+
+.features__item-description {
+  font-size: var(--text-small);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Features Cards */
+.features__card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface-primary);
+  border: var(--border-width-base) solid var(--color-gray-200);
+  overflow: hidden;
+  position: relative;
+}
+
+.features__card-content {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.features__card-category {
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-cyan);
+  margin-bottom: var(--space-1);
+}
+
+.features__card-title {
+  font-size: var(--text-medium);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+}
+
+.features__card-description {
+  font-size: var(--text-small);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.features__card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.features__card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.features__card:hover .features__card-overlay {
+  opacity: 1;
+}
+
+/* Features Card Variation 2: Centered text, no category, no hover */
+.features__card--centered {
+  text-align: center;
+}
+
+.features__card--centered .features__card-content {
+  align-items: center;
+}
+
+.features__card--centered .features__card-title,
+.features__card--centered .features__card-description {
+  text-align: center;
+}
+
+/* Disable hover effects for centered card */
+.features__card--centered:hover .features__card-overlay,
+.features__card--centered .features__card-overlay {
+  display: none;
+}
+
+/* Features Card Variation 3: Background image only with hover overlay */
+.features__card--bg-only {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: var(--space-220px); /* Same height as card images */
+  border: none; /* Remove border for full image effect */
+}
+
+.features__card--bg-only .features__card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4), transparent);
+  color: var(--color-white);
+  padding: var(--space-6);
+  transform: translateY(100%);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.features__card--bg-only .features__card-content--overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6), transparent);
+  color: var(--color-white);
+  padding: var(--space-6);
+  transform: translateY(100%);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.features__card--bg-only:hover .features__card-content--overlay {
+  transform: translateY(0);
+}
+
+.features__card--bg-only .features__card-title {
+  color: var(--color-white);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.features__card--bg-only .features__card-description {
+  color: var(--gray-4);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Features Card Variation 2: Centered text, no category, no hover */
+.features__card--centered {
+  text-align: center;
+}
+
+.features__card--centered .features__card-content {
+  align-items: center;
+}
+
+.features__card--centered .features__card-title,
+.features__card--centered .features__card-description {
+  text-align: center;
+}
+
+/* Disable hover effects for centered card */
+.features__card--centered:hover .features__card-overlay,
+.features__card--centered .features__card-overlay {
+  display: none;
+}
+
+/* Features Card Variation 3: Background image only with hover overlay */
+.features__card--bg-only {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: var(--space-220px); /* Same height as card images */
+  border: none; /* Remove border for full image effect */
+}
+
+.features__card--bg-only .features__card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4), transparent);
+  color: var(--color-white);
+  padding: var(--space-6);
+  transform: translateY(100%);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.features__card--bg-only .features__card-content--overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6), transparent);
+  color: var(--color-white);
+  padding: var(--space-6);
+  transform: translateY(100%);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.features__card--bg-only:hover .features__card-content--overlay {
+  transform: translateY(0);
+}
+
+.features__card--bg-only .features__card-title {
+  color: var(--color-white);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.features__card--bg-only .features__card-description {
+  color: var(--gray-4);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Features Card Variation 4: Color background, no image */
+.features__card--color-bg {
+  background-color: var(--color-cyan);
+  color: var(--color-black);
+  border: none;
+  min-height: var(--space-220px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.features__card--color-bg .features__card-content {
+  text-align: center;
+  color: var(--color-black);
+}
+
+.features__card--color-bg .features__card-title {
+  color: var(--color-black);
+  font-weight: var(--font-weight-bold);
+}
+
+.features__card--color-bg .features__card-description {
+  color: var(--color-black);
+  opacity: 0.8;
+}
+
+.features__card--color-bg .features__card-category {
+  color: var(--color-black);
+  opacity: 0.9;
+  font-weight: var(--font-weight-bold);
+}
+
+/* Features Card Variation 5: Circular card with centered content */
+.features__card--circular {
+  border-radius: 50%;
+  width: calc(var(--space-220px) + var(--space-xl) * 2);
+  height: calc(var(--space-220px) + var(--space-xl) * 2);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+  border: none;
+  aspect-ratio: 1;
+  padding: var(--space-xl);
+  box-sizing: border-box;
+}
+
+.features__card--circular .features__card-content {
+  text-align: center;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.features__card--circular .features__card-title {
+  color: var(--color-black);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-medium);
+}
+
+.features__card--circular .features__card-description {
+  color: var(--color-black);
+  opacity: 0.8;
+  font-size: var(--text-small);
+}
+
+.features__card--circular .features__card-category {
+  color: var(--color-black);
+  opacity: 0.9;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-2);
+}
+
+/* Features Card Variation 6: Fully clickable with background image */
+.features__card--clickable {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: var(--space-220px);
+  border: none;
+  cursor: pointer;
+  transition: transform var(--duration-base) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.features__card--clickable::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+  z-index: 1;
+}
+
+.features__card--clickable .features__card-content {
+  position: relative;
+  z-index: 2;
+  color: var(--color-white);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-6);
+}
+
+.features__card--clickable .features__card-title {
+  color: var(--color-white);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: var(--font-weight-bold);
+}
+
+.features__card--clickable .features__card-description {
+  color: var(--gray-4);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.features__card--clickable .features__card-category {
+  color: var(--color-cyan);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  font-weight: var(--font-weight-bold);
+}
+
+.features__card--clickable:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.features__card--clickable:hover::before {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+}
+
+/* Features Card Variation 7: Two columns layout - image left, content right */
+.features__card--two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  min-height: var(--space-220px);
+  background-color: var(--color-surface-primary);
+  border: var(--border-width-base) solid var(--color-gray-200);
+  overflow: hidden;
+  align-items: stretch;
+  grid-column: 1 / -1; /* Ocupa todo el ancho disponible del grid padre */
+}
+
+.features__card--two-cols .features__card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  grid-column: 1;
+}
+
+.features__card--two-cols .features__card-content {
+  grid-column: 2;
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.features__card--two-cols .features__card-title {
+  margin-bottom: var(--space-3);
+}
+
+.features__card--two-cols .features__card-description {
+  margin-bottom: var(--space-2);
+}
+
+/* Features Card Variation 8: Two columns layout - content left, image right */
+.features__card--two-cols-reverse {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: var(--space-220px);
+  background-color: var(--color-surface-primary);
+  border: none;
+  overflow: hidden;
+  align-items: stretch;
+  grid-column: 1 / -1; /* Ocupa todo el ancho disponible del grid padre */
+}
+
+.features__card--two-cols-reverse .features__card-content {
+  grid-column: 1;
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.features__card--two-cols-reverse .features__card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  grid-column: 2;
+}
+
+.features__card--two-cols-reverse .features__card-title {
+  margin-bottom: var(--space-3);
+}
+
+.features__card--two-cols-reverse .features__card-description {
+  margin-bottom: var(--space-2);
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 640px) {
+  .features__card--two-cols {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  
+  .features__card--two-cols .features__card-image {
+    grid-column: 1;
+    grid-row: 1;
+    height: 200px;
+  }
+  
+  .features__card--two-cols .features__card-content {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  .features__card--two-cols-reverse {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  
+  .features__card--two-cols-reverse .features__card-content {
+    grid-column: 1;
+    grid-row: 1;
+    order: 1;
+  }
+  
+  .features__card--two-cols-reverse .features__card-image {
+    grid-column: 1;
+    grid-row: 2;
+    height: 200px;
+    order: 2;
+  }
+}
+
+/* ==========================================================================
+   NOTIFICACIONES Y ESTADOS
+   ========================================================================== */
+
+.notification {
+  margin-top: var(--space-16);    /* CONSONANTE: Armoniza con layout base página */
+  margin-bottom: var(--space-16); /* CONSONANTE: Armoniza con layout base página */
+  padding: var(--space-6);
+  border-radius: 0;
+  font-weight: var(--font-weight-normal);
+}
+
+.notification--warning {
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+}
+
+.notification h4,
+.notification h5,
+.notification h6 {
+  color: inherit;
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+}
+
+.notification p,
+.notification ol,
+.notification ul {
+  color: inherit;
+  margin-bottom: var(--space-2);
+}
+
+.notification ol,
+.notification ul {
+  padding-left: var(--space-6);
+}
+
+.notification ol li,
+.notification ul li {
+  margin-bottom: var(--space-1);
+}
+
+.notification--warning h4,
+.notification--warning h5,
+.notification--warning h6,
+.notification--warning p,
+.notification--warning ol,
+.notification--warning ul {
+  color: var(--color-black);
+}
+
+/* ==========================================================================
+   SISTEMA GRID ESPECÍFICOS - COMPONENTES ESPECIALIZADOS
+   ========================================================================== */
+
+.sistema-item {
+  text-align: center;
+  padding: var(--analysis-space);
+  background: var(--color-surface);
+  /* Microinteracciones refinadas */
+  transition: all var(--duration-base) var(--ease-out);
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+}
+
+@media (hover: hover) {
+  .sistema-item:hover {
+    transform: var(--transform-lift-strong) var(--transform-scale-gentle); /* CONSONANT: -6px, 1.02 */
+  }
+  
+  .sistema-item:hover .sistema-svg {
+    transform: scale(1.1) rotate(5deg);
+    color: var(--color-yellow);
+  }
+}
+
+.sistema-svg {
+  width: var(--space-60px); /* CONSONANT: 60px */
+  height: var(--space-60px); /* CONSONANT: 60px */
+  margin: 0 auto var(--connection-space);
+  color: var(--color-text-primary);
+  /* Animación suave para SVG */
+  transition: all var(--duration-base) var(--ease-out);
+  transform-origin: center;
+}
+
+.sistema-text dt {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--connection-text);
+  margin-bottom: var(--detail-space);
+}
+
+.sistema-text dd {
+  margin: 0 0 var(--detail-space) 0;
+  color: var(--color-text-secondary);
+  font-size: var(--detail-text);
+}
+
+/* ==========================================================================
+   SECCIONES ESPECÍFICAS
+   ========================================================================== */
+
+.section-title-grid,
+.section__title {
+  font-size: var(--text-large);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: var(--space-6);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.section-description-grid,
+.section__subtitle {
+  font-size: var(--text-small);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: var(--container-max-width-narrow);  /* 50rem consonante */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   TABLAS
+   ========================================================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-8);
+}
+
+th, td {
+  border: 1px solid var(--color-gray-300);
+  padding: var(--space-3);
+  text-align: left;
+}
+
+th {
+  background-color: var(--color-gray-100);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+/* ==========================================================================
+   IMÁGENES
+   ========================================================================== */
+
+img {
+  border-style: none;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ==========================================================================
+   SHOWCASE SYSTEM - TESTING Y DEMOS
+   ========================================================================== */
+
+/* Espaciado Sistema 8px Completo - Grid 2 Columnas Consonante */
+.spacing-complete-showcase {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* 2 columnas equilibradas */
+  gap: var(--space-6);  /* φ = 1.618rem para respiración consonante */
+  margin: var(--space-8) 0;
+}
+
+/* Responsive: 1 columna en móvil */
+@media (max-width: 767px) {
+  .spacing-complete-showcase {
+    grid-template-columns: 1fr;  /* 1 columna en móvil */
+    gap: var(--space-3);  /* Gap más compacto en móvil */
+  }
+}
+
+.spacing-demo {
+  display: flex;
+  align-items: center;
+  background: var(--color-gray-100);
+  padding: var(--space-3);  /* Añado padding para respiración interna */
+}
+
+.spacing-visual {
+  height: var(--space-5);  /* 1.309rem = consonancia matemática */
+  margin-right: var(--space-2);
+}
+
+/* Demos específicos de espaciado */
+.space-1-demo .spacing-visual { width: var(--space-1); background: var(--color-cyan); }
+.space-2-demo .spacing-visual { width: var(--space-2); background: var(--color-cyan); }
+.space-3-demo .spacing-visual { width: var(--space-3); background: var(--color-cyan); }
+.space-4-demo .spacing-visual { width: var(--space-4); background: var(--color-cyan); }
+.space-5-demo .spacing-visual { width: var(--space-5); background: var(--color-cyan); }
+.space-6-demo .spacing-visual { width: var(--space-6); background: var(--color-cyan); }
+.space-8-demo .spacing-visual { width: var(--space-8); background: var(--color-cyan); }
+.space-10-demo .spacing-visual { width: var(--space-10); background: var(--color-cyan); }
+.space-12-demo .spacing-visual { width: var(--space-12); background: var(--color-cyan); }
+.space-16-demo .spacing-visual { width: var(--space-16); background: var(--color-cyan); }
+.space-20-demo .spacing-visual { width: var(--space-20); background: var(--color-cyan); }
+.space-24-demo .spacing-visual { width: var(--space-24); background: var(--color-cyan); }
+.space-2xl-demo .spacing-visual { width: var(--space-2xl); background: var(--color-cyan); }
+
+/* Espaciado Específico */
+.space-60px-demo .spacing-visual { width: var(--space-60px); background: var(--color-yellow); }
+.space-220px-demo .spacing-visual { width: var(--space-220px); background: var(--color-yellow); }
+.space-250px-demo .spacing-visual { width: var(--space-250px); background: var(--color-yellow); }
+
+/* Espaciado Semántico */
+.detail-space-demo { padding: var(--detail-space); background: var(--color-gray-300); }
+.essence-space-demo { padding: var(--essence-space); background: var(--color-gray-300); }
+
+/* Border Radius Showcase */
+.border-radius-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-8) 0;
+}
+
+.border-radius-demo {
+  padding: var(--space-4);
+  background: var(--color-gray-200);
+  text-align: center;
+}
+
+.border-radius-none-demo { border-radius: var(--border-radius-none); }
+.border-radius-sm-demo { border-radius: var(--border-radius-sm); }
+.border-radius-base-demo { border-radius: var(--border-radius-base); }
+.border-radius-lg-demo { border-radius: var(--border-radius-lg); }
+.border-radius-full-demo { border-radius: var(--border-radius-full); }
+
+/* Sombras Showcase */
+.shadows-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-6);
+  margin: var(--space-8) 0;
+}
+
+.shadow-demo {
+  padding: var(--space-6);
+  background: var(--color-white);
+  text-align: center;
+  margin: var(--space-4);
+}
+
+.shadow-none-demo { box-shadow: var(--shadow-none); }
+.shadow-xs-demo { box-shadow: var(--shadow-xs); }
+.shadow-sm-demo { box-shadow: var(--shadow-sm); }
+.shadow-base-demo { box-shadow: var(--shadow-base); }
+.shadow-lg-demo { box-shadow: var(--shadow-lg); }
+.shadow-xl-demo { box-shadow: var(--shadow-xl); }
+
+/* Transiciones y Animaciones */
+.transitions-showcase {
+  display: grid;
+  gap: var(--space-4);
+  margin: var(--space-2xl) 0;  /* CONSONANTE: Armoniza con ritmo vertical del sitio */
+}
+
+.transition-demo {
+  padding: var(--space-4);
+  background: var(--color-gray-200);
+  border: var(--border-width-base) solid var(--color-gray-400);
+  cursor: pointer;
+  text-align: center;
+}
+
+.duration-fast-demo { transition: all var(--duration-fast) var(--ease-out); }
+.duration-base-demo { transition: all var(--duration-base) var(--ease-out); }
+.duration-slow-demo { transition: all var(--duration-slow) var(--ease-out); }
+
+.ease-linear-demo { transition: all var(--duration-base) var(--ease-linear); }
+.ease-out-demo { transition: all var(--duration-base) var(--ease-out); }
+.ease-custom-demo { transition: all var(--duration-base) var(--ease-custom); }
+
+.transition-demo:hover {
+  background: var(--color-yellow);
+}
+
+/* Variaciones específicas de ejemplo */
+.duration-fast-demo:hover { transform: translateY(-0.5rem); }
+.duration-base-demo:hover { transform: translateY(-0.5rem) scale(1.05); }
+.duration-slow-demo:hover { transform: translateY(-0.5rem) scale(1.1) rotate(3deg); }
+.ease-linear-demo:hover { transform: scale(1.05); }
+.ease-out-demo:hover { transform: scale(1.1) rotate(2deg); }
+.ease-custom-demo:hover { transform: translateY(-0.5rem) rotate(-3deg) scale(1.08); }
+
+/* Grid System Showcase */
+.grid-system-showcase {
+  margin: var(--space-8) 0;
+}
+
+.grid-columns-demo {
+  display: grid;
+  gap: var(--project-grid-gap);
+  margin: var(--space-2xl) 0;  /* CONSONANTE: Mismo valor que gap (--space-2xl) */
+  background: var(--color-gray-300);
+}
+
+.grid-mobile-demo { grid-template-columns: var(--project-grid-columns-mobile); }
+.grid-tablet-demo { grid-template-columns: var(--project-grid-columns-tablet); }
+.grid-desktop-demo { grid-template-columns: var(--project-grid-columns-desktop); }
+.grid-ultra-demo { grid-template-columns: var(--project-grid-columns-ultra); }
+
+.grid-item-demo {
+  padding: var(--space-4);
+  background: var(--color-magenta);
+  color: var(--color-white);
+  text-align: center;
+}
+
+/* Container Showcase */
+.container-showcase {
+  margin: var(--space-8) 0;
+}
+
+.container-max-width-demo {
+  max-width: var(--container-max-width);
+  padding: var(--container-padding);
+  margin: 0 auto;
+  background: var(--color-gray-100);
+  border: var(--border-width-base) solid var(--color-gray-300);
+  text-align: center;
+}
+
+/* Navegación Variables */
+.nav-showcase {
+  padding-top: var(--nav-height-offset);
+  padding-left: var(--nav-padding-h);
+  padding-right: var(--nav-padding-h);
+  background: var(--color-gray-100);
+  border: var(--border-width-base) solid var(--color-gray-300);
+  margin: var(--space-8) 0;
+}
+
+/* Breakpoints Info (solo visual) */
+.breakpoints-showcase {
+  display: grid;
+  gap: var(--space-2);
+  margin: var(--space-8) 0;
+  padding: var(--space-4);
+  background: var(--color-gray-100);
+  border: var(--border-width-base) solid var(--color-gray-300);
+}
+
+/* ==========================================================================
+   SISTEMA DE SPACING UTILITARIO - 3 ESCALAS CONSONANTES
+   ========================================================================== */
+
+/* PADDING UTILITIES - 3 escalas consonantes con variables del sistema */
+.p0 {
+  padding: 0px;                           /* Sin padding - reset completo */
+}
+
+.p1 {
+  padding: var(--space-3);                /* Compacto: 0.75rem = 12px */
+}
+
+.p2 {
+  padding: var(--space-xl);               /* Estándar: var(--space-xl) = consonancia grid */
+}
+
+.p3 {
+  padding: var(--space-xl);               /* CONSONANCIA PERFECTA: Idéntico al gap del grid-flex desktop */
+}
+
+/* MARGIN UTILITIES - 3 escalas consonantes con variables del sistema */
+.m0 {
+  margin: 0px;                            /* Sin margin - reset completo */
+}
+
+.m1 {
+  margin: var(--space-3);                 /* Compacto: 0.75rem = 12px */
+}
+
+.m2 {
+  margin: var(--space-xl);                /* Estándar: var(--space-xl) = consonancia grid */
+}
+
+.m3 {
+  margin: var(--space-8);                 /* Grande: 2rem = 32px */
+}
+
+/* PADDING DIRECCIONAL - Para control específico por lado */
+.pt0 { padding-top: 0px; }
+.pt1 { padding-top: var(--space-3); }
+.pt2 { padding-top: var(--space-xl); }
+
+.pb0 { padding-bottom: 0px; }
+.pb1 { padding-bottom: var(--space-3); }
+.pb2 { padding-bottom: var(--space-xl); }
+
+.pl0 { padding-left: 0px; }
+.pl1 { padding-left: var(--space-3); }
+.pl2 { padding-left: var(--space-xl); }
+
+.pr0 { padding-right: 0px; }
+.pr1 { padding-right: var(--space-3); }
+.pr2 { padding-right: var(--space-xl); }
+
+/* PADDING X e Y - Para control de ejes */
+.px0 { padding-left: 0px; padding-right: 0px; }
+.px1 { padding-left: var(--space-3); padding-right: var(--space-3); }
+.px2 { padding-left: var(--space-xl); padding-right: var(--space-xl); }
+
+.py0 { padding-top: 0px; padding-bottom: 0px; }
+.py1 { padding-top: var(--space-3); padding-bottom: var(--space-3); }
+.py2 { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
+
+/* MARGIN DIRECCIONAL - Para control específico por lado */
+.mt0 { margin-top: 0px; }
+.mt1 { margin-top: var(--space-3); }
+.mt2 { margin-top: var(--space-xl); }
+
+.mb0 { margin-bottom: 0px; }
+.mb1 { margin-bottom: var(--space-3); }
+.mb2 { margin-bottom: var(--space-xl); }
+
+.ml0 { margin-left: 0px; }
+.ml1 { margin-left: var(--space-3); }
+.ml2 { margin-left: var(--space-xl); }
+
+.mr0 { margin-right: 0px; }
+.mr1 { margin-right: var(--space-3); }
+.mr2 { margin-right: var(--space-xl); }
+
+/* MARGIN X e Y - Para control de ejes */
+.mx0 { margin-left: 0px; margin-right: 0px; }
+.mx1 { margin-left: var(--space-3); margin-right: var(--space-3); }
+.mx2 { margin-left: var(--space-xl); margin-right: var(--space-xl); }
+
+.my0 { margin-top: 0px; margin-bottom: 0px; }
+.my1 { margin-top: var(--space-3); margin-bottom: var(--space-3); }
+.my2 { margin-top: var(--space-xl); margin-bottom: var(--space-xl); }
+
+/* MARGIN AUTO - Para centrado */
+.mx-auto { margin-left: auto; margin-right: auto; }
+.ml-auto { margin-left: auto; }
+.mr-auto { margin-right: auto; }
+
+/* ==========================================================================
+   DESTACADO DE GRUPOS TIPOGRÁFICOS
+   ========================================================================== */
+
+/* Grupo tipográfico destacado con fondo claro/amarillo y sin bordes */
+.typography-group--highlighted {
+  background-color: var(--color-yellow);  /* Fondo amarillo como solicitado */
+  border: none;                           /* Sin bordes */
+  padding: var(--space-6);                /* Padding interno para respiración */
+}
+
+/* Asegurar que el contenido interno mantiene buena legibilidad */
+.typography-group--highlighted .sub-grid > div strong {
+  color: var(--color-black);              /* Texto negro para contraste con amarillo */
+}
+
+.typography-group--highlighted .sub-grid > div .text-xs {
+  color: var(--color-black);              /* Descripción también en negro */
+  opacity: 0.8;                           /* Ligeramente transparente para jerarquía */
+}
+
+/* ==========================================================================
+   TIPOGRAFÍA UTILITARIA - TAMAÑOS ESPECIALES
+   ========================================================================== */
+
+/* Texto extra pequeño - División proporcional del sistema */
+.text-xs {
+  font-size: calc(var(--text-small) / 1.25);
+  line-height: 1;
+  text-align: left;
+  display: inherit;
+}

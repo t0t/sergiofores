@@ -1,254 +1,375 @@
-/* ============================================= */
-
-/* ! 1. ATOMIC GRID SYSTEM (Project Specific)    */
-
-/* ============================================= */
-.atomic-grid {
-    display: grid;
-    width: 100%;
-    gap: var(--grid-gap, var(--analysis-space));
-
-    /* Default to auto-fit for responsive columns */
-    grid-template-columns: repeat(auto-fit, minmax(var(--grid-item-min-width, 250px), 1fr));
-}
-
-/* Modifier for grids with a controlled number of columns */
-.atomic-grid--controlled {
-    grid-template-columns: repeat(var(--grid-columns-mobile, 1), 1fr);
-}
-
-@media (width >= 768px) {
-    .atomic-grid--controlled {
-        grid-template-columns: repeat(var(--grid-columns-tablet, 2), 1fr);
-    }
-}
-
-@media (width >= 1024px) {
-    .atomic-grid--controlled {
-        grid-template-columns: repeat(var(--grid-columns-desktop, 4), 1fr);
-    }
-}
-
 /**
- * CEREBRO-DIGITAL - SISTEMA DE DISEÑO SERGIO FORÉS V3
- * Paleta sagrada + sistema atómico + 3 tamaños únicamente
+ * SERGIO FORÉS - VARIABLES CSS PRINCIPALES
+ * Sistema de diseño atómico basado en principios 01234
+ * Criterios: Bauhaus, minimalismo inteligente, mobile-first
  * 
- * ⚠️ CUMPLIMIENTO ESTRICTO CLAUDE.md:
- * ✅ Solo 3 tamaños tipográficos (large/medium/small)
- * ✅ Paleta sagrada (5 colores + 5 grises)
- * ✅ Espaciado matemáticamente perfecto Utopia
- * ✅ Custom cursor solo desktop
- * ✅ Viewport real iOS
+ * ⚠️ REGLA SAGRADA: ESTAS VARIABLES SON INTOCABLES
+ * Nunca modificar, eliminar o cambiar sin autorización EXPLÍCITA de Sergio Forés
+ * Las paletas de colores y el sistema 01234 son la base arquitectónica del proyecto
  */
 
+:root {
+  /* ==========================================================================
+     TIPOGRAFÍA - Sistema 3 tamaños ÚNICAMENTE
+     ========================================================================== */
+  
+  /* Font Families */
+  --font-primary: 'Avenir Next', 'Futura', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
+  
+  /* Font Sizes - SOLO 3 TAMAÑOS (Mapeados a Utopia) */
+  --text-large: var(--essence-text);    /* Títulos principales (H1) = step-4 */
+  --text-medium: var(--analysis-text);  /* Subtítulos y navegación = step-1 */
+  --text-small: var(--fragment-text);   /* Todo el resto del contenido = step-0 */
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.02em;
+  --letter-spacing-wider: 0.04em;
+  
+  /* Line Heights */
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  
+  /* ==========================================================================
+     COLORES - Sistema 01234 + Monocromático
+     ========================================================================== */
+  
+  /* PALETA DEFINITIVA SERGIO FORÉS - ÚNICA FUENTE DE VERDAD */
+  /* ⚠️ SAGRADA E INMUTABLE - Solo estos colores permitidos */
+  --color-yellow: #FFFF00;   /* Amarillo puro */
+  --color-cyan: #00FFFF;     /* Cyan puro */
+  --color-red: #FF0000;      /* Rojo puro */
+  --color-black: #000000;    /* Negro puro */
+  --color-white: #FFFFFF;    /* Blanco puro */
+  
+  /* ESCALA MONOCROMÁTICA - 5 GRISES EXACTOS */
+  --gray-1: #333333;  /* Gris oscuro */
+  --gray-2: #666666;  /* Gris medio-oscuro */
+  --gray-3: #999999;  /* Gris medio */
+  --gray-4: #CCCCCC;  /* Gris medio-claro */
+  --gray-5: #EEEEEE;  /* Gris claro */
+  
+  /* COLORES SEMÁNTICOS - SOLO PALETA SERGIO FORÉS */
+  --color-primary: var(--color-black);
+  --color-background: var(--color-white);
+  --color-surface: var(--gray-5);
+  --color-border: var(--gray-4);
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--gray-1);
+  --color-text-muted: var(--gray-3);
+  --color-accent: var(--color-yellow);  /* Único color permitido para acentos */
+  
+  /* VARIABLES OBSOLETAS QUE USAN LA PALETA SAGRADA */
+  --color-1: var(--color-yellow);  /* Mapeado a amarillo puro */
+  --color-2: var(--color-cyan);    /* Mapeado a cyan puro */
+  --color-3: var(--color-red);     /* Mapeado a rojo puro */
+  --color-4: var(--color-black);   /* Mapeado a negro puro */
+  
+  /* LOGOS GEOMÉTRICOS - COLORES ESPECÍFICOS SERGIO FORÉS */
+  --logo-0: var(--color-black);    /* geo-circle-outline */
+  --logo-1: var(--color-yellow);   /* geo-circle-solid */
+  --logo-2: var(--color-red);      /* geo-line */
+  --logo-3: var(--color-cyan);     /* geo-triangle */
+  --logo-4: var(--gray-3);         /* geo-square */
+  
+  /* ==========================================================================
+     UTOPIA VARIABLES - Ritmo Vertical Fluido
+     ========================================================================== */
+  
+  /* UTOPIA TYPE SCALE - Base matemática fluida optimizada */
+  --step--2: clamp(0.69rem, calc(0.66rem + 0.16vw), 0.80rem);
+  --step--1: clamp(0.83rem, calc(0.78rem + 0.24vw), 1.00rem);
+  --step-0: clamp(1.00rem, calc(0.93rem + 0.37vw), 1.25rem);
+  --step-1: clamp(1.20rem, calc(1.11rem + 0.54vw), 1.56rem);
+  --step-2: clamp(1.44rem, calc(1.32rem + 0.78vw), 1.95rem);
+  --step-3: clamp(1.73rem, calc(1.57rem + 1.11vw), 2.44rem);
+  --step-4: clamp(2.07rem, calc(1.87rem + 1.59vw), 3.05rem);
+  --step-5: clamp(2.49rem, calc(2.23rem + 2.27vw), 3.81rem);
+
+  /* UTOPIA SPACE SCALE - Espaciado fluido basado en tipografía */
+  --space-3xs: clamp(0.25rem, calc(0.23rem + 0.11vw), 0.31rem);
+  --space-2xs: clamp(0.50rem, calc(0.46rem + 0.22vw), 0.63rem);
+  --space-xs: clamp(0.75rem, calc(0.69rem + 0.33vw), 0.94rem);
+  --space-s: clamp(1.00rem, calc(0.93rem + 0.37vw), 1.25rem);
+  --space-m: clamp(1.50rem, calc(1.39rem + 0.56vw), 1.88rem);
+  --space-l: clamp(2.00rem, calc(1.85rem + 0.74vw), 2.50rem);
+  --space-xl: clamp(3.00rem, calc(2.78rem + 1.11vw), 3.75rem);
+  --space-2xl: clamp(4.00rem, calc(3.70rem + 1.48vw), 5.00rem);
+  --space-3xl: clamp(6.00rem, calc(5.56rem + 2.22vw), 7.50rem);
+
+  /* UTOPIA SPACE PAIRS - Transiciones dramáticas optimizadas */
+  --space-3xs-2xs: clamp(0.25rem, calc(0.19rem + 0.30vw), 0.50rem);
+  --space-2xs-xs: clamp(0.50rem, calc(0.39rem + 0.56vw), 0.94rem);
+  --space-xs-s: clamp(0.75rem, calc(0.58rem + 0.85vw), 1.25rem);
+  --space-s-m: clamp(1.00rem, calc(0.69rem + 1.57vw), 1.88rem);
+  --space-m-l: clamp(1.50rem, calc(1.16rem + 1.70vw), 2.50rem);
+  --space-l-xl: clamp(2.00rem, calc(1.39rem + 3.04vw), 3.75rem);
+  --space-xl-2xl: clamp(3.00rem, calc(2.32rem + 3.41vw), 5.00rem);
+  --space-2xl-3xl: clamp(4.00rem, calc(2.78rem + 6.11vw), 7.50rem);
+
+  /* ==========================================================================
+     FILOSOFÍA 01234 - MAPPING SEMÁNTICO
+     ========================================================================== */
+  
+  /* NIVEL 0 - POTENCIAL CUÁNTICO */
+  --quantum-space: var(--space-2xl-3xl);    /* Hero sections, cosmic separations */
+  --infinite-space: var(--space-xl-2xl);    /* Between major regions */
+  --potential-text: var(--step-5);          /* Maximum display impact */
+  
+  /* NIVEL 1 - ESENCIA/MODELO */
+  --essence-text: var(--step-4);            /* Hero titles - máximo impacto cotidiano */
+  --core-text: var(--step-3);               /* Section titles - autoridad */
+  --essence-space: var(--space-l-xl);       /* Dramatic section spacing */
+  
+  /* NIVEL 2 - ANÁLISIS/DIFERENCIACIÓN */
+  --analysis-text: var(--step-1);           /* Subtitles, navigation */
+  --fragment-text: var(--step-0);           /* Body text, paragraphs */
+  --analysis-space: var(--space-s-m);       /* Component internal spacing */
+  
+  /* NIVEL 3 - COMUNICACIÓN/CONEXIÓN */
+  --connection-text: var(--step--1);        /* Metadata, captions */
+  --connection-space: var(--space-xs-s);    /* Related elements gap */
+  
+  /* NIVEL 4 - MATERIALIZACIÓN/ACCIÓN */
+  --detail-text: var(--step--2);            /* Micro-copy, notes */
+  --detail-space: var(--space-3xs-2xs);     /* Internal padding, refinements */
+
+  /* ==========================================================================
+     COMPONENTES ESPECÍFICOS - Mapping directo
+     ========================================================================== */
+  
+  /* Hero Section */
+  --hero-title-size: var(--essence-text);          /* --step-4 */
+  --hero-padding: var(--quantum-space);            /* --space-2xl-3xl */
+  --hero-margin-bottom: var(--infinite-space);     /* --space-xl-2xl */
+  --hero-min-height-mobile: 60vh;
+  --hero-min-height-desktop: 40vh;
+  --hero-content-max-width: 800px;
+  
+  /* Navigation - SPACING COHERENTE CON GRID SERGIO FORÉS */
+  --nav-text-size: var(--analysis-text);           /* --step-1 */
+  --nav-padding-h: var(--space-l);                 /* Padding horizontal coherente con sistema grid */
+  --nav-header-height: var(--space-2xl);           /* Altura harmónica = gap principal del proyecto */
+  --nav-height-offset: var(--space-2xl);           /* Mismo valor para scroll calculations */
+  --nav-scroll-threshold: var(--space-64px);       /* 50px equivalent - scroll detection */
+  --nav-mobile-toggle-width: var(--space-32px);    /* 30px equivalent - burger menu */
+  --nav-mobile-toggle-height: var(--space-24px);   /* 25px equivalent - burger menu */
+  --nav-hamburger-height: var(--detail-space);     /* 3px equivalent - hamburger lines */
+  --nav-indicator-height: var(--space-3px);        /* 3px más visible para active indicator */
+  
+  /* Section Headers - SPACING REFINADO SERGIO FORÉS */
+  --section-title-size: var(--core-text);          /* --step-3 */
+  --section-title-margin-top: var(--space-2xl);    /* Más separación entre secciones */
+  --section-title-margin-bottom: var(--space-xl);  /* Respiración generous debajo del título */
+  --section-description-size: var(--fragment-text); /* --step-0 */
+  --section-description-margin: var(--space-2xl);  /* Más espacio para respirar antes del contenido */
+  --section-description-max-width: var(--hero-content-max-width); /* Consistent reading width */
+  
+  /* Project Grids - OPTIMIZADO PARA RESPIRACIÓN VISUAL */
+  --project-grid-gap: var(--space-2xl);            /* Más espacio entre cards para mejor respiración */
+  --project-grid-margin: var(--space-3xl);         /* Más separación de bordes del viewport */
+  --project-grid-padding: var(--space-l);          /* Padding interno más generous */
+  --project-title-size: var(--analysis-text);      /* --step-1 */
+  --project-title-margin: var(--space-s);          /* Más espacio debajo del título del proyecto */
+  --project-description-size: var(--connection-text); /* --step--1 */
+  --project-card-min-width-mobile: var(--space-80px); /* 300px equivalent */
+  --project-card-min-width-tablet: var(--space-80px); /* 350px equivalent */ 
+  --project-card-min-width-desktop: var(--space-80px); /* 400px equivalent */
+  --project-grid-columns-mobile: repeat(auto-fill, minmax(calc(var(--space-80px) * 3.75), 1fr));
+  --project-grid-columns-tablet: repeat(auto-fill, minmax(calc(var(--space-80px) * 4.375), 1fr));
+  --project-grid-columns-desktop: repeat(auto-fill, minmax(calc(var(--space-80px) * 5), 1fr));
+  --project-grid-columns-ultra: repeat(auto-fill, minmax(calc(var(--space-80px) * 5.25), 1fr));
+
+  /* ==========================================================================
+     ESPACIADO - Sistema 8px Complementario AMPLIADO
+     ========================================================================== */
+  
+  --space-unit: 8px;
+  --space-1px: 1px;                             /* Border widths */
+  --space-2px: 2px;                             /* Small borders, indicators */
+  --space-3px: 3px;                             /* Hamburger lines */
+  --space-4px: calc(var(--space-unit) * 0.5);   /* 4px */
+  --space-8px: var(--space-unit);               /* 8px */
+  --space-10px: calc(var(--space-unit) * 1.25); /* 10px - geometric shapes */
+  --space-16px: calc(var(--space-unit) * 2);    /* 16px */
+  --space-20px: calc(var(--space-unit) * 2.5);  /* 20px - icons, cursors */
+  --space-24px: calc(var(--space-unit) * 3);    /* 24px */
+  --space-25px: calc(var(--space-unit) * 3.125); /* 25px - burger menu height */
+  --space-26px: calc(var(--space-unit) * 3.25); /* 26px - custom cursor triangle */
+  --space-30px: calc(var(--space-unit) * 3.75); /* 30px - hover cursors */
+  --space-32px: calc(var(--space-unit) * 4);    /* 32px */
+  --space-48px: calc(var(--space-unit) * 6);    /* 48px */
+  --space-60px: calc(var(--space-unit) * 7.5);  /* 60px - sistema SVG icons */
+  --space-64px: calc(var(--space-unit) * 8);    /* 64px */
+  --space-80px: calc(var(--space-unit) * 10);   /* 80px */
+  --space-200px: calc(var(--space-unit) * 25);  /* 200px - book banner image */
+  --space-220px: calc(var(--space-unit) * 27.5); /* 220px - sistema grid min */
+  --space-250px: calc(var(--space-unit) * 31.25); /* 250px - sistema grid large */
+  --space-300px: calc(var(--space-unit) * 37.5); /* 300px - project cards & back-to-top threshold */
+  --space-350px: calc(var(--space-unit) * 43.75); /* 350px - project cards tablet */
+  --space-400px: calc(var(--space-unit) * 50);   /* 400px - project cards desktop */
+  --space-420px: calc(var(--space-unit) * 52.5); /* 420px - project cards ultra */
+  --space-800px: calc(var(--space-unit) * 100);  /* 800px - content max-width */
+  --space-1000px: calc(var(--space-unit) * 125); /* 1000px - ultra-wide content */
+  --space-1200px: calc(var(--space-unit) * 150); /* 1200px - hero content ultra */
+  --space-1400px: calc(var(--space-unit) * 175); /* 1400px - book banner ultra */
+  --space-1600px: calc(var(--space-unit) * 200); /* 1600px - sistema grid ultra limit */
+  
+  /* ==========================================================================
+     LAYOUT
+     ========================================================================== */
+  
+  /* Container - CONSONANT VALUES */
+  --container-max-width: var(--space-1200px);        /* Was: 1200px */
+  --container-max-width-wide: var(--space-1400px);   /* Was: 1400px */
+  --container-max-width-narrow: var(--space-800px);  /* Was: 800px */
+  --container-max-width-ultra: var(--space-1800px);  /* Was: 1800px */
+  --container-padding: var(--space-lg);
+  
+  /* Grid */
+  --grid-columns: 12;
+  --grid-gap: var(--space-lg);
+  
+  /* Breakpoints - CONSONANT VALUES */
+  --breakpoint-xs: var(--space-375px);   /* iPhone SE */
+  --breakpoint-sm: var(--space-640px);   /* Small */
+  --breakpoint-md: var(--space-768px);   /* Tablet */
+  --breakpoint-lg: var(--space-1024px);  /* Desktop */
+  --breakpoint-xl: var(--space-1280px);  /* Large Desktop */
+  --breakpoint-2xl: var(--space-1440px); /* Ultra-wide start */
+  --breakpoint-3xl: var(--space-2560px); /* Ultra-wide */
+  
+  /* Añadir valores de breakpoint faltantes */
+  --space-375px: calc(var(--space-unit) * 46.875); /* 375px */
+  --space-640px: calc(var(--space-unit) * 80);     /* 640px */
+  --space-768px: calc(var(--space-unit) * 96);     /* 768px */
+  --space-1024px: calc(var(--space-unit) * 128);   /* 1024px */
+  --space-1280px: calc(var(--space-unit) * 160);   /* 1280px */
+  --space-1440px: calc(var(--space-unit) * 180);   /* 1440px */
+  --space-1800px: calc(var(--space-unit) * 225);   /* 1800px */
+  --space-2560px: calc(var(--space-unit) * 320);   /* 2560px */
+  
+  /* ==========================================================================
+     COMPONENTES
+     ========================================================================== */
+  
+  /* Border Radius - CONSONANT VALUES */
+  --radius-none: 0;
+  --radius-sm: var(--space-2px);
+  --radius-base: var(--space-4px);
+  --radius-md: var(--space-8px);
+  --radius-lg: var(--space-16px);
+  --radius-full: var(--space-9999px);
+  
+  /* Añadir valor faltante */
+  --space-9999px: 9999px; /* Para círculos perfectos */
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  
+  /* Transitions - CONSONANT VALUES */
+  --duration-instant: var(--space-unit); /* 100ms based on space unit concept */
+  --duration-fast: calc(var(--space-unit) * 18.75); /* 150ms */
+  --duration-base: calc(var(--space-unit) * 25);    /* 200ms */
+  --duration-slow: calc(var(--space-unit) * 37.5);  /* 300ms */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
+  
+  /* Transform Values - CONSONANT */
+  --transform-lift-subtle: translateY(calc(var(--space-1px) * -1)); /* -1px */
+  --transform-lift-gentle: translateY(calc(var(--space-2px) * -1)); /* -2px */
+  --transform-lift-medium: translateY(calc(var(--space-4px) * -1)); /* -4px */
+  --transform-lift-strong: translateY(calc(var(--space-2px) * -3)); /* -6px */
+  --transform-scale-subtle: scale(1.01);
+  --transform-scale-gentle: scale(1.02);
+  --transform-scale-medium: scale(1.05);
+  
+  /* Opacity States */
+  --opacity-full: 1;
+  --opacity-high: 0.9;
+  --opacity-medium: 0.8;
+  --opacity-low: 0.5;
+  --opacity-hidden: 0;
+  
+  /* Z-index */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-header: 200;
+  --z-modal: 300;
+  --z-tooltip: 400;
+}
+
 /* ==========================================================================
-   CEREBRO-DIGITAL SPECIFIC STYLES
+   MEDIA QUERIES - Mobile First
    ========================================================================== */
 
-/* Hero Badge */
-.hero__badge {
-  display: inline-block;
-  padding: var(--detail-space) var(--connection-space);
-  background: var(--color-cyan);
-  color: var(--color-black);
-  font-size: var(--text-small);
-  font-weight: var(--font-weight-medium);
-  margin-bottom: var(--analysis-space);
-  border: 1px solid var(--color-black);
-}
-
-/* Hero Description Override */
-.hero__description {
-  max-width: 65ch;
-  margin: 0 auto var(--essence-space);
-  color: var(--color-text-secondary);
-  font-size: var(--text-small);
-  line-height: var(--line-height-relaxed);
-}
-
-/* Icon Sizes (Project Specific Adjustments) */
-.component-logo {
-  width: var(--space-8); /* 32px */
-  height: var(--space-8); /* 32px */
-}
-
-.metric-icon {
-  width: var(--space-8); /* 32px */
-  height: var(--space-8); /* 32px */
-}
-
-.project-icon {
-  width: var(--space-6); /* 24px */
-  height: var(--space-6); /* 24px */
-}
-
-.features__icon {
-  width: var(--space-8); /* 32px */
-  height: var(--space-8); /* 32px */
-}
-
-.center-icon {
-  width: var(--space-6); /* 24px */
-  height: var(--space-6); /* 24px */
-}
-
-/* Book Banner Specific Classes */
-.book-banner__title {
-  font-size: var(--text-large);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--analysis-space);
-}
-
-.book-banner__description {
-  font-size: var(--text-small);
-  color: var(--color-text-secondary);
-  line-height: var(--line-height-relaxed);
-  margin-bottom: var(--essence-space);
-}
-
-.book-banner__actions {
-  display: flex;
-  justify-content: center;
-  gap: var(--analysis-space);
-  flex-wrap: wrap;
-}
-
-/* ==========================================================================
-   RESPONSIVE OPTIMIZATIONS - MOBILE FIRST
-   ========================================================================== */
-
-/* Mobile (375px) */
-@media (width <= 375px) {
-  .stage-number {
-    width: var(--space-12);
-    height: var(--space-12);
-    font-size: var(--text-small);
-  }
-  
-  .center-node {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .ecosystem-stats {
-    flex-direction: column;
-    gap: var(--analysis-space);
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  :root {
+    /* Reduce spacing on mobile */
+    --container-padding: var(--space-md);
+    --grid-gap: var(--space-md);
+    
+    /* Tighter typography - CONSONANT VALUES */
+    --letter-spacing-wide: 0.01em;
+    --letter-spacing-wider: var(--space-2px); /* 0.02em equivalent */
+    
+    /* Mobile-specific Utopia adjustments */
+    --quantum-space: var(--space-xl);        /* Reduce cosmic spacing */
+    --infinite-space: var(--space-l);        /* Reduce region spacing */
+    --essence-space: var(--space-m);         /* Reduce section spacing */
+    
+    /* Smaller hero on mobile */
+    --hero-title-size: var(--step-3);        /* Reduce from step-4 */
+    --hero-padding: var(--space-xl);         /* Reduce hero padding */
+    --section-title-size: var(--step-2);     /* Reduce section titles */
   }
 }
 
-/* Tablet (768px+) */
-@media (width >= 768px) {
-  .methodology-timeline {
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--connection-space);
-  }
-  
-  .timeline-stage {
-    position: relative;
-  }
-  
-  .timeline-stage:not(:last-child)::after {
-    content: '→';
-    position: absolute;
-    top: var(--space-8);
-    right: calc(-1 * var(--connection-space) / 2);
-    font-size: var(--text-medium);
-    color: var(--color-orange);
-    z-index: 1;
-  }
-  
-  .network-connections {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(1, 1fr);
+/* Desktop optimizations */
+@media (min-width: 1024px) {
+  :root {
+    /* Larger container on desktop - CONSONANT VALUE */
+    --container-max-width: var(--container-max-width-wide);
   }
 }
 
-/* Desktop (1024px+) */
-@media (width >= 1024px) {
-  .architecture-layer {
-    padding: var(--essence-space);
-  }
-  
-  .layer-components {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .metrics-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  
-  .evolution-timeline {
-    grid-template-columns: repeat(4, 1fr);
+/* Large desktop optimizations */
+@media (min-width: 1440px) {
+  :root {
+    /* Expanded container for larger screens - CONSONANT VALUE */
+    --container-max-width: var(--space-1600px);
+    --container-padding: var(--space-xl);
   }
 }
 
-/* Large Desktop (1440px+) */
-@media (width >= 1440px) {
-  .component-logo {
-  width: var(--space-10);
-  height: var(--space-10);
-  }
-  
-  .center-node {
-    width: 140px;
-    height: 140px;
+/* Ultra-wide optimizations */
+@media (min-width: 2560px) {
+  :root {
+    /* Maximum container width for ultra-wide screens - CONSONANT VALUE */
+    --container-max-width: var(--container-max-width-ultra);
+    --container-padding: var(--space-2xl);
+    /* project-grid-gap ya es --space-xl en regla base */
   }
 }
 
-/* ==========================================================================
-   PERFORMANCE OPTIMIZATIONS
-   ========================================================================== */
-
-/* Hardware acceleration para elementos animados */
-.project-node,
-.component,
-.metric-card {
-  transform: translateZ(0);
-  will-change: transform;
-}
-
-/* Cleanup will-change después de animaciones */
-.project-node:not(:hover),
-.component:not(:hover),
-.metric-card:not(:hover) {
-  will-change: auto;
-}
-
-/* ==========================================================================
-   ACCESSIBILITY IMPROVEMENTS
-   ========================================================================== */
-
-/* Focus states mejorados */
-.project-node:focus,
-.component:focus {
-  outline: 2px solid var(--color-cyan);
-  outline-offset: 2px;
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .component,
-  .metric-card,
-  .project-node {
-    border-width: 2px;
-    border-color: var(--color-text-primary);
-  }
-  
-  .tool-tag,
-  .hero-badge,
-  .evolution-date {
-    border: 1px solid var(--color-text-primary);
+/* Hover-capable devices only */
+@media (hover: hover) and (pointer: fine) {
+  :root {
+    --hover-opacity: 0.8;
+    --hover-scale: 1.02;
   }
 }

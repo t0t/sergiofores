@@ -36,51 +36,51 @@
   .grid--responsive-phi,
   .grid--cards,
   .grid-flex {
-    display: block ;
-    grid-template-columns: none ;
-    gap: var(--space-4) ;
-    padding: 0 var(--space-4) ;
-    margin: 0 ;
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: var(--space-4) !important;
+    padding: 0 var(--space-4) !important;
+    margin: 0 !important;
   }
   
   /* Sub-grids simplificados a una columna */
   .sub-grid {
-    grid-template-columns: 1fr ;
-    gap: var(--space-2) ;
-    padding: var(--space-2) ;
+    grid-template-columns: 1fr !important;
+    gap: var(--space-2) !important;
+    padding: var(--space-2) !important;
   }
   
   /* Contenedores simplificados */
   .container,
   .container-master {
-    padding: 0 var(--space-4) ;
-    margin: 0 ;
-    max-width: 100% ;
+    padding: 0 var(--space-4) !important;
+    margin: 0 !important;
+    max-width: 100% !important;
   }
   
   /* Headers de grid ocupan ancho completo */
   .grid-flex__header {
-    flex-basis: 100% ;
-    min-width: 100% ;
+    flex-basis: 100% !important;
+    min-width: 100% !important;
   }
   
   /* Tipografía compacta */
   .sub-grid > div,
   .sub-grid > div strong {
-    font-size: 0.75rem ;
-    line-height: 1.3 ;
+    font-size: 0.75rem !important;
+    line-height: 1.3 !important;
   }
   
   /* Espaciado reducido */
   .section {
-    padding: var(--space-4) 0 ;
+    padding: var(--space-4) 0 !important;
   }
   
   /* Cards stack verticalmente */
   .features__item,
   .features__card,
   .card {
-    margin-bottom: var(--space-4) ;
+    margin-bottom: var(--space-4) !important;
   }
 }
 
@@ -621,11 +621,11 @@ hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separac
   .sub-grid > div {
     min-height: var(--space-6);            /* Altura reducida para móvil */
     padding: var(--space-1);
-    font-size: var(--text-xs) ; /* Reset font-size base para móvil */
+    font-size: var(--text-xs) !important; /* Reset font-size base para móvil */
   }
   
   .sub-grid > div strong {
-    font-size: var(--text-xs) ; /* Reset todos los strong en móvil */
+    font-size: var(--text-xs) !important; /* Reset todos los strong en móvil */
   }
   
   .sub-grid > div .text-xs {
@@ -634,7 +634,7 @@ hr.separator--wide { margin-top: var(--space-2xl);  /* φ³ = 4.236rem - separac
   
   /* Reset específico para elementos con font-size inline o tipografía específica */
   .typography-group .sub-grid > div strong {
-    font-size: var(--text-xs) ; /* Override todas las reglas específicas */
+    font-size: var(--text-xs) !important; /* Override todas las reglas específicas */
   }
 }
 

@@ -80,7 +80,7 @@
 .btn[disabled] {
   opacity: 0.5;
   cursor: not-allowed;
-  transform: none ;
+  transform: none !important;
 }
 
 /* Botón Back to Top - Para showcase en grid de botones */
@@ -148,6 +148,16 @@
 .hero-master--image .btn {
   position: relative;
   z-index: 2; /* Por encima del overlay del hero */
+}
+
+/* Mejora contraste de .btn--secondary sobre fondo oscuro del hero */
+.hero-master--image .btn--secondary {
+  color: var(--color-cyan);
+  border-color: var(--color-cyan);
+}
+.hero-master--image .btn--secondary:hover {
+  background-color: var(--color-cyan);
+  color: var(--color-black);
 }
 
 /* ==========================================================================
@@ -306,17 +316,17 @@
 .pageheader--dynamic .pageheader__logo,
 .pageheader--dynamic .logo__mark,
 .pageheader--dynamic .logo__text {
-  color: var(--color-white) ;
-  text-shadow: none ;
+  color: var(--color-white) !important;
+  text-shadow: none !important;
   transition: all var(--duration-base) var(--ease-out);
 }
 
 /* Custom logo styling - Maintains dynamic behavior */
 .pageheader__logo--custom {
-  font-weight: 600 ;
-  font-size: 1.125rem ; /* Aumentado de 0.875rem a 1.125rem */
-  letter-spacing: 0.1em ;
-  text-transform: uppercase ;
+  font-weight: 600 !important;
+  font-size: 1.125rem !important; /* Aumentado de 0.875rem a 1.125rem */
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
 }
 
 .pageheader--dynamic .menu__link {
@@ -346,8 +356,8 @@
 .pageheader--dynamic.pageheader--scrolled .pageheader__logo,
 .pageheader--dynamic.pageheader--scrolled .logo__mark,
 .pageheader--dynamic.pageheader--scrolled .logo__text {
-  color: var(--color-text-primary) ;
-  text-shadow: none ;
+  color: var(--color-text-primary) !important;
+  text-shadow: none !important;
 }
 
 .pageheader--dynamic.pageheader--scrolled .menu__link {
@@ -476,15 +486,15 @@
   display: flex;
   align-items: center; /* Centrado vertical de items */
   list-style: none;
-  margin: 0 ; /* Anular estilos globales de ul */
-  padding: 0 ; /* Anular estilos globales de ul */
+  margin: 0 !important; /* Anular estilos globales de ul */
+  padding: 0 !important; /* Anular estilos globales de ul */
   gap: var(--space-6); /* Separación áurea entre elementos */
 }
 
 .menu__item {
   position: relative;
-  margin: 0 ; /* Anular estilos globales de li */
-  margin-bottom: 0 ; /* Anular margin-bottom específico de li */
+  margin: 0 !important; /* Anular estilos globales de li */
+  margin-bottom: 0 !important; /* Anular margin-bottom específico de li */
 }
 
 .menu__link {
@@ -501,8 +511,8 @@
   transition: color var(--duration-base) var(--ease-out);
   white-space: nowrap;
   min-height: var(--space-10); /* Altura mínima para centrado consistente */
-  margin: 0 ; /* Anular cualquier margin global en enlaces */
-  margin-bottom: 0 ; /* Anular margin-bottom específico */
+  margin: 0 !important; /* Anular cualquier margin global en enlaces */
+  margin-bottom: 0 !important; /* Anular margin-bottom específico */
 }
 
 /* Enlaces principales del dropdown - mismo estilo que logo */
@@ -601,8 +611,8 @@
   
   /* Eliminar bullets de lista */
   list-style: none;
-  margin: 0 ;
-  padding: 0 ;
+  margin: 0 !important;
+  padding: 0 !important;
   padding-top: var(--space-1); /* Pequeño padding para facilitar el hover */
   
   /* Transición suave para mejor UX */
@@ -655,17 +665,17 @@
 }
 
 .menu__submenu .menu__item {
-  list-style: none ; /* Asegurar no bullets en items de submenu */
-  margin: 0 ;
-  margin-bottom: 0 ;
+  list-style: none !important; /* Asegurar no bullets en items de submenu */
+  margin: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .menu__submenu .menu__link {
   padding: var(--space-3) var(--space-4);
   border-bottom: none;
   font-weight: var(--font-weight-normal);
-  margin: 0 ;
-  margin-bottom: 0 ;
+  margin: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .menu__submenu .menu__item:last-child .menu__link {
@@ -754,10 +764,10 @@
     margin-left: var(--space-4);
     
     /* Eliminar bullets en móvil también */
-    list-style: none ;
-    margin-bottom: 0 ;
-    padding: 0 ;
-    padding-left: var(--space-4) ; /* Solo padding izquierdo para indentación */
+    list-style: none !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    padding-left: var(--space-4) !important; /* Solo padding izquierdo para indentación */
     
     /* Desactivar transiciones hover en móvil */
     opacity: 1;
@@ -851,7 +861,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: var(--space-6); /* φ = 1.618rem - Separación áurea entre elementos nav */
+  gap: 0; /* Sin gap para menú desplegable compacto */
 }
 
 .header__nav-link {
@@ -963,19 +973,24 @@
   color: var(--color-text-inverse);
   height: 100svh; /* Small viewport height - pixel perfect para todos los dispositivos */
   min-height: 100vh; /* Fallback para navegadores sin soporte svh */
+  position: relative;
 }
 
-.hero-master--image::before {
+.hero-master--image::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.65); /* Aumentado de 0.4 a 0.65 para mejor contraste */
-  z-index: 1;
-  pointer-events: none; /* CRÍTICO: Permite que los eventos de click pasen a través del overlay */
+  background: linear-gradient(135deg, 
+    rgba(0, 204, 255, 0.9),    /* Azul oceánico #00ccff */
+    rgba(0, 0, 0, 0.3)         /* Negro transparente */
+  );
+  z-index: 0; /* Por debajo del contenido */
+  pointer-events: none;
 }
+
 
 .hero-container-master {
   width: 100%;
@@ -984,41 +999,42 @@
   padding-left: var(--space-6);
   padding-right: var(--space-6);
   position: relative;
-  z-index: 2; /* Por encima del overlay y del hero con z-index negativo */
+  z-index: 3; /* Por encima del degradado */
 }
 
 .hero-title-master {
-  font-size: clamp(3rem, 8vw, 6rem); /* φ⁵ = espectacularmente grande pero responsivo */
-  font-weight: var(--font-weight-bold);
-  line-height: 0.9; /* Muy compacto para dramatismo */
+  font-size: clamp(4rem, 12vw, 8rem); /* Reducido para mejor legibilidad */
+  font-weight: var(--font-weight-normal); /* Un paso más fino */
+  line-height: 0.95; /* Ligeramente más abierto */
   color: var(--color-text-primary);
   margin-top: 0;
   margin-bottom: var(--space-xl);
-  letter-spacing: -0.02em; /* Tracking negativo para tamaños grandes */
-  text-align: center;
+  letter-spacing: -0.01em; /* Menos tracking negativo */
+  text-align: left;
 }
 
 .hero-title-master--inverse {
   color: var(--color-white);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(0, 0, 0, 0.6); /* Sombra doble para mejor contraste */
+  text-shadow: none;
   position: relative;
   z-index: 2; /* Por encima del overlay */
 }
 
 .hero-subtitle-master {
-  font-size: var(--text-medium);
-  font-weight: var(--font-weight-light);
-  line-height: var(--line-height-tight);
+  font-size: clamp(1.25rem, 3vw, 1.5rem); /* Tamaño específico más grande */
+  font-weight: 600; /* Semibold para mejor legibilidad */
+  line-height: 1.3; /* Más abierto para mejor lectura */
   color: var(--color-text-secondary);
   margin-top: 0;
   margin-bottom: var(--space-8);
   max-width: var(--container-max-width-narrow);  /* 50rem consonante */
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
 }
 
 .hero-subtitle-master--inverse {
-  color: var(--gray-4);
+  color: var(--color-cyan);
   text-shadow: none;
   position: relative;
   z-index: 2; /* Por encima del overlay */
@@ -1026,7 +1042,7 @@
 
 .hero-actions-master {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--space-4);
   flex-wrap: wrap;
   margin-top: var(--space-8);
@@ -1042,6 +1058,7 @@
   font-weight: var(--font-weight-bold);
   line-height: 1.0; /* Compacto para dramatismo */
   letter-spacing: -0.01em; /* Tracking ligeramente negativo */
+  text-transform: uppercase;
   text-align: center;
   color: var(--color-text-primary);
   margin-bottom: var(--space-l);
@@ -1158,9 +1175,9 @@
 }
 
 .dropdown__list {
-  display: flex ;
-  flex-direction: column ;
-  gap: 0 ;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -1258,7 +1275,6 @@
   background-color: var(--color-gray-900);
   color: var(--color-text-inverse);
   font-size: var(--text-small);
-  border-top: var(--border-width-base) solid var(--color-gray-700);
 }
 
 .footer__container {
@@ -1286,7 +1302,7 @@
 
 .footer__brand-title {
   font-size: var(--text-medium);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-normal);
   color: var(--color-white);
   margin: 0;
 }

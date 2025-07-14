@@ -1,694 +1,455 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CEREBRO-DIGITAL | Tu Segundo Cerebro que Piensa con IA</title>
-    <meta name="description" content="Duplica tu capacidad cognitiva con el primer sistema PKM + IA que convierte caos informacional en arquitectura inteligente del sentido. Probado por 500+ knowledge workers.">
+    <title>CEREBRO-DIGITAL - Bóveda de Conocimiento Personal</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.svg">
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Sistema de Diseño Atómico - Arquitectura Modular -->
+    <link rel="stylesheet" href="css/design-system.css?v=13">
+
+    <!-- Override de fuentes para CEREBRO-DIGITAL -->
+    <style>
+        :root {
+            /* Override de fuentes: Montserrat como principal, Inter como secundaria */
+            --font-primary: 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'Inter', 'SF Mono', 'Courier New', monospace;
+            
+            /* Paleta CEREBRO-DIGITAL personalizada */
+            --color-yellow: #13d55e;   /* Verde cerebral - crecimiento y sabiduría */
+            --color-cyan: #ffff7d;     /* Amarillo brillante - claridad y energía */
+            --color-magenta: #00ccff;  /* Azul oceánico - conexión y fluidez */
+            --color-black: #1F2937;    /* Gris profundo - esencia y solidez */
+            
+            /* Variable adicional para line-height de textos muy grandes */
+            --line-height-ultra-tight: 1;
+        }
+        
+        /* Aplicar Montserrat a todos los elementos tipográficos */
+        body, h1, h2, h3, h4, h5, h6, p, span, div, a, button {
+            font-family: var(--font-primary);
+        }
+        
+        /* Inter para elementos de código y monoespaciados */
+        code, pre, .font-mono {
+            font-family: var(--font-mono);
+        }
+        
+        /* Override del componente features__card--two-cols */
+        .features__card--two-cols {
+            border: none;
+            background: linear-gradient(135deg, var(--color-magenta), var(--color-cyan));
+        }
+        
+        /* Reset del h1 hero manteniendo solo el tamaño */
+        .hero-title-master {
+            color: initial;
+            text-shadow: none;
+            background: none;
+            -webkit-background-clip: initial;
+            background-clip: initial;
+            -webkit-text-fill-color: initial;
+            filter: none;
+            mix-blend-mode: normal;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: normal;
+            line-height: var(--line-height-ultra-tight);
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Color blanco para features__card-category */
+        .features__card-category {
+            color: var(--color-white);
+        }
+        
+        /* Override del menú mobile para hacerlo más simple */
+        @media (max-width: 1023px) {
+            .menu--mobile-toggle .menu__list {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                left: auto;
+                width: 200px;
+                margin: 0;
+                background-color: var(--color-white);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                z-index: 1000;
+                gap: 0;
+                flex-direction: column;
+            }
+            
+            .menu--mobile-toggle .menu__link {
+                padding: var(--space-3) var(--space-4);
+                color: var(--color-black);
+                font-size: var(--text-small);
+                border-bottom: 1px solid var(--color-gray-5);
+            }
+            
+            .menu--mobile-toggle .menu__item:last-child .menu__link {
+                border-bottom: none;
+            }
+            
+            .menu--mobile-toggle .menu__link:hover {
+                background-color: var(--color-gray-5);
+                color: var(--color-black);
+            }
+        }
+        
+        /* Animación de degradados con colores de paleta */
+        .gradient-animation {
+            background: linear-gradient(45deg, 
+                var(--color-yellow), 
+                var(--color-cyan), 
+                var(--color-magenta), 
+                var(--color-yellow)
+            );
+            background-size: 400% 400%;
+            animation: gradientShift 6s ease-in-out infinite;
+            color: var(--color-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: var(--text-medium);
+            text-align: center;
+            border-radius: 50%;
+        }
+        
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* Evitar recorte de imagen cerebro en responsive */
+        .features__card-image {
+            object-fit: contain;
+        }
+        
+        /* Background para imagen cerebro con filtros y posicionamiento */
+        .cerebro-bg {
+            background-size: 60%;
+            background-position: center;
+            background-repeat: no-repeat;
+            mix-blend-mode: multiply;
+            filter: grayscale(1) sepia(1) hue-rotate(90deg) saturate(4) brightness(1.3);
+        }
+        
+        /* Contenedor de título full-width */
+        .title-full-width {
+            width: 100vw;
+        }
+    </style>
+
+    <!-- JavaScript - Navegación inteligente CLAUDE.md compliant -->
+    <script src="js/claude-navigation.js" defer></script>
+    <script src="js/pageheader-scroll.js" defer></script>
+    <script src="js/main.js" defer></script>
     
-    <!-- Design System Imports - Sergio Forés ATOMIC -->
-    <link rel="stylesheet" href="../design-system/css/main.css">
-    <link rel="stylesheet" href="../design-system/css/sergio-layout-grid.css">
-    <link rel="stylesheet" href="../design-system/css/claude-layout-optimized.css">
-    <link rel="stylesheet" href="css/main.css">
+    <!-- Smooth scroll con offset para header sticky -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Manejar todos los enlaces con hash
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Calcular offset basado en altura del header
+                        const header = document.querySelector('.pageheader');
+                        const headerHeight = header ? header.offsetHeight : 0;
+                        const offset = headerHeight + 40; // 40px extra para mejor precisión
+                        
+                        // Calcular posición con offset
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - offset;
+                        
+                        // Smooth scroll
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </head>
+
 <body>
-    <!-- Header Navigation - Design System Sergio Forés -->
-    <header class="header">
-        <div class="header__container">
-            <a href="#hero" class="logo logo-link">
-                <div class="geo-shape geo-circle-outline"></div>
-                <div class="geo-shape geo-circle-solid"></div>
-                <div class="geo-shape geo-line"></div>
-                <div class="geo-shape geo-triangle"></div>
-                <div class="geo-shape geo-square"></div>
-                <span class="logo-text">CEREBRO-DIGITAL</span>
+    <!-- [BLOCK-001] HEADER NAVIGATION -->
+    <header class="pageheader pageheader--sticky pageheader--dynamic">
+        <div class="pageheader__container">
+            <a href="#hero" class="pageheader__logo pageheader__logo--custom">
+                Cerebro Digital
             </a>
-            <nav class="header__nav">
-                <a href="#overview" class="header__nav-link">Overview</a>
-                <a href="#architecture" class="header__nav-link">Arquitectura</a>
-                <a href="#methodology" class="header__nav-link">Metodología</a>
-                <a href="#metrics" class="header__nav-link">Métricas</a>
-                <a href="#ecosystem" class="header__nav-link">Ecosistema</a>
-            </nav>
+            <div class="pageheader__menu">
+                <nav class="menu menu--mobile-toggle" id="main-menu">
+                    <button class="menu__toggle" aria-label="Toggle navigation" aria-expanded="false">
+                        <svg class="menu__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    <ul class="menu__list" id="main-nav-list">
+                        <!-- Características -->
+                        <li class="menu__item">
+                            <a href="#caracteristicas" class="menu__link">CARACTERÍSTICAS</a>
+                        </li>
+
+                        <!-- Datos + IA -->
+                        <li class="menu__item">
+                            <a href="#boveda" class="menu__link">DATOS + IA</a>
+                        </li>
+
+                        <!-- Dropdowns comentados
+                        <li class="menu__item menu__item--dropdown">
+                            <a href="#sistema" class="menu__link">SISTEMA</a>
+                            <ul class="menu__submenu">
+                                <li class="menu__item"><a href="#filosofia" class="menu__link">Filosofía 01234</a></li>
+                                <li class="menu__item"><a href="#arquitectura" class="menu__link">Arquitectura</a></li>
+                                <li class="menu__item"><a href="#niveles" class="menu__link">Niveles Cognitivos</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu__item menu__item--dropdown">
+                            <a href="#boveda" class="menu__link">BÓVEDA</a>
+                            <ul class="menu__submenu">
+                                <li class="menu__item"><a href="#gestion" class="menu__link">Gestión</a></li>
+                                <li class="menu__item"><a href="#automatizacion" class="menu__link">Automatización</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu__item menu__item--dropdown">
+                            <a href="#proyectos" class="menu__link">PROYECTOS</a>
+                            <ul class="menu__submenu">
+                                <li class="menu__item"><a href="#desarrollo" class="menu__link">Desarrollo Web</a></li>
+                                <li class="menu__item"><a href="#portfolio" class="menu__link">Portfolio</a></li>
+                                <li class="menu__item"><a href="#automatizacion" class="menu__link">IA & Automatización</a></li>
+                            </ul>
+                        </li>
+                        -->
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <main>
-        <section id="hero" class="hero">
-            <div class="hero__content">
-                <div class="hero__badge">
-                    🧠 Tu Segundo Cerebro Inteligente
-                </div>
-                <h1 class="hero__title">
-                    Duplica Tu Capacidad Cognitiva con IA: PKM + LLM = Superinteligencia Personal
-                </h1>
-                <p class="hero__description">
-                    Convierte el caos informacional en tu segundo cerebro que piensa, conecta y evoluciona contigo 24/7. 
-                    El primer sistema que no solo almacena conocimiento, sino que dialoga inteligentemente con él.
-                </p>
-                <div class="hero__actions">
-                    <a href="#overview" class="btn btn--primary">🚀 Implementar Mi Segundo Cerebro</a>
-                    <a href="#methodology" class="btn btn--secondary">📖 Cómo Funciona (2 min)</a>
+        <!-- [BLOCK-002] HERO SECTION -->
+        <section class="hero-master hero-master--fullscreen hero-master--image"
+            style="background-image: url('assets/images/fondo.webp');">
+            <div class="hero-container-master">
+                <h1 class="hero-title-master hero-title-master--inverse">Cerebro Digital</h1>
+                <h2 class="hero-subtitle-master hero-subtitle-master--inverse">
+                    Obsidian + IA + Filosofía 01234: arquitectura cognitiva para convertir información en sabiduría accionable.
+                </h2>
+                <div class="hero-actions-master">
+                    <a href="#cards" class="btn btn--primary">Explorar Sistema</a>
                 </div>
             </div>
         </section>
 
-        <!-- Overview Section -->
-        <section id="overview" class="section">
-            <div class="section__container">
-                <header class="section__header">
-                    <h2 class="section__title">El Problema: Colapso del Knowledge Worker Moderno</h2>
-                    <p class="section__description">
-                        <strong>¿Te suena familiar?</strong> Información dispersa en 20+ herramientas. Ideas valiosas perdidas. 
-                        Conocimiento fragmentado que no se conecta. <strong>CEREBRO-DIGITAL resuelve esto.</strong>
-                    </p>
-                </header>
-                
-                <div class="grid grid--responsive">
-                    <div class="features__item">
-                        <div class="features__icon" aria-hidden="true">⚡</div>
-                        <h3 class="features__title">Nunca Más Pierdas Una Idea Valiosa</h3>
-                        <p class="features__description">
-                            Captura automática desde cualquier fuente. IA que organiza al instante. 
-                            <strong>Resultado:</strong> Tu conocimiento siempre accesible y conectado.
-                        </p>
-                    </div>
-                    
-                    <div class="features__item">
-                        <div class="features__icon" aria-hidden="true">🧠</div>
-                        <h3 class="features__title">Conexiones Automáticas Entre Conceptos</h3>
-                        <p class="features__description">
-                            IA que detecta patrones ocultos en tu conocimiento. Conecta ideas dispersas automáticamente. 
-                            <strong>Resultado:</strong> Insights emergentes que no verías solo.
-                        </p>
-                    </div>
-                    
-                    <div class="features__item">
-                        <div class="features__icon" aria-hidden="true">🎯</div>
-                        <h3 class="features__title">Decisiones Respaldadas por Tu Conocimiento Completo</h3>
-                        <p class="features__description">
-                            Acceso instantáneo a todo tu saber acumulado. IA que sintetiza información relevante. 
-                            <strong>Resultado:</strong> Decisiones más inteligentes en menos tiempo.
-                        </p>
-                    </div>
-                    
-                    <div class="features__item">
-                        <div class="features__icon" aria-hidden="true">🔄</div>
-                        <h3 class="features__title">Sistema Que Evoluciona Contigo</h3>
-                        <p class="features__description">
-                            Cuanto más lo usas, más inteligente se vuelve. Aprende tus patrones de pensamiento. 
-                            <strong>Resultado:</strong> Un segundo cerebro que verdaderamente te entiende.
-                        </p>
-                    </div>
+        
+        <!-- [BLOCK-003] TITULO CENTRADO FULL WIDTH -->
+        <div id="caracteristicas" class="text--center title-full-width pt2">
+            <h2>Características</h2>
+        </div>
+        
+        <!-- [BLOCK-004] SISTEMA FEATURES -->
+        <section id="sistema" class="grid-flex pt2">
+            <!-- [ITEM-004-01] OBSIDIAN FEATURE -->
+            <div class="features__item">
+                <div class="features__icon">
+                    <svg class="icon icon--lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2l8 8-8 8-8-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
                 </div>
+                <h4 class="features__item-title">Bóveda de Obsidian</h4>
+                <p class="features__item-description">Centro neurálgico visual que organiza conocimiento en mapas conceptuales interconectados mediante Canvas como centro de control.</p>
+            </div>
+            
+            <!-- [ITEM-004-02] SISTEMA 01234 FEATURE -->
+            <div class="features__item">
+                <div class="features__icon">
+                    <svg class="icon icon--lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <h4 class="features__item-title">Sistema 01234</h4>
+                <p class="features__item-description">Marco filosófico de 5 campos cuánticos cognitivos que estructura información para optimizar procesamiento mental y materialización de ideas.</p>
+            </div>
+
+            <!-- [ITEM-004-03] AUTOMATIZATION FEATURE -->
+            <div class="features__item">
+                <div class="features__icon">
+                    <svg class="icon icon--lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 12l2 2 4-4"/>
+                        <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
+                        <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
+                    </svg>
+                </div>
+                <h4 class="features__item-title">Automatización IA</h4>
+                <p class="features__item-description">Scripts Python y agentes especializados que eliminan tareas repetitivas, gestionan finanzas y mantienen el portfolio actualizado automáticamente.</p>
+            </div>
+
+            <!-- [ITEM-004-04] COLOR PALETTE GRID -->
+            <div class="sub-grid sub-grid--color-palette">
+                <div style="background: var(--color-yellow); color: var(--color-black);">OBSIDIAN</div>
+                <div style="background: var(--color-cyan); color: var(--color-black);">CLAUDE</div>
+                <div style="background: var(--color-magenta); color: var(--color-white);">SIMBIOSIS</div>
+                <div style="background: var(--color-black); color: var(--color-white);">CONOCIMIENTO</div>
+                <div style="background: var(--color-white); color: var(--color-black);">EVOLUCIÓN</div>
+            </div>
+
+            
+        </section>
+        <!-- [BLOCK-005] VIBE CODING CARD -->
+        <section class="features__card features__card--two-cols">
+            <img src="assets/images/desarrollo.jpg" alt="Sergio Forés trabajando con CEREBRO-DIGITAL" class="features__card-image">
+            <div class="features__card-content">
+                <span class="features__card-category">Nivel 1 - Esencia</span>
+                <h4 class="features__card-title">Vibe Coding con IA</h4>
+                <p class="features__card-description">Metodología de desarrollo colaborativo humano-IA donde el desarrollador orquesta sistemas inteligentes en lugar de escribir cada línea. Prototipado ultrarrápido alineado con intuición.</p>
+                <p class="features__card-description">26 años de experiencia evolucionando hacia simbiosis con Claude Code: el humano aporta visión estratégica, la IA ejecuta la implementación técnica con precisión matemática.</p>
             </div>
         </section>
 
-        <!-- Architecture Section -->
-        <section id="architecture" class="sf-section">
-            <div class="sf-container">
-                <header class="sf-section__header">
-                    <h2 class="sf-h2">Arquitectura Técnica</h2>
-                    <p class="sf-p">
-                        Componentes principales y flujos de datos del sistema CEREBRO-DIGITAL
-                    </p>
-                </header>
+        <!-- [BLOCK-006] CARDS GRID -->
+        <section id="cards" class="grid--cards pt2 pb2">
             
-            <div class="sf-architecture">
-                <div class="sf-architecture__layer">
-                    <div class="sf-architecture__layer-header">
-                        <h3 class="sf-architecture__layer-title">Interface Layer</h3>
-                        <span class="sf-architecture__layer-status active">●</span>
-                    </div>
-                    <div class="grid sm:grid--3-col">
-                        <div class="component">
-                            <svg class="component-logo obsidian-logo" viewBox="0 0 512 512" fill="none">
-                                <defs>
-                                    <radialGradient id="logo-bottom-left" cx="0" cy="0" gradientTransform="matrix(-59 -225 150 -39 161.4 470)" gradientUnits="userSpaceOnUse" r="1">
-                                        <stop offset="0" stop-color="#fff" stop-opacity=".4"/>
-                                        <stop offset="1" stop-opacity=".1"/>
-                                    </radialGradient>
-                                    <radialGradient id="logo-top-right" cx="0" cy="0" gradientTransform="matrix(50 -379 280 37 360 374.2)" gradientUnits="userSpaceOnUse" r="1">
-                                        <stop offset="0" stop-color="#fff" stop-opacity=".6"/>
-                                        <stop offset="1" stop-color="#fff" stop-opacity=".1"/>
-                                    </radialGradient>
-                                    <radialGradient id="logo-top-left" cx="0" cy="0" gradientTransform="matrix(69 -319 218 47 175.4 307)" gradientUnits="userSpaceOnUse" r="1">
-                                        <stop offset="0" stop-color="#fff" stop-opacity=".8"/>
-                                        <stop offset="1" stop-color="#fff" stop-opacity=".4"/>
-                                    </radialGradient>
-                                    <radialGradient id="logo-bottom-right" cx="0" cy="0" gradientTransform="matrix(-96 -163 187 -111 335.3 512.2)" gradientUnits="userSpaceOnUse" r="1">
-                                        <stop offset="0" stop-color="#fff" stop-opacity=".3"/>
-                                        <stop offset="1" stop-opacity=".3"/>
-                                    </radialGradient>
-                                    <radialGradient id="logo-top-edge" cx="0" cy="0" gradientTransform="matrix(-36 166 -112 -24 310 128.2)" gradientUnits="userSpaceOnUse" r="1">
-                                        <stop offset="0" stop-color="#fff" stop-opacity="0"/>
-                                        <stop offset="1" stop-color="#fff" stop-opacity=".2"/>
-                                    </radialGradient>
-                                    <radialGradient id="logo-left-edge" cx="0" cy="0" gradientTransform="matrix(88 89 -190 187 111 220.2)" gradientUnits="userSpaceOnUse" r="1">
-                                        <stop offset="0" stop-color="#fff" stop-opacity=".2"/>
-                                        <stop offset="1" stop-color="#fff" stop-opacity=".4"/>
-                                    </radialGradient>
-                                    <radialGradient id="logo-bottom-edge" cx="0" cy="0" gradientTransform="matrix(9 130 -276 20 215 284)" gradientUnits="userSpaceOnUse" r="1">
-                                        <stop offset="0" stop-color="#fff" stop-opacity=".2"/>
-                                        <stop offset="1" stop-color="#fff" stop-opacity=".3"/>
-                                    </radialGradient>
-                                    <radialGradient id="logo-middle-edge" cx="0" cy="0" gradientTransform="matrix(-198 -104 327 -623 400 399.2)" gradientUnits="userSpaceOnUse" r="1">
-                                        <stop offset="0" stop-color="#fff" stop-opacity=".2"/>
-                                        <stop offset=".5" stop-color="#fff" stop-opacity=".2"/>
-                                        <stop offset="1" stop-color="#fff" stop-opacity=".3"/>
-                                    </radialGradient>
-                                </defs>
-                                <path d="M382.3 475.6c-3.1 23.4-26 41.6-48.7 35.3-32.4-8.9-69.9-22.8-103.6-25.4l-51.7-4a34 34 0 0 1-22-10.2l-89-91.7a34 34 0 0 1-6.7-37.7s55-121 57.1-127.3c2-6.3 9.6-61.2 14-90.6 1.2-7.9 5-15 11-20.3L248 8.9a34.1 34.1 0 0 1 49.6 4.3L386 125.6a37 37 0 0 1 7.6 22.4c0 21.3 1.8 65 13.6 93.2 11.5 27.3 32.5 57 43.5 71.5a17.3 17.3 0 0 1 1.3 19.2 1494 1494 0 0 1-44.8 70.6c-15 22.3-21.9 49.9-25 73.1z" fill="#6c31e3"/>
-                                <path d="M165.9 478.3c41.4-84 40.2-144.2 22.6-187-16.2-39.6-46.3-64.5-70-80-.6 2.3-1.3 4.4-2.2 6.5L60.6 342a34 34 0 0 0 6.6 37.7l89.1 91.7a34 34 0 0 0 9.6 7z" fill="url(#logo-bottom-left)"/>
-                                <path d="M278.4 307.8c11.2 1.2 22.2 3.6 32.8 7.6 34 12.7 65 41.2 90.5 96.3 1.8-3.1 3.6-6.2 5.6-9.2a1536 1536 0 0 0 44.8-70.6 17 17 0 0 0-1.3-19.2c-11-14.6-32-44.2-43.5-71.5-11.8-28.2-13.5-72-13.6-93.2 0-8.1-2.6-16-7.6-22.4L297.6 13.2a34 34 0 0 0-1.5-1.7 96 96 0 0 1 2 54 198.3 198.3 0 0 1-17.6 41.3l-7.2 14.2a171 171 0 0 0-19.4 71c-1.2 29.4 4.8 66.4 24.5 115.8z" fill="url(#logo-top-right)"/>
-                                <path d="M278.4 307.8c-19.7-49.4-25.8-86.4-24.5-115.9a171 171 0 0 1 19.4-71c2.3-4.8 4.8-9.5 7.2-14.1 7.1-13.9 14-27 17.6-41.4a96 96 0 0 0-2-54A34.1 34.1 0 0 0 248 9l-105.4 94.8a34.1 34.1 0 0 0-10.9 20.3l-12.8 85-.5 2.3c23.8 15.5 54 40.4 70.1 80a147 147 0 0 1 7.8 24.8c28-6.8 55.7-11 82.1-8.3z" fill="url(#logo-top-left)"/>
-                                <path d="M333.6 511c22.7 6.2 45.6-12 48.7-35.4a187 187 0 0 1 19.4-63.9c-25.6-55-56.5-83.6-90.4-96.3-36-13.4-75.2-9-115 .7 8.9 40.4 3.6 93.3-30.4 162.2 4 1.8 8.1 3 12.5 3.3 0 0 24.4 2 53.6 4.1 29 2 72.4 17.1 101.6 25.2z" fill="url(#logo-bottom-right)"/>
-                            </svg>
-                            <span class="component-name">Obsidian Canvas</span>
-                            <span class="component-desc">Mapas visuales interactivos</span>
-                        </div>
-                        <div class="component">
-                            <svg class="component-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <line x1="9" y1="9" x2="15" y2="15"/>
-                                <line x1="15" y1="9" x2="9" y2="15"/>
-                            </svg>
-                            <span class="component-name">Web Interfaces</span>
-                            <span class="component-desc">Aplicaciones HTML/CSS/JS</span>
-                        </div>
-                        <div class="component">
-                            <svg class="component-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                                <polyline points="7.5,4.21 12,6.81 16.5,4.21"/>
-                                <polyline points="7.5,19.79 7.5,14.6 3,12"/>
-                                <polyline points="21,12 16.5,14.6 16.5,19.79"/>
-                                <polyline points="3.27,6.96 12,12.01 20.73,6.96"/>
-                                <line x1="12" y1="22.08" x2="12" y2="12"/>
-                            </svg>
-                            <span class="component-name">Visual Navigation</span>
-                            <span class="component-desc">Navegación por grafos</span>
-                        </div>
-                    </div>
+            <!-- [ITEM-006-01] ANALOG NETWORKS CARD -->
+            <div class="features__card features__card--two-cols-reverse">
+                <div class="features__card-content">
+                    <span class="features__card-category" style="color: var(--color-yellow);">Nivel 3 - Conexión</span>
+                    <h4 class="features__card-title">Redes Analógicas de Conocimiento</h4>
+                    <p class="features__card-description">Obsidian Canvas genera insights emergentes conectando conceptos aparentemente inconexos. Las relaciones se visualizan como mapas neurales que revelan patrones ocultos.</p>
+                    <p class="features__card-description">Cada nota es un nodo cognitivo que se enlaza con otros, creando una red de significado que evoluciona orgánicamente y amplifica la comprensión.</p>
                 </div>
-
-                <div class="sf-architecture__connector">
-                    <div class="sf-architecture__data-flow"></div>
-                </div>
-
-                <div class="sf-architecture__layer">
-                    <div class="sf-architecture__layer-header">
-                        <h3 class="sf-architecture__layer-title">AI Processing Layer</h3>
-                        <span class="sf-architecture__layer-status processing">●</span>
-                    </div>
-                    <div class="grid sm:grid--3-col">
-                        <div class="component">
-                            <svg class="component-logo anthropic-logo" viewBox="0 0 100 100">
-                                <path d="m19.6 66.5 19.7-11 .3-1-.3-.5h-1l-3.3-.2-11.2-.3L14 53l-9.5-.5-2.4-.5L0 49l.2-1.5 2-1.3 2.9.2 6.3.5 9.5.6 6.9.4L38 49.1h1.6l.2-.7-.5-.4-.4-.4L29 41l-10.6-7-5.6-4.1-3-2-1.5-2-.6-4.2 2.7-3 3.7.3.9.2 3.7 2.9 8 6.1L37 36l1.5 1.2.6-.4.1-.3-.7-1.1L33 25l-6-10.4-2.7-4.3-.7-2.6c-.3-1-.4-2-.4-3l3-4.2L28 0l4.2.6L33.8 2l2.6 6 4.1 9.3L47 29.9l2 3.8 1 3.4.3 1h.7v-.5l.5-7.2 1-8.7 1-11.2.3-3.2 1.6-3.8 3-2L61 2.6l2 2.9-.3 1.8-1.1 7.7L59 27.1l-1.5 8.2h.9l1-1.1 4.1-5.4 6.9-8.6 3-3.5L77 13l2.3-1.8h4.3l3.1 4.7-1.4 4.9-4.4 5.6-3.7 4.7-5.3 7.1-3.2 5.7.3.4h.7l12-2.6 6.4-1.1 7.6-1.3 3.5 1.6.4 1.6-1.4 3.4-8.2 2-9.6 2-14.3 3.3-.2.1.2.3 6.4.6 2.8.2h6.8l12.6 1 3.3 2 1.9 2.7-.3 2-5.1 2.6-6.8-1.6-16-3.8-5.4-1.3h-.8v.4l4.6 4.5 8.3 7.5L89 80.1l.5 2.4-1.3 2-1.4-.2-9.2-7-3.6-3-8-6.8h-.5v.7l1.8 2.7 9.8 14.7.5 4.5-.7 1.4-2.6 1-2.7-.6-5.8-8-6-9-4.7-8.2-.5.4-2.9 30.2-1.3 1.5-3 1.2-2.5-2-1.4-3 1.4-6.2 1.6-8 1.3-6.4 1.2-7.9.7-2.6v-.2H49L43 72l-9 12.3-7.2 7.6-1.7.7-3-1.5.3-2.8L24 86l10-12.8 6-7.9 4-4.6-.1-.5h-.3L17.2 77.4l-4.7.6-2-2 .2-3 1-1 8-5.5Z"/>
-                            </svg>
-                            <span class="component-name">Claude Code</span>
-                            <span class="component-desc">Asistente IA contextual</span>
-                        </div>
-                        <div class="component">
-                            <svg class="component-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-                                <polyline points="2,17 12,22 22,17"/>
-                                <polyline points="2,12 12,17 22,12"/>
-                                <circle cx="12" cy="7" r="1"/>
-                                <circle cx="7" cy="12" r="1"/>
-                                <circle cx="17" cy="12" r="1"/>
-                            </svg>
-                            <span class="component-name">NLP Analysis</span>
-                            <span class="component-desc">Procesamiento semántico</span>
-                        </div>
-                        <div class="component">
-                            <svg class="component-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
-                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                                <path d="M12 11h4"/>
-                                <path d="M12 16h4"/>
-                                <path d="M8 11h.01"/>
-                                <path d="M8 16h.01"/>
-                            </svg>
-                            <span class="component-name">Automation Scripts</span>
-                            <span class="component-desc">Suite Python</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sf-architecture__connector">
-                    <div class="sf-architecture__data-flow"></div>
-                </div>
-
-                <div class="sf-architecture__layer">
-                    <div class="sf-architecture__layer-header">
-                        <h3 class="sf-architecture__layer-title">Core System</h3>
-                        <span class="sf-architecture__layer-status online">●</span>
-                    </div>
-                    <div class="grid sm:grid--3-col">
-                        <div class="component">
-                            <svg class="component-logo obsidian-logo" viewBox="0 0 512 512" fill="none">
-                                <defs>
-                                    <radialGradient id="logo-bottom-left-2" cx="0" cy="0" gradientTransform="matrix(-59 -225 150 -39 161.4 470)" gradientUnits="userSpaceOnUse" r="1">
-                                        <stop offset="0" stop-color="#fff" stop-opacity=".4"/>
-                                        <stop offset="1" stop-opacity=".1"/>
-                                    </radialGradient>
-                                    <radialGradient id="logo-top-right-2" cx="0" cy="0" gradientTransform="matrix(50 -379 280 37 360 374.2)" gradientUnits="userSpaceOnUse" r="1">
-                                        <stop offset="0" stop-color="#fff" stop-opacity=".6"/>
-                                        <stop offset="1" stop-color="#fff" stop-opacity=".1"/>
-                                    </radialGradient>
-                                    <radialGradient id="logo-top-left-2" cx="0" cy="0" gradientTransform="matrix(69 -319 218 47 175.4 307)" gradientUnits="userSpaceOnUse" r="1">
-                                        <stop offset="0" stop-color="#fff" stop-opacity=".8"/>
-                                        <stop offset="1" stop-color="#fff" stop-opacity=".4"/>
-                                    </radialGradient>
-                                    <radialGradient id="logo-bottom-right-2" cx="0" cy="0" gradientTransform="matrix(-96 -163 187 -111 335.3 512.2)" gradientUnits="userSpaceOnUse" r="1">
-                                        <stop offset="0" stop-color="#fff" stop-opacity=".3"/>
-                                        <stop offset="1" stop-opacity=".3"/>
-                                    </radialGradient>
-                                </defs>
-                                <path d="M382.3 475.6c-3.1 23.4-26 41.6-48.7 35.3-32.4-8.9-69.9-22.8-103.6-25.4l-51.7-4a34 34 0 0 1-22-10.2l-89-91.7a34 34 0 0 1-6.7-37.7s55-121 57.1-127.3c2-6.3 9.6-61.2 14-90.6 1.2-7.9 5-15 11-20.3L248 8.9a34.1 34.1 0 0 1 49.6 4.3L386 125.6a37 37 0 0 1 7.6 22.4c0 21.3 1.8 65 13.6 93.2 11.5 27.3 32.5 57 43.5 71.5a17.3 17.3 0 0 1 1.3 19.2 1494 1494 0 0 1-44.8 70.6c-15 22.3-21.9 49.9-25 73.1z" fill="#6c31e3"/>
-                                <path d="M165.9 478.3c41.4-84 40.2-144.2 22.6-187-16.2-39.6-46.3-64.5-70-80-.6 2.3-1.3 4.4-2.2 6.5L60.6 342a34 34 0 0 0 6.6 37.7l89.1 91.7a34 34 0 0 0 9.6 7z" fill="url(#logo-bottom-left-2)"/>
-                                <path d="M278.4 307.8c11.2 1.2 22.2 3.6 32.8 7.6 34 12.7 65 41.2 90.5 96.3 1.8-3.1 3.6-6.2 5.6-9.2a1536 1536 0 0 0 44.8-70.6 17 17 0 0 0-1.3-19.2c-11-14.6-32-44.2-43.5-71.5-11.8-28.2-13.5-72-13.6-93.2 0-8.1-2.6-16-7.6-22.4L297.6 13.2a34 34 0 0 0-1.5-1.7 96 96 0 0 1 2 54 198.3 198.3 0 0 1-17.6 41.3l-7.2 14.2a171 171 0 0 0-19.4 71c-1.2 29.4 4.8 66.4 24.5 115.8z" fill="url(#logo-top-right-2)"/>
-                                <path d="M278.4 307.8c-19.7-49.4-25.8-86.4-24.5-115.9a171 171 0 0 1 19.4-71c2.3-4.8 4.8-9.5 7.2-14.1 7.1-13.9 14-27 17.6-41.4a96 96 0 0 0-2-54A34.1 34.1 0 0 0 248 9l-105.4 94.8a34.1 34.1 0 0 0-10.9 20.3l-12.8 85-.5 2.3c23.8 15.5 54 40.4 70.1 80a147 147 0 0 1 7.8 24.8c28-6.8 55.7-11 82.1-8.3z" fill="url(#logo-top-left-2)"/>
-                                <path d="M333.6 511c22.7 6.2 45.6-12 48.7-35.4a187 187 0 0 1 19.4-63.9c-25.6-55-56.5-83.6-90.4-96.3-36-13.4-75.2-9-115 .7 8.9 40.4 3.6 93.3-30.4 162.2 4 1.8 8.1 3 12.5 3.3 0 0 24.4 2 53.6 4.1 29 2 72.4 17.1 101.6 25.2z" fill="url(#logo-bottom-right-2)"/>
-                            </svg>
-                            <span class="component-name">Obsidian Vault</span>
-                            <span class="component-desc">Base de conocimiento</span>
-                        </div>
-                        <div class="component">
-                            <svg class="component-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                                <line x1="16" y1="2" x2="16" y2="6"/>
-                                <line x1="8" y1="2" x2="8" y2="6"/>
-                                <line x1="3" y1="10" x2="21" y2="10"/>
-                                <path d="M8 14h.01"/>
-                                <path d="M12 14h.01"/>
-                                <path d="M16 14h.01"/>
-                                <path d="M8 18h.01"/>
-                                <path d="M12 18h.01"/>
-                                <path d="M16 18h.01"/>
-                            </svg>
-                            <span class="component-name">REGLAS_SISTEMA.md</span>
-                            <span class="component-desc">Documento constitucional</span>
-                        </div>
-                        <div class="component">
-                            <svg class="component-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M16 4v4l-4-2-4 2V4"/>
-                                <path d="M20 8v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8"/>
-                                <path d="M4 8l16-4"/>
-                                <circle cx="8" cy="12" r="1"/>
-                                <circle cx="12" cy="16" r="1"/>
-                                <circle cx="16" cy="12" r="1"/>
-                                <path d="M8 12h8"/>
-                                <path d="M12 8v8"/>
-                            </svg>
-                            <span class="component-name">Graph Database</span>
-                            <span class="component-desc">Enlaces bidireccionales</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Methodology Section -->
-    <section id="methodology" class="sf-section">
-        <div class="sf-container">
-            <div class="sf-section__header">
-                <h2 class="sf-h2">Cómo Funciona: 5 Niveles Cognitivos Para Procesar Cualquier Complejidad</h2>
-                <p class="sf-p">
-                    <strong>Del Caos Mental a la Claridad Total:</strong> El sistema 01234 organiza tu pensamiento 
-                    desde el potencial infinito (0) hasta la acción material (4). <strong>Usado por 500+ knowledge workers.</strong>
-                </p>
-            </div>
-            
-            <div class="grid md:grid--5-col">
-                <div class="sf-timeline__stage">
-                    <div class="sf-timeline__stage-number">0</div>
-                    <div class="sf-timeline__stage-content">
-                        <h3 class="sf-timeline__stage-title">Campo de Posibilidades</h3>
-                        <p class="sf-timeline__stage-description">Toda la información disponible. Tu IA recolecta de múltiples fuentes automáticamente.</p>
-                        <div class="sf-timeline__stage-tools">
-                            <span class="sf-tool-tag">Web Scraping</span>
-                            <span class="sf-tool-tag">PDF Parsing</span>
-                            <span class="sf-tool-tag">RSS Feeds</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sf-timeline__arrow">→</div>
-
-                <div class="sf-timeline__stage">
-                    <div class="sf-timeline__stage-number">1</div>
-                    <div class="sf-timeline__stage-content">
-                        <h3 class="sf-timeline__stage-title">Claridad Esencial</h3>
-                        <p class="sf-timeline__stage-description">IA filtra lo importante. Solo lo que verdaderamente necesitas saber.</p>
-                        <div class="sf-timeline__stage-tools">
-                            <span class="sf-tool-tag">Claude Code</span>
-                            <span class="sf-tool-tag">NLP Analysis</span>
-                            <span class="sf-tool-tag">Pattern Detection</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sf-timeline__arrow">→</div>
-
-                <div class="sf-timeline__stage">
-                    <div class="sf-timeline__stage-number">2</div>
-                    <div class="sf-timeline__stage-content">
-                        <h3 class="sf-timeline__stage-title">Análisis Profundo</h3>
-                        <p class="sf-timeline__stage-description">Descompone ideas complejas. Encuentra matices y contradicciones ocultas.</p>
-                        <div class="sf-timeline__stage-tools">
-                            <span class="sf-tool-tag">Logic Analysis</span>
-                            <span class="sf-tool-tag">Dependency Map</span>
-                            <span class="sf-tool-tag">Coherence Check</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sf-timeline__arrow">→</div>
-
-                <div class="sf-timeline__stage">
-                    <div class="sf-timeline__stage-number">3</div>
-                    <div class="sf-timeline__stage-content">
-                        <h3 class="sf-timeline__stage-title">Conexiones Inteligentes</h3>
-                        <p class="sf-timeline__stage-description">Mapas visuales de tu conocimiento. Ve patrones que antes eran invisibles.</p>
-                        <div class="sf-timeline__stage-tools">
-                            <span class="sf-tool-tag">Canvas Creation</span>
-                            <span class="sf-tool-tag">Link Automation</span>
-                            <span class="sf-tool-tag">Graph Analysis</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sf-timeline__arrow">→</div>
-
-                <div class="sf-timeline__stage">
-                    <div class="sf-timeline__stage-number">4</div>
-                    <div class="sf-timeline__stage-content">
-                        <h3 class="sf-timeline__stage-title">Acción Inteligente</h3>
-                        <p class="sf-timeline__stage-description">De insights a resultados. Tu conocimiento se convierte en valor tangible.</p>
-                        <div class="sf-timeline__stage-tools">
-                            <span class="sf-tool-tag">Web Development</span>
-                            <span class="sf-tool-tag">API Creation</span>
-                            <span class="sf-tool-tag">Documentation</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Metrics Section -->
-    <section id="metrics" class="sf-section sf-section--alt">
-        <div class="sf-container">
-            <div class="sf-section__header">
-                <h2 class="sf-h2">Métricas del Sistema</h2>
-                <p class="sf-p">
-                    Datos cuantitativos del rendimiento y evolución del sistema
-                </p>
-            </div>
-            
-            <div class="grid grid--responsive">
-                <div class="sf-metric-card">
-                    <svg class="sf-metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="18" cy="5" r="3"/>
-                        <circle cx="6" cy="12" r="3"/>
-                        <circle cx="18" cy="19" r="3"/>
-                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-                    </svg>
-                    <h3 class="sf-metric-title">Arquitectura</h3>
-                    <div class="sf-metric-stats">
-                        <div class="sf-stat">
-                            <span class="sf-stat-value">01234</span>
-                            <span class="sf-stat-label">Marco filosófico</span>
-                        </div>
-                        <div class="sf-stat">
-                            <span class="sf-stat-value">PKM + IA</span>
-                            <span class="sf-stat-label">Paradigma híbrido</span>
-                        </div>
-                        <div class="sf-stat">
-                            <span class="sf-stat-value">Fractal</span>
-                            <span class="sf-stat-label">Estructura recursiva</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sf-metric-card">
-                    <svg class="sf-metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="7" height="7"/>
-                        <rect x="14" y="3" width="7" height="7"/>
-                        <rect x="14" y="14" width="7" height="7"/>
-                        <rect x="3" y="14" width="7" height="7"/>
-                        <path d="M10.5 6.5h3M6.5 10.5v3M17.5 10.5v3M10.5 17.5h3"/>
-                    </svg>
-                    <h3 class="sf-metric-title">Stack Tecnológico</h3>
-                    <div class="sf-metric-stats">
-                        <div class="sf-stat">
-                            <span class="sf-stat-value">Obsidian</span>
-                            <span class="sf-stat-label">Base visual</span>
-                        </div>
-                        <div class="sf-stat">
-                            <span class="sf-stat-value">Claude Code</span>
-                            <span class="sf-stat-label">IA contextual</span>
-                        </div>
-                        <div class="sf-stat">
-                            <span class="sf-stat-value">Python + JS</span>
-                            <span class="sf-stat-label">Automatización</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sf-metric-card">
-                    <svg class="sf-metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                        <circle cx="12" cy="12" r="2"/>
-                    </svg>
-                    <h3 class="sf-metric-title">Flujo Cognitivo</h3>
-                    <div class="sf-metric-stats">
-                        <div class="sf-stat">
-                            <span class="sf-stat-value">0→4</span>
-                            <span class="sf-stat-label">Materialización</span>
-                        </div>
-                        <div class="sf-stat">
-                            <span class="sf-stat-value">4→0</span>
-                            <span class="sf-stat-label">Abstracción</span>
-                        </div>
-                        <div class="sf-stat">
-                            <span class="sf-stat-value">∞</span>
-                            <span class="sf-stat-label">Iteraciones</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sf-metric-card">
-                    <svg class="sf-metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <circle cx="12" cy="12" r="6"/>
-                        <circle cx="12" cy="12" r="2"/>
-                        <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
-                        <path d="M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-                    </svg>
-                    <h3 class="sf-metric-title">Ecosistema</h3>
-                    <div class="sf-metric-stats">
-                        <div class="sf-stat">
-                            <span class="sf-stat-value">15+</span>
-                            <span class="sf-stat-label">Proyectos conectados</span>
-                        </div>
-                        <div class="sf-stat">
-                            <span class="stat-value">Web3</span>
-                            <span class="sf-stat-label">Desarrollo portfolio</span>
-                        </div>
-                        <div class="sf-stat">
-                            <span class="stat-value">Open</span>
-                            <span class="sf-stat-label">Metodología abierta</span>
-                        </div>
-                    </div>
-                </div>
+                <div class="features__card-image cerebro-bg" style="background-image: url('assets/images/cerebro2.jpg');"></div>
             </div>
 
-            <!-- Evolution Timeline -->
-            <div class="sf-evolution-section">
-                <h3 class="sf-evolution-title">Evolución del Sistema</h3>
-                <div class="grid grid--responsive">
-                    <div class="sf-evolution-item">
-                        <div class="sf-evolution-date">Q1 2024</div>
-                        <div class="sf-evolution-content">
-                            <h4 class="sf-h4">Genesis</h4>
-                            <p class="sf-p">Creación del vault Obsidian inicial. Definición de REGLAS_SISTEMA.md</p>
-                        </div>
-                    </div>
-                    <div class="sf-evolution-item">
-                        <div class="sf-evolution-date">Q2 2024</div>
-                        <div class="sf-evolution-content">
-                            <h4 class="sf-h4">IA Integration</h4>
-                            <p class="sf-p">Integración Claude Code. Desarrollo filosofía 01234. Primeros Canvas interactivos</p>
-                        </div>
-                    </div>
-                    <div class="sf-evolution-item">
-                        <div class="sf-evolution-date">Q3 2024</div>
-                        <div class="sf-evolution-content">
-                            <h4 class="sf-h4">Automatización</h4>
-                            <p class="sf-p">Scripts Python para screenshots. Workflows automatizados. Expansión a 1,500+ notas</p>
-                        </div>
-                    </div>
-                    <div class="sf-evolution-item">
-                        <div class="sf-evolution-date">Q4 2024</div>
-                        <div class="sf-evolution-content">
-                            <h4 class="sf-h4">Ecosystem</h4>
-                            <p class="sf-p">Portfolio sergiofores. Proyectos web integrados. 2,847 notas. Sistema maduro</p>
-                        </div>
-                    </div>
-                </div>
+            <!-- [ITEM-006-02] ANIMATED LOGO -->
+            <div class="features__card features__card--circular gradient-animation">
+                CEREBRO-DIGITAL
             </div>
 
-    <!-- Ecosystem Section -->
-    <section id="ecosystem" class="sf-section">
-        <div class="sf-container">
-            <div class="sf-section__header">
-                <h2 class="sf-h2">Ecosistema Integrado</h2>
-                <p class="sf-p">
-                    Conexiones con el portfolio sergiofores y proyectos relacionados
-                </p>
+            <!-- [ITEM-006-03] WHAT IS SECTION -->
+            <div>
+                <h2>¿Qué es CEREBRO-DIGITAL?</h2>
+                <p>Un sistema de gestión de conocimiento personal que replica la estructura neuronal del cerebro humano en formato digital. Simbiosis entre datos como fundamento y IA como motor cognitivo.</p>
             </div>
-            
-            <div class="sf-ecosystem__network">
-                <div class="sf-ecosystem__network-center">
-                    <div class="sf-center-node">
-                        <svg class="sf-center-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9.5 2A2.5 2.5 0 0 0 7 4.5v15A2.5 2.5 0 0 0 9.5 22h5a2.5 2.5 0 0 0 2.5-2.5v-15A2.5 2.5 0 0 0 14.5 2h-5Z"/>
-                            <path d="M9 6h6"/>
-                            <path d="M9 10h6"/>
-                            <path d="M9 14h6"/>
-                            <path d="M9 18h6"/>
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M16 8l-2 2-2-2"/>
-                            <path d="M8 16l2-2 2 2"/>
-                        </svg>
-                        <span class="sf-center-label">CEREBRO-DIGITAL</span>
-                    </div>
-                </div>
+
+            <!-- [ITEM-006-04] NEW MENTAL ORDER -->
+            <div>
+                <h3>El Nuevo Orden Mental (NOM)</h3>
+                <p>Reconfiguración del sentido a través del lenguaje natural como materia prima. Estructura viva en forma de lenguaje que, al usarlo, transforma a quien lo usa.</p>
+            </div>
                 
-                <div class="sf-ecosystem__network-connections">
-                    <div class="sf-connection-item">
-                        <div class="sf-connection-line"></div>
-                        <a href="../sergio-dev/" class="sf-project-node">
-                            <svg class="sf-project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="16,18 22,12 16,6"/>
-                                <polyline points="8,6 2,12 8,18"/>
-                                <line x1="12" y1="2" x2="12" y2="22"/>
-                            </svg>
-                            <span class="sf-project-name">sergio-dev</span>
-                            <span class="sf-project-desc">dIAlogando con IA</span>
-                            <span class="sf-project-status active">●</span>
-                        </a>
-                    </div>
-                    
-                    <div class="sf-connection-item">
-                        <div class="sf-connection-line"></div>
-                        <a href="../landing_01234/" class="sf-project-node">
-                            <svg class="sf-project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polygon points="10,8 16,12 10,16 10,8"/>
-                                <circle cx="12" cy="12" r="2"/>
-                            </svg>
-                            <span class="sf-project-name">Landing 01234</span>
-                            <span class="sf-project-desc">Sistema cognitivo</span>
-                            <span class="sf-project-status active">●</span>
-                        </a>
-                    </div>
-                    
-                    <div class="sf-connection-item">
-                        <div class="sf-connection-line"></div>
-                        <a href="../proceso-cognitivo/" class="sf-project-node">
-                            <svg class="sf-project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="3"/>
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                            </svg>
-                            <span class="sf-project-name">Proceso Cognitivo</span>
-                            <span class="sf-project-desc">Laboratorio consciencia</span>
-                            <span class="sf-project-status active">●</span>
-                        </a>
-                    </div>
-                    
-                    <div class="sf-connection-item">
-                        <div class="sf-connection-line"></div>
-                        <a href="../cerebro_digital_vault/" class="sf-project-node">
-                            <svg class="sf-project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                                <line x1="16" y1="2" x2="16" y2="6"/>
-                                <line x1="8" y1="2" x2="8" y2="6"/>
-                                <line x1="3" y1="10" x2="21" y2="10"/>
-                                <path d="M8 14h.01"/>
-                                <path d="M12 14h.01"/>
-                                <path d="M16 14h.01"/>
-                                <path d="M8 18h.01"/>
-                                <path d="M12 18h.01"/>
-                                <path d="M16 18h.01"/>
-                            </svg>
-                            <span class="sf-project-name">Vault Interface</span>
-                            <span class="sf-project-desc">Dashboard navegación</span>
-                            <span class="sf-project-status development">●</span>
-                        </a>
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="sf-ecosystem__stats">
-                <div class="sf-ecosystem__stat">
-                    <span class="sf-stat-number">4</span>
-                    <span class="sf-stat-label">Proyectos Activos</span>
-                </div>
-                <div class="sf-ecosystem__stat">
-                    <span class="sf-stat-number">100%</span>
-                    <span class="sf-stat-label">Integración 01234</span>
-                </div>
-                <div class="sf-ecosystem__stat">
-                    <span class="sf-stat-number">3</span>
-                    <span class="sf-stat-label">Tecnologías Stack</span>
-                </div>
-            </div>
+        </section>
 
-        <!-- Book Banner CTA -->
-        <div class="book-banner">
-            <div class="book-banner__content">
-                <div class="book-banner__text">
-                    <h2 class="book-banner__title">Listo Para 10x Tu Capacidad Cognitiva?</h2>
-                    <p class="book-banner__description">
-                        Únete a 500+ knowledge workers que ya usan CEREBRO-DIGITAL para procesar 10x más información 
-                        en la mitad del tiempo. Tu segundo cerebro inteligente te está esperando.
-                    </p>
-                    <div class="book-banner__actions">
-                        <a href="https://www.instagram.com/cuenta.01234/" class="btn btn--primary" target="_blank">Comenzar Mi Segundo Cerebro</a>
-                        <a href="https://x.com/t0tinspire" class="btn btn--secondary" target="_blank">Preguntar Dudas (DM)</a>
-                        <a href="https://github.com/t0t" class="btn btn--secondary" target="_blank">Ver Template Completo</a>
+
+        <!-- [BLOCK-007] COGNITIVE FIELDS -->
+        <section class="grid-flex">
+
+            <!-- [ITEM-007-01] QUANTUM FIELDS DESCRIPTION -->
+            <div>
+                <h3>Campos Cuánticos Cognitivos</h3>
+                    <p>Los 01234 no son niveles secuenciales sino campos simultáneos que cristalizan según contexto: Potencial (0), Esencia (1), Análisis (2), Conexión (3), Materialización (4).</p>
+                </div>
+
+            <!-- [ITEM-007-02] SYMBIOTIC AI DESCRIPTION -->
+            <div>
+                <h3>Inteligencia Artificial Simbiótica</h3>
+                    <p>Claude Code actúa como subconsciente digital: procesa patrones, mantiene sistemas funcionando y libera la mente consciente para tareas creativas de alto valor.</p>
+                </div>
+
+            <!-- [ITEM-007-03] LEVELS COLOR VISUALIZATION -->
+            <div>
+                <div class="sub-grid sub-grid--color-palette">
+                        <div style="background: var(--color-yellow); color: var(--color-black);">Nivel 4 - Materialización</div>
+                        <div style="background: var(--color-magenta); color: var(--color-black);">Nivel 3 - Conexión</div>
+                        <div style="background: var(--color-cyan); color: var(--color-black);">Nivel 2 - Análisis</div>
+                        <div style="background: var(--color-black); color: var(--color-cyan);">Nivel 1 - Esencia</div>
+                        <div style="background: var(--color-white); color: var(--color-black);">Nivel 0 - Potencial</div>
                     </div>
                 </div>
-            </div>
-        </div>
+
+
+        </section>
+
+        
     </main>
+    
+        <!-- [BLOCK-008] BOVEDA SECTION -->
+        <aside id="boveda" class="features__card features__card--two-cols">
+            <img src="assets/images/evolucion.jpg" alt="Evolución Digital del Pensamiento" class="features__card-image">
+            <div class="features__card-content">
+                <span class="features__card-category">Nivel 4 - Materialización</span>
+                <h4 class="features__card-title">Simbiosis Datos + IA</h4>
+                <p class="features__card-description">CEREBRO-DIGITAL = DATOS + IA. Los datos actúan como fundamento (Nivel 0 - Potencial) mientras que la inteligencia artificial opera como motor cognitivo (Nivel 1 - Esencia).</p>
+                <p class="features__card-description">Esta arquitectura replica los procesos neuronales humanos: memoria distribuida, patrones emergentes y automatización del procesamiento rutinario para amplificar la capacidad creativa.</p>
+            </div>
+        </aside>
 
-    <!-- Footer -->
+
+    <!-- [BLOCK-009] FOOTER -->
     <footer class="footer">
-        <div class="footer__social">
-            <a href="https://github.com/t0t" target="_blank" aria-label="GitHub">GitHub</a>
-            <a href="https://www.instagram.com/cuenta.01234/" target="_blank" aria-label="Instagram">Instagram</a>
-            <a href="https://x.com/t0tinspire" target="_blank" aria-label="Twitter">Twitter</a>
-            <a href="../../index.html" aria-label="Portfolio">Portfolio</a>
-            <a href="../design-system/" aria-label="Design System">Design System</a>
+        <div class="footer__container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <h3 class="footer__brand-title">CEREBRO-DIGITAL</h3>
+                    <p class="footer__brand-description">
+                        Sistema integrado de gestión de conocimiento personal que combina Obsidian, automatización IA y filosofía 01234. Una arquitectura cognitiva para optimizar procesamiento mental y materialización de ideas.
+                    </p>
+                    <div class="footer__social">
+                        <a href="https://x.com/t0tinspire" class="footer__social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                            <svg class="footer__social-icon" viewBox="0 0 24 24">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="footer__bottom">
+                <p>© 2025 <a href="https://sergiofores.es" class="footer__link">Sergio Forés</a> • CEREBRO-DIGITAL</p>
+            </div>
         </div>
-        <p>Desarrollado por <strong>Sergio Forés</strong> · Sistema PKM + IA Generativa · Filosofía 01234</p>
-        <p>© <span id="currentYear">2024</span> CEREBRO-DIGITAL. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Custom Cursor -->
-    <div class="custom-cursor"></div>
-
-    <!-- Scripts -->
-    <script src="../design-system/js/navigation-intelligence.js"></script>
-    <script src="../design-system/js/main.js"></script>
+    <!-- [BLOCK-010] BACK TO TOP -->
+    <button class="back-to-top" onclick="scrollToTop()">
+        <svg class="icon icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14"
+            height="14" style="transform: rotate(-90deg);">
+            <polyline points="9,18 15,12 9,6" />
+        </svg>
+    </button>
 </body>
+
 </html>
