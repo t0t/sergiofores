@@ -1,0 +1,191 @@
+/**
+ * SERGIO FORÉS - VARIABLES CSS PRINCIPALES
+ * Sistema de diseño atómico basado en principios 01234
+ * Criterios: Bauhaus, minimalismo inteligente, mobile-first
+ * 
+ * ⚠️ REGLA SAGRADA: ESTAS VARIABLES SON INTOCABLES
+ * Nunca modificar, eliminar o cambiar sin autorización EXPLÍCITA de Sergio Forés
+ * Las paletas de colores y el sistema 01234 son la base arquitectónica del proyecto
+ */
+
+:root {
+  /* ==========================================================================
+     TIPOGRAFÍA - Sistema 3 tamaños ÚNICAMENTE
+     ========================================================================== */
+  
+  /* Font Families - GOOGLE FONTS PRECONFIGURADAS */
+  /* ⚠️ FUENTES PRINCIPALES: Inter (moderna), Source Code Pro (mono), Montserrat (versátil) */
+  --font-primary: 'Inter', 'Avenir Next', 'Futura', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Source Code Pro', 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
+  --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Font Families - FALLBACKS SERGIO FORÉS (Originales) */
+  --font-primary-sergio: 'Avenir Next', 'Futura', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono-sergio: 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
+  
+  /* ⚠️ VARIABLES TIPOGRÁFICAS ELIMINADAS - Sistema usa estilos nativos del navegador */
+
+  /* ==========================================================================
+     COLORES - Sistema 01234 + Monocromático
+     ========================================================================== */
+  
+  /* PALETA BASE SERGIO FORÉS - ADAPTABLE POR PROYECTO */
+  /* ⚠️ Colores base del sistema, pueden expandirse según necesidades del proyecto */
+  --color-yellow: #FFFF00;   /* Amarillo puro */
+  --color-cyan: #00FFFF;     /* Cyan puro */
+  --color-red: #FF0000;      /* Rojo puro */
+  --color-black: #000000;    /* Negro puro */
+  --color-white: #FFFFFF;    /* Blanco puro */
+  
+  /* ESCALA MONOCROMÁTICA - 5 GRISES EXACTOS */
+  --gray-1: #333333;  /* Gris oscuro */
+  --gray-2: #666666;  /* Gris medio-oscuro */
+  --gray-3: #999999;  /* Gris medio */
+  --gray-4: #CCCCCC;  /* Gris medio-claro */
+  --gray-5: #EEEEEE;  /* Gris claro */
+  
+  /* COLORES SEMÁNTICOS - BASADOS EN PALETA SERGIO FORÉS */
+  --color-primary: var(--color-black);
+  --color-background: var(--color-white);
+  --color-surface: var(--gray-5);
+  --color-border: var(--gray-4);
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--gray-1);
+  --color-text-muted: var(--gray-3);
+  --color-accent: var(--color-yellow);  /* Color principal para acentos, adaptable por proyecto */
+  
+  /* VARIABLES OBSOLETAS QUE USAN LA PALETA BASE */
+  --color-1: var(--color-yellow);  /* Mapeado a amarillo puro */
+  --color-2: var(--color-cyan);    /* Mapeado a cyan puro */
+  --color-3: var(--color-red);     /* Mapeado a rojo puro */
+  --color-4: var(--color-black);   /* Mapeado a negro puro */
+  
+  /* LOGOS GEOMÉTRICOS - COLORES ESPECÍFICOS SERGIO FORÉS */
+  --logo-0: var(--color-black);    /* geo-circle-outline */
+  --logo-1: var(--color-yellow);   /* geo-circle-solid */
+  --logo-2: var(--color-red);      /* geo-line */
+  --logo-3: var(--color-cyan);     /* geo-triangle */
+  --logo-4: var(--gray-3);         /* geo-square */
+  
+  /* LOGO PRINCIPAL - Variables adaptables por proyecto */
+  --logo-circle-fill: var(--color-black);       /* Relleno negro en light mode */
+  --logo-circle-stroke: var(--color-black);     /* Borde negro en light mode */
+  
+  /* ==========================================================================
+     UTOPIA VARIABLES - Ritmo Vertical Fluido
+     ========================================================================== */
+  
+  /* UTOPIA TYPE SCALE - Base matemática fluida optimizada */
+
+  /* UTOPIA SPACE SCALE - Espaciado fluido basado en tipografía */
+
+  /* UTOPIA SPACE PAIRS - Transiciones dramáticas optimizadas */
+
+  /* ==========================================================================
+     FILOSOFÍA 01234 - MAPPING SEMÁNTICO
+     ========================================================================== */
+  
+  /* NIVEL 0 - POTENCIAL CUÁNTICO */
+  
+  /* NIVEL 1 - ESENCIA/MODELO */
+  --essence-text: var(--text-xl);           /* Mapeado a --text-xl (step-4) */
+  --core-text: var(--text-large);           /* Mapeado a --text-large (step-1) */
+  
+  /* NIVEL 2 - ANÁLISIS/DIFERENCIACIÓN */
+  --analysis-text: var(--text-large);       /* Mapeado a --text-large (step-1) */
+  --fragment-text: var(--text-medium);      /* Mapeado a --text-medium (step-0) */
+  
+  /* NIVEL 3 - COMUNICACIÓN/CONEXIÓN */
+  --connection-text: var(--text-small);     /* Mapeado a --text-small (step--1) */
+  
+  /* NIVEL 4 - MATERIALIZACIÓN/ACCIÓN */
+  --detail-text: var(--text-small);         /* Consolidado en --text-small */
+
+  /* ==========================================================================
+     COMPONENTES ESPECÍFICOS - Mapping directo
+     ========================================================================== */
+  
+  /* Hero Section */
+  
+  /* Navigation - SPACING COHERENTE CON GRID SERGIO FORÉS */
+  
+  /* Section Headers - SPACING REFINADO SERGIO FORÉS */
+  
+  /* Project Grids - OPTIMIZADO PARA RESPIRACIÓN VISUAL */
+
+  /* ==========================================================================
+     ESPACIADO - Sistema 8px Complementario AMPLIADO
+     ========================================================================== */
+  
+  
+  /* ==========================================================================
+     LAYOUT
+     ========================================================================== */
+  
+  /* Container - CONSONANT VALUES */
+  
+  /* Grid */
+  
+  /* Breakpoints - CONSONANT VALUES */
+  
+  /* Añadir valores de breakpoint faltantes */
+  
+  /* ==========================================================================
+     COMPONENTES
+     ========================================================================== */
+  
+  /* Border Radius - CONSONANT VALUES */
+  
+  /* Añadir valor faltante */
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  
+  /* Transitions - CONSONANT VALUES */
+  
+  /* Transform Values - CONSONANT */
+  
+  /* Opacity States */
+  --opacity-full: 1;
+  --opacity-high: 0.9;
+  --opacity-medium: 0.8;
+  --opacity-low: 0.5;
+  --opacity-hidden: 0;
+  
+  /* Z-index */
+  
+  /* ==========================================================================
+     SISTEMA DE ICONOS - Lucide SVG
+     ========================================================================== */
+  
+  /* Tamaños de iconos - Sistema escalado consonante */
+  --icon-xs: 16px;
+  --icon-sm: 20px;
+  --icon-md: 24px;
+  --icon-lg: 32px;
+  --icon-xl: 48px;
+  --icon-2xl: 64px;
+  --icon-3xl: 96px;
+  --icon-hero: 200px;
+  --icon-massive: 300px;
+  
+  /* Stroke width para diferentes tamaños */
+  --icon-stroke-thin: 1;
+  --icon-stroke-normal: 1.5;
+  --icon-stroke-bold: 2;
+  
+  /* Colores de iconos semánticos */
+  --icon-color-primary: var(--color-primary);
+  --icon-color-secondary: var(--gray-2);
+  --icon-color-muted: var(--gray-3);
+  --icon-color-accent: var(--color-accent);
+  --icon-color-inverse: var(--color-white);
+}
+
+/* ==========================================================================
+   MEDIA QUERIES - Mobile First
+   ========================================================================== */
+

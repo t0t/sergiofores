@@ -1,0 +1,305 @@
+/**
+ * SISTEMA DE COLORES GENÉRICO - BOILERPLATE SERGIO FORÉS
+ * 
+ * ⚠️ FILOSOFÍA: Naming genérico que permite cambiar colores sin renombrar variables
+ * 
+ * ESTRUCTURA:
+ * 1. COLORES BASE - Valores específicos (pueden cambiar)
+ * 2. TOKENS SEMÁNTICOS - Nombres genéricos (NUNCA cambian)
+ * 3. CONTEXTUALES - Usos específicos (se mapean a semánticos)
+ */
+
+:root {
+  /* ==========================================================================
+     1. COLORES BASE - VALORES ESPECÍFICOS (Pueden cambiar en cada proyecto)
+     ========================================================================== */
+  
+  /* Colores Primarios Base */
+  --base-primary-100: #FFFF00;    /* Color principal más claro */
+  --base-primary-500: #CCCC00;    /* Color principal base */
+  --base-primary-900: #999900;    /* Color principal más oscuro */
+  
+  /* Colores Secundarios Base */
+  --base-secondary-100: #00FFFF;  /* Color secundario más claro */
+  --base-secondary-500: #00CCCC;  /* Color secundario base */
+  --base-secondary-900: #009999;  /* Color secundario más oscuro */
+  
+  /* Colores de Acento Base */
+  --base-accent-100: #FF6666;     /* Acento claro */
+  --base-accent-500: #FF0000;     /* Acento base */
+  --base-accent-900: #CC0000;     /* Acento oscuro */
+  
+  /* Sistema Neutros Base */
+  --base-neutral-0: #FFFFFF;      /* Blanco puro */
+  --base-neutral-100: #F5F5F5;    /* Gris muy claro */
+  --base-neutral-200: #EEEEEE;    /* Gris claro */
+  --base-neutral-300: #CCCCCC;    /* Gris medio-claro */
+  --base-neutral-400: #999999;    /* Gris medio */
+  --base-neutral-500: #666666;    /* Gris medio-oscuro */
+  --base-neutral-600: #555555;    /* Gris oscuro */
+  --base-neutral-700: #333333;    /* Gris muy oscuro */
+  --base-neutral-800: #222222;    /* Casi negro */
+  --base-neutral-900: #111111;    /* Negro suave */
+  --base-neutral-1000: #000000;   /* Negro puro */
+
+  /* ==========================================================================
+     2. TOKENS SEMÁNTICOS - NOMBRES GENÉRICOS (NUNCA CAMBIAN)
+     ========================================================================== */
+  
+  /* Backgrounds Genéricos */
+  --bg-primary: var(--base-neutral-0);           /* Fondo principal */
+  --bg-secondary: var(--base-neutral-100);       /* Fondo secundario */
+  --bg-tertiary: var(--base-neutral-200);        /* Fondo terciario */
+  --bg-surface: var(--base-neutral-200);         /* Superficie elevada */
+  --bg-overlay: rgba(0, 0, 0, 0.5);              /* Overlay oscuro */
+  --bg-brand: var(--base-primary-500);           /* Fondo de marca */
+  --bg-accent: var(--base-accent-500);           /* Fondo de acento */
+  
+  /* Text Genéricos */
+  --text-primary: var(--base-neutral-900);       /* Texto principal */
+  --text-secondary: var(--base-neutral-600);     /* Texto secundario */
+  --text-muted: var(--base-neutral-400);         /* Texto apagado */
+  --text-disabled: var(--base-neutral-300);      /* Texto deshabilitado */
+  --text-inverse: var(--base-neutral-0);         /* Texto inverso */
+  --text-brand: var(--base-primary-500);         /* Texto de marca */
+  --text-accent: var(--base-accent-500);         /* Texto de acento */
+  --text-link: var(--base-primary-500);          /* Enlaces */
+  --text-link-hover: var(--base-primary-900);    /* Enlaces hover */
+  
+  /* Borders Genéricos */
+  --border-primary: var(--base-neutral-300);     /* Borde principal */
+  --border-secondary: var(--base-neutral-200);   /* Borde secundario */
+  --border-accent: var(--base-accent-500);       /* Borde de acento */
+  --border-focus: var(--base-primary-500);       /* Borde de foco */
+  --border-error: var(--base-accent-500);        /* Borde de error */
+  
+  /* Estados Interactivos */
+  --interactive-primary: var(--base-primary-500);      /* Estado normal */
+  --interactive-primary-hover: var(--base-primary-900); /* Hover */
+  --interactive-primary-active: var(--base-primary-900); /* Active */
+  --interactive-primary-disabled: var(--base-neutral-300); /* Disabled */
+  
+  --interactive-secondary: var(--base-neutral-600);      /* Estado normal */
+  --interactive-secondary-hover: var(--base-neutral-900); /* Hover */
+  --interactive-secondary-active: var(--base-neutral-900); /* Active */
+  --interactive-secondary-disabled: var(--base-neutral-300); /* Disabled */
+
+  /* ==========================================================================
+     3. TOKENS CONTEXTUALES - USOS ESPECÍFICOS
+     ========================================================================== */
+  
+  /* Navegación */
+  --nav-bg: var(--bg-primary);
+  --nav-text: var(--text-primary);
+  --nav-text-hover: var(--text-brand);
+  --nav-border: var(--border-secondary);
+  
+  /* Botones */
+  --btn-primary-bg: var(--interactive-primary);
+  --btn-primary-text: var(--text-inverse);
+  --btn-primary-hover: var(--interactive-primary-hover);
+  --btn-secondary-bg: var(--bg-secondary);
+  --btn-secondary-text: var(--text-primary);
+  --btn-secondary-hover: var(--bg-tertiary);
+  
+  /* Cards */
+  --card-bg: var(--bg-primary);
+  --card-border: var(--border-secondary);
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --card-text: var(--text-primary);
+  --card-text-muted: var(--text-secondary);
+  
+  /* Formularios */
+  --form-bg: var(--bg-primary);
+  --form-border: var(--border-primary);
+  --form-border-focus: var(--border-focus);
+  --form-text: var(--text-primary);
+  --form-placeholder: var(--text-muted);
+  --form-error: var(--border-error);
+  
+  /* Estados de Feedback */
+  --feedback-success: #10B981;    /* Verde */
+  --feedback-warning: #F59E0B;    /* Amarillo */
+  --feedback-error: #EF4444;      /* Rojo */
+  --feedback-info: #3B82F6;       /* Azul */
+
+  /* ==========================================================================
+     4. MAPEO LEGACY - Compatibilidad con sistema existente
+     ========================================================================== */
+  
+  /* Mapeo a sistema anterior para compatibilidad */
+  --color-primary: var(--interactive-primary);
+  --color-background: var(--bg-primary);
+  --color-surface: var(--bg-secondary);
+  --color-border: var(--border-primary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--text-accent);
+}
+
+/* ==========================================================================
+   5. TEMAS ALTERNATIVOS - Ejemplos de cambio fácil
+   ========================================================================== */
+
+/* Tema Oscuro - Solo cambiar colores base */
+[data-theme="dark"] {
+  --base-neutral-0: #000000;      /* Negro puro */
+  --base-neutral-100: #111111;    /* Casi negro */
+  --base-neutral-200: #222222;    /* Gris muy oscuro */
+  --base-neutral-300: #333333;    /* Gris oscuro */
+  --base-neutral-400: #555555;    /* Gris medio-oscuro */
+  --base-neutral-500: #666666;    /* Gris medio */
+  --base-neutral-600: #999999;    /* Gris medio-claro */
+  --base-neutral-700: #CCCCCC;    /* Gris claro */
+  --base-neutral-800: #EEEEEE;    /* Gris muy claro */
+  --base-neutral-900: #F5F5F5;    /* Casi blanco */
+  --base-neutral-1000: #FFFFFF;   /* Blanco puro */
+}
+
+/* ==========================================================================
+   TRANSICIONES SUAVES PARA DARK MODE
+   ========================================================================== */
+
+/* APLICAR FONDOS EXPLÍCITOS PARA VISUALIZAR DARK MODE */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* DARK MODE CON ESPECIFICIDAD CORRECTA */
+html[data-theme="dark"] body {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+html[data-theme="dark"] .pageheader {
+  background-color: #111111;
+  color: #FFFFFF;
+}
+
+html[data-theme="dark"] .card {
+  background-color: #222222;
+  color: #FFFFFF;
+}
+
+/* Sección de características - modo claro */
+.section--features {
+  background-color: var(--color-surface-secondary);
+}
+
+html[data-theme="dark"] #features,
+html[data-theme="dark"] .section--features {
+  background-color: #222222;
+  color: #FFFFFF;
+}
+
+html[data-theme="dark"] .features__item {
+  background-color: #333333;
+  color: #FFFFFF;
+}
+
+/* DARK MODE - Todos los textos dentro de sections */
+html[data-theme="dark"] section,
+html[data-theme="dark"] section h1,
+html[data-theme="dark"] section h2,
+html[data-theme="dark"] section h3,
+html[data-theme="dark"] section h4,
+html[data-theme="dark"] section h5,
+html[data-theme="dark"] section h6,
+html[data-theme="dark"] section p,
+html[data-theme="dark"] section span,
+html[data-theme="dark"] section strong,
+html[data-theme="dark"] section em,
+html[data-theme="dark"] section a,
+html[data-theme="dark"] section li,
+html[data-theme="dark"] section dt,
+html[data-theme="dark"] section dd,
+html[data-theme="dark"] section button,
+html[data-theme="dark"] section .btn {
+  color: #FFFFFF;
+}
+
+/* DARK MODE - Botón theme switcher */
+html[data-theme="dark"] .theme-switcher__btn,
+html[data-theme="dark"] .theme-switcher__label {
+  color: #FFFFFF;
+  border-color: #666666;
+}
+
+html[data-theme="dark"] .theme-switcher__btn:hover {
+  background-color: #333333;
+  border-color: #FFFFFF;
+}
+
+/* DARK MODE - Logo variables */
+html[data-theme="dark"] {
+  --logo-circle-fill: var(--color-white);   /* Relleno blanco en dark mode */
+  --logo-circle-stroke: var(--color-white); /* Borde blanco en dark mode */
+}
+
+/* DARK MODE - Header siempre blanco */
+html[data-theme="dark"] .pageheader--dynamic,
+html[data-theme="dark"] .pageheader--dynamic.pageheader--scrolled {
+  --logo-circle-fill: var(--color-white);
+  --logo-circle-stroke: var(--color-white);
+}
+
+html[data-theme="dark"] .pageheader--dynamic .logo-text,
+html[data-theme="dark"] .pageheader--dynamic.pageheader--scrolled .logo-text,
+html[data-theme="dark"] .pageheader--dynamic .pageheader__logo,
+html[data-theme="dark"] .pageheader--dynamic.pageheader--scrolled .pageheader__logo,
+html[data-theme="dark"] .pageheader--dynamic .menu__link,
+html[data-theme="dark"] .pageheader--dynamic.pageheader--scrolled .menu__link,
+html[data-theme="dark"] .pageheader--dynamic .menu__toggle,
+html[data-theme="dark"] .pageheader--dynamic.pageheader--scrolled .menu__toggle,
+html[data-theme="dark"] .pageheader--dynamic .theme-switcher__btn,
+html[data-theme="dark"] .pageheader--dynamic.pageheader--scrolled .theme-switcher__btn,
+html[data-theme="dark"] .pageheader--dynamic .theme-switcher__icon,
+html[data-theme="dark"] .pageheader--dynamic.pageheader--scrolled .theme-switcher__icon {
+  color: var(--color-white);
+}
+
+/* DARK MODE - Skip links (accesibilidad) */
+html[data-theme="dark"] .skip-link {
+  background-color: #000000;
+  color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+}
+
+html, body,
+.pageheader, .footer, .card, .btn,
+.form__input, .theme-switcher__btn,
+.menu__link, .hero-master {
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease;
+}
+
+/* Tema Azul - Solo cambiar primarios (REMOVIDO - Solo light/dark) */
+
+/* Tema Verde - Solo cambiar primarios (REMOVIDO - Solo light/dark) */
+
+/**
+ * ==========================================================================
+ * INSTRUCCIONES DE USO
+ * ==========================================================================
+ * 
+ * ✅ PARA USAR COLORES EN CSS:
+ * - Usar siempre tokens semánticos: var(--text-primary), var(--bg-surface)
+ * - NUNCA usar directamente los --base-: son solo para definición interna
+ * 
+ * ✅ PARA CAMBIAR TEMA COMPLETO:
+ * - Solo modificar las variables --base- en la sección 1
+ * - Todo el resto se actualiza automáticamente
+ * 
+ * ✅ PARA AÑADIR NUEVO COLOR:
+ * 1. Añadir a sección 1 (--base-)
+ * 2. Mapear a sección 2 (--semantic-)
+ * 3. Usar en sección 3 (--contextual-)
+ * 
+ * ❌ NUNCA HACER:
+ * - Usar colores hardcodeados: #FF0000
+ * - Usar variables --base- directamente en componentes
+ * - Cambiar nombres de variables semánticas
+ */

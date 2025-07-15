@@ -1,0 +1,310 @@
+/**
+ * SISTEMA DE ICONOS - LUCIDE SVG
+ * Sistema escalable de iconos vectoriales para todas las necesidades
+ * 
+ * 🎯 CARACTERÍSTICAS:
+ * ✅ SVG inline - Sin dependencias externas
+ * ✅ Escalable infinitamente - De 16px a 300px+
+ * ✅ Customizable - Color, grosor, efectos
+ * ✅ Performance - Cero HTTP requests
+ * ✅ Accesible - Aria-hidden y semantic markup
+ * 
+ * 📚 USO:
+ * - Iconos UI: .icon .icon--sm
+ * - Ilustraciones: .icon .icon--xl
+ * - Gráficos hero: .icon .icon--hero
+ * - Backgrounds: .icon .icon--massive
+ */
+
+/* ==========================================================================
+   BASE - Configuración común para todos los iconos
+   ========================================================================== */
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--icon-stroke-normal);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  
+  /* Transición suave para hover */
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+/* Iconos como bloque (para centrado) */
+.icon--block {
+  display: block;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   TAMAÑOS - Sistema escalado desde XS hasta MASSIVE
+   ========================================================================== */
+
+/* Iconos UI estándar */
+.icon--xs {
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+  stroke-width: var(--icon-stroke-bold);
+}
+
+.icon--sm {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  stroke-width: var(--icon-stroke-bold);
+}
+
+.icon--md {
+  width: var(--icon-md);
+  height: var(--icon-md);
+  stroke-width: var(--icon-stroke-normal);
+}
+
+.icon--lg {
+  width: var(--icon-lg);
+  height: var(--icon-lg);
+  stroke-width: var(--icon-stroke-normal);
+}
+
+/* Iconos grandes e ilustraciones */
+.icon--xl {
+  width: var(--icon-xl);
+  height: var(--icon-xl);
+  stroke-width: var(--icon-stroke-thin);
+}
+
+.icon--2xl {
+  width: var(--icon-2xl);
+  height: var(--icon-2xl);
+  stroke-width: var(--icon-stroke-thin);
+}
+
+.icon--3xl {
+  width: var(--icon-3xl);
+  height: var(--icon-3xl);
+  stroke-width: var(--icon-stroke-thin);
+}
+
+/* Gráficos hero y decorativos */
+.icon--hero {
+  width: var(--icon-hero);
+  height: var(--icon-hero);
+  stroke-width: var(--icon-stroke-thin);
+}
+
+.icon--massive {
+  width: var(--icon-massive);
+  height: var(--icon-massive);
+  stroke-width: var(--icon-stroke-thin);
+}
+
+/* Stroke ultra-fino para gráficos muy grandes */
+
+/* ==========================================================================
+   COLORES - Integrado con el sistema de colores
+   ========================================================================== */
+
+.icon--primary {
+  color: var(--icon-color-primary);
+}
+
+.icon--secondary {
+  color: var(--icon-color-secondary);
+}
+
+.icon--muted {
+  color: var(--icon-color-muted);
+}
+
+.icon--accent {
+  color: var(--icon-color-accent);
+}
+
+.icon--inverse {
+  color: var(--icon-color-inverse);
+}
+
+/* Colores específicos del sistema */
+.icon--cyan {
+  color: var(--color-cyan);
+}
+
+.icon--yellow {
+  color: var(--color-yellow);
+}
+
+.icon--red {
+  color: var(--color-red);
+}
+
+/* ==========================================================================
+   EFECTOS Y ESTADOS
+   ========================================================================== */
+
+/* Hover effects */
+.icon--hover:hover {
+  transform: var(--transform-scale-subtle);
+  opacity: var(--opacity-high);
+}
+
+.icon--hover-lift:hover {
+  transform: var(--transform-lift-gentle);
+}
+
+/* Estados interactivos */
+.icon--interactive {
+  cursor: pointer;
+}
+
+.icon--interactive:hover {
+  color: var(--icon-color-accent);
+  transform: var(--transform-scale-subtle);
+}
+
+/* Iconos en botones */
+
+.btn--icon-only .icon {
+  margin: 0;
+}
+
+/* ==========================================================================
+   CONTEXTOS ESPECÍFICOS
+   ========================================================================== */
+
+/* Iconos en cards */
+.card .icon--feature {
+  color: var(--icon-color-accent);
+}
+
+/* Iconos en navigation */
+.menu .icon {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+/* Iconos en footer - Redes sociales */
+.footer__social {
+  display: flex;
+}
+
+.footer__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  transition: all var(--duration-fast) var(--ease-out);
+  color: var(--icon-color-secondary);
+}
+
+.footer__social-link:hover {
+  color: var(--icon-color-accent);
+  background-color: var(--color-surface);
+  transform: var(--transform-lift-gentle);
+}
+
+.footer__social-link .icon {
+  stroke-width: var(--icon-stroke-normal);
+}
+
+/* Iconos decorativos grandes */
+.icon--decorative {
+  opacity: var(--opacity-low);
+  position: absolute;
+  z-index: var(--z-base);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE - Adaptación móvil
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* Reducir tamaños en móvil */
+  .icon--hero {
+    width: calc(var(--icon-hero) * 0.7);
+    height: calc(var(--icon-hero) * 0.7);
+  }
+  
+  .icon--massive {
+    width: calc(var(--icon-massive) * 0.6);
+    height: calc(var(--icon-massive) * 0.6);
+  }
+  
+  /* Simplificar efectos en móvil */
+  .icon--hover:hover {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   DARK MODE - Ajustes automáticos
+   ========================================================================== */
+
+[data-theme="dark"] .icon--primary {
+  color: var(--color-white);
+}
+
+[data-theme="dark"] .icon--secondary {
+  color: var(--gray-4);
+}
+
+[data-theme="dark"] .icon--muted {
+  color: var(--gray-3);
+}
+
+[data-theme="dark"] .footer__social-link {
+  color: var(--gray-4);
+}
+
+[data-theme="dark"] .footer__social-link:hover {
+  color: var(--color-cyan);
+  background-color: var(--gray-1);
+}
+
+/* ==========================================================================
+   UTILIDADES AVANZADAS
+   ========================================================================== */
+
+/* Rotar iconos */
+.icon--rotate-90 {
+  transform: rotate(90deg);
+}
+
+.icon--rotate-180 {
+  transform: rotate(180deg);
+}
+
+.icon--rotate-270 {
+  transform: rotate(270deg);
+}
+
+/* Flip horizontal/vertical */
+.icon--flip-h {
+  transform: scaleX(-1);
+}
+
+.icon--flip-v {
+  transform: scaleY(-1);
+}
+
+/* Animaciones sutiles */
+.icon--pulse {
+  animation: icon-pulse 2s ease-in-out infinite;
+}
+
+.icon--spin {
+  animation: icon-spin 1s linear infinite;
+}
+
+@keyframes icon-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes icon-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

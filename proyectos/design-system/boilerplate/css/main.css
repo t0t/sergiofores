@@ -1,0 +1,121 @@
+/**
+ * MAIN.CSS - SINGLE ENTRY POINT
+ * Sistema de Diseño Sergio Forés - Boilerplate
+ * 
+ * ⚠️ REGLA ARQUITECTÓNICA CRÍTICA: SINGLE ENTRY POINT
+ * Este es el ÚNICO archivo CSS que debe importarse en index.html
+ * Consolida todo el sistema de diseño en un solo punto de entrada
+ * 
+ * ORDEN DE CARGA OPTIMIZADO:
+ * 1. Variables Core - Colores, iconos, opacidades
+ * 2. Color System - Paletas y temas
+ * 3. Design Tokens - Variables CSS fundamentales
+ * 4. Spacing - Sistema de espaciado Utopia
+ * 5. Typography - Sistema tipográfico áureo
+ * 6. Layout - Grid system y containers
+ * 7. Components - Elementos UI reutilizables
+ * 8. Utilities - Helpers y clases específicas
+ * 9. Grids - Sistema de grillas específico
+ * 10. Google Fonts - Configuración tipográfica
+ * 11. Icons - Sistema de iconografía
+ * 12. Accessibility - Mejoras de accesibilidad
+ */
+
+/* ==========================================================================
+   1. VARIABLES CORE - ESTRUCTURA NUCLEAR
+   Colores base, iconos, opacidades, z-index
+   ========================================================================== */
+@import url('./variables-core.css');
+
+/* ==========================================================================
+   2. COLOR SYSTEM - PALETAS Y TEMAS
+   Sistema de colores completo
+   ========================================================================== */
+@import url('./color-system.css');
+
+/* ==========================================================================
+   3. DESIGN TOKENS - VARIABLES NÚCLEO
+   Variables CSS fundamentales del sistema
+   ========================================================================== */
+@import url('./tokens.css');
+
+/* ==========================================================================
+   4. SPACING - ÚNICA FUENTE DE VERDAD PARA ESPACIADO
+   Variables Utopia, sistema 8px, filosofía 01234
+   ========================================================================== */
+@import url('./spacing.css');
+
+/* ==========================================================================
+   5. TIPOGRAFÍA - SISTEMA 3 TAMAÑOS
+   Sistema tipográfico basado en proporciones áureas
+   ========================================================================== */
+@import url('./typography.css');
+
+/* ==========================================================================
+   6. LAYOUT Y GRIDS - ESPACIADO MATEMÁTICAMENTE PERFECTO
+   Grid system, containers y responsive design
+   ========================================================================== */
+@import url('./layout.css');
+
+/* ==========================================================================
+   7. COMPONENTES - ELEMENTOS UI REUTILIZABLES
+   Botones, cards, navegación y formularios
+   ========================================================================== */
+@import url('./components.css');
+
+/* ==========================================================================
+   8. UTILIDADES - HELPERS Y CLASES ESPECÍFICAS
+   Espaciado, colores, features y showcase
+   ========================================================================== */
+@import url('./utilities.css');
+
+/* ==========================================================================
+   9. GRIDS - SISTEMA DE GRILLAS ESPECÍFICO
+   Configuración avanzada de grids adicionales
+   ========================================================================== */
+@import url('./grids.css');
+
+/* ==========================================================================
+   10. GOOGLE FONTS - CONFIGURACIÓN TIPOGRÁFICA
+   Clases y configuraciones de fuentes
+   ========================================================================== */
+@import url('./google-fonts.css');
+
+/* ==========================================================================
+   11. ICONS - SISTEMA DE ICONOGRAFÍA
+   Lucide icons y configuraciones
+   ========================================================================== */
+@import url('./icons.css');
+
+/* ==========================================================================
+   12. ACCESSIBILITY - MEJORAS DE ACCESIBILIDAD
+   Estados de foco, screen readers, high contrast
+   ========================================================================== */
+@import url('./accessibility.css');
+
+
+/**
+ * ==========================================================================
+ * NOTAS DE IMPLEMENTACIÓN SINGLE ENTRY POINT
+ * ==========================================================================
+ * 
+ * VENTAJAS DEL SINGLE ENTRY POINT:
+ * ✅ Un solo HTTP request para CSS
+ * ✅ Control total del orden de carga
+ * ✅ Eliminación de conflictos de cascada
+ * ✅ Mejor rendimiento y caching
+ * ✅ Mantenimiento simplificado
+ * ✅ Debug más sencillo
+ * 
+ * REGLAS DE ORO:
+ * - NUNCA importar archivos CSS directamente en HTML (excepto main.css)
+ * - SIEMPRE mantener el orden de imports establecido
+ * - NUNCA duplicar imports entre archivos
+ * - SIEMPRE verificar que no hay conflictos de cascada
+ * 
+ * BUNDLING INTELIGENTE:
+ * - Variables primero (core)
+ * - Sistemas base segundo (color, design-system)
+ * - Módulos específicos tercero (fonts, icons)
+ * - Mejoras al final (accessibility)
+ */

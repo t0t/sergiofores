@@ -1,0 +1,35 @@
+{
+  "name": "proyecto-sergio-fores-boilerplate",
+  "version": "1.0.0",
+  "description": "Boilerplate para proyectos web con Sistema de Diseño Atómico Sergio Forés",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "npx serve .",
+    "dev": "live-server .",
+    "test": "echo \"Abrir index.html en navegador para testing manual\" && exit 0"
+  },
+  "keywords": [
+    "sergio-fores",
+    "design-system",
+    "01234",
+    "boilerplate",
+    "css",
+    "html5",
+    "responsive"
+  ],
+  "author": "Sergio Forés",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sergiofores/cerebro-digital"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

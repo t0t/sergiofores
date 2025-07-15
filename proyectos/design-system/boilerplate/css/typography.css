@@ -1,0 +1,147 @@
+/**
+ * TIPOGRAFÍA - SISTEMA 3 TAMAÑOS SERGIO FORÉS
+ * Sistema de Diseño Sergio Forés
+ * 
+ * Tipografía basada en proporciones áureas:
+ * - Sistema 3 tamaños únicamente (CLAUDE.md)
+ * - Elementos HTML base
+ * - Clases utilitarias tipográficas
+ */
+
+/* ==========================================================================
+   BASE RESET TIPOGRÁFICO
+   ========================================================================== */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  font-family: sans-serif;
+  line-height: 1.15;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-primary);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-primary);
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--letter-spacing-normal);
+  min-height: 100svh;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   ELEMENTOS HTML BASE - SISTEMA 3 TAMAÑOS
+   ========================================================================== */
+
+h1 {
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+  font-size: var(--text-large);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  /* margin-top trasladado a spacing.css */
+  /* margin-bottom trasladado a spacing.css */
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+h2, h3 {
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+  font-size: var(--text-medium);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  /* margin-top trasladado a spacing.css */
+  /* margin-bottom trasladado a spacing.css */
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* nav a styling moved to components.css for better control */
+
+h4, h5, h6, p, li, span, div, button, input, textarea {
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-relaxed);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+h4, h5, h6 {
+  /* margin-top trasladado a spacing.css */
+  /* margin-bottom trasladado a spacing.css */
+}
+
+p {
+  font-size: var(--text-small);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  /* margin-top trasladado a spacing.css */
+  /* margin-bottom trasladado a spacing.css */
+}
+
+ul, ol {
+  /* margin-top trasladado a spacing.css */
+  /* margin-bottom trasladado a spacing.css */
+  /* padding-left trasladado a spacing.css */
+}
+
+li {
+  font-size: var(--text-small);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  /* margin-bottom trasladado a spacing.css */
+}
+
+blockquote {
+  font-size: var(--text-medium);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  /* margin trasladado a spacing.css */
+  /* padding-left trasladado a spacing.css */
+  border-left: 4px solid var(--color-accent-primary);
+  max-width: 65ch; /* Optimal reading width, narrower than breakpoints */
+}
+
+blockquote footer {
+  font-size: var(--text-small);
+  color: var(--color-text-muted);
+  /* margin-top trasladado a spacing.css */
+}
+
+/* ==========================================================================
+   CLASES UTILITARIAS TIPOGRÁFICAS
+   ========================================================================== */
+
+
+
+
+
+/* ==========================================================================
+   COMPONENTES TIPOGRÁFICOS ESPECÍFICOS
+   ========================================================================== */
+
+
+
+.typography-variables {
+  display: flex;
+  flex-direction: column;
+  /* gap trasladado a spacing.css */
+}
+
+
+/* ==========================================================================
+   SHOWCASE TIPOGRÁFICO - TESTING COMPLETO
+   ========================================================================== */
+
+
+
+
+

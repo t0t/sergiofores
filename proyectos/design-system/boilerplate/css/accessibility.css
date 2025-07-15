@@ -1,0 +1,331 @@
+/**
+ * ACCESSIBILITY & UX ENHANCEMENTS
+ * Mejoras de accesibilidad y experiencia de usuario
+ * 
+ * 🎯 CARACTERÍSTICAS:
+ * - Focus management optimizado
+ * - Estados de error y validación
+ * - Indicadores visuales claros
+ * - Skip links para navegación
+ * - High contrast support
+ */
+
+/* ==========================================================================
+   SKIP LINKS - Navegación accesible
+   ========================================================================== */
+
+.skip-link {
+  position: absolute;
+  background: #000000;
+  color: #FFFFFF;
+  border-radius: 4px;
+  z-index: 9999;
+  transition: top 0.2s ease;
+  /* Asegurar que esté oculto */
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  /* Mostrar cuando recibe foco */
+  clip: auto;
+  overflow: visible;
+}
+
+/* ==========================================================================
+   FOCUS MANAGEMENT - Estados de foco mejorados
+   ========================================================================== */
+
+/* Reset del outline del navegador */
+*:focus {
+  outline: none;
+}
+
+/* Focus ring personalizado */
+.focus-ring {
+  position: relative;
+}
+
+.focus-ring::after {
+  content: '';
+  position: absolute;
+  border: 2px solid transparent;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.focus-ring:focus::after {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-white), 0 0 0 4px var(--color-accent);
+}
+
+/* Focus para elementos interactivos */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+[tabindex]:focus {
+  box-shadow: 0 0 0 2px var(--color-white), 0 0 0 4px var(--color-accent);
+  border-radius: var(--radius-sm);
+}
+
+/* Focus para botones del sistema */
+.btn:focus {
+  box-shadow: 0 0 0 2px var(--color-white), 0 0 0 4px var(--color-accent);
+  transform: var(--transform-lift-subtle);
+}
+
+/* Focus para links */
+.menu__link:focus,
+.footer__link:focus {
+  background-color: var(--color-accent);
+  color: var(--color-black);
+  border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   FORM VALIDATION - Estados de error y validación
+   ========================================================================== */
+
+/* Contenedores de error */
+.form__error {
+  display: none;
+  color: var(--color-red);
+  position: relative;
+}
+
+.form__error::before {
+  content: '⚠ ';
+}
+
+.form__error.is-visible {
+  display: block;
+}
+
+/* Hints y ayudas */
+
+/* Estados de validación en inputs */
+.form__input:invalid:not(:placeholder-shown) {
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 1px var(--color-red);
+}
+
+.form__input:valid:not(:placeholder-shown) {
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 0 1px var(--color-cyan);
+}
+
+.form__input.has-error {
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 1px var(--color-red);
+}
+
+.form__input.is-valid {
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 0 1px var(--color-cyan);
+}
+
+/* Estados del formulario */
+.form__status {
+  border-radius: var(--radius-sm);
+}
+
+.form__status.is-success {
+  background-color: rgba(0, 255, 255, 0.1);
+  color: var(--color-cyan);
+  border: 1px solid var(--color-cyan);
+}
+
+.form__status.is-error {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: var(--color-red);
+  border: 1px solid var(--color-red);
+}
+
+.form__status.is-loading {
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+/* ==========================================================================
+   BACK TO TOP - Estados mejorados
+   ========================================================================== */
+
+.back-to-top {
+  position: fixed;
+  display: none;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: var(--z-tooltip);
+  transition: all var(--duration-base) var(--ease-in-out);
+  box-shadow: var(--shadow-md);
+}
+
+  background: var(--color-text-secondary);
+  transform: var(--transform-lift-medium) var(--transform-scale-subtle);
+  box-shadow: var(--shadow-lg);
+}
+
+  box-shadow: 0 0 0 2px var(--color-white), 0 0 0 4px var(--color-accent), var(--shadow-lg);
+}
+
+.back-to-top--visible {
+  display: block;
+  animation: fadeInUp var(--duration-base) var(--ease-out);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION - Respeto por preferencias de usuario
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .back-to-top {
+    transition: none;
+  }
+  
+  .focus-ring::after {
+    transition: none;
+  }
+  
+  .form__status {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   HIGH CONTRAST - Soporte para alto contraste
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+  :root {
+    --color-border: var(--color-black);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.8);
+    --shadow-base: 0 4px 8px rgba(0, 0, 0, 0.8);
+    --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.8);
+    --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.8);
+  }
+  
+  .form__input {
+  }
+  
+  .btn {
+    border: 2px solid var(--color-black);
+  }
+  
+  .focus-ring:focus::after {
+  }
+}
+
+/* ==========================================================================
+   SCREEN READER - Elementos solo para lectores de pantalla
+   ========================================================================== */
+
+.sr-only {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.sr-only:focus {
+  position: static;
+  overflow: visible;
+  clip: auto;
+  background: var(--color-accent);
+  color: var(--color-black);
+  border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   LOADING STATES - Estados de carga
+   ========================================================================== */
+
+.loading {
+  position: relative;
+  pointer-events: none;
+  opacity: var(--opacity-medium);
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   TOOLTIPS - Información contextual accesible
+   ========================================================================== */
+
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  transform: translateX(-50%);
+  background: var(--color-black);
+  color: var(--color-white);
+  border-radius: var(--radius-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-fast) var(--ease-out);
+  z-index: var(--z-tooltip);
+}
+
+[data-tooltip]:hover::after,
+[data-tooltip]:focus::after {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   MOBILE ACCESSIBILITY - Mejoras específicas para móvil
+   ========================================================================== */
+
+  /* Touch targets más grandes */
+  .btn,
+  .menu__link,
+  .back-to-top {
+  }
+  
+  /* Focus más visible en móvil */
+  .focus-ring:focus::after {
+  }
+  
+  /* Skip links más prominentes */
+  .skip-link:focus {
+  }
+}

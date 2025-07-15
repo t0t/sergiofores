@@ -1,0 +1,1402 @@
+/**
+ * COMPONENTES - SISTEMA DE DISEÑO SERGIO FORÉS
+ * Sistema de Diseño Sergio Forés
+ * 
+ * Componentes UI reutilizables:
+ * - Botones y CTAs
+ * - Cards y contenedores
+ * - Navegación y header
+ * - Forms y inputs
+ * - Iconos y elementos UI
+ */
+
+/* ==========================================================================
+   BOTONES - SISTEMA JERÁRQUICO
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  text-decoration: none;
+  border: var(--border-width-base) solid;
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+  user-select: none;
+  width: auto;
+  min-width: auto;
+}
+
+.btn--primary {
+  background-color: var(--color-cyan);
+  border-color: var(--color-cyan);
+  color: var(--color-black);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-black);
+  border-color: var(--color-black);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}
+
+.btn--secondary {
+  background-color: transparent;
+  border-color: var(--color-text-primary);
+  color: var(--color-text-primary);
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-text-primary);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--color-text-primary);
+}
+
+.btn--ghost:hover {
+  background-color: var(--color-surface-secondary);
+  color: var(--color-text-primary);
+  border-color: var(--color-gray-300);
+}
+
+.btn:focus {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none ;
+}
+
+/* Botón Back to Top - Para showcase en grid de botones */
+.btn--back-to-top {
+  background-color: var(--color-cyan);
+  border-color: var(--color-cyan);
+  color: var(--color-black);
+  width: var(--space-12);
+  height: var(--space-12);
+  min-width: var(--space-12);
+  padding: 0;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.btn--back-to-top:hover {
+  background-color: var(--color-black);
+  border-color: var(--color-black);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+/* Botón Circular - Nueva variante con border-radius 50% */
+.btn--circular {
+  background-color: var(--color-magenta);
+  border-color: var(--color-magenta);
+  color: var(--color-white);
+  width: var(--space-12);
+  height: var(--space-12);
+  min-width: var(--space-12);
+  padding: 0;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.btn--circular:hover {
+  background-color: var(--color-yellow);
+  border-color: var(--color-yellow);
+  color: var(--color-black);
+  transform: scale(1.1);
+}
+
+/* Botones CTA Hero - Mayor impacto */
+.btn--cta-hero {
+  background-color: var(--color-cyan);
+  border-color: var(--color-cyan);
+  color: var(--color-black);
+  
+  /* Doble tamaño: padding definido en spacing.css */
+}
+
+.btn--cta-hero:hover {
+  background-color: var(--color-black);
+  border-color: var(--color-black);
+  color: var(--color-white);
+  transform: translateY(-2px); /* Doble movimiento para mayor dramatismo */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra para dar volumen */
+}
+
+/* Botones en hero con overlay - z-index elevado para ser clicables */
+.hero-master--image .btn {
+  position: relative;
+  z-index: 2; /* Por encima del overlay del hero */
+}
+
+/* ==========================================================================
+   CARDS - CONTENEDORES MODULARES
+   ========================================================================== */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface-primary);
+  border: none;
+  overflow: hidden;
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.card--warning {
+  border-left: 4px solid var(--color-magenta);
+}
+
+.card-master {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface-primary);
+  border: none;
+  overflow: hidden;
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.card__header {
+  padding: var(--space-6);
+  border-bottom: none;
+}
+
+.card-body-master,
+.card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+
+
+/* ==========================================================================
+   PAGEHEADER - COMPONENTE BEM MODULAR
+   ========================================================================== */
+
+/*
+ * VARIANTES DISPONIBLES PAGEHEADER:
+ * 
+ * Base:
+ * .pageheader                    → Header básico con fondo blanco
+ * 
+ * Posición:
+ * .pageheader--fixed             → Position fixed, siempre visible
+ * .pageheader--sticky            → Position sticky, se pega al scroll (USADO EN VIVO)
+ * 
+ * Estilos:
+ * .pageheader--transparent       → Fondo translúcido con backdrop-blur (USADO EN VIVO)
+ * .pageheader--dark             → Fondo oscuro para contraste
+ * .pageheader--accent           → Fondo cyan para destacar
+ * 
+ * Ejemplo de uso combinado (implementado en esta página):
+ * <header class="pageheader pageheader--sticky pageheader--transparent">
+ */
+
+.pageheader {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-surface-primary);
+  border: none;
+  z-index: 1000;
+}
+
+.pageheader__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-left: var(--space-xl);  /* CONSONANCIA PERFECTA: Idéntico al grid-flex */
+  margin-right: var(--space-xl); /* CONSONANCIA PERFECTA: Idéntico al grid-flex */
+  padding: 0;                    /* Sin padding - eliminado para evitar margen extra */
+  min-height: calc(var(--space-xl) * 2);  /* Altura doble de var(--space-xl) */
+}
+
+.pageheader__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: opacity var(--duration-base) var(--ease-out);
+  z-index: 1001; /* Por encima del menu mobile */
+}
+
+.pageheader__logo:hover {
+  opacity: 0.8;
+}
+
+
+.pageheader__menu {
+  display: flex;
+  align-items: center;
+}
+
+/* Modificadores pageheader */
+.pageheader--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.pageheader--sticky {
+  position: sticky;
+  top: 0;
+}
+
+.pageheader--transparent {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: none;
+}
+
+/* PageHeader Dynamic Background - Scroll-based animation */
+.pageheader--dynamic {
+  background-color: transparent;
+  backdrop-filter: none;
+  border: none;
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.pageheader--dynamic.pageheader--scrolled {
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  border: none;
+  box-shadow: none;
+}
+
+/* PageHeader Dynamic Text Colors - Inversión sincronizada */
+.pageheader--dynamic .pageheader__logo,
+.pageheader--dynamic .logo__mark,
+.pageheader--dynamic .logo__text {
+  color: var(--color-white) ;
+  text-shadow: none ;
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+/* Custom logo styling - Maintains dynamic behavior */
+
+.pageheader--dynamic .menu__link {
+  color: var(--color-gray-200);
+  text-shadow: none;
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.pageheader--dynamic .menu__link:hover,
+.pageheader--dynamic .menu__link--active {
+  color: var(--color-white);
+}
+
+.pageheader--dynamic .menu__toggle {
+  color: var(--color-white);
+  text-shadow: none;
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.pageheader--dynamic .menu__icon {
+  stroke: currentColor;
+  filter: none;
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+/* Estados scrolled - Texto oscuro sobre fondo claro */
+.pageheader--dynamic.pageheader--scrolled .pageheader__logo,
+.pageheader--dynamic.pageheader--scrolled .logo__mark,
+.pageheader--dynamic.pageheader--scrolled .logo__text {
+  color: var(--color-text-primary) ;
+  text-shadow: none ;
+}
+
+.pageheader--dynamic.pageheader--scrolled .menu__link {
+  color: var(--color-text-secondary);
+  text-shadow: none;
+}
+
+.pageheader--dynamic.pageheader--scrolled .menu__link:hover,
+.pageheader--dynamic.pageheader--scrolled .menu__link--active {
+  color: var(--color-text-primary);
+}
+
+.pageheader--dynamic.pageheader--scrolled .menu__toggle {
+  color: var(--color-text-primary);
+  text-shadow: none;
+}
+
+.pageheader--dynamic.pageheader--scrolled .menu__icon {
+  stroke: currentColor;
+  filter: none;
+}
+
+/* Submenus en estado dinámico - Fondo transparente cuando header transparente */
+.pageheader--dynamic .menu__submenu {
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  border: none;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.pageheader--dynamic .menu__submenu .menu__link {
+  color: var(--color-gray-200);
+  border-bottom: none;
+  text-shadow: none;
+}
+
+.pageheader--dynamic .menu__submenu .menu__link:hover {
+  color: var(--color-white);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.pageheader--dynamic .menu__submenu .menu__item:last-child .menu__link {
+  border-bottom: none;
+}
+
+/* Submenus cuando header tiene fondo sólido */
+.pageheader--dynamic.pageheader--scrolled .menu__submenu {
+  background-color: var(--color-surface-primary);
+  backdrop-filter: none;
+  border: none;
+  box-shadow: var(--shadow-lg);
+}
+
+.pageheader--dynamic.pageheader--scrolled .menu__submenu .menu__link {
+  color: var(--color-text-primary);
+  border-bottom: none;
+  text-shadow: none;
+}
+
+.pageheader--dynamic.pageheader--scrolled .menu__submenu .menu__link:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-gray-50);
+}
+
+.pageheader--dark {
+  background-color: var(--color-gray-900);
+  border-bottom-color: var(--color-gray-700);
+}
+
+.pageheader--dark .pageheader__logo {
+  color: var(--color-white);
+}
+
+.pageheader--accent {
+  background-color: var(--color-cyan);
+  border-bottom-color: var(--color-cyan);
+  color: var(--color-black);
+}
+
+.pageheader--accent .pageheader__logo {
+  color: var(--color-black);
+}
+
+/* ==========================================================================
+   MENU - COMPONENTE BEM MODULAR  
+   ========================================================================== */
+
+/*
+ * VARIANTES DISPONIBLES MENU:
+ * 
+ * Base:
+ * .menu                          → Menu horizontal básico
+ * 
+ * Comportamiento:
+ * .menu--mobile-hidden           → Oculta lista en móvil, muestra toggle
+ * .menu--mobile-toggle           → Toggle functionality completa (USADO EN VIVO)
+ * .menu--vertical                → Lista vertical para sidebars
+ * 
+ * Estilos:
+ * .menu--dark                    → Variante para headers oscuros
+ * 
+ * Sub-elementos:
+ * .menu__item--dropdown          → Item con submenu desplegable (USADO EN VIVO)
+ * .menu__link--active            → Estado activo/current page
+ * 
+ * Estados dinámicos:
+ * .menu--open                    → Activa menu móvil desplegado (JavaScript)
+ * 
+ * Ejemplo de uso completo (implementado en esta página):
+ * <nav class="menu menu--mobile-toggle">
+ *   <ul class="menu__list">
+ *     <li class="menu__item menu__item--dropdown">
+ *       <a class="menu__link">Item</a>
+ *       <ul class="menu__submenu">...</ul>
+ *     </li>
+ *   </ul>
+ * </nav>
+ */
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.menu__list {
+  display: flex;
+  align-items: center; /* Centrado vertical de items */
+  list-style: none;
+  margin: 0 ; /* Anular estilos globales de ul */
+  padding: 0 ; /* Anular estilos globales de ul */
+  gap: var(--space-6); /* Separación áurea entre elementos */
+}
+
+.menu__item {
+  position: relative;
+  margin: 0 ; /* Anular estilos globales de li */
+  margin-bottom: 0 ; /* Anular margin-bottom específico de li */
+}
+
+.menu__link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alineado a la izquierda por defecto para iconos */
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  transition: color var(--duration-base) var(--ease-out);
+  white-space: nowrap;
+  min-height: var(--space-10); /* Altura mínima para centrado consistente */
+  margin: 0 ; /* Anular cualquier margin global en enlaces */
+  margin-bottom: 0 ; /* Anular margin-bottom específico */
+}
+
+
+.menu__link:hover,
+.menu__link--active {
+  color: var(--color-text-primary);
+}
+
+.menu__toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  color: var(--color-text-primary);
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.menu__toggle:hover {
+  opacity: 0.8;
+}
+
+.menu__toggle:focus {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+.menu__icon {
+  width: var(--space-6);
+  height: var(--space-6);
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+/* Modificadores menu */
+.menu--mobile-hidden {
+  display: flex;
+}
+
+/* IMPORTANTE: Toggle solo visible en móvil, por defecto oculto */
+.menu--mobile-toggle .menu__toggle {
+  display: none; /* Oculto por defecto en desktop */
+}
+
+/* Menu list visible por defecto en desktop, configuración móvil en media query */
+.menu--mobile-toggle .menu__list {
+  display: flex; /* Visible por defecto en desktop */
+}
+
+/* Reglas móviles solo deben estar en media query */
+
+.menu--vertical .menu__list {
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.menu--dark .menu__link {
+  color: var(--color-gray-300);
+}
+
+.menu--dark .menu__link:hover,
+.menu--dark .menu__link--active {
+  color: var(--color-white);
+}
+
+.menu--dark .menu__toggle {
+  color: var(--color-white);
+}
+
+/* Submenu dropdown */
+.menu__item--dropdown {
+  position: relative;
+}
+
+.menu__submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  flex-direction: column;
+  background-color: var(--color-surface-primary);
+  border: none;
+  box-shadow: var(--shadow-lg);
+  min-width: 180px;
+  z-index: 1001;
+  
+  /* Eliminar bullets de lista */
+  list-style: none;
+  margin: 0 ;
+  padding: 0 ;
+  padding-top: var(--space-1); /* Pequeño padding para facilitar el hover */
+  
+  /* Transición suave para mejor UX */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all var(--duration-fast) var(--ease-out);
+  transition-delay: 0ms; /* Sin delay al aparecer */
+}
+
+/* Crear área invisible de conexión entre item y submenu para mejor UX */
+.menu__item--dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: var(--space-2); /* Área de tolerancia más amplia */
+  background: transparent;
+  z-index: 1000;
+  pointer-events: none; /* No interfiere con clicks */
+}
+
+.menu__item--dropdown:hover .menu__submenu,
+.menu__item--dropdown:focus-within .menu__submenu,
+.menu__item--dropdown.menu__item--open .menu__submenu {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0ms; /* Sin delay al aparecer */
+}
+
+/* Mantener submenu visible cuando se hace hover sobre el submenu mismo */
+.menu__submenu:hover {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Delay al desaparecer para mejor estabilidad */
+.menu__item--dropdown .menu__submenu {
+  transition-delay: 150ms; /* Delay solo al desaparecer */
+}
+
+.menu__item--dropdown:hover .menu__submenu,
+.menu__submenu:hover {
+  transition-delay: 0ms; /* Sin delay cuando aparece o se mantiene hover */
+}
+
+.menu__submenu .menu__item {
+  list-style: none ; /* Asegurar no bullets en items de submenu */
+  margin: 0 ;
+  margin-bottom: 0 ;
+}
+
+.menu__submenu .menu__link {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: none;
+  margin: 0 ;
+  margin-bottom: 0 ;
+}
+
+.menu__submenu .menu__item:last-child .menu__link {
+  border-bottom: none;
+}
+
+/* Media queries responsivas */
+@media (max-width: 1024px) {
+  .pageheader__container {
+    margin-left: var(--space-8);   /* CONSONANCIA: Tablet usa --space-8 como grid-flex */
+    margin-right: var(--space-8);  /* CONSONANCIA: Tablet usa --space-8 como grid-flex */
+    padding: 0;                    /* Sin padding - eliminado para evitar margen extra */
+  }
+  
+  /* Mostrar hamburger y ocultar menu en < 1024px */
+  .menu--mobile-toggle .menu__toggle {
+    display: block;
+  }
+  
+  .menu--mobile-toggle .menu__list {
+    display: none; /* Oculto por defecto en móvil */
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(-1 * var(--space-4));
+    margin-right: calc(-1 * var(--space-4));
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(12px);
+    border-top: none;
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    
+    /* Animación suave */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--duration-base) var(--ease-out);
+    max-height: 0;
+    overflow: hidden;
+  }
+  
+  .menu--mobile-toggle.menu--open .menu__list {
+    display: flex; /* Mostrar cuando está abierto */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    max-height: 80vh; /* Altura máxima para scroll si es necesario */
+    overflow-y: auto;
+  }
+  
+  .menu--mobile-toggle .menu__item {
+    width: 100%;
+    border-bottom: none;
+  }
+  
+  .menu--mobile-toggle .menu__item:last-child {
+    border-bottom: none;
+  }
+  
+  .menu--mobile-toggle .menu__link {
+    padding: var(--space-4) var(--space-6);
+    justify-content: flex-start; /* En móvil alineado a la izquierda */
+    width: 100%;
+    font-size: var(--text-medium);
+    min-height: var(--space-12); /* Mayor altura en móvil para touch targets */
+    color: var(--color-gray-200);
+  }
+  
+  .menu--mobile-toggle .menu__link:hover {
+    color: var(--color-white);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Submenus en móvil - mostrar inline, desactivar hover behavior */
+  .menu--mobile-toggle .menu__submenu {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin-left: var(--space-4);
+    
+    /* Eliminar bullets en móvil también */
+    list-style: none ;
+    margin-bottom: 0 ;
+    padding: 0 ;
+    padding-left: var(--space-4) ; /* Solo padding izquierdo para indentación */
+    
+    /* Desactivar transiciones hover en móvil */
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+    transition-delay: 0ms;
+  }
+  
+  /* Desactivar área de tolerancia en móvil */
+  .menu--mobile-toggle .menu__item--dropdown::after {
+    display: none;
+  }
+  
+  .menu--mobile-toggle .menu__item--dropdown {
+    flex-direction: column;
+  }
+  
+  /* Enlaces de submenu en móvil con colores legibles sobre fondo oscuro */
+  .menu--mobile-toggle .menu__submenu .menu__link {
+    color: var(--color-gray-300);
+    padding-left: var(--space-8); /* Más indentación para submenús */
+  }
+  
+  .menu--mobile-toggle .menu__submenu .menu__link:hover {
+    color: var(--color-white);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .pageheader__container {
+    margin-left: var(--space-6);   /* CONSONANCIA: Mobile usa --space-6 como grid-flex */
+    margin-right: var(--space-6);  /* CONSONANCIA: Mobile usa --space-6 como grid-flex */
+    padding: 0;                    /* Sin padding - eliminado para evitar margen extra */
+  }
+}
+
+/* ==========================================================================
+   HEADER Y NAVEGACIÓN (LEGACY - Mantener por compatibilidad)
+   ========================================================================== */
+
+:root {
+  --nav-height-offset: var(--space-2xl); /* Misma altura que header y grid gap */
+  --nav-padding-h: var(--space-6);       /* φ = 1.618rem */
+}
+
+.header-master {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: none;
+}
+
+.header-container-master {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--space-2xl); /* Misma altura que grid gap = 4.236rem */
+}
+
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: opacity var(--duration-base) var(--ease-out);
+  cursor: pointer;
+}
+
+.header__brand:hover {
+  opacity: 0.8;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+}
+
+.header__nav > ul,
+#main-nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-6); /* φ = 1.618rem - Separación áurea entre elementos nav */
+}
+
+.header__nav-link {
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.header__nav-link:hover {
+  color: var(--color-text-primary);
+}
+
+.header__menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header__menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+    color: var(--color-text-primary);
+  }
+}
+
+/* ==========================================================================
+   LOGO Y MARCA
+   ========================================================================== */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: opacity var(--duration-base) var(--ease-out);
+  cursor: pointer;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+
+
+/* ==========================================================================
+   HERO SECTIONS
+   ========================================================================== */
+
+.hero-master {
+  display: grid;
+  place-items: center;
+  min-height: calc(var(--space-2xl) * 6);  /* φ³ × 6 = consonancia matemática */
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+  background-color: var(--color-surface-primary);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Variante hero con overlay sobre pageheader - margin-top negativo dinámico 
+ * 
+ * UTILIZACIÓN:
+ * Combinar con --transparent pageheader para efecto overlay completo:
+ * <header class="pageheader pageheader--sticky pageheader--transparent">
+ * <section class="hero-master hero-master--fullscreen hero-master--image">
+ * 
+ * CARACTERÍSTICAS:
+ * ✅ Margin-top negativo = altura mínima del pageheader (var(--space-xl) * 2)
+ * ✅ Padding-top compensatorio para mantener posición del contenido
+ * ✅ Z-index: -1 para que navegación funcione correctamente
+ * ✅ Compatible con todas las otras variantes de hero
+ */
+.hero-master--fullscreen {
+  margin-top: calc(-1 * var(--space-xl) * 2); /* Negativo de la altura mínima del pageheader */
+  padding-top: calc(var(--space-xl) * 2 + var(--space-16)); /* Compensa el margin negativo + padding original */
+  z-index: 1; /* Por encima del fondo pero por debajo del header */
+}
+
+.hero-master--image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--color-text-inverse);
+  height: 100svh; /* Small viewport height - pixel perfect para todos los dispositivos */
+  min-height: 100vh; /* Fallback para navegadores sin soporte svh */
+}
+
+.hero-master--image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65); /* Aumentado de 0.4 a 0.65 para mejor contraste */
+  z-index: 1;
+  pointer-events: none; /* CRÍTICO: Permite que los eventos de click pasen a través del overlay */
+}
+
+.hero-container-master {
+  width: 100%;
+  max-width: var(--container-max-width-narrow);  /* 50rem = consonancia base × 50 */
+  margin: 0 auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+  position: relative;
+  z-index: 2; /* Por encima del overlay y del hero con z-index negativo */
+}
+
+
+
+
+
+.hero-actions-master {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-top: var(--space-8);
+}
+
+/* ==========================================================================
+   H1 PRINCIPAL DEL SITIO - ESPECTACULARMENTE GRANDE
+   ========================================================================== */
+
+/* H1 principal en el grid header - Sistema de Diseño Atómico */
+
+
+@media (min-width: 768px) {
+  .hero-master {
+    min-height: calc(var(--space-2xl) * 4);  /* φ³ × 4 = proporción consonante tablet */
+  }
+  
+  .hero-master--image {
+    min-height: 100vh;  /* Full viewport height = proporción consonante desktop */
+  }
+}
+
+/* ==========================================================================
+   FORMULARIOS
+   ========================================================================== */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.form--constrained {
+  max-width: calc(var(--space-2xl) * 8); /* φ³ × 8 = ~33.9rem = consonancia áurea */
+  margin: 0 auto; /* Centrado horizontal */
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+
+.form__input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-primary);
+  border: var(--border-width-base) solid var(--color-gray-300);
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.form__input:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+/* ==========================================================================
+   DROPDOWN Y NAVEGACIÓN DESPLEGABLE
+   ========================================================================== */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown__trigger:hover,
+.dropdown__trigger:focus {
+  color: var(--color-text-primary);
+}
+
+.dropdown__content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: var(--space-20); /* 5rem = 200px cuando base es 40px - pero ahora 5rem = 80px */
+  background: var(--color-surface-primary);
+  border: var(--border-width-base) solid var(--color-gray-300);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 100;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto;
+  gap: 0;
+}
+
+.dropdown__list {
+  display: flex ;
+  flex-direction: column ;
+  gap: 0 ;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown__item {
+  border-bottom: none;
+}
+
+.dropdown__item:last-child {
+  border-bottom: none;
+}
+
+.dropdown__link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  min-height: var(--space-10); /* φ² = 2.618rem ≈ 42px */
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dropdown__link:hover,
+.dropdown__link:focus {
+  color: var(--color-text-primary);
+}
+
+.dropdown__arrow {
+  width: var(--space-4);
+  height: var(--space-4);
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+.dropdown:hover .dropdown__content,
+.dropdown:focus-within .dropdown__content,
+.dropdown__trigger:focus + .dropdown__content {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==========================================================================
+   ICONOS
+   ========================================================================== */
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 2;
+  stroke: currentColor;
+  fill: none;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.icon--sm { width: 1.25em; height: 1.25em; }
+.icon--lg { width: 1.5em; height: 1.5em; }
+.icon--xl { width: 2em; height: 2em; }
+
+/* ==========================================================================
+   FOOTER - SISTEMA MODULAR COMPLETO
+   ========================================================================== */
+
+/*
+ * VARIANTES DISPONIBLES FOOTER:
+ * 
+ * Base:
+ * .footer                    → Footer básico centrado
+ * 
+ * Layouts:
+ * .footer--tall              → Footer alto con max-height: 50vh
+ * 
+ * Estilos:
+ * .footer--dark              → Fondo oscuro (por defecto)
+ * .footer--light             → Fondo claro
+ * .footer--accent            → Fondo con color de acento
+ * 
+ * Ejemplo de uso:
+ * <footer class="footer footer--tall">
+ */
+
+.footer {
+  padding: var(--space-xl) 0;
+  background-color: var(--color-gray-900);
+  color: var(--color-text-inverse);
+  font-size: var(--text-small);
+  border-top: var(--border-width-base) solid var(--color-gray-700);
+}
+
+.footer__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.footer__content {
+  display: grid;
+  gap: var(--space-xl);
+  grid-template-columns: 1fr;
+  text-align: center;
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+
+.footer__brand-description {
+  color: var(--color-gray-300);
+  margin: 0;
+  max-width: 60ch;
+}
+
+.footer__links {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  text-align: left;
+}
+
+.footer__links-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+
+.footer__links-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer__link {
+  color: var(--color-gray-300);
+  text-decoration: none;
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.footer__link:hover {
+  color: var(--color-cyan);
+}
+
+.footer__social {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.footer__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-12);
+  height: var(--space-12);
+  background-color: var(--color-gray-800);
+  color: var(--color-gray-300);
+  text-decoration: none;
+  border-radius: var(--border-radius-base);
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.footer__social-link:hover {
+  background-color: var(--color-cyan);
+  color: var(--color-black);
+  transform: translateY(-2px);
+}
+
+.footer__social-icon {
+  width: var(--space-6);
+  height: var(--space-6);
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+.footer__bottom {
+  border-top: var(--border-width-base) solid var(--color-gray-700);
+  padding-top: var(--space-6);
+  text-align: center;
+  color: var(--color-gray-400);
+}
+
+
+/* Footer Tall Variant - Alto con max-height */
+.footer--tall {
+  max-height: 50vh;
+  padding: var(--space-2xl) 0;
+  display: flex;
+  align-items: center;
+}
+
+.footer--tall .footer__container {
+  height: 100%;
+  justify-content: center;
+}
+
+.footer--tall .footer__content {
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-2xl);
+}
+
+/* Footer Light Variant */
+.footer--light {
+  background-color: var(--color-gray-100);
+  color: var(--color-text-primary);
+  border-top-color: var(--color-gray-300);
+}
+
+.footer--light .footer__brand-title {
+  color: var(--color-text-primary);
+}
+
+.footer--light .footer__brand-description {
+  color: var(--color-text-secondary);
+}
+
+.footer--light .footer__link {
+  color: var(--color-text-secondary);
+}
+
+.footer--light .footer__link:hover {
+  color: var(--color-cyan);
+}
+
+.footer--light .footer__social-link {
+  background-color: var(--color-gray-200);
+  color: var(--color-text-primary);
+}
+
+.footer--light .footer__bottom {
+  border-top-color: var(--color-gray-300);
+  color: var(--color-text-muted);
+}
+
+/* Footer Accent Variant */
+.footer--accent {
+  background-color: var(--color-cyan);
+  color: var(--color-black);
+  border-top-color: var(--color-cyan);
+}
+
+.footer--accent .footer__brand-title {
+  color: var(--color-black);
+}
+
+.footer--accent .footer__brand-description {
+  color: var(--color-black);
+  opacity: 0.8;
+}
+
+.footer--accent .footer__link {
+  color: var(--color-black);
+  opacity: 0.8;
+}
+
+.footer--accent .footer__link:hover {
+  opacity: 1;
+}
+
+.footer--accent .footer__social-link {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.footer--accent .footer__bottom {
+  border-top-color: var(--color-black);
+  color: var(--color-black);
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .footer__content {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    text-align: left;
+  }
+  
+  .footer__brand {
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .footer__social {
+    justify-content: flex-start;
+  }
+  
+}
+
+/* ==========================================================================
+   BACK TO TOP
+   ========================================================================== */
+
+.back-to-top {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  background-color: var(--color-cyan);
+  color: var(--color-black);
+  border: var(--border-width-base) solid var(--color-cyan);
+  border-radius: 50%;
+  width: var(--space-12);
+  height: var(--space-12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--duration-fast) var(--ease-out);
+  z-index: 999;
+}
+
+.back-to-top--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+  transform: translateY(-2px);
+}
+
+.back-to-top:focus {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   FOCUS STATES PARA ACCESIBILIDAD
+   ========================================================================== */
+
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+.btn:focus {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
