@@ -56,10 +56,11 @@ h3 {
 }      /* 16px - Subtítulo más proporcionado con line-height normal */
 
 h4 { 
-    font-size: var(--t-1); 
+    font-size: var(--t0); 
     line-height: var(--lh2); 
     padding-bottom: var(--s3);
-}      /* 10px - Encabezado menor con line-height cómodo */
+    font-weight: 600;
+}      /* 15px - Encabezado equilibrado con peso semibold */
 
 h5 { 
     font-size: var(--t-1); 
@@ -74,14 +75,14 @@ h6 {
 /* Elementos de texto con legibilidad optimizada */
 p { 
     font-size: var(--t0); 
-    line-height: var(--lh2);
-    max-width: 65ch;          /* Ancho máximo para lectura óptima */
-}       /* 16px - Párrafo base con line-height cómodo */
+}       /* 15px - Párrafo base que hereda line-height global */
 
 small { 
     font-size: var(--t-1); 
-    line-height: var(--lh3); 
-}  /* 10px - Pequeño con line-height espacioso */
+    line-height: var(--lh3);
+    text-transform: uppercase;
+    letter-spacing: var(--ls3);
+}  /* 9.3px - Pequeño en mayúsculas con espaciado mejorado */
 
 /* ═══════════════════════════════════════════════════════════════════════
    CLASES UTILITY TIPOGRÁFICAS

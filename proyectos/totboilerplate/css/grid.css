@@ -22,7 +22,10 @@ article {
 }
 
 /* Header y footer con altura mínima y alineación */
-header,
+header {
+    align-items: center;          /* Alineación vertical centrada para grid */
+}
+
 footer {
     min-height: 120px;            /* Altura mínima aumentada para mejor presencia */
     align-items: center;          /* Alineación vertical centrada para grid */

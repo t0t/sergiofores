@@ -59,7 +59,7 @@
     
     /* MAGENTA - Variaciones esenciales */
     --magenta-dark: hsl(31.6deg 24.66% 26.29%);  /* Marrón cálido más oscuro */
-    --magenta-light: hsl(var(--magenta-h), var(--magenta-s), 80%);
+    --magenta-light: hsl(321.18deg 77.27% 91.37%); /* Magenta claro usado en layouts */
     --magenta-pastel: #F5FDEF; /* Verde pastel suave */
     
     /* YELLOW - Variaciones esenciales */
@@ -151,7 +151,7 @@
     --gradient-accent: linear-gradient(135deg, var(--color-yellow), var(--gray-light));
     
     /* Gradiente especial */
-    --gradient-rainbow: linear-gradient(135deg, var(--color-cyan), var(--gray-medium));  /* Color vibrante a gris desaturado */
+    --gradient-rainbow: linear-gradient(135deg, var(--color-green), var(--neutral-2));  /* Verde vibrante a neutral claro */
 }
 
 /* ═══════════════════════════════════════════════════════════════════════

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Responsividad TOT0</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .device-test {
+            margin: 20px 0;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        .device-test h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .breakpoint-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        iframe {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        @media (max-width: 300px) {
+            .device-test { background: #ffe6e6; }
+            .device-test::before { content: "📱 SMARTWATCH ACTIVO"; }
+        }
+        @media (min-width: 301px) and (max-width: 768px) {
+            .device-test { background: #e6f3ff; }
+            .device-test::before { content: "📱 MOBILE ACTIVO"; }
+        }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .device-test { background: #f0f8e6; }
+            .device-test::before { content: "📱 TABLET ACTIVO"; }
+        }
+        @media (min-width: 1025px) and (max-width: 1440px) {
+            .device-test { background: #fff3e6; }
+            .device-test::before { content: "🖥️ DESKTOP ACTIVO"; }
+        }
+        @media (min-width: 1441px) {
+            .device-test { background: #f3e6ff; }
+            .device-test::before { content: "📺 TV/LARGE ACTIVO"; }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔍 Test de Responsividad TOT0</h1>
+        <p>Este archivo prueba los breakpoints del sistema TOT0. Redimensiona la ventana para ver los cambios.</p>
+        
+        <div class="device-test">
+            <h3>Estado Actual del Viewport</h3>
+            <div class="breakpoint-info">
+                <strong>Ancho actual:</strong> <span id="width"></span>px<br>
+                <strong>Alto actual:</strong> <span id="height"></span>px<br>
+                <strong>Breakpoint activo:</strong> <span id="breakpoint"></span>
+            </div>
+        </div>
+
+        <div class="device-test">
+            <h3>📱 Smartwatch (≤300px)</h3>
+            <div class="breakpoint-info">--u: 4px | Grid: 1 columna | Icons: 30px</div>
+            <iframe src="index.html" height="200" style="transform: scale(0.3); transform-origin: top left; width: 333%;"></iframe>
+        </div>
+
+        <div class="device-test">
+            <h3>📱 Mobile (301px-768px)</h3>
+            <div class="breakpoint-info">--u: 6px | Sections: 80vh | Grid compacto</div>
+            <iframe src="index.html" height="300" style="transform: scale(0.5); transform-origin: top left; width: 200%;"></iframe>
+        </div>
+
+        <div class="device-test">
+            <h3>📱 Tablet (769px-1024px)</h3>
+            <div class="breakpoint-info">--u: 8px | Base de referencia del sistema</div>
+            <iframe src="index.html" height="400"></iframe>
+        </div>
+
+        <div class="device-test">
+            <h3>🖥️ Desktop (1025px-1440px)</h3>
+            <div class="breakpoint-info">--u: 10px | Espaciado aumentado</div>
+            <iframe src="index.html" height="500"></iframe>
+        </div>
+
+        <div class="device-test">
+            <h3>📺 TV/Large (≥1441px)</h3>
+            <div class="breakpoint-info">--u: 12px | Icons: 80px | Máximo espaciado</div>
+            <iframe src="index.html" height="600"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function updateViewportInfo() {
+            document.getElementById('width').textContent = window.innerWidth;
+            document.getElementById('height').textContent = window.innerHeight;
+            
+            const width = window.innerWidth;
+            let breakpoint = '';
+            
+            if (width <= 300) {
+                breakpoint = 'Smartwatch (--u: 4px)';
+            } else if (width <= 768) {
+                breakpoint = 'Mobile (--u: 6px)';
+            } else if (width <= 1024) {
+                breakpoint = 'Tablet (--u: 8px)';
+            } else if (width <= 1440) {
+                breakpoint = 'Desktop (--u: 10px)';
+            } else {
+                breakpoint = 'TV/Large (--u: 12px)';
+            }
+            
+            document.getElementById('breakpoint').textContent = breakpoint;
+        }
+        
+        updateViewportInfo();
+        window.addEventListener('resize', updateViewportInfo);
+    </script>
+</body>
+</html>

@@ -31,12 +31,14 @@ ol {
  */
 
 /**
- * REGLA 3: ALTURA MÍNIMA PARA SECTIONS Y HERO - RESPONSIVE
+ * REGLA 3: ALTURA MÍNIMA PARA SECTIONS, HEADER Y HERO - RESPONSIVE
  * Asegura altura mínima adaptativa según dispositivo
  */
-section {
-    min-height: 50vh;            /* Altura mínima medio viewport */
+header {
+    min-height: 80px;            /* Altura mínima para mejor presencia */
 }
+
+/* Sections ahora usan clase utility .h-full cuando necesiten min-height: 100vh */
 
 .bg-hero {
     min-height: 100vh;           /* Altura completa viewport */
@@ -46,7 +48,7 @@ section {
 /* Altura mínima menor en móviles para mejor UX */
 @media (max-width: 375px) {
     section {
-        min-height: 40vh;        /* Altura menor en móviles */
+        min-height: 70vh;        /* Altura menor pero generosa en móviles */
     }
 }
 

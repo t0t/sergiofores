@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOT Boilerplate - Sistema de prototipado de alta definición asistido por IA</title>
-    
+
     <!-- 
     ══════════════════════════════════════════════════════════════════
     NOTA: ATRIBUTOS data-tag
@@ -17,10 +18,16 @@
     -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="stylesheet" href="css/main.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/sparkles.svg">
+    <link rel="icon" type="image/png" href="assets/sparkles.png">
+    <link rel="apple-touch-icon" href="assets/sparkles.png">
 </head>
+
 <body data-tag="body">
     <!-- Skip navigation para accesibilidad -->
     <a href="#main" class="sr-only">Saltar al contenido principal</a>
@@ -30,26 +37,20 @@
                 <defs>
                     <linearGradient id="animatedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" style="stop-color:#FF6B6B;">
-                            <animate attributeName="stop-color" 
-                                     values="#FF6B6B;#4ECDC4;#45B7D1;#96CEB4;#FECA57;#FF6B6B" 
-                                     dur="3s" 
-                                     repeatCount="indefinite"/>
+                            <animate attributeName="stop-color" values="#FF6B6B;#4ECDC4;#45B7D1;#96CEB4;#FECA57;#FF6B6B"
+                                dur="3s" repeatCount="indefinite" />
                         </stop>
                         <stop offset="50%" style="stop-color:#4ECDC4;">
-                            <animate attributeName="stop-color" 
-                                     values="#4ECDC4;#45B7D1;#96CEB4;#FECA57;#FF6B6B;#4ECDC4" 
-                                     dur="3s" 
-                                     repeatCount="indefinite"/>
+                            <animate attributeName="stop-color" values="#4ECDC4;#45B7D1;#96CEB4;#FECA57;#FF6B6B;#4ECDC4"
+                                dur="3s" repeatCount="indefinite" />
                         </stop>
                         <stop offset="100%" style="stop-color:#45B7D1;">
-                            <animate attributeName="stop-color" 
-                                     values="#45B7D1;#96CEB4;#FECA57;#FF6B6B;#4ECDC4;#45B7D1" 
-                                     dur="3s" 
-                                     repeatCount="indefinite"/>
+                            <animate attributeName="stop-color" values="#45B7D1;#96CEB4;#FECA57;#FF6B6B;#4ECDC4;#45B7D1"
+                                dur="3s" repeatCount="indefinite" />
                         </stop>
                     </linearGradient>
                 </defs>
-                <circle cx="25" cy="25" r="23" fill="url(#animatedGradient)"/>
+                <circle cx="25" cy="25" r="23" fill="url(#animatedGradient)" />
             </svg>
             <p>TOT Boilerplate</p>
         </a>
@@ -57,6 +58,7 @@
             <ul class="grid-flow cv mb0 ch" data-tag="ul">
                 <li><a href="#principios">Principios</a></li>
                 <li><a href="#sistema">Sistema</a></li>
+                <li><a href="#layouts">Layouts</a></li>
                 <li>
                     <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar entre modo claro y oscuro">
                         <i data-lucide="sun" class="theme-icon light-icon"></i>
@@ -68,64 +70,74 @@
     </header>
 
     <main id="main" data-tag="main">
-      <!-- ══════════════════════════════════════════════════════════════════
+        <!-- ══════════════════════════════════════════════════════════════════
            HERO SECTION - Landing principal con título y CTA
            ══════════════════════════════════════════════════════════════════ -->
-      <section class="bg-hero ml0 mr0" data-tag="section">
-         <h1 class="pb0">TOT Boilerplate</h1>
-         <p>Progresión áurea φ=1.618 para crear armonía matemática perfecta.</p>
-         <a href="#principios" class="mt2"><button style="padding: var(--s2) var(--s3);">Explorar Sistema TOT0</button></a>
-      </section>
+        <section class="bg-hero ml0 mr0" data-tag="section">
+            <h1 class="pb0 tac">TOT Boilerplate</h1>
+            <p class="tac">Progresión áurea φ=1.618 para crear armonía matemática perfecta.</p>
+            <a href="#principios" class="mt2 cta-button">Explorar Sistema TOT0</a>
+        </section>
 
-      <!-- ══════════════════════════════════════════════════════════════════
+        <!-- ══════════════════════════════════════════════════════════════════
            FILOSOFIA 01234 SECTION - Los 5 Niveles Cognitivos Reales
            ══════════════════════════════════════════════════════════════════ -->
-      <section id="principios" class="grid mt3" data-tag="section">
-            <h2 id="dynamic-section-title">Filosofía 01234 - Los 5 Niveles Cognitivos</h2>
+        <section id="principios" class="grid mt3" data-tag="section">
+            <h2 id="dynamic-section-title" class="tac">Filosofía 01234 - Los 5 Niveles Cognitivos</h2>
             <ul id="dynamic-benefits-list">
-               <li>0 - Potencial Cuántico: Campo de posibilidad absoluta</li>
-               <li>1 - Esencia/Orden: Identidad, propósito, dirección clara</li>
-               <li>2 - Análisis: Diferenciación, memoria, procesamiento</li>
-               <li>3 - Comunicación: Conexión, relación, significado</li>
-               <li>4 - Materialización: Acción, manifestación tangible</li>
+                <li>0 - Potencial Cuántico: Campo de posibilidad absoluta</li>
+                <li>1 - Esencia/Orden: Identidad, propósito, dirección clara</li>
+                <li>2 - Análisis: Diferenciación, memoria, procesamiento</li>
+                <li>3 - Comunicación: Conexión, relación, significado</li>
+                <li>4 - Materialización: Acción, manifestación tangible</li>
             </ul>
-            <div class="bg-image ch cv" style="background-image: url('img/asset-01-05.jpg'); background-size: cover; background-position: center;">
+            <div class="bg-image ch cv"
+                style="background-image: url('img/asset-01-05.jpg'); background-size: cover; background-position: center;">
                 <h3>Patrón Original del Pensamiento</h3>
             </div>
         </section>
 
         <!-- CEREBRO-DIGITAL SECTION - Componentes reales del sistema -->
-        <section id="sistema" class="grid" data-tag="section">
+        <section id="sistema" class="grid h-full" data-tag="section">
             <!-- UL SISTEMA - Lista de 3 componentes principales CEREBRO-DIGITAL -->
             <ul class="grid" data-tag="ul">
                 <li class="tac icon-lg">
-                  <i data-lucide="brain" class="stroke-thin" aria-label="Cerebro" role="img"></i>
-                  <h3>Claude Code</h3>
-                  <p>Interfaz principal de IA para análisis, organización y automatización. Procesamiento de lenguaje natural con gestión de agentes especializados según filosofía 01234.</p>
+                    <i data-lucide="brain" class="stroke-thin" aria-label="Cerebro" role="img" style="color: hsl(180, 100%, 30%);"></i>
+                    <h3 style="color: hsl(180, 100%, 30%);">Claude Code</h3>
+                    <p style="color: hsl(180, 100%, 25%);">Interfaz principal de IA para análisis, organización y automatización. Procesamiento de lenguaje
+                        natural con gestión de agentes especializados según filosofía 01234.</p>
                 </li>
-                
-                
+
+
                 <li class="tac icon-lg">
-                  <i data-lucide="network" class="stroke-thin" aria-label="Red" role="img"></i>
-                  <h3>Obsidian Vault</h3>
-                  <p>Base de conocimiento visual y textual. Notas interconectadas, mapas conceptuales Canvas y visualización de relaciones que transforman caos informacional en arquitectura de sentido.</p>
+                    <i data-lucide="network" class="stroke-thin" aria-label="Red" role="img" style="color: hsl(300, 100%, 30%);"></i>
+                    <h3 style="color: hsl(300, 100%, 30%);">Obsidian Vault</h3>
+                    <p style="color: hsl(300, 100%, 25%);">Base de conocimiento visual y textual. Notas interconectadas, mapas conceptuales Canvas y
+                        visualización de relaciones que transforman caos informacional en arquitectura de sentido.</p>
                 </li>
 
                 <li class="tac icon-lg">
-                  <i data-lucide="terminal" class="stroke-thin" aria-label="Terminal" role="img"></i>
-                  <h3>Python CLI</h3>
-                  <p>Scripts de automatización: <code><span class="code-css-selector">events.py</span></code>, <code><span class="code-css-selector">portfolio_auto_updater.py</span></code>, <code><span class="code-css-selector">google_connector.py</span></code>. Módulos reales implementados en <code><span class="code-css-selector">/src/modules/</span></code> del sistema CEREBRO-DIGITAL.</p>
+                    <i data-lucide="terminal" class="stroke-thin" aria-label="Terminal" role="img" style="color: hsl(60, 100%, 30%);"></i>
+                    <h3 style="color: hsl(60, 100%, 30%);">Python CLI</h3>
+                    <p style="color: hsl(60, 100%, 25%);">Scripts de automatización: <code><span class="code-css-selector">events.py</span></code>,
+                        <code><span class="code-css-selector">portfolio_auto_updater.py</span></code>,
+                        <code><span class="code-css-selector">google_connector.py</span></code>. Módulos reales
+                        implementados en <code><span class="code-css-selector">/src/modules/</span></code> del sistema
+                        CEREBRO-DIGITAL.</p>
                 </li>
             </ul>
         </section>
 
         <!-- IMPLEMENTACIONES SECTION - Proyectos reales en producción -->
         <section class="mlr0-plr3 pb3" data-tag="section">
-            <h2 id="dynamic-section-secondary">Proyectos Implementados</h2>
-            <p id="dynamic-section-description">Sitios web reales funcionando con filosofía 01234 y sistema TOT0</p>
+            <h2 id="dynamic-section-secondary" class="tac">Proyectos Implementados</h2>
+            <p id="dynamic-section-description" class="tac">Sitios web reales funcionando con filosofía 01234 y sistema TOT0</p>
             <article class="grid mt3 pt0 ai-center" data-tag="article">
-               <p class="pt3 pl3">CEREBRO-DIGITAL: Ecosistema holístico que amplifica la creatividad mediante la orquestación de Claude Code, Obsidian y Python CLI. Transformación del caos informacional en arquitectura de sentido basada en filosofía 01234.</p>
-               <div class="bg-image ch cv" style="background-image: url('img/asset-01-05.jpg'); background-size: cover; background-position: center;">
+                <p class="pt3 pl3">CEREBRO-DIGITAL: Ecosistema holístico que amplifica la creatividad mediante la
+                    orquestación de Claude Code, Obsidian y Python CLI. Transformación del caos informacional en
+                    arquitectura de sentido basada en filosofía 01234.</p>
+                <div class="bg-image ch cv"
+                    style="background-image: url('img/asset-01-05.jpg'); background-size: cover; background-position: center;">
                     <h3>Portfolio Auto Updater - Screenshots Automáticos</h3>
                 </div>
             </article>
@@ -133,51 +145,58 @@
 
         <!-- GRID CARDS SECTION - Demostración de cards en grid -->
         <section data-tag="section">
-            <h2 id="dynamic-cards-title">Módulos Python CLI</h2>
-            <p id="dynamic-cards-description">Scripts automatizados implementados en el sistema CEREBRO-DIGITAL</p>
+            <h2 id="dynamic-cards-title" class="tac">Módulos Python CLI</h2>
+            <p id="dynamic-cards-description" class="tac">Scripts automatizados implementados en el sistema CEREBRO-DIGITAL</p>
 
             <ul class="grid" data-tag="ul">
                 <li class="tac icon-lg">
-                    <i data-lucide="camera" class="stroke-thin" aria-label="Cámara" role="img"></i>
-                    <h3>Portfolio Auto Updater</h3>
-                    <p>Script Python que captura screenshots automáticos de proyectos web y actualiza el portfolio. Categorización inteligente: ai_systems, development, cognitive, art, commercial.</p>
+                    <i data-lucide="camera" class="stroke-thin" aria-label="Cámara" role="img" style="color: hsl(180, 100%, 30%);"></i>
+                    <h3 style="color: hsl(180, 100%, 30%);">Portfolio Auto Updater</h3>
+                    <p style="color: hsl(180, 100%, 25%);">Script Python que captura screenshots automáticos de proyectos web y actualiza el portfolio.
+                        Categorización inteligente: ai_systems, development, cognitive, art, commercial.</p>
                 </li>
                 <li class="tac icon-lg">
-                    <i data-lucide="globe" class="stroke-thin" aria-label="Conexión" role="img"></i>
-                    <h3>Google Connector API</h3>
-                    <p>Integración completa con Google APIs: Calendar, Gmail y Drive. Autenticación OAuth, sincronización de eventos y procesamiento automático de documentos.</p>
+                    <i data-lucide="globe" class="stroke-thin" aria-label="Conexión" role="img" style="color: hsl(300, 100%, 30%);"></i>
+                    <h3 style="color: hsl(300, 100%, 30%);">Google Connector API</h3>
+                    <p style="color: hsl(300, 100%, 25%);">Integración completa con Google APIs: Calendar, Gmail y Drive. Autenticación OAuth,
+                        sincronización de eventos y procesamiento automático de documentos.</p>
                 </li>
                 <li class="tac icon-lg">
-                    <i data-lucide="calendar" class="stroke-thin" aria-label="Calendario" role="img"></i>
-                    <h3>Events Manager</h3>
-                    <p>Gestión inteligente de eventos y tareas. Comandos: <code>events hoy</code>, <code>events pendientes</code>, <code>events categoria</code>. Integración completa con Google Calendar.</p>
+                    <i data-lucide="calendar" class="stroke-thin" aria-label="Calendario" role="img" style="color: hsl(60, 100%, 30%);"></i>
+                    <h3 style="color: hsl(60, 100%, 30%);">Events Manager</h3>
+                    <p style="color: hsl(60, 100%, 25%);">Gestión inteligente de eventos y tareas. Comandos: <code>events hoy</code>,
+                        <code>events pendientes</code>, <code>events categoria</code>. Integración completa con Google
+                        Calendar.</p>
                 </li>
             </ul>
             <!-- TOT0 Matrix Features - Sistema CSS Nuclear -->
             <ul class="grid" data-tag="ul" id="dynamic-featured-cards">
                 <li class="tac icon-lg">
-                    <i data-lucide="layers" class="stroke-thin" aria-label="Capas" role="img"></i>
-                    <h3>Variables Áureas</h3>
-                    <p>5 variables CSS que controlan todo el sistema. Progresión matemática φ = 1.618 para spacing perfecto y consonancia visual universal.</p>
+                    <i data-lucide="layers" class="stroke-thin" aria-label="Capas" role="img" style="color: hsl(0, 100%, 30%);"></i>
+                    <h3 style="color: hsl(0, 100%, 30%);">Variables Áureas</h3>
+                    <p style="color: hsl(0, 100%, 25%);">5 variables CSS que controlan todo el sistema. Progresión matemática φ = 1.618 para spacing
+                        perfecto y consonancia visual universal.</p>
                 </li>
                 <li class="tac icon-lg">
-                    <i data-lucide="grid" class="stroke-thin" aria-label="Grid" role="img"></i>
-                    <h3>Sistema Atómico</h3>
-                    <p>Clases modulares que se componen como átomos. pt0-pt5, ch/cv, sch/scv para máxima flexibilidad y reutilización sistemática.</p>
+                    <i data-lucide="grid" class="stroke-thin" aria-label="Grid" role="img" style="color: hsl(120, 100%, 30%);"></i>
+                    <h3 style="color: hsl(120, 100%, 30%);">Sistema Atómico</h3>
+                    <p style="color: hsl(120, 100%, 25%);">Clases modulares que se componen como átomos. pt0-pt5, ch/cv, sch/scv para máxima flexibilidad y
+                        reutilización sistemática.</p>
                 </li>
                 <li class="tac icon-lg">
-                    <i data-lucide="zap" class="stroke-thin" aria-label="Energía" role="img"></i>
-                    <h3>Layout Maestro</h3>
-                    <p>Framework CSS evolutivo que se adapta a cualquier proyecto. TOT0 Matrix simplifica el desarrollo manteniendo máxima expresividad visual.</p>
+                    <i data-lucide="zap" class="stroke-thin" aria-label="Energía" role="img" style="color: hsl(240, 100%, 30%);"></i>
+                    <h3 style="color: hsl(240, 100%, 30%);">Layout Maestro</h3>
+                    <p style="color: hsl(240, 100%, 25%);">Framework CSS evolutivo que se adapta a cualquier proyecto. TOT0 Matrix simplifica el desarrollo
+                        manteniendo máxima expresividad visual.</p>
                 </li>
             </ul>
         </section>
-        
+
         <!-- ARCHIVOS REALES SECTION - Estructura CEREBRO-DIGITAL -->
         <section class="mlr0-plr3" data-tag="section">
-            <h2>Archivos Reales del Sistema</h2>
-            <p>Estructura de documentación auténtica</p>
-            
+            <h2 class="tac">Archivos Reales del Sistema</h2>
+            <p class="tac">Estructura de documentación auténtica</p>
+
             <ul data-tag="ul">
                 <li>/NOTAS/filosofia_01234.md - Patrón cognitivo original</li>
                 <li>/NOTAS/cerebro_digital.md - Arquitectura del sistema</li>
@@ -186,14 +205,15 @@
                 <li>/DOCUMENTOS/ - Gestión documental y legal</li>
             </ul>
         </section>
-        
+
         <!-- COMANDOS REALES SECTION - Python CLI CEREBRO-DIGITAL -->
         <section class="mlr0-plr3">
             <h2>Comandos Reales - Python CLI CEREBRO-DIGITAL</h2>
-            
+
             <!-- Comandos Python CLI + Variables TOT0 -->
             <article class="grid gap1 mb3">
-                <pre class="code-block"><code><span class="code-html-comment"># Comandos CLI reales implementados</span>
+                <pre
+                    class="code-block"><code><span class="code-html-comment"># Comandos CLI reales implementados</span>
 <span class="code-css-selector">python3 main.py</span> <span class="code-html-attr">events</span> <span class="code-html-string">hoy</span>
 <span class="code-css-selector">python3 main.py</span> <span class="code-html-attr">events</span> <span class="code-html-string">pendientes</span>
 <span class="code-css-selector">python3 main.py</span> <span class="code-html-attr">gmail</span> <span class="code-html-string">search --query "subject:factura"</span>
@@ -207,7 +227,8 @@
 <span class="code-html-tag">├── control_gastos.py</span>     <span class="code-html-comment"># Finanzas</span>
 <span class="code-html-tag">└── portfolio_auto_updater.py</span> <span class="code-html-comment"># Screenshots automáticos</span></code></pre>
 
-                <pre class="code-block"><code><span class="code-html-comment">/* Variables TOT0 - Sistema real implementado */</span>
+                <pre
+                    class="code-block"><code><span class="code-html-comment">/* Variables TOT0 - Sistema real implementado */</span>
 <span class="code-css-selector">:root</span> {
   <span class="code-css-variable">--u</span>: <span class="code-css-value">8px</span>;     <span class="code-html-comment">/* Unidad base */</span>
   <span class="code-css-variable">--r</span>: <span class="code-css-value">1.618</span>;   <span class="code-html-comment">/* Ratio áureo φ */</span>
@@ -230,9 +251,9 @@
 
         <!-- COLOR SYSTEM SECTION - Sistema de Color Atómico TOT0 -->
         <section class="mlr0-plr3 pb3" data-tag="section">
-            <h2 class="pb2">Sistema de Color Atómico TOT0</h2>
-            <p class="pb2">TODO emana de 5 colores base: CYAN, MAGENTA, YELLOW, NEGRO y BLANCO</p>
-            
+            <h2 class="pb2 tac">Sistema de Color Atómico TOT0</h2>
+            <p class="pb2 tac">TODO emana de 5 colores base: CYAN, MAGENTA, YELLOW, NEGRO y BLANCO</p>
+
             <!-- 5 COLORES ATÓMICOS -->
             <h3 class="pt3 pb1">5 Colores Atómicos Base (CMY + BW)</h3>
             <div class="grid full-row gap0" data-tag="div">
@@ -252,7 +273,7 @@
                     <small>BLANCO</small>
                 </div>
             </div>
-            
+
             <!-- MEZCLAS RGB -->
             <h3 class="pt3 pb1">Mezclas RGB (Síntesis Aditiva)</h3>
             <div class="grid full-row gap0" data-tag="div">
@@ -270,7 +291,7 @@
             <!-- VARIACIONES ESENCIALES -->
             <h3 class="pt3 pb1">Variaciones Esenciales (Dark/Light/Pastel)</h3>
             <div class="grid full-row gap0" data-tag="div">
-                <div class="color-swatch" style="background-color: var(--cyan-dark); color: white;" data-tag="div">
+                <div class="color-swatch" style="background-color: var(--cyan-dark); color: black;" data-tag="div">
                     <small>cyan-dark</small>
                 </div>
                 <div class="color-swatch" style="background-color: var(--cyan-light); color: black;" data-tag="div">
@@ -298,7 +319,7 @@
                     <small>yellow-pastel</small>
                 </div>
             </div>
-            
+
             <!-- MEZCLAS ARMÓNICAS ÚNICAS -->
             <h3 class="pt3 pb1">Mezclas Armónicas Únicas</h3>
             <div class="grid full-row gap0" data-tag="div">
@@ -313,7 +334,7 @@
                 </div>
             </div>
 
-            
+
             <!-- ESCALA DE GRISES CONDENSADA -->
             <h3 class="pt3 pb1">Escala de Grises Condensada</h3>
             <div class="grid full-row gap0" data-tag="div">
@@ -350,7 +371,7 @@
                     <small>rainbow</small>
                 </div>
             </div>
-            
+
             <!-- COMBINACIONES DE COLOR - GRUPO 1: OSCUROS CON ACENTOS CLAROS -->
             <h3 class="pt3 pb1">Grupo 1: Oscuros con Acentos Claros</h3>
             <p class="pb2">Base oscura dominante con 2 colores claros para contraste</p>
@@ -358,7 +379,7 @@
                 <div class="color-swatch" style="background-color: var(--color-black); color: white;" data-tag="div">
                     <small>black</small>
                 </div>
-                <div class="color-swatch" style="background-color: var(--cyan-dark); color: white;" data-tag="div">
+                <div class="color-swatch" style="background-color: var(--cyan-dark); color: black;" data-tag="div">
                     <small>cyan-dark</small>
                 </div>
                 <div class="color-swatch" style="background-color: var(--magenta-dark); color: white;" data-tag="div">
@@ -371,7 +392,7 @@
                     <small>white</small>
                 </div>
             </div>
-            
+
             <!-- GRUPO 2: DESATURADOS CON ACENTO VIBRANTE -->
             <h3 class="pt3 pb1">Grupo 2: Desaturados con Acento Vibrante</h3>
             <p class="pb2">Tonos pastel suaves con un color saturado de impacto</p>
@@ -392,7 +413,7 @@
                     <small>white</small>
                 </div>
             </div>
-            
+
             <!-- GRUPO 3: BALANCE 3 DESATURADOS + 2 VIBRANTES -->
             <h3 class="pt3 pb1">Grupo 3: Balance 3:2 (Desaturados:Vibrantes)</h3>
             <p class="pb2">Mayoría de tonos suaves con dos acentos vibrantes</p>
@@ -413,7 +434,7 @@
                     <small>orange (vibrante)</small>
                 </div>
             </div>
-            
+
             <!-- GRUPO 4: MONOCROMÁTICO CON DOBLE ACENTO -->
             <h3 class="pt3 pb1">Grupo 4: Monocromático con Doble Acento</h3>
             <p class="pb2">Base en grises con dos colores complementarios vibrantes</p>
@@ -434,12 +455,12 @@
                     <small>purple</small>
                 </div>
             </div>
-            
+
             <!-- GRUPO 5: TRIÁDICO EQUILIBRADO -->
             <h3 class="pt3 pb1">Grupo 5: Triádico Equilibrado</h3>
             <p class="pb2">Los 3 primarios con variaciones de intensidad</p>
             <div class="grid full-row gap0" data-tag="div">
-                <div class="color-swatch" style="background-color: var(--cyan-dark); color: white;" data-tag="div">
+                <div class="color-swatch" style="background-color: var(--cyan-dark); color: black;" data-tag="div">
                     <small>cyan-dark</small>
                 </div>
                 <div class="color-swatch" style="background-color: var(--magenta-pastel); color: black;" data-tag="div">
@@ -456,126 +477,815 @@
                 </div>
             </div>
         </section>
-        
-        <!-- LAYOUTS SECTION - Mini ilustraciones de webs con grupos de colores -->
-        <section class="mlr0-plr3 pb3" data-tag="section">
-            <h2 class="pb2">Layouts - Aplicación de Grupos de Color</h2>
-            <p class="pb3">Mini ilustraciones de cómo se verían diferentes tipos de web con cada grupo de colores</p>
+
+        <!-- LAYOUTS SECTION - Demostración del sistema de espaciado -->
+        <section id="layouts" class="mlr0-plr3 pb3" data-tag="section">
+            <h2 class="pb2 tac">Layouts - Sistema de Espaciado TOT0</h2>
+            <p class="pb3 tac">Mini layouts que demuestran las combinaciones posibles de grids, spacing y color</p>
+
+            <!-- MINILAYOUTS CON TODAS LAS CLASES DE SPACING -->
+            <h3 class="pt3 pb2">Minilayouts - Demostración Completa del Sistema de Spacing</h3>
+            <p class="pb3">Componentes reales usando todas las clases: .pt0-.pt5, .pb0-.pb5, .pl0-.pl5, .pr0-.pr5, .mt0-.mt5, .mb0-.mb5, .ml0-.ml5, .mr0-.mr5</p>
             
+            <!-- LAYOUT A: DASHBOARD CON SIDEBAR -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="pl0 pr0 pt2 pb3" style="background: var(--gray-light);">
+                    <h4 class="pl3 mb2">Layout A: Dashboard con Sidebar</h4>
+                    <div class="grid cols4 gap1">
+                        <!-- Sidebar con padding asimétrico -->
+                        <div class="pl2 pr1 pt3 pb4" style="background: var(--magenta-dark);">
+                            <div class="mb2" style="height: 20px; background: var(--color-white);"></div>
+                            <div class="mb1 ml1" style="height: 15px; background: var(--gray-medium);"></div>
+                            <div class="mb1 ml1" style="height: 15px; background: var(--gray-medium);"></div>
+                            <div class="ml1" style="height: 15px; background: var(--color-cyan);"></div>
+                        </div>
+                        <!-- Content area con spacing variado -->
+                        <div class="span3 pl3 pr2 pt1 pb2" style="background: var(--color-white);">
+                            <div class="mb3 pt2 pl4 pr1" style="background: var(--cyan-light);">Header - pt2 pl4 pr1</div>
+                            <div class="grid cols2 gap2">
+                                <div class="pl1 pr3 pt1 pb2" style="background: var(--yellow-pastel);">Card A - pl1 pr3</div>
+                                <div class="pl5 pr0 pt3 pb1" style="background: var(--magenta-pastel);">Card B - pl5 pr0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- LAYOUT B: BLOG POST CON MARGINS COMPLEJOS -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="pl3 pr3 pt2 pb3" style="background: var(--color-white); border: 1px solid var(--gray-medium);">
+                    <h4 class="mb3">Layout B: Blog Post con Margins</h4>
+                    <div class="ml0 mr0 mb4 pt1 pb1 pl2 pr2" style="background: var(--cyan-pastel);">Header - ml0 mr0 pl2 pr2</div>
+                    <div class="ml2 mr1 mb2 pl3 pr4" style="background: var(--yellow-light);">Párrafo principal - ml2 mr1 pl3 pr4</div>
+                    <div class="ml5 mr0 mb1 pl1 pr2" style="background: var(--magenta-light);">Quote indentado - ml5 mr0 pl1 pr2</div>
+                    <div class="ml1 mr3 pl2 pr1 pt2 pb2" style="background: var(--gray-light);">Footer - ml1 mr3 pl2 pr1</div>
+                </div>
+            </div>
+            
+            <!-- LAYOUT C: FORM CON SPACING FUNCIONAL -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="pl2 pr2 pt3 pb3" style="background: var(--cyan-dark);">
+                    <h4 class="pl1 mb2">Layout C: Form con Spacing Funcional</h4>
+                    <div class="stack gap1">
+                        <div class="pl3 pr1 pt1 pb1 mb1" style="background: var(--color-white);">Input - pl3 pr1 (espacio para label)</div>
+                        <div class="pl1 pr4 pt2 pb1 mb2" style="background: var(--color-white);">Textarea - pl1 pr4 (espacio para botón)</div>
+                        <div class="ml4 mr1 pl2 pr3 pt1 pb1" style="background: var(--color-cyan);">Button - ml4 mr1 pl2 pr3</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- LAYOUT D: CARD GRID CON PADDING VARIADO -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="pl1 pr1 pt2 pb2" style="background: var(--yellow-pastel);">
+                    <h4 class="pl2 mb2">Layout D: Card Grid con Padding Variado</h4>
+                    <div class="grid cols3 gap2">
+                        <div class="pl0 pr2 pt3 pb1" style="background: var(--color-white);">Card Minimal - pl0 pr2</div>
+                        <div class="pl3 pr3 pt2 pb2" style="background: var(--cyan-light);">Card Standard - pl3 pr3</div>
+                        <div class="pl5 pr1 pt1 pb4" style="background: var(--magenta-pastel);">Card Dramatic - pl5 pr1</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- LAYOUT E: NAVIGATION CON MARGINS PRECISOS -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="pl2 pr2 pt1 pb2" style="background: var(--purple);">
+                    <h4 class="pl1 mb2 text-white">Layout E: Navigation con Margins</h4>
+                    <div class="flex ai-center">
+                        <div class="ml0 mr3 pl2 pr2 pt1 pb1" style="background: var(--color-white);">Logo - ml0 mr3</div>
+                        <div class="ml1 mr2 pl1 pr1 pt1 pb1" style="background: var(--gray-light);">Nav 1 - ml1 mr2</div>
+                        <div class="ml0 mr4 pl3 pr1 pt1 pb1" style="background: var(--gray-light);">Nav 2 - ml0 mr4</div>
+                        <div class="ml2 mr0 pl4 pr2 pt1 pb1" style="background: var(--color-cyan);">CTA - ml2 mr0 pl4</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- LAYOUT F: MODAL CON SPACING EXTREMO -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="pl4 pr4 pt4 pb4" style="background: var(--gray-medium);">
+                    <h4 class="pl0 pr0 mb3 text-white">Layout F: Modal con Spacing Extremo</h4>
+                    <div class="ml2 mr2 pl3 pr3 pt2 pb3" style="background: var(--color-white);">
+                        <div class="mb2 pl1 pr5 pt1 pb1" style="background: var(--cyan-light);">Title - pl1 pr5</div>
+                        <div class="mb3 ml1 mr1 pl2 pr2 pt2 pb2" style="background: var(--yellow-light);">Content - ml1 mr1 pl2 pr2</div>
+                        <div class="ml3 mr0 pl3 pr1 pt1 pb1" style="background: var(--color-magenta);">Action - ml3 mr0 pl3 pr1</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- LAYOUT G: GRID VISUAL CON TODOS LOS COLORES DEL SISTEMA -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="pl2 pr2 pt3 pb3" style="background: var(--neutral-0);">
+                    <h4 class="pl1 mb2">Layout G: Grid Visual - Todos los Colores del Sistema</h4>
+                    <div class="grid cols2 gap2">
+                        <!-- Columna izquierda: Contenido simulado -->
+                        <div class="stack gap1">
+                            <div class="pl3 pr2 pt2 pb1" style="background: var(--gray-light);">Content Area</div>
+                            <div class="pl1 pr3 pt1 pb2" style="background: var(--cyan-pastel);">Secondary Content</div>
+                            <div class="pl2 pr1 pt3 pb1" style="background: var(--yellow-pastel);">Tertiary Content</div>
+                        </div>
+                        <!-- Columna derecha: Grid de colores 20x20px -->
+                        <div class="grid-compact gap1">
+                            <!-- Colores base CMY + BW -->
+                            <div style="width: 20px; height: 20px; background: var(--color-cyan);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--color-magenta);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--color-yellow);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--color-black);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--color-white); border: 1px solid var(--gray-medium);"></div>
+                            
+                            <!-- Mezclas RGB -->
+                            <div style="width: 20px; height: 20px; background: var(--color-red);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--color-green);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--color-blue);"></div>
+                            
+                            <!-- Variaciones Cyan -->
+                            <div style="width: 20px; height: 20px; background: var(--cyan-dark);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--cyan-light);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--cyan-pastel);"></div>
+                            
+                            <!-- Variaciones Magenta -->
+                            <div style="width: 20px; height: 20px; background: var(--magenta-dark);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--magenta-light);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--magenta-pastel);"></div>
+                            
+                            <!-- Variaciones Yellow -->
+                            <div style="width: 20px; height: 20px; background: var(--yellow-dark);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--yellow-light);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--yellow-pastel);"></div>
+                            
+                            <!-- Grises -->
+                            <div style="width: 20px; height: 20px; background: var(--gray-dark);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--gray-medium);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--gray-light);"></div>
+                            
+                            <!-- Mezclas armónicas -->
+                            <div style="width: 20px; height: 20px; background: var(--orange);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--purple);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--lime);"></div>
+                            
+                            <!-- Escalas primarias -->
+                            <div style="width: 20px; height: 20px; background: var(--primary-100);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--primary-500);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--primary-900);"></div>
+                            
+                            <!-- Escalas secundarias -->
+                            <div style="width: 20px; height: 20px; background: var(--secondary-100);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--secondary-500);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--secondary-900);"></div>
+                            
+                            <!-- Escalas accent -->
+                            <div style="width: 20px; height: 20px; background: var(--accent-100);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--accent-500);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--accent-900);"></div>
+                            
+                            <!-- Neutrales -->
+                            <div style="width: 20px; height: 20px; background: var(--neutral-0); border: 1px solid var(--gray-medium);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--neutral-2);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--neutral-5);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--neutral-8);"></div>
+                            <div style="width: 20px; height: 20px; background: var(--neutral-10);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- LAYOUT 1: OSCUROS CON ACENTOS CLAROS -->
             <div class="grid gap2 pb3" data-tag="div">
-                <div style="background: var(--magenta-dark); padding: 20px;">
-                    <h4 style="color: var(--color-white); margin: 0 0 10px 0;">Layout 1: App Dashboard</h4>
+                <div class="p3 tac" style="background: var(--magenta-dark);">
+                    <h4 class="text-white mb2">Layout 1: App Dashboard</h4>
                     <!-- Mini header -->
-                    <div style="background: var(--gray-dark); height: 40px; margin-bottom: 10px; display: flex; align-items: center; padding: 0 10px;">
-                        <div style="background: var(--color-cyan); width: 30px; height: 30px;"></div>
-                        <div style="flex: 1; margin-left: 10px;">
-                            <div style="background: var(--color-white); height: 4px; width: 60%; margin-bottom: 4px;"></div>
-                            <div style="background: var(--gray-light); height: 4px; width: 40%; opacity: 0.5;"></div>
+                    <div class="flex ai-center ph2 mb2" style="height: 40px; background: var(--gray-dark);">
+                        <div style="width: 30px; height: 30px; background: var(--color-cyan);"></div>
+                        <div class="flex1 ml2">
+                            <div class="mb1" style="height: 4px; width: 60%; background: var(--color-white);"></div>
+                            <div class="op50" style="height: 4px; width: 40%; background: var(--gray-light);"></div>
                         </div>
                     </div>
                     <!-- Mini content -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
-                        <div style="background: var(--gray-dark); height: 60px;"></div>
-                        <div style="background: var(--gray-dark); height: 60px;"></div>
-                        <div style="background: var(--color-cyan); height: 60px;"></div>
+                    <div class="grid cols3 gap2">
+                        <div style="height: 60px; background: var(--gray-dark);"></div>
+                        <div style="height: 60px; background: var(--gray-dark);"></div>
+                        <div style="height: 60px; background: var(--color-cyan);"></div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- LAYOUT 2: DESATURADOS CON ACENTO VIBRANTE -->
             <div class="grid gap2 pb3" data-tag="div">
-                <div style="background: var(--color-white); padding: 20px; border: 1px solid var(--gray-light);">
-                    <h4 style="color: var(--color-black); margin: 0 0 10px 0;">Layout 2: Blog Minimalista</h4>
+                <div class="p3 tac border" style="background: var(--color-white); border-color: var(--gray-light);">
+                    <h4 class="text-black mb2">Layout 2: Blog Minimalista</h4>
                     <!-- Mini header -->
-                    <div style="background: var(--gray-light); height: 40px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; padding: 0 10px;">
-                        <div style="background: var(--color-magenta); width: 80px; height: 25px; border-radius: 4px;"></div>
-                        <div style="display: flex; gap: 5px;">
-                            <div style="background: var(--cyan-pastel); width: 25px; height: 25px; border-radius: 50%;"></div>
-                            <div style="background: var(--magenta-pastel); width: 25px; height: 25px; border-radius: 50%;"></div>
+                    <div class="flex jc-between ai-center ph2 mb2" style="height: 40px; background: var(--gray-light);">
+                        <div style="width: 80px; height: 25px; background: var(--color-magenta);"></div>
+                        <div class="flex gap1">
+                            <div style="width: 25px; height: 25px; background: var(--cyan-pastel);"></div>
+                            <div style="width: 25px; height: 25px; background: var(--magenta-pastel);"></div>
                         </div>
                     </div>
                     <!-- Mini content -->
-                    <div style="background: var(--cyan-pastel); height: 80px; margin-bottom: 10px; border-radius: 4px;"></div>
-                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
-                        <div style="background: var(--magenta-pastel); height: 40px; border-radius: 4px;"></div>
-                        <div style="background: var(--color-magenta); height: 40px; border-radius: 4px;"></div>
+                    <div class="mb2" style="height: 80px; background: var(--cyan-pastel);"></div>
+                    <div class="grid cols-2-1 gap2">
+                        <div style="height: 40px; background: var(--magenta-pastel);"></div>
+                        <div style="height: 40px; background: var(--color-magenta);"></div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- LAYOUT 3: BALANCE 3:2 -->
             <div class="grid gap2 pb3" data-tag="div">
-                <div style="background: var(--yellow-pastel); padding: 20px; border-radius: 8px;">
-                    <h4 style="color: var(--color-black); margin: 0 0 10px 0;">Layout 3: E-commerce</h4>
+                <div class="p3 tac" style="background: var(--yellow-pastel);">
+                    <h4 class="text-black mb2">Layout 3: E-commerce</h4>
                     <!-- Mini header -->
-                    <div style="background: var(--gray-medium); height: 40px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; padding: 0 10px;">
-                        <div style="background: var(--orange); width: 60px; height: 25px; border-radius: 4px;"></div>
-                        <div style="background: var(--color-cyan); width: 100px; height: 25px; border-radius: 20px;"></div>
+                    <div class="flex jc-between ai-center ph2 mb2"
+                        style="height: 40px; background: var(--gray-medium);">
+                        <div style="width: 60px; height: 25px; background: var(--orange);"></div>
+                        <div style="width: 100px; height: 25px; background: var(--color-cyan);"></div>
                     </div>
                     <!-- Mini content grid -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
-                        <div style="background: var(--cyan-light); height: 80px; border-radius: 4px; position: relative;">
-                            <div style="background: var(--orange); width: 30px; height: 30px; border-radius: 50%; position: absolute; bottom: 5px; right: 5px;"></div>
+                    <div class="grid cols3 gap2">
+                        <div class="relative" style="height: 80px; background: var(--cyan-light);">
+                            <div class="absolute bottom1 right1"
+                                style="width: 30px; height: 30px; background: var(--orange);"></div>
                         </div>
-                        <div style="background: var(--cyan-light); height: 80px; border-radius: 4px; position: relative;">
-                            <div style="background: var(--color-cyan); width: 30px; height: 30px; border-radius: 50%; position: absolute; bottom: 5px; right: 5px;"></div>
+                        <div class="relative" style="height: 80px; background: var(--cyan-light);">
+                            <div class="absolute bottom1 right1"
+                                style="width: 30px; height: 30px; background: var(--color-cyan);"></div>
                         </div>
-                        <div style="background: var(--cyan-light); height: 80px; border-radius: 4px;"></div>
+                        <div style="height: 80px; background: var(--cyan-light);"></div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- LAYOUT 4: MONOCROMÁTICO CON DOBLE ACENTO -->
             <div class="grid gap2 pb3" data-tag="div">
-                <div style="background: var(--gray-light); padding: 20px; border-radius: 8px;">
-                    <h4 style="color: var(--color-black); margin: 0 0 10px 0;">Layout 4: Portfolio Profesional</h4>
+                <div class="p3 tac" style="background: var(--gray-light);">
+                    <h4 class="text-black mb2">Layout 4: Portfolio Profesional</h4>
                     <!-- Mini header -->
-                    <div style="background: var(--color-black); height: 40px; margin-bottom: 10px; display: flex; align-items: center; padding: 0 10px;">
-                        <div style="display: flex; gap: 5px; flex: 1;">
-                            <div style="background: var(--gray-dark); height: 4px; width: 40px;"></div>
-                            <div style="background: var(--gray-dark); height: 4px; width: 40px;"></div>
-                            <div style="background: var(--color-yellow); height: 4px; width: 40px;"></div>
+                    <div class="flex ai-center ph2 mb2" style="height: 40px; background: var(--color-black);">
+                        <div class="flex gap1 flex1">
+                            <div style="height: 4px; width: 40px; background: var(--gray-dark);"></div>
+                            <div style="height: 4px; width: 40px; background: var(--gray-dark);"></div>
+                            <div style="height: 4px; width: 40px; background: var(--color-yellow);"></div>
                         </div>
                     </div>
                     <!-- Mini content -->
-                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-bottom: 10px;">
-                        <div style="background: var(--gray-dark); height: 100px; border-radius: 4px;"></div>
-                        <div>
-                            <div style="background: var(--purple); height: 45px; margin-bottom: 10px; border-radius: 4px;"></div>
-                            <div style="background: var(--color-yellow); height: 45px; border-radius: 4px;"></div>
+                    <div class="grid cols-2-1 gap2 mb2">
+                        <div style="height: 100px; background: var(--gray-dark);"></div>
+                        <div class="grid gap2">
+                            <div style="height: 45px; background: var(--purple);"></div>
+                            <div style="height: 45px; background: var(--color-yellow);"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- LAYOUT 5: TRIÁDICO EQUILIBRADO -->
+
+
+
+            <!-- LAYOUT 15: DASHBOARD WIDGETS -->
             <div class="grid gap2 pb3" data-tag="div">
-                <div style="background: var(--color-white); padding: 20px; border-radius: 8px; border: 1px solid var(--gray-medium);">
-                    <h4 style="color: var(--color-black); margin: 0 0 10px 0;">Layout 5: Landing Page Creativa</h4>
-                    <!-- Mini hero -->
-                    <div style="background: var(--cyan-dark); height: 60px; margin-bottom: 10px; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
-                        <div style="background: var(--color-yellow); width: 120px; height: 30px; border-radius: 20px;"></div>
+                <div class="p3" style="background: var(--gray-light);">
+                    <h4 class="text-black mb2">Layout 15: Dashboard Widgets</h4>
+                    <!-- Widget Collection -->
+                    <div class="grid cols3 gap3">
+                        <!-- Stats Widget -->
+                        <div class="stack gap0 p0" style="background: var(--color-white); border-radius: 8px;">
+                            <div class="p2" style="background: var(--orange);">
+                                <small class="text-white">REVENUE</small>
+                            </div>
+                            <div class="p2" style="background: var(--yellow-light);">
+                                <h2 class="mb1">$24,580</h2>
+                                <small style="color: var(--color-green);">+12.5% vs last month</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Progress Widget -->
+                        <div class="stack gap2 p2" style="background: var(--magenta-pastel);">
+                            <div class="flex jc-between ai-center">
+                                <small style="color: var(--magenta-dark);">PROJECT STATUS</small>
+                                <div class="p1" style="background: var(--color-magenta); color: white; border-radius: 4px;">
+                                    <small>75%</small>
+                                </div>
+                            </div>
+                            <div class="stack gap1">
+                                <div class="p1" style="background: var(--gradient-accent);">Design Phase</div>
+                                <div class="p1" style="background: var(--purple);">Development</div>
+                                <div class="p1" style="background: var(--gray-light);">Testing</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Activity Widget -->
+                        <div class="p2" style="background: var(--gradient-rainbow);">
+                            <small class="text-white mb2">RECENT ACTIVITY</small>
+                            <div class="stack gap1 mt2">
+                                <div class="grid cols4 gap1 ai-center">
+                                    <div class="p0" style="background: var(--color-cyan); border-radius: 50%; width: 8px; height: 8px;"></div>
+                                    <div class="span3 pl1">
+                                        <small class="text-white">User login</small>
+                                    </div>
+                                </div>
+                                <div class="grid cols4 gap1 ai-center">
+                                    <div class="p0" style="background: var(--lime); border-radius: 50%; width: 8px; height: 8px;"></div>
+                                    <div class="span3 pl1">
+                                        <small class="text-white">File uploaded</small>
+                                    </div>
+                                </div>
+                                <div class="grid cols4 gap1 ai-center">
+                                    <div class="p0" style="background: var(--color-yellow); border-radius: 50%; width: 8px; height: 8px;"></div>
+                                    <div class="span3 pl1">
+                                        <small class="text-white">Task completed</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Mini features -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
-                        <div style="background: var(--magenta-pastel); height: 50px; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
-                            <div style="background: var(--gray-medium); width: 30px; height: 30px; border-radius: 50%;"></div>
+                    
+                    <!-- Secondary Row -->
+                    <div class="grid cols2 gap3 mt3">
+                        <!-- Chart Widget -->
+                        <div class="p2" style="background: var(--color-white);">
+                            <div class="flex jc-between ai-center mb2">
+                                <small style="color: var(--gray-dark);">PERFORMANCE</small>
+                                <div class="p1" style="background: var(--color-green); color: white; border-radius: 4px;">
+                                    <small>LIVE</small>
+                                </div>
+                            </div>
+                            <div class="grid cols5 gap1 ai-end" style="height: 60px;">
+                                <div class="p0" style="background: var(--color-cyan); height: 40px;"></div>
+                                <div class="p0" style="background: var(--color-magenta); height: 20px;"></div>
+                                <div class="p0" style="background: var(--color-yellow); height: 50px;"></div>
+                                <div class="p0" style="background: var(--orange); height: 30px;"></div>
+                                <div class="p0" style="background: var(--purple); height: 40px;"></div>
+                            </div>
                         </div>
-                        <div style="background: var(--magenta-pastel); height: 50px; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
-                            <div style="background: var(--gray-medium); width: 30px; height: 30px; border-radius: 50%;"></div>
+                        
+                        <!-- Team Widget -->
+                        <div class="p2" style="background: var(--gradient-primary);">
+                            <small class="text-white mb2">TEAM ONLINE</small>
+                            <div class="grid cols3 gap2 mt2">
+                                <div class="stack gap0 ai-center">
+                                    <div class="p0" style="background: var(--color-green); border-radius: 50%; width: 16px; height: 16px;"></div>
+                                    <small class="text-white mt1">Alex</small>
+                                </div>
+                                <div class="stack gap0 ai-center">
+                                    <div class="p0" style="background: var(--color-yellow); border-radius: 50%; width: 16px; height: 16px;"></div>
+                                    <small class="text-white mt1">Sara</small>
+                                </div>
+                                <div class="stack gap0 ai-center">
+                                    <div class="p0" style="background: var(--gray-medium); border-radius: 50%; width: 16px; height: 16px;"></div>
+                                    <small class="text-white mt1">Mike</small>
+                                </div>
+                            </div>
                         </div>
-                        <div style="background: var(--magenta-pastel); height: 50px; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
-                            <div style="background: var(--gray-medium); width: 30px; height: 30px; border-radius: 50%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAYOUT 14: FOOTER VARIATIONS -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="p3 tac" style="background: var(--gray-dark);">
+                    <h4 class="text-white mb3">Layout 14: Footer Variations</h4>
+                    <!-- Footer Collection -->
+                    <div class="stack gap3">
+                        <!-- Simple Footer -->
+                        <div class="between ai-center p2" style="background: var(--color-black);">
+                            <div class="p2" style="background: var(--gray-medium);">Logo</div>
+                            <div class="cluster gap2">
+                                <div class="p1" style="background: var(--gray-light);">Link</div>
+                                <div class="p1" style="background: var(--gray-light);">Link</div>
+                                <div class="p1" style="background: var(--gray-light);">Link</div>
+                            </div>
                         </div>
+                        <!-- Multi-Column Footer -->
+                        <div class="p2" style="background: var(--color-black);">
+                            <div class="grid cols4 gap2 mb2">
+                                <div class="stack gap1">
+                                    <div class="p1" style="background: var(--gray-medium);">Column 1</div>
+                                    <div class="p1" style="background: var(--gray-light);">Link</div>
+                                    <div class="p1" style="background: var(--gray-light);">Link</div>
+                                    <div class="p1" style="background: var(--gray-light);">Link</div>
+                                </div>
+                                <div class="stack gap1">
+                                    <div class="p1" style="background: var(--gray-medium);">Column 2</div>
+                                    <div class="p1" style="background: var(--gray-light);">Link</div>
+                                    <div class="p1" style="background: var(--gray-light);">Link</div>
+                                </div>
+                                <div class="stack gap1">
+                                    <div class="p1" style="background: var(--gray-medium);">Column 3</div>
+                                    <div class="p1" style="background: var(--gray-light);">Link</div>
+                                    <div class="p1" style="background: var(--gray-light);">Link</div>
+                                </div>
+                                <div class="stack gap1">
+                                    <div class="p1" style="background: var(--gray-medium);">Column 4</div>
+                                    <div class="p1" style="background: var(--gray-light);">Link</div>
+                                </div>
+                            </div>
+                            <div class="between ai-center pt2" style="border-top: 1px solid var(--gray-medium);">
+                                <div class="p1" style="background: var(--gray-light);">Copyright</div>
+                                <div class="cluster gap1">
+                                    <div class="p1" style="background: var(--gray-light);">Social</div>
+                                    <div class="p1" style="background: var(--gray-light);">Social</div>
+                                    <div class="p1" style="background: var(--gray-light);">Social</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Newsletter Footer -->
+                        <div class="p2" style="background: var(--color-black);">
+                            <div class="grid cols2 gap2 mb2">
+                                <div class="stack gap1">
+                                    <div class="p1" style="background: var(--gray-medium);">Subscribe</div>
+                                    <div class="p2" style="background: var(--gray-light);">Newsletter form</div>
+                                </div>
+                                <div class="grid cols3 gap1">
+                                    <div class="p2" style="background: var(--gray-light);">Social 1</div>
+                                    <div class="p2" style="background: var(--gray-light);">Social 2</div>
+                                    <div class="p2" style="background: var(--gray-light);">Social 3</div>
+                                </div>
+                            </div>
+                            <div class="tac p1" style="background: var(--gray-medium);">Copyright</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAYOUT 13: NAVIGATION PATTERNS -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="p3 tac" style="background: var(--cyan-pastel);">
+                    <h4 class="text-black mb3">Layout 13: Navigation Patterns</h4>
+                    <!-- Navigation Collection -->
+                    <div class="stack gap3">
+                        <!-- Breadcrumb Navigation -->
+                        <div class="cluster gap1 p2" style="background: var(--color-white);">
+                            <div class="p1" style="background: var(--cyan-dark);">Home</div>
+                            <div class="p1" style="background: var(--cyan-light);">/</div>
+                            <div class="p1" style="background: var(--cyan-dark);">Products</div>
+                            <div class="p1" style="background: var(--cyan-light);">/</div>
+                            <div class="p1" style="background: var(--cyan-dark);">Category</div>
+                        </div>
+                        <!-- Tabs Navigation -->
+                        <div class="p2" style="background: var(--color-white);">
+                            <div class="grid cols4 gap0">
+                                <div class="p2 tac" style="background: var(--color-cyan);">Tab 1</div>
+                                <div class="p2 tac" style="background: var(--cyan-light);">Tab 2</div>
+                                <div class="p2 tac" style="background: var(--cyan-light);">Tab 3</div>
+                                <div class="p2 tac" style="background: var(--cyan-light);">Tab 4</div>
+                            </div>
+                            <div class="p3 mt2" style="background: var(--cyan-pastel);">Tab Content</div>
+                        </div>
+                        <!-- Side Navigation -->
+                        <div class="grid cols2 gap2">
+                            <!-- Nav Menu -->
+                            <div class="stack gap1 p2" style="background: var(--color-white);">
+                                <div class="p2" style="background: var(--color-cyan);">Menu Item 1</div>
+                                <div class="p2" style="background: var(--cyan-light);">Menu Item 2</div>
+                                <div class="p2" style="background: var(--cyan-light);">Menu Item 3</div>
+                                <div class="stack gap1 pl3">
+                                    <div class="p1" style="background: var(--cyan-pastel);">Submenu 1</div>
+                                    <div class="p1" style="background: var(--cyan-pastel);">Submenu 2</div>
+                                </div>
+                            </div>
+                            <!-- Content Area -->
+                            <div class="p3" style="background: var(--color-white);">
+                                <div class="p2" style="background: var(--cyan-pastel);">Content Area</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAYOUT 12: CONTENT SECTIONS -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="p3 tac" style="background: var(--gray-light);">
+                    <h4 class="text-black mb3">Layout 12: Content Sections</h4>
+                    <!-- Content Sections -->
+                    <div class="stack gap3">
+                        <!-- Hero Section -->
+                        <div class="stack gap2 p3" style="background: var(--color-yellow);">
+                            <div class="p2 tac" style="background: var(--purple);">Hero Title</div>
+                            <div class="grid cols2 gap2">
+                                <div class="p2" style="background: var(--yellow-pastel);">Hero Content</div>
+                                <div class="p2" style="background: var(--yellow-pastel);">Hero Image</div>
+                            </div>
+                        </div>
+                        <!-- Features Section -->
+                        <div class="p2" style="background: var(--yellow-pastel);">
+                            <div class="tac mb2" style="background: var(--purple);">Features Title</div>
+                            <div class="grid cols4 gap1">
+                                <div class="stack gap1 p2 tac" style="background: var(--color-yellow);">
+                                    <div class="p1" style="background: var(--purple);">Icon</div>
+                                    <div>Feature 1</div>
+                                </div>
+                                <div class="stack gap1 p2 tac" style="background: var(--color-yellow);">
+                                    <div class="p1" style="background: var(--purple);">Icon</div>
+                                    <div>Feature 2</div>
+                                </div>
+                                <div class="stack gap1 p2 tac" style="background: var(--color-yellow);">
+                                    <div class="p1" style="background: var(--purple);">Icon</div>
+                                    <div>Feature 3</div>
+                                </div>
+                                <div class="stack gap1 p2 tac" style="background: var(--color-yellow);">
+                                    <div class="p1" style="background: var(--purple);">Icon</div>
+                                    <div>Feature 4</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Content Section -->
+                        <div class="grid cols2 gap2 p2" style="background: var(--yellow-pastel);">
+                            <div class="p2" style="background: var(--color-yellow);">Image</div>
+                            <div class="stack gap2">
+                                <div class="p1" style="background: var(--purple);">Title</div>
+                                <div class="p2" style="background: var(--color-yellow);">Content</div>
+                                <div class="p1" style="background: var(--purple);">Button</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAYOUT 11: FORM ELEMENTS -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="p3 tac" style="background: var(--gray-light);">
+                    <h4 class="text-black mb3">Layout 11: Form Elements</h4>
+                    <!-- Form Layouts -->
+                    <div class="stack gap3">
+                        <!-- Inline Form -->
+                        <div class="between gap2 p2" style="background: var(--color-white);">
+                            <div class="flex ai-center gap1">
+                                <div class="p1" style="background: var(--gray-dark);">Label</div>
+                                <div class="p2" style="background: var(--gray-medium);">Input</div>
+                            </div>
+                            <div class="p2" style="background: var(--color-cyan);">Button</div>
+                        </div>
+                        <!-- Stacked Form -->
+                        <div class="stack gap2 p2" style="background: var(--color-white);">
+                            <div class="stack gap1">
+                                <div class="p1" style="background: var(--gray-dark);">Label</div>
+                                <div class="p2" style="background: var(--gray-medium);">Textarea</div>
+                            </div>
+                            <div class="grid cols3 gap1">
+                                <div class="stack gap1">
+                                    <div class="p1" style="background: var(--gray-dark);">Label</div>
+                                    <div class="p2" style="background: var(--gray-medium);">Input</div>
+                                </div>
+                                <div class="stack gap1">
+                                    <div class="p1" style="background: var(--gray-dark);">Label</div>
+                                    <div class="p2" style="background: var(--gray-medium);">Input</div>
+                                </div>
+                                <div class="stack gap1">
+                                    <div class="p1" style="background: var(--gray-dark);">Label</div>
+                                    <div class="p2" style="background: var(--gray-medium);">Input</div>
+                                </div>
+                            </div>
+                            <div class="flex jc-end">
+                                <div class="p2" style="background: var(--color-cyan);">Submit</div>
+                            </div>
+                        </div>
+                        <!-- Grid Form -->
+                        <div class="grid cols2 gap2 p2" style="background: var(--color-white);">
+                            <div class="stack gap1">
+                                <div class="p1" style="background: var(--gray-dark);">Label</div>
+                                <div class="p2" style="background: var(--gray-medium);">Input</div>
+                            </div>
+                            <div class="stack gap1">
+                                <div class="p1" style="background: var(--gray-dark);">Label</div>
+                                <div class="p2" style="background: var(--gray-medium);">Input</div>
+                            </div>
+                            <div class="span2">
+                                <div class="flex jc-end">
+                                    <div class="p2" style="background: var(--color-cyan);">Submit</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAYOUT 10: HEADER VARIANTS -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="p3 tac" style="background: var(--magenta-dark);">
+                    <h4 class="text-white mb3">Layout 10: Header Variants</h4>
+                    <!-- Header Collection -->
+                    <div class="stack gap3">
+                        <!-- Simple Header -->
+                        <div class="flex jc-between ai-center p2" style="background: var(--magenta-light);">
+                            <div class="flex ai-center gap1">
+                                <div class="p1" style="background: var(--color-magenta);">Logo</div>
+                                <span>Brand</span>
+                            </div>
+                            <div class="cluster gap2">
+                                <div class="p1" style="background: var(--magenta-pastel);">Link</div>
+                                <div class="p1" style="background: var(--magenta-pastel);">Link</div>
+                                <div class="p1" style="background: var(--magenta-pastel);">Link</div>
+                            </div>
+                        </div>
+                        <!-- Complex Header -->
+                        <div class="stack gap1 p2" style="background: var(--magenta-light);">
+                            <div class="flex jc-between ai-center">
+                                <div class="flex ai-center gap1">
+                                    <div class="p1" style="background: var(--color-magenta);">Logo</div>
+                                    <span>Brand</span>
+                                </div>
+                                <div class="flex ai-center gap1">
+                                    <div class="p1" style="background: var(--magenta-pastel);">Search</div>
+                                    <div class="p1" style="background: var(--magenta-pastel);">Profile</div>
+                                </div>
+                            </div>
+                            <div class="grid cols6 gap1">
+                                <div class="p1 tac" style="background: var(--magenta-pastel);">Menu 1</div>
+                                <div class="p1 tac" style="background: var(--magenta-pastel);">Menu 2</div>
+                                <div class="p1 tac" style="background: var(--magenta-pastel);">Menu 3</div>
+                                <div class="p1 tac" style="background: var(--magenta-pastel);">Menu 4</div>
+                                <div class="p1 tac" style="background: var(--magenta-pastel);">Menu 5</div>
+                                <div class="p1 tac" style="background: var(--magenta-pastel);">Menu 6</div>
+                            </div>
+                        </div>
+                        <!-- Centered Header -->
+                        <div class="stack gap2 p2" style="background: var(--magenta-light);">
+                            <div class="flex jc-center">
+                                <div class="p2" style="background: var(--color-magenta);">Large Logo</div>
+                            </div>
+                            <div class="cluster jc-center gap2">
+                                <div class="p1" style="background: var(--magenta-pastel);">Link 1</div>
+                                <div class="p1" style="background: var(--magenta-pastel);">Link 2</div>
+                                <div class="p1" style="background: var(--magenta-pastel);">Link 3</div>
+                                <div class="p1" style="background: var(--magenta-pastel);">Link 4</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAYOUT 9: IMAGE GALLERY -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="p3 tac" style="background: var(--cyan-pastel);">
+                    <h4 class="text-black mb3">Layout 9: Image Gallery</h4>
+                    <!-- Main Gallery -->
+                    <div class="grid gap2">
+                        <!-- Featured Row -->
+                        <div class="grid cols3 gap1">
+                            <div class="span2 p3 flex ai-center jc-center" style="background: var(--color-cyan);">
+                                Featured Image</div>
+                            <div class="stack gap1">
+                                <div class="p2 flex ai-center jc-center" style="background: var(--cyan-light);">Thumb 1
+                                </div>
+                                <div class="p2 flex ai-center jc-center" style="background: var(--cyan-light);">Thumb 2
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Gallery Grid -->
+                        <div class="grid cols4 gap0">
+                            <div class="p3 flex ai-center jc-center" style="background: var(--cyan-dark);">1</div>
+                            <div class="p3 flex ai-center jc-center" style="background: var(--cyan-dark);">2</div>
+                            <div class="p3 flex ai-center jc-center" style="background: var(--cyan-dark);">3</div>
+                            <div class="p3 flex ai-center jc-center" style="background: var(--cyan-dark);">4</div>
+                        </div>
+                        <!-- Bottom Row -->
+                        <div class="grid cols2 gap2">
+                            <div class="p2 flex ai-center jc-center" style="background: var(--color-cyan);">Wide Image 1
+                            </div>
+                            <div class="p2 flex ai-center jc-center" style="background: var(--color-cyan);">Wide Image 2
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAYOUT 8: FEATURE LIST -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="p3 tac" style="background: var(--yellow-pastel);">
+                    <h4 class="text-black mb3">Layout 8: Feature List</h4>
+                    <!-- Feature List -->
+                    <div class="stack gap3">
+                        <!-- Feature 1 -->
+                        <div class="grid cols2 gap2">
+                            <div class="p2" style="background: var(--color-yellow);">
+                                <h5 class="mb2">Feature 1</h5>
+                                <p class="mb1">Description text</p>
+                            </div>
+                            <div class="grid cols3 gap1">
+                                <div class="p2" style="background: var(--yellow-light);">Detail 1</div>
+                                <div class="p2" style="background: var(--yellow-light);">Detail 2</div>
+                                <div class="p2" style="background: var(--yellow-light);">Detail 3</div>
+                            </div>
+                        </div>
+                        <!-- Feature 2 -->
+                        <div class="grid cols2 gap2">
+                            <div class="p2" style="background: var(--yellow-dark);">
+                                <h5 class="mb2">Feature 2</h5>
+                                <p class="mb1">Description text</p>
+                            </div>
+                            <div class="between gap1">
+                                <div class="p2" style="background: var(--yellow-light);">Detail 1</div>
+                                <div class="p2" style="background: var(--yellow-light);">Detail 2</div>
+                            </div>
+                        </div>
+                        <!-- Feature 3 -->
+                        <div class="grid cols2 gap2">
+                            <div class="p2" style="background: var(--color-yellow);">
+                                <h5 class="mb2">Feature 3</h5>
+                                <p class="mb1">Description text</p>
+                            </div>
+                            <div class="cluster gap1">
+                                <div class="p2" style="background: var(--yellow-light);">Tag 1</div>
+                                <div class="p2" style="background: var(--yellow-light);">Tag 2</div>
+                                <div class="p2" style="background: var(--yellow-light);">Tag 3</div>
+                                <div class="p2" style="background: var(--yellow-light);">Tag 4</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAYOUT 7: CARD GRID -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="p3 tac" style="background: var(--magenta-pastel);">
+                    <h4 class="text-black mb3">Layout 7: Card Grid System</h4>
+                    <!-- Card Grid -->
+                    <div class="grid cols3 gap2">
+                        <!-- Featured Card -->
+                        <div class="span2 stack p2" style="background: var(--color-magenta);">
+                            <div class="mb2">
+                                <span class="text-white">Featured</span>
+                            </div>
+                            <div class="grid cols2 gap1">
+                                <div class="p2" style="background: var(--magenta-light);">Item 1</div>
+                                <div class="p2" style="background: var(--magenta-light);">Item 2</div>
+                            </div>
+                        </div>
+                        <!-- Regular Card -->
+                        <div class="stack p2" style="background: var(--magenta-dark);">
+                            <div class="mb2">
+                                <span class="text-white">Regular</span>
+                            </div>
+                            <div class="p2" style="background: var(--magenta-light);">Content</div>
+                        </div>
+                        <!-- Small Cards Row -->
+                        <div class="span3 grid cols3 gap1">
+                            <div class="p2" style="background: var(--magenta-dark);">Small 1</div>
+                            <div class="p2" style="background: var(--magenta-dark);">Small 2</div>
+                            <div class="p2" style="background: var(--magenta-dark);">Small 3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAYOUT 6: SIDEBAR APP -->
+            <div class="grid gap2 pb3" data-tag="div">
+                <div class="p3 tac" style="background: var(--gray-light);">
+                    <h4 class="text-black mb3">Layout 6: Sidebar App</h4>
+                    <!-- App Layout -->
+                    <div class="grid cols2 gap2">
+                        <!-- Sidebar -->
+                        <div class="stack gap1 p2" style="background: var(--cyan-dark);">
+                            <div class="flex ai-center gap1">
+                                <div class="p1" style="background: var(--color-cyan);">
+                                    <i data-lucide="home" class="icon-sm stroke-thin"></i>
+                                </div>
+                                <span class="text-white">Dashboard</span>
+                            </div>
+                            <div class="flex ai-center gap1">
+                                <div class="p1" style="background: var(--color-cyan);">
+                                    <i data-lucide="users" class="icon-sm stroke-thin"></i>
+                                </div>
+                                <span class="text-white">Users</span>
+                            </div>
+                            <div class="flex ai-center gap1">
+                                <div class="p1" style="background: var(--color-cyan);">
+                                    <i data-lucide="settings" class="icon-sm stroke-thin"></i>
+                                </div>
+                                <span class="text-white">Settings</span>
+                            </div>
+                        </div>
+                        <!-- Content -->
+                        <div class="p2" style="background: var(--color-white);">
+                            <div class="mb2 p2" style="background: var(--cyan-pastel);">Card 1</div>
+                            <div class="mb2 p2" style="background: var(--cyan-pastel);">Card 2</div>
+                            <div class="p2" style="background: var(--cyan-pastel);">Card 3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p3 border" style="background: var(--color-white); border-color: var(--gray-medium);">
+                <h4 class="text-black mb2">Layout 5: Landing Page Creativa</h4>
+                <!-- Mini hero -->
+                <div class="flex ai-center jc-center mb2" style="height: 60px; background: var(--cyan-dark);">
+                    <div style="width: 120px; height: 30px; background: var(--color-yellow);"></div>
+                </div>
+                <!-- Mini features -->
+                <div class="grid cols3 gap2">
+                    <div class="flex ai-center jc-center" style="height: 50px; background: var(--magenta-pastel);">
+                        <div style="width: 30px; height: 30px; background: var(--gray-medium);"></div>
+                    </div>
+                    <div class="flex ai-center jc-center" style="height: 50px; background: var(--magenta-pastel);">
+                        <div style="width: 30px; height: 30px; background: var(--gray-medium);"></div>
+                    </div>
+                    <div class="flex ai-center jc-center" style="height: 50px; background: var(--magenta-pastel);">
+                        <div style="width: 30px; height: 30px; background: var(--gray-medium);"></div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <!-- ICONOS SECTION - Demostración del sistema de iconos CDN -->
         <section class="pb2" data-tag="section">
-            <h2 class="pb0">Sistema de Iconos CDN - Control Dinámico</h2>            
+            <h2 class="pb0 tac">Sistema de Iconos CDN - Control Dinámico</h2>
             <div class="icon-grid full-row">
                 <!-- Tamaños áureos - Stroke fino -->
                 <i data-lucide="heart" class="icon-xs stroke-thin"></i>
@@ -584,7 +1294,7 @@
                 <i data-lucide="heart" class="icon-lg stroke-thin"></i>
                 <i data-lucide="heart" class="icon-xl stroke-thin"></i>
                 <i data-lucide="heart" class="icon-xxl stroke-thin"></i>
-                
+
                 <!-- Set completo TOT0 -->
                 <i data-lucide="house" class="icon-sm stroke-thin"></i>
                 <i data-lucide="user" class="icon-sm stroke-thin"></i>
@@ -610,13 +1320,13 @@
                 <i data-lucide="share" class="icon-sm stroke-thin"></i>
             </div>
         </section>
-        
+
         <!-- IMPLEMENTACION REAL SECTION - Casos de uso reales -->
         <section class="ml0 mr0 mb0 pl3 pr3 bg-gradient" data-tag="section">
-            <h2 class="full-row pb2">Implementaciones Reales en Producción</h2>
-            
-            <p class="pb2">Casos de uso auténticos del sistema TOT0 y filosofía 01234</p>
-            
+            <h2 class="full-row pb2 tac">Implementaciones Reales en Producción</h2>
+
+            <p class="pb2 tac">Casos de uso auténticos del sistema TOT0 y filosofía 01234</p>
+
             <ul data-tag="ul">
                 <li>Design System Modular - Arquitectura atómica con 5 módulos CSS</li>
                 <li>CEREBRO-DIGITAL - Gestión de conocimiento con Claude Code</li>
@@ -624,7 +1334,7 @@
                 <li>Blog Generator - Conversión Markdown a HTML dinámico</li>
                 <li>API Google Connector - Integración Calendar/Gmail/Drive</li>
             </ul>
-            
+
             <ol data-tag="ol">
                 <li>Instalar dependencias: <code>pip install -r requirements.txt</code></li>
                 <li>Configurar APIs: Colocar <code>client_secret.json</code> en <code>/src/config/</code></li>
@@ -632,7 +1342,12 @@
             </ol>
         </section>
     </main>
-    
+
+    <!-- Scroll to top button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Volver arriba">
+        <i data-lucide="chevron-up" style="color: white;"></i>
+    </button>
+
     <footer data-tag="footer" class="grid ch cv">
         <div class="cluster">
             <i data-lucide="brain" aria-label="CEREBRO Digital" role="img"></i>
@@ -652,22 +1367,68 @@
         });
 
         // Dark/Light Mode Toggle - SIMPLE
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const toggle = document.getElementById('theme-toggle');
-            
+
             // Aplicar tema guardado o por defecto
             const savedTheme = localStorage.getItem('theme') || 'light';
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
             }
-            
+
             // Click listener
-            toggle.addEventListener('click', function() {
+            toggle.addEventListener('click', function () {
                 const isDark = document.body.classList.toggle('dark-mode');
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
                 console.log('Theme:', isDark ? 'dark' : 'light');
             });
+
+            // Header scroll functionality
+            const header = document.querySelector('header');
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            let lastScrollY = window.scrollY;
+
+            function handleScroll() {
+                const currentScrollY = window.scrollY;
+                
+                // Header compacto al hacer scroll
+                if (currentScrollY > 100) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+                
+                // Mostrar/ocultar botón scroll to top
+                if (currentScrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+                
+                lastScrollY = currentScrollY;
+            }
+
+            // Scroll to top functionality
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Throttled scroll listener para mejor rendimiento
+            let ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    requestAnimationFrame(function() {
+                        handleScroll();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
         });
     </script>
 </body>
+
 </html>

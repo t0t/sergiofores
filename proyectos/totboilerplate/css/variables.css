@@ -29,7 +29,7 @@
     --φ: var(--r);      /* Símbolo phi para el ratio áureo */
     
     /* 2. ESCALA TIPOGRÁFICA ÁUREA - 8 tamaños únicos */
-    --t0: calc(var(--t) * 2);                      /* 16px - Base */
+    --t0: calc(var(--t) * 1.5);                    /* 15px - Base equilibrada */
     --t1: calc(var(--t0) * var(--φ));              /* ~26px - Subtítulos */
     --t2: calc(var(--t1) * var(--φ));              /* ~42px - Títulos principales */
     --t3: calc(var(--t2) * var(--φ));              /* ~68px - Hero mediano */

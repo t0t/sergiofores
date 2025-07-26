@@ -74,11 +74,12 @@
 /* Configuración global final */
 body {
     font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-    line-height: var(--lh2);       /* Line-height cómodo por defecto */
+    font-weight: 500;              /* Medium weight para mejor legibilidad */
+    line-height: var(--lh3);       /* Line-height espacioso para mejor legibilidad */
     font-size: var(--t0);          /* Tamaño base del sistema */
     -webkit-font-smoothing: antialiased;      /* Suavizado de fuentes en WebKit */
     -moz-osx-font-smoothing: grayscale;       /* Suavizado de fuentes en Firefox macOS */
-    text-rendering: optimizeLegibility;        /* Optimiza renderizado de texto */
+    text-rendering: optimizeSpeed;             /* Optimiza velocidad de renderizado */
 }
 
 /* Configuración específica para elementos principales */

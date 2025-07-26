@@ -45,7 +45,54 @@
     left: 0;
     right: 0;
     z-index: 100;
+    transition: all 0.3s ease;
+}
+
+/* Header scroll states */
+.header-scrolled {
     background-color: var(--color-bg-primary);
+    backdrop-filter: blur(10px);
+    padding-top: var(--s1);
+    padding-bottom: var(--s1);
+}
+
+.header-scrolled .logo p {
+    font-size: var(--t-1);
+}
+
+.header-scrolled .logo svg {
+    width: 35px;
+    height: 35px;
+}
+
+/* Scroll to top button */
+.scroll-to-top {
+    position: fixed;
+    bottom: var(--s3);
+    right: var(--s3);
+    width: 50px;
+    height: 50px;
+    background: var(--color-cyan);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    background: var(--cyan-dark);
+    transform: translateY(-2px);
 }
 
 /* Dark mode para header fixed */
@@ -71,7 +118,6 @@ section {
 
 /* HEADER LIGHT MODE - Texto oscuro sobre fondo claro */
 header {
-    background-color: #ffffff !important;
     color: #1a1a1a !important;
 }
 
@@ -169,6 +215,25 @@ body.dark-mode .theme-toggle {
 /* Utilidades de alineación de texto */
 .center { text-align: center; }              /* Texto centrado */
 .tac { text-align: center; }                 /* Texto centrado (alias) */
+
+/* CTA Button - Estilo de botón para enlaces principales */
+.cta-button {
+    display: inline-block;
+    padding: var(--s2) var(--s3);               /* Padding áureo del estilo original */
+    background-color: var(--color-primary);
+    color: var(--color-bg-primary);
+    text-decoration: none;
+    border-radius: var(--s1);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-primary);
+}
+
+.cta-button:hover {
+    background-color: transparent;
+    color: var(--color-primary);
+    transform: translateY(-2px);
+}
 
 /* ═══════════════════════════════════════════════════════════════════════
    CLASES DE ACCESIBILIDAD

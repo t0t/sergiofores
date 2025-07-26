@@ -65,8 +65,8 @@
     
     /* Secciones más compactas en móvil */
     section {
-        min-height: 50vh;                       /* Mantiene 50vh en móvil */
-        min-height: 50svh;                      /* Stable viewport height */
+        min-height: 80vh;                       /* Altura reducida pero generosa en móvil */
+        min-height: 80svh;                      /* Stable viewport height */
     }
 }
 
