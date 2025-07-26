@@ -1,0 +1,336 @@
+/**
+ * ICONS.CSS - SISTEMA DE ICONOS TOT0 CON LUCIDE CDN
+ * =====================================================
+ * 
+ * Control dinámico de stroke-width, fill y dimensiones
+ * para iconos Lucide usando CDN con clases específicas
+ * 
+ * FILOSOFÍA: Control total de stroke y fill con progresión áurea
+ * CONFIGURACIÓN: absoluteStrokeWidth: true - NUNCA paths, siempre strokes
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONFIGURACIÓN BASE DE ICONOS LUCIDE
+   Configuración global para todos los iconos con stroke absoluto
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Base común para todos los iconos - STROKE ABSOLUTO */
+[data-lucide] {
+    display: inline-block;
+    vertical-align: middle;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 0.1em;  /* Base escalable por defecto */
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: all 0.2s ease;
+    /* CRÍTICO: Los iconos se renderizan como strokes puros, no paths */
+    /* absoluteStrokeWidth: true configurado en lucide.createIcons() */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TAMAÑOS DE ICONOS - PROGRESIÓN ÁUREA TOT0
+   Sistema de tamaños basado en variables --s0 a --s5
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Tamaños estándar con progresión áurea simplificada */
+.icon-xs [data-lucide],
+[data-lucide].icon-xs {
+    width: 1em;            /* Escalable - base */
+    height: 1em;
+}
+
+.icon-sm [data-lucide],
+[data-lucide].icon-sm {
+    width: 1.618em;        /* φ¹ - Pequeño */
+    height: 1.618em;
+}
+
+.icon-md [data-lucide],
+[data-lucide].icon-md {
+    width: 2.618em;        /* φ² - Mediano */
+    height: 2.618em;
+}
+
+.icon-lg [data-lucide],
+[data-lucide].icon-lg {
+    width: 4.236em;        /* φ³ - Grande */
+    height: 4.236em;
+}
+
+.icon-xl [data-lucide],
+[data-lucide].icon-xl {
+    width: 6.854em;        /* φ⁴ - Extra grande */
+    height: 6.854em;
+}
+
+.icon-xxl [data-lucide],
+[data-lucide].icon-xxl {
+    width: 11.090em;       /* φ⁵ - Heroico */
+    height: 11.090em;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONTROL DE STROKE-WIDTH ESCALABLE
+   Stroke-width que escala matemáticamente con el tamaño del icono
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Stroke width fino - escala proporcionalmente */
+.stroke-thin [data-lucide],
+[data-lucide].stroke-thin {
+    stroke-width: 0.03em;   /* Muy fino, escala con el tamaño */
+}
+
+/* Stroke width estándar (por defecto) */
+.stroke-normal [data-lucide],
+[data-lucide].stroke-normal {
+    stroke-width: 0.04em;   /* Grosor estándar escalable */
+}
+
+/* Stroke width grueso */
+.stroke-thick [data-lucide],
+[data-lucide].stroke-thick {
+    stroke-width: 0.05em;   /* Grosor grueso escalable */
+}
+
+/* Stroke width extra grueso */
+.stroke-bold [data-lucide],
+[data-lucide].stroke-bold {
+    stroke-width: 0.06em;   /* Grosor extra grueso escalable */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONTROL DE FILL
+   Clases para iconos con relleno
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Fill con stroke (combinado) */
+.fill-current [data-lucide],
+[data-lucide].fill-current {
+    fill: currentColor;
+    stroke-width: 1;
+}
+
+/* Fill sin stroke */
+.fill-solid [data-lucide],
+[data-lucide].fill-solid {
+    fill: currentColor;
+    stroke-width: 0;
+}
+
+/* Fill con colores específicos */
+.fill-primary [data-lucide],
+[data-lucide].fill-primary {
+    fill: var(--primary-500);
+    stroke-width: 0;
+}
+
+.fill-secondary [data-lucide],
+[data-lucide].fill-secondary {
+    fill: var(--secondary-500);
+    stroke-width: 0;
+}
+
+.fill-accent [data-lucide],
+[data-lucide].fill-accent {
+    fill: var(--accent-500);
+    stroke-width: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ESTADOS Y INTERACCIONES
+   Hover, focus y estados activos
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Hover states */
+.icon-hover [data-lucide]:hover,
+[data-lucide].icon-hover:hover {
+    transform: scale(1.1);
+    stroke-width: 3;
+}
+
+/* Focus states */
+.icon-focus [data-lucide]:focus,
+[data-lucide].icon-focus:focus {
+    outline: 2px solid var(--primary-500);
+    outline-offset: 2px;
+}
+
+/* Active states */
+.icon-active [data-lucide],
+[data-lucide].icon-active {
+    stroke: var(--primary-500);
+    stroke-width: 3;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONTEXTOS ESPECÍFICOS
+   Clases para contextos específicos del diseño
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Iconos en navegación */
+nav [data-lucide],
+.nav-icon [data-lucide] {
+    width: var(--s2);
+    height: var(--s2);
+    stroke-width: 2;
+}
+
+/* Iconos en botones */
+button [data-lucide],
+.btn-icon [data-lucide] {
+    width: var(--s1);
+    height: var(--s1);
+    stroke-width: 2;
+}
+
+/* Iconos en headers */
+h1 [data-lucide], h2 [data-lucide], h3 [data-lucide] {
+    width: var(--s3);
+    height: var(--s3);
+    stroke-width: 2;
+    margin-bottom: var(--s2);
+}
+
+/* Iconos en grid flows */
+.grid-flow [data-lucide] {
+    width: var(--s2);
+    height: var(--s2);
+    stroke-width: 2;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ICONOS CENTRADOS Y DISPLAY
+   Para iconos que necesitan centrado específico
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Iconos centrados con margin bottom */
+.icon-lg [data-lucide] {
+    display: block;
+    margin: 0 auto var(--s3);
+}
+
+/* Contenedores de iconos grandes */
+.icon-lg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GRIDS DE ICONOS
+   Para galerías y colecciones de iconos
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Grid compacto de iconos */
+.grid-compact [data-lucide] {
+    width: var(--s2);
+    height: var(--s2);
+    stroke-width: 2;
+}
+
+/* Grid de iconos grandes */
+.icons-grid [data-lucide] {
+    width: var(--s3);
+    height: var(--s3);
+    stroke-width: 2;
+    margin: var(--s1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FOOTER Y CLUSTERS
+   Iconos en footer y agrupaciones
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Iconos en footer */
+footer [data-lucide],
+.footer-icon [data-lucide] {
+    width: var(--s2);
+    height: var(--s2);
+    stroke-width: 2;
+}
+
+/* Cluster de iconos */
+.cluster [data-lucide] {
+    width: var(--s2);
+    height: var(--s2);
+    stroke-width: 2;
+}
+
+/* Iconos de redes sociales - Centrado perfecto */
+.grid a.stack [data-lucide] {
+    display: block;
+    margin: 0 auto;
+    width: var(--s2);
+    height: var(--s2);
+    stroke-width: 2;
+}
+
+/* Asegurar centrado en contenedores stack */
+.stack.tac [data-lucide] {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Hover mejorado para iconos de redes sociales */
+.grid a.stack:hover [data-lucide] {
+    color: var(--color-cyan);
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+}
+
+.grid a.stack:hover small {
+    color: var(--color-cyan);
+    transition: color 0.2s ease;
+}
+
+/* Hover general para enlaces con iconos */
+a:hover [data-lucide] {
+    color: var(--color-cyan);
+    transition: color 0.2s ease;
+}
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════
+ * NOTAS DE IMPLEMENTACIÓN
+ * ═══════════════════════════════════════════════════════════════════════
+ * 
+ * USO CON CDN LUCIDE - STROKE ESCALABLE:
+ * - Incluir: <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+ * - Inicializar: lucide.createIcons({ fill: 'none', absoluteStrokeWidth: false });
+ * - HTML: <i data-lucide="heart" class="icon-lg stroke-thick"></i>
+ * 
+ * CONFIGURACIÓN CRÍTICA:
+ * - absoluteStrokeWidth: false - Permite control CSS total
+ * - stroke-width escalable usando em units
+ * - Control total de grosor sin interferencias JavaScript
+ * 
+ * CONTROL DINÁMICO:
+ * - Stroke: clase .stroke-thin/.stroke-normal/.stroke-thick/.stroke-bold
+ * - Fill: clase .fill-current/.fill-solid/.fill-primary
+ * - Tamaño: clase .icon-xs/.icon-sm/.icon-md/.icon-lg/.icon-xl/.icon-xxl
+ * 
+ * COMBINACIONES:
+ * - <i data-lucide="star" class="icon-lg stroke-thick fill-accent"></i>
+ * - <i data-lucide="heart" class="icon-md stroke-normal fill-current"></i>
+ * - <i data-lucide="code" class="icon-lg stroke-bold icon-hover"></i>
+ * 
+ * VENTAJAS STROKE ESCALABLE:
+ * - Stroke-width escala proporcionalmente con el tamaño del icono
+ * - Valores sutiles (0.03em-0.06em) para diferencias visuales elegantes
+ * - Control matemático preciso del grosor
+ * - Mantienen propiedades stroke, nunca paths
+ * 
+ * REGLA FUNDAMENTAL HTML5:
+ * - **ESTRUCTURA LO MENOS ANIDADA POSIBLE**
+ * - Evitar divs innecesarios y elementos contenedores
+ * - Estructura plana, semántica y mantenible
+ * - Un solo .icon-grid para todos los iconos
+ * 
+ * COMPATIBILIDAD:
+ * - Todas las clases son compatibles con variables TOT0
+ * - Progresión áurea en tamaños --s0 a --s5
+ * - Transiciones suaves en interacciones
+ */

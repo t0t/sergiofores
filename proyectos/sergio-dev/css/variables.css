@@ -1,0 +1,110 @@
+/**
+ * VARIABLES.CSS - TOT0 MATRIX SYSTEM
+ * ===================================
+ * 
+ * Sistema de variables fundamentales donde SOLO 5 variables controlan TODO
+ * Basado en progresión áurea φ=1.618 para armonía matemática perfecta
+ * 
+ * FILOSOFÍA: Menos es más - Un núcleo de variables que se propaga sin duplicación
+ */
+
+:root {
+    /* ═══════════════════════════════════════════════════════════
+       VARIABLES ORIGINALES DEL SISTEMA TOT0
+       Las 5 variables fundamentales que controlan TODO
+       ═══════════════════════════════════════════════════════════ */
+    --u: 10px;          /* Unidad base: controla TODOS los tamaños */
+    --r: 1.618;         /* Ratio áureo: controla TODAS las proporciones */
+    --hue: 200;         /* Matiz base: controla TODA la paleta de colores */
+    --sat: 70%;         /* Saturación global */
+    --flow: column;     /* Dirección del flujo principal */
+    
+    /* ═══════════════════════════════════════════════════════════
+       SISTEMA TOT0 EXTENDIDO - Variables derivadas
+       Calculadas automáticamente desde las 5 variables núcleo
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* 1. ALIAS DE COMPATIBILIDAD */
+    --t: var(--u);      /* Alias para compatibilidad TOT0 */
+    --φ: var(--r);      /* Símbolo phi para el ratio áureo */
+    
+    /* 2. ESCALA TIPOGRÁFICA ÁUREA - 8 tamaños únicos */
+    --t0: calc(var(--t) * 1.5);                    /* 15px - Base equilibrada */
+    --t1: calc(var(--t0) * var(--φ));              /* ~26px - Subtítulos */
+    --t2: calc(var(--t1) * var(--φ));              /* ~42px - Títulos principales */
+    --t3: calc(var(--t2) * var(--φ));              /* ~68px - Hero mediano */
+    --t4: calc(var(--t3) * var(--φ));              /* ~110px - Hero grande */
+    --t5: calc(var(--t4) * var(--φ));              /* ~178px - Hero gigante */
+    --t-1: calc(var(--t0) / var(--φ));             /* ~10px - Texto pequeño */
+    --t-2: calc(var(--t-1) / var(--φ));            /* ~6px - Texto mínimo */
+    
+    /* 3. LINE-HEIGHT ÁUREO - 4 valores decimales puros */
+    --lh0: 1;                                       /* Compacto - Sin espacio */
+    --lh1: calc(1 * var(--φ) / var(--φ));          /* Normal ~1 */
+    --lh2: calc(var(--lh1) * var(--φ) / 1.2);      /* Cómodo ~1.35 */
+    --lh3: calc(var(--lh2) * var(--φ) / 1.1);      /* Espacioso ~1.98 */
+    
+    /* 4. LETTER-SPACING ÁUREO - Progresión logarítmica hacia 0.1em */
+    --ls0: 0;                                       /* Normal */
+    --ls1: 0.00213em;                               /* Base calculada para llegar a 0.1em */
+    --ls2: calc(var(--ls1) * var(--φ));            /* ~0.00345em */
+    --ls3: calc(var(--ls2) * var(--φ));            /* ~0.00558em */
+    --ls4: calc(var(--ls3) * var(--φ));            /* ~0.00903em */
+    --ls5: calc(var(--ls4) * var(--φ));            /* ~0.01461em */
+    --ls6: calc(var(--ls5) * var(--φ));            /* ~0.02364em */
+    --ls7: calc(var(--ls6) * var(--φ));            /* ~0.03825em */
+    --ls8: calc(var(--ls7) * var(--φ));            /* ~0.06189em */
+    --ls9: calc(var(--ls8) * var(--φ));            /* ~0.1002em - Objetivo alcanzado */
+}
+
+:root {
+    /* 5. PALETA DE COLORES DERIVADA - MOVIDA A color.css */
+    /* Variables --c0 a --c4 ahora definidas en color.css para compatibilidad */
+    
+    /* 6. ESPACIADO ÁUREO - Progresión matemática φ=1.618 */
+    --s0: var(--u);                                 /* 10px - Base unidad */
+    --s1: calc(var(--s0) * var(--r));               /* ~16px - φ¹ */
+    --s2: calc(var(--s1) * var(--r));               /* ~26px - φ² */
+    --s3: calc(var(--s2) * var(--r));               /* ~42px - φ³ */
+    --s4: calc(var(--s3) * var(--r));               /* ~68px - φ⁴ */
+    --s5: calc(var(--s4) * var(--r));               /* ~110px - φ⁵ */
+    
+    /* 7. RITMO VERTICAL ÁUREO */
+    --lh: var(--φ);                                 /* Line height áureo base */
+    
+    /* 8. ESCALAS FIJAS (sin viewport) */
+    --viewport-scale: calc(var(--φ) * 5);           /* ≈ 8.09 sin vw */
+    
+    /* 9. SISTEMA SPACING ÁUREO - Progresión φ perfecta */
+    --vh-base: var(--s0);                            /* Unidad fundamental 10px */
+    --vh-1: var(--s1);                               /* ~16px - φ¹ */
+    --vh-2: var(--s2);                               /* ~26px - φ² */
+    --vh-3: var(--s3);                               /* ~42px - φ³ */
+    --vh-4: var(--s4);                               /* ~68px - φ⁴ */
+    --vh-5: var(--s5);                               /* ~110px - φ⁵ */
+    
+    /* 10. VARIABLES DE LAYOUT */
+    --header-height: 80px;                           /* Altura del header */
+}
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════
+ * NOTAS DE IMPLEMENTACIÓN
+ * ═══════════════════════════════════════════════════════════════════════
+ * 
+ * REGLAS DE ORO DEL SISTEMA TOT0:
+ * ✅ Solo 5 variables fundamentales controlan TODO
+ * ✅ Todas las demás variables se calculan automáticamente
+ * ✅ Progresión áurea matemáticamente perfecta
+ * ✅ Zero duplicación - Una sola fuente de verdad
+ * ✅ Escalabilidad infinita manteniendo proporciones
+ * 
+ * MODIFICACIONES PERMITIDAS:
+ * - Cambiar los 5 valores fundamentales para diferentes proyectos
+ * - Todas las demás variables se recalculan automáticamente
+ * 
+ * MODIFICACIONES PROHIBIDAS:
+ * - Hardcodear valores en lugar de usar variables
+ * - Duplicar cálculos en otros archivos
+ * - Romper la progresión áurea establecida
+ */

@@ -46,19 +46,17 @@ h2 {
     font-size: var(--t1); 
     line-height: var(--lh2); 
     font-weight: 400;
-    padding-bottom: var(--s2);
+    padding-bottom: var(--s1);
 }      /* 26px - Título más proporcionado con line-height cómodo y peso normal */
 
 h3 { 
     font-size: var(--t0); 
-    line-height: var(--lh1); 
     padding-bottom: var(--s3);
 }      /* 16px - Subtítulo más proporcionado con line-height normal */
 
 h4 { 
     font-size: var(--t0); 
     line-height: var(--lh2); 
-    padding-bottom: var(--s3);
     font-weight: 600;
 }      /* 15px - Encabezado equilibrado con peso semibold */
 

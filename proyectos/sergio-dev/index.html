@@ -2,286 +2,352 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sergio Forés | Desarrollo Web Acelerado por IA - Sistema TOT0</title>
     <meta name="description" content="Sergio Forés - Desarrollo web acelerado por IA. Claude Code CLI, sistemas agénticos y prototipado real en minutos. Metodologías probadas para equipos y proyectos.">
-    <title>Sergio Forés | Desarrollo Web Acelerado por IA</title>
-    <!-- TOT0 Matrix System - Single Entry Point -->
+
+    <!-- 
+    ══════════════════════════════════════════════════════════════════
+    NOTA: ATRIBUTOS data-tag
+    Los atributos data-tag son para debugging y wireframing.
+    Se pueden eliminar en producción si no se usa el modo debug.
+    Ver debug.css para más información sobre el sistema de wireframing.
+    ══════════════════════════════════════════════════════════════════
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- TOT0 CSS System -->
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/botones.css">
 </head>
-<body>
-    <!-- Header TOT0 -->
-    <header class="grid pl3 pr3 cv fixed">
-        <a href="#" class="logo">
+<body data-tag="body">
+    <!-- Skip navigation para accesibilidad -->
+    <a href="#main" class="sr-only">Saltar al contenido principal</a>
+    
+    <!-- HEADER -->
+    <header class="grid cv fixed" data-tag="header">
+        <a href="#main" class="logo scv ml3" data-tag="a">
+            <i data-lucide="sparkles" class="icon-md" aria-label="Sergio DEV" role="img"></i>
             <p>Sergio DEV</p>
         </a>
-        <nav class="scv">
-            <ul class="grid-flow cv mb0 ch">
-                <li><a href="#timeline">Evolución</a></li>
+        <nav data-tag="nav" class="scv nav-menu pr3">
+            <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-list">
+                <i data-lucide="menu" class="menu-icon"></i>
+                <i data-lucide="x" class="close-icon"></i>
+            </button>
+            <ul class="grid-flow cv mb0 ch nav-list" data-tag="ul">
+                <li><a href="#principios">Filosofía</a></li>
+                <li><a href="#sistema">Metodología</a></li>
                 <li><a href="#resultados">Resultados</a></li>
-                <li><a href="#metodologia">Metodología</a></li>
-                <li><a href="#colaboracion">Contacto</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <main id="main">
-        <!-- Hero TOT0 -->
-        <section class="stack bg-gradient ch cv ml0 mr0 h-screen tac" id="hero">
-            <h1 class="pb2">Desarrollo Web Acelerado por IA</h1>
-            <p class="pb3">Claude Code CLI, agentes configurados, resultados en minutos. Prototipado funcional, sistemas agénticos, metodologías probadas en producción.</p>
-            <a href="#colaboracion"><button>Contratar Ahora</button></a>
+    <!-- MAIN -->
+    <main id="main" data-tag="main">
+        
+        <!-- HERO -->
+        <section class="bg-hero ml0 mr0 acc" data-tag="section">
+            <h1 class="tac">Desarrollo Web Acelerado por IA</h1>
+            <h2 class="tac">Claude Code CLI, agentes configurados, resultados en minutos. Prototipado funcional, sistemas agénticos, metodologías probadas en producción.</h2>
+            <div class="grid ch cv">
+                <a href="#principios" class="btn-cta btn-cta-primary mt2">
+                    <i data-lucide="arrow-right"></i>
+                    Explorar Sistema
+                </a>
+            </div>
         </section>
 
-        <!-- Timeline Section -->
-        <section id="timeline" class="mlr0-plr3 pt5">
-            <h2>La Revolución Ya está Aquí</h2>
+        <!-- PRINCIPIOS -->
+        <section class="pt3 h-screen-fixed acc bg-principios ml0 mr0 pl3 pr3" data-tag="section" id="principios">
+            <h2 class="tac">La Revolución Ya está Aquí</h2>
+            <h3 class="tac">El desarrollo web ha cambiado para siempre. De semanas a minutos.</h3>
             
-            <ul class="grid">
-                <li class="tac">
-                    <div class="timeline-year">2020-2022</div>
-                    <h3>Desarrollo Manual</h3>
+            <ul class="grid" data-tag="ul">
+                <li class="tac icon-xl" data-tag="li">
+                    <i data-lucide="clock" class="stroke-thin" style="color: hsl(180,100%,30%)" aria-label="Reloj" role="img"></i>
+                    <h4>2020-2022: Desarrollo Manual</h4>
                     <p>Semanas para prototipos, arquitecturas complejas, documentación extensa</p>
                 </li>
                 
-                <li class="tac">
-                    <div class="timeline-year">2023</div>
-                    <h3>Primeras Herramientas</h3>
+                <li class="tac icon-xl" data-tag="li">
+                    <i data-lucide="code" class="stroke-thin" style="color: hsl(321,100%,30%)" aria-label="Código" role="img"></i>
+                    <h4>2023: Primeras Herramientas</h4>
                     <p>GitHub Copilot, ChatGPT para código. Todavía copiando y pegando</p>
                 </li>
                 
-                <li class="tac">
-                    <div class="timeline-year">2024</div>
-                    <h3>Claude Code CLI</h3>
+                <li class="tac icon-xl" data-tag="li">
+                    <i data-lucide="terminal" class="stroke-thin" style="color: hsl(60,100%,30%)" aria-label="Terminal" role="img"></i>
+                    <h4>2024: Claude Code CLI</h4>
                     <p>Desarrollo directo desde terminal. Agentes configurados. Workflows reales</p>
                 </li>
                 
-                <li class="tac timeline-current">
-                    <div class="timeline-year">HOY</div>
-                    <h3>Prototipado en Minutos</h3>
+                <li class="tac icon-xl" data-tag="li">
+                    <i data-lucide="sparkles" class="stroke-thin" style="color: hsl(180,100%,25%)" aria-label="Chispas" role="img"></i>
+                    <h4>HOY: Prototipado en Minutos</h4>
                     <p>De idea a demo funcional en 15 minutos. Sistemas agénticos operativos</p>
                 </li>
             </ul>
         </section>
 
-        <!-- Resultados Section -->
-        <section id="resultados" class="pt5">
-            <h2>Resultados Medibles</h2>
-            <p class="pb3">No es futurismo: <strong>es mi workflow diario</strong>. Claude Code CLI lee mi codebase, configura agentes especializados y genera código funcional mientras hablo desde terminal. El desarrollo ya no es programar: es conversar con propósito.</p>
+        <!-- SISTEMA -->
+        <section class="h-screen-fixed acc bg-sistema ml0 mr0 pl3 pr3" data-tag="section" id="sistema">
+            <h2 class="tac">Sistema Agéntico en Acción</h2>
+            <h3 class="tac">No es futurismo: <strong>es mi workflow diario</strong>. Claude Code CLI lee mi codebase, configura agentes especializados y genera código funcional mientras hablo desde terminal.</h3>
             
-            <ul class="grid">
-                <li class="tac icon-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles">
-                        <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
-                    </svg>
-                    <h3>15 Minutos: Idea → Demo</h3>
+            <ul class="grid" data-tag="ul">
+                <li class="tac icon-xl" data-tag="li">
+                    <i data-lucide="rocket" class="stroke-thin" style="color: hsl(180,100%,30%)" aria-label="Cohete" role="img"></i>
+                    <h4>15 Minutos: Idea → Demo</h4>
                     <p>Landing completa con diseño responsivo, animaciones CSS y funcionalidad JavaScript. Claude Code CLI maneja arquitectura, componentes y deployment automático.</p>
                 </li>
-                <li class="tac icon-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings">
-                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-                        <circle cx="12" cy="12" r="3" />
-                    </svg>
-                    <h3>Agentes Especializados</h3>
+                <li class="tac icon-xl" data-tag="li">
+                    <i data-lucide="settings" class="stroke-thin" style="color: hsl(321,100%,30%)" aria-label="Configuración" role="img"></i>
+                    <h4>Agentes Especializados</h4>
                     <p>Configurados para tareas específicas: uno maneja el diseño, otro los datos, otro la lógica. Trabajan coordinados mientras yo defino la visión desde terminal.</p>
                 </li>
-                <li class="tac icon-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code">
-                        <path d="m16 18 6-6-6-6" />
-                        <path d="m8 6-6 6 6 6" />
-                    </svg>
-                    <h3>Workflow Probado</h3>
+                <li class="tac icon-xl" data-tag="li">
+                    <i data-lucide="workflow" class="stroke-thin" style="color: hsl(60,100%,30%)" aria-label="Flujo de trabajo" role="img"></i>
+                    <h4>Workflow Probado</h4>
                     <p>Metodología testada en 20+ proyectos reales. Scripts, automatizaciones y configuraciones que cualquier equipo puede implementar mañana mismo.</p>
                 </li>
             </ul>
         </section>
 
-        <!-- Metodología Section -->
-        <section id="metodologia" class="mlr0-plr3 pt5">
-            <h2>Metodología Probada en Producción</h2>
-            <p class="pb3">Sistema operativo desde terminal. Claude lee mi codebase completo, entiende la arquitectura y genera código que respeta mis patrones. Los agentes se especializan en tareas concretas: diseño, datos, testing, deployment.</p>
+        <!-- RESULTADOS -->
+        <section class="h-screen-fixed acc bg-resultados ml0 mr0 pl3 pr3" data-tag="section" id="resultados">
+            <h2 class="tac">Cómo Funciona en la Práctica</h2>
+            <h3 class="tac">Metodología testada en 20+ proyectos reales. Scripts, automatizaciones y configuraciones que cualquier equipo puede implementar mañana mismo.</h3>
             
-            <ul class="grid">
-                <li class="tac">
-                    <h4>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code">
-                            <path d="m16 18 6-6-6-6" />
-                            <path d="m8 6-6 6 6 6" />
-                        </svg>
-                        Terminal como Interface
-                    </h4>
-                    <p>Conversación directa con Claude Code CLI. Comandos naturales que generan 
-                    código funcional, componentes completos y arquitecturas escalables.</p>
+            <ul class="grid" data-tag="ul">
+                <li class="tac icon-xl" data-tag="li">
+                    <i data-lucide="terminal" class="stroke-thin" style="color: hsl(180,100%,30%)" aria-label="Terminal" role="img"></i>
+                    <h4>Terminal como Interface</h4>
+                    <p>Conversación directa con Claude Code CLI. Comandos naturales que generan código funcional, componentes completos y arquitecturas escalables.</p>
                 </li>
-                <li class="tac">
-                    <h4>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings">
-                            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-                            <circle cx="12" cy="12" r="3" />
-                        </svg>
-                        Agentes Especializados
-                    </h4>
-                    <p>Un agente maneja UI/UX, otro los datos, otro el backend. 
-                    Configurados con mi contexto y patrones. Coordinación automática entre agentes.</p>
+                <li class="tac icon-xl" data-tag="li">
+                    <i data-lucide="users" class="stroke-thin" style="color: hsl(321,100%,30%)" aria-label="Usuarios" role="img"></i>
+                    <h4>Agentes Especializados</h4>
+                    <p>Un agente maneja UI/UX, otro los datos, otro el backend. Configurados con mi contexto y patrones. Coordinación automática entre agentes.</p>
                 </li>
-                <li class="tac">
-                    <h4>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder">
-                            <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
-                        </svg>
-                        Contexto Completo
-                    </h4>
-                    <p>Claude lee todo mi codebase: variables CSS, componentes, arquitectura. 
-                    Genera código que respeta mis patrones sin configuraciones adicionales.</p>
+                <li class="tac icon-xl" data-tag="li">
+                    <i data-lucide="folder" class="stroke-thin" style="color: hsl(60,100%,30%)" aria-label="Carpeta" role="img"></i>
+                    <h4>Contexto Completo</h4>
+                    <p>Claude lee todo mi codebase: variables CSS, componentes, arquitectura. Genera código que respeta mis patrones sin configuraciones adicionales.</p>
                 </li>
-                <li class="tac">
-                    <h4>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles">
-                            <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
-                        </svg>
-                        Iteración Inmediata
-                    </h4>
-                    <p>Cambios en tiempo real. Claude entiende el impacto de cada modificación 
-                    y actualiza todos los archivos relacionados automáticamente.</p>
+                <li class="tac icon-xl" data-tag="li">
+                    <i data-lucide="zap" class="stroke-thin" style="color: hsl(180,100%,25%)" aria-label="Rayo" role="img"></i>
+                    <h4>Iteración Inmediata</h4>
+                    <p>Cambios en tiempo real. Claude entiende el impacto de cada modificación y actualiza todos los archivos relacionados automáticamente.</p>
                 </li>
             </ul>
         </section>
 
-        <!-- Stack Section -->
-        <section id="stack" class="pt5">
-            <h2>Stack Tecnológico Real</h2>
-            <p class="pb3">Herramientas probadas en proyectos reales. No experimentos: <strong>workflow de producción</strong> que acelera el desarrollo 10x manteniendo calidad profesional y código mantenible.</p>
+        <!-- CONTACTO -->
+        <section class="h-screen-fixed acc bg-contacto ml0 mr0 pl3 pr3" data-tag="section" id="contacto">
+            <h2 class="tac">¿Listo para el Cambio?</h2>
+            <h3 class="tac">Si tu equipo está perdiendo tiempo en tareas que la IA puede resolver, hablemos. Te muestro el setup completo y cómo implementarlo en tu workflow actual.</h3>
             
-            <ul class="grid">
-                <li class="tac">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code">
-                            <path d="m16 18 6-6-6-6" />
-                            <path d="m8 6-6 6 6 6" />
-                        </svg>
-                        Desarrollo Principal
-                    </h3>
-                    <p>Claude Code CLI como motor principal. Agentes configurados para tareas específicas. Terminal como interface de control.</p>
-                    <ul>
-                        <li>Claude Code CLI</li>
-                        <li>Agentes Configurados</li>
-                        <li>Windsurf Editor</li>
-                        <li>Cursor</li>
-                        <li>GitHub Copilot</li>
-                    </ul>
-                </li>
-                
-                <li class="tac">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-camera">
-                            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
-                            <circle cx="12" cy="13" r="3" />
-                        </svg>
-                        Generación Multimedia
-                    </h3>
-                    <p>Visual, video, audio y voz generativa. Materialización instantánea de conceptos complejos.</p>
-                    <ul>
-                        <li>Midjourney</li>
-                        <li>Leonardo.ai</li>
-                        <li>RunwayML</li>
-                        <li>Suno AI</li>
-                        <li>ElevenLabs</li>
-                    </ul>
-                </li>
-                
-                <li class="tac">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings">
-                            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-                            <circle cx="12" cy="12" r="3" />
-                        </svg>
-                        Automatización
-                    </h3>
-                    <p>Scripts y configuraciones que conectan todas las herramientas. Workflows automatizados probados en múltiples proyectos.</p>
-                    <ul>
-                        <li>CLI Scripts</li>
-                        <li>Agent Configs</li>
-                        <li>Auto-deployment</li>
-                        <li>Context Management</li>
-                        <li>Workflow Templates</li>
-                    </ul>
-                </li>
-            </ul>
-        </section>
-
-        <!-- Colaboración Section -->
-        <section id="colaboracion" class="mlr0-plr3 pt5">
-            <h2>Disponible para Proyectos</h2>
-            <p class="pb3">Implemento sistemas Claude Code CLI en equipos y proyectos. Configuración de agentes, workflows automatizados y metodologías que reducen tiempo de desarrollo manteniendo calidad profesional.</p>
-            
-            <ul class="grid">
-                <li class="tac">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles">
-                            <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
-                        </svg>
-                        Setup Claude Code CLI
-                    </h3>
+            <ul class="grid" data-tag="ul">
+                <li class="tac icon-xl" data-tag="li">
+                    <i data-lucide="wrench" class="stroke-thin" style="color: hsl(180,100%,30%)" aria-label="Llave inglesa" role="img"></i>
+                    <h4>Setup Claude Code CLI</h4>
                     <p>Configuración completa para equipos. Agentes, workflows y templates listos para usar.</p>
                 </li>
-                <li class="tac">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-camera">
-                            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
-                            <circle cx="12" cy="13" r="3" />
-                        </svg>
-                        Desarrollo Acelerado
-                    </h3>
+                <li class="tac icon-xl" data-tag="li">
+                    <i data-lucide="gauge" class="stroke-thin" style="color: hsl(321,100%,30%)" aria-label="Velocímetro" role="img"></i>
+                    <h4>Desarrollo Acelerado</h4>
                     <p>Prototipos funcionales en sesiones de 30 minutos. MVPs completos en días, no meses.</p>
                 </li>
-                <li class="tac">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder">
-                            <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
-                        </svg>
-                        Metodología Transferible
-                    </h3>
+                <li class="tac icon-xl" data-tag="li">
+                    <i data-lucide="book" class="stroke-thin" style="color: hsl(60,100%,30%)" aria-label="Libro" role="img"></i>
+                    <h4>Metodología Transferible</h4>
                     <p>Entrenamiento y documentación para que tu equipo adopte el workflow completo.</p>
                 </li>
             </ul>
             
-            <div class="cluster ch">
-                <a href="https://github.com/t0t" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
-                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                        <path d="M9 18c-4.51 2-5-2-7-2" />
-                    </svg>
-                    GitHub
-                </a>
-                <a href="https://www.instagram.com/cuenta.01234/" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-camera">
-                        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
-                        <circle cx="12" cy="13" r="3" />
-                    </svg>
-                    Instagram
-                </a>
-                <a href="https://x.com/t0tinspire" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share">
-                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-                        <polyline points="16,6 12,2 8,6" />
-                        <line x1="12" x2="12" y1="2" y2="15" />
-                    </svg>
-                    Twitter
-                </a>
-                <a href="https://www.linkedin.com/in/sergiofores/" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                        <rect width="4" height="12" x="2" y="9" />
-                        <circle cx="4" cy="4" r="2" />
-                    </svg>
-                    LinkedIn
-                </a>
-            </div>
+
         </section>
     </main>
     
-    <footer class="grid ch cv">
-        <p>sergiofores.es · Desarrollo Web Acelerado por IA · 2024</p>
+    <!-- FOOTER -->
+    <footer class="grid cols3 gap1 bg-footer pl3 pr3 pt2 pb2" data-tag="footer">
+        <div class="span3 stack acc" data-tag="div">
+            <p data-tag="p" class="tac text-muted"><a href="https://sergiofores.es" target="_blank" class="text-muted">sergiofores.es</a> · Desarrollo Web Acelerado por IA · <span id="current-year"></span></p>
+            
+            <div class="cluster jcc acc" data-tag="div">
+                <a href="https://github.com/t0t" target="_blank" class="social-link" data-tag="a">
+                    <i data-lucide="github"></i>
+                </a>
+                <a href="https://www.instagram.com/cuenta.01234/" target="_blank" class="social-link" data-tag="a">
+                    <i data-lucide="instagram"></i>
+                </a>
+                <a href="https://x.com/t0tinspire" target="_blank" class="social-link" data-tag="a">
+                    <i data-lucide="twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/sergiofores/" target="_blank" class="social-link" data-tag="a">
+                    <i data-lucide="linkedin"></i>
+                </a>
+            </div>
+        </div>
     </footer>
+
+    <!-- Botón scroll to top -->
+    <button id="scroll-to-top" class="scroll-to-top" aria-label="Volver arriba">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Inicializar iconos Lucide
+        lucide.createIcons();
+
+        // Menu hamburguesa
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        // Función para cerrar menú
+        const closeMenu = () => {
+            menuToggle.setAttribute('aria-expanded', 'false');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        // Toggle menú con click
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            navMenu.classList.toggle('active');
+            document.body.style.overflow = isExpanded ? '' : 'hidden';
+        });
+
+        // Soporte para teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+                closeMenu();
+            }
+        });
+
+        // Navegación con teclado en menú
+        const navLinks = document.querySelectorAll('.nav-list a');
+        navLinks.forEach((link, index) => {
+            link.addEventListener('keydown', (e) => {
+                const isFirst = index === 0;
+                const isLast = index === navLinks.length - 1;
+
+                if (e.key === 'ArrowDown' || (e.key === 'Tab' && !e.shiftKey)) {
+                    e.preventDefault();
+                    if (isLast) navLinks[0].focus();
+                    else navLinks[index + 1].focus();
+                }
+
+                if (e.key === 'ArrowUp' || (e.key === 'Tab' && e.shiftKey)) {
+                    e.preventDefault();
+                    if (isFirst) navLinks[navLinks.length - 1].focus();
+                    else navLinks[index - 1].focus();
+                }
+            });
+        });
+
+        // Restaurar scroll al cerrar menú con links
+        document.querySelectorAll('.nav-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Cerrar menú al hacer click en enlaces
+        document.querySelectorAll('.nav-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Actualizar año automáticamente en el footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Configuración de tema claro por defecto
+        const body = document.body;
+        body.setAttribute('data-theme', 'light');
+        
+        // Header scroll behavior
+        const header = document.querySelector('header');
+        let lastScrollY = window.scrollY;
+        
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+        
+        // Scroll to top functionality
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scroll para enlaces internos con offset para header fijo
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const target = document.querySelector(href);
+                
+                if (target) {
+                    // Pequeña demora para asegurar cálculos precisos
+                    setTimeout(() => {
+                        // Obtener altura actual del header
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        
+                        // Ajuste específico según el ID de la sección
+                        let offset = headerHeight + 3; // Valor base ajustado
+                        
+                        // Ajustes específicos por sección si es necesario
+                        if (href === '#principios') {
+                            offset = headerHeight + 3; // Mismo que el valor base
+                        } else if (href === '#sistema') {
+                            offset = headerHeight - 5; // Reducido para sistema
+                        } else if (href === '#resultados') {
+                            offset = headerHeight - 3; // Reducido para resultados
+                        } else if (href === '#contacto') {
+                            offset = headerHeight - 2; // Reducido para contacto
+                        }
+                        
+                        const targetPosition = target.offsetTop - offset;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 10); // Pequeña demora para cálculos más precisos
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

@@ -1,0 +1,176 @@
+/**
+ * SPACING.CSS - SISTEMA DE ESPACIADO TOT0
+ * ======================================
+ * 
+ * Sistema de espaciado basado en unidades fijas (px) con progresión áurea
+ * Protocolo estricto sin duplicación + clases utility completas
+ * Escalado coherente sin dependencia del viewport height
+ * 
+ * FILOSOFÍA: Reglas estrictas de espaciado que evitan inconsistencias
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PROTOCOLO SPACING TOT0 - REGLAS ESTRICTAS SIN DUPLICACIÓN
+   Cada tipo de espaciado tiene UNA responsabilidad específica
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/**
+ * REGLA 1: SEPARACIÓN VERTICAL = solo margin-bottom
+ * Para elementos que necesitan espacio después de ellos
+ */
+ul,
+ol {
+    margin-bottom: var(--s3);    /* 24px separación vertical estándar */
+}
+
+/**
+ * FILOSOFÍA DE ESPACIADO LIMPIO:
+ * Los elementos nunca tendrán padding-top ni margin-top por defecto
+ * Esto evita dobles espacios con elementos precedentes que tengan padding-bottom
+ * Se incluirán utilidades específicas (.pt1, .pt2, etc.) cuando sea estrictamente necesario
+ */
+
+/**
+ * REGLA 3: ALTURA MÍNIMA PARA SECTIONS, HEADER Y HERO - RESPONSIVE
+ * Asegura altura mínima adaptativa según dispositivo
+ */
+header {
+    min-height: 80px;            /* Altura mínima para mejor presencia */
+}
+
+/* Sections ahora usan clase utility .h-full cuando necesiten min-height: 100vh */
+
+.bg-hero {
+    min-height: 100vh;           /* Altura completa viewport */
+    min-height: 100svh;          /* Altura viewport segura */
+}
+
+/* Altura mínima menor en móviles para mejor UX */
+@media (max-width: 375px) {
+    section {
+        min-height: 70vh;        /* Altura menor pero generosa en móviles */
+    }
+}
+
+/**
+ * REGLA 4: SEPARACIÓN HORIZONTAL = solo margin-left/right
+ * Para elementos que necesitan respiración lateral
+ */
+section {
+    margin-left: var(--s3);      /* 24px separación lateral izquierda */
+    margin-right: var(--s3);     /* 24px separación lateral derecha */
+}
+
+/**
+ * REGLA 5: GAP POR DEFECTO = medida estándar
+ * Para contenedores con elementos internos espaciados
+ */
+.grid,
+.grid-flow,
+.stack,
+.cluster {
+    gap: var(--s3);              /* 24px gap consistente en todos los layouts */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CLASES UTILITY DE PADDING - SISTEMA ÁUREO COMPLETO
+   6 niveles (0-5) usando variables de spacing fijo
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Padding Top - 6 niveles áureos */
+.pt0 { padding-top: 0; }                     /* Sin padding */
+.pt1 { padding-top: var(--s1); }             /* 8px - Mínimo */
+.pt2 { padding-top: var(--s2); }             /* 16px - Pequeño */
+.pt3 { padding-top: var(--s3); }             /* 24px - Estándar sistema */
+.pt4 { padding-top: var(--s5); }             /* 40px - Dramático */
+.pt5 { padding-top: var(--s8); }             /* 64px - Heroico */
+
+/* Padding Bottom - 6 niveles áureos */
+.pb0 { padding-bottom: 0; }                  /* Sin padding */
+.pb1 { padding-bottom: var(--s1); }          /* 8px - Mínimo */
+.pb2 { padding-bottom: var(--s2); }          /* 16px - Pequeño */
+.pb3 { padding-bottom: var(--s3); }          /* 24px - Estándar sistema */
+.pb4 { padding-bottom: var(--s5); }          /* 40px - Dramático */
+.pb5 { padding-bottom: var(--s8); }          /* 64px - Heroico */
+
+/* Padding Left - 6 niveles áureos */
+.pl0 { padding-left: 0; }                    /* Sin padding */
+.pl1 { padding-left: var(--s1); }            /* 8px - Mínimo */
+.pl2 { padding-left: var(--s2); }            /* 16px - Pequeño */
+.pl3 { padding-left: var(--s3); }            /* 24px - Estándar sistema */
+.pl4 { padding-left: var(--s5); }            /* 40px - Dramático */
+.pl5 { padding-left: var(--s8); }            /* 64px - Heroico */
+
+/* Padding Right - 6 niveles áureos */
+.pr0 { padding-right: 0; }                   /* Sin padding */
+.pr1 { padding-right: var(--s1); }           /* 8px - Mínimo */
+.pr2 { padding-right: var(--s2); }           /* 16px - Pequeño */
+.pr3 { padding-right: var(--s3); }           /* 24px - Estándar sistema */
+.pr4 { padding-right: var(--s5); }           /* 40px - Dramático */
+.pr5 { padding-right: var(--s8); }           /* 64px - Heroico */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CLASES UTILITY DE MARGIN - SISTEMA ÁUREO COMPLETO
+   6 niveles (0-5) usando variables viewport height
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Margin Left - 6 niveles áureos */
+.ml0 { margin-left: 0; }                     /* Sin margin */
+.ml1 { margin-left: var(--s1); }             /* 8px - Mínimo */
+.ml2 { margin-left: var(--s2); }             /* 16px - Pequeño */
+.ml3 { margin-left: var(--s3); }             /* 24px - Estándar sistema */
+.ml4 { margin-left: var(--s5); }             /* 40px - Dramático */
+.ml5 { margin-left: var(--s8); }             /* 64px - Heroico */
+
+/* Margin Right - 6 niveles áureos */
+.mr0 { margin-right: 0; }                    /* Sin margin */
+.mr1 { margin-right: var(--s1); }            /* 8px - Mínimo */
+.mr2 { margin-right: var(--s2); }            /* 16px - Pequeño */
+.mr3 { margin-right: var(--s3); }            /* 24px - Estándar sistema */
+.mr4 { margin-right: var(--s5); }            /* 40px - Dramático */
+.mr5 { margin-right: var(--s8); }            /* 64px - Heroico */
+
+/* Margin Bottom - 6 niveles áureos */
+.mb0 { margin-bottom: 0; }                   /* Sin margin */
+.mb1 { margin-bottom: var(--s1); }           /* 8px - Mínimo */
+.mb2 { margin-bottom: var(--s2); }           /* 16px - Pequeño */
+.mb3 { margin-bottom: var(--s3); }           /* 24px - Estándar sistema */
+.mb4 { margin-bottom: var(--s5); }           /* 40px - Dramático */
+.mb5 { margin-bottom: var(--s8); }           /* 64px - Heroico */
+
+/* Margin Top - 6 niveles áureos */
+.mt0 { margin-top: 0; }                      /* Sin margin */
+.mt1 { margin-top: var(--s1); }              /* 8px - Mínimo */
+.mt2 { margin-top: var(--s2); }              /* 16px - Pequeño */
+.mt3 { margin-top: var(--s3); }              /* 24px - Estándar sistema */
+.mt4 { margin-top: var(--s5); }              /* 40px - Dramático */
+.mt5 { margin-top: var(--s8); }              /* 64px - Heroico */
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════
+ * NOTAS DE IMPLEMENTACIÓN DEL SPACING
+ * ═══════════════════════════════════════════════════════════════════════
+ * 
+ * PROTOCOLO ANTI-DUPLICACIÓN:
+ * ✅ Cada elemento tiene UNA responsabilidad de spacing
+ * ✅ Separación vertical = solo margin-bottom
+ * ✅ Respiro interno = solo padding-top  
+ * ✅ Separación horizontal = solo margin-left/right
+ * ✅ Gap = solo para contenedores con hijos
+ * 
+ * SISTEMA DE CLASES UTILITY:
+ * - 30 clases de padding (.pt0-.pt5, .pb0-.pb5, .pl0-.pl5, .pr0-.pr5)
+ * - 24 clases de margin (.ml0-.ml5, .mr0-.mr5, .mb0-.mb5, .mt0-.mt5)
+ * - Total: 54 clases utility de spacing
+ * - Todas basadas en progresión áurea viewport
+ * 
+ * VENTAJAS DEL SISTEMA:
+ * - Consistencia absoluta en espaciado
+ * - Escalabilidad automática con viewport
+ * - Prevención de conflictos de spacing
+ * - Flexibilidad total con clases utility
+ * 
+ * BREAKPOINTS RESPONSIVOS:
+ * Las variables --vh-1 a --vh-5 se ajustan automáticamente
+ * según los breakpoints definidos en responsive.css
+ */
