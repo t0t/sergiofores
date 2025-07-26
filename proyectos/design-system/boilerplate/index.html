@@ -1,856 +1,997 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nombre del Proyecto (máx. 60 caracteres) - Sergio Forés</title>
-
-    <!-- Meta SEO - GUÍA: Optimización para buscadores -->
-    <meta name="description"
-        content="Descripción concisa del proyecto (150-160 caracteres). Incluye palabras clave principales y propuesta de valor única.">
-    <meta name="keywords" content="palabra-clave-1, palabra-clave-2, palabra-clave-3, sergio fores, diseño, 01234">
-    <meta name="author" content="Sergio Forés">
-
-    <!-- Open Graph - GUÍA: Para compartir en redes sociales -->
-    <meta property="og:title" content="Título atractivo para redes sociales (máx. 95 caracteres)">
-    <meta property="og:description"
-        content="Descripción para redes sociales (máx. 300 caracteres). Debe enganchar y motivar el clic.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tu-dominio.com/ruta-del-proyecto">
-    <meta property="og:image" content="img/proyecto-social-share-1200x630.jpg">
-
-    <!-- Twitter Card - GUÍA: Específico para Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Título para Twitter (máx. 70 caracteres)">
-    <meta name="twitter:description" content="Descripción para Twitter (máx. 200 caracteres)">
-    <meta name="twitter:image" content="img/proyecto-twitter-card-1200x630.jpg">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.svg">
-
-    <!-- PERFORMANCE CRITICAL CSS - SINGLE ENTRY POINT -->
-
-    <!-- 1. DNS PRECONNECT - Fastest external connections -->
+    <title>TOT0 Matrix - Layout Maestro Evolutivo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        /* 
+        ╔══════════════════════════════════════════════════════════════╗
+        ║                     TOT0 MATRIX v2.0                         ║
+        ║              Evolución del Layout Maestro                    ║
+        ║         NÚCLEO: Solo 5 variables controlan TODO              ║
+        ╚══════════════════════════════════════════════════════════════╝
+        */
+        :root {
+            /* ═══════════════════════════════════════════════════════════
+               VARIABLES ORIGINALES DEL SISTEMA
+               ═══════════════════════════════════════════════════════════ */
+            --u: 8px;           /* Unidad base: controla TODOS los tamaños */
+            --r: 1.618;         /* Ratio áureo: controla TODAS las proporciones */
+            --hue: 200;         /* Matiz base: controla TODA la paleta de colores */
+            --sat: 70%;         /* Saturación global */
+            --flow: column;     /* Dirección del flujo principal */
+            
+            /* ═══════════════════════════════════════════════════════════
+               SISTEMA TOT0 EXTENDIDO - Variables derivadas
+               ═══════════════════════════════════════════════════════════ */
+            
+            /* 1. UNIDAD BASE ALIAS */
+            --t: var(--u);      /* Alias para compatibilidad TOT0 */
+            
+            /* 2. RATIO ÁUREO ALIAS */
+            --φ: var(--r);      /* Símbolo phi para el ratio áureo */
+            
+            /* 3. ESCALA TIPOGRÁFICA - 8 tamaños únicos */
+            --t0: calc(var(--t) * 2);                      /* 16px base */
+            --t1: calc(var(--t0) * var(--φ));              /* ~26px */
+            --t2: calc(var(--t1) * var(--φ));              /* ~42px */
+            --t3: calc(var(--t2) * var(--φ));              /* ~68px */
+            --t4: calc(var(--t3) * var(--φ));              /* ~110px */
+            --t5: calc(var(--t4) * var(--φ));              /* ~178px */
+            --t-1: calc(var(--t0) / var(--φ));             /* ~10px */
+            --t-2: calc(var(--t-1) / var(--φ));            /* ~6px */
+            
+            /* 4. LINE-HEIGHT ÁUREO - 4 valores decimales */
+            --lh0: 1;                                       /* Compacto */
+            --lh1: calc(1 * var(--φ) / var(--φ));          /* Normal ~1 */
+            --lh2: calc(var(--lh1) * var(--φ) / 1.2);      /* Cómodo ~1.35 */
+            --lh3: calc(var(--lh2) * var(--φ) / 1.1);      /* Espacioso ~1.98 */
+            
+            /* 5. COLORES DERIVADOS */
+            --c0: hsl(var(--hue), var(--sat), 100%);       /* Blanco */
+            --c1: hsl(var(--hue), var(--sat), 90%);        /* Gris claro */
+            --c2: hsl(var(--hue), var(--sat), 70%);        /* Gris medio */
+            --c3: hsl(var(--hue), var(--sat), 30%);        /* Gris oscuro */
+            --c4: hsl(var(--hue), var(--sat), 10%);        /* Negro */
+            
+            /* 6. ESPACIADO FIBONACCI */
+            --s1: var(--t);                                 /* 8px */
+            --s2: calc(var(--s1) * 2);                      /* 16px */
+            --s3: calc(var(--s1) * 3);                      /* 24px */
+            --s5: calc(var(--s1) * 5);                      /* 40px */
+            --s8: calc(var(--s1) * 8);                      /* 64px */
+            
+            /* 7. RITMO VERTICAL */
+            --lh: var(--φ);                                 /* Line height áureo */
+            
+            /* 8. ESCALAS VIEWPORT DERIVADAS */
+            --viewport-scale: calc(var(--φ) * 5);           /* ≈ 8.09vw */
+            
+            /* 9. SISTEMA SPACING VIEWPORT - Base 1vh */
+            --vh-base: 1vh;                                  /* Unidad fundamental */
+            --vh-1: calc(var(--vh-base) * var(--φ));        /* ~1.618vh */
+            --vh-2: calc(var(--vh-1) * var(--φ));           /* ~2.618vh */
+            --vh-3: calc(var(--vh-2) * var(--φ));           /* ~4.236vh */
+            --vh-4: calc(var(--vh-3) * var(--φ));           /* ~6.854vh */
+            --vh-5: calc(var(--vh-4) * var(--φ));           /* ~11.090vh */
+        }
 
-    <!-- 2. SINGLE CSS ENTRY POINT - Todo el sistema consolidado -->
-    <link rel="stylesheet" href="css/main.css">
+        /* RESET MINIMALISTA */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        ol {
+            list-style: decimal;
+            padding-left: var(--s3);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-    <!-- 3. GOOGLE FONTS - OPTIMIZADAS PARA LCP -->
-    <!-- ⚠️ FUENTES: Inter (moderna), Source Code Pro (mono), Montserrat (versátil) -->
+        /* Sistema tipográfico derivado de las variables TOT0 */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: var(--t0);
+            line-height: var(--lh);
+            /* color: var(--c4); */
+            /* background: var(--c0); */
+        }
 
-    <!-- Preload crítico: Inter y Montserrat para uso inmediato -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-        as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    </noscript>
+        /* Espaciado universal basado en espaciado Fibonacci */
+        body > *, 
+        main > *, 
+        section > *, 
+        article > *, 
+        header > *, 
+        footer > *, 
+        nav > *, 
+        ul > *, 
+        li > * {
+            /* margin: var(--s1); */
+            /* padding: var(--s1); */
+        }
 
-    <link rel="preload"
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
-    </noscript>
+        /* ═══════════════════════════════════════════════════════════
+           WIREFRAME DEBUG - Comentar para producción
+           ═══════════════════════════════════════════════════════════ */
+        .wireframe {
+            padding: var(--s1);
+        }
 
-    <!-- Carga diferida: Fuentes secundarias -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600;700&display=swap"
-        media="print" onload="this.media='all'">
+        /* Sistema de colores wireframe - Máximo contraste sobre blanco */
+        .wireframe body   { --local-hue: 0; }
+        .wireframe header { --local-hue: 340; }
+        .wireframe footer { --local-hue: 280; }
+        .wireframe main   { --local-hue: 220; }
+        .wireframe section{ --local-hue: 45; }
+        .wireframe ul     { --local-hue: 140; }
+        .wireframe article{ --local-hue: 190; }
+        .wireframe nav    { --local-hue: 20; }
+        .wireframe svg    { --local-hue: 260; }
+        
+        /* Fondos suaves para realismo visual */
+        .wireframe header {
+            /* background: hsl(var(--local-hue), 30%, 98%); */
+        }
+      footer {
+            background: hsl(var(--local-hue), 25%, 97%);
+        }
+        .wireframe article {
+            background: hsl(var(--local-hue), 35%, 96%);
+        }
+        .wireframe nav {
+            background: hsl(var(--local-hue), 40%, 95%);
+        }
 
-    <!-- JavaScript - SINGLE ENTRY POINT -->
-    <!-- ⚠️ ÚNICO SCRIPT: Todo el sistema consolidado en main.js -->
-    <script src="js/main.js" defer></script>
+        /* Bordes wireframe - Máximo contraste */
+        .wireframe [data-tag] {
+            border: 1px solid hsl(var(--local-hue, var(--hue)), 90%, 35%);
+            position: relative;
+        }
+        
+        /* Estilos de borde específicos */
+        .wireframe header { border-style: dashed; }
+        .wireframe footer { border-style: dotted; }
+        .wireframe main { border-style: solid; }
+        .wireframe section { border-style: dashed; }
+        .wireframe ul { border-style: dotted; }
+        .wireframe article { border-style: solid; }
+        .wireframe nav { border-style: double; }
+
+        /* Etiquetas wireframe - data-tag + clases juntas */
+        .wireframe [data-tag]::before {
+            content: attr(data-tag) " ." attr(class);
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: hsl(var(--local-hue, var(--hue)), var(--sat), 50%);
+            color: white;
+            padding: calc(var(--u) / 4) calc(var(--u) / 2);
+            font-size: calc(var(--u) * 1.25);
+            line-height: 1;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* Etiquetas estructurales a la izquierda */
+        .wireframe main[data-tag]::before,
+        .wireframe header[data-tag]::before,
+        .wireframe footer[data-tag]::before,
+        .wireframe section[data-tag]::before {
+            left: 0;
+            right: auto;
+        }
+
+        /* Ocultar ::after ya que todo va en ::before */
+        .wireframe [class]::after {
+            display: none;
+        }
+
+        .wireframe [data-tag][class]::after {
+            display: none;
+        }
+
+        .wireframe .grid::after,
+        .wireframe .grid-flow::after,
+        .wireframe .bg-image::after,
+        .wireframe .highlight::after,
+        .wireframe .fit::after,
+        .wireframe .center::after,
+        .wireframe .tac::after,
+        .wireframe .stack::after,
+        .wireframe .cluster::after,
+        .wireframe .between::after,
+        .wireframe .j-start::after,
+        .wireframe .j-center::after,
+        .wireframe .j-end::after,
+        .wireframe .j-stretch::after,
+        .wireframe .a-start::after,
+        .wireframe .a-center::after,
+        .wireframe .a-end::after,
+        .wireframe .a-stretch::after,
+        .wireframe .ji-start::after,
+        .wireframe .ji-center::after,
+        .wireframe .ji-end::after,
+        .wireframe .ji-stretch::after,
+        .wireframe .ch::after,
+        .wireframe .cv::after,
+        .wireframe .sch::after,
+        .wireframe .scv::after,
+        .wireframe .full-row::after,
+        .wireframe .span2::after,
+        .wireframe .span3::after,
+        .wireframe .span4::after,
+        .wireframe .span5::after,
+        .wireframe .span6::after,
+        .wireframe .gap0::after,
+        .wireframe .gap1::after,
+        .wireframe .gap2::after,
+        .wireframe .cols2::after,
+        .wireframe .cols3::after,
+        .wireframe .cols4::after,
+        .wireframe .cols5::after,
+        .wireframe .cols6::after,
+        .wireframe .pt0::after,
+        .wireframe .pt1::after,
+        .wireframe .pt2::after,
+        .wireframe .pt3::after,
+        .wireframe .pt4::after,
+        .wireframe .pt5::after,
+        .wireframe .pb0::after,
+        .wireframe .pb1::after,
+        .wireframe .pb2::after,
+        .wireframe .pb3::after,
+        .wireframe .pb4::after,
+        .wireframe .pb5::after,
+        .wireframe .pl0::after,
+        .wireframe .pl1::after,
+        .wireframe .pl2::after,
+        .wireframe .pl3::after,
+        .wireframe .pl4::after,
+        .wireframe .pl5::after,
+        .wireframe .pr0::after,
+        .wireframe .pr1::after,
+        .wireframe .pr2::after,
+        .wireframe .pr3::after,
+        .wireframe .pr4::after,
+        .wireframe .pr5::after,
+        .wireframe .ml0::after,
+        .wireframe .ml1::after,
+        .wireframe .ml2::after,
+        .wireframe .ml3::after,
+        .wireframe .ml4::after,
+        .wireframe .ml5::after,
+        .wireframe .mr0::after,
+        .wireframe .mr1::after,
+        .wireframe .mr2::after,
+        .wireframe .mr3::after,
+        .wireframe .mr4::after,
+        .wireframe .mr5::after,
+        .wireframe .mb0::after,
+        .wireframe .mb1::after,
+        .wireframe .mb2::after,
+        .wireframe .mb3::after,
+        .wireframe .mb4::after,
+        .wireframe .mb5::after,
+        .wireframe .mt0::after,
+        .wireframe .mt1::after,
+        .wireframe .mt2::after,
+        .wireframe .mt3::after,
+        .wireframe .mt4::after,
+        .wireframe .mt5::after {
+            display: block !important;
+        }
+
+
+        /* Articles 100% líquidos */
+        article {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* Sistema de grid adaptativo */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--u) * 20)), 1fr));
+        }
+
+        /* Header y footer con mismo spacing */
+        header,
+        footer {
+            min-height: 48px;
+            align-items: center;
+        }
+
+        /* Logo sin espaciado wireframe */
+        .wireframe header svg {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Grid horizontal con scroll */
+        .grid-flow {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(min(calc(var(--u) * 10), 100%), auto);
+            overflow-x: auto;
+        }
+
+        /* Componentes derivados */
+        .bg-image {
+            min-height: calc(var(--u) * 30);
+            background: url('assets/images/asset-01-05.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .bg-image > * {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: #FFFFFF !important;
+        }
+
+        .highlight {
+            border: calc(var(--u) / 3) dotted hsl(calc(var(--hue) + 30), var(--sat), 50%);
+            background: hsl(calc(var(--hue) + 30), var(--sat), 95%);
+            min-height: calc(var(--u) * 6);
+        }
+
+        /* Enlaces con color coherente */
+        a {
+            color: hsl(var(--hue), var(--sat), 40%);
+            text-decoration: none;
+        }
+
+        /* Sistema tipográfico TOT0 - Reducción áurea intermedia aplicada */
+        body { font-size: calc(var(--t0) / var(--φ) * var(--φ) / 1.2); line-height: var(--lh2); }    /* ~13.4px - Base reducida */
+        h1 { font-size: calc(var(--t3) / var(--φ) * var(--φ) / 1.2); line-height: var(--lh0); }      /* ~56.7px - Hero reducido */
+        h2 { font-size: calc(var(--t2) / var(--φ) * var(--φ) / 1.2); line-height: var(--lh0); }      /* ~35px - Título reducido */
+        h3 { font-size: calc(var(--t1) / var(--φ) * var(--φ) / 1.2); line-height: var(--lh1); }      /* ~21.7px - Subtítulo reducido */
+        h4 { font-size: calc(var(--t0) / var(--φ) * var(--φ) / 1.2); line-height: var(--lh1); }      /* ~13.4px - Encabezado reducido */
+        h5 { font-size: calc(var(--t-1) / var(--φ) * var(--φ) / 1.2); line-height: var(--lh2); }     /* ~8.3px - Menor reducido */
+        h6 { font-size: calc(var(--t-2) / var(--φ) * var(--φ) / 1.2); line-height: var(--lh2); }     /* ~5px - Mínimo reducido */
+        p { font-size: calc(var(--t0) / var(--φ) * var(--φ) / 1.2); line-height: var(--lh2); }       /* ~13.4px - Párrafo reducido */
+        small { font-size: calc(var(--t-1) / var(--φ) * var(--φ) / 1.2); line-height: var(--lh3); }  /* ~8.3px - Pequeño reducido */
+        
+        /* Clases utility tipográficas - 8 tamaños + 4 line-heights */
+        .h1 { font-size: var(--t5); line-height: var(--lh0); }   /* 178px - Hero gigante - Compacto */
+        .h2 { font-size: var(--t4); line-height: var(--lh0); }   /* 110px - Hero grande - Compacto */
+        .h3 { font-size: var(--t3); line-height: var(--lh1); }   /* 68px - Hero mediano - Normal */
+        .h4 { font-size: var(--t2); line-height: var(--lh1); }   /* 42px - Títulos principales - Normal */
+        .h5 { font-size: var(--t1); line-height: var(--lh2); }   /* 26px - Subtítulos - Cómodo */
+        .h6 { font-size: var(--t0); line-height: var(--lh2); }   /* 16px - Base - Cómodo */
+        .h7 { font-size: var(--t-1); line-height: var(--lh3); }  /* 10px - Texto pequeño - Espacioso */
+        .h8 { font-size: var(--t-2); line-height: var(--lh3); }  /* 6px - Texto mínimo - Espacioso */
+        
+        p { max-width: 65ch; }
+        
+        body {
+            max-width: calc(var(--s8) * 20);
+            margin-inline: auto;
+            min-height: 100vh;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════
+           PROTOCOLO SPACING TOT0 - Reglas estrictas sin duplicación
+           ═══════════════════════════════════════════════════════════ */
+        
+        /* REGLA 1: Separación vertical = solo margin-bottom */
+        ul,
+        ol {
+            margin-bottom: var(--vh-3);  /* ~4.236vh separación vertical */
+        }
+        
+        /* REGLA 2: Respiro interno = solo padding-top */
+        section,
+        article {
+            padding-top: var(--vh-3);    /* ~4.236vh respiro interno */
+        }
+        
+        /* Altura mínima para sections */
+        section {
+            min-height: var(--vh-5);    /* ~11.090vh - matemáticamente áureo */
+        }
+        
+        /* REGLA 3: Separación horizontal = solo margin-left/right */
+        section {
+            margin-left: var(--vh-3);    /* ~4.236vh separación lateral */
+            margin-right: var(--vh-3);
+        }
+        
+        /* REGLA 4: Gap por defecto = medida estándar */
+        .grid,
+        .grid-flow,
+        .stack,
+        .cluster {
+            gap: var(--vh-3);            /* ~4.236vh gap consistente */
+        }
+        
+        
+        /* Sistema de padding proporcional */
+        .pt0 { padding-top: 0; }
+        .pt1 { padding-top: var(--vh-1); }    /* ~1.618vh - medida base */
+        .pt2 { padding-top: var(--vh-2); }    /* ~2.618vh - proporción áurea */
+        .pt3 { padding-top: var(--vh-3); }    /* ~4.236vh - estándar sistema */
+        .pt4 { padding-top: var(--vh-4); }    /* ~6.854vh - dramático */
+        .pt5 { padding-top: var(--vh-5); }    /* ~11.090vh - heroico */
+        
+        .pb0 { padding-bottom: 0; }
+        .pb1 { padding-bottom: var(--vh-1); }
+        .pb2 { padding-bottom: var(--vh-2); }
+        .pb3 { padding-bottom: var(--vh-3); }
+        .pb4 { padding-bottom: var(--vh-4); }
+        .pb5 { padding-bottom: var(--vh-5); }
+        
+        .pl0 { padding-left: 0; }
+        .pl1 { padding-left: var(--vh-1); }
+        .pl2 { padding-left: var(--vh-2); }
+        .pl3 { padding-left: var(--vh-3); }
+        .pl4 { padding-left: var(--vh-4); }
+        .pl5 { padding-left: var(--vh-5); }
+        
+        .pr0 { padding-right: 0; }
+        .pr1 { padding-right: var(--vh-1); }
+        .pr2 { padding-right: var(--vh-2); }
+        .pr3 { padding-right: var(--vh-3); }
+        .pr4 { padding-right: var(--vh-4); }
+        .pr5 { padding-right: var(--vh-5); }
+        
+        .ml0 { margin-left: 0; }
+        .ml1 { margin-left: var(--vh-1); }
+        .ml2 { margin-left: var(--vh-2); }
+        .ml3 { margin-left: var(--vh-3); }
+        .ml4 { margin-left: var(--vh-4); }
+        .ml5 { margin-left: var(--vh-5); }
+        
+        .mr0 { margin-right: 0; }
+        .mr1 { margin-right: var(--vh-1); }
+        .mr2 { margin-right: var(--vh-2); }
+        .mr3 { margin-right: var(--vh-3); }
+        .mr4 { margin-right: var(--vh-4); }
+        .mr5 { margin-right: var(--vh-5); }
+        
+        .mb0 { margin-bottom: 0; }
+        .mb1 { margin-bottom: var(--vh-1); }
+        .mb2 { margin-bottom: var(--vh-2); }
+        .mb3 { margin-bottom: var(--vh-3); }
+        .mb4 { margin-bottom: var(--vh-4); }
+        .mb5 { margin-bottom: var(--vh-5); }
+        
+        .mt0 { margin-top: 0; }
+        .mt1 { margin-top: var(--vh-1); }
+        .mt2 { margin-top: var(--vh-2); }
+        .mt3 { margin-top: var(--vh-3); }
+        .mt4 { margin-top: var(--vh-4); }
+        .mt5 { margin-top: var(--vh-5); }
+
+        /* ═══════════════════════════════════════════════════════════
+           BREAKPOINTS TOT0 - Mobile First + Dispositivos Específicos
+           ═══════════════════════════════════════════════════════════ */
+        
+        /* Wearable - Smartwatch (hasta 300px) */
+        @media (max-width: 300px) {
+            :root {
+                --u: 4px;  /* Unidad más pequeña */
+            }
+            header svg { width: 30px; height: 30px; }
+        }
+        
+        /* Mobile - Teléfonos (301px - 768px) */
+        @media (min-width: 301px) and (max-width: 768px) {
+            :root {
+                --u: 6px;  /* Unidad reducida */
+            }
+        }
+        
+        /* Tablet - Tabletas (769px - 1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            :root {
+                --u: 8px;  /* Unidad base estándar */
+            }
+        }
+        
+        /* Desktop - Escritorio (1025px - 1440px) */
+        @media (min-width: 1025px) and (max-width: 1440px) {
+            :root {
+                --u: 10px;  /* Unidad aumentada */
+            }
+        }
+        
+        /* TV - Pantallas grandes (1441px+) */
+        @media (min-width: 1441px) {
+            :root {
+                --u: 12px;  /* Unidad máxima */
+            }
+            header svg { width: 80px; height: 80px; }
+        }
+
+        /* Container queries para componentes */
+        @container (width < 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utilidades */
+        .fit { width: fit-content; }
+        .center { text-align: center; }
+        .tac { text-align: center; }
+        .stack { display: flex; flex-direction: column; }
+        .cluster { display: flex; flex-wrap: wrap; }
+        .between { display: flex; justify-content: space-between; }
+        
+        /* Height utilities */
+        .h-full { min-height: 100vh; }
+        .h-screen { height: 100vh; }
+        
+        /* Grid positioning - self center */
+        .sch { justify-self: center; }    /* Self center horizontal */
+        .scv { align-self: center; }      /* Self center vertical */
+        
+        /* Grid container - centrado simplificado */
+        .ch { justify-items: center; }    /* Centrado horizontal */
+        .cv { align-items: center; }      /* Centrado vertical */
+        
+        /* Grid spanning */
+        .full-row { grid-column: 1 / -1; }  /* Ocupa toda la fila */
+        .span2 { grid-column: span 2; }     /* Ocupa 2 columnas */
+        .span3 { grid-column: span 3; }     /* Ocupa 3 columnas */
+        .span4 { grid-column: span 4; }     /* Ocupa 4 columnas */
+        .span5 { grid-column: span 5; }     /* Ocupa 5 columnas */
+        .span6 { grid-column: span 6; }     /* Ocupa 6 columnas */
+        
+        /* Grid gap variations */
+        .gap0 { gap: 0; }
+        .gap1 { gap: var(--vh-1); }  /* ~1.618vh - compacto */
+        .gap2 { gap: var(--vh-2); }  /* ~2.618vh - intermedio */
+        
+        /* Grid columns */
+        .grid.cols1 { grid-template-columns: 1fr !important; }
+        .grid.cols2 { grid-template-columns: repeat(2, 1fr) !important; }
+        .grid.cols3 { grid-template-columns: repeat(3, 1fr) !important; }
+        .grid.cols4 { grid-template-columns: repeat(4, 1fr) !important; }
+        .grid.cols5 { grid-template-columns: repeat(5, 1fr) !important; }
+        .grid.cols6 { grid-template-columns: repeat(6, 1fr) !important; }
+        
+        /* Grid compacto para iconos */
+        .grid-compact {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        /* Animaciones sutiles */
+        @media (prefers-reduced-motion: no-preference) {
+            * {
+                transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                           opacity 200ms ease-out,
+                           background-color 300ms ease-out;
+            }
+            
+            a:hover, button:hover {
+                transform: translateY(-1px);
+            }
+            
+            article:hover {
+                transform: translateY(-2px);
+            }
+        }
+
+        /* Modo oscuro automático usando colores TOT0 */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --c0: hsl(var(--hue), var(--sat), 10%);
+                --c1: hsl(var(--hue), var(--sat), 20%);
+                --c2: hsl(var(--hue), var(--sat), 40%);
+                --c3: hsl(var(--hue), var(--sat), 70%);
+                --c4: hsl(var(--hue), var(--sat), 90%);
+            }
+        }
+
+        /* Container para queries responsivas */
+        main {
+            container-type: inline-size;
+        }
+        
+        /* Iconos Lucide - Tamaños basados en contexto semántico */
+        [data-lucide] {
+            width: var(--s3);
+            height: var(--s3);
+        }
+        
+        /* Contextos semánticos para iconos */
+        header [data-lucide] { width: var(--s5); height: var(--s5); }
+        footer [data-lucide] { width: var(--s2); height: var(--s2); }
+        h1 [data-lucide], h2 [data-lucide] { width: var(--s5); height: var(--s5); }
+        h3 [data-lucide], h4 [data-lucide] { width: var(--s3); height: var(--s3); }
+        .grid-flow [data-lucide] { width: var(--s2); height: var(--s2); }
+        
+        /* Clases de tamaño para iconos */
+        .icon-sm [data-lucide], [data-lucide].icon-sm { width: var(--s2); height: var(--s2); }  /* 16px */
+        .icon-md [data-lucide], [data-lucide].icon-md { width: var(--s3); height: var(--s3); }  /* 24px */
+        .icon-lg [data-lucide], [data-lucide].icon-lg { width: var(--s5); height: var(--s5); }  /* 40px */
+        
+        /* Degradado para sección final */
+        .bg-gradient {
+            background: linear-gradient(135deg, 
+                hsl(var(--hue), calc(var(--sat) + 10%), 95%), 
+                hsl(calc(var(--hue) + 60), calc(var(--sat) + 15%), 90%));
+        }
+        
+        /* Code block styles - SOLO para componente code */
+        .code-block {
+            background: hsl(var(--hue), 20%, 5%);
+            color: hsl(var(--hue), 30%, 85%);
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: calc(var(--t-1) * 0.9);
+            line-height: 1.4;
+            padding: var(--s2);
+            border-radius: calc(var(--u) / 2);
+            overflow-x: auto;
+            margin: 0;
+        }
+        
+        .code-block code {
+            background: none;
+            padding: 0;
+            font-size: inherit;
+            color: inherit;
+        }
+        
+        /* Syntax highlighting - Colores específicos */
+        .code-html-tag { color: hsl(15, 70%, 65%); }           /* Tags HTML: naranja */
+        .code-html-attr { color: hsl(45, 70%, 65%); }          /* Atributos: amarillo */
+        .code-html-string { color: hsl(120, 50%, 65%); }       /* Strings: verde */
+        .code-css-selector { color: hsl(200, 70%, 65%); }      /* Selectores: azul */
+        .code-css-property { color: hsl(280, 60%, 70%); }      /* Propiedades: morado */
+        .code-css-value { color: hsl(120, 50%, 65%); }         /* Valores: verde */
+        .code-css-comment { color: hsl(var(--hue), 20%, 50%); font-style: italic; } /* Comentarios */
+        .code-css-variable { color: hsl(330, 60%, 70%); }      /* Variables CSS: rosa */
+        
+        /* Logo styles */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--vh-1);
+        }
+        
+        .logo svg {
+            width: var(--s8);
+            height: var(--s8);
+        }
+        
+        .logo p {
+            font-size: var(--t1);
+            font-weight: bold;
+            margin: 0;
+        }
+    </style>
 </head>
-
-<body>
-    <!-- SKIP LINKS - Navegación accesible -->
-    <a href="#main-content">Saltar al contenido principal</a>
-    <a href="#main-menu">Saltar al menú de navegación</a>
-
-    <!-- HEADER NAVEGACIÓN - Sistema Sergio Forés -->
-    <header class="grid gap-sm py4 px3 items-center" role="banner">
-    <a href="#hero" aria-label="Inicio" class="grid items-center gap-xs">
-        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2" />
+<body class="wireframe">
+    <header class="grid pl3 pr3" data-tag="header">
+        <a href="#" class="logo">
+         <svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="animatedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#FF6B6B;">
+                        <animate attributeName="stop-color" 
+                                 values="#FF6B6B;#4ECDC4;#45B7D1;#96CEB4;#FECA57;#FF6B6B" 
+                                 dur="3s" 
+                                 repeatCount="indefinite"/>
+                    </stop>
+                    <stop offset="50%" style="stop-color:#4ECDC4;">
+                        <animate attributeName="stop-color" 
+                                 values="#4ECDC4;#45B7D1;#96CEB4;#FECA57;#FF6B6B;#4ECDC4" 
+                                 dur="3s" 
+                                 repeatCount="indefinite"/>
+                    </stop>
+                    <stop offset="100%" style="stop-color:#45B7D1;">
+                        <animate attributeName="stop-color" 
+                                 values="#45B7D1;#96CEB4;#FECA57;#FF6B6B;#4ECDC4;#45B7D1" 
+                                 dur="3s" 
+                                 repeatCount="indefinite"/>
+                    </stop>
+                </linearGradient>
+            </defs>
+            <circle cx="25" cy="25" r="23" fill="url(#animatedGradient)"/>
+            <text x="80" y="30" fill="#333" font-size="18" font-weight="bold"></text>
         </svg>
-        <span>Logo</span>
-    </a>
+        <p>TOT0 Matrix System</p>
+      </a>
+        <nav data-tag="nav">
+            <ul class="grid-flow" data-tag="ul">
+                <li><a href="#principios">Principios</a></li>
+                <li><a href="#sistema">Sistema</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <nav id="main-menu" aria-label="Navegación principal" class="grid items-center gap-xs">
-        <button aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav-list">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-        </button>
-        <ul id="main-nav-list" role="menubar" class="grid gap-xs">
-            <li><a href="#about" role="menuitem">ACERCA</a></li>
-            <li><a href="#features" role="menuitem">CARACTERÍSTICAS</a></li>
-            <li><a href="#documentation" role="menuitem">DOCS</a></li>
-        </ul>
-    </nav>
+    <main data-tag="main">
+      <!-- Hero -->
+      <section class="stack bg-image ch cv ml0 mr0 h-full tac" data-tag="section">
+         <h1 class="h3">TOT Boilerplate <br>CSS System</h1>
+         <p>Sistema CSS esencial donde solo 5 variables controlan TODO el diseño. Progresión áurea φ=1.618 para crear armonía matemática perfecta. Zero duplicación, máxima eficiencia.</p>
+         <button>Explorar Sistema TOT0</button>
+      </section>
 
-    <button id="theme-switcher" aria-label="Cambiar tema">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <circle cx="12" cy="12" r="5" />
-        </svg>
-    </button>
-</header>
+      <section id="principios" class="grid" data-tag="section">
+            <h2>Título Principal</h2>
+            <p>Texto breve</p>
+            <ul>
+               <li>Item 1</li>
+               <li>Item 2</li>
+               <li>Item 3</li>
+            </ul>
+            <div class="bg-image ch cv">
+                <h3>Imagen</h3>
+            </div>
+        </section>
 
-    <main id="main-content" role="main">
-        <!-- [MAIN-01] HERO SECTION - Elemento fundamental -->
-        <section id="hero" class="grid items-center gap-lg py5 text-center">
-    <hgroup>
-        <h1>Boilerplate</h1>
-        <p>Docs, Guía de uso y descarga.</p>
-    </hgroup>
-
-    <nav class="grid gap-sm">
-        <a href="#documentation">Guía rápida</a>
-        <a href="https://github.com/t0t" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                <path d="M9 18c-4.51 2-5-2-7-2" />
-            </svg>
-            Código fuente
-        </a>
-    </nav>
-</section>
-
-        <!-- [DOC-06] Sección de características y beneficios -->
-        <section id="features" class="grid gap-lg py5">
-            <h2>Características del Sistema</h2>
-            <ul class="grid auto gap-lg">
-                <li>
-                    <article class="grid gap-xs text-center">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                            <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" />
-                        </svg>
-                        <h3>Filosofía 01234</h3>
-                        <p>Sistema cognitivo que estructura la información en 5 niveles de complejidad fractal.</p>
-                    </article>
+        <section id="sistema" class="grid" data-tag="section">
+            <ul class="grid" data-tag="ul">
+                <li class="tac icon-lg">
+                  <i data-lucide="heart"></i>
+                  <h3>TOT0 Matrix</h3>
+                  <p>Sistema CSS esencial donde 5 variables controlan TODO. Basado en progresión áurea (φ=1.618) para crear armonía matemática perfecta en spacing, tipografía y layout.</p>
                 </li>
-                <li>
-                    <article class="grid gap-xs text-center">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                            <polyline points="3.27,6.96 12,12.01 20.73,6.96" />
-                            <line x1="12" y1="22.08" x2="12" y2="12" />
-                        </svg>
-                        <h3>Arquitectura Modular</h3>
-                        <p>CSS atómico con componentes BEM, variables Utopia y sistema de iconos escalable.</p>
-                    </article>
+                
+                
+                <li class="tac icon-lg">
+                  <i data-lucide="sparkles"></i>
+                  <h3>Consonancia</h3>
+                  <p>Principio fundamental de no duplicación. Cada elemento tiene UNA responsabilidad de spacing. Una sola fuente de verdad que se propaga sin fragmentación.</p>
                 </li>
-                <li>
-                    <article class="grid gap-xs text-center">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                        </svg>
-                        <h3>Performance First</h3>
-                        <p>Carga optimizada, CSS crítico inline, lazy loading y cero dependencias externas.</p>
-                    </article>
+
+                <li class="tac icon-lg">
+                  <i data-lucide="code"></i>
+                  <h3>Atomicidad Universal</h3>
+                  <p>Clases modulares (.pt0-.pt5, .ch/.cv, .sch/.scv) que se componen matemáticamente. Sistema fractal donde el patrón se repite a todas las escalas manteniendo proporción áurea.</p>
                 </li>
             </ul>
         </section>
 
-        <!-- [MAIN-02] SECCIÓN ABOUT/SERVICIOS - GUÍA: Presenta tu propuesta de valor de forma clara -->
-        <section id="about" class="grid gap-lg py5">
-            <header class="grid gap-xs">
-                <h2>¿Qué hago? o ¿En qué te puedo ayudar?</h2>
-                <p>Párrafo breve que explique tu enfoque, metodología o filosofía de trabajo (máx. 200 caracteres).</p>
-            </header>
+        <section class="ml0 mr0 pl3 pr3" data-tag="section">
+            <h2>Nueva Section</h2>
+            <p>T087236987256</p>
+            <article class="grid mt3 pt0 ai-center" data-tag="article">
+               <p class="pt3 pl3">Contenido texto</p>
+               <div class="bg-image ch cv">
+                    <h3>Imagen Fondo 89876786</h3>
+                </div>
+            </article>
+        </section>
 
-            <ul class="grid auto gap-lg">
+        <section data-tag="section">
+            <h2>Grid Cards</h2>
+            <p>Ejemplo grid</p>
+
+            <ul class="grid" data-tag="ul">
                 <li>
-                    <article class="grid gap-xs">
-                        <h3>Servicio/Habilidad 1</h3>
-                        <p>Descripción concisa de qué incluye este servicio o habilidad.</p>
-                        <p><strong>Resultado:</strong> Beneficio específico que obtendrá el cliente.</p>
+                    <article data-tag="article">
+                        <header data-tag="header"><h4>Card Uno</h4></header>
+                        <p>Contenido mínimo</p>
+                        <footer data-tag="footer">
+                            <div class="grid-flow">
+                                <a href="#">Ver</a><a href="#">Edit</a><a href="#">Del</a>
+                            </div>
+                        </footer>
                     </article>
                 </li>
                 <li>
-                    <article class="grid gap-xs">
-                        <h3>Servicio/Habilidad 2</h3>
-                        <p>Descripción concisa de qué incluye este servicio o habilidad.</p>
-                        <p><strong>Resultado:</strong> Beneficio específico que obtendrá el cliente.</p>
+                    <article class="pt0" data-tag="article">
+                        <header data-tag="header" class="bg-image ch cv">
+                           <h4>Card Dos 827345</h4>
+                        </header>
                     </article>
                 </li>
                 <li>
-                    <article class="grid gap-xs">
-                        <h3>Servicio/Habilidad 3</h3>
-                        <p>Descripción concisa de qué incluye este servicio o habilidad.</p>
-                        <p><strong>Resultado:</strong> Beneficio específico que obtendrá el cliente.</p>
+                    <article data-tag="article">
+                        <header data-tag="header"><h4>Card Tres</h4></header>
+                        <p>Mini grid de iconos</p>
+                        <footer>
+                           <!-- minigaleria de iconos -->
+                            <div class="grid-compact gap1 pt1">
+                                <i data-lucide="code"></i>
+                                <i data-lucide="sparkles"></i>
+                                <i data-lucide="heart"></i>
+                                <i data-lucide="home"></i>
+                                <i data-lucide="user"></i>
+                                <i data-lucide="mail"></i>
+                                <i data-lucide="settings"></i>
+                                <i data-lucide="search"></i>
+                                <i data-lucide="star"></i>
+                                <i data-lucide="bookmark"></i>
+                                <i data-lucide="bell"></i>
+                                <i data-lucide="calendar"></i>
+                                <i data-lucide="clock"></i>
+                                <i data-lucide="folder"></i>
+                                <i data-lucide="camera"></i>
+                                <i data-lucide="map-pin"></i>
+                                <i data-lucide="phone"></i>
+                                <i data-lucide="message-circle"></i>
+                                <i data-lucide="download"></i>
+                                <i data-lucide="upload"></i>
+                                <i data-lucide="share"></i>
+                            </div>
+                        </footer>
                     </article>
                 </li>
             </ul>
+            <!-- Grid Cards TOT0 -->
+            <ul class="grid" data-tag="ul">
+                <li>
+                    <article data-tag="article">
+                        <header data-tag="header" class="bg-image ch cv">
+                            <h4>Variables Áureas</h4>
+                        </header>
+                        <p>5 variables CSS que controlan todo el sistema. Progresión matemática φ = 1.618 para spacing perfecto.</p>
+                    </article>
+                </li>
+                <li>
+                    <article data-tag="article">
+                        <header data-tag="header">
+                           <h4>Sistema Atómico</h4>
+                        </header>
+                        <p>Clases modulares que se componen como átomos. pt0-pt5, ch/cv, sch/scv para máxima flexibilidad.</p>
+                        <footer data-tag="footer">
+                            <div class="grid-flow">
+                                <a href="#">Clases</a><a href="#">Guía</a>
+                            </div>
+                        </footer>
+                    </article>
+                </li>
+       
+                <li class="grid">
+                  <div class="highlight pl3 pt3" data-tag="div">Di345</div>
+                  <div class="highlight pl3 pt3 fit" data-tag="div">46456</div>
+                  <div class="highlight pl3 pt3" data-tag="div">Div 41234</div>
+                  <div class="highlight pl3 pt3 sch scv" data-tag="div">2456234</div>
+                  <div class="highlight pl3 pt3" data-tag="div">2531</div>
+                </li>
+            </ul>
+        </section>
+        
+        <section class="ml0 mr0 pl3 pr3" data-tag="section">
+            <h2>Lista Simple</h2>
+            <p>Cinco elementos</p>
+            
+            <ul data-tag="ul">
+                <li>Item uno</li>
+                <li>Item dos</li>
+                <li>Item tres</li>
+                <li>Item cuatro</li>
+                <li>Item cinco</li>
+            </ul>
+        </section>
+        
+        <!-- Code Windows Section -->
+        <section class="grid cols2 ml0 mr0 pl3 pr3">
+            <h2 class="full-row">Code Windows - Syntax para Programadores</h2>
+            
+            <!-- HTML5 Structure Window -->
+            <article class="pt0">
+                <header class="grid-flow">
+                    <p class="sch">HTML 5</p>
+                </header>
+                <pre class="code-block"><code><span class="code-html-tag">&lt;!DOCTYPE</span> <span class="code-html-attr">html</span><span class="code-html-tag">&gt;</span>
+<span class="code-html-tag">&lt;html</span> <span class="code-html-attr">lang</span>=<span class="code-html-string">"es"</span><span class="code-html-tag">&gt;</span>
+<span class="code-html-tag">&lt;head&gt;</span>
+    <span class="code-html-tag">&lt;meta</span> <span class="code-html-attr">charset</span>=<span class="code-html-string">"UTF-8"</span><span class="code-html-tag">&gt;</span>
+    <span class="code-html-tag">&lt;meta</span> <span class="code-html-attr">name</span>=<span class="code-html-string">"viewport"</span> <span class="code-html-attr">content</span>=<span class="code-html-string">"width=device-width, initial-scale=1.0"</span><span class="code-html-tag">&gt;</span>
+    <span class="code-html-tag">&lt;title&gt;</span>Proyecto<span class="code-html-tag">&lt;/title&gt;</span>
+    <span class="code-html-tag">&lt;link</span> <span class="code-html-attr">rel</span>=<span class="code-html-string">"stylesheet"</span> <span class="code-html-attr">href</span>=<span class="code-html-string">"css/main.css"</span><span class="code-html-tag">&gt;</span>
+<span class="code-html-tag">&lt;/head&gt;</span>
+<span class="code-html-tag">&lt;body&gt;</span>
+    <span class="code-html-tag">&lt;header</span> <span class="code-html-attr">class</span>=<span class="code-html-string">"grid"</span><span class="code-html-tag">&gt;</span>
+        <span class="code-html-tag">&lt;h1&gt;</span>Mi Proyecto<span class="code-html-tag">&lt;/h1&gt;</span>
+        <span class="code-html-tag">&lt;nav&gt;</span>
+            <span class="code-html-tag">&lt;ul</span> <span class="code-html-attr">class</span>=<span class="code-html-string">"grid-flow"</span><span class="code-html-tag">&gt;</span>
+                <span class="code-html-tag">&lt;li&gt;&lt;a</span> <span class="code-html-attr">href</span>=<span class="code-html-string">"#"</span><span class="code-html-tag">&gt;</span>Inicio<span class="code-html-tag">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="code-html-tag">&lt;li&gt;&lt;a</span> <span class="code-html-attr">href</span>=<span class="code-html-string">"#"</span><span class="code-html-tag">&gt;</span>Proyectos<span class="code-html-tag">&lt;/a&gt;&lt;/li&gt;</span>
+            <span class="code-html-tag">&lt;/ul&gt;</span>
+        <span class="code-html-tag">&lt;/nav&gt;</span>
+    <span class="code-html-tag">&lt;/header&gt;</span>
+    
+    <span class="code-html-tag">&lt;main&gt;</span>
+        <span class="code-html-tag">&lt;section</span> <span class="code-html-attr">class</span>=<span class="code-html-string">"grid"</span><span class="code-html-tag">&gt;</span>
+            <span class="code-html-tag">&lt;h2&gt;</span>Contenido Principal<span class="code-html-tag">&lt;/h2&gt;</span>
+            <span class="code-html-tag">&lt;p&gt;</span>Descripción del proyecto<span class="code-html-tag">&lt;/p&gt;</span>
+        <span class="code-html-tag">&lt;/section&gt;</span>
+    <span class="code-html-tag">&lt;/main&gt;</span>
+    
+    <span class="code-html-tag">&lt;footer</span> <span class="code-html-attr">class</span>=<span class="code-html-string">"grid ch cv"</span><span class="code-html-tag">&gt;</span>
+        <span class="code-html-tag">&lt;p&gt;</span>© 2025 Mi Proyecto<span class="code-html-tag">&lt;/p&gt;</span>
+    <span class="code-html-tag">&lt;/footer&gt;</span>
+<span class="code-html-tag">&lt;/body&gt;</span>
+<span class="code-html-tag">&lt;/html&gt;</span></code></pre>
+            </article>
+            
+            <!-- CSS Condensed Window -->
+            <article class="pt0">
+                <header class="grid-flow">
+                    <p class="sch">CSS</p>
+                </header>
+                <pre class="code-block"><code><span class="code-css-comment">/* TOT0 MATRIX - 5 variables controlan TODO */</span>
+<span class="code-css-selector">:root</span> {
+    <span class="code-css-variable">--u</span>: <span class="code-css-value">8px</span>;           <span class="code-css-comment">/* Unidad base */</span>
+    <span class="code-css-variable">--r</span>: <span class="code-css-value">1.618</span>;         <span class="code-css-comment">/* Ratio áureo */</span>
+    <span class="code-css-variable">--hue</span>: <span class="code-css-value">200</span>;         <span class="code-css-comment">/* Matiz color */</span>
+    <span class="code-css-variable">--sat</span>: <span class="code-css-value">70%</span>;         <span class="code-css-comment">/* Saturación */</span>
+    <span class="code-css-variable">--flow</span>: <span class="code-css-value">column</span>;     <span class="code-css-comment">/* Dirección */</span>
+}
 
-            <dl class="grid auto gap-sm text-center">
-                <div><dt>Años experiencia</dt><dd>X años especializándome</dd></div>
-                <div><dt>Proyectos completados</dt><dd>+X proyectos exitosos</dd></div>
-                <div><dt>Disponibilidad</dt><dd>Respuesta en 24h</dd></div>
-            </dl>
+<span class="code-css-comment">/* Reset + Grid System */</span>
+<span class="code-css-selector">*</span> { <span class="code-css-property">margin</span>: <span class="code-css-value">0</span>; <span class="code-css-property">padding</span>: <span class="code-css-value">0</span>; <span class="code-css-property">box-sizing</span>: <span class="code-css-value">border-box</span>; }
+<span class="code-css-selector">.grid</span> { <span class="code-css-property">display</span>: <span class="code-css-value">grid</span>; 
+    <span class="code-css-property">grid-template-columns</span>: <span class="code-css-value">repeat(auto-fit, 
+    minmax(min(100%, calc(var(--u) * 20)), 1fr))</span>; }
+
+<span class="code-css-comment">/* Tipografía TOT0 - Solo logaritmos áureos */</span>
+<span class="code-css-selector">h1</span> { <span class="code-css-property">font-size</span>: <span class="code-css-value">calc(var(--u) * var(--r) * var(--r) * var(--r))</span>; }
+<span class="code-css-selector">h2</span> { <span class="code-css-property">font-size</span>: <span class="code-css-value">calc(var(--u) * var(--r) * var(--r))</span>; }
+<span class="code-css-selector">h3</span> { <span class="code-css-property">font-size</span>: <span class="code-css-value">calc(var(--u) * var(--r))</span>; }
+<span class="code-css-selector">p</span> { <span class="code-css-property">font-size</span>: <span class="code-css-value">calc(var(--u) * 2)</span>; }
+<span class="code-css-selector">small</span> { <span class="code-css-property">font-size</span>: <span class="code-css-value">calc(var(--u) * 1.2)</span>; }</code></pre>
+            </article>
         </section>
 
-
-        <!-- [ICONS-BANNER] SELECCIÓN DE 50 ICONOS LUCIDE -->
-        <section>
-                <header>
-                    <h2>Iconos Lucide Disponibles</h2>
-                    <p>Selección de 50 iconos más utilizados del sistema Lucide - Sistema escalable SVG</p>
-                </header>
-
-                <div class="grid auto icons">
-                    <!-- Navegación y UI -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M3 12h18m-9-9l9 9-9 9" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M3 6h18M3 12h18M3 18h18" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M18 6L6 18M6 6l12 12" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle cx="11" cy="11" r="8" />
-                        <path d="M21 21l-4.35-4.35" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M12 2L12 22M12 2L6 8M12 2L18 8" />
-                    </svg>
-
-                    <!-- Comunicación -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                        <polyline points="22,6 12,13 2,6" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path
-                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                    </svg>
-
-                    <!-- Archivos y documentos -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                        <polyline points="14,2 14,8 20,8" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="7,10 12,15 17,10" />
-                        <line x1="12" y1="15" x2="12" y2="3" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="17,8 12,3 7,8" />
-                        <line x1="12" y1="3" x2="12" y2="15" />
-                    </svg>
-
-                    <!-- Acciones -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M12 5v14M5 12h14" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M5 12h14" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polyline points="3,6 5,6 21,6" />
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                    </svg>
-
-                    <!-- Multimedia -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polygon points="5,3 19,12 5,21 5,3" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <rect x="6" y="4" width="4" height="16" />
-                        <rect x="14" y="4" width="4" height="16" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                        <line x1="8" y1="21" x2="16" y2="21" />
-                        <line x1="12" y1="17" x2="12" y2="21" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                    </svg>
-
-                    <!-- Configuración -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path
-                            d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-                        <circle cx="12" cy="12" r="3" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M9 12l2 2 4-4" />
-                        <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3" />
-                        <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3" />
-                        <path d="M12 3c0 1-1 3-3 3s-3-2-3-3 1-3 3-3 3 2 3 3" />
-                        <path d="M12 21c0-1 1-3 3-3s3 2 3 3-1 3-3 3-3-2-3-3" />
-                    </svg>
-
-                    <!-- Redes sociales -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path
-                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                        <path d="M9 18c-4.51 2-5-2-7-2" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path
-                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                        <rect width="4" height="12" x="2" y="9" />
-                        <circle cx="4" cy="4" r="2" />
-                    </svg>
-
-                    <!-- Comercio -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle cx="8" cy="21" r="1" />
-                        <circle cx="19" cy="21" r="1" />
-                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <rect width="20" height="14" x="2" y="5" rx="2" />
-                        <line x1="2" y1="10" x2="22" y2="10" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <line x1="12" y1="1" x2="12" y2="23" />
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                    </svg>
-
-                    <!-- Tiempo y calendario -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle cx="12" cy="12" r="10" />
-                        <polyline points="12,6 12,12 16,14" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
-                        <line x1="16" y1="2" x2="16" y2="6" />
-                        <line x1="8" y1="2" x2="8" y2="6" />
-                        <line x1="3" y1="10" x2="21" y2="10" />
-                    </svg>
-
-                    <!-- Ubicación -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                        <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path
-                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                        <polyline points="3.27,6.96 12,12.01 20.73,6.96" />
-                        <line x1="12" y1="22.08" x2="12" y2="12" />
-                    </svg>
-
-                    <!-- Usuarios -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                        <circle cx="9" cy="7" r="4" />
-                        <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-                    </svg>
-
-                    <!-- Estados -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                        <polyline points="22,4 12,14.01 9,11.01" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="15" y1="9" x2="9" y2="15" />
-                        <line x1="9" y1="9" x2="15" y2="15" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path
-                            d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-                        <line x1="12" y1="9" x2="12" y2="13" />
-                        <line x1="12" y1="17" x2="12.01" y2="17" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="12" y1="8" x2="12" y2="12" />
-                        <line x1="12" y1="16" x2="12.01" y2="16" />
-                    </svg>
-
-                    <!-- Datos y análisis -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <line x1="18" y1="20" x2="18" y2="10" />
-                        <line x1="12" y1="20" x2="12" y2="4" />
-                        <line x1="6" y1="20" x2="6" y2="14" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <line x1="12" y1="20" x2="12" y2="10" />
-                        <line x1="18" y1="20" x2="18" y2="4" />
-                        <line x1="6" y1="20" x2="6" y2="16" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" />
-                    </svg>
-
-                    <!-- Desarrollo -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polyline points="16,18 22,12 16,6" />
-                        <polyline points="8,6 2,12 8,18" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polyline points="4,17 10,11 4,5" />
-                        <line x1="12" y1="19" x2="20" y2="19" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-                        <rect width="3" height="9" x="7" y="7" />
-                        <rect width="3" height="5" x="14" y="11" />
-                    </svg>
-
-                    <!-- Seguridad -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
-                        <path d="M7 11V7a5 5 0 0 1 9.9-1" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-
-                    <!-- Acciones avanzadas -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path
-                            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path
-                            d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
-                        <path
-                            d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M9 11H1l8-8 8 8" />
-                        <path d="M9 11v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V11" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle cx="12" cy="5" r="3" />
-                        <line x1="12" y1="22" x2="12" y2="8" />
-                        <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path
-                            d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-                        <circle cx="12" cy="12" r="3" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M8 3H5a2 2 0 0 0-2 2v3m18-5h-3m0 18h3m-18 0h3" />
-                        <rect width="4" height="4" x="10" y="10" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polyline points="20,6 9,17 4,12" />
-                    </svg>
-                </div>
-            </section>
-
-
-
-        <!-- [DOCUMENTATION] ESTRUCTURA Y README VISUAL DEL BOILERPLATE -->
-        <section id="documentation">
-                <header>
-                    <h2>Documentación del Boilerplate</h2>
-                    <p>Estructura HTML, arquitectura CSS y guía de implementación del sistema</p>
-                </header>
-
-                <!-- Grid de documentación con pestañas visuales -->
-                <div>
-                    <!-- [DOC-01] Card de clases CSS importantes -->
-                    <div>
-                        <div>
-                            <h3>Clases CSS Principales</h3>
-                            <p>Referencia rápida de clases más utilizadas</p>
-                        </div>
-                        <div>
-                            <pre><code><span>/* LAYOUT - Sistema de grids */</span>
-<span>.container</span>          <span>/* Contenedor principal */</span>
-<span>.grid</span>               <span>/* Grid CSS básico responsivo */</span>
-<span>.grid--2-col</span>        <span>/* Grid de 2 columnas */</span>
-<span>.grid--3-col</span>        <span>/* Grid de 3 columnas */</span>
-<span>.grid--4-col</span>        <span>/* Grid de 4 columnas */</span>
-<span>.grid-flex</span>          <span>/* Grid flexible responsivo */</span>
-<span>.gallery-grid</span>       <span>/* Grid para galerías */</span>
-
-<span>/* COMPONENTES - Elementos BEM */</span>
-<span>.card</span>               <span>/* Card base */</span>
-<span>.card</span>          <span>/* Card documentación */</span>
-<span>.card--highlight</span>    <span>/* Card destacado */</span>
-<span>.div</span>       <span>/* Header de card */</span>
-<span>.card__body</span>         <span>/* Body de card */</span>
-<span>.h3</span>        <span>/* Título de card */</span>
-<span>.p</span>         <span>/* Texto de card */</span>
-
-<span>/* BOTONES - Sistema de CTAs */</span>
-<span>.btn</span>                <span>/* Botón base */</span>
-<span>.btn--primary</span>       <span>/* Botón principal */</span>
-<span>.btn--secondary</span>     <span>/* Botón secundario */</span>
-<span>.btn--ghost</span>         <span>/* Botón transparente */</span>
-<span>.btn--cta-hero</span>      <span>/* Botón hero grande */</span>
-
-<span>/* HERO - Sección principal */</span>
-<span>.hero</span>               <span>/* Hero base */</span>
-<span>.hero--fullscreen</span>   <span>/* Hero pantalla completa */</span>
-<span>.hero--image</span>        <span>/* Hero con imagen */</span>
-<span>.hero__container</span>    <span>/* Contenedor hero */</span>
-<span>.hero__title</span>        <span>/* Título hero */</span>
-<span>.hero__subtitle</span>     <span>/* Subtítulo hero */</span>
-<span>.hero__actions</span>      <span>/* Acciones hero */</span>
-
-<span>/* NAVEGACIÓN - Header y menu */</span>
-<span>.pageheader</span>         <span>/* Header principal */</span>
-<span>.pageheader--sticky</span> <span>/* Header pegajoso */</span>
-<span>.menu</span>               <span>/* Menú de navegación */</span>
-<span>.menu__list</span>         <span>/* Lista del menú */</span>
-<span>.menu__item</span>         <span>/* Item del menú */</span>
-<span>.menu__link</span>         <span>/* Enlace del menú */</span>
-
-<span>/* ICONOS - Sistema Lucide */</span>
-<span>.icon</span>               <span>/* Icono base */</span>
-<span>.icon--xs</span>           <span>/* 16px */</span>
-<span>.icon--sm</span>           <span>/* 20px */</span>
-<span>.icon--md</span>           <span>/* 24px */</span>
-<span>.icon--lg</span>           <span>/* 32px */</span>
-<span>.icon--xl</span>           <span>/* 48px */</span>
-<span>.icon--hero</span>         <span>/* 200px */</span>
-<span>.icon--accent</span>       <span>/* Color amarillo */</span>
-<span>.icon--primary</span>      <span>/* Color negro */</span>
-<span>.icon--block</span>        <span>/* Centrado */</span>
-
-<span>/* UTILIDADES - Espaciado */</span>
-<span>.pt2</span>               <span>/* Padding top */</span>
-<span>.pb2</span>               <span>/* Padding bottom */</span>
-<span>.mt3</span>               <span>/* Margin top */</span>
-<span>.mb1</span>               <span>/* Margin bottom */</span></code></pre>
-                        </div>
-                    </div>
-                    <!-- [DOC-02] Estructura HTML -->
-                    <div>
-                        <div>
-                            <h3>Estructura HTML</h3>
-                            <p>Arquitectura semántica y accesible</p>
-                        </div>
-                        <div>
-                            <pre><code><span>&lt;html&gt;</span>
-<span>&lt;head&gt;</span> <span>[...]</span> <span>&lt;/head&gt;</span>
-<span>&lt;body&gt;</span>
-  <span>&lt;header&gt;&lt;/header&gt;</span>
-  <span>&lt;main&gt;</span>
-    <span>&lt;section</span> <span>class</span>=<span>"hero-master hero-master--gradient"</span><span>&gt;&lt;/section&gt;</span>
-    <span>&lt;section</span> <span>class</span>=<span>"section"</span><span>&gt;&lt;/section&gt;</span>
-    <span>&lt;section</span> <span>class</span>=<span>"section"</span><span>&gt;&lt;/section&gt;</span>
-  <span>&lt;/main&gt;</span>
-  <span>&lt;footer&gt;&lt;/footer&gt;</span>
-<span>&lt;/body&gt;</span>
-<span>&lt;/html&gt;</span></code></pre>
-                        </div>
-                    </div>
-
-                    <!-- [DOC-03] Arquitectura CSS -->
-                    <div>
-                        <div>
-                            <h3>Sistema CSS</h3>
-                            <p>Design tokens y arquitectura atómica</p>
-                        </div>
-                        <div>
-                            <pre
-                               ><code><span>/* Variables Core - Sistema Sergio Forés */</span>
-<span>:root</span> {
-  <span>/* Tipografía fluida Utopia */</span>
-  <span>--step-0</span>: <span>clamp</span>(<span>1rem</span>, <span>0.93rem + 0.37vw</span>, <span>1.25rem</span>);
-  <span>--step-1</span>: <span>clamp</span>(<span>1.2rem</span>, <span>1.11rem + 0.54vw</span>, <span>1.56rem</span>);
-  <span>--step-2</span>: <span>clamp</span>(<span>1.44rem</span>, <span>1.32rem + 0.78vw</span>, <span>1.95rem</span>);
-  
-  <span>/* Espaciado matemático */</span>
-  <span>--space-s</span>: <span>clamp</span>(<span>1rem</span>, <span>0.93rem + 0.37vw</span>, <span>1.25rem</span>);
-  <span>--space-m</span>: <span>clamp</span>(<span>1.5rem</span>, <span>1.39rem + 0.56vw</span>, <span>1.88rem</span>);
-  <span>--space-l</span>: <span>clamp</span>(<span>2rem</span>, <span>1.85rem + 0.74vw</span>, <span>2.5rem</span>);
-  
-  <span>/* Paleta Sergio Forés */</span>
-  <span>--color-yellow</span>: <span>#FFFF00</span>;
-  <span>--color-cyan</span>: <span>#00FFFF</span>;
-  <span>--color-red</span>: <span>#FF0000</span>;
-  <span>--color-black</span>: <span>#000000</span>;
-  <span>--color-white</span>: <span>#FFFFFF</span>;
-  
-  <span>/* Grises monocromáticos */</span>
-  <span>--gray-1</span>: <span>#333333</span>;
-  <span>--gray-2</span>: <span>#666666</span>;
-  <span>--gray-3</span>: <span>#999999</span>;
-  <span>--gray-4</span>: <span>#CCCCCC</span>;
-  <span>--gray-5</span>: <span>#EEEEEE</span>;
-  
-  <span>/* Variables semánticas */</span>
-  <span>--color-primary</span>: <span>var</span>(<span>--color-black</span>);
-  <span>--color-accent</span>: <span>var</span>(<span>--color-yellow</span>);
-  <span>--color-background</span>: <span>var</span>(<span>--color-white</span>);
-  <span>--color-surface</span>: <span>var</span>(<span>--gray-5</span>);
-}
-
-<span>/* Componentes BEM base */</span>
-<span>.card</span> {
-  <span>padding</span>: <span>var</span>(<span>--space-m</span>);
-  <span>background</span>: <span>var</span>(<span>--color-background</span>);
-}
-
-<span>.h3</span> {
-  <span>font-size</span>: <span>var</span>(<span>--step-1</span>);
-  <span>margin-bottom</span>: <span>var</span>(<span>--space-s</span>);
-}
-
-<span>.btn</span> {
-  <span>padding</span>: <span>var</span>(<span>--space-s</span>) <span>var</span>(<span>--space-m</span>);
-  <span>background</span>: <span>var</span>(<span>--color-primary</span>);
-  <span>color</span>: <span>var</span>(<span>--color-white</span>);
-}
-
-<span>.btn--primary</span> { <span>background</span>: <span>var</span>(<span>--color-primary</span>); }
-<span>.btn--secondary</span> { <span>background</span>: <span>var</span>(<span>--color-accent</span>); }</code></pre>
-                        </div>
-                    </div>
-
-                    <!-- [DOC-04] Componentes clave -->
-                    <div>
-                        <div>
-                            <h3>Componentes Clave</h3>
-                            <p>Bloques reutilizables del sistema</p>
-                        </div>
-                        <div>
-                            <pre><code><span>/* HERO SECTION - Variantes disponibles */</span>
-<span>&lt;section</span> <span>class</span>=<span>"hero hero--fullscreen hero--image"</span><span>&gt;</span>
-  <span>&lt;div</span> <span>class</span>=<span>"hero__container"</span><span>&gt;</span>
-    <span>&lt;h1</span> <span>class</span>=<span>"hero__title hero__title--inverse"</span><span>&gt;</span>Título<span>&lt;/h1&gt;</span>
-    <span>&lt;p</span> <span>class</span>=<span>"hero__subtitle"</span><span>&gt;</span>Subtítulo descriptivo<span>&lt;/p&gt;</span>
-    <span>&lt;div</span> <span>class</span>=<span>"hero__actions"</span><span>&gt;</span>
-      <span>&lt;a</span> <span>href</span>=<span>"#"</span> <span>class</span>=<span>"btn btn--primary"</span><span>&gt;</span>CTA Principal<span>&lt;/a&gt;</span>
-      <span>&lt;a</span> <span>href</span>=<span>"#"</span> <span>class</span>=<span>"btn btn--secondary"</span><span>&gt;</span>CTA Secundario<span>&lt;/a&gt;</span>
-    <span>&lt;/div&gt;</span>
-  <span>&lt;/div&gt;</span>
-<span>&lt;/section&gt;</span>
-
-<span>/* GRID SYSTEM - Opciones de layout */</span>
-<span>&lt;div</span> <span>class</span>=<span>"grid"</span><span>&gt;</span>Grid básico responsivo<span>&lt;/div&gt;</span>
-<span>&lt;div</span> <span>class</span>=<span>"grid--2-col"</span><span>&gt;</span>Grid 2 columnas<span>&lt;/div&gt;</span>
-<span>&lt;div</span> <span>class</span>=<span>"grid-flex"</span><span>&gt;</span>Grid flexible<span>&lt;/div&gt;</span>
-<span>&lt;div</span> <span>class</span>=<span>"grid--3-col"</span><span>&gt;</span>Grid 3 columnas<span>&lt;/div&gt;</span>
-<span>&lt;div</span> <span>class</span>=<span>"grid--4-col"</span><span>&gt;</span>Grid 4 columnas<span>&lt;/div&gt;</span>
-<span>&lt;div</span> <span>class</span>=<span>"gallery-grid"</span><span>&gt;</span>Grid para galerías<span>&lt;/div&gt;</span>
-
-<span>/* CARDS - Tipos y modificadores */</span>
-<span>&lt;div</span> <span>class</span>=<span>"card"</span><span>&gt;</span>
-  <span>&lt;div</span> <span>class</span>=<span>"div"</span><span>&gt;</span>
-    <span>&lt;h3</span> <span>class</span>=<span>"h3"</span><span>&gt;</span>Título<span>&lt;/h3&gt;</span>
-  <span>&lt;/div&gt;</span>
-  <span>&lt;div</span> <span>class</span>=<span>"card__body"</span><span>&gt;</span>
-    <span>&lt;p</span> <span>class</span>=<span>"p"</span><span>&gt;</span>Contenido<span>&lt;/p&gt;</span>
-  <span>&lt;/div&gt;</span>
-<span>&lt;/div&gt;</span>
-
-<span>/* Card modificadores */</span>
-<span>.card--image-only</span>
-<span>.card--image-overlay</span>
-<span>.card--highlight</span>
-
-<span>/* ICONOS LUCIDE - Sistema escalable */</span>
-<span>&lt;svg</span> <span>class</span>=<span>"icon icon--xs"</span><span>&gt;</span>...<span>&lt;/svg&gt;</span>   <span>/* 16px */</span>
-<span>&lt;svg</span> <span>class</span>=<span>"icon icon--sm"</span><span>&gt;</span>...<span>&lt;/svg&gt;</span>   <span>/* 20px */</span>
-<span>&lt;svg</span> <span>class</span>=<span>"icon icon--md"</span><span>&gt;</span>...<span>&lt;/svg&gt;</span>   <span>/* 24px */</span>
-<span>&lt;svg</span> <span>class</span>=<span>"icon icon--lg"</span><span>&gt;</span>...<span>&lt;/svg&gt;</span>   <span>/* 32px */</span>
-<span>&lt;svg</span> <span>class</span>=<span>"icon icon--xl"</span><span>&gt;</span>...<span>&lt;/svg&gt;</span>   <span>/* 48px */</span>
-<span>&lt;svg</span> <span>class</span>=<span>"icon icon--hero"</span><span>&gt;</span>...<span>&lt;/svg&gt;</span> <span>/* 200px */</span>
-
-<span>/* Icon modificadores */</span>
-<span>.icon--accent</span>    <span>/* Color amarillo */</span>
-<span>.icon--cyan</span>      <span>/* Color cyan */</span>
-<span>.icon--primary</span>   <span>/* Color negro */</span>
-<span>.icon--block</span>     <span>/* Display block centrado */</span></code></pre>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <!-- [DOC-07] Protocolo de Puesta en Marcha para Prototipos -->
-                <div>
-                    <header>
-                        <h3>Protocolo de Puesta en Marcha</h3>
-                        <p>Pasos sistemáticos para implementar correctamente el boilerplate en nuevos prototipos</p>
-                    </header>
-                    <!-- [DOC-07.01] Grid de pasos de implementación -->
-                    <div>
-                        <div>
-                            <h4>📁 Setup Inicial</h4>
-                            <ul>
-                                <li>Duplicar carpeta boilerplate</li>
-                                <li>Renombrar proyecto</li>
-                                <li>Configurar estructura base</li>
-                                <li>Verificar paths CSS/JS</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4>🎨 Personalización</h4>
-                            <ul>
-                                <li>Modificar <code>variables-core.css</code></li>
-                                <li>Ajustar paleta Sergio Forés</li>
-                                <li>Configurar tipografía Utopia</li>
-                                <li>Definir brand colors</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4>📝 Contenido</h4>
-                            <ul>
-                                <li>Actualizar meta tags SEO</li>
-                                <li>Reemplazar textos placeholder</li>
-                                <li>Configurar redes sociales</li>
-                                <li>Optimizar imágenes</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4>🧪 Testing</h4>
-                            <ul>
-                                <li>Validar HTML semántico</li>
-                                <li>Test responsive completo</li>
-                                <li>Verificar dark mode</li>
-                                <li>Performance audit</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4>🚀 Deploy</h4>
-                            <ul>
-                                <li>Build final optimizado</li>
-                                <li>Configurar hosting</li>
-                                <li>SSL certificate</li>
-                                <li>Analytics setup</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4>🔍 Validación</h4>
-                            <ul>
-                                <li>Lighthouse audit 90+</li>
-                                <li>Cross-browser testing</li>
-                                <li>Accessibility check</li>
-                                <li>Mobile performance</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+        <section class="grid ml0 mr0 mb0 pl3 pr3 bg-gradient" data-tag="section">
+            <h2 class="full-row">Final Section con .full-row</h2>
+            
+            <p>Texto limpio suelto</p>
+            
+            <ul data-tag="ul">
+                <li>Último uno</li>
+                <li>Último dos</li>
+                <li>Último tres</li>
+                <li>Último cuatro</li>
+                <li>Último cinco</li>
+            </ul>
+            
+            <ol data-tag="ol">
+                <li>Primer paso</li>
+                <li>Segundo paso</li>
+                <li>Tercer paso</li>
+            </ol>
+        </section>
     </main>
-
-    <!-- FOOTER - GUÍA: Información complementaria y enlaces útiles -->
-    <footer>
-        <div>
-            <div>
-                <div>
-                    <!-- GUÍA: Refuerza tu marca y propuesta de valor -->
-                    <h3>Tu Marca</h3>
-                    <p>
-                        Frase memorable que resuma tu propuesta de valor o misión (máx. 100 caracteres).
-                    </p>
-
-                    <!-- GUÍA: CTA directo a WhatsApp -->
-                    <div>
-                        <p>¿Prefieres WhatsApp? Hablemos por WhatsApp. Respuesta rápida y
-                            conversación directa.</p>
-                        <button id="whatsapp-btn" data-phone="Kzg5MTY0MDk0NTg3">
-                            <svg viewBox="0 0 24 24" fill="currentColor"
-                                style="margin-right: 8px;">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.087" />
-                            </svg>
-                            Escribir por WhatsApp
-                        </button>
-                    </div>
-                </div>
-
-                <div>
-                    <div>
-                        <h4>Enlaces</h4>
-                        <ul>
-                            <!-- GUÍA: Incluir solo los enlaces más importantes -->
-                            <li><a href="#hero">Inicio</a></li>
-                            <li><a href="#about">Servicios</a></li>
-                            <li><a href="#features">Proceso</a></li>
-                            <li><a href="#documentation">Documentación</a></li>
-                            <li><a href="#contact">Contacto</a></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4>Redes Sociales</h4>
-                        <div>
-                            <!-- GUÍA: Enlaces a tus redes sociales con iconos Lucide -->
-                            <a href="https://github.com/t0t" aria-label="GitHub"
-                                target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                    <path d="M9 18c-4.51 2-5-2-7-2" />
-                                </svg>
-                            </a>
-
-                            <a href="https://x.com/t0tinspire" aria-label="Twitter/X"
-                                target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-                                </svg>
-                            </a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <!-- GUÍA: Copyright y enlace a tu sitio principal -->
-                <p>© 2025 <a href="https://tu-dominio.com">Tu Nombre</a> • Creado con Sistema
-                    Sergio Forés</p>
-            </div>
+    
+    <footer data-tag="footer" class="grid ch cv">
+        <div class="cluster">
+            <i data-lucide="home"></i>
+            <i data-lucide="user"></i>
+            <i data-lucide="mail"></i>
+            <i data-lucide="github"></i>
+            <i data-lucide="linkedin"></i>
         </div>
+        <p>sergiofores.es · Holistic IA Wireframe · 2025</p>
     </footer>
 
-    <!-- Back to Top Button - Manejado por smooth-scroll.js -->
-    <button aria-label="Volver arriba">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14"
-            height="14" style="transform: rotate(-90deg);">
-            <polyline points="9,18 15,12 9,6" />
-        </svg>
-    </button>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
-
 </html>

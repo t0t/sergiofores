@@ -1,0 +1,728 @@
+/**
+ * SISTEMA AGENTES 01234 - CSS
+ * Filosofía: Diseño funcional que refleja la arquitectura cognitiva 01234
+ * Paleta: Sergio Forés monocromática + acentos específicos por agente
+ */
+
+/* ==========================================================================
+   ICONOS GEOMÉTRICOS 01234 - Sistema consistente Sergio Forés
+   ========================================================================== */
+
+.geo-shape {
+    display: inline-block;
+}
+
+.geo-circle-outline {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--logo-0);
+    border-radius: 50%;
+    background: transparent;
+}
+
+.geo-circle-solid {
+    width: 32px;
+    height: 32px;
+    background: var(--logo-1);
+    border-radius: 50%;
+}
+
+.geo-line {
+    width: 32px;
+    height: 6px;
+    background: var(--logo-2);
+    border-radius: 3px;
+}
+
+.geo-triangle {
+    width: 0; 
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-bottom: 32px solid var(--logo-3);
+}
+
+.geo-square {
+    width: 32px;
+    height: 32px;
+    background: var(--logo-4);
+    border-radius: 0 !important;
+}
+
+/* ==========================================================================
+   BASE - Reset y configuración fundamental
+   ========================================================================== */
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-normal);
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================================================
+   HEADER - Navegación principal consistente con design system
+   ========================================================================== */
+
+.header-main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--color-background);
+    border-bottom: var(--space-1px) solid var(--color-border);
+    z-index: var(--z-header);
+    height: var(--nav-header-height);
+}
+
+.header-content {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--nav-padding-h);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: var(--color-text-primary);
+}
+
+.logo-text {
+    font-size: var(--analysis-text);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.nav-main {
+    display: flex;
+    gap: var(--space-xl);
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    font-size: var(--connection-text);
+    font-weight: var(--font-weight-medium);
+    transition: color var(--duration-base) var(--ease-out);
+}
+
+.nav-link:hover {
+    color: var(--color-text-primary);
+}
+
+.nav-link--active {
+    color: var(--color-text-primary) !important;
+    font-weight: var(--font-weight-semibold);
+}
+
+/* ==========================================================================
+   HERO SECTION - Presentación principal del sistema
+   ========================================================================== */
+
+.hero-section {
+    margin-top: var(--nav-header-height);
+    padding: var(--quantum-space) 0;
+    background: linear-gradient(135deg, var(--color-background) 0%, var(--gray-5) 100%);
+}
+
+.hero-container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--nav-padding-h);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
+}
+
+.hero-title {
+    font-size: var(--essence-text);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--line-height-tight);
+}
+
+.hero-subtitle {
+    font-size: var(--analysis-text);
+    color: var(--color-text-secondary);
+    margin: 0;
+    font-weight: var(--font-weight-medium);
+}
+
+.hero-description {
+    font-size: var(--fragment-text);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+}
+
+.hero-description p {
+    margin: 0;
+}
+
+/* Constelación visual de agentes */
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.agent-constellation {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+.constellation-connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.connection-line {
+    opacity: 0.3;
+    transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.agent-node {
+    position: absolute;
+    width: var(--space-60px);
+    height: var(--space-60px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--analysis-text);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-background);
+    cursor: pointer;
+    transition: all var(--duration-base) var(--ease-out);
+    z-index: 2;
+}
+
+.agent-node--cero {
+    background: var(--gray-3);
+    top: var(--space-20px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.agent-node--uno {
+    background: var(--color-black);
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.agent-node--dos {
+    background: var(--color-red);
+    top: 200px;
+    left: 100px;
+}
+
+.agent-node--tres {
+    background: var(--color-cyan);
+    top: 200px;
+    right: 100px;
+}
+
+.agent-node--cuatro {
+    background: var(--color-yellow);
+    color: var(--color-black);
+    bottom: var(--space-20px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.agent-node:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+
+.agent-node--dos:hover,
+.agent-node--tres:hover {
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   NAVEGACIÓN DE AGENTES - Selector horizontal
+   ========================================================================== */
+
+.agents-nav {
+    background: var(--color-background);
+    border-top: var(--space-1px) solid var(--color-border);
+    border-bottom: var(--space-1px) solid var(--color-border);
+    position: sticky;
+    top: var(--nav-header-height);
+    z-index: var(--z-dropdown);
+}
+
+.agents-nav-container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--nav-padding-h);
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.agents-nav-container::-webkit-scrollbar {
+    display: none;
+}
+
+.agent-nav-btn {
+    flex: 1;
+    min-width: 200px;
+    padding: var(--space-l) var(--space-m);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2px);
+    transition: all var(--duration-base) var(--ease-out);
+    border-bottom: 3px solid transparent;
+}
+
+.agent-nav-btn:hover {
+    background: var(--gray-5);
+}
+
+.agent-nav-btn--active {
+    background: var(--gray-5);
+    border-bottom-color: var(--color-black);
+}
+
+.agent-number {
+    font-size: var(--analysis-text);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+}
+
+.agent-name {
+    font-size: var(--connection-text);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.agent-concept {
+    font-size: var(--detail-text);
+    color: var(--color-text-muted);
+    text-align: center;
+    line-height: var(--line-height-tight);
+}
+
+/* ==========================================================================
+   SECCIONES DE AGENTES - Content areas
+   ========================================================================== */
+
+.main-content {
+    background: var(--color-background);
+}
+
+.agent-section {
+    display: none;
+    padding: var(--space-2xl) 0;
+}
+
+.agent-section--active {
+    display: block;
+}
+
+.agent-container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--nav-padding-h);
+}
+
+.agent-header {
+    display: flex;
+    align-items: center;
+    gap: var(--nav-padding-h);
+    margin-bottom: var(--nav-padding-h);
+    padding-bottom: var(--nav-padding-h);
+    border-bottom: var(--space-2px) solid var(--color-border);
+}
+
+.agent-icon-display {
+    width: var(--space-80px);
+    height: var(--space-80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.agent-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2px);
+}
+
+.agent-title {
+    font-size: var(--core-text);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.agent-subtitle {
+    font-size: var(--analysis-text);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    margin: 0;
+    letter-spacing: var(--letter-spacing-wider);
+}
+
+/* ==========================================================================
+   CONTENIDO DE AGENTES - Cards y detalles
+   ========================================================================== */
+
+.agent-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nav-padding-h);
+}
+
+.agent-intro {
+    text-align: center;
+    padding: var(--nav-padding-h);
+    background: var(--gray-5);
+    border-radius: var(--radius-md);
+}
+
+.agent-description {
+    font-size: var(--analysis-text);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--line-height-relaxed);
+}
+
+.agent-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--nav-padding-h);
+}
+
+.detail-card {
+    background: var(--color-background);
+    border: var(--space-1px) solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--nav-padding-h);
+    display: flex;
+    flex-direction: column;
+    gap: var(--analysis-space);
+}
+
+.detail-title {
+    font-size: var(--analysis-text);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0;
+    padding-bottom: var(--space-s);
+    border-bottom: var(--space-1px) solid var(--color-border);
+}
+
+.detail-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+}
+
+.detail-list li {
+    font-size: var(--fragment-text);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-relaxed);
+    padding-left: var(--space-m);
+    position: relative;
+}
+
+.detail-list li::before {
+    content: "•";
+    color: var(--color-text-muted);
+    position: absolute;
+    left: 0;
+}
+
+.detail-list li strong {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+.quote-list li {
+    font-style: italic;
+    color: var(--color-text-secondary);
+}
+
+.quote-list li::before {
+    content: '"';
+    font-size: var(--analysis-text);
+    color: var(--color-text-muted);
+}
+
+/* División de responsabilidades - layout especial */
+.responsibility-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--analysis-space);
+    margin-top: var(--analysis-space);
+}
+
+.responsibility-section {
+    padding: var(--analysis-space);
+    background: var(--gray-5);
+    border-radius: var(--radius-base);
+}
+
+.responsibility-section h5 {
+    font-size: var(--connection-text);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--analysis-space) 0;
+}
+
+/* ==========================================================================
+   ESENCIA - Declaración final de cada agente
+   ========================================================================== */
+
+.agent-essence {
+    text-align: center;
+    padding: var(--nav-padding-h);
+    background: linear-gradient(135deg, var(--gray-5) 0%, var(--color-background) 100%);
+    border-radius: var(--radius-lg);
+    border: var(--space-2px) solid var(--color-border);
+}
+
+.essence-text {
+    font-size: var(--analysis-text);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--line-height-relaxed);
+    font-style: italic;
+}
+
+.essence-text strong {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+}
+
+/* ==========================================================================
+   ARQUITECTURA SUMMARY - Sección explicativa
+   ========================================================================== */
+
+.architecture-summary {
+    background: var(--gray-5);
+    padding: var(--space-3xl) 0;
+    border-top: var(--space-1px) solid var(--color-border);
+}
+
+.summary-container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--nav-padding-h);
+}
+
+.summary-title {
+    font-size: var(--core-text);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    text-align: center;
+    margin: 0 0 var(--space-2xl) 0;
+}
+
+.architecture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--nav-padding-h);
+}
+
+.arch-card {
+    background: var(--color-background);
+    border: var(--space-1px) solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--nav-padding-h);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--analysis-space);
+}
+
+.arch-title {
+    font-size: var(--analysis-text);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.arch-description {
+    font-size: var(--connection-text);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+    margin: 0;
+}
+
+.arch-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    text-align: left;
+}
+
+.arch-list li {
+    font-size: var(--connection-text);
+    color: var(--color-text-primary);
+    padding-left: var(--space-m);
+    position: relative;
+}
+
+.arch-list li::before {
+    content: "→";
+    color: var(--color-text-muted);
+    position: absolute;
+    left: 0;
+}
+
+/* ==========================================================================
+   FOOTER - Consistente con design system
+   ========================================================================== */
+
+.footer-main {
+    background: var(--color-black);
+    color: var(--color-background);
+    padding: var(--space-xl) 0;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--nav-padding-h);
+}
+
+.footer-text {
+    font-size: var(--connection-text);
+    margin: 0;
+    line-height: var(--line-height-relaxed);
+}
+
+.footer-link {
+    color: var(--color-background);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.footer-link:hover {
+    opacity: var(--opacity-medium);
+}
+
+/* ==========================================================================
+   RESPONSIVE - Mobile First
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+        text-align: center;
+    }
+    
+    .hero-visual {
+        order: -1;
+    }
+    
+    .agent-constellation {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .agent-node {
+        width: var(--space-48px);
+        height: var(--space-48px);
+        font-size: var(--connection-text);
+    }
+    
+    .agents-nav-container {
+        padding: 0 var(--space-m);
+    }
+    
+    .agent-nav-btn {
+        min-width: 150px;
+        padding: var(--space-m) var(--space-s);
+    }
+    
+    .agent-header {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-l);
+    }
+    
+    .agent-icon-display {
+        width: var(--space-64px);
+        height: var(--space-64px);
+    }
+    
+    .agent-icon-display .geo-shape {
+        transform: scale(0.8);
+    }
+    
+    .agent-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .responsibility-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .architecture-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-main {
+        gap: var(--space-m);
+    }
+    
+    .nav-link {
+        font-size: var(--detail-text);
+    }
+    
+    .hero-section {
+        padding: var(--space-xl) 0;
+    }
+    
+    .agent-constellation {
+        width: 250px;
+        height: 250px;
+    }
+}

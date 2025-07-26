@@ -369,7 +369,7 @@ a {
 .sistema-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--space-220px), 1fr)); /* CONSONANT: 220px */
-  gap: var(--space-xl);
+  gap: 0; /* Sin gap entre iconos */
   margin-bottom: var(--essence-space);
   padding: 0 var(--space-xl); /* Consistent horizontal breathing */
 }
@@ -377,7 +377,7 @@ a {
 .sistema-item {
   text-align: center;
   padding: var(--analysis-space);
-  background: var(--color-surface);
+  background: transparent; /* Sin fondo de color */
   /* border-radius removed */
   /* Microinteracciones refinadas */
   transition: all var(--duration-base) var(--ease-out);
@@ -399,8 +399,8 @@ a {
 }
 
 .sistema-svg {
-  width: var(--space-60px); /* CONSONANT: 60px */
-  height: var(--space-60px); /* CONSONANT: 60px */
+  width: var(--space-80px); /* CONSONANT: 80px - Iconos más grandes */
+  height: var(--space-80px); /* CONSONANT: 80px - Iconos más grandes */
   margin: 0 auto var(--connection-space);
   color: var(--color-text-primary);
   /* Animación suave para SVG */

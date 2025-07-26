@@ -1,0 +1,785 @@
+/**
+ * UTILS.CSS - UTILIDADES Y COMPONENTES TOT0
+ * ========================================
+ * 
+ * Clases utility para casos específicos + componentes reutilizables
+ * Animaciones, modo oscuro, iconos, y elementos especiales
+ * 
+ * FILOSOFÍA: Herramientas específicas que complementan el sistema base
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   UTILIDADES DE TAMAÑO Y POSICIONAMIENTO
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Utilidades de ancho */
+.fit { width: fit-content; }                  /* Ancho ajustado al contenido */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CLASES UTILITY COMBINADAS TOT0
+   Combinaciones frecuentes para reducir repetición
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Combinación margin-left/right + padding-left/right */
+.mlr0-plr3 {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: var(--s3);
+    padding-right: var(--s3);
+}
+
+/* Grid compacto para iconos - CELDAS CUADRADAS RESPONSIVE */
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--s5), 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(var(--s5), 1fr));
+    justify-items: center;
+    align-items: center;
+    gap: var(--s2);
+}
+
+/* Utilidades de posición */
+.fixed { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: var(--color-bg-primary);
+}
+
+/* Dark mode para header fixed */
+body.dark-mode .fixed {
+    background-color: var(--color-bg-primary);  /* Asegurar fondo oscuro */
+    border: none !important;                    /* Eliminar cualquier borde */
+    border-bottom: none !important;             /* Asegurar sin borde inferior */
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DARK MODE LIMPIO - SOLO CUANDO SE ACTIVA
+   ═══════════════════════════════════════════════════════════ */
+
+/* MODO CLARO - Asegurar fondos blancos */
+body {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+}
+
+section {
+    background-color: transparent !important;
+}
+
+/* HEADER LIGHT MODE - Texto oscuro sobre fondo claro */
+header {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+}
+
+header a,
+header p,
+nav a,
+nav li a {
+    color: #1a1a1a !important;
+}
+
+.theme-toggle {
+    border-color: #1a1a1a !important;
+    color: #1a1a1a !important;
+}
+
+/* MODO OSCURO - Solo cuando tiene clase dark-mode */
+body.dark-mode {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode section {
+    background-color: transparent !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4, 
+body.dark-mode h5, 
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode li {
+    color: #ffffff !important;
+}
+
+body.dark-mode .bg-hero {
+    background: linear-gradient(135deg, #2d2d2d, #1a1a1a) !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .bg-gradient {
+    background: linear-gradient(135deg, #2d2d2d, #404040) !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode button {
+    background-color: hsl(350, 70%, 60%) !important;
+    color: #ffffff !important;
+}
+
+/* HEADER ESPECÍFICO DARK MODE */
+body.dark-mode header {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode header a,
+body.dark-mode header p,
+body.dark-mode nav a,
+body.dark-mode nav li a {
+    color: #ffffff !important;
+}
+
+body.dark-mode .theme-toggle {
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+}                                            /* Posición fija en la parte superior */
+
+/* Ajuste para enlaces de navegación con header fixed */
+:target {
+    scroll-margin-top: 120px;                /* Offset para compensar altura del header */
+}
+
+/* Utilidades de altura viewport - Optimizadas para móviles */
+.h-full { min-height: 100vh; }               /* Altura mínima viewport completo */
+.h-screen { 
+    height: 100vh;                           /* Altura exacta viewport completo */
+    height: 100dvh;                          /* Dynamic viewport height (más preciso) */
+}
+
+/* Mejora táctil - Áreas de toque mínimas 44px */
+@media (max-width: 768px) {
+    a, button {
+        min-height: 44px;                    /* Área táctil mínima iOS */
+        min-width: 44px;                     /* Área táctil mínima iOS */
+        display: inline-flex;                /* Flexbox para centrado */
+        align-items: center;                 /* Centrado vertical */
+        justify-content: center;             /* Centrado horizontal */
+        padding: var(--s1) var(--s2);       /* Padding áureo */
+    }
+}
+
+/* Utilidades de alineación de texto */
+.center { text-align: center; }              /* Texto centrado */
+.tac { text-align: center; }                 /* Texto centrado (alias) */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CLASES DE ACCESIBILIDAD
+   Screen reader only y mejoras de navegación
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Screen reader only - Contenido visible solo para lectores de pantalla */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    border: 0;
+    white-space: nowrap;
+}
+
+/* Mostrar sr-only cuando recibe focus (navegación por teclado) */
+.sr-only:focus {
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: var(--s1) var(--s2);
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    clip-path: none;
+    background: var(--neutral-900);
+    color: var(--neutral-100);
+    border: 2px solid var(--primary-500);
+    border-radius: calc(var(--u) / 2);
+    font-size: var(--t0);
+    font-weight: 600;
+    text-decoration: none;
+    z-index: 999;
+    top: var(--s2);
+    left: var(--s2);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPONENTES REUTILIZABLES
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/**
+ * COMPONENTE: Hero limpio con gradiente
+ * Hero section sin imagen rota, usando gradientes armónicos
+ */
+.bg-hero {
+    display: grid;                             /* Grid para centrado perfecto */
+    place-content: center;                     /* Centrado total */
+    text-align: center;                        /* Texto centrado */
+    position: relative;                        /* Para elementos hijos absolutos */
+}
+
+/* Dark mode para bg-hero */
+body.dark-mode .bg-hero {
+    background: linear-gradient(135deg, #2d2d2d, #1a1a1a);  /* Gradiente oscuro */
+    color: var(--color-text-primary);         /* Texto blanco */
+}
+
+/* Dark mode para bg-image */
+body.dark-mode .bg-image {
+    background: var(--color-bg-secondary);    /* Fondo secundario oscuro */
+    color: var(--color-text-primary);         /* Texto blanco */
+}
+
+
+/**
+ * COMPONENTE: Elemento destacado
+ * Para contenido que necesita resalte visual
+ */
+.highlight {
+    border: calc(var(--u) / 3) dotted var(--accent-500);
+    background: var(--accent-50);
+    min-height: calc(var(--u) * 6);           /* Altura mínima proporcional */
+}
+
+/**
+ * COMPONENTE: Degradado para secciones finales
+ * Fondo con degradado suave usando colores del sistema
+ */
+.bg-gradient {
+    background: linear-gradient(135deg, 
+        var(--primary-50), 
+        var(--secondary-50));
+    color: var(--neutral-900);               /* Texto negro para máximo contraste */
+}
+
+/* Dark mode para bg-gradient */
+body.dark-mode .bg-gradient {
+    background: linear-gradient(135deg, 
+        var(--primary-900), 
+        var(--secondary-900));
+    color: var(--color-text-primary);       /* Texto blanco en dark mode */
+}
+
+/**
+ * COMPONENTE: Logo con espaciado áureo
+ * Para headers y elementos de branding
+ */
+.logo {
+    display: flex;                             /* Flexbox para alineación */
+    align-items: center;                       /* Alineación vertical */
+    gap: var(--vh-1);                          /* Espaciado áureo entre elementos */
+}
+
+.logo svg {
+    width: var(--s8);                          /* Tamaño áureo para el SVG */
+    height: var(--s8);                         /* Proporción cuadrada */
+}
+
+.logo p {
+    font-size: var(--t1);                      /* Tamaño tipográfico áureo */
+    font-weight: bold;                         /* Peso destacado */
+    margin: 0;                                 /* Sin margin por defecto */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SISTEMA DE ICONOS LUCIDE
+   Tamaños contextuales y clases utility
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Tamaño por defecto para iconos */
+[data-lucide] {
+    width: var(--s3);                          /* 24px por defecto */
+    height: var(--s3);                         /* Proporción cuadrada */
+}
+
+/* Tamaños contextuales automáticos */
+header [data-lucide] { width: var(--s5); height: var(--s5); }              /* 40px en headers */
+footer [data-lucide] { width: var(--s2); height: var(--s2); }              /* 16px en footers */
+h1 [data-lucide], h2 [data-lucide] { width: var(--s5); height: var(--s5); } /* 40px en títulos grandes */
+h3 [data-lucide], h4 [data-lucide] { width: var(--s3); height: var(--s3); } /* 24px en títulos medianos */
+.grid-flow [data-lucide] { width: var(--s2); height: var(--s2); }          /* 16px en grids horizontales */
+
+/* Iconos centrados con margin bottom para UL SISTEMA */
+.icon-lg [data-lucide] { 
+    display: block; 
+    margin: 0 auto var(--s3); 
+}
+
+/* Centrado vertical para li con clase icon-lg */
+.icon-lg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Clases utility para tamaños específicos */
+.icon-sm [data-lucide], [data-lucide].icon-sm { width: var(--s2); height: var(--s2); }  /* 16px - Pequeño */
+.icon-md [data-lucide], [data-lucide].icon-md { width: var(--s3); height: var(--s3); }  /* 24px - Mediano */
+.icon-lg [data-lucide], [data-lucide].icon-lg { width: var(--s5); height: var(--s5); }  /* 40px - Grande */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPONENTES DE CÓDIGO
+   Para mostrar código con syntax highlighting
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/**
+ * COMPONENTE: Bloque de código
+ * Contenedor para código con estilo profesional
+ */
+.code-block {
+    background: var(--magenta-dark);            /* Fondo oscuro existente */
+    color: var(--color-white);                  /* Texto claro del sistema */
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: calc(var(--t-1) * 0.9);         /* Tamaño ligeramente menor que texto pequeño */
+    line-height: 1.4;                          /* Line-height optimizado para código */
+    padding: var(--s2);                        /* Padding áureo */
+    border-radius: calc(var(--u) / 2);         /* Bordes redondeados proporcionales */
+    overflow-x: auto;                          /* Scroll horizontal si es necesario */
+    margin: 0;                                 /* Sin margin por defecto */
+    width: 100%;                               /* Ocupa todo el ancho de su celda grid */
+    box-sizing: border-box;                    /* Incluye padding en el cálculo */
+    white-space: pre-wrap;                     /* Permite wrapping pero preserva formato */
+}
+
+.code-block code {
+    background: none;
+    padding: 0;
+    color: inherit;
+    white-space: inherit;
+    display: inline;
+}
+
+/* Syntax highlighting - Colores vivos con alto contraste para fondo oscuro */
+.code-html-tag { color: #FF6B6B; }                      /* Tags HTML: rojo brillante */
+.code-html-attr { color: #FFD93D; }                     /* Atributos: amarillo vibrante */
+.code-html-string { color: #6BCF7F; }                   /* Strings: verde brillante */
+.code-css-selector { color: #4ECDC4; }                  /* Selectores CSS: cyan brillante */
+.code-css-property { color: #45B7D1; }                  /* Propiedades CSS: azul vibrante */
+.code-css-value { color: #96CEB4; }                     /* Valores CSS: verde agua */
+.code-css-comment { color: #A8A8A8; font-style: italic; } /* Comentarios: gris claro */
+.code-css-variable { color: #FECA57; }                  /* Variables CSS: naranja brillante */
+
+/* Syntax highlighting - Signos de marcación y operadores con alto contraste */
+.code-punctuation { color: #FF9FF3; }                   /* Puntuación: rosa brillante */
+.code-operator { color: #FFD93D; }                      /* Operadores: amarillo vibrante */
+.code-bracket { color: #74B9FF; }                       /* Corchetes: azul claro */
+.code-symbol { color: #FDCB6E; }                        /* Símbolos: naranja suave */
+
+/* Elemento code inline - SIN BACKGROUND POR DEFECTO */
+code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: calc(var(--t0) * 0.8);
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    display: inline-block;
+    min-width: 8rem;
+    max-width: 100%;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    vertical-align: top;
+}
+
+/* Code con background para bloques de código */
+.code-block code {
+    background-color: transparent;
+    color: inherit;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GRIDS ESPECÍFICOS PARA COLS2
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.code-block {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANIMACIONES SUTILES
+   Transiciones suaves respetando preferencias de accesibilidad
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Animaciones solo si el usuario no prefiere movimiento reducido */
+@media (prefers-reduced-motion: no-preference) {
+    * {
+        transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                   opacity 200ms ease-out,
+                   background-color 300ms ease-out;
+    }
+    
+    /* Hover en enlaces y botones */
+    button:hover {
+        background-color: var(--color-black);
+        color: var(--color-white);
+    }
+    
+    /* Hover más pronunciado en articles */
+    article:hover {
+        transform: translateY(-2px);           /* Elevación más notable */
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MODO OSCURO AUTOMÁTICO
+   Inversión de colores del sistema para esquema oscuro
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Modo oscuro ahora manejado completamente por color.css */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONFIGURACIÓN PARA CONTAINER QUERIES
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Main configurado para container queries - DESHABILITADO */
+/* main {
+    container-type: inline-size;               /* Permite queries basadas en ancho */
+} */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ESTILOS PARA ENLACES
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Enlaces ahora manejados por color.css */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPONENTES PARA SHOWCASE DE COLORES
+   Grid de colores y swatches para mostrar la paleta TOT0
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Contenedor de grid de colores */
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+    gap: var(--vh-2);
+    padding: var(--vh-2);
+    border: 1px solid var(--color-border-light);
+    border-radius: calc(var(--u) / 2);
+    background: var(--color-bg-elevated);
+}
+
+.color-grid h3 {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding-bottom: var(--vh-1);
+    border-bottom: 1px solid var(--color-border-medium);
+    color: var(--color-text-primary);
+}
+
+/* Swatch individual de color */
+.color-swatch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(var(--u) * 8);
+    padding: var(--vh-1);
+    border: none;
+    background: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.color-swatch small {
+    background: none;
+    padding: calc(var(--u) / 4) calc(var(--u) / 2);
+    font-size: var(--t-1);
+    font-weight: 600;
+    text-align: center;
+    backdrop-filter: blur(4px);
+}
+
+/* Invertir color del texto en fondos claros */
+.color-swatch[style*="background-color: var(--primary-50)"] small,
+.color-swatch[style*="background-color: var(--primary-100)"] small,
+.color-swatch[style*="background-color: var(--secondary-50)"] small,
+.color-swatch[style*="background-color: var(--secondary-100)"] small,
+.color-swatch[style*="background-color: var(--accent-50)"] small,
+.color-swatch[style*="background-color: var(--accent-100)"] small,
+.color-swatch[style*="background-color: var(--neutral-50)"] small,
+.color-swatch[style*="background-color: var(--neutral-100)"] small {
+    color: black;
+}
+
+
+/* Responsive para grid de colores */
+@media (max-width: 768px) {
+    .color-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+    
+    .color-swatch {
+        min-height: calc(var(--u) * 6);
+    }
+}
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════
+ * NOTAS DE IMPLEMENTACIÓN DE UTILS
+ * ═══════════════════════════════════════════════════════════════════════
+ * 
+ * COMPONENTES PRINCIPALES:
+ * ✅ .bg-image - Imágenes de fondo con overlay
+ * ✅ .highlight - Elementos destacados
+ * ✅ .bg-gradient - Degradados suaves
+ * ✅ .logo - Branding con espaciado áureo
+ * ✅ .code-block - Código con syntax highlighting
+ * 
+ * UTILIDADES:
+ * ✅ Tamaños (.fit, .h-full, .h-screen)
+ * ✅ Alineación (.center, .tac)
+ * ✅ Iconos contextuales (automáticos + clases)
+ * ✅ Animaciones accesibles
+ * ✅ Modo oscuro automático
+ * 
+ * SISTEMA DE ICONOS:
+ * - Tamaños contextuales automáticos
+ * - Clases utility (.icon-sm, .icon-md, .icon-lg)
+ * - Basado en variables áureas del sistema
+ * 
+ * ACCESIBILIDAD:
+ * - Respeta prefers-reduced-motion
+ * - Respeta prefers-color-scheme
+ * - Colores con contraste adecuado
+ * 
+ * FILOSOFÍA:
+ * Estas utilidades complementan el sistema base sin interferir
+ * Mantienen la consonancia áurea y la consistencia visual
+ */
+
+
+/* ═══════════════════════════════════════════════════════════
+   THEME TOGGLE - Botón dark/light mode
+   ═══════════════════════════════════════════════════════════ */
+
+.theme-toggle {
+    background: transparent;
+    border: 1px solid var(--neutral-300);
+    border-radius: calc(var(--u) / 2);
+    padding: var(--s1);
+    cursor: pointer;
+    position: relative;
+    width: calc(var(--s3) + var(--s1));
+    height: calc(var(--s3) + var(--s1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 200ms ease;
+}
+
+.theme-toggle:hover {
+    border-color: var(--primary-500);
+    background: var(--color-hover);
+}
+
+.theme-icon {
+    width: var(--s2);
+    height: var(--s2);
+    position: absolute;
+    transition: all 300ms ease;
+}
+
+/* Estado inicial: mostrar sol (modo claro) */
+.light-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.dark-icon {
+    opacity: 0;
+    transform: rotate(180deg) scale(0.8);
+}
+
+/* Estado dark mode: mostrar luna */
+body.dark-mode .light-icon {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0.8);
+}
+
+body.dark-mode .dark-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* Dark mode: Estilos del botón toggle */
+body.dark-mode .theme-toggle {
+    border-color: var(--neutral-600);
+    background: transparent;
+}
+
+body.dark-mode .theme-toggle:hover {
+    border-color: var(--primary-500);
+    background: var(--neutral-800);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO VARIATIONS - Diferentes tipos de hero por demo
+   ═══════════════════════════════════════════════════════════ */
+
+/* Hero base - configuración común */
+.hero-gradient,
+.hero-tech,
+.hero-minimal,
+.hero-corporate,
+.hero-luxury,
+.hero-cosmic,
+.hero-nature,
+.hero-personal {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--vh-4);
+}
+
+/* Hero Tech - Gradientes tecnológicos con efectos */
+.hero-tech {
+    background: var(--gradient-tech) !important;
+    color: var(--neon-cyan);
+}
+
+.hero-tech::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="cyan" opacity="0.3"/><circle cx="80" cy="30" r="1" fill="magenta" opacity="0.2"/><circle cx="60" cy="70" r="1" fill="yellow" opacity="0.1"/></svg>');
+    z-index: 1;
+}
+
+.hero-tech > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero Luxury - Elegante con overlay sutil */
+.hero-luxury {
+    background: var(--gradient-royal) !important;
+    color: var(--metallic-gold);
+}
+
+.hero-luxury::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 49%, rgba(255, 215, 0, 0.1) 50%, transparent 51%),
+                linear-gradient(-45deg, transparent 49%, rgba(255, 215, 0, 0.1) 50%, transparent 51%);
+    background-size: 20px 20px;
+    z-index: 1;
+}
+
+.hero-luxury > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero Cosmic - Efectos espaciales */
+.hero-cosmic {
+    background: var(--gradient-cosmic) !important;
+    color: var(--pastel-cyan);
+}
+
+.hero-cosmic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(147, 51, 234, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+    z-index: 1;
+}
+
+.hero-cosmic > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero Minimal - Limpio y espacioso */
+.hero-minimal {
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--neutral-200);
+}
+
+/* Hero Corporate - Profesional con imagen */
+.hero-corporate {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), var(--color-bg-elevated);
+    color: var(--color-white) !important;
+}
+
+.hero-corporate h1,
+.hero-corporate p {
+    color: var(--color-white) !important;
+}
+
+/* Hero Nature - Orgánico */
+.hero-nature {
+    background: var(--gradient-nature) !important;
+    color: var(--deep-green);
+}
+
+/* Hero Personal - Sistema */
+.hero-personal {
+    background: var(--color-white);
+    color: var(--color-black);
+    border: 3px solid var(--color-cyan);
+}
+
+.hero-personal h1 {
+    color: var(--color-cyan);
+}
+
+.hero-personal p {
+    color: var(--color-black);
+}
+
+/* Hero Warm - Agencia creativa */
+.hero-warm {
+    background: var(--gradient-warm) !important;
+    color: var(--rose-dark);
+}
+
+/* Animaciones para heroes dinámicos */
+@media (prefers-reduced-motion: no-preference) {
+    .hero-tech::before {
+        animation: techPulse 4s ease-in-out infinite;
+    }
+    
+    .hero-cosmic::before {
+        animation: cosmicRotate 20s linear infinite;
+    }
+}
+
+@keyframes techPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes cosmicRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

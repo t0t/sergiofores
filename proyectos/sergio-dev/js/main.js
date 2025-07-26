@@ -27,11 +27,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Header show/hide on scroll + Active navigation link highlighting
 const sections = document.querySelectorAll('section');
 const navLinkElements = document.querySelectorAll('.nav-links a');
-const navContainer = document.querySelector('.nav-container');
+const navContainer = document.querySelector('header');
 let lastScrollY = window.scrollY;
 
 window.addEventListener('scroll', () => {
     const currentScrollY = window.scrollY;
+    const header = document.querySelector('header');
+    
+    // Add scrolled class for backdrop effect
+    if (currentScrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
     
     // Show/hide header based on scroll direction
     if (currentScrollY > lastScrollY && currentScrollY > 100) {

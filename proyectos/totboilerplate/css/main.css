@@ -1,0 +1,127 @@
+/**
+ * MAIN.CSS - PUNTO DE ENTRADA ÚNICO TOT0
+ * =====================================
+ * 
+ * Archivo maestro que importa todos los módulos CSS del sistema
+ * ORDEN CRÍTICO: Cada import debe cargarse en la secuencia correcta
+ * 
+ * FILOSOFÍA: Un solo archivo controla TODO el sistema CSS
+ * Una sola línea en index.html: <link rel="stylesheet" href="css/main.css">
+ */
+
+/*
+╔══════════════════════════════════════════════════════════════╗
+║                     TOT0 MATRIX v2.0                         ║
+║              Sistema CSS Modular Completo                   ║
+║         NÚCLEO: Solo 5 variables controlan TODO              ║
+╚══════════════════════════════════════════════════════════════╝
+*/
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════
+ * ORDEN DE IMPORTACIÓN CRÍTICO
+ * Cada módulo tiene dependencias específicas que requieren este orden
+ * ═══════════════════════════════════════════════════════════════════════
+ */
+
+/* 1. VARIABLES - BASE DEL SISTEMA */
+/* Las 5 variables TOT0 que controlan absolutamente TODO */
+@import url('variables.css');
+
+/* 2. COLOR - SISTEMA CROMÁTICO */
+/* 5 colores fundamentales que generan paleta completa */
+@import url('color.css');
+
+/* 3. RESET - NORMALIZACIÓN */
+/* Reset minimalista sin interferencias */
+@import url('reset.css');
+
+/* 4. TYPOGRAPHY - SISTEMA TIPOGRÁFICO */
+/* Escalas áureas y clases utility tipográficas */
+@import url('typography.css');
+
+/* 5. SPACING - ESPACIADO ÁUREO */
+/* Sistema de spacing con progresión Fibonacci */
+@import url('spacing.css');
+
+/* 6. GRID - LAYOUTS RESPONSIVOS */
+/* Sistema de grid adaptativo y layouts */
+@import url('grid.css');
+
+/* 7. ICONS - SISTEMA DE ICONOS LUCIDE */
+/* Control dinámico de stroke-width, fill y tamaños */
+@import url('icons.css');
+
+/* 8. UTILS - COMPONENTES Y UTILIDADES */
+/* Clases utility, componentes reutilizables, animaciones */
+@import url('utils.css');
+
+/* 9. RESPONSIVE - BREAKPOINTS */
+/* Sistema de breakpoints que escala --u automáticamente */
+/* @import url('responsive.css'); */
+
+/* 10. DEBUG - WIREFRAME (OPCIONAL) */
+/* Sistema de debugging visual - comentar para producción */
+@import url('debug.css');
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════
+ * CONFIGURACIÓN FINAL DEL SISTEMA
+ * Ajustes finales que requieren que todos los módulos estén cargados
+ * ═══════════════════════════════════════════════════════════════════════
+ */
+
+/* Configuración global final */
+body {
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    line-height: var(--lh2);       /* Line-height cómodo por defecto */
+    font-size: var(--t0);          /* Tamaño base del sistema */
+    -webkit-font-smoothing: antialiased;      /* Suavizado de fuentes en WebKit */
+    -moz-osx-font-smoothing: grayscale;       /* Suavizado de fuentes en Firefox macOS */
+    text-rendering: optimizeLegibility;        /* Optimiza renderizado de texto */
+}
+
+/* Configuración específica para elementos principales */
+main {
+    display: grid;                             /* Grid por defecto */
+    /* gap, margin y padding ya definidos en spacing.css para consistencia */
+}
+
+
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════
+ * NOTAS DE IMPLEMENTACIÓN MAIN.CSS
+ * ═══════════════════════════════════════════════════════════════════════
+ * 
+ * ORDEN CRÍTICO DE CARGA:
+ * 1. Variables (--u, --r, --hue, --sat, --flow) - Base del sistema
+ * 2. Reset - Normalización sin interferencias
+ * 3. Typography - Sistema tipográfico con escalas áureas
+ * 4. Spacing - Espaciado Fibonacci y viewport
+ * 5. Grid - Layouts responsivos y flexbox
+ * 6. Utils - Componentes y utilidades específicas
+ * 7. Responsive - Breakpoints que escalan --u
+ * 8. Debug - Wireframe (opcional para producción)
+ * 
+ * CONFIGURACIÓN FINAL:
+ * ✅ Body con configuración tipográfica base
+ * ✅ Main con grid y espaciado áureo
+ * ✅ Sections con configuración específica
+ * 
+ * PARA PRODUCCIÓN:
+ * - Comentar @import url('debug.css'); si no se necesita wireframe
+ * - Mantener todos los demás imports en este orden exacto
+ * 
+ * VENTAJAS DEL SISTEMA:
+ * - Un solo archivo CSS en index.html
+ * - Modularidad completa manteniendo orden de dependencias
+ * - Fácil mantenimiento y debug
+ * - Carga optimizada con imports nativos
+ * - Escalabilidad total del sistema TOT0
+ * 
+ * FILOSOFÍA TOT0:
+ * Un solo punto de entrada que activa un sistema completo
+ * Todas las partes trabajando en armonía matemática perfecta
+ * Simplicidad en el uso, complejidad en la implementación
+ */

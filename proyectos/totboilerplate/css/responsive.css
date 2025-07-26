@@ -1,0 +1,155 @@
+/**
+ * RESPONSIVE.CSS - BREAKPOINTS TOT0
+ * ================================
+ * 
+ * Sistema de breakpoints que ajusta la unidad base (--u) según dispositivo
+ * Mobile First + dispositivos específicos con escalado áureo automático
+ * Todo el sistema se escala proporcionalmente manteniendo armonía matemática
+ * 
+ * FILOSOFÍA: Una sola variable (--u) escala TODO el sistema automáticamente
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BREAKPOINTS TOT0 - MOBILE FIRST + DISPOSITIVOS ESPECÍFICOS
+   Cada dispositivo tiene su unidad base optimizada
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/**
+ * WEARABLE - SMARTWATCH (hasta 300px)
+ * Dispositivos muy pequeños como relojes inteligentes
+ */
+@media (max-width: 300px) {
+    :root {
+        --u: 4px;                               /* Unidad más pequeña para pantallas tiny */
+        
+        /* Spacing ultra compacto */
+        --vh-1: calc(var(--u) * var(--r));      /* ~6.5px */
+        --vh-2: calc(var(--vh-1) * var(--r));   /* ~10.5px */
+        --vh-3: calc(var(--vh-2) * var(--r));   /* ~17px */
+        --vh-4: calc(var(--vh-3) * var(--r));   /* ~27.5px */
+        --vh-5: calc(var(--vh-4) * var(--r));   /* ~44.5px */
+    }
+    
+    /* Grid forzado a una columna */
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Ajustes específicos para iconos en smartwatch */
+    header svg { 
+        width: 30px; 
+        height: 30px; 
+    }
+}
+
+/**
+ * MOBILE - TELÉFONOS (301px - 768px)
+ * Dispositivos móviles estándar en orientación vertical
+ */
+@media (min-width: 301px) and (max-width: 768px) {
+    :root {
+        --u: 6px;                               /* Unidad reducida para móviles */
+        
+        /* Spacing móvil usando unidades fijas en lugar de vh */
+        --vh-1: calc(var(--u) * var(--r));      /* ~9.7px */
+        --vh-2: calc(var(--vh-1) * var(--r));   /* ~15.7px */
+        --vh-3: calc(var(--vh-2) * var(--r));   /* ~25.4px */
+        --vh-4: calc(var(--vh-3) * var(--r));   /* ~41.1px */
+        --vh-5: calc(var(--vh-4) * var(--r));   /* ~66.5px */
+    }
+    
+    /* Grid más compacto para móvil */
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--u) * 15)), 1fr));
+    }
+    
+    /* Secciones más compactas en móvil */
+    section {
+        min-height: 50vh;                       /* Mantiene 50vh en móvil */
+        min-height: 50svh;                      /* Stable viewport height */
+    }
+}
+
+/**
+ * TABLET - TABLETAS (769px - 1024px)  
+ * Tabletas y móviles en orientación horizontal
+ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    :root {
+        --u: 8px;                               /* Unidad base estándar - referencia del sistema */
+    }
+}
+
+/**
+ * DESKTOP - ESCRITORIO (1025px - 1440px)
+ * Pantallas de escritorio estándar
+ */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    :root {
+        --u: 10px;                              /* Unidad aumentada para escritorio */
+    }
+}
+
+/**
+ * TV/LARGE - PANTALLAS GRANDES (1441px+)
+ * Pantallas grandes, TV, monitores 4K
+ */
+@media (min-width: 1441px) {
+    :root {
+        --u: 12px;                              /* Unidad máxima para pantallas grandes */
+    }
+    
+    /* Ajustes específicos para iconos en pantallas grandes */
+    header svg { 
+        width: 80px; 
+        height: 80px; 
+    }
+}
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════
+ * NOTAS DE IMPLEMENTACIÓN RESPONSIVE
+ * ═══════════════════════════════════════════════════════════════════════
+ * 
+ * ESCALADO AUTOMÁTICO:
+ * ✅ Solo cambia --u (unidad base)
+ * ✅ Todas las demás variables se recalculan automáticamente
+ * ✅ Tipografía, espaciado, iconos, todo escala proporcionalmente
+ * ✅ Mantiene proporciones áureas en todos los dispositivos
+ * 
+ * DISPOSITIVOS CUBIERTOS:
+ * - Smartwatch: 4px (ultra compacto)
+ * - Mobile: 6px (compacto)
+ * - Tablet: 8px (base de referencia)  
+ * - Desktop: 10px (amplio)
+ * - TV/Large: 12px (extra amplio)
+ * 
+ * PROGRESIÓN DE ESCALADO:
+ * 4px → 6px → 8px → 10px → 12px
+ * Incrementos balanceados que mantienen legibilidad y usabilidad
+ * 
+ * ELEMENTOS QUE SE ESCALAN AUTOMÁTICAMENTE:
+ * - Tipografía (--t5 a --t-2)
+ * - Espaciado (--s1 a --s8)
+ * - Spacing viewport (--vh-1 a --vh-5)
+ * - Componentes (.bg-image, .highlight, etc.)
+ * - Iconos (excepto ajustes específicos)
+ * 
+ * AJUSTES ESPECÍFICOS:
+ * - Iconos en header para smartwatch y TV
+ * - Solo elementos que necesitan tratamiento especial
+ * - El resto se escala automáticamente
+ * 
+ * FILOSOFÍA MOBILE FIRST:
+ * - Base diseñada para tablet (8px)
+ * - Escalado hacia abajo para móviles
+ * - Escalado hacia arriba para escritorio
+ * - Sistema completamente fluido
+ * 
+ * VENTAJAS DEL SISTEMA:
+ * - Un solo cambio (--u) escala todo
+ * - Mantiene proporciones áureas perfectas
+ * - No duplicación de código responsive
+ * - Consistencia matemática absoluta
+ * - Facilidad de mantenimiento
+ */
