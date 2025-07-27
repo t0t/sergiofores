@@ -1,0 +1,1249 @@
+/**
+ * UTILS.CSS - UTILIDADES Y COMPONENTES TOT0
+ * ========================================
+ * 
+ * Clases utility para casos específicos + componentes reutilizables
+ * Animaciones, modo oscuro, iconos, y elementos especiales
+ * 
+ * FILOSOFÍA: Herramientas específicas que complementan el sistema base
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   UTILIDADES DE TAMAÑO Y POSICIONAMIENTO
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Utilidades de ancho */
+.fit { width: fit-content; }                  /* Ancho ajustado al contenido */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CLASES UTILITY COMBINADAS TOT0
+   Combinaciones frecuentes para reducir repetición
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Combinación margin-left/right + padding-left/right */
+.mlr0-plr3 {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: var(--s3);
+    padding-right: var(--s3);
+}
+
+/* Grid compacto para iconos - CELDAS CUADRADAS RESPONSIVE */
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--s5), 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(var(--s5), 1fr));
+    justify-items: center;
+    align-items: center;
+    gap: var(--s2);
+}
+
+/* Utilidades de posición */
+.fixed { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+/* Header scroll states */
+.header-scrolled {
+    background-color: var(--color-bg-primary);
+    backdrop-filter: blur(10px);
+    padding-top: var(--s1);
+    padding-bottom: var(--s1);
+}
+
+.header-scrolled .logo p {
+    font-size: var(--t-1);
+    color: var(--color-magenta);
+}
+
+.header-scrolled .logo svg {
+    width: 35px;
+    height: 35px;
+}
+
+/* Scroll to top button */
+.scroll-to-top {
+    position: fixed;
+    bottom: var(--s3);
+    right: var(--s3);
+    width: 50px;
+    height: 50px;
+    background: var(--color-cyan);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    background: var(--cyan-dark);
+    transform: translateY(-2px);
+}
+
+/* Dark mode para header fixed */
+body.dark-mode .fixed {
+    background-color: var(--color-bg-primary);  /* Asegurar fondo oscuro */
+    border: none;                               /* Eliminar cualquier borde */
+    border-bottom: none;                        /* Asegurar sin borde inferior */
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DARK MODE LIMPIO - SOLO CUANDO SE ACTIVA
+   ═══════════════════════════════════════════════════════════ */
+
+/* MODO CLARO - Asegurar fondos blancos */
+body {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+section {
+    background-color: transparent;
+}
+
+/* HEADER LIGHT MODE - Texto oscuro sobre fondo claro */
+header {
+    color: #1a1a1a;
+}
+
+header a,
+header p,
+nav a,
+nav li a {
+    color: #1a1a1a;
+}
+
+/* Dark mode eliminado - Solo modo claro */                                            /* Posición fija en la parte superior */
+
+/* Ajuste para enlaces de navegación con header fixed */
+:target {
+    scroll-margin-top: 120px;                /* Offset para compensar altura del header */
+}
+
+/* Utilidades de altura viewport - Optimizadas para móviles */
+.h-full { min-height: 100vh; }               /* Altura mínima viewport completo */
+.h-screen { 
+    height: 100vh;                           /* Altura exacta viewport completo */
+    height: 100dvh;                          /* Dynamic viewport height (más preciso) */
+}
+
+/* Mejora táctil - Áreas de toque mínimas 44px */
+@media (max-width: 768px) {
+    a, button {
+        min-height: 44px;                    /* Área táctil mínima iOS */
+        min-width: 44px;                     /* Área táctil mínima iOS */
+        display: inline-flex;                /* Flexbox para centrado */
+        align-items: center;                 /* Centrado vertical */
+        justify-content: center;             /* Centrado horizontal */
+        padding: var(--s1) var(--s2);       /* Padding áureo */
+    }
+}
+
+/* Utilidades de alineación de texto */
+.center { text-align: center; }              /* Texto centrado */
+.tac { text-align: center; }                 /* Texto centrado (alias) */
+.tal { text-align: left; }                   /* Texto alineado a la izquierda */
+
+
+
+/* CTA Button - Estilo de botón para enlaces principales */
+.cta-button {
+    display: inline-block;
+    padding: var(--s2) var(--s3);               /* Padding áureo del estilo original */
+    background-color: var(--color-primary);
+    color: var(--color-bg-primary);
+    text-decoration: none;
+    border-radius: var(--s1);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-primary);
+}
+
+.cta-button:hover {
+    background-color: transparent;
+    color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CLASES DE ACCESIBILIDAD
+   Screen reader only y mejoras de navegación
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Screen reader only - Contenido visible solo para lectores de pantalla */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    border: 0;
+    white-space: nowrap;
+}
+
+/* Mostrar sr-only cuando recibe focus (navegación por teclado) */
+.sr-only:focus {
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: var(--s1) var(--s2);
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    clip-path: none;
+    background: var(--neutral-900);
+    color: var(--neutral-100);
+    border: 2px solid var(--primary-500);
+    border-radius: calc(var(--u) / 2);
+    font-size: var(--t0);
+    font-weight: 600;
+    text-decoration: none;
+    z-index: 999;
+    top: var(--s2);
+    left: var(--s2);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPONENTES REUTILIZABLES
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/**
+ * COMPONENTE: Hero limpio con gradiente
+ * Hero section sin imagen rota, usando gradientes armónicos
+ */
+.bg-hero {
+    display: grid;                             /* Grid para centrado perfecto */
+    place-content: center;                     /* Centrado total */
+    text-align: center;                        /* Texto centrado */
+    position: relative;                        /* Para elementos hijos absolutos */
+}
+
+/* Dark mode para bg-hero */
+body.dark-mode .bg-hero {
+    background: linear-gradient(135deg, #2d2d2d, #1a1a1a);  /* Gradiente oscuro */
+    color: var(--color-text-primary);         /* Texto blanco */
+}
+
+/* Dark mode para bg-image */
+body.dark-mode .bg-image {
+    background: var(--color-bg-secondary);    /* Fondo secundario oscuro */
+    color: var(--color-text-primary);         /* Texto blanco */
+}
+
+
+/**
+ * COMPONENTE: Elemento destacado
+ * Para contenido que necesita resalte visual
+ */
+.highlight {
+    border: calc(var(--u) / 3) dotted var(--accent-500);
+    background: var(--accent-50);
+    min-height: calc(var(--u) * 6);           /* Altura mínima proporcional */
+}
+
+/**
+ * COMPONENTE: Degradado para secciones finales
+ * Fondo con degradado suave usando colores del sistema
+ */
+.bg-gradient {
+    background: linear-gradient(135deg, 
+        var(--primary-50), 
+        var(--secondary-50));
+    color: var(--neutral-900);               /* Texto negro para máximo contraste */
+}
+
+/* Dark mode para bg-gradient */
+body.dark-mode .bg-gradient {
+    background: linear-gradient(135deg, 
+        var(--primary-900), 
+        var(--secondary-900));
+    color: var(--color-text-primary);       /* Texto blanco en dark mode */
+}
+
+/**
+ * COMPONENTE: Logo con espaciado áureo
+ * Para headers y elementos de branding
+ */
+.logo {
+    display: flex;                             /* Flexbox para alineación */
+    align-items: center;                       /* Alineación vertical */
+    gap: var(--vh-1);                          /* Espaciado áureo entre elementos */
+}
+
+.logo svg {
+    width: var(--s8);                          /* Tamaño áureo para el SVG */
+    height: var(--s8);                         /* Proporción cuadrada */
+}
+
+.logo p {
+    font-size: var(--t1);                      /* Tamaño tipográfico áureo */
+    font-weight: bold;                         /* Peso destacado */
+    margin: 0;                                 /* Sin margin por defecto */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SISTEMA DE ICONOS LUCIDE
+   Tamaños contextuales y clases utility
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Tamaño por defecto para iconos */
+[data-lucide] {
+    width: var(--s3);                          /* 24px por defecto */
+    height: var(--s3);                         /* Proporción cuadrada */
+}
+
+/* Tamaños contextuales automáticos */
+header [data-lucide] { width: var(--s5); height: var(--s5); }              /* 40px en headers */
+footer [data-lucide] { width: var(--s2); height: var(--s2); }              /* 16px en footers */
+h1 [data-lucide], h2 [data-lucide] { width: var(--s5); height: var(--s5); } /* 40px en títulos grandes */
+h3 [data-lucide], h4 [data-lucide] { width: var(--s3); height: var(--s3); } /* 24px en títulos medianos */
+.grid-flow [data-lucide] { width: var(--s2); height: var(--s2); }          /* 16px en grids horizontales */
+
+/* Iconos centrados con margin bottom para UL SISTEMA */
+.icon-lg [data-lucide] { 
+    display: block; 
+    margin: 0 auto var(--s3); 
+}
+
+/* Centrado vertical para li con clase icon-lg */
+.icon-lg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Clases utility para tamaños específicos */
+.icon-sm [data-lucide], [data-lucide].icon-sm { width: var(--s2); height: var(--s2); }  /* 16px - Pequeño */
+.icon-md [data-lucide], [data-lucide].icon-md { width: var(--s3); height: var(--s3); }  /* 24px - Mediano */
+.icon-lg [data-lucide], [data-lucide].icon-lg { width: var(--s5); height: var(--s5); }  /* 40px - Grande */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPONENTES DE CÓDIGO
+   Para mostrar código con syntax highlighting
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/**
+ * COMPONENTE: Bloque de código
+ * Contenedor para código con estilo profesional
+ */
+.code-block {
+    background: var(--magenta-dark);            /* Fondo oscuro existente */
+    color: var(--color-white);                  /* Texto claro del sistema */
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: calc(var(--t-1) * 0.9);         /* Tamaño ligeramente menor que texto pequeño */
+    line-height: 1.4;                          /* Line-height optimizado para código */
+    padding: var(--s2);                        /* Padding áureo */
+    border-radius: calc(var(--u) / 2);         /* Bordes redondeados proporcionales */
+    overflow-x: auto;                          /* Scroll horizontal si es necesario */
+    margin: 0;                                 /* Sin margin por defecto */
+    width: 100%;                               /* Ocupa todo el ancho de su celda grid */
+    box-sizing: border-box;                    /* Incluye padding en el cálculo */
+    white-space: pre-wrap;                     /* Permite wrapping pero preserva formato */
+}
+
+.code-block code {
+    background: none;
+    padding: 0;
+    color: inherit;
+    white-space: inherit;
+    display: inline;
+}
+
+/* Syntax highlighting - Colores vivos con alto contraste para fondo oscuro */
+.code-html-tag { color: #FF6B6B; }                      /* Tags HTML: rojo brillante */
+.code-html-attr { color: #FFD93D; }                     /* Atributos: amarillo vibrante */
+.code-html-string { color: #6BCF7F; }                   /* Strings: verde brillante */
+.code-css-selector { color: #4ECDC4; }                  /* Selectores CSS: cyan brillante */
+.code-css-property { color: #45B7D1; }                  /* Propiedades CSS: azul vibrante */
+.code-css-value { color: #96CEB4; }                     /* Valores CSS: verde agua */
+.code-css-comment { color: #A8A8A8; font-style: italic; } /* Comentarios: gris claro */
+.code-css-variable { color: #FECA57; }                  /* Variables CSS: naranja brillante */
+
+/* Syntax highlighting - Signos de marcación y operadores con alto contraste */
+.code-punctuation { color: #FF9FF3; }                   /* Puntuación: rosa brillante */
+.code-operator { color: #FFD93D; }                      /* Operadores: amarillo vibrante */
+.code-bracket { color: #74B9FF; }                       /* Corchetes: azul claro */
+.code-symbol { color: #FDCB6E; }                        /* Símbolos: naranja suave */
+
+/* Elemento code inline - SIN BACKGROUND POR DEFECTO */
+code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: calc(var(--t0) * 0.8);
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    display: inline-block;
+    min-width: 8rem;
+    max-width: 100%;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    vertical-align: top;
+}
+
+/* Code con background para bloques de código */
+.code-block code {
+    background-color: transparent;
+    color: inherit;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GRIDS ESPECÍFICOS PARA COLS2
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.code-block {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANIMACIONES SUTILES
+   Transiciones suaves respetando preferencias de accesibilidad
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Animaciones solo si el usuario no prefiere movimiento reducido */
+@media (prefers-reduced-motion: no-preference) {
+    * {
+        transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                   opacity 200ms ease-out,
+                   background-color 300ms ease-out;
+    }
+    
+    /* Hover en enlaces y botones */
+    button:hover {
+        background-color: var(--color-black);
+        color: var(--color-white);
+    }
+    
+    /* Hover más pronunciado en articles - ELIMINADO por ser molesto */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MODO OSCURO AUTOMÁTICO
+   Inversión de colores del sistema para esquema oscuro
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Modo oscuro ahora manejado completamente por color.css */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONFIGURACIÓN PARA CONTAINER QUERIES
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Main configurado para container queries - DESHABILITADO */
+/*
+main {
+    container-type: inline-size;
+}
+*/
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ESTILOS PARA ENLACES
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Enlaces ahora manejados por color.css */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPONENTES PARA SHOWCASE DE COLORES
+   Grid de colores y swatches para mostrar la paleta TOT0
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Contenedor de grid de colores */
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+    gap: var(--vh-2);
+    padding: var(--vh-2);
+    border: 1px solid var(--color-border-light);
+    border-radius: calc(var(--u) / 2);
+    background: var(--color-bg-elevated);
+}
+
+.color-grid h3 {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding-bottom: var(--vh-1);
+    border-bottom: 1px solid var(--color-border-medium);
+    color: var(--color-text-primary);
+}
+
+/* Swatch individual de color */
+.color-swatch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(var(--u) * 8);
+    padding: var(--vh-1);
+    border: none;
+    background: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.color-swatch small {
+    background: none;
+    padding: calc(var(--u) / 4) calc(var(--u) / 2);
+    font-size: var(--t-1);
+    font-weight: 600;
+    text-align: center;
+    backdrop-filter: blur(4px);
+}
+
+/* Invertir color del texto en fondos claros */
+.color-swatch[style*="background-color: var(--primary-50)"] small,
+.color-swatch[style*="background-color: var(--primary-100)"] small,
+.color-swatch[style*="background-color: var(--secondary-50)"] small,
+.color-swatch[style*="background-color: var(--secondary-100)"] small,
+.color-swatch[style*="background-color: var(--accent-50)"] small,
+.color-swatch[style*="background-color: var(--accent-100)"] small,
+.color-swatch[style*="background-color: var(--neutral-50)"] small,
+.color-swatch[style*="background-color: var(--neutral-100)"] small {
+    color: black;
+}
+
+
+/* Responsive para grid de colores */
+@media (max-width: 768px) {
+    .color-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+    
+    .color-swatch {
+        min-height: calc(var(--u) * 6);
+    }
+}
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════
+ * NOTAS DE IMPLEMENTACIÓN DE UTILS
+ * ═══════════════════════════════════════════════════════════════════════
+ * 
+ * COMPONENTES PRINCIPALES:
+ * ✅ .bg-image - Imágenes de fondo con overlay
+ * ✅ .highlight - Elementos destacados
+ * ✅ .bg-gradient - Degradados suaves
+ * ✅ .logo - Branding con espaciado áureo
+ * ✅ .code-block - Código con syntax highlighting
+ * 
+ * UTILIDADES:
+ * ✅ Tamaños (.fit, .h-full, .h-screen)
+ * ✅ Alineación (.center, .tac)
+ * ✅ Iconos contextuales (automáticos + clases)
+ * ✅ Animaciones accesibles
+ * ✅ Modo oscuro automático
+ * 
+ * SISTEMA DE ICONOS:
+ * - Tamaños contextuales automáticos
+ * - Clases utility (.icon-sm, .icon-md, .icon-lg)
+ * - Basado en variables áureas del sistema
+ * 
+ * ACCESIBILIDAD:
+ * - Respeta prefers-reduced-motion
+ * - Respeta prefers-color-scheme
+ * - Colores con contraste adecuado
+ * 
+ * FILOSOFÍA:
+ * Estas utilidades complementan el sistema base sin interferir
+ * Mantienen la consonancia áurea y la consistencia visual
+ */
+
+
+/* ═══════════════════════════════════════════════════════════
+   MENÚ HAMBURGUESA RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
+/* Botón del menú hamburguesa - oculto por defecto en desktop */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #000000;
+    transition: transform 0.3s ease;
+    position: relative;
+    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    flex-shrink: 0;
+}
+
+.menu-toggle svg,
+.menu-toggle i {
+    color: #000000;
+    stroke: #000000;
+    width: 28px;
+    height: 28px;
+    stroke-width: 2;
+}
+
+.menu-toggle:focus-visible {
+    outline: 3px solid var(--color-yellow);
+    outline-offset: 2px;
+    border-radius: 8px;
+}
+
+.menu-toggle:focus {
+    outline: none;
+}
+
+.menu-toggle:focus-visible {
+    outline: 3px solid var(--color-yellow);
+    outline-offset: 2px;
+}
+
+/* Estados iniciales de los iconos */
+.menu-toggle .menu-icon {
+    opacity: 1;
+    transform: translateZ(0) rotate(0deg) scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    will-change: opacity, transform;
+}
+
+.menu-toggle .close-icon {
+    opacity: 0;
+    transform: translateZ(0) rotate(-180deg) scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    will-change: opacity, transform;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+    width: 24px;
+    height: 24px;
+    margin-top: -12px;
+    margin-left: -12px;
+}
+
+.menu-toggle .menu-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Estados cuando el menú está activo */
+.nav-menu.active .menu-toggle .menu-icon {
+    opacity: 0;
+    transform: translateZ(0) rotate(180deg) scale(0.8);
+}
+
+.nav-menu.active .menu-toggle .close-icon {
+    opacity: 1;
+    transform: translateZ(0) rotate(0deg) scale(1);
+    margin-top: -12px;
+    margin-left: -12px;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.1);
+}
+
+.nav-menu.active .menu-toggle {
+    color: var(--color-cyan);
+}
+
+.nav-menu.active .nav-list {
+    display: flex;
+}
+
+/* Estilos responsive para tablets y móvil */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .nav-menu {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        margin-left: auto;
+    }
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        border-radius: 8px;
+        background: transparent;
+        transition: all 0.2s ease;
+        color: #000000;
+        padding: 0;
+        border: none;
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+
+    .menu-toggle svg,
+    .menu-toggle i {
+        color: #000000;
+        stroke: #000000;
+        width: 28px;
+        height: 28px;
+        stroke-width: 2;
+    }
+
+    .menu-toggle:hover {
+        background: rgba(0, 255, 255, 0.08);
+        transform: scale(1.02);
+    }
+
+    header {
+        height: 68px;
+        padding: 0 var(--s2);
+        /* Mantener funcionalidad transparente original */
+        background: transparent;
+        backdrop-filter: none;
+        border-bottom: none;
+    }
+
+    header.header-scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    header .logo {
+        scale: 0.9;
+        max-width: 65%;
+    }
+
+    .nav-list {
+        display: none;
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(15px);
+        padding: var(--s3) var(--s3) var(--s4);
+        gap: var(--s2);
+        border-bottom: 3px solid var(--color-cyan);
+        width: 100%;
+        flex-direction: column;
+        z-index: 999;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+        animation: slideDown 0.25s ease-out;
+    }
+
+    .nav-list a {
+        padding: var(--s2) var(--s3);
+        font-size: 1.1rem;
+        border-radius: 10px;
+    }
+
+    .nav-menu.active .nav-list {
+        display: flex;
+    }
+
+    .nav-menu.active .menu-toggle {
+        background: rgba(0, 255, 255, 0.12);
+        color: var(--color-cyan);
+    }
+}
+
+/* Estilos responsive para móvil */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        margin-left: auto;
+        position: relative;
+    }
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        min-width: 52px;
+        border-radius: 10px;
+        background: transparent;
+        transition: all 0.2s ease;
+        color: #000000;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        flex-shrink: 0;
+    }
+
+    .menu-toggle svg,
+    .menu-toggle i {
+        color: #000000;
+        stroke: #000000;
+        width: 32px;
+        height: 32px;
+        stroke-width: 2.5;
+    }
+
+    .menu-toggle:hover {
+        background: rgba(0, 255, 255, 0.1);
+        transform: scale(1.05);
+    }
+
+    .menu-toggle:active {
+        transform: scale(0.95);
+    }
+
+    header {
+        padding: 0;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        max-width: 100vw;
+        /* Mantener funcionalidad transparente original */
+        background: transparent;
+        backdrop-filter: none;
+        border-bottom: none;
+        position: relative;
+    }
+
+    header.header-scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    header .logo {
+        scale: 0.85;
+        transform-origin: left center;
+        padding-left: var(--s1);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-shrink: 1;
+        gap: var(--s1);
+        max-width: calc(100% - 70px);
+    }
+
+    header .nav-menu {
+        position: absolute;
+        right: var(--s1);
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    header .logo svg {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+    }
+
+    header .logo p {
+        font-size: 0.9rem;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .nav-list {
+        display: none;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        padding: var(--s3) var(--s2) var(--s4);
+        gap: var(--s2);
+        border-bottom: 3px solid var(--color-cyan);
+        width: 100%;
+        flex-direction: column;
+        z-index: 999;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .nav-list a {
+        display: block;
+        padding: var(--s3) var(--s2);
+        transition: all 0.3s ease;
+        position: relative;
+        font-weight: 600;
+        color: var(--color-black);
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+        border-radius: 12px;
+        background: rgba(240, 240, 240, 0.8);
+        border: 2px solid transparent;
+        text-decoration: none;
+    }
+
+    .nav-list a:hover,
+    .nav-list a:focus {
+        background: var(--color-cyan);
+        color: var(--color-white);
+        border-color: var(--color-cyan);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+    }
+
+    .nav-list a:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 6px rgba(0, 255, 255, 0.2);
+    }
+
+    .nav-list a:focus-visible {
+        outline: 3px solid var(--color-yellow);
+        outline-offset: 2px;
+    }
+
+    /* Mejorar el estado activo del menú */
+    .nav-menu.active .nav-list {
+        display: flex;
+    }
+
+    .nav-menu.active .menu-toggle {
+        background: rgba(0, 255, 255, 0.15);
+        color: var(--color-cyan);
+    }
+
+    /* Overlay para cerrar menú */
+    .nav-menu.active::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.2);
+        z-index: 998;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+}
+
+/* Ajustes para dispositivos muy pequeños */
+@media (max-width: 480px) {
+    header {
+        height: 56px;
+        padding: 0;
+        /* Mantener funcionalidad transparente original */
+        background: transparent;
+        backdrop-filter: none;
+        border-bottom: none;
+        position: relative;
+    }
+
+    header.header-scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    header .logo {
+        scale: 0.75;
+        padding-left: var(--s1);
+        flex-shrink: 1;
+        max-width: calc(100% - 65px);
+    }
+
+    header .nav-menu {
+        position: absolute;
+        right: var(--s1);
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    header .logo p {
+        font-size: 0.8rem;
+    }
+
+    header .logo svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .menu-toggle {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        padding: 0;
+        border-radius: 8px;
+        flex-shrink: 0;
+    }
+
+    .menu-toggle svg,
+    .menu-toggle i {
+        width: 28px;
+        height: 28px;
+        stroke-width: 2.5;
+    }
+
+    .nav-list {
+        top: 56px;
+        padding: var(--s2) var(--s1) var(--s3);
+    }
+
+    .nav-list a {
+        padding: var(--s2) var(--s1);
+        font-size: 0.95rem;
+    }
+}
+
+/* Ajustes para móviles en landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+    header {
+        height: 52px;
+        padding: 0;
+        /* Mantener funcionalidad transparente original */
+        background: transparent;
+        backdrop-filter: none;
+        border-bottom: none;
+        position: relative;
+    }
+
+    header.header-scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    header .logo {
+        scale: 0.7;
+        padding-left: var(--s1);
+        flex-shrink: 1;
+        max-width: calc(100% - 60px);
+    }
+
+    header .nav-menu {
+        position: absolute;
+        right: var(--s1);
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    header .logo p {
+        font-size: 0.8rem;
+    }
+
+    .menu-toggle {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        padding: 0;
+        border-radius: 8px;
+        flex-shrink: 0;
+    }
+
+    .menu-toggle svg,
+    .menu-toggle i {
+        width: 26px;
+        height: 26px;
+        stroke-width: 2.5;
+    }
+
+    .nav-list {
+        top: 52px;
+        padding: var(--s2) var(--s2) var(--s3);
+        max-height: calc(100vh - 52px);
+        overflow-y: auto;
+    }
+
+    .nav-list a {
+        padding: var(--s1) var(--s2);
+        font-size: 0.9rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO VARIATIONS - Diferentes tipos de hero por demo
+   ═══════════════════════════════════════════════════════════ */
+
+/* Hero base - configuración común */
+.hero-gradient,
+.hero-tech,
+.hero-minimal,
+.hero-corporate,
+.hero-luxury,
+.hero-cosmic,
+.hero-nature,
+.hero-personal {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--vh-4);
+}
+
+/* Hero Tech - Gradientes tecnológicos con efectos */
+.hero-tech {
+    background: var(--gradient-tech);
+    color: var(--neon-cyan);
+}
+
+.hero-tech::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="cyan" opacity="0.3"/><circle cx="80" cy="30" r="1" fill="magenta" opacity="0.2"/><circle cx="60" cy="70" r="1" fill="yellow" opacity="0.1"/></svg>');
+    z-index: 1;
+}
+
+.hero-tech > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero Luxury - Elegante con overlay sutil */
+.hero-luxury {
+    background: var(--gradient-royal);
+    color: var(--metallic-gold);
+}
+
+.hero-luxury::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 49%, rgba(255, 215, 0, 0.1) 50%, transparent 51%),
+                linear-gradient(-45deg, transparent 49%, rgba(255, 215, 0, 0.1) 50%, transparent 51%);
+    background-size: 20px 20px;
+    z-index: 1;
+}
+
+.hero-luxury > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero Cosmic - Efectos espaciales */
+.hero-cosmic {
+    background: var(--gradient-cosmic);
+    color: var(--pastel-cyan);
+}
+
+.hero-cosmic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(147, 51, 234, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+    z-index: 1;
+}
+
+.hero-cosmic > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero Minimal - Limpio y espacioso */
+.hero-minimal {
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--neutral-200);
+}
+
+/* Hero Corporate - Profesional con imagen */
+.hero-corporate {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), var(--color-bg-elevated);
+    color: var(--color-white);
+}
+
+.hero-corporate h1,
+.hero-corporate p {
+    color: var(--color-white);
+}
+
+/* Hero Nature - Orgánico */
+.hero-nature {
+    background: var(--gradient-nature);
+    color: var(--deep-green);
+}
+
+/* Hero Personal - Sistema */
+.hero-personal {
+    background: var(--color-white);
+    color: var(--color-black);
+    border: 3px solid var(--color-cyan);
+}
+
+.hero-personal h1 {
+    color: var(--color-cyan);
+}
+
+.hero-personal p {
+    color: var(--color-black);
+}
+
+/* Hero Warm - Agencia creativa */
+.hero-warm {
+    background: var(--gradient-warm);
+    color: var(--rose-dark);
+}
+
+/* Animaciones para heroes dinámicos */
+@media (prefers-reduced-motion: no-preference) {
+    .hero-tech::before {
+        animation: techPulse 4s ease-in-out infinite;
+    }
+    
+    .hero-cosmic::before {
+        animation: cosmicRotate 20s linear infinite;
+    }
+}
+
+@keyframes techPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes cosmicRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

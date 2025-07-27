@@ -1,0 +1,325 @@
+/**
+ * COLOR.CSS - SISTEMA DE COLOR ATÓMICO TOT0
+ * ==========================================
+ * 
+ * Sistema de color basado en 5 colores atómicos: CYAN, MAGENTA, YELLOW, NEGRO, BLANCO
+ * TODO el sistema de color emana de estos 5 colores fundamentales usando HSL
+ * 
+ * FILOSOFÍA: Atomicidad absoluta - Todo deriva de CMY + BW usando HSL
+ */
+
+:root {
+    /* ═══════════════════════════════════════════════════════════
+       5 COLORES ATÓMICOS HSL - La base de TODO
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* LOS 5 COLORES BASE EN HSL */
+    --cyan-h: 180;      --cyan-s: 100%;     --cyan-l: 50%;
+    --magenta-h: 300;   --magenta-s: 100%;  --magenta-l: 50%;
+    --yellow-h: 60;     --yellow-s: 100%;   --yellow-l: 50%;
+    --black-h: 0;       --black-s: 0%;      --black-l: 0%;
+    --white-h: 0;       --white-s: 0%;      --white-l: 100%;
+    
+    /* COLORES BASE COMO VARIABLES HSL */
+    --color-cyan: hsl(var(--cyan-h), var(--cyan-s), var(--cyan-l));
+    --color-magenta: hsl(283.91deg 97.57% 37.33%);    /* Púrpura profundo */
+    --color-yellow: hsl(var(--yellow-h), var(--yellow-s), var(--yellow-l));
+    --color-black: hsl(var(--black-h), var(--black-s), var(--black-l));
+    --color-white: hsl(var(--white-h), var(--white-s), var(--white-l));
+    
+    /* ═══════════════════════════════════════════════════════════
+       MEZCLAS RGB - Síntesis aditiva de los primarios
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* MEZCLAS PRIMARIAS RGB */
+    --red-h: 0;         /* Mezcla de Magenta + Yellow */
+    --green-h: 120;     /* Mezcla de Cyan + Yellow */
+    --blue-h: 240;      /* Mezcla de Cyan + Magenta */
+    
+    --color-red: hsl(var(--red-h), 100%, 50%);
+    --color-green: hsl(var(--green-h), 100%, 50%);
+    --color-blue: hsl(var(--blue-h), 100%, 50%);
+    --blue-dark: hsl(var(--blue-h), 100%, 30%);    /* Variante oscura del azul */
+    
+    /* ═══════════════════════════════════════════════════════════
+       ESCALA DE GRISES CONDENSADA - Solo valores útiles
+       ═══════════════════════════════════════════════════════════ */
+    
+    --gray-dark: hsl(0, 0%, 90%);      /* Gris claro */
+    --gray-medium: hsl(0, 0%, 50%);    /* Gris medio */
+    --gray-light: hsl(0, 0%, 80%);     /* Gris claro */
+    
+    /* ═══════════════════════════════════════════════════════════
+       VARIACIONES ESENCIALES - Solo las más útiles
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* CYAN - Variaciones esenciales */
+    --cyan-dark: #FEF9EE; /* Cream color */
+    --cyan-light: hsl(var(--cyan-h), var(--cyan-s), 80%);
+    --cyan-pastel: hsl(var(--cyan-h), 30%, 70%);
+    
+    /* MAGENTA - Variaciones esenciales */
+    --magenta-dark: hsl(31.6deg 24.66% 26.29%);  /* Marrón cálido más oscuro */
+    --magenta-light: hsl(321.18deg 77.27% 91.37%); /* Magenta claro usado en layouts */
+    --magenta-pastel: #F5FDEF; /* Verde pastel suave */
+    
+    /* YELLOW - Variaciones esenciales */
+    --yellow-dark: hsl(var(--yellow-h), var(--yellow-s), 20%);
+    --yellow-light: hsl(var(--yellow-h), var(--yellow-s), 80%);
+    --yellow-pastel: hsl(var(--yellow-h), 30%, 70%);
+    
+    /* ═══════════════════════════════════════════════════════════
+       COLORES COMPLEMENTARIOS ÚNICOS
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* Solo los complementarios que no se repiten */
+    --red-complement: var(--color-cyan);      /* Rojo → Cyan (ya son complementarios) */
+    --green-complement: var(--color-magenta); /* Verde → Magenta */
+    --blue-complement: var(--color-yellow);   /* Azul → Amarillo */
+    
+    /* ═══════════════════════════════════════════════════════════
+       MEZCLAS ARMÓNICAS ÚNICAS - Sin duplicados
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* Mezclas binarias (promedio de tonos) */
+    --orange: hsl(30, 100%, 50%);      /* Yellow + Magenta → Naranja */
+    --purple: hsl(31.6deg 24.66% 36.29%);     /* Marrón cálido */
+    --lime: hsl(90, 100%, 50%);        /* Cyan + Yellow → Lima */
+    
+    /* ═══════════════════════════════════════════════════════════
+       ESCALAS PRIMARIAS SIMPLIFICADAS
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* ESCALA PRIMARIA - Basada en CYAN */
+    --primary-100: var(--cyan-light);
+    --primary-500: var(--color-cyan);
+    --primary-900: var(--cyan-dark);
+    
+    /* ESCALA SECUNDARIA - Basada en MAGENTA */
+    --secondary-100: var(--magenta-light);
+    --secondary-500: var(--color-magenta);
+    --secondary-900: var(--magenta-dark);
+    
+    /* ESCALA ACENTO - Basada en YELLOW */
+    --accent-100: var(--yellow-light);
+    --accent-500: var(--color-yellow);
+    --accent-900: var(--yellow-dark);
+    
+    /* ESCALA NEUTRAL - Solo 5 valores */
+    --neutral-0: var(--color-white);
+    --neutral-2: var(--gray-light);
+    --neutral-5: var(--gray-medium);
+    --neutral-8: var(--gray-dark);
+    --neutral-10: var(--color-black);
+    
+    /* ═══════════════════════════════════════════════════════════
+       COLORES SEMÁNTICOS - Aplicación contextual
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* Estados de acción */
+    --color-success: var(--color-green);
+    --color-warning: var(--color-yellow);
+    --color-error: var(--color-red);
+    --color-info: var(--color-cyan);
+    
+    /* Texto y contenido */
+    --color-text-primary: var(--color-black);
+    --color-text-secondary: var(--gray-dark);
+    --color-text-muted: var(--gray-medium);
+    --color-text-inverse: var(--color-white);
+    
+    /* Fondos y superficies */
+    --color-bg-primary: var(--color-white);
+    --color-bg-secondary: var(--gray-light);
+    --color-bg-elevated: var(--color-white);
+    --color-bg-inverse: var(--color-black);
+    
+    /* Bordes e interacciones */
+    --color-border: var(--gray-light);
+    
+    /* Estados interactivos */
+    --color-hover: var(--cyan-light);
+    --color-active: var(--cyan-pastel);
+    --color-focus: var(--color-cyan);
+    
+    /* ═══════════════════════════════════════════════════════════
+       GRADIENTES ÚNICOS - Solo los esenciales
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* Gradientes: Un color vibrante + un color desaturado */
+    --gradient-primary: linear-gradient(135deg, var(--color-cyan), var(--gray-medium));
+    --gradient-secondary: linear-gradient(135deg, var(--color-magenta), var(--gray-dark));
+    --gradient-accent: linear-gradient(135deg, var(--color-yellow), var(--gray-light));
+    
+    /* Gradiente especial */
+    --gradient-rainbow: linear-gradient(135deg, var(--color-green), var(--neutral-2));  /* Verde vibrante a neutral claro */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   APLICACIÓN A ELEMENTOS HTML
+   ═══════════════════════════════════════════════════════════════════════ */
+
+body {
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+}
+
+a {
+    color: var(--primary-500);
+}
+
+a:hover {
+    color: var(--primary-900);
+}
+
+button {
+    background-color: var(--primary-500);
+    color: var(--color-white);
+}
+
+button:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+code {
+    background-color: var(--magenta-dark);
+    color: var(--color-white);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MODO OSCURO
+   ═══════════════════════════════════════════════════════════════════════ */
+
+body.dark-mode {
+    --color-text-primary: var(--color-white);
+    --color-text-secondary: var(--gray-light);
+    --color-text-muted: var(--gray-medium);
+    --color-text-inverse: var(--color-black);
+    
+    --color-bg-primary: var(--color-black);
+    --color-bg-secondary: var(--gray-dark);
+    --color-bg-elevated: var(--gray-dark);
+    --color-bg-inverse: var(--color-white);
+    
+    --color-border: var(--gray-dark);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CLASES UTILITY
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* AUTO CONTRAST - Contraste automático para texto sobre fondos */
+
+[class*='bg-'] {
+    position: relative;
+}
+
+[class*='bg-'] > * {
+    position: relative;
+    z-index: 1;
+    color: var(--color-black);
+}
+
+/* Colores de texto */
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted { color: var(--color-text-muted); }
+.text-inverse { color: var(--color-text-inverse); }
+
+/* Colores de fondo */
+.bg-primary { background-color: var(--color-bg-primary); }
+.bg-secondary { background-color: var(--color-bg-secondary); }
+.bg-elevated { background-color: var(--color-bg-elevated); }
+.bg-inverse { background-color: var(--color-bg-inverse); }
+.bg-gradient { background: var(--gradient-primary); }
+
+/* Colores específicos */
+.text-cyan { color: var(--color-cyan); }
+.text-magenta { color: var(--color-magenta); }
+.text-yellow { color: var(--color-yellow); }
+.text-blue-dark { color: var(--blue-dark); }
+.text-white { color: var(--color-white); }
+
+/* Regla específica para logo con mayor especificidad */
+.logo p.text-cyan { color: var(--color-cyan); }
+
+.bg-cyan { background-color: var(--color-cyan); }
+.bg-magenta { background-color: var(--color-magenta); }
+.bg-yellow { background-color: var(--color-yellow); }
+
+/* Estados */
+.text-success { color: var(--color-success); }
+.text-warning { color: var(--color-warning); }
+.text-error { color: var(--color-error); }
+.text-info { color: var(--color-info); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPONENTES ESPECÍFICOS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.highlight {
+    background-color: var(--yellow-light);
+    border-color: var(--color-yellow);
+}
+
+.bg-hero {
+    background: var(--gradient-primary);
+    color: var(--color-black);
+}
+
+.bg-image {
+    background: var(--gray-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.bg-image > * {
+    max-width: 80%;
+    margin: 0;
+    padding-bottom: 0;
+}
+
+.bg-image-circle {
+    background: var(--gray-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+}
+
+.bg-image-circle > * {
+    max-width: 80%;
+    margin: 0;
+    padding-bottom: 0;
+}
+
+/* Color swatches para demostración */
+.color-swatch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid var(--gray-light);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COLORES DE CÓDIGO
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.code-css-selector { color: var(--primary-900); }
+.code-css-property { color: var(--secondary-900); }
+.code-css-value { color: var(--accent-900); }
+.code-css-variable { color: var(--primary-500); }
+.code-html-tag { color: var(--secondary-500); }
+.code-html-attr { color: var(--primary-900); }
+.code-html-string { color: var(--accent-900); }
+.code-html-comment { color: var(--gray-medium); }

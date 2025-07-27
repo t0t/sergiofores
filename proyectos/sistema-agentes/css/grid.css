@@ -1,0 +1,246 @@
+/**
+ * GRID.CSS - SISTEMA DE LAYOUTS TOT0
+ * =================================
+ * 
+ * Sistema de grid adaptativo basado en CSS Grid y Flexbox
+ * Layouts responsivos automáticos + clases utility para control específico
+ * Container queries para comportamiento contextual
+ * 
+ * FILOSOFÍA: Layouts que se adaptan automáticamente sin media queries complejas
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ELEMENTOS ESTRUCTURALES BASE
+   Configuración automática para elementos semánticos
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Articles completamente líquidos por defecto */
+article {
+    width: 100%;                   /* Ocupa todo el ancho disponible */
+    display: flex;                 /* Flexbox para contenido interno */
+    flex-direction: column;        /* Disposición vertical por defecto */
+}
+
+/* Header y footer con altura mínima y alineación */
+header {
+    align-items: center;          /* Alineación vertical centrada para grid */
+}
+
+footer {
+    min-height: 120px;            /* Altura mínima aumentada para mejor presencia */
+    align-items: center;          /* Alineación vertical centrada para grid */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SISTEMAS DE GRID PRINCIPALES
+   Layouts adaptivos automáticos con progresión áurea
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/**
+ * GRID ADAPTATIVO PRINCIPAL
+ * Se adapta automáticamente al contenido disponible
+ * Mínimo: 160px fijo, máximo: 100% del contenedor
+ */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+/**
+ * GRID HORIZONTAL CON SCROLL
+ * Para elementos que necesitan scroll horizontal
+ * Mínimo: 80px fijo, se adapta al contenido
+ */
+.grid-flow {
+    display: grid;
+    grid-auto-flow: column;                    /* Flujo horizontal */
+    grid-auto-columns: minmax(80px, auto);
+    overflow-x: auto;                          /* Scroll horizontal cuando sea necesario */
+    align-items: center;                       /* Centra verticalmente los elementos */
+}
+
+/**
+ * GRID COMPACTO PARA ICONOS
+ * Flexbox con wrap para elementos pequeños como iconos
+ */
+.grid-compact {
+    display: flex;
+    flex-wrap: wrap;                           /* Permite salto de línea */
+    justify-content: center;                   /* Centra horizontalmente */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONTROL DE COLUMNAS ESPECÍFICAS - VALORES BASE
+   Definiciones por defecto antes de media queries
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.grid.cols1 { grid-template-columns: 1fr; }                    /* 1 columna */
+.grid.cols2 { grid-template-columns: 2fr 1fr; gap: var(--s2); }  /* 2 columnas: primera más ancha con gap */
+.grid.cols3 { grid-template-columns: repeat(3, 1fr); }         /* 3 columnas */
+.grid.cols4 { grid-template-columns: repeat(4, 1fr); }         /* 4 columnas */
+.grid.cols5 { grid-template-columns: repeat(5, 1fr); }         /* 5 columnas */
+.grid.cols6 { grid-template-columns: repeat(6, 1fr); }         /* 6 columnas */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MEDIA QUERIES RESPONSIVE - MOBILE-FIRST OPTIMIZADO
+   Breakpoints: 375px (móvil), 768px (tablet), 1024px (desktop)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Móviles modernos - iPhone SE y similares */
+@media (max-width: 375px) {
+    .grid {
+        grid-template-columns: 1fr;           /* Una columna en móviles */
+        gap: var(--s2);                       /* Gap más pequeño en móvil */
+    }
+    
+    /* Todas las clases de columnas fijas se convierten en 1 columna */
+    .grid.cols2,
+    .grid.cols3,
+    .grid.cols4,
+    .grid.cols5,
+    .grid.cols6 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tablets - Mejor experiencia para cols2 */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    /* cols2 problemático en tablets - mejor 1 columna */
+    .grid.cols2 {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Resto de clases de columnas fijas responsivas */
+    .grid.cols3,
+    .grid.cols4,
+    .grid.cols5,
+    .grid.cols6 {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+/* Tablets landscape y desktop - cols2 real a partir de 769px */
+@media (min-width: 769px) {
+    .grid.cols2 {
+        grid-template-columns: 2fr 1fr;  /* cols2 con primera columna más ancha */
+    }
+}
+
+/* Desktop grande - mantener cols2 en pantallas anchas */
+@media (min-width: 1339px) {
+    .grid.cols2 {
+        grid-template-columns: 2fr 1fr;  /* Mantener 2 columnas con primera más ancha */
+    }
+}
+
+/* Desktop medio - MEDIA QUERY ELIMINADO PARA TESTEAR FLUIDEZ NATURAL */
+/* @media (min-width: 769px) and (max-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    Hacer responsivas las clases de columnas fijas
+    .grid.cols2,
+    .grid.cols3,
+    .grid.cols4,
+    .grid.cols5,
+    .grid.cols6 {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+} */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CLASES UTILITY DE LAYOUT
+   Layouts específicos para casos particulares
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Layouts Flexbox básicos */
+.stack { 
+    display: flex; 
+    flex-direction: column; 
+}                                             /* Apilado vertical */
+
+.cluster { 
+    display: flex; 
+    flex-wrap: wrap; 
+}                                             /* Agrupación horizontal con wrap */
+
+.between { 
+    display: flex; 
+    justify-content: space-between; 
+}                                             /* Distribución con espacio entre elementos */
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   POSITIONING Y ALINEACIÓN
+   Clases utility para control de posición y alineación
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Alineación de contenedor (afecta a todos los hijos) */
+.ch { justify-items: center; }                /* Centra todos los hijos horizontalmente */
+.cv { align-items: center; }                  /* Centra todos los hijos verticalmente */
+.ai-end { align-items: end; }                 /* Alinea todos los hijos al final (abajo) */
+
+/* Auto-posicionamiento individual (afecta al elemento mismo) */
+.sch { justify-self: center; }                /* Se centra horizontalmente */
+.scv { align-self: center; }                  /* Se centra verticalmente */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SPANNING (OCUPACIÓN DE COLUMNAS)
+   Clases utility para que elementos ocupen múltiples columnas
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.full-row { grid-column: 1 / -1; }            /* Ocupa toda la fila disponible */
+.span2 { grid-column: span 2; }               /* Ocupa 2 columnas */
+.span3 { grid-column: span 3; }               /* Ocupa 3 columnas */
+.span4 { grid-column: span 4; }               /* Ocupa 4 columnas */
+.span5 { grid-column: span 5; }               /* Ocupa 5 columnas */
+.span6 { grid-column: span 6; }               /* Ocupa 6 columnas */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONTROL DE GAP
+   Clases utility para ajustar espacio entre elementos del grid
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.gap0 { gap: 0; }                             /* Sin espacio entre elementos */
+.gap1 { gap: var(--s2); }                    /* 16px - Gap compacto */
+.gap2 { gap: var(--s3); }                    /* 24px - Gap intermedio */
+
+/* Nota: gap por defecto es var(--vh-3) = 24px definido en spacing.css */
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════
+ * NOTAS DE IMPLEMENTACIÓN DEL GRID
+ * ═══════════════════════════════════════════════════════════════════════
+ * 
+ * SISTEMAS DE GRID DISPONIBLES:
+ * ✅ .grid - Adaptativo automático con minmax()
+ * ✅ .grid-flow - Horizontal con scroll
+ * ✅ .grid-compact - Flexbox para iconos
+ * ✅ .stack - Flexbox vertical
+ * ✅ .cluster - Flexbox horizontal con wrap
+ * ✅ .between - Flexbox con space-between
+ * 
+ * CONTROL ESPECÍFICO:
+ * - .cols1 a .cols6 para columnas exactas
+ * - .span2 a .span6 para ocupación múltiple
+ * - .full-row para ocupar toda la fila
+ * - .gap0, .gap1, .gap2 para espaciado específico
+ * 
+ * ALINEACIÓN:
+ * - .ch/.cv para alinear contenido del contenedor
+ * - .sch/.scv para auto-posicionamiento
+ * 
+ * RESPONSIVE:
+ * - Container queries automáticas
+ * - Adaptación contextual sin media queries
+ * - Progresión áurea en todos los tamaños
+ * 
+ * FILOSOFÍA:
+ * Los layouts se adaptan automáticamente, las clases utility
+ * son para control específico cuando la adaptación automática no es suficiente
+ */

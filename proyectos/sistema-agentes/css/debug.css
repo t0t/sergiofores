@@ -1,0 +1,253 @@
+/**
+ * DEBUG.CSS - SISTEMA WIREFRAME TOT0
+ * =================================
+ * 
+ * Sistema de debugging visual para desarrollo
+ * Wireframes con colores diferenciados por elemento HTML
+ * Etiquetas automáticas que muestran elemento + clases
+ * 
+ * USO: Añadir clase .wireframe al body para activar
+ * PRODUCCIÓN: Comentar la importación de este archivo
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ACTIVACIÓN DEL WIREFRAME
+   Clase principal que activa todo el sistema de debugging
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.wireframe {
+    padding: var(--s1);                        /* Padding base para mejor visualización */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SISTEMA DE COLORES WIREFRAME
+   Cada elemento HTML tiene un matiz específico para identificación visual
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Colores diferenciados por elemento - Máximo contraste sobre blanco */
+.wireframe body    { --local-hue: 0; }         /* Rojo - Elemento raíz */
+.wireframe header  { --local-hue: 340; }       /* Magenta - Cabecera */
+.wireframe footer  { --local-hue: 280; }       /* Violeta - Pie */
+.wireframe main    { --local-hue: 220; }       /* Azul - Contenido principal */
+.wireframe section { --local-hue: 45; }        /* Amarillo - Secciones */
+.wireframe ul      { --local-hue: 140; }       /* Verde - Listas */
+.wireframe article { --local-hue: 190; }       /* Cian - Artículos */
+.wireframe nav     { --local-hue: 20; }        /* Naranja - Navegación */
+.wireframe svg     { --local-hue: 260; }       /* Púrpura - Gráficos */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FONDOS SUAVES PARA REALISMO VISUAL
+   Fondos muy sutiles que no interfieren con el contenido
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.wireframe footer {
+    background: hsl(var(--local-hue), 25%, 97%);        /* Fondo muy sutil para footer */
+}
+
+.wireframe article {
+    background: hsl(var(--local-hue), 35%, 96%);        /* Fondo muy sutil para articles */
+}
+
+.wireframe nav {
+    background: hsl(var(--local-hue), 40%, 95%);        /* Fondo muy sutil para nav */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BORDES WIREFRAME CON ESTILOS DIFERENCIADOS
+   Cada elemento tiene un estilo de borde específico para identificación
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Borde base para todos los elementos con data-tag */
+.wireframe [data-tag] {
+    border: 1px solid hsl(var(--local-hue, var(--hue)), 90%, 35%);
+    position: relative;                          /* Para posicionar las etiquetas */
+}
+
+/* Estilos de borde específicos por elemento */
+.wireframe header  { border-style: dashed; }    /* Línea discontinua - Header */
+.wireframe footer  { border-style: dotted; }    /* Puntos - Footer */
+.wireframe main    { border-style: solid; }     /* Línea sólida - Main */
+.wireframe section { border-style: dashed; }    /* Línea discontinua - Section */
+.wireframe ul      { border-style: dotted; }    /* Puntos - Listas */
+.wireframe article { border-style: solid; }     /* Línea sólida - Article */
+.wireframe nav     { border-style: double; }    /* Línea doble - Nav */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ETIQUETAS AUTOMÁTICAS
+   Muestran el nombre del elemento HTML + clases CSS aplicadas
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Etiqueta principal que muestra data-tag + clases */
+.wireframe [data-tag]::before {
+    content: attr(data-tag) " ." attr(class);   /* Combina elemento y clases */
+    position: absolute;                          /* Posicionamiento absoluto */
+    top: 0;                                     /* En la parte superior */
+    right: 0;                                   /* En la parte derecha */
+    background: hsl(var(--local-hue, var(--hue)), var(--sat), 50%);  /* Fondo con color del elemento */
+    color: white;                               /* Texto blanco para contraste */
+    padding: calc(var(--u) / 4) calc(var(--u) / 2);  /* Padding proporcional */
+    font-size: calc(var(--u) * 1.25);          /* Tamaño de fuente pequeño */
+    line-height: 1;                             /* Line-height compacto */
+    font-family: 'JetBrains Mono', monospace;   /* Fuente monospace para legibilidad */
+}
+
+/* Etiquetas estructurales principales van a la izquierda */
+.wireframe main[data-tag]::before,
+.wireframe header[data-tag]::before,
+.wireframe footer[data-tag]::before,
+.wireframe section[data-tag]::before {
+    left: 0;                                    /* Posición izquierda */
+    right: auto;                                /* Anula posición derecha */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LIMPIEZA DE ETIQUETAS ::AFTER
+   Oculta todas las etiquetas ::after para evitar duplicación
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Ocultar ::after generales */
+.wireframe [class]::after {
+    display: none;
+}
+
+.wireframe [data-tag][class]::after {
+    display: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ETIQUETAS ESPECÍFICAS PARA CLASES UTILITY
+   Lista exhaustiva de todas las clases del sistema TOT0
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Forzar mostrar etiquetas para todas las clases utility del sistema */
+.wireframe .grid::after,
+.wireframe .grid-flow::after,
+.wireframe .bg-image::after,
+.wireframe .highlight::after,
+.wireframe .fit::after,
+.wireframe .center::after,
+.wireframe .tac::after,
+.wireframe .stack::after,
+.wireframe .cluster::after,
+.wireframe .between::after,
+.wireframe .j-start::after,
+.wireframe .j-center::after,
+.wireframe .j-end::after,
+.wireframe .j-stretch::after,
+.wireframe .a-start::after,
+.wireframe .a-center::after,
+.wireframe .a-end::after,
+.wireframe .a-stretch::after,
+.wireframe .ji-start::after,
+.wireframe .ji-center::after,
+.wireframe .ji-end::after,
+.wireframe .ji-stretch::after,
+.wireframe .ch::after,
+.wireframe .cv::after,
+.wireframe .sch::after,
+.wireframe .scv::after,
+.wireframe .full-row::after,
+.wireframe .span2::after,
+.wireframe .span3::after,
+.wireframe .span4::after,
+.wireframe .span5::after,
+.wireframe .span6::after,
+.wireframe .gap0::after,
+.wireframe .gap1::after,
+.wireframe .gap2::after,
+.wireframe .cols2::after,
+.wireframe .cols3::after,
+.wireframe .cols4::after,
+.wireframe .cols5::after,
+.wireframe .cols6::after,
+.wireframe .pt0::after,
+.wireframe .pt1::after,
+.wireframe .pt2::after,
+.wireframe .pt3::after,
+.wireframe .pt4::after,
+.wireframe .pt5::after,
+.wireframe .pb0::after,
+.wireframe .pb1::after,
+.wireframe .pb2::after,
+.wireframe .pb3::after,
+.wireframe .pb4::after,
+.wireframe .pb5::after,
+.wireframe .pl0::after,
+.wireframe .pl1::after,
+.wireframe .pl2::after,
+.wireframe .pl3::after,
+.wireframe .pl4::after,
+.wireframe .pl5::after,
+.wireframe .pr0::after,
+.wireframe .pr1::after,
+.wireframe .pr2::after,
+.wireframe .pr3::after,
+.wireframe .pr4::after,
+.wireframe .pr5::after,
+.wireframe .ml0::after,
+.wireframe .ml1::after,
+.wireframe .ml2::after,
+.wireframe .ml3::after,
+.wireframe .ml4::after,
+.wireframe .ml5::after,
+.wireframe .mr0::after,
+.wireframe .mr1::after,
+.wireframe .mr2::after,
+.wireframe .mr3::after,
+.wireframe .mr4::after,
+.wireframe .mr5::after,
+.wireframe .mb0::after,
+.wireframe .mb1::after,
+.wireframe .mb2::after,
+.wireframe .mb3::after,
+.wireframe .mb4::after,
+.wireframe .mb5::after,
+.wireframe .mt0::after,
+.wireframe .mt1::after,
+.wireframe .mt2::after,
+.wireframe .mt3::after,
+.wireframe .mt4::after,
+.wireframe .mt5::after {
+    display: block;                  /* Fuerza mostrar todas las etiquetas utility */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   AJUSTES ESPECÍFICOS PARA ELEMENTOS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Logo sin espaciado wireframe - No interferir con el logo */
+.wireframe header svg {
+    margin: 0;                                  /* Sin margin en logos */
+    padding: 0;                                 /* Sin padding en logos */
+}
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════
+ * NOTAS DE USO DEL WIREFRAME
+ * ═══════════════════════════════════════════════════════════════════════
+ * 
+ * ACTIVACIÓN:
+ * ✅ Añadir clase .wireframe al <body>
+ * ✅ Todos los elementos con data-tag se visualizan automáticamente
+ * ✅ Las clases utility se muestran con etiquetas específicas
+ * 
+ * IDENTIFICACIÓN VISUAL:
+ * - Cada elemento HTML tiene un color específico
+ * - Bordes diferenciados por estilo (sólido, discontinuo, puntos, doble)
+ * - Etiquetas automáticas muestran elemento + clases
+ * - Fondos sutiles que no interfieren con el contenido
+ * 
+ * ELEMENTOS IDENTIFICADOS:
+ * - body (rojo), header (magenta), footer (violeta)
+ * - main (azul), section (amarillo), article (cian)
+ * - nav (naranja), ul (verde), svg (púrpura)
+ * 
+ * PARA PRODUCCIÓN:
+ * - Remover clase .wireframe del body
+ * - O comentar la importación de debug.css en main.css
+ * - O eliminar completamente debug.css del proyecto
+ * 
+ * FILOSOFÍA:
+ * Sistema de debugging que no interfiere con el diseño final
+ * pero proporciona información visual completa durante desarrollo
+ */

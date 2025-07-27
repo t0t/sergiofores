@@ -46,7 +46,7 @@
     width: 32px;
     height: 32px;
     background: var(--logo-4);
-    border-radius: 0 !important;
+    border-radius: 0;
 }
 
 /* ==========================================================================

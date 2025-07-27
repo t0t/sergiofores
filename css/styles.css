@@ -97,8 +97,6 @@ a {
 }
 
 .section {
-  margin-bottom: var(--space-3xl); /* Más separación entre secciones principales */
-  padding: var(--space-2xl) 0; /* Padding vertical más generous */
 }
 
 /* ==========================================================================

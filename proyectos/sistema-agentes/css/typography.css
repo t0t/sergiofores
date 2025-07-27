@@ -1,0 +1,167 @@
+/**
+ * TYPOGRAPHY.CSS - SISTEMA TIPOGRÁFICO TOT0
+ * ========================================
+ * 
+ * Sistema tipográfico basado en progresión áurea con reducción intermedia
+ * Elementos HTML con font-size y line-height automáticamente asignados
+ * 8 clases utility (.h1 a .h8) para uso flexible
+ * 
+ * FILOSOFÍA: Cada elemento tiene su tamaño y line-height áureo perfecto automático
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ELEMENTOS HTML - TIPOGRAFÍA AUTOMÁTICA
+   Reducción áurea intermedia aplicada uniformemente (16% de reducción)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/**
+ * FÓRMULA DE REDUCCIÓN ÁUREA INTERMEDIA:
+ * calc(var(--tx) / var(--φ) * var(--φ) / 1.2)
+ * 
+ * EXPLICACIÓN:
+ * 1. Divide por φ (1.618) 
+ * 2. Multiplica por φ (vuelve al original)
+ * 3. Divide por 1.2 (reducción del 16%)
+ * 
+ * RESULTADO: Tamaños más compactos manteniendo proporciones áureas
+ */
+
+/* Tipografía base del documento - Manejada en main.css */
+
+/* Letter-spacing base para todo el body */
+body {
+    letter-spacing: var(--ls8);    /* ~0.00903em - Base áurea que hereda a todos los elementos */
+}
+
+/* Jerarquía de títulos con line-heights optimizados */
+h1 { 
+    font-size: var(--t3); 
+    line-height: var(--lh0);
+    letter-spacing: var(--ls9);
+    padding-bottom: var(--s3);
+}      /* 68px - Hero auténtico con line-height compacto */
+       /* --ls9 = ~10px de letter-spacing, el valor más alto del sistema.*/
+
+h2 { 
+    font-size: var(--t1); 
+    line-height: var(--lh2); 
+    font-weight: 400;
+    padding-bottom: var(--s2);
+}      /* 26px - Título más proporcionado con line-height cómodo y peso normal */
+
+h3 { 
+    font-size: var(--t0); 
+    line-height: var(--lh1); 
+    padding-bottom: var(--s3);
+}      /* 16px - Subtítulo más proporcionado con line-height normal */
+
+h4 { 
+    font-size: var(--t0); 
+    line-height: var(--lh2); 
+    padding-bottom: var(--s3);
+    font-weight: 600;
+}      /* 15px - Encabezado equilibrado con peso semibold */
+
+h5 { 
+    font-size: var(--t-1); 
+    line-height: var(--lh2); 
+}     /* 10px - Menor con line-height cómodo */
+
+h6 { 
+    font-size: var(--t-2); 
+    line-height: var(--lh2); 
+}     /* 6px - Mínimo con line-height cómodo */
+
+/* Elementos de texto con legibilidad optimizada */
+p { 
+    font-size: var(--t0); 
+}       /* 15px - Párrafo base que hereda line-height global */
+
+small { 
+    font-size: var(--t-1); 
+    line-height: var(--lh3);
+    text-transform: uppercase;
+    letter-spacing: var(--ls3);
+}  /* 9.3px - Pequeño en mayúsculas con espaciado mejorado */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CLASES UTILITY TIPOGRÁFICAS
+   8 tamaños únicos con line-heights automáticamente asignados
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/**
+ * DISTRIBUCIÓN LINE-HEIGHTS POR PARES:
+ * - .h1 & .h2: --lh0 (Compacto) - Títulos hero gigantes
+ * - .h3 & .h4: --lh1 (Normal) - Títulos principales  
+ * - .h5 & .h6: --lh2 (Cómodo) - Subtítulos y texto base
+ * - .h7 & .h8: --lh3 (Espacioso) - Textos pequeños
+ */
+
+.h1 { 
+    font-size: var(--t5); 
+    line-height: var(--lh0); 
+}   /* 178px - Hero gigante con line-height compacto */
+
+.h2 { 
+    font-size: var(--t4); 
+    line-height: var(--lh0); 
+}   /* 110px - Hero grande con line-height compacto */
+
+.h3 { 
+    font-size: var(--t3); 
+    line-height: var(--lh1); 
+}   /* 68px - Hero mediano con line-height normal */
+
+.h4 { 
+    font-size: var(--t2); 
+    line-height: var(--lh1); 
+}   /* 42px - Títulos principales con line-height normal */
+
+.h5 { 
+    font-size: var(--t1); 
+    line-height: var(--lh2); 
+}   /* 26px - Subtítulos con line-height cómodo */
+
+.h6 { 
+    font-size: var(--t0); 
+    line-height: var(--lh2); 
+}   /* 16px - Base con line-height cómodo */
+
+.h7 { 
+    font-size: var(--t-1); 
+    line-height: var(--lh3); 
+}  /* 10px - Texto pequeño con line-height espacioso */
+
+.h8 { 
+    font-size: var(--t-2); 
+    line-height: var(--lh3); 
+}  /* 6px - Texto mínimo con line-height espacioso */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   OPTIMIZACIONES DE LEGIBILIDAD
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Contenedor principal con proporciones áureas - Manejado en main.css */
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════
+ * NOTAS DE IMPLEMENTACIÓN TIPOGRÁFICA
+ * ═══════════════════════════════════════════════════════════════════════
+ * 
+ * JERARQUÍA AUTOMÁTICA:
+ * ✅ Elementos HTML tienen tamaño + line-height automático
+ * ✅ Clases utility (.h1-.h8) para uso flexible
+ * ✅ Line-heights asignados por lógica (grande=compacto, pequeño=espacioso)
+ * ✅ Reducción áurea intermedia uniforme del 16%
+ * 
+ * VENTAJAS DEL SISTEMA:
+ * - Sin necesidad de clases para tipografía básica
+ * - Consistencia matemática absoluta
+ * - Escalabilidad manteniendo proporciones
+ * - Legibilidad optimizada por contexto
+ * 
+ * USO RECOMENDADO:
+ * - Elementos HTML para contenido semántico
+ * - Clases .h1-.h8 para casos especiales o diseño
+ * - Modificar solo las 5 variables fundamentales para proyectos específicos
+ */

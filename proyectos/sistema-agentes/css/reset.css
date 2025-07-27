@@ -1,0 +1,238 @@
+/**
+ * RESET.CSS - RESET PROFESIONAL MODERNO
+ * =====================================
+ * 
+ * Reset CSS profesional basado en las mejores prácticas actuales
+ * Elimina inconsistencias entre navegadores sin ser invasivo
+ * Compatible con CSS Grid, Flexbox y sistemas de diseño modernos
+ * 
+ * FILOSOFÍA: Normalización inteligente que respeta los estándares web
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET UNIVERSAL Y BOX-SIZING
+   Base sólida para todos los elementos
+   ═══════════════════════════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;       /* Width y height incluyen padding y border */
+}
+
+* {
+    margin: 0;                    /* Elimina margins inconsistentes */
+    padding: 0;                   /* Elimina paddings inconsistentes */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DOCUMENTO Y RAÍZ
+   Configuración base para html y body
+   ═══════════════════════════════════════════════════════════════════════ */
+
+html {
+    scroll-behavior: smooth;      /* Navegación suave entre anclas */
+    -webkit-text-size-adjust: 100%; /* Previene zoom automático en iOS */
+    -moz-text-size-adjust: 100%;  /* Previene zoom automático en Firefox mobile */
+}
+
+/* Configuración de body movida a main.css para evitar conflictos */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ELEMENTOS MULTIMEDIA
+   Comportamiento responsivo y accesible
+   ═══════════════════════════════════════════════════════════════════════ */
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;               /* Elimina espacio inferior inline */
+    max-width: 100%;              /* Responsivo por defecto */
+    height: auto;                 /* Mantiene proporción */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FORMULARIOS
+   Normalización de inputs y elementos de formulario
+   ═══════════════════════════════════════════════════════════════════════ */
+
+input,
+button,
+textarea,
+select {
+    font: inherit;                /* Hereda tipografía del documento */
+    color: inherit;               /* Hereda color del documento */
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    cursor: pointer;              /* Cursor pointer consistente */
+}
+
+button:disabled,
+input:disabled {
+    cursor: not-allowed;          /* Cursor apropiado para elementos deshabilitados */
+}
+
+textarea {
+    resize: vertical;             /* Solo resize vertical */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LISTAS
+   Configuración semántica y flexible
+   ═══════════════════════════════════════════════════════════════════════ */
+
+ul,
+ol {
+    list-style: none;             /* Sin viñetas por defecto - Se añaden según contexto */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TIPOGRAFÍA
+   Elementos tipográficos básicos
+   ═══════════════════════════════════════════════════════════════════════ */
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;    /* Rompe palabras largas para evitar overflow */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;           /* Equilibra líneas en títulos (cuando esté soportado) */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ENLACES
+   Comportamiento neutro y accesible
+   ═══════════════════════════════════════════════════════════════════════ */
+
+a {
+    color: inherit;               /* Hereda color del contexto */
+    text-decoration: none;        /* Sin subrayado por defecto */
+}
+
+a:not([class]) {
+    text-decoration-skip-ink: auto; /* Mejora visual para enlaces sin clases */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TABLAS
+   Normalización de elementos de tabla
+   ═══════════════════════════════════════════════════════════════════════ */
+
+table {
+    border-collapse: collapse;    /* Elimina espacio entre bordes */
+    border-spacing: 0;            /* Elimina espaciado entre celdas */
+}
+
+th,
+td {
+    text-align: left;             /* Alineación consistente */
+    vertical-align: top;          /* Alineación vertical consistente */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ELEMENTOS DE CÓDIGO
+   Normalización de elementos monospace
+   ═══════════════════════════════════════════════════════════════════════ */
+
+code,
+kbd,
+samp,
+pre {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Consolas', 'Courier New', monospace;
+    font-size: 1em;               /* Tamaño consistente */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ELEMENTOS INTERACTIVOS
+   Mejorar accesibilidad y usabilidad
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Elimina outline por defecto pero mantiene accesibilidad */
+:focus {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   UTILIDADES DE ACCESIBILIDAD
+   Elementos para lectores de pantalla
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOTION PREFERENCES
+   Respeta preferencias de movimiento del usuario
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms;
+        animation-iteration-count: 1;
+        transition-duration: 0.01ms;
+        scroll-behavior: auto;
+    }
+}
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════
+ * NOTAS DE IMPLEMENTACIÓN
+ * ═══════════════════════════════════════════════════════════════════════
+ * 
+ * CARACTERÍSTICAS DEL RESET:
+ * ✅ Box-sizing: border-box universal
+ * ✅ Eliminación de margins/paddings inconsistentes
+ * ✅ Optimización de renderizado de texto
+ * ✅ Elementos multimedia responsivos
+ * ✅ Formularios normalizados
+ * ✅ Accesibilidad mejorada
+ * ✅ Respeto por preferencias de movimiento
+ * 
+ * MEJORAS MODERNAS:
+ * - text-wrap: balance para títulos
+ * - overflow-wrap: break-word para texto
+ * - :focus-visible para accesibilidad
+ * - prefers-reduced-motion para UX
+ * 
+ * COMPATIBILIDAD:
+ * - Funciona con CSS Grid y Flexbox
+ * - Compatible con sistemas de diseño modernos
+ * - Respeta estándares web actuales
+ * 
+ * FILOSOFÍA:
+ * Este reset crea una base sólida y consistente
+ * sin imponer estilos específicos de diseño
+ */
