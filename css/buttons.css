@@ -1,0 +1,188 @@
+/* ==========================================================================
+   BUTTONS.CSS - SISTEMA DE BOTONES ATÓMICO
+   Estilos modulares para todos los tipos de botones
+   ========================================================================== */
+
+/* BOTÓN BASE */
+.btn {
+  display: inline-block;
+  width: auto;                    /* Se ajusta automáticamente al contenido */
+  padding: var(--s1) var(--s2);
+  text-decoration: none;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.2;
+}
+
+/* VARIANTES DE TAMAÑO */
+.btn-xs {
+  padding: var(--s-1) var(--s1);
+  font-size: 0.875rem;
+}
+
+.btn-s {
+  padding: var(--s0) var(--s1);
+  font-size: 0.9rem;
+}
+
+.btn-m {
+  padding: var(--s1) var(--s2);
+  font-size: 1rem;
+}
+
+.btn-l {
+  padding: var(--s2) var(--s3);
+  font-size: 1.1rem;
+}
+
+.btn-xl {
+  padding: var(--s3) var(--s4);
+  font-size: 1.25rem;
+}
+
+/* VARIANTES DE COLOR */
+.btn-primary {
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: transparent;
+}
+
+.btn-secondary:hover {
+}
+
+.btn-ghost {
+  background: transparent;
+}
+
+.btn-ghost:hover {
+  background: var(--color-muted, #f5f5f5);
+}
+
+/* VARIANTES DE FORMA */
+.btn-rounded {
+  border-radius: var(--s1);
+}
+
+.btn-pill {
+  border-radius: 999px;
+}
+
+.btn-square {
+  border-radius: 0;
+}
+
+/* ESTADOS */
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* BOTÓN FULL WIDTH */
+.btn-full {
+  width: 100%;
+  display: block;
+}
+
+/* GRUPO DE BOTONES */
+.btn-group {
+  display: flex;
+  gap: var(--s1);
+}
+
+.btn-group.vertical {
+  flex-direction: column;
+}
+
+/* BOTÓN CON ICONO */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s0);
+}
+
+/* BOTÓN SOLO ICONO */
+.btn-icon-only {
+  width: var(--s4);
+  height: var(--s4);
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BOTÓN DE DESCARGA */
+.btn-download {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.btn-download:hover {
+  transform: translateY(-2px);
+}
+
+/* BOTÓN DE ACCIÓN */
+.btn-action {
+}
+
+.btn-action:hover {
+}
+
+/* BOTÓN SCROLL TO TOP */
+.btn-scroll-top {
+  position: fixed;
+  bottom: var(--s2);
+  right: var(--s2);
+  width: var(--s4);
+  height: var(--s4);
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.btn-scroll-top:hover {
+  background: var(--color-primary-dark, #333);
+  transform: translateY(-2px);
+}
+
+.btn-scroll-top svg {
+  width: var(--s2);
+  height: var(--s2);
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}

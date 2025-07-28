@@ -1,0 +1,192 @@
+/**
+ * GRID.CSS - SISTEMA DE LAYOUTS TOT0
+ * =================================
+ * 
+ * Sistema de grid adaptativo basado en CSS Grid y Flexbox
+ * Layouts responsivos automáticos + clases utility para control específico
+ */
+
+/* GRID ADAPTATIVO PRINCIPAL */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+/* GRIDS PREDEFINIDOS */
+.grid.cols1 { grid-template-columns: 1fr; }
+.grid.cols2 { grid-template-columns: 2fr 1fr; gap: var(--s2); }
+.grid.cols2-auto { grid-template-columns: 1fr auto; gap: var(--s2); } /* Contenido expandido + imagen auto */
+.grid.cols3 { grid-template-columns: repeat(3, 1fr); }
+.grid.cols4 { grid-template-columns: repeat(4, 1fr); }
+.grid.cols5 { grid-template-columns: repeat(5, 1fr); }
+.grid.cols6 { grid-template-columns: repeat(6, 1fr); }
+
+/* GRID DE COLORES - 50x50px condensado */
+.grid.colors {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+}
+
+.grid.colors > * {
+    aspect-ratio: 1.618;
+    min-height: 40px;
+    width: 100%;
+}
+
+/* GRID HORIZONTAL CON SCROLL */
+.grid-flow {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(80px, auto);
+    overflow-x: auto;
+    align-items: center;
+}
+
+/* GRID COMPACTO PARA ICONOS */
+.grid-compact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* LAYOUTS FLEXBOX BÁSICOS */
+.stack { display: flex; flex-direction: column; }
+.cluster { display: flex; flex-wrap: wrap; }
+.between { display: flex; justify-content: space-between; }
+
+/* ALINEACIÓN */
+.ch { justify-items: center; }
+.cv { align-items: center; }
+.ai-end { align-items: end; }
+.sch { justify-self: center; }
+.scv { align-self: center; }
+
+/* ALIGN-SELF UTILITIES */
+.asl { align-self: start; }
+.asc { align-self: center; }
+.asr { align-self: end; }
+
+/* JUSTIFY CONTENT */
+.jc-start { justify-content: start; }
+.jc-center { justify-content: center; }
+.jc-end { justify-content: end; }
+.jc-between { justify-content: space-between; }
+.jc-around { justify-content: space-around; }
+
+/* SPANNING */
+.full-row { grid-column: 1 / -1; }
+.span2 { grid-column: span 2; }
+.span3 { grid-column: span 3; }
+.span4 { grid-column: span 4; }
+.span5 { grid-column: span 5; }
+.span6 { grid-column: span 6; }
+
+/* GAPS */
+.gap0 { gap: 0; }
+.gap1 { gap: var(--s2); }
+.gap2 { gap: var(--s3); }
+
+/* RESPONSIVE */
+@media (max-width: 375px) {
+    /* Grid base: una columna en móviles pequeños */
+    .grid {
+        grid-template-columns: 1fr;
+        gap: var(--s2);
+    }
+    
+    /* Todas las variantes a una columna */
+    .grid.cols2,
+    .grid.cols2-auto,
+    .grid.cols3,
+    .grid.cols4,
+    .grid.cols5,
+    .grid.cols6 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 376px) and (max-width: 768px) {
+    /* Grid base: columnas adaptativas en tablets */
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--s2);
+    }
+    
+    /* Cols2 y cols2-auto a una columna en tablet */
+    .grid.cols2,
+    .grid.cols2-auto {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Cols3+ adaptativo con mínimo mayor */
+    .grid.cols3,
+    .grid.cols4,
+    .grid.cols5,
+    .grid.cols6 {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (min-width: 769px) {
+    /* Grid base: comportamiento original en desktop */
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    
+    /* Cols2 con proporción específica */
+    .grid.cols2 {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* ==========================================================================
+   CLASES ATÓMICAS - POSICIONAMIENTO Y LAYOUT
+   ========================================================================== */
+
+/* POSITION */
+.pos-relative { position: relative; }
+.pos-absolute { position: absolute; }
+.pos-fixed { position: fixed; }
+.pos-sticky { position: sticky; }
+
+/* HERO LAYOUT */
+.hero-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-grid {
+  display: grid;
+  place-items: center;
+}
+
+/* HERO CON VIDEO DE FONDO */
+.hero-video {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 800px;
+  padding: var(--s3);
+  /* Color luminoso verdaceo de la paleta sagrada */
+}

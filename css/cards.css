@@ -1,0 +1,31 @@
+/* ==========================================================================
+   CARDS.CSS - COMPONENTES DE TARJETAS
+   Sistema modular de cards para cualquier tipo de contenido
+   ========================================================================== */
+
+/* CARD BASE - Componente semántico */
+.card {
+  display: block;
+  background: var(--color-bg, white);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* CARD IMAGES - Spacing consistente */
+.card img {
+  padding-bottom: var(--s0); /* ≈10px - Base unidad */
+  border-radius: var(--s-3, 2px);
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card video {
+  padding-bottom: var(--s0); /* ≈10px - Base unidad */
+  border-radius: var(--s-3, 2px);
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}

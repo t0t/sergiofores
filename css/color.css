@@ -1,0 +1,450 @@
+/**
+ * COLOR.CSS - SISTEMA DE COLOR ATÓMICO TOT0
+ * ==========================================
+ * 
+ * Sistema de color basado en 5 colores atómicos: CYAN, MAGENTA, YELLOW, NEGRO, BLANCO
+ * TODO el sistema de color emana de estos 5 colores fundamentales usando HSL
+ * 
+ * FILOSOFÍA: Atomicidad absoluta - Todo deriva de CMY + BW usando HSL
+ */
+
+:root {
+    /* Base Colors */
+    --c0: hsl(180, 100%, 50%);  /* Cyan */
+    --c1: hsl(300, 100%, 50%);  /* Magenta */
+    --c2: hsl(60, 100%, 50%);   /* Amarillo */
+    --c3: hsl(0, 0%, 0%);       /* Negro */
+    --c4: hsl(0, 0%, 100%);     /* Blanco */
+
+    /* Color Variations */
+    --c0-d: hsl(180, 100%, 20%);  /* Cyan Dark */
+    --c0-l: hsl(180, 100%, 80%);  /* Cyan Light */
+    --c0-p: hsl(180, 30%, 70%);   /* Cyan Pastel */
+    
+    --c1-d: hsl(300, 100%, 20%);  /* Magenta Dark */
+    --c1-l: hsl(300, 100%, 80%);  /* Magenta Light */
+    --c1-p: hsl(300, 30%, 70%);   /* Magenta Pastel */
+    
+    --c2-d: hsl(60, 100%, 20%);   /* Amarillo Dark */
+    --c2-l: hsl(60, 100%, 80%);   /* Amarillo Light */
+    --c2-p: hsl(60, 30%, 70%);    /* Amarillo Pastel */
+
+    /* Mix Colors */
+    --mix0: hsl(0, 100%, 50%);    /* Mix 0 */
+    --mix1: hsl(120, 100%, 50%);  /* Mix 1 */
+    --mix2: hsl(240, 100%, 50%);  /* Mix 2 */
+
+    /* Neutral Scale */
+    --n0: hsl(0, 0%, 90%);  /* Light */
+    --n1: hsl(0, 0%, 50%);  /* Medium */
+    --n2: hsl(0, 0%, 20%);  /* Dark */
+    
+    /* ═══════════════════════════════════════════════════════════
+       MEZCLAS RGB - Síntesis aditiva de los primarios
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* RGB Mixtures */
+    --mix0: hsl(0, 100%, 50%);    /* Red (M+Y) */
+    --mix1: hsl(120, 100%, 50%);  /* Green (C+Y) */
+    --mix2: hsl(240, 100%, 50%);  /* Blue (C+M) */
+    
+    /* ═══════════════════════════════════════════════════════════
+       ESCALA DE GRISES UNIFICADA - Variables neutrales únicas
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* Solo mantenemos --gray-light que es único */
+    --gray-light: hsl(0, 0%, 95%);     /* Gris muy claro único - diferenciado de neutral1 */
+    
+    /* ═══════════════════════════════════════════════════════════
+       VARIACIONES ESENCIALES - Solo las más útiles
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* Variaciones de colores restauradas */
+    --c0-d: hsl(180, 100%, 20%);  /* Cyan Dark */
+    --c0-l: hsl(180, 100%, 80%);  /* Cyan Light */
+    --c0-p: hsl(180, 30%, 70%);   /* Cyan Pastel */
+    
+    --c1-d: hsl(300, 100%, 20%);  /* Magenta Dark */
+    --c1-l: hsl(300, 100%, 80%);  /* Magenta Light */
+    --c1-p: hsl(300, 30%, 70%);   /* Magenta Pastel */
+    
+    --c2-d: hsl(60, 100%, 20%);   /* Amarillo Dark */
+    --c2-l: hsl(60, 100%, 80%);   /* Amarillo Light */
+    --c2-p: hsl(60, 30%, 70%);    /* Amarillo Pastel */
+    
+    /* ═══════════════════════════════════════════════════════════
+       COLORES COMPLEMENTARIOS ÚNICOS
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* Solo los complementarios que no se repiten */
+    --red-complement: var(--color-cyan);      /* Rojo → Cyan (ya son complementarios) */
+    --green-complement: var(--color-magenta); /* Verde → Magenta */
+    --blue-complement: var(--color-yellow);   /* Azul → Amarillo */
+    
+    /* ═══════════════════════════════════════════════════════════
+       MEZCLAS ARMÓNICAS ÚNICAS - Sin duplicados
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* Mezclas binarias (promedio de tonos) */
+    --orange: hsl(30, 100%, 50%);      /* Yellow + Magenta → Naranja */
+    --purple: hsl(270, 100%, 50%);     /* Magenta + Blue → Morado */
+    --lime: hsl(90, 100%, 50%);        /* Cyan + Yellow → Lima */
+    
+    /* ═══════════════════════════════════════════════════════════
+       COLORES SEMÁNTICOS BASE - Mapeo directo a variables atómicas
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* Colores base semánticos */
+    --color-cyan: var(--c0);     /* Cyan */
+    --color-magenta: var(--c1);  /* Magenta */
+    --color-yellow: var(--c2);   /* Amarillo */
+    --color-black: var(--c3);    /* Negro */
+    --color-white: var(--c4);    /* Blanco */
+    
+    /* Variaciones semánticas */
+    --cyan-light: var(--c0-l);
+    --cyan-dark: var(--c0-d);
+    --magenta-light: var(--c1-l);
+    --magenta-dark: var(--c1-d);
+    --yellow-light: var(--c2-l);
+    --yellow-dark: var(--c2-d);
+    
+    /* Grises semánticos */
+    --gray-light: var(--n0);
+    --gray-medium: var(--n1);
+    --gray-dark: var(--n2);
+    
+    /* ═══════════════════════════════════════════════════════════
+       ESCALAS PRIMARIAS SIMPLIFICADAS
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* ESCALA PRIMARIA - Basada en CYAN */
+    --primary-100: var(--cyan-light);
+    --primary-500: var(--color-cyan);
+    --primary-900: var(--cyan-dark);
+    
+    /* ESCALA SECUNDARIA - Basada en MAGENTA */
+    --secondary-100: var(--magenta-light);
+    --secondary-500: var(--color-magenta);
+    --secondary-900: var(--magenta-dark);
+    
+    /* ESCALA ACENTO - Basada en YELLOW */
+    --accent-100: var(--yellow-light);
+    --accent-500: var(--color-yellow);
+    --accent-900: var(--yellow-dark);
+    
+    /* ESCALA NEUTRAL - Solo 5 valores */
+    --neutral-0: var(--color-white);
+    --neutral-2: var(--gray-light);
+    --neutral-5: var(--gray-medium);
+    --neutral-8: var(--gray-dark);
+    --neutral-10: var(--color-black);
+    
+    /* ═══════════════════════════════════════════════════════════
+       COLORES SEMÁNTICOS - Aplicación contextual
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* Estados de acción */
+    --color-success: var(--color-green);
+    --color-warning: var(--color-yellow);
+    --color-error: var(--color-red);
+    --color-info: var(--color-cyan);
+    
+    /* Texto y contenido */
+    --color-text-primary: var(--color-black);
+    --color-text-secondary: var(--gray-dark);
+    --color-text-muted: var(--gray-medium);
+    --color-text-inverse: var(--color-white);
+    
+    /* Fondos y superficies */
+    --color-bg-primary: var(--color-white);
+    --color-bg-secondary: var(--gray-light);
+    --color-bg-elevated: var(--color-white);
+    --color-bg-inverse: var(--color-black);
+    
+    /* Bordes e interacciones */
+    --color-border: var(--gray-light);
+    
+    /* Estados interactivos */
+    --color-hover: var(--cyan-light);
+    --color-active: var(--cyan-pastel);
+    --color-focus: var(--color-cyan);
+    
+    /* ═══════════════════════════════════════════════════════════
+       GRADIENTES ÚNICOS - Solo los esenciales
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* Gradientes: Un color vibrante + un color desaturado */
+    --gradient-primary: linear-gradient(135deg, var(--primary-500), var(--neutral-5));    /* Cyan a gris medio */
+    --gradient-secondary: linear-gradient(135deg, 
+        var(--neutral-2) 0%,      /* Gris claro */
+        var(--neutral-5) 50%,     /* Gris medio */
+        var(--primary-500) 100%   /* Cyan */
+    );
+    --gradient-accent: linear-gradient(135deg, var(--accent-500), var(--neutral-2));     /* Amarillo a gris claro */
+    
+    /* Gradiente rainbow - 3 colores de la paleta sagrada */
+    --gradient-rainbow: linear-gradient(135deg, 
+        var(--primary-500) 0%,    /* Cyan */
+        var(--secondary-500) 50%, /* Magenta */
+        var(--accent-500) 100%    /* Amarillo */
+    );
+    
+    /* Gradiente vibrante - 2 neutros + 1 saturado */
+    --gradient-vibrant: linear-gradient(135deg, 
+        var(--neutral-2) 0%,      /* Gris claro */
+        var(--primary-500) 50%,   /* Cyan saturado */
+        var(--neutral-8) 100%     /* Gris oscuro */
+    );
+    
+    /* ═══════════════════════════════════════════════════════════
+       COMPATIBILIDAD CON SISTEMA ANTERIOR - Variables legacy
+       ═══════════════════════════════════════════════════════════ */
+    
+    /* Semantic mapping */
+    --black: var(--c3);
+    --white: var(--c4);
+    --primary: var(--c0);
+    --secondary: var(--c1);
+    --accent: var(--c2);
+    
+    /* Text & Background */
+    --color-text: var(--c3);
+    --color-bg: var(--c4);
+    --color-surface: var(--c4);
+    --color-border: var(--n1);
+    --color-text-2: var(--n1);
+    --color-text-3: var(--n2);
+
+/* Header Colors */
+header[role="banner"] { background: transparent; }
+.logo { color: var(--white); }
+.geo-circle-outline { border: 2px solid var(--white); }
+.geo-circle-solid { background: var(--accent); }
+.geo-line { background: var(--primary); }
+.geo-triangle { border-bottom-color: var(--secondary); }
+.geo-square { background: var(--black); }
+#menu span { background: var(--white); }
+#menu:hover span { background: var(--primary); }
+
+/* Header Scrolled */
+header.scrolled { background: var(--white); }
+header.scrolled .logo { color: var(--black); }
+header.scrolled nav a:hover { background: rgba(0, 0, 0, 0.1); }
+header.scrolled #menu span { background: var(--black); }
+
+/* Header Transparent */
+.header-transparent { background: rgba(255, 255, 255, 0.1); }
+.header-transparent .logo,
+.header-transparent nav a { color: var(--white); }
+.header-transparent #menu span { background: var(--white); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   APLICACIÓN A ELEMENTOS HTML
+   ═══════════════════════════════════════════════════════════════════════ */
+
+body {
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+}
+
+a {
+    color: var(--color-blue);
+}
+a:hover {
+    color: var(--lime);
+}
+
+button {
+    background-color: var(--primary-500);
+    color: var(--color-white);
+}
+
+button:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+code {
+    background-color: var(--magenta-dark);
+    color: var(--color-white);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MODO OSCURO
+   ═══════════════════════════════════════════════════════════════════════ */
+
+body.dark-mode {
+    --color-text-primary: var(--color-white);
+    --color-text-secondary: var(--gray-light);
+    --color-text-muted: var(--gray-medium);
+    --color-text-inverse: var(--color-black);
+    
+    --color-bg-primary: var(--color-black);
+    --color-bg-secondary: var(--gray-dark);
+    --color-bg-elevated: var(--gray-dark);
+    --color-bg-inverse: var(--color-white);
+    
+    --color-border: var(--gray-dark);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CLASES UTILITY
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* AUTO CONTRAST - Contraste automático para texto sobre fondos */
+
+[class*='bg-'] {
+    position: relative;
+}
+
+[class*='bg-'] > * {
+    position: relative;
+    z-index: 1;
+    color: var(--color-black);
+}
+
+/* Colores de texto */
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted { color: var(--color-text-muted); }
+.text-inverse { color: var(--color-text-inverse); }
+
+/* Colores de fondo */
+.bg-primary { background-color: var(--color-bg-primary); }
+.bg-secondary { background-color: var(--color-bg-secondary); }
+.bg-elevated { background-color: var(--color-bg-elevated); }
+.bg-inverse { background-color: var(--color-bg-inverse); }
+/* Gradients */
+.bg-gradient-primary { background: var(--gradient-primary); }
+.bg-gradient-secondary { background: var(--gradient-secondary); }
+.bg-gradient-accent { background: var(--gradient-accent); }
+.bg-gradient-rainbow { background: var(--gradient-rainbow); }
+.bg-gradient-vibrant { background: var(--gradient-vibrant); }
+
+/* ═══════════════════════════════════════════════════════════
+   CLASES DE COLOR PARA TEXTOS - Espejo de las clases de background
+   ═══════════════════════════════════════════════════════════ */
+
+/* Colores básicos */
+.text-cyan { color: var(--c0); }
+.text-magenta { color: var(--c1); }
+.text-amarillo { color: var(--c2); }
+.text-negro { color: var(--c3); }
+.text-blanco { color: var(--c4); }
+
+/* Variaciones oscuras */
+.text-cyan-oscuro { color: var(--c0-d); }
+.text-magenta-oscuro { color: var(--c1-d); }
+.text-amarillo-oscuro { color: var(--c2-d); }
+
+/* Variaciones claras */
+.text-cyan-claro { color: var(--c0-l); }
+.text-magenta-claro { color: var(--c1-l); }
+.text-amarillo-claro { color: var(--c2-l); }
+
+/* Variaciones pastel */
+.text-cyan-pastel { color: var(--c0-p); }
+.text-magenta-pastel { color: var(--c1-p); }
+.text-amarillo-pastel { color: var(--c2-p); }
+
+/* Colores RGB */
+.text-rojo { color: var(--mix0); }
+.text-verde { color: var(--mix1); }
+.text-azul { color: var(--mix2); }
+
+/* Mezclas armónicas */
+.text-anaranjado { color: var(--orange); }
+.text-morado { color: var(--purple); }
+.text-lima { color: var(--lime); }
+
+/* Escala de grises */
+.text-gris1 { color: var(--gray-light); }
+.text-gris2 { color: var(--n1); }
+.text-gris3 { color: var(--n0); }
+
+/* Neutrales */
+.text-neutral1 { color: var(--n0); }
+.text-neutral2 { color: var(--n1); }
+.text-neutral3 { color: var(--n2); }
+
+/* Escalas semánticas */
+.text-primary-100 { color: var(--primary-100); }
+.text-primary-500 { color: var(--primary-500); }
+.text-primary-900 { color: var(--primary-900); }
+
+.text-secondary-100 { color: var(--secondary-100); }
+.text-secondary-500 { color: var(--secondary-500); }
+.text-secondary-900 { color: var(--secondary-900); }
+
+.text-accent-100 { color: var(--accent-100); }
+.text-accent-500 { color: var(--accent-500); }
+.text-accent-900 { color: var(--accent-900); }
+
+/* Regla específica para logo con mayor especificidad */
+.logo p.text-cyan { color: var(--color-cyan); }
+
+/* Navegación principal */
+nav[aria-label="Navegación principal"] a {
+    color: var(--lime);
+}
+
+/* Navegación principal cuando se activa scroll */
+.scrolled nav[aria-label="Navegación principal"] a {
+    color: var(--mix2);
+}
+
+/* Hover global para todos los enlaces */
+a:hover {
+    color: var(--mix2);
+}
+
+
+/* Colores básicos */
+.bg-cyan { background-color: hsl(204, 100%, 51%); }
+.bg-magenta { background-color: hsl(300, 100%, 50%); }
+.bg-amarillo { background-color: hsl(60, 100%, 50%); }
+.bg-negro { background-color: hsl(0, 0%, 0%); }
+.bg-blanco { background-color: hsl(0, 0%, 100%); }
+
+/* Variaciones oscuras */
+.bg-cyan-oscuro { background-color: hsl(204, 100%, 20%); }
+.bg-magenta-oscuro { background-color: hsl(300, 100%, 20%); }
+.bg-amarillo-oscuro { background-color: hsl(17, 7%, 38%); }
+
+/* Variaciones claras */
+.bg-cyan-claro { background-color: hsl(204, 100%, 80%); }
+.bg-magenta-claro { background-color: hsl(300, 100%, 80%); }
+.bg-amarillo-claro { background-color: hsl(60, 100%, 80%); }
+
+/* Variaciones pastel */
+.bg-cyan-pastel { background-color: hsl(204, 30%, 70%); }
+.bg-magenta-pastel { background-color: hsl(300, 30%, 70%); }
+.bg-amarillo-pastel { background-color: hsl(60, 30%, 70%); }
+
+/* Colores RGB */
+.bg-rojo { background-color: hsl(0, 100%, 50%); }
+.bg-verde { background-color: hsl(120, 100%, 50%); }
+.bg-azul { background-color: hsl(240, 100%, 50%); }
+
+/* Mezclas armónicas */
+.bg-anaranjado { background-color: hsl(30, 100%, 86%); }
+.bg-morado { background-color: hsl(270, 100%, 50%); }
+.bg-lima { background-color: hsl(90, 100%, 50%); }
+
+/* Escala de grises unificada */
+.bg-gris1 { background-color: hsl(0, 0%, 95%); }    /* Gris muy claro */
+.bg-gris2 { background-color: hsl(0, 0%, 60%); }    /* Gris medio */
+.bg-gris3 { background-color: hsl(0, 0%, 90%); }    /* Gris claro */
+
+/* Neutrales */
+.bg-neutral1 { background-color: hsl(0, 0%, 85%); } /* Neutral claro */
+.bg-neutral2 { background-color: hsl(0, 0%, 45%); } /* Neutral medio */
+.bg-neutral3 { background-color: hsl(0, 0%, 20%); } /* Neutral oscuro */
+
+/* Nuevo color añadido */
+.bg-rosa-vibrante { background-color: hsl(343, 91%, 61%); } /* Rosa vibrante */
+
+/* Nuevo degradado añadido */
+.bg-gradient-magenta-yellow { background: linear-gradient(135deg, hsl(300, 100%, 80%), hsl(60, 30%, 70%)); } /* Degradado magenta claro a amarillo pastel */

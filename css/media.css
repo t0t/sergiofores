@@ -1,0 +1,76 @@
+/* ==========================================================================
+   MEDIA QUERIES - Mobile First
+   ========================================================================== */
+
+:root {
+  /* Breakpoints */
+  --breakpoint-xs: var(--space-375px);   /* iPhone SE */
+  --breakpoint-sm: var(--space-640px);   /* Small */
+  --breakpoint-md: var(--space-768px);   /* Tablet */
+  --breakpoint-lg: var(--space-1024px);  /* Desktop */
+  --breakpoint-xl: var(--space-1280px);  /* Large Desktop */
+  --breakpoint-2xl: var(--space-1440px); /* Ultra-wide start */
+  --breakpoint-3xl: var(--space-2560px); /* Ultra-wide */
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  :root {
+    /* Reduce spacing on mobile */
+    --container-padding: var(--space-md);
+    --grid-gap: var(--space-md);
+    
+    /* Tighter typography */
+    --letter-spacing-wide: 0.01em;
+    --letter-spacing-wider: var(--space-2px);
+    
+    /* Mobile-specific Utopia adjustments */
+    --quantum-space: var(--space-xl);        /* Reduce cosmic spacing */
+    --infinite-space: var(--space-l);        /* Reduce region spacing */
+    --essence-space: var(--space-m);         /* Reduce section spacing */
+    
+    /* Smaller hero on mobile */
+    --hero-title-size: var(--step-3);        /* Reduce from step-4 */
+    --hero-padding: var(--space-xl);         /* Reduce hero padding */
+    --section-title-size: var(--step-2);     /* Reduce section titles */
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --container-padding: var(--space-lg);
+    --grid-gap: var(--space-lg);
+  }
+}
+
+/* Desktop optimizations */
+@media (min-width: 1024px) {
+  :root {
+    --container-max-width: var(--container-max-width-wide);
+  }
+}
+
+/* Large desktop optimizations */
+@media (min-width: 1440px) {
+  :root {
+    --container-max-width: var(--space-1600px);
+    --container-padding: var(--space-xl);
+  }
+}
+
+/* Ultra-wide optimizations */
+@media (min-width: 2560px) {
+  :root {
+    --container-max-width: var(--container-max-width-ultra);
+    --container-padding: var(--space-2xl);
+  }
+}
+
+/* Hover-capable devices only */
+@media (hover: hover) and (pointer: fine) {
+  :root {
+    --hover-opacity: 0.8;
+    --hover-scale: 1.02;
+  }
+}

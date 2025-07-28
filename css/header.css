@@ -1,0 +1,224 @@
+/* ==========================================================================
+   HEADER - NAVEGACIÓN PRINCIPAL
+   Sistema modular para header fijo con logo, navegación y menú móvil
+   ========================================================================== */
+
+/* HEADER BASE */
+header[role="banner"] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  z-index: 1000;
+  padding: var(--s1) var(--p3);
+  
+  /* Grid layout: logo | nav | menu */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  
+  /* Transiciones suaves */
+  transition: all 0.3s ease;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--s0);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--text-base);
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* Iconos geométricos del logo */
+.logo span[class^="geo-"] {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* FORMAS GEOMÉTRICAS DEL LOGO - PALETA SAGRADA */
+.geo-circle-outline {
+  border-radius: 50%;
+}
+
+.geo-circle-solid {
+  border-radius: 50%;
+}
+
+.geo-line {
+  height: 2px;
+  border-radius: 1px;
+}
+
+.geo-triangle {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.geo-square { }
+
+/* NAVEGACIÓN PRINCIPAL */
+nav[aria-label="Navegación principal"] {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--s2);
+}
+
+nav[aria-label="Navegación principal"] a {
+  padding: var(--s0) var(--s1);
+  border-radius: var(--radius-sm, 4px);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+
+nav[aria-label="Navegación principal"] a:focus {
+  outline: 1px solid var(--color-primary);
+  outline-offset: 0;
+}
+
+/* BOTÓN MENÚ MÓVIL */
+#menu {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  gap: 4px;
+  transition: all 0.3s ease;
+}
+
+#menu span {
+  width: 20px;
+  height: 2px;
+  transition: all 0.3s ease;
+  border-radius: 1px;
+}
+
+#menu:hover span { }
+
+/* Estados del menú hamburguesa */
+#menu.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#menu.active span:nth-child(2) {
+  opacity: 0;
+}
+
+#menu.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* HEADER SCROLL STATE */
+header.scrolled {
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: var(--s1) var(--s3);
+}
+
+header.scrolled nav[aria-label="Navegación principal"] a {
+  font-weight: 600;
+  text-shadow: none;
+}
+
+header.scrolled nav[aria-label="Navegación principal"] a:hover {
+  text-shadow: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE - MOBILE FIRST
+   ========================================================================== */
+
+/* MOBILE (hasta 768px) */
+@media (max-width: 768px) {
+  header[role="banner"] {
+    padding: var(--s1) var(--s2);
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
+  
+  /* Ocultar navegación en móvil */
+  nav[aria-label="Navegación principal"] {
+    display: none;
+  }
+  
+  /* Mostrar menú hamburguesa */
+  #menu {
+    display: flex;
+  }
+  
+  /* Logo más pequeño en móvil */
+  .logo {
+    font-size: var(--text-sm);
+  }
+  
+  .logo span[class^="geo-"] {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* TABLET (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  header[role="banner"] {
+    padding: var(--s1) var(--s2);
+  }
+  
+  nav[aria-label="Navegación principal"] {
+    gap: var(--s1);
+  }
+  
+  nav[aria-label="Navegación principal"] a {
+    font-size: var(--text-xs);
+    padding: var(--s0);
+  }
+}
+
+/* DESKTOP (1025px+) */
+@media (min-width: 1025px) {
+  header[role="banner"] {
+    padding: var(--s1) var(--s4);
+  }
+  
+  nav[aria-label="Navegación principal"] {
+    gap: var(--s3);
+  }
+  
+  nav[aria-label="Navegación principal"] a {
+    font-size: var(--text-base);
+  }
+}
+
+/* ==========================================================================
+   UTILIDADES HEADER
+   ========================================================================== */
+
+/* Espaciado para compensar header fijo */
+.header-offset {
+  padding-top: 80px;
+}
+
+/* Header transparente para hero */
+.header-transparent {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}

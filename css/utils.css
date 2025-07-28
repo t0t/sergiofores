@@ -1,0 +1,231 @@
+/* ==========================================================================
+   UTILITIES - Clases funcionales reutilizables
+   ========================================================================== */
+
+/* Layout & Spacing */
+.container {
+  width: 100%;
+  max-width: var(--cw-m);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: var(--cw-xl);
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: var(--space-1px);
+  height: var(--space-1px);
+  padding: 0;
+  margin: calc(var(--space-1px) * -1);
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Flexbox */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+}
+
+.gap-s {
+  gap: var(--space-s);
+}
+
+.gap-m {
+  gap: var(--space-m);
+}
+
+.gap-l {
+  gap: var(--space-l);
+}
+
+/* Spacing Utilities - Sistema TOT0 con base φ */
+.m0 { margin: 0; }
+.mt0 { margin-top: 0; }
+.mt1 { margin-top: var(--s1); }    /* φ¹ ≈ 16px */
+.mt2 { margin-top: var(--s2); }    /* φ² ≈ 26px */
+.mt3 { margin-top: var(--s3); }    /* φ³ ≈ 42px */
+.mt4 { margin-top: var(--s4); }    /* φ⁴ ≈ 68px */
+.mt5 { margin-top: var(--s5); }    /* φ⁵ ≈ 110px */
+
+.mb0 { margin-bottom: 0; }
+.mb1 { margin-bottom: var(--s1); }    /* φ¹ ≈ 16px */
+.mb2 { margin-bottom: var(--s2); }    /* φ² ≈ 26px */
+.mb3 { margin-bottom: var(--s3); }    /* φ³ ≈ 42px */
+.mb4 { margin-bottom: var(--s4); }    /* φ⁴ ≈ 68px */
+.mb5 { margin-bottom: var(--s5); }    /* φ⁵ ≈ 110px */
+
+.ml0 { margin-left: 0; }
+.ml1 { margin-left: var(--s1); }    /* φ¹ ≈ 16px */
+.ml2 { margin-left: var(--s2); }    /* φ² ≈ 26px */
+.ml3 { margin-left: var(--s3); }    /* φ³ ≈ 42px */
+.ml4 { margin-left: var(--s4); }    /* φ⁴ ≈ 68px */
+.ml5 { margin-left: var(--s5); }    /* φ⁵ ≈ 110px */
+
+.mr0 { margin-right: 0; }
+.mr1 { margin-right: var(--s1); }    /* φ¹ ≈ 16px */
+.mr2 { margin-right: var(--s2); }    /* φ² ≈ 26px */
+.mr3 { margin-right: var(--s3); }    /* φ³ ≈ 42px */
+.mr4 { margin-right: var(--s4); }    /* φ⁴ ≈ 68px */
+.mr5 { margin-right: var(--s5); }    /* φ⁵ ≈ 110px */
+
+.p0 { padding: 0; }
+.pt0 { padding-top: 0; }
+.pt1 { padding-top: var(--s1); }    /* φ¹ ≈ 16px */
+.pt2 { padding-top: var(--s2); }    /* φ² ≈ 26px */
+.pt3 { padding-top: var(--s3); }    /* φ³ ≈ 42px */
+.pt4 { padding-top: var(--s4); }    /* φ⁴ ≈ 68px */
+.pt5 { padding-top: var(--s5); }    /* φ⁵ ≈ 110px */
+
+.pb0 { padding-bottom: 0; }
+.pb1 { padding-bottom: var(--s1); }    /* φ¹ ≈ 16px */
+.pb2 { padding-bottom: var(--s2); }    /* φ² ≈ 26px */
+.pb3 { padding-bottom: var(--s3); }    /* φ³ ≈ 42px */
+.pb4 { padding-bottom: var(--s4); }    /* φ⁴ ≈ 68px */
+.pb5 { padding-bottom: var(--s5); }    /* φ⁵ ≈ 110px */
+
+.pl0 { padding-left: 0; }
+.pl1 { padding-left: var(--s1); }    /* φ¹ ≈ 16px */
+.pl2 { padding-left: var(--s2); }    /* φ² ≈ 26px */
+.pl3 { padding-left: var(--s3); }    /* φ³ ≈ 42px */
+.pl4 { padding-left: var(--s4); }    /* φ⁴ ≈ 68px */
+.pl5 { padding-left: var(--s5); }    /* φ⁵ ≈ 110px */
+
+.pr0 { padding-right: 0; }
+.pr1 { padding-right: var(--s1); }    /* φ¹ ≈ 16px */
+.pr2 { padding-right: var(--s2); }    /* φ² ≈ 26px */
+.pr3 { padding-right: var(--s3); }    /* φ³ ≈ 42px */
+.pr4 { padding-right: var(--s4); }    /* φ⁴ ≈ 68px */
+.pr5 { padding-right: var(--s5); }    /* φ⁵ ≈ 110px */
+
+/* Typography Alignments */
+.tac { text-align: center; }
+.tal { text-align: left; }
+.tar { text-align: right; }
+
+/* Typography classes moved to typography.css */
+
+/* Line height classes moved to typography.css */
+
+/* Letter spacing classes moved to typography.css */
+
+/* Font weight classes moved to typography.css */
+
+/* Colors - Sistema TOT0 */
+/* Color base del sistema */
+/* Primera derivación φ */
+/* Segunda derivación φ */
+/* Tercera derivación φ */
+/* Cuarta derivación φ */
+
+/* Backgrounds - Sistema TOT0 */
+
+/* Display */
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Position */
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.sticky {
+  position: sticky;
+}
+
+/* Z-index */
+.z-base {
+  z-index: var(--z-base);
+}
+
+.z-header {
+  z-index: var(--z-header);
+}
+
+.z-modal {
+  z-index: var(--z-modal);
+}
+
+.z-tooltip {
+  z-index: var(--z-tooltip);
+}
+
+/* Transitions */
+.transition-base {
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.transition-fast {
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.transition-slow {
+  transition: all var(--duration-slow) var(--ease-out);
+}
+
+/* Transforms */
+.scale-hover {
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.scale-hover:hover {
+  transform: var(--transform-scale-subtle);
+}
+
+/* Accessibility */
+.focusable:focus {
+  outline: var(--space-2px) solid var(--color-primary);
+  outline-offset: var(--space-2px);
+}

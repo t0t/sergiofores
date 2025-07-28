@@ -1,0 +1,247 @@
+/**
+ * TYPOGRAPHY.CSS - SISTEMA TIPOGRÁFICO TOT0
+ * ========================================
+ * 
+ * Sistema tipográfico basado en progresión áurea con reducción intermedia
+ * Elementos HTML con font-size y line-height automáticamente asignados
+ * 8 clases utility (.h1 a .h8) para uso flexible
+ * 
+ * FILOSOFÍA: Cada elemento tiene su tamaño y line-height áureo perfecto automático
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ELEMENTOS HTML - TIPOGRAFÍA AUTOMÁTICA
+   Reducción áurea intermedia aplicada uniformemente (16% de reducción)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/**
+ * FÓRMULA DE REDUCCIÓN ÁUREA INTERMEDIA:
+ * calc(var(--tx) / var(--φ) * var(--φ) / 1.2)
+ * 
+ * EXPLICACIÓN:
+ * 1. Divide por φ (1.618) 
+ * 2. Multiplica por φ (vuelve al original)
+ * 3. Divide por 1.2 (reducción del 16%)
+ * 
+ * RESULTADO: Tamaños más compactos manteniendo proporciones áureas
+ */
+
+/* Tipografía base del documento - Manejada en main.css */
+
+/* Letter-spacing base para todo el body */
+body {
+    letter-spacing: var(--ls0);    /* 0 - Base neutra, cada elemento define su propio spacing */
+}
+
+/* Max-width por defecto para todos los elementos de texto */
+/* Optimizado para legibilidad: 45-75 caracteres por línea */
+h1, h2, h3, h4, h5, h6, p, small {
+    max-width: 65ch; /* Aproximadamente 65 caracteres por línea */
+}
+
+/* Responsive: Ajustes progresivos según tamaño de pantalla */
+@media (max-width: 1200px) {
+    h1, h2, h3, h4, h5, h6, p, small {
+        max-width: 70vw;
+    }
+}
+
+@media (max-width: 768px) {
+    h1, h2, h3, h4, h5, h6, p, small {
+        max-width: 90vw;
+    }
+}
+
+@media (max-width: 480px) {
+    h1, h2, h3, h4, h5, h6, p, small {
+        max-width: 95vw;
+    }
+}
+
+/* Jerarquía de títulos - 6 tamaños perfectamente proporcionados */
+h1 { 
+    font-size: var(--t3);          /* φ³ - Tamaño máximo más contenido */
+    line-height: var(--lh0);       
+    letter-spacing: var(--ls8);
+    padding-bottom: var(--s-3);
+}
+
+h2 { 
+    font-size: var(--t2);          /* φ² del base */
+    line-height: var(--lh1); 
+    font-weight: 400;
+    letter-spacing: var(--ls7);
+    padding-bottom: var(--s-2);
+}
+
+h3 { 
+    font-size: var(--t1);          /* φ¹ del base */
+    font-weight: 400;
+    letter-spacing: var(--ls6);
+    padding-bottom: var(--s3);
+}
+
+h4, h5, h6 { 
+    font-size: var(--t0);          /* Tamaño base */
+    line-height: var(--lh2); 
+    letter-spacing: var(--ls5);
+    padding-bottom: var(--s-2);
+}
+
+/* Elementos de texto con letter-spacing proporcional */
+p { 
+    font-size: var(--t0); 
+    letter-spacing: var(--ls5);     /* φ⁰ spacing para coherencia matemática */
+}       /* 16px + 1px spacing - Párrafo base con espaciado armónico */
+
+small { 
+    font-size: var(--t0); 
+    transform: scale(0.618);  /* Reducción áurea 1/φ */
+    transform-origin: left;
+    line-height: var(--lh3);
+    text-transform: uppercase;
+    letter-spacing: var(--ls5);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CLASES UTILITY TIPOGRÁFICAS
+   8 tamaños únicos con line-heights automáticamente asignados
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/**
+ * DISTRIBUCIÓN LINE-HEIGHTS POR PARES:
+ * - .h1 & .h2: --lh0 (Compacto) - Títulos hero gigantes
+ * - .h3 & .h4: --lh1 (Normal) - Títulos principales  
+ * - .h5 & .h6: --lh2 (Cómodo) - Subtítulos y texto base
+ * - .h7 & .h8: --lh3 (Espacioso) - Textos pequeños
+ */
+
+.h1 { 
+    font-size: var(--t5); 
+    line-height: var(--lh0);
+    letter-spacing: calc(var(--ls9) * var(--φ));  /* φ⁵ spacing para φ⁵ font-size - Gigante */
+}   /* 178px + 11.08px spacing - Hero gigante con espaciado máximo */
+
+.h2 { 
+    font-size: var(--t4); 
+    line-height: var(--lh0);
+    letter-spacing: var(--ls9);                   /* φ⁴ spacing para φ⁴ font-size - Grande */
+}   /* 110px + 6.85px spacing - Hero grande con espaciado máximo */
+
+.h3 { 
+    font-size: var(--t3); 
+    line-height: var(--lh1);
+    letter-spacing: var(--ls8);                   /* φ³ spacing para φ³ font-size - Mediano */
+}   /* 68px + 4.24px spacing - Hero mediano con espaciado alto */
+
+.h4 { 
+    font-size: var(--t2); 
+    line-height: var(--lh1);
+    letter-spacing: var(--ls7);                   /* φ² spacing para φ² font-size - Principal */
+}   /* 42px + 2.62px spacing - Títulos principales con espaciado generoso */
+
+.h5 { 
+    font-size: var(--t1); 
+    line-height: var(--lh2);
+    letter-spacing: var(--ls6);                   /* φ¹ spacing para φ¹ font-size - Subtítulo */
+}   /* 26px + 1.62px spacing - Subtítulos con espaciado amplio */
+
+.h6 { 
+    font-size: var(--t0); 
+    line-height: var(--lh2);
+    letter-spacing: var(--ls5);                   /* φ⁰ spacing para φ⁰ font-size - Base */
+}  /* 16px + 1px spacing - Texto base con espaciado equilibrado */
+
+.h7 { 
+    font-size: var(--t-1); 
+    line-height: var(--lh3);
+    letter-spacing: var(--ls4);                   /* φ⁻¹ spacing para φ⁻¹ font-size - Pequeño */
+}  /* 10px + 0.62px spacing - Texto pequeño con espaciado proporcional */
+
+.h8 { 
+    font-size: var(--t-2); 
+    line-height: var(--lh3);
+    letter-spacing: var(--ls3);                   /* φ⁻² spacing para φ⁻² font-size - Mínimo */
+}  /* 6px + 0.38px spacing - Texto mínimo con espaciado sutil */
+
+/* ==========================================================================
+   CLASES UTILITY ADICIONALES - ESCALA TIPOGRÁFICA
+   Clases movidas desde utils.css para centralizar tipografía
+   ========================================================================== */
+
+/* Typography Scale - Sistema TOT0 φ con letter-spacing proporcional */
+.t0 { font-size: var(--t0); letter-spacing: var(--ls5); }      /* Base size + spacing */
+.t1 { font-size: var(--t1); letter-spacing: var(--ls6); }      /* φ¹ del base */
+.t2 { font-size: var(--t2); letter-spacing: var(--ls7); }      /* φ² del base */
+.t3 { font-size: var(--t3); letter-spacing: var(--ls8); }      /* φ³ del base */
+
+/* Alineación automática de letter-spacing para elementos con el mismo tamaño de fuente */
+[style*="font-size: var(--t0)"] { letter-spacing: var(--ls5); }
+[style*="font-size: var(--t1)"] { letter-spacing: var(--ls6); }
+[style*="font-size: var(--t2)"] { letter-spacing: var(--ls7); }
+[style*="font-size: var(--t3)"] { letter-spacing: var(--ls8); }
+[style*="font-size: var(--t4)"] { letter-spacing: var(--ls9); }
+[style*="font-size: var(--t5)"] { letter-spacing: calc(var(--ls9) * var(--φ)); }
+
+/* Line Height - Sistema TOT0 φ */
+.lh0 { line-height: var(--lh0); }   /* 1 - Compacto */
+.lh1 { line-height: var(--lh1); }   /* φ/φ ≈ 1 - Normal */
+.lh2 { line-height: var(--lh2); }   /* φ ≈ 1.618 - Espacioso */
+.lh3 { line-height: var(--lh3); }   /* φ² ≈ 2.618 - Muy espacioso */
+
+/* Letter Spacing - Sistema TOT0 φ */
+.ls0 { letter-spacing: var(--ls0); }  /* 0 - Normal */
+.ls1 { letter-spacing: var(--ls1); }  /* φ⁻⁴ ≈ 0.15px */
+.ls2 { letter-spacing: var(--ls2); }  /* φ⁻³ ≈ 0.24px */
+.ls3 { letter-spacing: var(--ls3); }  /* φ⁻² ≈ 0.38px */
+.ls4 { letter-spacing: var(--ls4); }  /* φ⁻¹ ≈ 0.62px */
+.ls5 { letter-spacing: var(--ls5); }  /* φ⁰ ≈ 1px */
+.ls6 { letter-spacing: var(--ls6); }  /* φ¹ ≈ 1.62px */
+.ls7 { letter-spacing: var(--ls7); }  /* φ² ≈ 2.62px */
+.ls8 { letter-spacing: var(--ls8); }  /* φ³ ≈ 4.24px */
+.ls9 { letter-spacing: var(--ls9); }  /* φ⁴ ≈ 6.85px */
+
+/* Font Weights */
+.fw3 { font-weight: 300; }  /* Light */
+.fw4 { font-weight: 400; }  /* Normal */
+.fw5 { font-weight: 500; }  /* Medium */
+.fw6 { font-weight: 600; }  /* Semibold */
+.fw7 { font-weight: 700; }  /* Bold */
+.fw8 { font-weight: 800; }  /* Extrabold */
+.fw9 { font-weight: 900; }  /* Black */
+
+/* Navegación principal */
+nav[aria-label="Navegación principal"] a {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   OPTIMIZACIONES DE LEGIBILIDAD
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Contenedor principal con proporciones áureas - Manejado en main.css */
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════
+ * NOTAS DE IMPLEMENTACIÓN TIPOGRÁFICA
+ * ═══════════════════════════════════════════════════════════════════════
+ * 
+ * JERARQUÍA AUTOMÁTICA:
+ * ✅ Elementos HTML tienen tamaño + line-height automático
+ * ✅ Clases utility (.h1-.h8) para uso flexible
+ * ✅ Line-heights asignados por lógica (grande=compacto, pequeño=espacioso)
+ * ✅ Reducción áurea intermedia uniforme del 16%
+ * 
+ * VENTAJAS DEL SISTEMA:
+ * - Sin necesidad de clases para tipografía básica
+ * - Consistencia matemática absoluta
+ * - Escalabilidad manteniendo proporciones
+ * - Legibilidad optimizada por contexto
+ * 
+ * USO RECOMENDADO:
+ * - Elementos HTML para contenido semántico
+ * - Clases .h1-.h8 para casos especiales o diseño
+ * - Modificar solo las 5 variables fundamentales para proyectos específicos
+ */

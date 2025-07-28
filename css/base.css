@@ -1,0 +1,117 @@
+/* ==========================================================================
+   BASE STYLES & RESET
+   ========================================================================== */
+
+/* Box sizing rules */
+* {
+  box-sizing: border-box;
+  cursor: none;
+}
+
+*:hover, *:active {
+  cursor: none;
+}
+
+/* Document */
+html {
+  font-size: var(--space-16px);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: var(--t0);
+  line-height: var(--lh2);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Typography Reset */
+/* Headings styles are defined in typography.css */
+
+/* Base elements */
+p {
+  margin: 0 0 var(--space-md) 0;
+}
+
+a {
+  text-decoration: none;
+  transition: opacity var(--duration-base) var(--ease-out);
+  cursor: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Section defaults */
+section {
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove default margin and padding */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements */
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Form elements */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  margin: 0;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: none;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

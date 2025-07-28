@@ -1,0 +1,344 @@
+/* ==========================================================================
+   SISTEMA DE ESPACIADO TOT0 MATRIX
+   Variables nucleares que controlan todos los espacios
+   ========================================================================== */
+
+:root {
+  /* VARIABLES NUCLEARES TOT0 */
+  --u: 10px;          /* Unidad base: controla todos los espacios */
+  --φ: 1.618;         /* Ratio áureo: controla todas las proporciones */
+
+  /* FUENTES - Sistema optimizado */
+  --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
+
+  /* TIPOGRAFÍA ÁUREA - Progresión logarítmica matemática φ=1.618 */
+  --t-base: 16px;                                    /* Base tipográfica fundamental */
+  --t-4: calc(var(--t-base) / var(--φ) / var(--φ) / var(--φ) / var(--φ)); /* ≈1.45px - φ⁻⁴ */
+  --t-3: calc(var(--t-base) / var(--φ) / var(--φ) / var(--φ));             /* ≈2.35px - φ⁻³ */
+  --t-2: calc(var(--t-base) / var(--φ) / var(--φ));                       /* ≈6.11px - φ⁻² */
+  --t-1: calc(var(--t-base) / var(--φ));                                   /* ≈9.89px - φ⁻¹ */
+  --t0: var(--t-base);                                                      /* 16px - φ⁰ BASE */
+  --t1: calc(var(--t-base) * var(--φ));                                    /* ≈25.89px - φ¹ */
+  --t2: calc(var(--t-base) * var(--φ) * var(--φ));                        /* ≈41.89px - φ² */
+  --t3: calc(var(--t-base) * var(--φ) * var(--φ) * var(--φ));             /* ≈67.77px - φ³ */
+  --t4: calc(var(--t-base) * var(--φ) * var(--φ) * var(--φ) * var(--φ));  /* ≈109.66px - φ⁴ */
+  --t5: calc(var(--t-base) * var(--φ) * var(--φ) * var(--φ) * var(--φ) * var(--φ)); /* ≈177.43px - φ⁵ */
+
+  /* LINE-HEIGHT ÁUREO - Proporciones matemáticas */
+  --lh0: 1;                                          /* Compacto para héroes */
+  --lh1: calc(1 / var(--φ) + 1);                    /* ≈1.618 - Normal áureo */
+  --lh2: var(--φ);                                   /* 1.618 - Cómodo */
+  --lh3: calc(var(--φ) * var(--φ) / var(--φ));      /* ≈1.618 - Espacioso */
+
+  /* LETTER-SPACING ÁUREO - Micro tipografía */
+  --ls0: 0;                                          /* Normal */
+  --ls1: calc(1px / var(--φ) / var(--φ) / var(--φ) / var(--φ)); /* ≈0.15px - φ⁻⁴ */
+  --ls2: calc(1px / var(--φ) / var(--φ) / var(--φ));             /* ≈0.24px - φ⁻³ */
+  --ls3: calc(1px / var(--φ) / var(--φ));                        /* ≈0.38px - φ⁻² */
+  --ls4: calc(1px / var(--φ));                                   /* ≈0.62px - φ⁻¹ */
+  --ls5: 1px;                                                     /* 1px - φ⁰ */
+  --ls6: calc(1px * var(--φ));                                   /* ≈1.62px - φ¹ */
+  --ls7: calc(1px * var(--φ) * var(--φ));                       /* ≈2.62px - φ² */
+  --ls8: calc(1px * var(--φ) * var(--φ) * var(--φ));           /* ≈4.24px - φ³ */
+  --ls9: calc(1px * var(--φ) * var(--φ) * var(--φ) * var(--φ)); /* ≈6.85px - φ⁴ */
+
+  /* ESPACIADO ÁUREO - Progresión matemática φ=1.618 */
+  --s0: var(--u);                                 /* 10px - Base unidad */
+  --s1: calc(var(--s0) * var(--φ));              /* ≈16px - φ¹ */
+  --s2: calc(var(--s1) * var(--φ));              /* ≈26px - φ² */
+  --s3: calc(var(--s2) * var(--φ));              /* ≈42px - φ³ */
+  --s4: calc(var(--s3) * var(--φ));              /* ≈68px - φ⁴ */
+  --s5: calc(var(--s4) * var(--φ));              /* ≈110px - φ⁵ */
+
+  /* ESPACIO NEGATIVO - Divisiones áureas */
+  --s-1: calc(var(--s0) / var(--φ));             /* ≈6px - φ⁻¹ */
+  --s-2: calc(var(--s-1) / var(--φ));            /* ≈4px - φ⁻² */
+  --s-3: calc(var(--s-2) / var(--φ));            /* ≈2px - φ⁻³ */
+  --s-4: calc(var(--s-3) / var(--φ));            /* ≈1px - φ⁻⁴ */
+
+  /* ESPACIADO DE CONTAINER - Multiplicadores áureos */
+  --container-s: calc(var(--s0) * var(--φ) * 10);   /* ≈160px */
+  --container-m: calc(var(--s0) * var(--φ) * 20);   /* ≈320px */
+  --container-l: calc(var(--s0) * var(--φ) * 40);   /* ≈640px */
+  --container-xl: calc(var(--s0) * var(--φ) * 80);  /* ≈1280px */
+
+  /* GAPS Y MÁRGENES - Optimizados para layout */
+  --gap-s: var(--s1);      /* ≈16px - Elementos juntos */
+  --gap-m: var(--s2);      /* ≈26px - Elementos relacionados */
+  --gap-l: var(--s3);      /* ≈42px - Secciones distintas */
+  --gap-xl: var(--s4);     /* ≈68px - Grandes separaciones */
+
+  /* ESPACIOS SEMÁNTICOS */
+  --space-hero: var(--s5);      /* Espaciado expansivo */
+  --space-xl: var(--s4);        /* Grandes separaciones */
+  --space-l: var(--s3);         /* Separaciones medias */
+  --space-m: var(--s2);         /* Espacios entre elementos */
+  --space-s: var(--s1);         /* Espaciado base */
+
+  /* UTILIDADES DE BORDE - Micro espacios */
+  --border-hairline: var(--s-4);    /* 1px - Líneas finas */
+  --border-thin: var(--s-3);        /* 2px - Bordes normales */
+  --border-thick: var(--s-2);       /* 4px - Bordes gruesos */
+  --border-heavy: var(--s-1);       /* 6px - Bordes pesados */
+
+  /* CONFIGURACIÓN LAYOUT - Variables compuestas */
+  --container-padding: var(--s2);
+  --container-max-width: var(--container-xl);
+  --grid-gap: var(--gap-m);
+  --section-spacing: var(--space-esencia);
+  --component-spacing: var(--space-comunicacion);
+}
+
+/* ==========================================================================
+   CLASES ATÓMICAS - IMÁGENES
+   Variantes para diferentes tipos de imágenes
+   ========================================================================== */
+
+/* IMÁGENES BASE */
+.img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* IMÁGENES CON TAMAÑOS ESPECÍFICOS */
+.img-xs { max-width: var(--s4); }      /* ≈68px */
+.img-s { max-width: var(--s5); }       /* ≈110px */
+.img-m { max-width: var(--container-s); }  /* ≈160px */
+.img-l { max-width: var(--container-m); }  /* ≈320px */
+.img-xl { max-width: var(--container-l); } /* ≈640px */
+
+/* IMÁGENES CIRCULARES */
+.img-circle {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+/* IMÁGENES CON BORDER RADIUS */
+.img-rounded { border-radius: var(--s-2); }     /* 4px */
+.img-rounded-m { border-radius: var(--s-1); }   /* 6px */
+.img-rounded-l { border-radius: var(--s1); }    /* 16px */
+
+/* IMÁGENES DE FONDO */
+.bg-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bg-image-contain {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ASPECT RATIOS */
+.aspect-square { aspect-ratio: 1; }
+.aspect-video { aspect-ratio: 16/9; }
+.aspect-photo { aspect-ratio: 4/3; }
+.aspect-portrait { aspect-ratio: 3/4; }
+
+/* OBJECT FIT */
+.obj-cover { object-fit: cover; }
+.obj-contain { object-fit: contain; }
+.obj-fill { object-fit: fill; }
+.obj-none { object-fit: none; }
+
+/* ==========================================================================
+   CLASES ATÓMICAS - MAX-WIDTH Y CENTRADO
+   Utilidades para ancho máximo y centrado automático
+   ========================================================================== */
+
+/* MAX-WIDTH BASADO EN VARIABLES ÁUREAS */
+.mw-xs { max-width: var(--s4); }           /* ≈68px */
+.mw-s { max-width: var(--s5); }            /* ≈110px */
+.mw-m { max-width: var(--container-s); }   /* ≈160px */
+.mw-l { max-width: var(--container-m); }   /* ≈320px */
+.mw-xl { max-width: var(--container-l); }  /* ≈640px */
+.mw-xxl { max-width: var(--container-xl); } /* ≈1280px */
+
+/* MAX-WIDTH PORCENTUALES */
+.mw-25 { max-width: 25%; }
+.mw-50 { max-width: 50%; }
+.mw-75 { max-width: 75%; }
+.mw-100 { max-width: 100%; }
+
+/* MAX-WIDTH VIEWPORT (RESPONSIVO) */
+.mw-30vw { max-width: 30vw; }
+.mw-40vw { max-width: 40vw; }
+.mw-50vw { max-width: 50vw; }
+.mw-60vw { max-width: 60vw; }
+.mw-70vw { max-width: 70vw; }
+.mw-75vw { max-width: 75vw; }
+.mw-80vw { max-width: 80vw; }
+
+/* CENTRADO AUTOMÁTICO */
+.mx-auto { margin-left: auto; margin-right: auto; }
+.ml-auto { margin-left: auto; }
+.mr-auto { margin-right: auto; }
+
+/* COMBINACIONES COMUNES */
+.center { margin: 0 auto; }                /* Centrado clásico */
+.center-block { display: block; margin: 0 auto; } /* Block centrado */
+
+/* ==========================================================================
+   CLASES ATÓMICAS - PADDING
+   Sistema de padding basado en variables áureas
+   ========================================================================== */
+
+/* PADDING ALL SIDES */
+.p0 { padding: 0; }
+.p1 { padding: var(--s1); }        /* ≈16px */
+.p2 { padding: var(--s2); }        /* ≈26px */
+.p3 { padding: var(--s3); }        /* ≈42px */
+.p4 { padding: var(--s4); }        /* ≈68px */
+.p5 { padding: var(--s5); }        /* ≈110px */
+
+/* PADDING LEFT */
+.pl0 { padding-left: 0; }
+.pl1 { padding-left: var(--s1); }
+.pl2 { padding-left: var(--s2); }
+.pl3 { padding-left: var(--s3); }
+.pl4 { padding-left: var(--s4); }
+.pl5 { padding-left: var(--s5); }
+
+/* PADDING RIGHT */
+.pr0 { padding-right: 0; }
+.pr1 { padding-right: var(--s1); }
+.pr2 { padding-right: var(--s2); }
+.pr3 { padding-right: var(--s3); }
+.pr4 { padding-right: var(--s4); }
+.pr5 { padding-right: var(--s5); }
+
+/* PADDING TOP */
+.pt0 { padding-top: 0; }
+.pt1 { padding-top: var(--s1); }
+.pt2 { padding-top: var(--s2); }
+.pt3 { padding-top: var(--s3); }
+.pt4 { padding-top: var(--s4); }
+.pt5 { padding-top: var(--s5); }
+
+/* PADDING BOTTOM */
+.pb0 { padding-bottom: 0; }
+.pb1 { padding-bottom: var(--s1); }
+.pb2 { padding-bottom: var(--s2); }
+.pb3 { padding-bottom: var(--s3); }
+.pb4 { padding-bottom: var(--s4); }
+.pb5 { padding-bottom: var(--s5); }
+
+/* PADDING HORIZONTAL (LEFT + RIGHT) */
+.px0 { padding-left: 0; padding-right: 0; }
+.px1 { padding-left: var(--s1); padding-right: var(--s1); }
+.px2 { padding-left: var(--s2); padding-right: var(--s2); }
+.px3 { padding-left: var(--s3); padding-right: var(--s3); }
+.px4 { padding-left: var(--s4); padding-right: var(--s4); }
+.px5 { padding-left: var(--s5); padding-right: var(--s5); }
+
+/* PADDING VERTICAL (TOP + BOTTOM) */
+.py0 { padding-top: 0; padding-bottom: 0; }
+.py1 { padding-top: var(--s1); padding-bottom: var(--s1); }
+.py2 { padding-top: var(--s2); padding-bottom: var(--s2); }
+.py3 { padding-top: var(--s3); padding-bottom: var(--s3); }
+.py4 { padding-top: var(--s4); padding-bottom: var(--s4); }
+.py5 { padding-top: var(--s5); padding-bottom: var(--s5); }
+
+/* ==========================================================================
+   CLASES ATÓMICAS - MARGIN
+   Sistema de margin basado en variables áureas
+   ========================================================================== */
+
+/* MARGIN ALL SIDES */
+.m0 { margin: 0; }
+.m1 { margin: var(--s1); }        /* ≈16px */
+.m2 { margin: var(--s2); }        /* ≈26px */
+.m3 { margin: var(--s3); }        /* ≈42px */
+.m4 { margin: var(--s4); }        /* ≈68px */
+.m5 { margin: var(--s5); }        /* ≈110px */
+
+/* MARGIN LEFT */
+.ml0 { margin-left: 0; }
+.ml1 { margin-left: var(--s1); }
+.ml2 { margin-left: var(--s2); }
+.ml3 { margin-left: var(--s3); }
+.ml4 { margin-left: var(--s4); }
+.ml5 { margin-left: var(--s5); }
+
+/* MARGIN RIGHT */
+.mr0 { margin-right: 0; }
+.mr1 { margin-right: var(--s1); }
+.mr2 { margin-right: var(--s2); }
+.mr3 { margin-right: var(--s3); }
+.mr4 { margin-right: var(--s4); }
+.mr5 { margin-right: var(--s5); }
+
+/* MARGIN TOP */
+.mt0 { margin-top: 0; }
+.mt1 { margin-top: var(--s1); }
+.mt2 { margin-top: var(--s2); }
+.mt3 { margin-top: var(--s3); }
+.mt4 { margin-top: var(--s4); }
+.mt5 { margin-top: var(--s5); }
+
+/* MARGIN BOTTOM */
+.mb0 { margin-bottom: 0; }
+.mb1 { margin-bottom: var(--s1); }
+.mb2 { margin-bottom: var(--s2); }
+.mb3 { margin-bottom: var(--s3); }
+.mb4 { margin-bottom: var(--s4); }
+.mb5 { margin-bottom: var(--s5); }
+
+/* MARGIN HORIZONTAL (LEFT + RIGHT) */
+.mx0 { margin-left: 0; margin-right: 0; }
+.mx1 { margin-left: var(--s1); margin-right: var(--s1); }
+.mx2 { margin-left: var(--s2); margin-right: var(--s2); }
+.mx3 { margin-left: var(--s3); margin-right: var(--s3); }
+.mx4 { margin-left: var(--s4); margin-right: var(--s4); }
+.mx5 { margin-left: var(--s5); margin-right: var(--s5); }
+
+/* MARGIN VERTICAL (TOP + BOTTOM) */
+.my0 { margin-top: 0; margin-bottom: 0; }
+.my1 { margin-top: var(--s1); margin-bottom: var(--s1); }
+.my2 { margin-top: var(--s2); margin-bottom: var(--s2); }
+.my3 { margin-top: var(--s3); margin-bottom: var(--s3); }
+.my4 { margin-top: var(--s4); margin-bottom: var(--s4); }
+.my5 { margin-top: var(--s5); margin-bottom: var(--s5); }
+
+/* ==========================================================================
+   CLASES ATÓMICAS - GAP
+   Sistema de gap para grid y flexbox basado en variables áureas
+   ========================================================================== */
+
+/* GAPS PARA GRID Y FLEXBOX */
+.gap0 { gap: 0; }
+.gap1 { gap: var(--s1); }          /* ≈16px */
+.gap2 { gap: var(--s2); }          /* ≈26px */
+.gap3 { gap: var(--s3); }          /* ≈42px */
+.gap4 { gap: var(--s4); }          /* ≈68px */
+.gap5 { gap: var(--s5); }          /* ≈110px */
+
+/* ==========================================================================
+   CLASES ATÓMICAS - VIEWPORT
+   Dimensiones basadas en viewport para hero sections
+   ========================================================================== */
+
+/* VIEWPORT WIDTH */
+.vw-100 { width: 100vw; }
+.vw-50 { width: 50vw; }
+.vw-75 { width: 75vw; }
+
+/* VIEWPORT HEIGHT */
+.vh-100 { height: 100vh; }
+.vh-50 { height: 50vh; }
+.vh-75 { height: 75vh; }
+
+/* MIN HEIGHT VIEWPORT */
+.min-vh-100 { min-height: 100vh; }
+.min-vh-50 { min-height: 50vh; }
+.min-vh-75 { min-height: 75vh; }
+
+/* HERO VIEWPORT UTILITIES */
+.hero-vw { width: 100vw; }
+.hero-vh { height: 100vh; }
+.hero-min-vh { min-height: 100vh; }

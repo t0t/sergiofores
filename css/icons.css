@@ -1,0 +1,145 @@
+/* ==========================================================================
+   ICONS.CSS - SISTEMA DE ICONOS LUCIDE
+   Sistema de iconos basado en Lucide con clases atómicas
+   ========================================================================== */
+
+/* ICONOS BASE */
+.icon {
+  display: inline-block;
+  width: var(--s2);
+  height: var(--s2);
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  vertical-align: middle;
+}
+
+/* TAMAÑOS DE ICONOS */
+.icon-xs {
+  width: var(--s0);
+  height: var(--s0);
+}
+
+.icon-s {
+  width: var(--s1);
+  height: var(--s1);
+}
+
+.icon-m {
+  width: var(--s2);
+  height: var(--s2);
+}
+
+.icon-l {
+  width: var(--s3);
+  height: var(--s3);
+}
+
+.icon-xl {
+  width: var(--s4);
+  height: var(--s4);
+}
+
+/* GROSOR DE LÍNEA */
+.icon-thin {
+  stroke-width: 1;
+}
+
+.icon-normal {
+  stroke-width: 2;
+}
+
+.icon-thick {
+  stroke-width: 3;
+}
+
+/* ICONOS CON RELLENO */
+.icon-filled {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* ICONOS EN BOTONES */
+.btn .icon {
+  width: 1em;
+  height: 1em;
+}
+
+/* ICONOS EN NAVEGACIÓN */
+.nav .icon {
+  width: var(--s1);
+  height: var(--s1);
+}
+
+/* ICONOS DECORATIVOS */
+.icon-decorative {
+  opacity: 0.6;
+}
+
+/* ICONOS INTERACTIVOS */
+.icon-interactive {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-interactive:hover {
+  opacity: 0.7;
+  transform: scale(1.1);
+}
+
+/* CONTENEDORES DE ICONOS */
+.icon-container {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s0);
+}
+
+.icon-container.vertical {
+  flex-direction: column;
+  text-align: center;
+}
+
+/* ICONOS CON TEXTO */
+.icon-text {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s0);
+}
+
+.icon-text.reverse {
+  flex-direction: row-reverse;
+}
+
+/* ICONOS EN GRID */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--s4), 1fr));
+  gap: var(--s1);
+  text-align: center;
+}
+
+.icon-grid .icon {
+  width: var(--s3);
+  height: var(--s3);
+  margin: 0 auto;
+}
+
+/* SVG DEL SISTEMA 01234 */
+.sistema-svg,
+#sergio svg {
+  width: var(--s4);  /* 64px */
+  height: var(--s4); /* 64px */
+  display: block;
+  margin: 0 auto var(--s1) auto;
+}
+
+/* Responsive: SVG más pequeños en móvil */
+@media (max-width: 768px) {
+  .sistema-svg,
+  #sergio svg {
+    width: var(--s3);  /* 48px */
+    height: var(--s3); /* 48px */
+  }
+}
