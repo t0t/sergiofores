@@ -107,12 +107,16 @@
 }
 
 /* Mobile nav */
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
     .menu-toggle {
         display: block;
     }
 
     .header-nav {
+        display: none;
+    }
+
+    .header-nav.active {
         position: absolute;
         top: var(--nav-height);
         left: 0;
@@ -121,17 +125,12 @@
         align-items: stretch;
         background: var(--blanco);
         padding: var(--s2);
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: all var(--transition);
-        box-shadow: var(--shadow-md);
-    }
-
-    .header-nav.active {
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
+        transition: all var(--transition);
+        box-shadow: var(--shadow-md);
+        display: flex;
     }
 
     .nav-link {

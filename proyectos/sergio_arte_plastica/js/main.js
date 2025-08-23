@@ -31,7 +31,7 @@ const Utils = {
     },
 
     isMobile() {
-        return window.innerWidth <= 768;
+        return window.innerWidth <= 1023;
     }
 };
 
@@ -128,8 +128,7 @@ class NavigationMenu {
     open() {
         this.isOpen = true;
         this.menuToggle.classList.add('active');
-        this.navMenu.classList.remove('hidden');
-        this.navMenu.classList.add('flex');
+        this.navMenu.classList.add('active');
         this.menuToggle.setAttribute('aria-label', 'Cerrar menú');
         this.menuToggle.setAttribute('aria-expanded', 'true');
         document.body.style.overflow = 'hidden';
@@ -138,8 +137,7 @@ class NavigationMenu {
     close() {
         this.isOpen = false;
         this.menuToggle.classList.remove('active');
-        this.navMenu.classList.add('hidden');
-        this.navMenu.classList.remove('flex');
+        this.navMenu.classList.remove('active');
         this.menuToggle.setAttribute('aria-label', 'Abrir menú');
         this.menuToggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
@@ -551,3 +549,11 @@ class PortfolioApp {
 
 // Initialize application
 const app = new PortfolioApp();
+
+// Update current year in footer
+document.addEventListener('DOMContentLoaded', () => {
+    const yearElement = document.getElementById('currentYear');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+});

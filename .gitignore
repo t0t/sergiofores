@@ -63,9 +63,8 @@ temp/
 *.swp
 *~
 
-# Solo trackear archivos dentro de sergiofores
-/*
-!/.gitignore
-!/proyectos/
-/proyectos/*
-!/proyectos/sergio_arte_plastica/
+# Ignorar archivos en niveles superiores
+/Users/a01234/CEREBRO-DIGITAL/*
+!/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/
+/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/*
+!/Users/a01234/CEREBRO-DIGITAL/PROYECTOS/sergiofores/

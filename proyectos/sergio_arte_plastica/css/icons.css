@@ -29,14 +29,6 @@
     cursor: pointer;
 }
 
-.menu-toggle span {
-    display: block;
-    width: var(--s2);
-    height: 2px;
-    background-color: var(--on-surface);
-    transition: transform 0.3s ease;
-}
-
 .menu-toggle.active span:first-child {
     transform: translateY(8px) rotate(45deg);
 }

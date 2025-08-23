@@ -287,15 +287,46 @@ const HeaderController = {
     header: null,
     lastScrollY: 0,
     scrollTimeout: null,
+    hamButton: null,
+    navLinks: null,
     
     init() {
         this.header = document.querySelector('.header');
+        this.hamButton = document.querySelector('.ham-button');
+        this.navLinks = document.querySelector('.nav-links');
+        
         if (!this.header) return;
+        
+        // Hamburger menu listener
+        if (this.hamButton) {
+            this.hamButton.addEventListener('click', this.toggleMenu.bind(this));
+        }
+
+        // Menu item click listeners
+        if (this.navLinks) {
+            this.navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    this.closeMenu();
+                });
+            });
+        }
         
         // Throttled scroll handler
         window.addEventListener('scroll', this.handleScroll.bind(this), { 
             passive: true 
         });
+    },
+    
+    toggleMenu() {
+        if (!this.hamButton || !this.navLinks) return;
+        this.hamButton.classList.toggle('active');
+        this.navLinks.classList.toggle('active');
+    },
+
+    closeMenu() {
+        if (!this.hamButton || !this.navLinks) return;
+        this.hamButton.classList.remove('active');
+        this.navLinks.classList.remove('active');
     },
     
     handleScroll() {
