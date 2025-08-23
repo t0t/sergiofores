@@ -57,7 +57,7 @@
     </section>
 
     <!-- Video Taller -->
-    <section class="full-width relative overflow-hidden">
+    <section id="proceso" class="full-width relative overflow-hidden grid">
         <div class="aspect-video">
             <video 
                 class="full-width full-height object-cover"
@@ -69,12 +69,21 @@
                 <source src="images/videos/img_1940-1.mp4" type="video/mp4">
                 <p>Tu navegador no soporta el elemento video.</p>
             </video>
-            <div class="absolute inset-0 bg-gradient-secondary opacity-50 flex items-center justify-center">
-                <div class="stack text-center text-surface">
-                    <h3 class="text-2xl font-bold">Taller · Proceso en Vivo</h3>
-                    <p class="text-lg">
-                        Donde la intuición se encuentra con el color y la forma emerge del silencio creativo
-                    </p>
+        </div>
+        <div class="absolute inset-0 bg-gradient-secondary opacity-50"></div>
+        <div class="absolute inset-0 grid items-center">
+            <h3 class="text-2xl font-bold tac text-blanco">Taller · Proceso en Vivo</h3>
+            <p class="text-lg tac text-blanco">Donde la intuición se encuentra con el color y la forma emerge del silencio creativo</p>
+        </div>
+    </section>
+
+    <!-- Bio Section -->
+    <section id="biografia" class="bg-elevated p4">
+        <div class="container">
+            <div class="stack text-center max-w-3xl mx-auto">
+                <h2 class="text-2xl font-bold">Sobre el Artista</h2>
+                <div class="text-lg">
+                    <p>Sergio Forés explora la intersección entre el arte plástico tradicional y los procesos cognitivos contemporáneos. Su obra investiga la arquitectura invisible del pensamiento a través de abstracciones que combinan técnicas clásicas con innovación digital.</p>
                 </div>
             </div>
         </div>
@@ -185,7 +194,7 @@
     </footer>
 
     <!-- Gallery Modal -->
-    <div class="modal" id="galleryModal" aria-hidden="true" role="dialog">
+    <div class="modal" id="galleryModal" role="dialog" aria-modal="true">
         <div class="modal-container">
             <button class="btn-icon" id="modalClose" aria-label="Cerrar galería">
                 <i data-lucide="x" class="icon"></i>
