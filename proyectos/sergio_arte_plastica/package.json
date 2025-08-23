@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "gallery:full": "node js/gallery-manager.js full",
-    "gallery:optimize": "node js/gallery-manager.js optimize", 
+    "gallery:optimize": "node js/gallery-manager.js optimize",
     "gallery:update": "node js/gallery-manager.js update",
     "gallery:audit": "node js/gallery-manager.js audit",
     "files:preview": "node js/file-normalizer.js preview",
@@ -29,7 +29,7 @@
   },
   "keywords": [
     "art",
-    "portfolio", 
+    "portfolio",
     "gallery",
     "sergio-fores",
     "arte-plastico",
@@ -41,6 +41,9 @@
   "author": "Sergio Forés",
   "license": "MIT",
   "dependencies": {
+    "@gltf-transform/cli": "^4.2.1",
+    "@gltf-transform/core": "^4.2.1",
+    "@gltf-transform/extensions": "^4.2.1",
     "sharp": "^0.33.0"
   },
   "devDependencies": {
@@ -53,17 +56,22 @@
     "type": "git",
     "url": "https://github.com/sergiofores/sergio-arte-plastica"
   },
-  "homepage": "https://sergiofores.github.io/sergio-arte-plastica",
+  "homepage": "https://sergiofores.es",
   "galleryConfig": {
     "version": "1.0.0",
-    "supportedFormats": [".jpg", ".jpeg", ".png", ".webp"],
+    "supportedFormats": [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".webp"
+    ],
     "maxImageSize": "500KB",
     "optimizationQuality": 85,
     "lazyLoadingEnabled": true,
     "webpSupportEnabled": true,
     "categories": {
       "oil": "Óleo sobre lino belga",
-      "ink": "Tinta sobre papel japonés", 
+      "ink": "Tinta sobre papel japonés",
       "3dprinting": "Impresión 3D",
       "drawing": "Dibujo y bocetos"
     }

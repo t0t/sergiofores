@@ -23,12 +23,13 @@ Este proyecto explora la faceta artística de Sergio Forés, centrándose en la 
 ## Nivel 2: Análisis/Estructura (Los Componentes)
 
 ### Features Principales
+- [ ] Visualización de Modelos 3D (GLB): Exploración interactiva de esculturas digitales.
 - [ ] Feature A: Descripción.
 - [ ] Feature B: Descripción.
 - [ ] Feature C: Descripción.
 
 ### Stack Tecnológico
-- **Frontend:** HTML semántico, CSS (con variables y Grid), JavaScript vanilla (ES6+).
+- **Frontend:** HTML semántico, CSS (con variables y Grid), JavaScript vanilla (ES6+), **model-viewer (Web Component)**.
 - **Backend:** (si aplica)
 - **Despliegue:** Vercel / GitHub Pages.
 
