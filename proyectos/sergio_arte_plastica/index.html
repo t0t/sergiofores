@@ -5,411 +5,232 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sergio Forés • Obra Plástica</title>
     <meta name="description" content="Portfolio de obra plástica de Sergio Forés. Óleos sobre lino belga, abstracción contemporánea y exploración del lenguaje visual.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+    
+    <!-- Sistema TOT0 CSS -->
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/category-menu.css">
+    
+    <!-- Model Viewer -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer@3.4.0/dist/model-viewer.min.js"></script>
 </head>
 <body>
-        <!-- Header Museístico -->
-        <header class="header">
-            <div class="page-container">
-                <div class="header-content">
-                    <div class="artist-identity">
-                        <h1 class="artist-name">Sergio Forés</h1>
-                    </div>
-                    <nav>
-                        <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </button>
-                        <ul class="nav-menu" id="nav-menu" role="menu">
-                            <li><a href="#obra" class="nav-link">Galería</a></li>
-                            <li><a href="#proceso" class="nav-link">Proceso</a></li>
-                            <li><a href="#biografia" class="nav-link">Artista</a></li>
-                            <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                        </ul>
-                    </nav>
+    <!-- Header -->
+    <header role="banner" class="header z-50 fixed w-100 transparent">
+        <div class="container cluster between">
+            <a href="#" class="logo">Sergio Forés</a>
+            
+            <nav role="navigation">
+                <button class="menu-toggle" aria-label="Menú" aria-expanded="false" aria-controls="nav-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="cluster">
+                    <a href="#obra" class="nav-link">Galería</a>
+                    <a href="#proceso" class="nav-link">Proceso</a>
+                    <a href="#biografia" class="nav-link">Artista</a>
+                    <a href="#contacto" class="nav-link">Contacto</a>
                 </div>
-            </div>
-        </header>
+            </nav>
+        </div>
+    </header>
 
-                <!-- Hero Ultra-Elegante -->
-        <section class="hero-section" style="background-image: url('images/obras/oil/arqueologia-temporal.jpg'); background-size: cover; background-position: center; position: relative;">
-            <div class="hero-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
-            <div class="hero-content" style="position: relative; z-index: 2;">
-                <h1 class="hero-slogan">Arqueología de Estados Internos</h1>
-                <p class="hero-tagline">Abstracción · Transformación · Conciencia</p>
-            </div>
-        </section>
+    <!-- Hero -->
+    <section class="section-full hero grid items-center justify-around acc jic" style="background-image: url('images/obras/3dprinting/matriz-generativa.png'); background-size: cover; background-position: center;">
+        <h1 class="h1 text-blanco">Arqueología de Estados Internos</h1>
+        <p class="text-lg text-neutral1">Abstracción · Transformación · Conciencia</p>
+    </section>
 
-        <!-- Quote Banner -->
-        <section class="quote-banner">
-            <div class="quote-content">
-                <p class="quote-text">
+    <!-- Quote Banner -->
+    <section class="bg-elevated p4">
+        <div class="container">
+            <div class="stack text-center max-w-3xl mx-auto">
+                <blockquote class="text-xl leading-relaxed font-medium">
                     No pinto objetos, sino los procesos cognitivos mismos. Cada pincelada 
                     es una investigación de la arquitectura invisible del sentido, donde 
                     la arteterapia y la neuroplasticidad convergen en una exploración 
                     visual de la conciencia creativa.
-                </p>
-                <div class="quote-signature">Manifiesto Artístico, 2024</div>
-            </div>
-        </section>
-
-        <!-- Video Taller -->
-        <section class="studio-video-section">
-            <div class="video-container">
-                <video 
-                    class="studio-video" 
-                    autoplay 
-                    muted 
-                    loop 
-                    playsinline
-                    poster="images/gallery/proceso-creativo.jpg">
-                    <source src="images/videos/img_1940-1.mp4" type="video/mp4">
-                    <p>Tu navegador no soporta el elemento video.</p>
-                </video>
-                <div class="video-overlay">
-                    <div class="video-content">
-                        <h3 class="video-title">Taller · Proceso en Vivo</h3>
-                        <p class="video-description">
-                            Donde la intuición se encuentra con el color y la forma emerge del silencio creativo
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    <div class="page-container">
-
-        <!-- Gallery Principal -->
-        <section id="obra" class="gallery-section">
-            <h2 class="section-title">Cartografías de la Conciencia</h2>
-                        <div class="gallery-grid">
-                <!-- 3 obras representativas -->
-                <article class="artwork">
-                    <img src="images/obras/oil/arqueologia-temporal.jpg" alt="Arqueologia Temporal" class="artwork-image">
-                </article>
-                <article class="artwork">
-                    <img src="images/obras/oil/introspeccion-silenciosa.png" alt="Introspeccion Silenciosa" class="artwork-image">
-                </article>
-                <article class="artwork">
-                    <img src="images/obras/oil/turbulencia-esencial.png" alt="Turbulencia Esencial" class="artwork-image">
-                </article>
-            </div>
-            
-            <!-- Descripción de áreas creativas -->
-            <div class="creative-areas">
-                <p class="creative-description">
-                    Exploración multidisciplinar a través de <strong>Impresión 3D</strong> para volumetrías experimentales, 
-                    <strong>Óleos sobre lino belga</strong> como territorio principal de investigación pictórica, 
-                    y <strong>Tinta sobre papel japonés</strong> para la exploración caligráfica y gestual inmediata.
-                </p>
-            </div>
-            
-            <!-- Botón Ver Más -->
-            <div class="gallery-more">
-                <button class="btn-see-more" id="btnSeeMore" aria-label="Ver todas las obras">
-                    Ver Más Obras
-                    <span class="btn-arrow">→</span>
-                </button>
-            </div>
-        </section>
-
-        <!-- Proceso Creativo -->
-        <section id="proceso" class="process-section">
-            <div class="page-container">
-                <h2 class="section-title">Proceso Creativo</h2>
-                <div class="process-layout">
-                    <div class="process-text-content">
-                        <p class="process-philosophy">
-                            Es la armonización individual de un proceso creativo Global. 
-                            Cada obra emerge de la intersección entre mi sistema cognitivo personal 
-                            y los patrones universales que estructuran la creación.
-                        </p>
-                        <p class="process-description">
-                            El proceso comienza con una fase de contemplación y receptividad, donde permito 
-                            que emerjan las formas y colores desde el inconsciente. No busco representar 
-                            la realidad externa, sino cartografiar los territorios internos de la experiencia 
-                            creativa y los estados de conciencia que surgen durante la pintura.
-                        </p>
-                        <p class="process-description">
-                            Cada pincelada es una decisión intuitiva que dialoga con las anteriores, 
-                            creando una conversación visual que trasciende la planificación consciente. 
-                            La obra se convierte así en un registro arqueológico de mi estado mental 
-                            durante el proceso de creación.
-                        </p>
-                    </div>
-                    <div class="process-image">
-                        <img src="images/gallery/proceso-creativo.jpg" alt="Sergio Forés en su taller" class="process-photo">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Biografía -->
-        <section id="biografia" class="bio-section">
-            <div class="bio-content">
-                <h2 class="bio-title">Sobre el Artista</h2>
-                <div class="bio-layout">
-                    <div class="bio-portrait">
-                        <img src="images/gallery/sergio-retrato.jpg" alt="Sergio Forés - Artista" class="artist-portrait">
-                    </div>
-                    <div class="bio-text-content">
-                        <p class="bio-text">
-                            Sergio Forés pinta desde los 17 años, retomando la exploración plástica a los 40 tras una profunda 
-                            transformación personal que lo lleva a redescubrir el arte como territorio de investigación de la conciencia. 
-                            Su trabajo trasciende la estética pura para convertirse en una exploración de la "arquitectura invisible del sentido".
-                        </p>
-                        <p class="bio-text">
-                            Para Sergio, pintar es fundamentalmente arteterapia: una práctica que fomenta la neuroplasticidad 
-                            y el bienestar mental. No pinta objetos, sino procesos cognitivos. Cada obra es un laboratorio 
-                            para la autoconciencia, donde investiga cómo funciona el pensamiento creativo.
-                        </p>
-                        <p class="bio-text">
-                            Sus influencias pictóricas incluyen la caligrafía tradicional japonesa (Inoue Yuichi), 
-                            Franz Kline, Rothko, Joseph Beuys y Miró. Formado en Arte Electrónico en MECAD y Artes Aplicadas, 
-                            desarrolla un enfoque transdisciplinar que conecta arte, tecnología y sistemas de conocimiento.
-                        </p>
-                        <p class="bio-text">
-                            Su técnica preferida son los óleos en base agua sobre lino belga, una dualidad simbólica 
-                            entre tradición (lino) e innovación (base agua) que refleja su búsqueda del equilibrio 
-                            entre estructura y fluidez. Su obra forma parte de colecciones privadas en España y Europa.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Contacto a todo ancho -->
-    <section id="contacto" class="contact-section">
-        <div class="contact-content">
-            <h2 class="contact-title">Contacto & Representación</h2>
-            <div class="contact-links">
-                <a href="https://www.instagram.com/cuenta.01234/" target="_blank" class="contact-link">Instagram</a>
-                <a href="https://x.com/t0tinspire" target="_blank" class="contact-link">X / Twitter</a>
-            </div>
-            <div class="copyright">
-                <span id="currentYear"></span> • <a href="https://sergiofores.com" target="_blank" class="footer-link">sergiofores.com</a>
+                </blockquote>
+                <cite class="text-on-surface-medium">Manifiesto Artístico, 2024</cite>
             </div>
         </div>
     </section>
 
-    <!-- Modal Galería Completa -->
-    <div class="gallery-modal" id="galleryModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle" class="modal-title">Galería Completa</h2>
-                <button class="modal-close" id="modalClose" aria-label="Cerrar galería">
-                    <span></span>
-                    <span></span>
+    <!-- Video Taller -->
+    <section class="full-width relative overflow-hidden">
+        <div class="aspect-video">
+            <video 
+                class="full-width full-height object-cover"
+                autoplay 
+                muted 
+                loop 
+                playsinline
+                poster="images/gallery/proceso-creativo.jpg">
+                <source src="images/videos/img_1940-1.mp4" type="video/mp4">
+                <p>Tu navegador no soporta el elemento video.</p>
+            </video>
+            <div class="absolute inset-0 bg-gradient-secondary opacity-50 flex items-center justify-center">
+                <div class="stack text-center text-surface">
+                    <h3 class="text-2xl font-bold">Taller · Proceso en Vivo</h3>
+                    <p class="text-lg">
+                        Donde la intuición se encuentra con el color y la forma emerge del silencio creativo
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container p4">
+        <!-- Gallery Section -->
+        <section id="obra" class="grid gap3 py4">
+            <h2 class="text-2xl font-bold text-center">Cartografías de la Conciencia</h2>
+            <div class="grid grid-auto gap-3">
+                <article class="artwork hover:scale">
+                    <img src="images/obras/oil/arqueologia-temporal.jpg" alt="Arqueologia Temporal" class="artwork-image">
+                </article>
+                <article class="artwork hover:scale">
+                    <img src="images/obras/oil/introspeccion-silenciosa.png" alt="Introspeccion Silenciosa" class="artwork-image">
+                </article>
+                <article class="artwork hover:scale">
+                    <img src="images/obras/oil/turbulencia-esencial.png" alt="Turbulencia Esencial" class="artwork-image">
+                </article>
+            </div>
+            <div class="text-center">
+                <button id="openGallery" class="btn btn-icon">
+                    <i data-lucide="expand" class="icon"></i>
+                    Ver galería completa
                 </button>
             </div>
-            
+        </section>
+
+        <!-- 3D Models Section -->
+        <section id="modelos3d" class="stack gap-4">
+            <h2 class="text-2xl font-bold text-center">Exploraciones 3D</h2>
+            <div class="grid grid-auto gap-4">
+                <div class="stack gap-2">
+                    <model-viewer 
+                        src="models/optimized/model1.glb" 
+                        alt="Modelo 3D 1: Abstracción Volumétrica" 
+                        ar ar-modes="webxr scene-viewer quick-look" 
+                        shadow-intensity="1" 
+                        camera-controls 
+                        auto-rotate
+                        loading="eager"
+                        disable-zoom
+                        poster="images/obras/3dprinting/topografia-neural.jpg">
+                        <div class="progress-bar" slot="progress-bar"></div>
+                        <div class="error" slot="error">Error al cargar el modelo 3D.</div>
+                    </model-viewer>
+                    <p class="text-lg font-medium">Abstracción Volumétrica I</p>
+                </div>
+                <div class="stack gap-2">
+                    <model-viewer 
+                        src="models/optimized/model2.glb" 
+                        alt="Modelo 3D 2: Geometría Orgánica" 
+                        ar ar-modes="webxr scene-viewer quick-look" 
+                        shadow-intensity="1" 
+                        camera-controls 
+                        auto-rotate
+                        loading="eager"
+                        disable-zoom
+                        poster="images/obras/3dprinting/estructura-algoritmica.jpg">
+                        <div class="progress-bar" slot="progress-bar"></div>
+                        <div class="error" slot="error">Error al cargar el modelo 3D.</div>
+                    </model-viewer>
+                    <p class="text-lg font-medium">Geometría Orgánica II</p>
+                </div>
+                <div class="stack gap-2">
+                    <model-viewer 
+                        src="models/optimized/model3.glb" 
+                        alt="Modelo 3D 3: Estructura Fluida" 
+                        ar ar-modes="webxr scene-viewer quick-look" 
+                        shadow-intensity="1" 
+                        camera-controls 
+                        auto-rotate
+                        loading="eager"
+                        disable-zoom
+                        poster="images/obras/3dprinting/matriz-generativa.png">
+                        <div class="progress-bar" slot="progress-bar"></div>
+                        <div class="error" slot="error">Error al cargar el modelo 3D.</div>
+                    </model-viewer>
+                    <p class="text-lg font-medium">Estructura Fluida III</p>
+                </div>
+            </div>
+            <p class="text-lg text-center text-on-surface-medium max-w-3xl mx-auto">
+                Cada modelo 3D es una investigación sobre la forma y el volumen, fusionando la estética del arte plástico con las posibilidades de la fabricación digital.
+            </p>
+        </section>
+    </main>
+
+    <!-- Contact Section -->
+    <footer id="contacto" class="bg-elevated p4">
+        <div class="container stack gap-4 text-center">
+            <h2 class="text-2xl font-bold">Contacto & Representación</h2>
+            <div class="cluster gap-3 justify-center">
+                <a href="https://www.instagram.com/cuenta.01234/" target="_blank" class="btn btn-icon">
+                    <i data-lucide="instagram" class="icon"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://x.com/t0tinspire" target="_blank" class="btn btn-icon">
+                    <i data-lucide="twitter" class="icon"></i>
+                    <span>X / Twitter</span>
+                </a>
+            </div>
+            <div class="text-on-surface-medium">
+                <span id="currentYear"></span> • 
+                <a href="https://sergiofores.es" target="_blank" class="hover:text-primary transition">sergiofores.es</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Gallery Modal -->
+    <div class="modal" id="galleryModal" aria-hidden="true" role="dialog">
+        <div class="modal-container">
+            <button class="btn-icon" id="modalClose" aria-label="Cerrar galería">
+                <i data-lucide="x" class="icon"></i>
+            </button>
+
             <div class="carousel-container">
                 <button class="carousel-nav carousel-prev" id="carouselPrev" aria-label="Obra anterior">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                    <i data-lucide="chevron-left" class="icon"></i>
                 </button>
                 
-                                <div class="carousel-track" id="carouselTrack">
-                    <!-- Todas las obras del carrusel -->
-                    <div class="carousel-slide active">
-                        <img src="images/obras/oil/sinestesia-cognitiva.png" alt="Sinestesia Cognitiva" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Sinestesia Cognitiva</h3>
-                            <p>Óleo sobre lino belga, 100 × 100 cm • 2024</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/oil/flujo-temporal.png" alt="Flujo Temporal" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Flujo Temporal</h3>
-                            <p>Óleo sobre lino belga, 100 × 100 cm • 2024</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/oil/triada-existencial.png" alt="Tríada Existencial" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Tríada Existencial</h3>
-                            <p>Óleo sobre lino belga, 100 × 100 cm • 2024</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/oil/genesis-cromatica.png" alt="Genesis Cromatica" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Genesis Cromatica</h3>
-                            <p>Óleo sobre lino belga, 100 × 100 cm • 2024</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/oil/metamorfosis-interior.png" alt="Metamorfosis Interior" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Metamorfosis Interior</h3>
-                            <p>Óleo sobre lino belga, 100 × 100 cm • 2024</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/oil/resonancia-primordial.png" alt="Resonancia Primordial" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Resonancia Primordial</h3>
-                            <p>Óleo sobre lino belga, 100 × 100 cm • 2024</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/oil/epifania-luminosa.png" alt="Epifanía Luminosa" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Epifanía Luminosa</h3>
-                            <p>Óleo sobre lino belga, 100 × 100 cm • 2024</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/oil/introspeccion-silenciosa.png" alt="Introspeccion Silenciosa" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Introspeccion Silenciosa</h3>
-                            <p>Óleo sobre lino belga, 100 × 100 cm • 2024</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/oil/turbulencia-esencial.png" alt="Turbulencia Esencial" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Turbulencia Esencial</h3>
-                            <p>Óleo sobre lino belga, 100 × 100 cm • 2024</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/oil/presencia-divina.png" alt="Presencia Divina" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Presencia Divina</h3>
-                            <p>Óleo sobre lino belga, 100 × 100 cm • 2024</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/3dprinting/topografia-neural.jpg" alt="Topografía Neural" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Topografía Neural</h3>
-                            <p>Impresión 3D, 120 × 90 cm • 2023</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/3dprinting/estructura-algoritmica.jpg" alt="Estructura Algorítmica" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Estructura Algorítmica</h3>
-                            <p>Impresión 3D, 120 × 90 cm • 2023</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/3dprinting/matriz-generativa.png" alt="Matriz Generativa" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Matriz Generativa</h3>
-                            <p>Impresión 3D, 120 × 90 cm • 2023</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/3dprinting/fragmento-biologico.jpg" alt="Fragmento Biológico" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Fragmento Biológico</h3>
-                            <p>Impresión 3D, 120 × 90 cm • 2023</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/3dprinting/tejido-molecular.jpg" alt="Tejido Molecular" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Tejido Molecular</h3>
-                            <p>Impresión 3D, 120 × 90 cm • 2023</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/3dprinting/geometria-organica.jpg" alt="Geometría Orgánica" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Geometría Orgánica</h3>
-                            <p>Impresión 3D, 120 × 90 cm • 2023</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/3dprinting/sedimento-digital.jpg" alt="Sedimento Digital" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Sedimento Digital</h3>
-                            <p>Impresión 3D, 120 × 90 cm • 2023</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/3dprinting/paisaje-micro.jpg" alt="Paisaje Micro" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Paisaje Micro</h3>
-                            <p>Impresión 3D, 120 × 90 cm • 2023</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="images/obras/oil/arqueologia-temporal.jpg" alt="Arqueologia Temporal" class="carousel-image">
-                        <div class="carousel-info">
-                            <h3>Arqueologia Temporal</h3>
-                            <p>Óleo sobre lino belga, 100 × 100 cm • 2020</p>
-                        </div>
-                    </div>
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Carousel slides aquí -->
                 </div>
                 
                 <button class="carousel-nav carousel-next" id="carouselNext" aria-label="Siguiente obra">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                    <i data-lucide="chevron-right" class="icon"></i>
                 </button>
-            </div>
-            
-            <div class="carousel-indicators" id="carouselIndicators">
-                <!-- Indicadores generados dinámicamente -->
+                
+                <div class="carousel-indicators" id="carouselIndicators">
+                    <!-- Indicadores generados dinámicamente -->
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="js/gallery-data.js"></script>
-    <script src="js/performance-monitor.js"></script>
-    <script src="js/debug-gallery.js"></script>
-    <script src="js/test-category-debug.js"></script>
-    <script src="js/random-hero.js"></script>
-    <script src="js/test-random-hero.js"></script>
-    <script src="js/main.js"></script>
+    <!-- Scripts -->
     <script>
-        // Año dinámico
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        
-        // Generar carousel dinámicamente con todas las obras
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof GALLERY_DATA !== 'undefined') {
-                const carouselTrack = document.getElementById('carouselTrack');
-                
-                if (carouselTrack && GALLERY_DATA.length > 0) {
-                    // Limpiar contenido existente
-                    carouselTrack.innerHTML = '';
-                    
-                    // Hacer GALLERY_DATA disponible globalmente
-                    window.GALLERY_DATA = GALLERY_DATA;
-                    
-                    // Generar slides
-                    GALLERY_DATA.forEach((artwork, index) => {
-                        const slide = document.createElement('div');
-                        slide.className = 'carousel-slide' + (index === 0 ? ' active' : '');
-                        slide.innerHTML = `
-                            <img src="images/${artwork.path}" alt="${artwork.title}" class="carousel-image">
-                            <div class="carousel-info">
-                                <h3>${artwork.title}</h3>
-                                <p>${artwork.technique}, ${artwork.dimensions} • ${artwork.year}</p>
-                            </div>
-                        `;
-                        carouselTrack.appendChild(slide);
-                    });
-                    
-                    console.log(`✅ Galería cargada: ${GALLERY_DATA.length} obras`);
-                    
-                    // Notificar que el carousel está listo
-                    window.dispatchEvent(new CustomEvent('carouselReady', { 
-                        detail: { slideCount: GALLERY_DATA.length } 
-                    }));
-                }
-            }
+        // Verificar que los datos de la galería se cargan correctamente
+        window.addEventListener('load', () => {
+            console.log('Window loaded, checking gallery data:', 
+                window.GALLERY_DATA ? `${window.GALLERY_DATA.length} items` : 'not found');
         });
+    </script>
+    
+    <!-- Gallery Data debe cargarse primero -->
+    <script src="js/gallery-data.js"></script>
+    
+    <!-- Scripts principales -->
+    <script src="js/main.js"></script>
+    <script src="js/home.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
     </script>
 </body>
 </html>

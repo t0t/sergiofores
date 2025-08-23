@@ -346,12 +346,6 @@ const GALLERY_DATA = [
   }
 ];
 
-// Exportar para uso en módulos
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = GALLERY_DATA;
-}
-
-// Disponible globalmente en el navegador
-if (typeof window !== 'undefined') {
-    window.GALLERY_DATA = GALLERY_DATA;
-}
+// Asegurar que los datos estén disponibles globalmente
+window.GALLERY_DATA = GALLERY_DATA;
+console.log('Gallery data loaded:', GALLERY_DATA.length, 'items');

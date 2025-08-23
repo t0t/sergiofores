@@ -1,0 +1,61 @@
+/**
+ * COLOR.CSS
+ * Sistema cromático 01234
+ */
+
+:root {
+    /* Colores Base */
+    --rojo: #FF0000;
+    --magenta: #FF00FF;
+    --amarillo: #FFFF00;
+    --cyan: #00FFFF;
+    --verde: #00FF00;
+    --azul: #0000FF;
+    
+    /* Escala Monocromática */
+    --blanco: #FFFFFF;
+    --neutral1: #F8F9FA;
+    --gris1: #E9ECEF;
+    --gris2: #DEE2E6;
+    --neutral2: #CED4DA;
+    --neutral3: #343A40;
+    --negro: #212529;
+    
+    /* Gradientes */
+    --gradient-primary: linear-gradient(45deg, var(--magenta), var(--amarillo));
+    --gradient-secondary: linear-gradient(45deg, var(--cyan), var(--azul));
+    --gradient-accent: linear-gradient(45deg, var(--amarillo), var(--verde));
+    
+    /* Fondos Semánticos */
+    --bg-surface: var(--blanco);
+    --bg-elevated: var(--neutral1);
+    --bg-sunken: var(--gris1);
+    
+    /* Utilidades de Color */
+    .text-rojo { color: var(--rojo); }
+    .text-magenta { color: var(--magenta); }
+    .text-amarillo { color: var(--amarillo); }
+    .text-cyan { color: var(--cyan); }
+    .text-verde { color: var(--verde); }
+    .text-azul { color: var(--azul); }
+    
+    /* Neutros */
+    .text-blanco { color: var(--blanco); }
+    .text-neutral1 { color: var(--neutral1); }
+    .text-gris1 { color: var(--gris1); }
+    .text-gris2 { color: var(--gris2); }
+    .text-neutral2 { color: var(--neutral2); }
+    .text-neutral3 { color: var(--neutral3); }
+    .text-negro { color: var(--negro); }
+    
+    .bg-rojo { background-color: var(--rojo); }
+    .bg-magenta { background-color: var(--magenta); }
+    .bg-amarillo { background-color: var(--amarillo); }
+    .bg-cyan { background-color: var(--cyan); }
+    .bg-verde { background-color: var(--verde); }
+    .bg-azul { background-color: var(--azul); }
+    
+    .bg-gradient-primary { background: var(--gradient-primary); }
+    .bg-gradient-secondary { background: var(--gradient-secondary); }
+    .bg-gradient-accent { background: var(--gradient-accent); }
+}

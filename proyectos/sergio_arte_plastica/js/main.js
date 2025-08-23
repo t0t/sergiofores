@@ -1,13 +1,10 @@
 /**
  * SERGIO ARTE PLÁSTICA - Portfolio Web
- * Arquitectura modular y profesional
+ * Arquitectura modular 01234
  */
 
-// ===== UTILITIES =====
+// ===== UTILS =====
 const Utils = {
-    /**
-     * Debounce function para optimizar eventos de scroll
-     */
     debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -20,9 +17,6 @@ const Utils = {
         };
     },
 
-    /**
-     * Throttle con requestAnimationFrame para scroll
-     */
     throttleRaf(func) {
         let ticking = false;
         return function(...args) {
@@ -36,9 +30,6 @@ const Utils = {
         };
     },
 
-    /**
-     * Detectar dispositivo móvil
-     */
     isMobile() {
         return window.innerWidth <= 768;
     }
@@ -54,7 +45,7 @@ class HeaderController {
 
     init() {
         this.bindEvents();
-        this.updateHeader(); // Estado inicial
+        this.updateHeader();
     }
 
     bindEvents() {
@@ -65,14 +56,12 @@ class HeaderController {
     updateHeader() {
         const currentScrollY = window.scrollY;
         
-        // Hide/show logic
         if (currentScrollY > this.lastScrollY && currentScrollY > 100) {
-            this.header.classList.add('hidden');
+            this.header.classList.add('translate-y-[-100%]');
         } else {
-            this.header.classList.remove('hidden');
+            this.header.classList.remove('translate-y-[-100%]');
         }
         
-        // Transparencia según scroll
         if (currentScrollY < 50) {
             this.header.classList.add('transparent');
             this.header.classList.remove('solid');
@@ -102,20 +91,17 @@ class NavigationMenu {
     }
 
     bindEvents() {
-        // Toggle menu
         this.menuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             this.toggle();
         });
 
-        // Cerrar menu al hacer click en enlaces
         this.navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 setTimeout(() => this.close(), 150);
             });
         });
 
-        // Cerrar con click fuera
         document.addEventListener('click', (e) => {
             if (this.isOpen && 
                 !e.target.closest('.nav-menu') && 
@@ -124,7 +110,6 @@ class NavigationMenu {
             }
         });
 
-        // Navegación por teclado
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isOpen) {
                 this.close();
@@ -143,7 +128,8 @@ class NavigationMenu {
     open() {
         this.isOpen = true;
         this.menuToggle.classList.add('active');
-        this.navMenu.classList.add('active');
+        this.navMenu.classList.remove('hidden');
+        this.navMenu.classList.add('flex');
         this.menuToggle.setAttribute('aria-label', 'Cerrar menú');
         this.menuToggle.setAttribute('aria-expanded', 'true');
         document.body.style.overflow = 'hidden';
@@ -152,7 +138,8 @@ class NavigationMenu {
     close() {
         this.isOpen = false;
         this.menuToggle.classList.remove('active');
-        this.navMenu.classList.remove('active');
+        this.navMenu.classList.add('hidden');
+        this.navMenu.classList.remove('flex');
         this.menuToggle.setAttribute('aria-label', 'Abrir menú');
         this.menuToggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
@@ -188,254 +175,305 @@ class SmoothScroll {
     }
 }
 
-// ===== PARALLAX EFFECTS DISABLED =====
-// Parallax eliminado para las cartografías de la conciencia
-class ParallaxController {
-    constructor() {
-        // Parallax deshabilitado completamente
-    }
-
-    init() {
-        // Sin efectos de parallax
-    }
-
-    updateParallax() {
-        // Sin efectos de parallax
-    }
-}
-
-// ===== IMAGE LAZY LOADING =====
-class LazyImageLoader {
-    constructor() {
-        this.images = document.querySelectorAll('.artwork-image');
-        this.init();
-    }
-
-    init() {
-        if (this.images.length === 0) return;
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.style.opacity = '1';
-                    observer.unobserve(img);
-                }
-            });
-        });
-
-        this.images.forEach(img => observer.observe(img));
-    }
-}
-
 // ===== GALLERY MODAL =====
 class GalleryModal {
     constructor() {
+        console.log('Initializing GalleryModal');
+        
+        // Verificar si los datos están disponibles
+        if (window.GALLERY_DATA) {
+            console.log('Gallery data found in constructor:', window.GALLERY_DATA.length, 'items');
+        } else {
+            console.warn('Gallery data not available in constructor');
+        }
+        
+        // Obtener elementos del DOM
         this.modal = document.getElementById('galleryModal');
-        this.btnSeeMore = document.getElementById('btnSeeMore');
         this.modalClose = document.getElementById('modalClose');
         this.carouselTrack = document.getElementById('carouselTrack');
         this.carouselPrev = document.getElementById('carouselPrev');
         this.carouselNext = document.getElementById('carouselNext');
         this.carouselIndicators = document.getElementById('carouselIndicators');
-        this.modalTitle = document.getElementById('modalTitle');
+        
+        // Verificar que todos los elementos necesarios existen
+        if (!this.modal) console.error('Modal element not found!');
+        if (!this.carouselTrack) console.error('Carousel track not found!');
+        if (!this.carouselPrev) console.error('Prev button not found!');
+        if (!this.carouselNext) console.error('Next button not found!');
+        if (!this.carouselIndicators) console.error('Indicators not found!');
         
         this.slides = [];
         this.currentSlide = 0;
         this.isOpen = false;
-        this.galleryData = [];
-        this.allSlides = []; // Todas las slides sin filtrar
-        this.currentCategory = 'all'; // Categoría actualmente mostrada
-        
-        this.categories = {
-            'all': { name: 'Todas las Obras', filter: () => true },
-            'oil': { name: 'Óleos sobre Lino', filter: (artwork) => artwork.path.includes('oil/') },
-            '3dprinting': { name: 'Impresión 3D', filter: (artwork) => artwork.path.includes('3dprinting/') },
-            'drawing': { name: 'Dibujos', filter: (artwork) => artwork.path.includes('drawing/') }
-        };
         
         this.init();
     }
 
     init() {
         if (!this.modal) return;
-        
-        // Esperar a que el carousel se genere dinámicamente
-        this.waitForCarousel();
         this.bindEvents();
+        this.waitForCarousel();
     }
 
     waitForCarousel() {
-        // Escuchar el evento cuando el carousel esté listo
-        window.addEventListener('carouselReady', (e) => {
-            console.log(`🎠 Carousel ready event received: ${e.detail.slideCount} slides`);
-            this.refreshSlides();
-        });
-        
-        // Verificar inmediatamente por si ya está disponible
-        if (typeof window.GALLERY_DATA !== 'undefined' && window.GALLERY_DATA.length > 0) {
-            this.galleryData = window.GALLERY_DATA;
-            setTimeout(() => this.refreshSlides(), 100);
+        // Si ya tenemos slides, no hacer nada
+        if (this.slides && this.slides.length > 0) {
+            console.log('Slides already created:', this.slides.length);
+            return;
         }
-    }
 
-    refreshSlides() {
-        this.allSlides = this.carouselTrack?.querySelectorAll('.carousel-slide') || [];
+        console.log('Checking for gallery data...');
         
-        if (this.allSlides.length > 0) {
-            this.createCategoryMenu();
-            this.filterByCategory('all'); // Mostrar todas por defecto
-            console.log(`🎠 Gallery Modal initialized with ${this.allSlides.length} slides`);
-        } else {
-            console.log('⏳ Waiting for slides to be generated...');
-            // Si no hay slides, intentar de nuevo en un momento
-            setTimeout(() => this.refreshSlides(), 200);
-        }
-    }
-
-    createCategoryMenu() {
-        if (!this.modalTitle) return;
-        
-        // Crear menú de categorías
-        const categoryMenu = document.createElement('div');
-        categoryMenu.className = 'category-menu';
-        categoryMenu.innerHTML = `
-            <nav class="category-nav" role="tablist">
-                ${Object.entries(this.categories).map(([key, category]) => `
-                    <button 
-                        class="category-btn ${key === 'all' ? 'active' : ''}" 
-                        data-category="${key}"
-                        role="tab"
-                        aria-controls="gallery-${key}"
-                        aria-selected="${key === 'all' ? 'true' : 'false'}"
-                    >
-                        ${category.name}
-                    </button>
-                `).join('')}
-            </nav>
-        `;
-        
-        // Reemplazar título con menú
-        this.modalTitle.innerHTML = '';
-        this.modalTitle.appendChild(categoryMenu);
-        
-        // Añadir event listeners
-        categoryMenu.querySelectorAll('.category-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const category = e.target.getAttribute('data-category');
-                this.filterByCategory(category);
-            });
-        });
-    }
-
-    filterByCategory(category) {
-        this.currentCategory = category;
-        
-        // Actualizar botones activos
-        this.modal.querySelectorAll('.category-btn').forEach(btn => {
-            const isActive = btn.getAttribute('data-category') === category;
-            btn.classList.toggle('active', isActive);
-            btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
-        });
-        
-        // Filtrar slides
-        if (category === 'all') {
-            this.slides = Array.from(this.allSlides);
-        } else {
-            this.slides = Array.from(this.allSlides).filter(slide => {
-                const img = slide.querySelector('img');
-                return img && img.src.includes(`/${category}/`);
-            });
+        // Verificar si tenemos datos
+        if (!window.GALLERY_DATA) {
+            console.warn('Gallery data not found, retrying in 100ms...');
+            setTimeout(() => this.waitForCarousel(), 100);
+            return;
         }
         
-        // Mostrar/ocultar slides
-        this.allSlides.forEach(slide => {
-            slide.style.display = this.slides.includes(slide) ? 'flex' : 'none';
-        });
+        // Verificar que los datos son válidos
+        if (!Array.isArray(window.GALLERY_DATA) || window.GALLERY_DATA.length === 0) {
+            console.error('Invalid gallery data:', window.GALLERY_DATA);
+            return;
+        }
+
+        console.log('Creating slides with', window.GALLERY_DATA.length, 'items');
         
-        // Reinicializar carousel
-        this.currentSlide = 0;
-        this.createIndicators();
-        this.goToSlide(0);
-        
-        console.log(`🎯 Filtered to ${category}: ${this.slides.length} obras`);
+        // Crear slides con los datos disponibles
+        this.createSlides(window.GALLERY_DATA);
     }
 
-    createIndicators() {
-        if (!this.carouselIndicators) return;
+    createSlides(data) {
+        console.log('Starting slide creation with', data?.length, 'items');
         
+        if (!data?.length) {
+            console.error('No gallery data provided');
+            return;
+        }
+        
+        if (!this.carouselTrack) {
+            console.error('Carousel track not found');
+            return;
+        }
+        
+        // Limpiar contenedor
+        this.carouselTrack.innerHTML = '';
+        
+        // Crear cada slide individualmente
+        data.forEach((item, index) => {
+            console.log(`Creating slide ${index}:`, item.title);
+            
+            // Crear el slide
+            const slide = document.createElement('div');
+            slide.className = 'carousel-slide';
+            if (index === 0) slide.classList.add('active');
+            slide.setAttribute('aria-hidden', index !== 0);
+            
+            // Crear la imagen
+            const img = document.createElement('img');
+            img.src = `images/${item.path}`;
+            img.alt = item.title;
+            img.className = 'carousel-image';
+            
+            // Crear la información
+            const info = document.createElement('div');
+            info.className = 'carousel-info';
+            info.innerHTML = `
+                <h3>${item.title}</h3>
+                <p>${item.technique} · ${item.dimensions} · ${item.year}</p>
+            `;
+            
+            // Armar el slide
+            slide.appendChild(img);
+            slide.appendChild(info);
+            this.carouselTrack.appendChild(slide);
+            
+            console.log(`Slide ${index} added to DOM`);
+        });
+        
+        // Actualizar referencias
+        this.slides = Array.from(this.carouselTrack.children);
+        
+        // Verificar que todos los slides se crearon
+        console.log('Slides created:', {
+            dataLength: data.length,
+            slidesInDOM: this.carouselTrack.children.length,
+            slidesArray: this.slides.length
+        });
+        
+        // Crear indicadores
+        this.createIndicators(data.length);
+        
+        // Reinicializar iconos
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+        
+        console.log('Gallery initialization complete');
+    }
+
+    createIndicators(count) {
+        console.log('Creating indicators:', count);
+        
+        // Limpiar contenedor
         this.carouselIndicators.innerHTML = '';
-        this.slides.forEach((_, index) => {
-            const indicator = document.createElement('button');
-            indicator.className = `carousel-indicator ${index === 0 ? 'active' : ''}`;
-            indicator.setAttribute('aria-label', `Ir a obra ${index + 1} de ${this.slides.length}`);
-            indicator.addEventListener('click', () => this.goToSlide(index));
-            this.carouselIndicators.appendChild(indicator);
-        });
+        
+        // Crear cada indicador
+        for (let i = 0; i < count; i++) {
+            const button = document.createElement('button');
+            button.className = `carousel-indicator ${i === 0 ? 'active' : ''}`;
+            button.setAttribute('aria-label', `Ir a obra ${i + 1} de ${count}`);
+            button.setAttribute('data-index', i);
+            button.onclick = () => {
+                console.log('Indicator clicked:', i);
+                this.goToSlide(i);
+            };
+            this.carouselIndicators.appendChild(button);
+        }
+
+        console.log('Indicators created:', this.carouselIndicators.children.length);
     }
 
     bindEvents() {
-        // Controles principales
-        this.btnSeeMore?.addEventListener('click', () => this.open());
-        this.modalClose?.addEventListener('click', () => this.close());
-        this.modal.querySelector('.modal-overlay')?.addEventListener('click', () => this.close());
+        console.log('Binding gallery events');
         
-        // Navegación
-        this.carouselPrev?.addEventListener('click', () => this.prevSlide());
-        this.carouselNext?.addEventListener('click', () => this.nextSlide());
+        // Botones de navegación
+        this.modalClose?.addEventListener('click', () => {
+            console.log('Close button clicked');
+            this.close();
+        });
         
-        // Teclado
+        this.carouselPrev?.addEventListener('click', () => {
+            console.log('Prev button clicked');
+            this.prevSlide();
+        });
+        
+        this.carouselNext?.addEventListener('click', () => {
+            console.log('Next button clicked');
+            this.nextSlide();
+        });
+        
+        // Eventos de teclado
         document.addEventListener('keydown', (e) => this.handleKeyboard(e));
-        
-        // Touch/swipe
         this.setupTouchNavigation();
+
+        // Delegación de eventos para obras en miniatura
+        const artworks = document.querySelectorAll('.artwork');
+        console.log('Found artwork thumbnails:', artworks.length);
+        
+        artworks.forEach((artwork, index) => {
+            artwork.addEventListener('click', () => {
+                console.log('Artwork clicked:', index);
+                this.open();
+                this.goToSlide(index);
+            });
+        });
+
+        // Botón de galería completa
+        const openGalleryBtn = document.getElementById('openGallery');
+        if (openGalleryBtn) {
+            openGalleryBtn.addEventListener('click', () => {
+                console.log('Opening full gallery');
+                this.open();
+                this.goToSlide(0);
+            });
+        }
     }
 
     open() {
+        console.log('Opening modal');
+        if (!window.GALLERY_DATA) {
+            console.error('GALLERY_DATA not found!');
+            return;
+        }
+        
+        // Debug: ver datos exactos
+        console.log('Full gallery data:', window.GALLERY_DATA);
+        
         this.isOpen = true;
-        this.modal.classList.add('active');
         this.modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-        
-        setTimeout(() => this.modalClose?.focus(), 400);
+
+        // Forzar recreación de slides cada vez que se abre
+        console.log('Recreating slides...');
+        this.createSlides(window.GALLERY_DATA);
+        this.goToSlide(0);  // Asegurar que empezamos en la primera imagen
+
+        console.log('Modal opened, slides:', this.slides?.length);
     }
 
     close() {
         this.isOpen = false;
-        this.modal.classList.remove('active');
         this.modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
-        
-        this.btnSeeMore?.focus();
     }
 
     goToSlide(index) {
-        if (index < 0 || index >= this.slides.length) return;
-
-        // Limpiar estado actual de TODAS las slides
-        this.allSlides.forEach(slide => slide.classList.remove('active', 'prev'));
-        const indicators = this.carouselIndicators?.querySelectorAll('.carousel-indicator');
-        indicators?.forEach(indicator => indicator.classList.remove('active'));
-
-        // Activar nuevo estado solo en slides filtradas
-        if (this.slides[index]) {
-            this.slides[index].classList.add('active');
+        console.log('Attempting to go to slide:', index);
+        
+        // Validaciones
+        if (!this.slides?.length) {
+            console.error('No slides available');
+            return;
         }
         
-        if (indicators && indicators[index]) {
-            indicators[index].classList.add('active');
+        // Asegurar índice válido
+        const validIndex = ((index % this.slides.length) + this.slides.length) % this.slides.length;
+        console.log(`Normalized index from ${index} to ${validIndex}`);
+        
+        // Debug info
+        console.log('Carousel state:', {
+            totalSlides: this.slides.length,
+            currentSlide: this.currentSlide,
+            targetSlide: validIndex,
+            activeSlides: this.slides.filter(s => s.classList.contains('active')).length
+        });
+        
+        // Actualizar slides
+        this.slides.forEach((slide, i) => {
+            const isActive = i === validIndex;
+            slide.classList.toggle('active', isActive);
+            slide.setAttribute('aria-hidden', !isActive);
+            slide.style.opacity = isActive ? '1' : '0';
+            slide.style.zIndex = isActive ? '1' : '0';
+            console.log(`Slide ${i}: ${isActive ? 'activated' : 'deactivated'}`);
+        });
+        
+        // Actualizar indicadores
+        if (this.carouselIndicators) {
+            const indicators = Array.from(this.carouselIndicators.children);
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === validIndex);
+                indicator.setAttribute('aria-current', i === validIndex);
+            });
         }
         
-        this.currentSlide = index;
+        // Actualizar botones de navegación
+        if (this.carouselPrev && this.carouselNext) {
+            this.carouselPrev.disabled = validIndex === 0;
+            this.carouselNext.disabled = validIndex === this.slides.length - 1;
+            console.log('Navigation buttons updated:', {
+                prev: !this.carouselPrev.disabled,
+                next: !this.carouselNext.disabled
+            });
+        }
+        
+        // Actualizar estado
+        this.currentSlide = validIndex;
+        console.log('Slide change completed to index:', validIndex);
     }
 
     nextSlide() {
+        console.log('Going to next slide, current:', this.currentSlide, 'total:', this.slides.length);
         const nextIndex = (this.currentSlide + 1) % this.slides.length;
+        console.log('Next index:', nextIndex);
         this.goToSlide(nextIndex);
     }
 
     prevSlide() {
+        console.log('Going to previous slide, current:', this.currentSlide, 'total:', this.slides.length);
         const prevIndex = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+        console.log('Previous index:', prevIndex);
         this.goToSlide(prevIndex);
     }
 
@@ -475,7 +513,6 @@ class GalleryModal {
             const diffX = startX - endX;
             const diffY = startY - endY;
             
-            // Solo swipe horizontal > 50px
             if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
                 diffX > 0 ? this.nextSlide() : this.prevSlide();
             }
@@ -499,12 +536,9 @@ class PortfolioApp {
     }
 
     initializeComponents() {
-        // Inicializar todos los componentes
         this.components.set('header', new HeaderController());
         this.components.set('navigation', new NavigationMenu());
         this.components.set('smoothScroll', new SmoothScroll());
-        this.components.set('parallax', new ParallaxController());
-        this.components.set('lazyLoader', new LazyImageLoader());
         this.components.set('galleryModal', new GalleryModal());
 
         console.log('🎨 Portfolio Sergio Forés initialized');
@@ -515,10 +549,5 @@ class PortfolioApp {
     }
 }
 
-// ===== INITIALIZE APPLICATION =====
+// Initialize application
 const app = new PortfolioApp();
-
-// Export para testing/debugging
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { PortfolioApp, HeaderController, NavigationMenu, GalleryModal };
-}

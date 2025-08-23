@@ -1,0 +1,99 @@
+/**
+ * ICONS.CSS - Sistema de iconos TOT0
+ * ==============================
+ */
+
+.icon {
+    width: var(--s2);
+    height: var(--s2);
+    display: inline-block;
+    vertical-align: middle;
+    color: currentColor;
+}
+
+.icon-sm {
+    width: var(--s1);
+    height: var(--s1);
+}
+
+.icon-lg {
+    width: var(--s3);
+    height: var(--s3);
+}
+
+/* Menu Icon */
+.menu-toggle {
+    padding: var(--s1);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: var(--s2);
+    height: 2px;
+    background-color: var(--on-surface);
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle.active span:first-child {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:last-child {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Modal Close Icon */
+.modal-close {
+    position: relative;
+    width: var(--s3);
+    height: var(--s3);
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.modal-close span {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--on-surface);
+    top: 50%;
+    left: 0;
+}
+
+.modal-close span:first-child {
+    transform: rotate(45deg);
+}
+
+.modal-close span:last-child {
+    transform: rotate(-45deg);
+}
+
+/* Navigation Icons */
+.nav-prev,
+.nav-next {
+    width: var(--s3);
+    height: var(--s3);
+    border: none;
+    background: var(--surface);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    color: var(--on-surface);
+    transition: transform 0.3s ease;
+}
+
+.nav-prev:hover,
+.nav-next:hover {
+    transform: scale(1.1);
+}
