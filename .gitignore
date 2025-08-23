@@ -56,3 +56,16 @@ jspm_packages/
 # Temporary folders
 tmp/
 temp/
+
+# Backup files
+*.bak
+*.backup
+*.swp
+*~
+
+# Solo trackear archivos dentro de sergiofores
+/*
+!/.gitignore
+!/proyectos/
+/proyectos/*
+!/proyectos/sergio_arte_plastica/
