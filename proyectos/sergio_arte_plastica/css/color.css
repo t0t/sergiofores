@@ -32,6 +32,7 @@
     --bg-sunken: var(--gris1);
     
     /* Utilidades de Color */
+    .text-surface { color: var(--blanco); }  /* Texto sobre fondos oscuros */
     .text-rojo { color: var(--rojo); }
     .text-magenta { color: var(--magenta); }
     .text-amarillo { color: var(--amarillo); }
