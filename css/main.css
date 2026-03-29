@@ -1,18 +1,7 @@
 /**
  * SERGIO FORÉS - CSS ARQUITECTURA MODULAR
  * Sistema de diseño atómico basado en principios 01234
+ * 
+ * NOTA: Los imports han sido movidos al <head> de index.html
+ * para permitir la descarga paralela y evitar bloqueos en cascada.
  */
-
-/* Import system variables */
-@import url('color.css');
-@import url('spacing.css');
-@import url('base.css');
-@import url('grid.css');
-@import url('typography.css');
-@import url('cards.css');
-@import url('header.css');
-@import url('buttons.css');
-@import url('icons.css');
-@import url('effects.css');
-@import url('utils.css');
-@import url('media.css');

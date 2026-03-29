@@ -5,11 +5,22 @@
 /* Box sizing rules */
 * {
   box-sizing: border-box;
+}
+
+/* Custom Cursor Logic (Degradación elegante) */
+body.has-custom-cursor * {
   cursor: none;
 }
 
-*:hover, *:active {
+body.has-custom-cursor *:hover,
+body.has-custom-cursor *:active {
   cursor: none;
+}
+
+/* Accessibility Focus States */
+:focus-visible {
+  outline: 2px solid var(--lime, #99ff00);
+  outline-offset: 4px;
 }
 
 /* Document */
@@ -42,7 +53,6 @@ p {
 a {
   text-decoration: none;
   transition: opacity var(--duration-base) var(--ease-out);
-  cursor: none;
 }
 
 img {
@@ -97,15 +107,14 @@ button {
   background: none;
   border: none;
   padding: 0;
-  cursor: none;
 }
 
 /* Remove all animations and transitions for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
-   scroll-behavior: auto;
+    scroll-behavior: auto;
   }
-  
+
   *,
   *::before,
   *::after {

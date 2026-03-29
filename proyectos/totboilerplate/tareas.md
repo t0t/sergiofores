@@ -1,4 +1,0 @@
-- [ ] Verificar si hay sobreescritura de estilos
-- [ ] Revisar inconsistencias críticas en variables css.
-- [ ] 
-   - [ ] 

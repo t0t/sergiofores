@@ -6,22 +6,25 @@
 class CustomCursor {
     constructor() {
         this.cursor = null;
-        
+
         this.init();
     }
-    
+
     init() {
+        // Añadir clase señalizadora de JS exitoso al body
+        document.body.classList.add('has-custom-cursor');
+
         // Crear elemento del cursor
         this.cursor = document.createElement('div');
         this.cursor.className = 'custom-cursor';
         document.body.appendChild(this.cursor);
-        
+
         // Event listeners
         document.addEventListener('mousemove', (e) => this.updatePosition(e));
-        
+
         // Hover states para elementos interactivos
         const interactiveElements = document.querySelectorAll('a, button, .card, [role="button"]');
-        
+
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 // Verificar si el elemento está en la sección 01234
@@ -30,10 +33,10 @@ class CustomCursor {
             });
             el.addEventListener('mouseleave', () => this.setHoverState(false));
         });
-        
+
     }
-    
-    
+
+
     setHoverState(isHovering, is01234Section = false) {
         if (isHovering) {
             if (is01234Section) {
@@ -47,7 +50,7 @@ class CustomCursor {
             this.cursor.classList.remove('hover', 'hover-01234');
         }
     }
-    
+
     updatePosition(e) {
         this.cursor.style.transform = `translate3d(${e.clientX - 15}px, ${e.clientY - 15}px, 0)`;
     }
@@ -69,6 +72,7 @@ window.addEventListener('resize', () => {
     } else if (window.innerWidth <= 768 && existingCursor) {
         // Remover cursor en móvil
         document.documentElement.style.cursor = 'auto';
+        document.body.classList.remove('has-custom-cursor');
         existingCursor.remove();
     }
 });

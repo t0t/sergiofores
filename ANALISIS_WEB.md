@@ -21,3 +21,5 @@ Los errores listados en versiones anteriores de este documento han sido subsanad
 
 ## Conclusión
 El portfolio está operando bajo tu propio marco y visión pura (01234). No se requieren intervenciones correctivas de código en este momento. Mantenimiento pasivo recomendado para el futuro.
+
+*Actualización Conceptual (2026-02-25): Se ha integrado la definición "Arqueología de Estados Internos" (cartografiando la arquitectura invisible del sentido) en la tarjeta de Obra Plástica, elevando la precisión y resonancia semántica del proyecto.*
