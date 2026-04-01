@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0a0a0a">
 <link rel="stylesheet" href="css/canvas.css">
 </head>
 <body>
@@ -254,31 +255,27 @@
   });
 
   // ── TOUCH ──
+  // En móvil: un dedo siempre panea. No se arrastran objetos (no hay hover).
+  // Doble-tap para expandir detalle. Pinch para zoom.
+  let lastTap = 0;
+  const DRAG_THRESHOLD = 8;
+  let touchStartPos = { x: 0, y: 0 };
+
   window.addEventListener('touchstart', e => {
     hideHint();
     state.hasMoved = false;
     if (e.touches.length === 1) {
       const t = e.touches[0];
-      const obj = t.target.closest('.obj');
-      if (obj && !t.target.closest('.obj__detail') && !t.target.closest('a')) {
-        state.dragging = obj;
-        state.topZ++;
-        obj.style.zIndex = state.topZ;
-        state.objStart.x = parseFloat(obj.style.left);
-        state.objStart.y = parseFloat(obj.style.top);
-        state.panStart.x = t.clientX;
-        state.panStart.y = t.clientY;
-      } else if (!t.target.closest('a')) {
-        state.panning = true;
-        state.panStart.x = t.clientX;
-        state.panStart.y = t.clientY;
-        state.stateStart.x = state.x;
-        state.stateStart.y = state.y;
-      }
+      touchStartPos.x = t.clientX;
+      touchStartPos.y = t.clientY;
+      state.panning = true;
+      state.panStart.x = t.clientX;
+      state.panStart.y = t.clientY;
+      state.stateStart.x = state.x;
+      state.stateStart.y = state.y;
     }
     if (e.touches.length === 2) {
       state.panning = false;
-      state.dragging = null;
       const dx = e.touches[0].clientX - e.touches[1].clientX;
       const dy = e.touches[0].clientY - e.touches[1].clientY;
       state.pinchDist = Math.sqrt(dx * dx + dy * dy);
@@ -287,9 +284,9 @@
   }, { passive: true });
 
   window.addEventListener('touchmove', e => {
-    state.hasMoved = true;
     if (e.touches.length === 2) {
       e.preventDefault();
+      state.hasMoved = true;
       const dx = e.touches[0].clientX - e.touches[1].clientX;
       const dy = e.touches[0].clientY - e.touches[1].clientY;
       const dist = Math.sqrt(dx * dx + dy * dy);
@@ -302,30 +299,39 @@
       state.scale = newScale;
       applyTransform();
       showZoom();
-    } else if (e.touches.length === 1) {
+    } else if (e.touches.length === 1 && state.panning) {
       const t = e.touches[0];
-      if (state.dragging) {
-        e.preventDefault();
-        const ddx = (t.clientX - state.panStart.x) / state.scale;
-        const ddy = (t.clientY - state.panStart.y) / state.scale;
-        state.dragging.style.left = (state.objStart.x + ddx) + 'px';
-        state.dragging.style.top = (state.objStart.y + ddy) + 'px';
-      } else if (state.panning) {
-        state.x = state.stateStart.x + (t.clientX - state.panStart.x);
-        state.y = state.stateStart.y + (t.clientY - state.panStart.y);
-        applyTransform();
+      const dx = t.clientX - touchStartPos.x;
+      const dy = t.clientY - touchStartPos.y;
+      if (Math.abs(dx) > DRAG_THRESHOLD || Math.abs(dy) > DRAG_THRESHOLD) {
+        state.hasMoved = true;
       }
+      e.preventDefault();
+      state.x = state.stateStart.x + (t.clientX - state.panStart.x);
+      state.y = state.stateStart.y + (t.clientY - state.panStart.y);
+      applyTransform();
     }
   }, { passive: false });
 
-  window.addEventListener('touchend', () => {
-    if (state.dragging) {
-      const i = parseInt(state.dragging.dataset.index);
-      objects[i].x = parseFloat(state.dragging.style.left);
-      objects[i].y = parseFloat(state.dragging.style.top);
-      state.dragging = null;
-    }
+  window.addEventListener('touchend', e => {
     state.panning = false;
+    // Doble-tap para expandir
+    if (!state.hasMoved && e.changedTouches.length === 1) {
+      const now = Date.now();
+      if (now - lastTap < 350) {
+        const t = e.changedTouches[0];
+        const el = document.elementFromPoint(t.clientX, t.clientY);
+        const obj = el && el.closest('.obj');
+        if (obj) {
+          obj.classList.toggle('obj--expanded');
+          if (obj.classList.contains('obj--expanded')) {
+            state.topZ++;
+            obj.style.zIndex = state.topZ;
+          }
+        }
+      }
+      lastTap = now;
+    }
   });
 
   // ── KEYBOARD ──
