@@ -1,0 +1,16 @@
+{
+  "name": "Sergio Forés",
+  "short_name": "Forés",
+  "description": "Estudio abierto. Óleo sobre lino, agentes de IA y el Sistema 01234.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "img/avatar.jpg",
+      "sizes": "any",
+      "type": "image/jpeg"
+    }
+  ]
+}
