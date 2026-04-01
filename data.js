@@ -229,7 +229,7 @@ window.__DATA__ = {
       "links": [
         {
           "platform": "instagram",
-          "url": "https://instagram.com/t0tinspire"
+          "url": "https://www.instagram.com/sergio.01234/"
         },
         {
           "platform": "x",

@@ -34,7 +34,6 @@ body:active { cursor: grabbing; }
   top: 0; left: 0;
   width: 0; height: 0;
   transform-origin: 0 0;
-  will-change: transform;
 }
 
 /* ── Objetos ── */
@@ -198,7 +197,7 @@ body:active { cursor: grabbing; }
 
 /* ── Mobile ── */
 
-@media (width <= 48em) {
+@media (max-width: 48em) {
   .obj--text {
     max-width: 260px;
     font-size: 15px;
@@ -234,7 +233,7 @@ body:active { cursor: grabbing; }
   #hint { font-size: 12px; }
 }
 
-@media (width <= 30em) {
+@media (max-width: 30em) {
   .obj--text {
     max-width: 200px;
     font-size: 14px;

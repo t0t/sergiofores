@@ -2,20 +2,34 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>Sergio Forés</title>
 <meta name="description" content="Artista plástico. Orquestador de IAs. Creador del Sistema 01234.">
 <meta name="theme-color" content="#0a0a0a">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Sergio Forés">
+<meta property="og:description" content="Artista plástico. Orquestador de IAs. Creador del Sistema 01234.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sergiofores.es">
+<meta property="og:image" content="https://sergiofores.es/img/avatar.jpg">
+
+<!-- Favicon -->
+<link rel="icon" href="img/avatar.jpg" type="image/jpeg">
+<link rel="apple-touch-icon" href="img/avatar.jpg">
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="css/canvas.css">
 </head>
 <body>
 
-<div id="universe"></div>
-<div id="zoom-level"></div>
-<div id="hint">scroll · arrastra · explora</div>
+<main id="universe" role="application" aria-label="Canvas interactivo"></main>
+<div id="zoom-level" aria-hidden="true"></div>
+<div id="hint" aria-hidden="true">scroll · arrastra · explora</div>
 
 <script src="data.js"></script>
 <script src="js/canvas.js"></script>
