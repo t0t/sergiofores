@@ -1,0 +1,197 @@
+/* ══════════════════════════════════
+   CANVAS — sergiofores.es
+   ══════════════════════════════════ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0a;
+  --fg: #e8e8e8;
+  --fg-dim: #999;
+  --accent: #FFFF00;
+  --font: 'Josefin Sans', 'Futura', 'Avenir', sans-serif;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  cursor: grab;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body:active { cursor: grabbing; }
+
+/* ── Canvas ── */
+
+#universe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+/* ── Objetos ── */
+
+.obj {
+  position: absolute;
+  cursor: pointer;
+  contain: layout style;
+}
+
+/* Avatar */
+
+.obj--avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--fg-dim);
+  transition: border-color 0.3s;
+}
+
+.obj--avatar:hover { border-color: var(--accent); }
+
+.obj--avatar img {
+  display: block;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Imagen */
+
+.obj--img img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  pointer-events: none;
+  transition: filter 0.4s;
+}
+
+.obj--img:hover img { filter: none; }
+
+/* Vídeo */
+
+.obj--video video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  pointer-events: none;
+  transition: filter 0.4s;
+}
+
+.obj--video:hover video { filter: none; }
+
+/* Texto */
+
+.obj--text {
+  max-width: 420px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--fg-dim);
+  transition: color 0.3s;
+}
+
+.obj--text:hover { color: var(--fg); }
+
+.obj--text.large {
+  font-size: 36px;
+  font-weight: 600;
+  max-width: 580px;
+  color: var(--fg);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.obj--text.accent { color: var(--accent); }
+
+.obj--text.micro {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  max-width: 300px;
+}
+
+/* SVG */
+
+.obj--svg svg {
+  display: block;
+  pointer-events: none;
+}
+
+/* Redes sociales */
+
+.obj--social {
+  display: flex;
+  gap: 20px;
+}
+
+.obj--social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  color: var(--fg-dim);
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.obj--social a:hover { color: var(--fg); }
+.obj--social svg { width: 22px; height: 22px; pointer-events: none; }
+
+/* ── Panel detalle ── */
+
+.obj__detail {
+  display: none;
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #bbb;
+  max-width: 400px;
+  cursor: default;
+}
+
+.obj__detail a { color: var(--accent); text-decoration: none; }
+.obj__detail a:hover { border-bottom: 1px solid var(--accent); }
+.obj--expanded .obj__detail { display: block; }
+
+/* ── UI ── */
+
+#zoom-level {
+  position: fixed;
+  bottom: 20px; right: 24px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--fg-dim);
+  font-family: var(--font);
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+#zoom-level.visible { opacity: 1; }
+
+#hint {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--fg-dim);
+  font-family: var(--font);
+  pointer-events: none;
+  z-index: 99999;
+  transition: opacity 1.5s;
+}
+
+#hint.gone { opacity: 0; }
