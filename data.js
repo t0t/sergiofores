@@ -182,8 +182,7 @@ window.__DATA__ = {
       "src": "img/sergio-arte-plastica.webp",
       "x": -1000,
       "y": -900,
-      "w": 340,
-      "detail": "Óleo sobre lino belga. Técnica de óleo sólido y calor. Arqueología de estados internos."
+      "w": 340
     },
     {
       "type": "img",
@@ -255,40 +254,36 @@ window.__DATA__ = {
     {
       "type": "img",
       "src": "img/obras/gesto-primordial.webp",
-      "x": -1000,
-      "y": -500,
-      "w": 360,
-      "detail": "Gesto primordial. Óleo sobre lino belga."
+      "x": -960,
+      "y": -820,
+      "w": 360
     },
     {
       "type": "img",
       "src": "img/obras/exploracion-tactil.webp",
-      "x": 1600,
-      "y": -600,
-      "w": 340,
-      "detail": "Exploración táctil. Óleo sólido y calor."
+      "x": -1060,
+      "y": -750,
+      "w": 340
     },
     {
       "type": "img",
       "src": "img/obras/proceso-creativo.webp",
-      "x": -1600,
-      "y": 1100,
-      "w": 320,
-      "detail": "Proceso creativo. Arqueología de estados internos."
+      "x": -930,
+      "y": -680,
+      "w": 320
     },
     {
       "type": "img",
       "src": "img/obras/superficie-consciente.webp",
-      "x": 1800,
-      "y": 1200,
-      "w": 300,
-      "detail": "Superficie consciente. Óleo sobre lino belga."
+      "x": -1020,
+      "y": -610,
+      "w": 300
     },
     {
       "type": "video",
       "src": "img/obras/proceso-oleo.mp4",
-      "x": -800,
-      "y": -400,
+      "x": -880,
+      "y": -540,
       "w": 360
     },
     {
