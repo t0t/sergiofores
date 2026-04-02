@@ -117,6 +117,12 @@ window.__DATA__ = {
       "content": "No te falta lenguaje. 👉 te sobra traducción",
       "x": -350, "y": -50
     },
+    {
+      "id": "txt-evidente",
+      "type": "text",
+      "content": "👉 no trabajas para llegar a algo<br>👉 trabajas hasta que algo se vuelve evidente",
+      "x": 300, "y": 150
+    },
 
     // ─── 3. SÍMBOLOS 01234 ──────────────────────────────────
     // Fila horizontal encima de la pila de diagramas.
