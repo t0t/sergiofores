@@ -253,6 +253,45 @@ window.__DATA__ = {
       "w": 300
     },
     {
+      "type": "img",
+      "src": "img/obras/gesto-primordial.webp",
+      "x": -1000,
+      "y": -500,
+      "w": 360,
+      "detail": "Gesto primordial. Óleo sobre lino belga."
+    },
+    {
+      "type": "img",
+      "src": "img/obras/exploracion-tactil.webp",
+      "x": 1600,
+      "y": -600,
+      "w": 340,
+      "detail": "Exploración táctil. Óleo sólido y calor."
+    },
+    {
+      "type": "img",
+      "src": "img/obras/proceso-creativo.webp",
+      "x": -1600,
+      "y": 1100,
+      "w": 320,
+      "detail": "Proceso creativo. Arqueología de estados internos."
+    },
+    {
+      "type": "img",
+      "src": "img/obras/superficie-consciente.webp",
+      "x": 1800,
+      "y": 1200,
+      "w": 300,
+      "detail": "Superficie consciente. Óleo sobre lino belga."
+    },
+    {
+      "type": "video",
+      "src": "img/obras/proceso-oleo.mp4",
+      "x": -800,
+      "y": -400,
+      "w": 360
+    },
+    {
       "type": "social",
       "x": 300,
       "y": 200,
