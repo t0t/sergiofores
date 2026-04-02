@@ -20,10 +20,40 @@
     pinchDist: 0, pinchScale: 1
   };
 
+  const STORAGE_KEY = 'sergiofores_positions';
   const universe = document.getElementById('universe');
   const zoomEl = document.getElementById('zoom-level');
   const hint = document.getElementById('hint');
   const objects = window.__DATA__.objects;
+
+  // ── PERSISTENCIA ──
+  function loadPositions() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) return;
+      const positions = JSON.parse(saved);
+      positions.forEach(pos => {
+        if (objects[pos.i]) {
+          objects[pos.i].x = pos.x;
+          objects[pos.i].y = pos.y;
+        }
+      });
+    } catch (_) { /* localStorage no disponible o datos corruptos */ }
+  }
+
+  function savePositions() {
+    try {
+      const positions = objects.map((obj, i) => ({ i, x: obj.x, y: obj.y }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(positions));
+    } catch (_) { /* quota excedida o no disponible */ }
+  }
+
+  // Debounce para no escribir en cada mouseup
+  let saveTimeout;
+  function debounceSave() {
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(savePositions, 500);
+  }
 
   // ── RENDER ──
   function render() {
@@ -217,6 +247,7 @@
       const i = parseInt(state.dragging.dataset.index, 10);
       objects[i].x = parseFloat(state.dragging.style.left);
       objects[i].y = parseFloat(state.dragging.style.top);
+      debounceSave();
       state.dragging.classList.remove('obj--focused');
       state.dragging = null;
       document.body.style.cursor = '';
@@ -335,6 +366,7 @@
   }
 
   // ── INIT ──
+  loadPositions();
   render();
   centerView();
 })();
