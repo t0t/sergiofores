@@ -96,7 +96,7 @@ body:active { cursor: grabbing; }
 
 .obj--video video {
   display: block;
-  max-width: 100%;
+  width: 100%;
   height: auto;
   pointer-events: none;
 }
@@ -169,7 +169,7 @@ body:active { cursor: grabbing; }
   margin-top: 12px;
   font-size: 15px;
   line-height: 1.6;
-  color: #bbb;
+  color: var(--fg-dim);
   max-width: 400px;
   cursor: default;
 }

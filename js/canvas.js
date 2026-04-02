@@ -75,7 +75,6 @@
           vid.loop = true;
           vid.playsInline = true;
           vid.preload = 'metadata';
-          vid.style.width = '100%';
           vid.addEventListener('loadeddata', () => vid.classList.add('loaded'), { once: true });
           el.addEventListener('mouseenter', () => vid.play().catch(() => {}));
           el.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
@@ -129,14 +128,20 @@
   }
 
   // ── TRANSFORM ──
+  let rafPending = false;
   function applyTransform() {
-    universe.style.transform = `translate(${state.x}px,${state.y}px) scale(${state.scale})`;
+    if (rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(() => {
+      universe.style.transform = `translate(${state.x}px,${state.y}px) scale(${state.scale})`;
+      rafPending = false;
+    });
   }
 
   function centerView() {
     state.x = window.innerWidth / 2;
     state.y = window.innerHeight / 2;
-    state.scale = 0.75;
+    state.scale = 0.5;
     applyTransform();
   }
 
@@ -209,7 +214,7 @@
 
   window.addEventListener('mouseup', () => {
     if (state.dragging) {
-      const i = parseInt(state.dragging.dataset.index);
+      const i = parseInt(state.dragging.dataset.index, 10);
       objects[i].x = parseFloat(state.dragging.style.left);
       objects[i].y = parseFloat(state.dragging.style.top);
       state.dragging.classList.remove('obj--focused');
