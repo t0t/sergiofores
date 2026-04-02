@@ -11,54 +11,58 @@
  *   4. Obra plástica    → óleos + vídeo proceso (pila)
  *   5. Diagramas 01234  → gráficos del sistema (pila)
  *   6. IA generativa    → contenido generado con IA (pila)
- *   7. Personas          → retratos con contexto
+ *   7. Personas         → retratos con contexto
  *   8. Miscelánea       → easter eggs, elementos sueltos
  *
- * TIPOS SOPORTADOS: avatar, text, img, video, svg, social
+ * TIPOS SOPORTADOS: avatar, text, img, video, svg, social, cta
  *
  * PILAS: los elementos de una misma temática se apilan con offset
- * vertical ~70px entre sí, simulando documentos sobre una mesa.
- * El primer elemento del grupo marca la posición base.
+ * vertical ~50px entre sí, simulando documentos sobre una mesa.
  *
  * POSICIONES: coordenadas en espacio virtual del canvas (px).
- * Los textos van lejos del centro (>3000) para forzar exploración.
- * Las pilas de medios van a distancia media (~500-1000).
+ * Al 100% de zoom, el viewport visible (~1440x900) cubre
+ * aproximadamente de (-720,-450) a (720,450) desde el centro.
+ * Los grupos de medios caben dentro de este rango (con clip parcial).
+ * Los textos van fuera (>1200) — son encuentros.
+ *
+ * IDs: cada objeto tiene un id estable (slug semántico).
+ * La persistencia en localStorage cruza por id, no por índice.
  *
  * ESCALABILIDAD: para añadir contenido, crear un objeto nuevo
- * dentro del grupo correspondiente, respetando el offset de pila
- * si aplica. Si se crea un grupo temático nuevo, documentarlo aquí.
+ * dentro del grupo correspondiente, respetando el offset de pila.
  */
 
 window.__DATA__ = {
   "objects": [
 
     // ─── 1. IDENTIDAD ───────────────────────────────────────
+    // Centro del canvas. Punto de partida visual.
 
     {
+      "id": "id-avatar",
       "type": "avatar",
       "src": "img/avatar.jpg",
-      "x": -60,
-      "y": -60,
-      "w": 130
+      "x": -44, "y": -117, "w": 120
     },
     {
+      "id": "id-nombre",
       "type": "text",
       "content": "Sergio Forés Raga",
-      "x": 120,
-      "y": -30,
-      "cls": "large accent"
+      "x": -300, "y": -200,
+      "cls": "large accent",
+      "zIndex": 9999
     },
     {
+      "id": "id-tagline",
       "type": "text",
       "content": "Artista plástico · Orquestador de agentes y bufón que nadie escucha",
-      "x": 120,
-      "y": 60,
+      "x": 235, "y": 51,
       "cls": "micro"
     },
     {
+      "id": "id-social",
       "type": "social",
-      "x": 300,
-      "y": 200,
+      "x": -284, "y": 113,
       "links": [
         { "platform": "instagram", "url": "https://www.instagram.com/sergio.01234/" },
         { "platform": "x", "url": "https://x.com/t0tinspire" },
@@ -68,172 +72,210 @@ window.__DATA__ = {
     },
 
     // ─── 2. TEXTOS (encuentros) ─────────────────────────────
-    // Frases nucleares. Pocas, densas, lejos del centro.
-    // El silencio entre ellas es parte del diseño.
+    // Fuera del viewport inicial. Se descubren navegando.
 
     {
+      "id": "txt-puerta-abierta",
       "type": "text",
       "content": "La forma más alineada no es salir al mundo a predicar. Es trabajar con la puerta abierta.",
-      "x": -3800,
-      "y": -2600,
+      "x": -1400, "y": -1000,
       "cls": "large"
     },
     {
+      "id": "txt-lenguaje-poetico",
       "type": "text",
       "content": "01234 solo puede expresarse desde el lenguaje poético.",
-      "x": 4200,
-      "y": 2800
+      "x": 1500, "y": 1100
     },
     {
+      "id": "txt-forjas",
       "type": "text",
       "content": "Cuando creas, forjas. No es inspiración etérea — es fuego, martillo, yunque.",
-      "x": -3500,
-      "y": 3200
+      "x": -1300, "y": 1200
     },
     {
+      "id": "txt-profundidades",
       "type": "text",
       "content": "La fuente creativa no está arriba. Está abajo. En las profundidades.",
-      "x": 3600,
-      "y": -3000
+      "x": 1400, "y": -1100
     },
 
     // ─── 3. SÍMBOLOS 01234 ──────────────────────────────────
-    // Los 5 nodos como formas geométricas mínimas.
+    // Fila horizontal encima de la pila de diagramas.
 
     {
+      "id": "sym-0-potencial",
       "type": "svg",
-      "x": -150, "y": 280, "w": 50,
+      "x": 380, "y": -390, "w": 50,
       "svg": "<svg viewBox='0 0 50 50' width='50' height='50'><circle cx='25' cy='25' r='21' fill='none' stroke='#e8e8e8' stroke-width='1'/></svg>",
       "detail": "0 — Potencial"
     },
     {
+      "id": "sym-1-esencia",
       "type": "svg",
-      "x": -80, "y": 290, "w": 50,
+      "x": 440, "y": -390, "w": 50,
       "svg": "<svg viewBox='0 0 50 50' width='50' height='50'><circle cx='25' cy='25' r='9' fill='#e8e8e8'/></svg>",
       "detail": "1 — Esencia"
     },
     {
+      "id": "sym-2-diferenciacion",
       "type": "svg",
-      "x": -10, "y": 300, "w": 50,
+      "x": 500, "y": -390, "w": 50,
       "svg": "<svg viewBox='0 0 50 50' width='50' height='50'><line x1='8' y1='25' x2='42' y2='25' stroke='#e8e8e8' stroke-width='1.5'/></svg>",
       "detail": "2 — Diferenciación"
     },
     {
+      "id": "sym-3-conexion",
       "type": "svg",
-      "x": 60, "y": 310, "w": 50,
+      "x": 560, "y": -390, "w": 50,
       "svg": "<svg viewBox='0 0 50 50' width='50' height='50'><polygon points='25,6 46,44 4,44' fill='none' stroke='#e8e8e8' stroke-width='1'/></svg>",
       "detail": "3 — Conexión"
     },
     {
+      "id": "sym-4-materializacion",
       "type": "svg",
-      "x": 130, "y": 320, "w": 50,
+      "x": 620, "y": -390, "w": 50,
       "svg": "<svg viewBox='0 0 50 50' width='50' height='50'><rect x='8' y='8' width='34' height='34' fill='none' stroke='#e8e8e8' stroke-width='1'/></svg>",
       "detail": "4 — Materialización"
     },
 
     // ─── 4. OBRA PLÁSTICA (pila) ────────────────────────────
-    // Óleo sobre lino belga + vídeo de proceso.
-    // Offset ~70px vertical entre elementos.
+    // Cuadrante superior izquierdo.
 
     {
+      "id": "obra-gesto",
       "type": "img",
       "src": "img/obras/gesto-primordial.webp",
-      "x": -960, "y": -820, "w": 360
+      "x": -600, "y": -380, "w": 340
     },
     {
+      "id": "obra-tactil",
       "type": "img",
       "src": "img/obras/exploracion-tactil.webp",
-      "x": -1060, "y": -750, "w": 340
+      "x": -650, "y": -330, "w": 320
     },
     {
+      "id": "obra-proceso",
       "type": "img",
       "src": "img/obras/proceso-creativo.webp",
-      "x": -930, "y": -680, "w": 320
+      "x": -580, "y": -280, "w": 300
     },
     {
+      "id": "obra-superficie",
       "type": "img",
       "src": "img/obras/superficie-consciente.webp",
-      "x": -1020, "y": -610, "w": 300
+      "x": -630, "y": -230, "w": 280
     },
     {
+      "id": "obra-video-oleo",
       "type": "video",
       "src": "img/obras/proceso-oleo.mp4",
-      "x": -880, "y": -540, "w": 360
+      "x": -560, "y": -180, "w": 340
     },
 
     // ─── 5. DIAGRAMAS 01234 (pila) ─────────────────────────
-    // Gráficos del Sistema 01234: estructura nodal, ontología.
-    // Offset ~70px vertical entre elementos.
+    // Cuadrante superior derecho, bajo los símbolos.
 
     {
+      "id": "diag-logo",
       "type": "img",
       "src": "img/o1234/logo-01234.png",
-      "x": 900, "y": -850, "w": 200
+      "x": 400, "y": -340, "w": 180
     },
     {
+      "id": "diag-nodos",
       "type": "img",
       "src": "img/o1234/grafico_003.png",
-      "x": 960, "y": -780, "w": 340,
+      "x": 450, "y": -290, "w": 300,
       "detail": "Estructura nodal del Sistema 01234. Cinco nodos, sus relaciones."
     },
     {
+      "id": "diag-espiritu",
       "type": "img",
       "src": "img/o1234/grafico_004.png",
-      "x": 870, "y": -710, "w": 300,
+      "x": 380, "y": -240, "w": 280,
       "detail": "Espíritu, Alma, Mente, Cuerpo — y lo incognoscible."
     },
     {
+      "id": "diag-oculto",
       "type": "img",
       "src": "img/o1234/grafico_009.png",
-      "x": 940, "y": -640, "w": 260,
+      "x": 430, "y": -190, "w": 240,
       "detail": "Lo oculto se oculta de sí para verse. Del Absoluto incognoscible a tu cerebro."
     },
     {
+      "id": "diag-pardes",
       "type": "img",
       "src": "img/o1234/grafico-pardes.svg",
-      "x": 890, "y": -570, "w": 280
+      "x": 390, "y": -140, "w": 260
     },
     {
+      "id": "diag-ontologia",
       "type": "img",
       "src": "img/o1234/ontologia-condensada.svg",
-      "x": 930, "y": -500, "w": 300
+      "x": 420, "y": -90, "w": 280
+    },
+
+    {
+      "id": "cta-libro-01234",
+      "type": "cta",
+      "title": "01234: El Código Fuente de la Conciencia",
+      "subtitle": "Un Sistema Vivo de Comprensión y Transformación",
+      "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20'/></svg>",
+      "modal": {
+        "title": "01234: El Código Fuente de la Conciencia",
+        "body": "Un Sistema Vivo de Comprensión y Transformación",
+        "actions": [
+          {
+            "label": "Descargar PDF",
+            "href": "img/01234_El_Codigo_Fuente_de_la_Conciencia.pdf",
+            "download": "01234_El_Codigo_Fuente_de_la_Conciencia.pdf"
+          }
+        ]
+      },
+      "x": 380, "y": -30
     },
 
     // ─── 6. IA GENERATIVA (pila) ────────────────────────────
-    // Contenido generado con IA: imágenes y vídeos.
-    // Offset ~70px vertical entre elementos.
+    // Cuadrante inferior izquierdo.
 
     {
+      "id": "ia-plastica",
       "type": "img",
       "src": "img/sergio-arte-plastica.webp",
-      "x": -400, "y": 700, "w": 340
+      "x": -520, "y": 200, "w": 320
     },
     {
+      "id": "ia-video-fondo",
       "type": "video",
       "src": "img/video-fondo.mp4",
-      "x": -340, "y": 770, "w": 380
+      "x": -470, "y": 250, "w": 350
     },
     {
+      "id": "ia-proceso-cognitivo",
       "type": "video",
       "src": "img/proceso-cognitivo.webm",
-      "x": -370, "y": 840, "w": 320
+      "x": -500, "y": 300, "w": 300
     },
 
     // ─── 7. PERSONAS ────────────────────────────────────────
+    // Cuadrante inferior derecho.
 
     {
+      "id": "persona-noelia",
       "type": "img",
       "src": "img/noeliarequena.webp",
-      "x": 1700, "y": 300, "w": 240,
+      "x": 480, "y": 220, "w": 220,
       "detail": "Noelia Requena — <a href='https://noeliarequena.com' target='_blank' rel='noopener'>noeliarequena.com</a>"
     },
 
     // ─── 8. MISCELÁNEA ──────────────────────────────────────
 
     {
+      "id": "misc-travolta",
       "type": "img",
       "src": "img/john-travolta.gif",
-      "x": -1500, "y": 1300, "w": 180,
+      "x": 620, "y": 350, "w": 160,
       "detail": "John Travolta — Confuso. Buscando la verdad por la puerta de atrás."
     }
   ]

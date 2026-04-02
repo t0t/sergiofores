@@ -16,32 +16,40 @@ Los textos son frases nucleares: pocas, densas, colocadas lejos del centro y lej
 
 ## Interacción
 
-- **Pan**: click + drag (ratón) / un dedo (móvil)
+- **Pan**: click + drag (ratón) / un dedo en zona vacía (móvil)
 - **Zoom**: rueda del ratón / pinch (móvil)
-- **Arrastrar objetos**: click + drag sobre un objeto
+- **Arrastrar objetos**: click + drag sobre un objeto (desktop + móvil)
 - **Inspeccionar**: doble click / doble tap
 - **Reset vista**: tecla `0`
 - **Cerrar detalles**: tecla `Escape`
 - **Flechas**: pan con teclado
 - **+/−**: zoom con teclado
 
-Las posiciones de objetos y el nivel de zoom se persisten en `localStorage`.
+Las posiciones de objetos y el nivel de zoom se persisten en `localStorage` (toggle en `persist.js`).
 
-## Estructura
+## Arquitectura
 
 ```
-index.html          → estructura (solo HTML, cero JS inline)
-css/canvas.css      → presentación + responsive
-js/canvas.js        → comportamiento (canvas, eventos, persistencia)
-data.js             → contenido (editar aquí, nunca tocar HTML)
-img/                → assets (webp comprimidos, posters de vídeo)
-  obras/            → obra plástica (óleo sobre lino belga)
-  o1234/            → gráficos del Sistema 01234
+index.html              → estructura (solo HTML, cero JS inline)
+css/canvas.css          → presentación + responsive + will-change
+data.js                 → contenido (fuente única, nunca tocar HTML)
+js/
+  canvas.js             → punto de entrada (orquestador, importa módulos)
+  state.js              → estado global + constantes + refs al DOM
+  transform.js          → pan, zoom, centrar vista
+  render.js             → creación de DOM por tipo (builders)
+  events.js             → mouse, touch, keyboard (delegados)
+  persist.js            → localStorage con toggle on/off
+img/
+  obras/                → obra plástica (óleo sobre lino belga)
+  o1234/                → gráficos del Sistema 01234
 ```
+
+Cada módulo tiene una responsabilidad única. `canvas.js` solo importa y llama init. Todos los módulos usan ES modules nativos (`import`/`export`).
 
 ## Contenido — `data.js`
 
-Fuente única de verdad para todo el contenido visible. Los objetos están organizados en **8 grupos temáticos**:
+Fuente única de verdad para todo el contenido visible. Cada objeto tiene un `id` estable (slug semántico) que la persistencia usa para cruzar posiciones. Los objetos están organizados en **8 grupos temáticos**:
 
 | #  | Grupo            | Descripción                                    | Patrón         |
 |----|------------------|------------------------------------------------|----------------|
@@ -60,15 +68,22 @@ Fuente única de verdad para todo el contenido visible. Los objetos están organ
 
 ### Cómo escalar
 
-Para añadir contenido: crear un objeto nuevo dentro del grupo correspondiente en `data.js`, respetando el offset de pila si aplica. Si se crea un grupo temático nuevo, documentarlo en el header del archivo y en esta tabla.
+Para añadir contenido: crear un objeto nuevo con `id` único dentro del grupo correspondiente en `data.js`, respetando el offset de pila si aplica. Si se crea un grupo temático nuevo, documentarlo en el header del archivo y en esta tabla.
 
 ### Rendimiento
 
-Al tener todos los datos cargados en el navegador, el sistema de carga debe cuidarse para no saturar. Actualmente implementado: `loading="lazy"` + `decoding="async"` en imágenes, fade-in al completar carga, poster estático para vídeos con precarga en `requestIdleCallback`, `requestAnimationFrame` throttle en transforms.
+- `will-change: transform` en `#universe` (capa GPU dedicada)
+- `loading="lazy"` + `decoding="async"` en imágenes
+- Fade-in al completar carga (`.loaded`)
+- `preload="metadata"` en vídeos (no descarga streams completos)
+- Poster estático con precarga en `requestIdleCallback`
+- Autoplay muted en móvil, hover play/pause en desktop
+- `requestAnimationFrame` throttle en transforms
+- `contain: layout style` en cada `.obj`
 
 ## Stack
 
-HTML5 + CSS3 + JS vanilla. Cero frameworks, cero dependencias. Hosting estático (GitHub Pages).
+HTML5 + CSS3 + JS vanilla (ES modules nativos). Cero frameworks, cero dependencias, cero build. Hosting estático (GitHub Pages).
 
 Tipografía: Montserrat (Google Fonts) con fallback a Futura/Avenir.
 
@@ -78,7 +93,7 @@ Tipografía: Montserrat (Google Fonts) con fallback a Futura/Avenir.
 npm run dev
 ```
 
-Abre `http://localhost:3000` (Python http.server).
+Abre `http://localhost:3000` (Python http.server). Requiere navegador con soporte ES modules (todos los modernos).
 
 ## Despliegue
 
@@ -90,4 +105,4 @@ GitHub Pages sirve directamente desde `main`.
 
 ## Estado actual
 
-- **localStorage**: temporalmente desactivado en `canvas.js` (funciones comentadas) para iterar posiciones sin persistencia. Reactivar cuando la composición sea definitiva.
+- **localStorage**: desactivado (`ENABLED = false` en `persist.js`). Cambiar a `true` cuando la composición sea definitiva.
