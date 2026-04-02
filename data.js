@@ -99,6 +99,13 @@ window.__DATA__ = {
       "content": "La fuente creativa no está arriba. Está abajo. En las profundidades.",
       "x": 1400, "y": -1100
     },
+    {
+      "id": "txt-sistemas",
+      "type": "text",
+      "content": "Opero entrando en sistemas (materia, pensamiento, proceso), interactuando con ellos desde dentro, eliminando lo innecesario hasta que una estructura se hace evidente.",
+      "x": -1500, "y": 800,
+      "cls": "large"
+    },
 
     // ─── 3. SÍMBOLOS 01234 ──────────────────────────────────
     // Fila horizontal encima de la pila de diagramas.
