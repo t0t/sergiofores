@@ -30,21 +30,35 @@
   function loadPositions() {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      if (!saved) return;
-      const positions = JSON.parse(saved);
-      positions.forEach(pos => {
-        if (objects[pos.i]) {
-          objects[pos.i].x = pos.x;
-          objects[pos.i].y = pos.y;
-        }
-      });
-    } catch (_) { /* localStorage no disponible o datos corruptos */ }
+      if (!saved) return false;
+      const data = JSON.parse(saved);
+      // Formato nuevo (con view) o legacy (array)
+      const positions = Array.isArray(data) ? data : data.positions;
+      if (positions) {
+        positions.forEach(pos => {
+          if (objects[pos.i]) {
+            objects[pos.i].x = pos.x;
+            objects[pos.i].y = pos.y;
+          }
+        });
+      }
+      if (data.view) {
+        state.x = data.view.x;
+        state.y = data.view.y;
+        state.scale = data.view.scale;
+        return true;
+      }
+      return false;
+    } catch (_) { return false; }
   }
 
   function savePositions() {
     try {
-      const positions = objects.map((obj, i) => ({ i, x: obj.x, y: obj.y }));
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(positions));
+      const data = {
+        view: { x: state.x, y: state.y, scale: state.scale },
+        positions: objects.map((obj, i) => ({ i, x: obj.x, y: obj.y }))
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     } catch (_) { /* quota excedida o no disponible */ }
   }
 
@@ -253,6 +267,7 @@
       document.body.style.cursor = '';
     }
     state.panning = false;
+    debounceSave();
   });
 
   // ── DOUBLE CLICK ──
@@ -366,7 +381,8 @@
   }
 
   // ── INIT ──
-  loadPositions();
+  const hasView = loadPositions();
   render();
-  centerView();
+  if (hasView) applyTransform();
+  else centerView();
 })();
