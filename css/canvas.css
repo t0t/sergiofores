@@ -50,7 +50,7 @@ body:active { cursor: grabbing; }
 
 .obj {
   position: absolute;
-  cursor: pointer;
+  cursor: default;
   contain: layout style;
 }
 
