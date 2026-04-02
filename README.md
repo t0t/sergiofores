@@ -37,6 +37,8 @@ img/                → assets (webp comprimidos, posters de vídeo)
 
 Todo el contenido está referenciado en `data.js` (`window.__DATA__`). Para añadir, quitar o mover elementos, editar solo ese archivo. Tipos soportados: `avatar`, `text`, `img`, `video`, `svg`, `social`.
 
+**UX: encuentros, no lectura.** Los textos, imágenes y demás elementos no se presentan — se encuentran. Están desperdigados por el canvas como piezas en una excavación. El visitante navega, explora, y tropieza con ellos. No hay recorrido guiado ni jerarquía de lectura. Cada elemento es un encuentro autónomo. Esto aplica especialmente a los textos: son frases nucleares, pocas y densas, colocadas lejos del centro y lejos entre sí. El silencio entre ellas es parte del diseño.
+
 **IMPORTANTE**: al tener todos los datos cargados en el navegador, el sistema de carga debe cuidarse y perfeccionarse para no saturar. Actualmente implementado: `loading="lazy"` + `decoding="async"` en imágenes, fade-in al completar carga, poster estático para vídeos con precarga en `requestIdleCallback`, `requestAnimationFrame` throttle en transforms.
 
 ## Stack

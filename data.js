@@ -24,118 +24,27 @@ window.__DATA__ = {
     {
       "type": "text",
       "content": "La forma más alineada no es salir al mundo a predicar. Es trabajar con la puerta abierta.",
-      "x": -500,
-      "y": -350,
-      "cls": "large"
-    },
-    {
-      "type": "text",
-      "content": "Con atención constante, reconocer lo que ya es bueno.",
-      "x": 700,
-      "y": 300,
-      "cls": "large"
-    },
-    {
-      "type": "text",
-      "content": "01234 solo puede expresarse desde el lenguaje poético. Solo la poesía puede llegar a acercarse.",
-      "x": -1200,
-      "y": -700
-    },
-    {
-      "type": "text",
-      "content": "Me arrastra y me encanta pero no pueden arrastrarme varios ríos a la vez. Yo estoy en uno solo.",
-      "x": 900,
-      "y": -800
-    },
-    {
-      "type": "text",
-      "content": "Yo solo quiero mostrar, revelar, darme cuenta, expresarlo, cocrearlo, participar activamente en eso que es mi verdad.",
       "x": -1400,
-      "y": 400
+      "y": -750,
+      "cls": "large"
     },
     {
       "type": "text",
-      "content": "01234 es como algo que se recuerda, como entender un chiste. No saber explicarlo no te exime de haber captado su esencia.",
-      "x": 600,
-      "y": 700
+      "content": "01234 solo puede expresarse desde el lenguaje poético.",
+      "x": 1500,
+      "y": 850
     },
     {
       "type": "text",
-      "content": "Lo importante no está en si demuestro 01234 genialmente. Está en que al tratar de expresarlo, me doy más cuenta de ello.",
-      "x": -800,
-      "y": 900
-    },
-    {
-      "type": "text",
-      "content": "La curación ocurre a través del trabajo. No a través de la terapia ni del análisis.",
+      "content": "Cuando creas, forjas. No es inspiración etérea — es fuego, martillo, yunque.",
       "x": -1300,
-      "y": -200
+      "y": 1200
     },
     {
       "type": "text",
-      "content": "Si pudieras brillar sin peso, sin que costara, sin que doliera — ¿lo aceptarías?",
-      "x": 1400,
-      "y": 800
-    },
-    {
-      "type": "text",
-      "content": "Ignoro cuál es el tronco común principal pero en mi cabeza todo está relacionado.",
-      "x": -1500,
-      "y": 900
-    },
-    {
-      "type": "text",
-      "content": "Tu mente es extraordinariamente potente. Pero en tu mejor versión, la mente sabe cuándo callarse. Sirve, no manda.",
-      "x": 400,
-      "y": -550
-    },
-    {
-      "type": "text",
-      "content": "Cinco nodos. Cero a cuatro. Se reconocen, no se imponen.",
-      "x": -700,
-      "y": 600
-    },
-    {
-      "type": "text",
-      "content": "Custodio — no guerrero, no ermitaño. Mantiene las condiciones de existencia de lo que importa.",
-      "x": -600,
-      "y": 1100
-    },
-    {
-      "type": "text",
-      "content": "Cada vez que eliges profundidad sobre visibilidad, caminas hacia tu destino.",
-      "x": 1100,
-      "y": 1100
-    },
-    {
-      "type": "text",
-      "content": "Solo puedes estar al cien por cien en una cosa a la vez. Hay temporadas de pintar, temporadas de codear, temporadas de escribir. Un solo río, caudal completo.",
-      "x": -1600,
-      "y": -500
-    },
-    {
-      "type": "text",
-      "content": "El bufón no necesita que le crean. Necesita que se rían. Y en la risa, la verdad entra por la puerta de atrás.",
-      "x": -1200,
-      "y": 1300
-    },
-    {
-      "type": "text",
-      "content": "Operas desde una identidad construida por reconocimiento interno, y luego produces lo que te da la gana.",
-      "x": 1600,
-      "y": 500
-    },
-    {
-      "type": "text",
-      "content": "Alguien que vive permanentemente al borde de una transformación que nunca termina de completarse. Siempre a punto de. Siempre en el último paso antes de algo.",
-      "x": -1400,
-      "y": -800
-    },
-    {
-      "type": "text",
-      "content": "Hay un código moral interno que prevalece sobre cualquier convención externa. Siempre. Aunque cueste.",
-      "x": 1300,
-      "y": -700
+      "content": "La fuente creativa no está arriba. Está abajo. En las profundidades.",
+      "x": 1200,
+      "y": -650
     },
     {
       "type": "svg",
