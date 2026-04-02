@@ -23,7 +23,7 @@ window.__DATA__ = {
     },
     {
       "type": "text",
-      "content": "No trabajas para otros. Trabajas porque necesitas que ciertas cosas existan.",
+      "content": "La forma más alineada no es salir al mundo a predicar. Es trabajar con la puerta abierta.",
       "x": -500,
       "y": -350,
       "cls": "large"
