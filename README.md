@@ -8,6 +8,12 @@ No es una web convencional. Es una vista cenital panorámica de todos (o casi to
 
 Uso principal: **herramienta propia**. Me permite recolocar elementos en pantalla (imágenes, textos, vídeos, audios, gráficos) y realizar screenshots para dar instrucciones a agentes IA, esbozar flujos de trabajo, slides, y acceder a visualizaciones a la velocidad de la luz de áreas específicas o conceptos. El público es efecto secundario.
 
+## UX: encuentros, no lectura
+
+Los textos, imágenes y demás elementos no se presentan — se encuentran. Están desperdigados por el canvas como piezas en una excavación. El visitante navega, explora, y tropieza con ellos. No hay recorrido guiado ni jerarquía de lectura. Cada elemento es un encuentro autónomo.
+
+Los textos son frases nucleares: pocas, densas, colocadas lejos del centro y lejos entre sí. El silencio entre ellas es parte del diseño.
+
 ## Interacción
 
 - **Pan**: click + drag (ratón) / un dedo (móvil)
@@ -33,17 +39,38 @@ img/                → assets (webp comprimidos, posters de vídeo)
   o1234/            → gráficos del Sistema 01234
 ```
 
-## Contenido
+## Contenido — `data.js`
 
-Todo el contenido está referenciado en `data.js` (`window.__DATA__`). Para añadir, quitar o mover elementos, editar solo ese archivo. Tipos soportados: `avatar`, `text`, `img`, `video`, `svg`, `social`.
+Fuente única de verdad para todo el contenido visible. Los objetos están organizados en **8 grupos temáticos**:
 
-**UX: encuentros, no lectura.** Los textos, imágenes y demás elementos no se presentan — se encuentran. Están desperdigados por el canvas como piezas en una excavación. El visitante navega, explora, y tropieza con ellos. No hay recorrido guiado ni jerarquía de lectura. Cada elemento es un encuentro autónomo. Esto aplica especialmente a los textos: son frases nucleares, pocas y densas, colocadas lejos del centro y lejos entre sí. El silencio entre ellas es parte del diseño.
+| #  | Grupo            | Descripción                                    | Patrón         |
+|----|------------------|------------------------------------------------|----------------|
+| 1  | Identidad        | Avatar, nombre, tagline, social links          | Zona centro    |
+| 2  | Textos           | Frases nucleares (encuentros)                  | Desperdigados  |
+| 3  | Símbolos 01234   | SVGs de los 5 nodos geométricos                | Zona centro    |
+| 4  | Obra plástica    | Óleos + vídeo proceso                          | Pila           |
+| 5  | Diagramas 01234  | Gráficos del sistema filosófico                | Pila           |
+| 6  | IA generativa    | Contenido generado con IA                      | Pila           |
+| 7  | Personas         | Retratos con contexto/enlace                   | Sueltos        |
+| 8  | Miscelánea       | Easter eggs, elementos independientes          | Sueltos        |
 
-**IMPORTANTE**: al tener todos los datos cargados en el navegador, el sistema de carga debe cuidarse y perfeccionarse para no saturar. Actualmente implementado: `loading="lazy"` + `decoding="async"` en imágenes, fade-in al completar carga, poster estático para vídeos con precarga en `requestIdleCallback`, `requestAnimationFrame` throttle en transforms.
+**Pilas**: los elementos de una misma temática se apilan con offset vertical ~70px entre sí, simulando documentos sobre una mesa. El primer elemento del grupo marca la posición base.
+
+**Tipos soportados**: `avatar`, `text`, `img`, `video`, `svg`, `social`.
+
+### Cómo escalar
+
+Para añadir contenido: crear un objeto nuevo dentro del grupo correspondiente en `data.js`, respetando el offset de pila si aplica. Si se crea un grupo temático nuevo, documentarlo en el header del archivo y en esta tabla.
+
+### Rendimiento
+
+Al tener todos los datos cargados en el navegador, el sistema de carga debe cuidarse para no saturar. Actualmente implementado: `loading="lazy"` + `decoding="async"` en imágenes, fade-in al completar carga, poster estático para vídeos con precarga en `requestIdleCallback`, `requestAnimationFrame` throttle en transforms.
 
 ## Stack
 
 HTML5 + CSS3 + JS vanilla. Cero frameworks, cero dependencias. Hosting estático (GitHub Pages).
+
+Tipografía: Montserrat (Google Fonts) con fallback a Futura/Avenir.
 
 ## Dev
 
@@ -60,3 +87,7 @@ git push origin main
 ```
 
 GitHub Pages sirve directamente desde `main`.
+
+## Estado actual
+
+- **localStorage**: temporalmente desactivado en `canvas.js` (funciones comentadas) para iterar posiciones sin persistencia. Reactivar cuando la composición sea definitiva.

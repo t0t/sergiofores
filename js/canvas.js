@@ -26,13 +26,14 @@
   const hint = document.getElementById('hint');
   const objects = window.__DATA__.objects;
 
-  // ── PERSISTENCIA ──
+  // ── PERSISTENCIA ── (TEMPORALMENTE DESACTIVADA)
   function loadPositions() {
+    return false;
+    /*
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (!saved) return false;
       const data = JSON.parse(saved);
-      // Formato nuevo (con view) o legacy (array)
       const positions = Array.isArray(data) ? data : data.positions;
       if (positions) {
         positions.forEach(pos => {
@@ -50,16 +51,20 @@
       }
       return false;
     } catch (_) { return false; }
+    */
   }
 
   function savePositions() {
+    return;
+    /*
     try {
       const data = {
         view: { x: state.x, y: state.y, scale: state.scale },
         positions: objects.map((obj, i) => ({ i, x: obj.x, y: obj.y }))
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    } catch (_) { /* quota excedida o no disponible */ }
+    } catch (_) {}
+    */
   }
 
   // Debounce para no escribir en cada mouseup
