@@ -103,13 +103,13 @@ window.__DATA__ = {
       "id": "txt-sistemas",
       "type": "text",
       "content": "Opero entrando en sistemas (materia, pensamiento, proceso), interactuando con ellos desde dentro, eliminando lo innecesario hasta que una estructura se hace evidente.",
-      "x": -1500, "y": 800
+      "x": -200, "y": 250
     },
     {
       "id": "txt-inexplicable",
       "type": "text",
       "content": "Lo que quiero decir no nace en formato explicable.",
-      "x": 1200, "y": -500
+      "x": 150, "y": -150
     },
 
     // ─── 3. SÍMBOLOS 01234 ──────────────────────────────────
