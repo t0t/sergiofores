@@ -187,10 +187,10 @@ window.__DATA__ = {
     },
     {
       "type": "img",
-      "src": "img/proceso-cognitivo.jpg",
+      "src": "img/cerebro-digital-ia.webp",
       "x": 300,
       "y": -900,
-      "w": 320
+      "w": 300
     },
     {
       "type": "img",
