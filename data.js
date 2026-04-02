@@ -187,13 +187,6 @@ window.__DATA__ = {
     },
     {
       "type": "img",
-      "src": "img/cerebro-digital-ia.webp",
-      "x": 300,
-      "y": -900,
-      "w": 300
-    },
-    {
-      "type": "img",
       "src": "img/noeliarequena.webp",
       "x": 1700,
       "y": 300,
@@ -216,41 +209,48 @@ window.__DATA__ = {
     },
     {
       "type": "img",
-      "src": "img/cerebro-digital-vault.webp",
+      "src": "img/o1234/logo-01234.png",
+      "x": 300,
+      "y": -900,
+      "w": 200
+    },
+    {
+      "type": "img",
+      "src": "img/o1234/grafico_003.png",
       "x": 1200,
       "y": -400,
+      "w": 340,
+      "detail": "Estructura nodal del Sistema 01234. Cinco nodos, sus relaciones."
+    },
+    {
+      "type": "img",
+      "src": "img/o1234/grafico_004.png",
+      "x": -900,
+      "y": 400,
       "w": 300,
-      "detail": "Cerebro Digital — vault de Obsidian. Sistema de conocimiento vivo."
+      "detail": "Espíritu, Alma, Mente, Cuerpo — y lo incognoscible."
     },
     {
       "type": "img",
-      "src": "img/gematria-app.webp",
-      "x": 1500,
-      "y": -100,
-      "w": 220
-    },
-    {
-      "type": "img",
-      "src": "img/sistema-agentes.webp",
+      "src": "img/o1234/grafico_009.png",
       "x": 800,
       "y": 1300,
-      "w": 280,
-      "detail": "Arquitectura de agentes IA."
+      "w": 260,
+      "detail": "Lo oculto se oculta de sí para verse. Del Absoluto incognoscible a tu cerebro."
     },
     {
       "type": "img",
-      "src": "img/o1234-slidev.webp",
+      "src": "img/o1234/grafico-pardes.svg",
+      "x": 1500,
+      "y": -100,
+      "w": 280
+    },
+    {
+      "type": "img",
+      "src": "img/o1234/ontologia-condensada.svg",
       "x": -400,
       "y": 1400,
-      "w": 300,
-      "detail": "01234 — presentación visual del sistema."
-    },
-    {
-      "type": "img",
-      "src": "img/blog-cerebro-digital-v2.webp",
-      "x": 1800,
-      "y": 900,
-      "w": 240
+      "w": 300
     },
     {
       "type": "social",
