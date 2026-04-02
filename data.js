@@ -129,6 +129,12 @@ window.__DATA__ = {
       "content": "👉 la forma no la pongo yo. Yo llego cuando ya está ocurriendo.",
       "x": -80, "y": -280
     },
+    {
+      "id": "txt-nombra",
+      "type": "text",
+      "content": "si lo preparas demasiado → no ocurre<br>si lo nombras → se cae<br>si lo explicas → se sustituye por otra cosa",
+      "x": 600, "y": -150
+    },
 
     // ─── 3. SÍMBOLOS 01234 ──────────────────────────────────
     // Fila horizontal encima de la pila de diagramas.
