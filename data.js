@@ -275,7 +275,7 @@ window.__DATA__ = {
       "id": "misc-travolta",
       "type": "img",
       "src": "img/john-travolta.gif",
-      "x": 620, "y": 350, "w": 160,
+      "x": 570, "y": 268, "w": 160, "zIndex": 101,
       "detail": "John Travolta — Confuso. Buscando la verdad por la puerta de atrás."
     }
   ]
