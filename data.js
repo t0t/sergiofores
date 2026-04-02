@@ -187,14 +187,6 @@ window.__DATA__ = {
     },
     {
       "type": "img",
-      "src": "img/cerebro-digital.webp",
-      "x": -1500,
-      "y": 100,
-      "w": 280,
-      "detail": "CEREBRO DIGITAL — un clon digital de mi cerebro. Sistema de conocimiento vivo."
-    },
-    {
-      "type": "img",
       "src": "img/proceso-cognitivo.jpg",
       "x": 300,
       "y": -900,
@@ -232,14 +224,6 @@ window.__DATA__ = {
     },
     {
       "type": "img",
-      "src": "img/prototipos-01234.webp",
-      "x": -900,
-      "y": 400,
-      "w": 260,
-      "detail": "Prototipos del Sistema 01234."
-    },
-    {
-      "type": "img",
       "src": "img/gematria-app.webp",
       "x": 1500,
       "y": -100,
@@ -252,13 +236,6 @@ window.__DATA__ = {
       "y": 1300,
       "w": 280,
       "detail": "Arquitectura de agentes IA."
-    },
-    {
-      "type": "img",
-      "src": "img/sergio-dev.webp",
-      "x": -1700,
-      "y": 700,
-      "w": 260
     },
     {
       "type": "img",
