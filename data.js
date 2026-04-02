@@ -123,6 +123,12 @@ window.__DATA__ = {
       "content": "👉 no trabajas para llegar a algo<br>👉 trabajas hasta que algo se vuelve evidente",
       "x": 300, "y": 150
     },
+    {
+      "id": "txt-forma",
+      "type": "text",
+      "content": "👉 la forma no la pongo yo. Yo llego cuando ya está ocurriendo.",
+      "x": -80, "y": -280
+    },
 
     // ─── 3. SÍMBOLOS 01234 ──────────────────────────────────
     // Fila horizontal encima de la pila de diagramas.
