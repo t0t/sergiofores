@@ -274,6 +274,14 @@ window.__DATA__ = {
           "url": "https://github.com/t0t"
         }
       ]
+    },
+    {
+      "type": "img",
+      "src": "img/john-travolta.gif",
+      "x": -1500,
+      "y": 1300,
+      "w": 180,
+      "detail": "John Travolta — Confuso. Buscando la verdad por la puerta de atrás."
     }
   ]
 };
