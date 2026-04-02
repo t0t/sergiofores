@@ -106,6 +106,13 @@ window.__DATA__ = {
       "x": -1500, "y": 800,
       "cls": "large"
     },
+    {
+      "id": "txt-inexplicable",
+      "type": "text",
+      "content": "Lo que quiero decir no nace en formato explicable.",
+      "x": 1200, "y": -500,
+      "cls": "large"
+    },
 
     // ─── 3. SÍMBOLOS 01234 ──────────────────────────────────
     // Fila horizontal encima de la pila de diagramas.
