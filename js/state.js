@@ -6,7 +6,7 @@ export const STORAGE_KEY = 'sergiofores_positions';
 
 export const state = {
   scale: 1, x: 0, y: 0,
-  minScale: 1, maxScale: 5,
+  minScale: 1, maxScale: 8,
   dragging: null, panning: false, hasMoved: false,
   panStart: { x: 0, y: 0 },
   stateStart: { x: 0, y: 0 },

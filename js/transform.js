@@ -10,8 +10,11 @@ export function applyTransform() {
   if (rafPending) return;
   rafPending = true;
   requestAnimationFrame(() => {
-    dom.universe.style.transform =
-      `translate(${state.x}px,${state.y}px) scale(${state.scale})`;
+    // zoom re-renderiza vectores (SVG, texto) nítidos a cualquier escala.
+    // transform: translate gestiona la posición en coordenadas de pantalla.
+    // No se usa scale() en transform para evitar rasterizar la capa GPU a 1×.
+    dom.universe.style.zoom      = state.scale;
+    dom.universe.style.transform = `translate(${state.x}px,${state.y}px)`;
     rafPending = false;
   });
 }

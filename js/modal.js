@@ -12,10 +12,11 @@
  */
 
 let backdropEl = null;
-let dialogEl = null;
 
 export function openModal({ title, body, actions = [] }) {
   if (backdropEl) closeModal();
+
+  const titleId = 'modal-title-' + Date.now();
 
   // ── Backdrop ──
   backdropEl = document.createElement('div');
@@ -25,14 +26,16 @@ export function openModal({ title, body, actions = [] }) {
   });
 
   // ── Dialog ──
-  dialogEl = document.createElement('div');
+  const dialogEl = document.createElement('div');
   dialogEl.className = 'modal';
   dialogEl.setAttribute('role', 'dialog');
   dialogEl.setAttribute('aria-modal', 'true');
+  dialogEl.setAttribute('aria-labelledby', titleId);
 
   // Cerrar (X)
   const closeBtn = document.createElement('button');
   closeBtn.className = 'modal__close';
+  closeBtn.type      = 'button';
   closeBtn.setAttribute('aria-label', 'Cerrar');
   closeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
   closeBtn.addEventListener('click', closeModal);
@@ -42,15 +45,16 @@ export function openModal({ title, body, actions = [] }) {
   content.className = 'modal__content';
 
   if (title) {
-    const h = document.createElement('p');
-    h.className = 'modal__title';
+    const h = document.createElement('h2');
+    h.id          = titleId;
+    h.className   = 'modal__title';
     h.textContent = title;
     content.appendChild(h);
   }
 
   if (body) {
     const p = document.createElement('p');
-    p.className = 'modal__body';
+    p.className   = 'modal__body';
     p.textContent = body;
     content.appendChild(p);
   }
@@ -60,10 +64,10 @@ export function openModal({ title, body, actions = [] }) {
     footer.className = 'modal__footer';
     actions.forEach(action => {
       const a = document.createElement('a');
-      a.className = 'modal__action';
-      a.href = action.href;
-      if (action.download) a.download = action.download;
+      a.className   = 'modal__action';
+      a.href        = action.href;
       a.textContent = action.label;
+      if (action.download) a.download = action.download;
       footer.appendChild(a);
     });
     content.appendChild(footer);
@@ -74,7 +78,6 @@ export function openModal({ title, body, actions = [] }) {
   backdropEl.appendChild(dialogEl);
   document.body.appendChild(backdropEl);
 
-  // Animar entrada
   requestAnimationFrame(() => backdropEl.classList.add('modal-backdrop--visible'));
 }
 
@@ -84,7 +87,6 @@ export function closeModal() {
   backdropEl.addEventListener('transitionend', () => {
     backdropEl?.remove();
     backdropEl = null;
-    dialogEl = null;
   }, { once: true });
 }
 

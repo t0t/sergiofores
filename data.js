@@ -185,7 +185,7 @@ window.__DATA__ = {
     {
       "id": "diag-nodos",
       "type": "img",
-      "src": "img/o1234/grafico_003.png",
+      "src": "img/o1234/grafico-metamodelo-3.svg",
       "x": 450, "y": -290, "w": 300,
       "detail": "Estructura nodal del Sistema 01234. Cinco nodos, sus relaciones."
     },
