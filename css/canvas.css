@@ -94,6 +94,7 @@ body:active { cursor: grabbing; }
 
 /* Vídeo */
 
+.obj--video img,
 .obj--video video {
   display: block;
   width: 100%;

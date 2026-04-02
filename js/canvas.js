@@ -113,16 +113,37 @@
         case 'video': {
           el.classList.add('obj--video');
           el.style.width = (obj.w || 300) + 'px';
+          // Poster inicial + vídeo precargado en idle
+          const poster = document.createElement('img');
+          poster.src = obj.src.replace(/\.\w+$/, '-poster.webp');
+          poster.alt = '';
+          poster.draggable = false;
+          poster.loading = 'lazy';
+          poster.decoding = 'async';
+          poster.onload = function() { this.classList.add('loaded'); };
+          el.appendChild(poster);
+
           const vid = document.createElement('video');
-          vid.src = obj.src;
           vid.muted = true;
           vid.loop = true;
           vid.playsInline = true;
-          vid.preload = 'metadata';
-          vid.addEventListener('loadeddata', () => vid.classList.add('loaded'), { once: true });
-          el.addEventListener('mouseenter', () => vid.play().catch(() => {}));
-          el.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
-          el.appendChild(vid);
+          vid.preload = 'auto';
+          vid.classList.add('loaded');
+          // Precargar en idle — listo antes de que el usuario haga hover
+          const idleCb = window.requestIdleCallback || (fn => setTimeout(fn, 2000));
+          idleCb(() => { vid.src = obj.src; });
+
+          let swapped = false;
+          el.addEventListener('mouseenter', () => {
+            if (!swapped && vid.readyState >= 2) {
+              el.replaceChild(vid, poster);
+              swapped = true;
+            }
+            if (swapped) vid.play().catch(() => {});
+          });
+          el.addEventListener('mouseleave', () => {
+            if (swapped) { vid.pause(); vid.currentTime = 0; }
+          });
           break;
         }
 
