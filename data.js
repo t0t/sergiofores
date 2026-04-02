@@ -111,6 +111,12 @@ window.__DATA__ = {
       "content": "Lo que quiero decir no nace en formato explicable.",
       "x": 150, "y": -150
     },
+    {
+      "id": "txt-traduccion",
+      "type": "text",
+      "content": "No te falta lenguaje. 👉 te sobra traducción",
+      "x": -350, "y": -50
+    },
 
     // ─── 3. SÍMBOLOS 01234 ──────────────────────────────────
     // Fila horizontal encima de la pila de diagramas.
