@@ -223,6 +223,59 @@ window.__DATA__ = {
       "w": 320
     },
     {
+      "type": "img",
+      "src": "img/cerebro-digital-vault.webp",
+      "x": 1200,
+      "y": -400,
+      "w": 300,
+      "detail": "Cerebro Digital — vault de Obsidian. Sistema de conocimiento vivo."
+    },
+    {
+      "type": "img",
+      "src": "img/prototipos-01234.webp",
+      "x": -900,
+      "y": 400,
+      "w": 260,
+      "detail": "Prototipos del Sistema 01234."
+    },
+    {
+      "type": "img",
+      "src": "img/gematria-app.webp",
+      "x": 1500,
+      "y": -100,
+      "w": 220
+    },
+    {
+      "type": "img",
+      "src": "img/sistema-agentes.webp",
+      "x": 800,
+      "y": 1300,
+      "w": 280,
+      "detail": "Arquitectura de agentes IA."
+    },
+    {
+      "type": "img",
+      "src": "img/sergio-dev.webp",
+      "x": -1700,
+      "y": 700,
+      "w": 260
+    },
+    {
+      "type": "img",
+      "src": "img/o1234-slidev.webp",
+      "x": -400,
+      "y": 1400,
+      "w": 300,
+      "detail": "01234 — presentación visual del sistema."
+    },
+    {
+      "type": "img",
+      "src": "img/blog-cerebro-digital-v2.webp",
+      "x": 1800,
+      "y": 900,
+      "w": 240
+    },
+    {
       "type": "social",
       "x": 300,
       "y": 200,

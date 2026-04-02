@@ -74,15 +74,23 @@ body:active { cursor: grabbing; }
 
 /* Imagen */
 
+.obj--img img,
+.obj--video video {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.obj--img img.loaded,
+.obj--video video.loaded {
+  opacity: 1;
+}
+
 .obj--img img {
   display: block;
   max-width: 100%;
   height: auto;
   pointer-events: none;
-  transition: filter 0.4s;
 }
-
-.obj--img:hover img { filter: none; }
 
 /* Vídeo */
 
@@ -91,10 +99,7 @@ body:active { cursor: grabbing; }
   max-width: 100%;
   height: auto;
   pointer-events: none;
-  transition: filter 0.4s;
 }
-
-.obj--video:hover video { filter: none; }
 
 /* Texto */
 

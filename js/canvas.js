@@ -60,6 +60,7 @@
           img.draggable = false;
           img.loading = 'lazy';
           img.decoding = 'async';
+          img.onload = function() { this.classList.add('loaded'); };
           img.onerror = function() { this.style.display = 'none'; };
           el.appendChild(img);
           break;
@@ -75,6 +76,7 @@
           vid.playsInline = true;
           vid.preload = 'metadata';
           vid.style.width = '100%';
+          vid.addEventListener('loadeddata', () => vid.classList.add('loaded'), { once: true });
           el.addEventListener('mouseenter', () => vid.play().catch(() => {}));
           el.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
           el.appendChild(vid);
