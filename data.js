@@ -287,13 +287,10 @@ window.__DATA__ = {
     // Cuadrante inferior derecho.
 
     {
-      "id": "persona-dialogo",
-      "type": "video",
-      "src": "img/dialogo_web.mp4",
-      "x": -120, "y": -213, "w": 240,
-      "audio": true,
-      "controls": true,
-      "poster": "img/dialogo-poster.webp"
+      "id": "id-avatar-melenita",
+      "type": "avatar",
+      "src": "img/avatar-melenita.webp",
+      "x": -120, "y": -213, "w": 120
     },
 
     {
