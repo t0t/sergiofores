@@ -62,8 +62,10 @@ const builders = {
     el.classList.add('obj--video');
     el.style.width = (obj.w || 300) + 'px';
 
+    const posterSrc = obj.poster ?? obj.src.replace(/\.\w+$/, '-poster.webp');
+
     const poster = document.createElement('img');
-    poster.src       = obj.src.replace(/\.\w+$/, '-poster.webp');
+    poster.src       = posterSrc;
     poster.alt       = '';
     poster.draggable = false;
     poster.loading   = 'lazy';
@@ -72,8 +74,20 @@ const builders = {
     el.appendChild(poster);
 
     const vid = document.createElement('video');
-    vid.muted      = true;
+    vid.muted      = obj.audio !== true;
     vid.loop       = true;
+    vid.controls   = obj.controls === true;
+    if (obj.controls) {
+      vid.poster = posterSrc;
+      vid.style.pointerEvents = 'auto';
+      // Overlay transparente que absorbe clics en el área de vídeo,
+      // dejando libre la barra de controles nativa (≈40px en la base)
+      const clickGuard = document.createElement('div');
+      clickGuard.style.cssText = 'position:absolute;inset:0;bottom:40px;z-index:1;cursor:default;';
+      clickGuard.addEventListener('click', e => e.stopPropagation());
+      el.style.position = 'relative';
+      el.appendChild(clickGuard);
+    }
     vid.playsInline = true;
     vid.preload    = 'metadata';
     vid.classList.add('loaded');
@@ -90,10 +104,17 @@ const builders = {
     const idleCb = window.requestIdleCallback || (fn => setTimeout(fn, 2000));
     idleCb(() => {
       vid.src = obj.src;
-      if (isTouch) vid.addEventListener('canplay', swapAndPlay, { once: true });
+      if (obj.controls) {
+        // Swap inmediato al cargar — el usuario controla la reproducción
+        vid.addEventListener('canplay', () => {
+          if (!swapped) { el.replaceChild(vid, poster); swapped = true; }
+        }, { once: true });
+      } else if (obj.autoplay || isTouch) {
+        vid.addEventListener('canplay', swapAndPlay, { once: true });
+      }
     });
 
-    if (!isTouch) {
+    if (!obj.autoplay && !obj.controls && !isTouch) {
       el.addEventListener('mouseenter', swapAndPlay);
       el.addEventListener('mouseleave', () => {
         if (swapped) { vid.pause(); vid.currentTime = 0; }

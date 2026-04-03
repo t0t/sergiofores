@@ -39,16 +39,10 @@ window.__DATA__ = {
     // Centro del canvas. Punto de partida visual.
 
     {
-      "id": "id-avatar",
-      "type": "avatar",
-      "src": "img/avatar.jpg",
-      "x": -44, "y": -117, "w": 120
-    },
-    {
       "id": "id-nombre",
       "type": "text",
       "content": "Sergio Forés Raga",
-      "x": -300, "y": -200,
+      "x": -183, "y": -200,
       "cls": "large accent",
       "zIndex": 9999
     },
@@ -56,7 +50,7 @@ window.__DATA__ = {
       "id": "id-tagline",
       "type": "text",
       "content": "Artista plástico · Orquestador de agentes y bufón que nadie escucha",
-      "x": 235, "y": 51,
+      "x": 130, "y": 60,
       "cls": "micro"
     },
     {
@@ -106,22 +100,10 @@ window.__DATA__ = {
       "x": -200, "y": 250
     },
     {
-      "id": "txt-inexplicable",
-      "type": "text",
-      "content": "Lo que quiero decir no nace en formato explicable.",
-      "x": 150, "y": -150
-    },
-    {
       "id": "txt-traduccion",
       "type": "text",
       "content": "No te falta lenguaje. 👉 te sobra traducción",
       "x": -350, "y": -50
-    },
-    {
-      "id": "txt-evidente",
-      "type": "text",
-      "content": "👉 no trabajas para llegar a algo<br>👉 trabajas hasta que algo se vuelve evidente",
-      "x": 300, "y": 150
     },
     {
       "id": "txt-forma",
@@ -293,9 +275,26 @@ window.__DATA__ = {
       "src": "img/proceso-cognitivo.webm",
       "x": -500, "y": 300, "w": 300
     },
+    {
+      "id": "ia-video-obra3d",
+      "type": "video",
+      "src": "img/video-fondo-obra3d-web.mp4",
+      "x": -480, "y": 350, "w": 280,
+      "autoplay": true
+    },
 
     // ─── 7. PERSONAS ────────────────────────────────────────
     // Cuadrante inferior derecho.
+
+    {
+      "id": "persona-dialogo",
+      "type": "video",
+      "src": "img/dialogo_web.mp4",
+      "x": -120, "y": -213, "w": 240,
+      "audio": true,
+      "controls": true,
+      "poster": "img/dialogo-poster.webp"
+    },
 
     {
       "id": "persona-noelia",
