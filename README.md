@@ -40,6 +40,7 @@ js/
   render.js             → creación de DOM por tipo (builders)
   events.js             → mouse, touch, keyboard (delegados)
   persist.js            → localStorage con toggle on/off
+  modal.js              → sistema de modales minimalistas (CTA)
 img/
   obras/                → obra plástica (óleo sobre lino belga)
   o1234/                → gráficos del Sistema 01234
@@ -62,9 +63,9 @@ Fuente única de verdad para todo el contenido visible. Cada objeto tiene un `id
 | 7  | Personas         | Retratos con contexto/enlace                   | Sueltos        |
 | 8  | Miscelánea       | Easter eggs, elementos independientes          | Sueltos        |
 
-**Pilas**: los elementos de una misma temática se apilan con offset vertical ~70px entre sí, simulando documentos sobre una mesa. El primer elemento del grupo marca la posición base.
+**Pilas**: los elementos de una misma temática se apilan con offset vertical ~50px entre sí, simulando documentos sobre una mesa. El primer elemento del grupo marca la posición base.
 
-**Tipos soportados**: `avatar`, `text`, `img`, `video`, `svg`, `social`.
+**Tipos soportados**: `avatar`, `text`, `img`, `video`, `svg`, `social`, `cta`.
 
 ### Cómo escalar
 

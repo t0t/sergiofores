@@ -287,9 +287,9 @@ window.__DATA__ = {
     // Cuadrante inferior derecho.
 
     {
-      "id": "id-avatar-melenita",
+      "id": "id-avatar-sergio-disco",
       "type": "avatar",
-      "src": "img/avatar-melenita.webp",
+      "src": "img/avatar-sergio-disco.webp",
       "x": -120, "y": -213, "w": 120
     },
 
