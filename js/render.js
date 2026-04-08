@@ -49,7 +49,7 @@ const builders = {
 
     const img = document.createElement('img');
     img.src       = obj.src;
-    img.alt       = '';
+    img.alt       = obj.alt || '';
     img.draggable = false;
     img.loading   = 'lazy';
     img.decoding  = 'async';
@@ -66,7 +66,7 @@ const builders = {
 
     const poster = document.createElement('img');
     poster.src       = posterSrc;
-    poster.alt       = '';
+    poster.alt       = obj.alt || '';
     poster.draggable = false;
     poster.loading   = 'lazy';
     poster.decoding  = 'async';
@@ -141,7 +141,8 @@ const builders = {
       a.href      = link.url;
       a.target    = '_blank';
       a.rel       = 'noopener';
-      a.title     = link.platform;
+      a.title     = link.label || link.platform;
+      a.setAttribute('aria-label', link.label || link.platform);
       a.innerHTML = SOCIAL_ICONS[link.platform] || '';
       el.appendChild(a);
     });
@@ -222,6 +223,21 @@ export function render() {
     if (obj.id) el.dataset.id = obj.id;
     el.style.left   = obj.x + 'px';
     el.style.top    = obj.y + 'px';
+
+    // Accesibilidad por teclado: foco tabulable + etiqueta
+    el.tabIndex = 0;
+    const label =
+      obj.alt ||
+      obj.content ||
+      obj.title ||
+      obj.detail ||
+      (obj.type === 'social' ? 'Enlaces sociales' : obj.type);
+    if (label) {
+      // Strip HTML y recorta
+      const clean = String(label).replace(/<[^>]*>/g, '').trim().slice(0, 140);
+      if (clean) el.setAttribute('aria-label', clean);
+    }
+    el.setAttribute('role', 'button');
     // zIndex explícito en data.js tiene prioridad sobre el orden natural
     el.style.zIndex = obj.zIndex ?? (10 + i);
 

@@ -9,6 +9,24 @@ import { state, objects, dom } from './state.js';
 import { applyTransform, centerView, zoom } from './transform.js';
 import { debounceSave } from './persist.js';
 
+// ── Centrar la vista sobre un objeto (uso del focus por teclado) ──
+function centerOnObject(el) {
+  const i = parseInt(el.dataset.index, 10);
+  const obj = objects[i];
+  if (!obj) return;
+  // Estima el centro del objeto (x/y son su esquina superior-izquierda en el
+  // espacio virtual; añadimos la mitad del tamaño renderizado).
+  const rect = el.getBoundingClientRect();
+  const halfW = (rect.width / state.scale) / 2;
+  const halfH = (rect.height / state.scale) / 2;
+  const targetX = window.innerWidth  / 2 - (obj.x + halfW) * state.scale;
+  const targetY = window.innerHeight / 2 - (obj.y + halfH) * state.scale;
+  state.x = targetX;
+  state.y = targetY;
+  applyTransform();
+  debounceSave();
+}
+
 // ── HELPERS ──
 
 function hideHint() {
@@ -241,13 +259,39 @@ window.addEventListener('touchend', e => {
 });
 
 // ── KEYBOARD ──
+//
+// Navegación estándar:
+//   Tab / Shift+Tab  → siguiente / anterior objeto (foco nativo del navegador)
+//   Enter / Space    → expande/colapsa el objeto enfocado
+//   Escape           → cierra todos los detalles expandidos y libera foco
+//   Flechas          → paneo manual del canvas
+//   + / -            → zoom
+//   0                → recentrar vista
+
+// Cuando un .obj recibe foco por teclado, lo traemos al centro del viewport.
+document.addEventListener('focusin', e => {
+  const el = e.target.closest?.('.obj');
+  if (!el) return;
+  hideHint();
+  centerOnObject(el);
+});
 
 window.addEventListener('keydown', e => {
   const step = 80;
+  const focused = document.activeElement?.closest?.('.obj');
+
+  // Enter / Space sobre objeto enfocado → expandir
+  if ((e.key === 'Enter' || e.key === ' ') && focused) {
+    e.preventDefault();
+    toggleExpanded(focused);
+    return;
+  }
+
   switch (e.key) {
     case 'Escape':
       document.querySelectorAll('.obj--expanded')
         .forEach(el => el.classList.remove('obj--expanded'));
+      if (focused) focused.blur();
       break;
     case '0':          centerView(); break;
     case 'ArrowUp':    state.y += step; applyTransform(); break;

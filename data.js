@@ -49,7 +49,7 @@ window.__DATA__ = {
     {
       "id": "id-tagline",
       "type": "text",
-      "content": "Artista plástico · Orquestador de agentes y bufón que nadie escucha",
+      "content": "Artista plástico · Orquestando Agentes · Percibiendo en 01234",
       "x": 130, "y": 60,
       "cls": "micro"
     },
@@ -58,10 +58,11 @@ window.__DATA__ = {
       "type": "social",
       "x": -284, "y": 113,
       "links": [
-        { "platform": "instagram", "url": "https://www.instagram.com/sergio.01234/" },
-        { "platform": "x", "url": "https://x.com/t0tinspire" },
-        { "platform": "youtube", "url": "https://youtube.com/@0-1234" },
-        { "platform": "github", "url": "https://github.com/t0t" }
+        { "platform": "instagram", "label": "Instagram — obra plástica (@sergio.01234)", "url": "https://www.instagram.com/sergio.01234/" },
+        { "platform": "instagram", "label": "Instagram — Sistema 01234 (@cuenta.01234)", "url": "https://www.instagram.com/cuenta.01234/" },
+        { "platform": "x", "label": "X (@t0tinspire)", "url": "https://x.com/t0tinspire" },
+        { "platform": "youtube", "label": "YouTube (@0-1234)", "url": "https://youtube.com/@0-1234" },
+        { "platform": "github", "label": "GitHub (@t0t)", "url": "https://github.com/t0t" }
       ]
     },
 
@@ -78,8 +79,15 @@ window.__DATA__ = {
     {
       "id": "txt-lenguaje-poetico",
       "type": "text",
-      "content": "01234 solo puede expresarse desde el lenguaje poético.",
+      "content": "01234 no se explica. Se muestra — como arte, como analogía.",
       "x": 1500, "y": 1100
+    },
+    {
+      "id": "txt-huerto",
+      "type": "text",
+      "content": "El huerto antes que el escaparate.",
+      "x": -1600, "y": 700,
+      "cls": "large"
     },
     {
       "id": "txt-forjas",
@@ -100,15 +108,9 @@ window.__DATA__ = {
       "x": -200, "y": 250
     },
     {
-      "id": "txt-traduccion",
-      "type": "text",
-      "content": "No te falta lenguaje. 👉 te sobra traducción",
-      "x": -350, "y": -50
-    },
-    {
       "id": "txt-forma",
       "type": "text",
-      "content": "👉 la forma no la pongo yo. Yo llego cuando ya está ocurriendo.",
+      "content": "La forma no la pongo yo. Llego cuando ya está ocurriendo.",
       "x": -80, "y": -280
     },
     {
@@ -116,6 +118,19 @@ window.__DATA__ = {
       "type": "text",
       "content": "si lo preparas demasiado → no ocurre<br>si lo nombras → se cae<br>si lo explicas → se sustituye por otra cosa",
       "x": 600, "y": -150
+    },
+    {
+      "id": "txt-lenguaje-codigo",
+      "type": "text",
+      "content": "El lenguaje natural es el nuevo código.",
+      "x": 1500, "y": -900,
+      "cls": "large"
+    },
+    {
+      "id": "txt-existir",
+      "type": "text",
+      "content": "Trabajo porque necesito que ciertas cosas existan.",
+      "x": -1500, "y": 300
     },
 
     // ─── 3. SÍMBOLOS 01234 ──────────────────────────────────
@@ -164,30 +179,35 @@ window.__DATA__ = {
       "id": "obra-gesto",
       "type": "img",
       "src": "img/obras/gesto-primordial.webp",
+      "alt": "Óleo sobre lino — Gesto primordial",
       "x": -600, "y": -380, "w": 340
     },
     {
       "id": "obra-tactil",
       "type": "img",
       "src": "img/obras/exploracion-tactil.webp",
+      "alt": "Óleo sobre lino — Exploración táctil",
       "x": -650, "y": -330, "w": 320
     },
     {
       "id": "obra-proceso",
       "type": "img",
       "src": "img/obras/proceso-creativo.webp",
+      "alt": "Óleo sobre lino — Proceso creativo",
       "x": -580, "y": -280, "w": 300
     },
     {
       "id": "obra-superficie",
       "type": "img",
       "src": "img/obras/superficie-consciente.webp",
+      "alt": "Óleo sobre lino — Superficie consciente",
       "x": -630, "y": -230, "w": 280
     },
     {
       "id": "obra-video-oleo",
       "type": "video",
       "src": "img/obras/proceso-oleo.mp4",
+      "alt": "Vídeo del proceso de óleo sólido sobre lino belga",
       "x": -560, "y": -180, "w": 340
     },
 
@@ -198,12 +218,14 @@ window.__DATA__ = {
       "id": "diag-logo",
       "type": "img",
       "src": "img/o1234/logo-01234.png",
+      "alt": "Logotipo del Sistema 01234",
       "x": 400, "y": -340, "w": 180
     },
     {
       "id": "diag-nodos",
       "type": "img",
       "src": "img/o1234/grafico-metamodelo-3.svg",
+      "alt": "Diagrama del metamodelo 01234: cinco nodos y sus relaciones",
       "x": 450, "y": -290, "w": 300,
       "detail": "Estructura nodal del Sistema 01234. Cinco nodos, sus relaciones."
     },
@@ -211,6 +233,7 @@ window.__DATA__ = {
       "id": "diag-espiritu",
       "type": "img",
       "src": "img/o1234/grafico_004.png",
+      "alt": "Diagrama: Espíritu, Alma, Mente, Cuerpo y lo incognoscible",
       "x": 380, "y": -240, "w": 280,
       "detail": "Espíritu, Alma, Mente, Cuerpo — y lo incognoscible."
     },
@@ -218,6 +241,7 @@ window.__DATA__ = {
       "id": "diag-oculto",
       "type": "img",
       "src": "img/o1234/grafico_009.png",
+      "alt": "Diagrama: del Absoluto incognoscible al cerebro",
       "x": 430, "y": -190, "w": 240,
       "detail": "Lo oculto se oculta de sí para verse. Del Absoluto incognoscible a tu cerebro."
     },
@@ -225,12 +249,14 @@ window.__DATA__ = {
       "id": "diag-pardes",
       "type": "img",
       "src": "img/o1234/grafico-pardes.svg",
+      "alt": "Diagrama Pardes aplicado al Sistema 01234",
       "x": 390, "y": -140, "w": 260
     },
     {
       "id": "diag-ontologia",
       "type": "img",
       "src": "img/o1234/ontologia-condensada.svg",
+      "alt": "Ontología condensada del Sistema 01234",
       "x": 420, "y": -90, "w": 280
     },
 
@@ -261,24 +287,28 @@ window.__DATA__ = {
       "id": "ia-plastica",
       "type": "img",
       "src": "img/sergio-arte-plastica.webp",
+      "alt": "Imagen generada con IA a partir de la obra plástica de Sergio Forés",
       "x": -520, "y": 200, "w": 320
     },
     {
       "id": "ia-video-fondo",
       "type": "video",
       "src": "img/video-fondo.mp4",
+      "alt": "Vídeo generativo de fondo",
       "x": -470, "y": 250, "w": 350
     },
     {
       "id": "ia-proceso-cognitivo",
       "type": "video",
       "src": "img/proceso-cognitivo.webm",
+      "alt": "Vídeo sobre el proceso cognitivo con agentes IA",
       "x": -500, "y": 300, "w": 300
     },
     {
       "id": "ia-video-obra3d",
       "type": "video",
       "src": "img/video-fondo-obra3d-web.mp4",
+      "alt": "Vídeo de obra tridimensional",
       "x": -480, "y": 350, "w": 280,
       "autoplay": true
     },
@@ -290,6 +320,7 @@ window.__DATA__ = {
       "id": "id-avatar-sergio-disco",
       "type": "avatar",
       "src": "img/avatar-sergio-disco.webp",
+      "alt": "Retrato de Sergio Forés",
       "x": -120, "y": -213, "w": 120
     },
 
@@ -297,6 +328,7 @@ window.__DATA__ = {
       "id": "persona-noelia",
       "type": "img",
       "src": "img/noeliarequena.webp",
+      "alt": "Retrato de Noelia Requena",
       "x": 480, "y": 220, "w": 220,
       "detail": "Noelia Requena — <a href='https://noeliarequena.com' target='_blank' rel='noopener'>noeliarequena.com</a>"
     },
@@ -307,6 +339,7 @@ window.__DATA__ = {
       "id": "misc-travolta",
       "type": "img",
       "src": "img/john-travolta.gif",
+      "alt": "GIF de John Travolta mirando a los lados, confuso",
       "x": 570, "y": 268, "w": 160, "zIndex": 101,
       "detail": "John Travolta — Confuso. Buscando la verdad por la puerta de atrás."
     }
