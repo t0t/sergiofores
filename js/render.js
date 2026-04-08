@@ -125,7 +125,7 @@ const builders = {
   text(el, obj) {
     el.classList.add('obj--text');
     if (obj.cls) obj.cls.split(' ').forEach(c => c && el.classList.add(c));
-    el.textContent = obj.content;
+    el.innerHTML = obj.content;
   },
 
   svg(el, obj) {

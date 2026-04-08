@@ -101,6 +101,45 @@ Registro de cambios significativos, deuda técnica y evolución del proyecto.
 
 ---
 
+## Próxima sesión — Prioridades
+
+### 1. Responsive y dispositivos — Auditoría completa
+
+**Problema:** El canvas funciona en móvil, pero la UX es distinta. No se ha auditado en:
+- Tablets (breakpoints intermedios)
+- Móviles grandes (landscape vs portrait)
+- Devices antiguos (throttle de CPU, baterías)
+- Touch gestures (¿long-press está intuitivo? ¿pinch zoom funciona bien?)
+
+**Alcance:** Testear en breakpoints 320px, 768px, 1024px, 1440px. Considerar agregar una media query intermedia (`48em < w < 64em`).
+
+---
+
+### 2. Jerarquía tipográfica — Revisión de escala de tamaños
+
+**Problema:** La jerarquía de tamaños de fuente no está auditada. Las clases `micro`, `large` y el tamaño base pueden no guardar una escala coherente entre sí ni adaptarse bien a distintos viewports.
+
+**Objetivo:** Revisar y ajustar la escala tipográfica en `canvas.css` — base, `micro`, `large` y cualquier variante existente. Asegurar que la jerarquía visual sea legible e intencional.
+
+**Esfuerzo:** Bajo (solo CSS).
+
+---
+
+### 3. Criterio de orden en distribución caótica
+
+**Problema:** El caos visual es intencional, pero sin criterio subyacente el descubrimiento deviene ruido. Ahora hay "pilas" pero no hay una lógica de flujo.
+
+**Objetivo:** Definir un **eje invisible** que ordene el caos sin hacerlo aparente. Posibles enfoques:
+
+- **Geométrico:** Cuadrantes cardinales + diagonal (NW = obra, NE = sistema, SW = pensamiento, SE = personas, centro = identidad).
+- **Cronológico:** Core → evolución → reflexión → futuros.
+- **Temático-visual:** Densidad de contenido baja en extremos, condensada en centro. O lo inverso.
+- **Gravitacional:** Los encuentros (frases) como cuerpos celestes atraen en órbitas los contenidos relacionados.
+
+**Alcance:** Mapear la distribución actual, proponer un criterio, reposicionar objetos sin quebrar pilas existentes.
+
+---
+
 ## Notas de visión
 
 - **Escala:** El canvas puede crecer indefinidamente. La arquitectura lo soporta (objetos sin límite en `data.js`). El riesgo es la densidad: demasiados objetos hacen que el descubrimiento sea caos.

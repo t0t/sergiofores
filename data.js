@@ -116,7 +116,7 @@ window.__DATA__ = {
     {
       "id": "txt-nombra",
       "type": "text",
-      "content": "si lo preparas demasiado → no ocurre<br>si lo nombras → se cae<br>si lo explicas → se sustituye por otra cosa",
+      "content": "si lo preparas demasiado → no ocurre · si lo nombras → se cae<br>si lo explicas → se sustituye por otra cosa",
       "x": 600, "y": -150
     },
     {
