@@ -2,68 +2,387 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<title>Sergio Forés — Artista plástico · Orquestando Agentes · Percibiendo en 01234</title>
-<meta name="description" content="Estudio abierto de Sergio Forés. Artista plástico, orquestando agentes, percibiendo en 01234. Explora el canvas.">
-<meta name="author" content="Sergio Forés">
-<meta name="theme-color" content="#0a0a0a">
-<link rel="canonical" href="https://sergiofores.es/">
-
-<!-- Open Graph -->
-<meta property="og:title" content="Sergio Forés — Artista plástico · Orquestando Agentes · Percibiendo en 01234">
-<meta property="og:description" content="Estudio abierto. Artista plástico, orquestando agentes, percibiendo en 01234.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://sergiofores.es/">
-<meta property="og:image" content="https://sergiofores.es/img/avatar.jpg">
-<meta property="og:image:width" content="400">
-<meta property="og:image:height" content="400">
-<meta property="og:locale" content="es_ES">
-<meta property="og:site_name" content="Sergio Forés">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sergio Forés — Artista plástico · Orquestando Agentes · Percibiendo en 01234">
-<meta name="twitter:description" content="Estudio abierto. Artista plástico, orquestando agentes, percibiendo en 01234.">
-<meta name="twitter:image" content="https://sergiofores.es/img/avatar.jpg">
-
-<!-- Favicon -->
-<link rel="icon" href="img/avatar.jpg" type="image/jpeg">
-<link rel="apple-touch-icon" href="img/avatar.jpg">
-<link rel="manifest" href="site.webmanifest">
-
-<!-- Fonts -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sergio Forés</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:100%;height:100%;-webkit-text-size-adjust:100%}
+  html{-moz-tab-size:4;tab-size:4}
+  img,video,svg{display:block;max-width:100%;height:auto}
+  h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}
+  a{color:inherit;text-decoration:none}
+  button,input,select,textarea{font:inherit;color:inherit}
+  ul,ol{list-style:none}
 
-<link rel="stylesheet" href="css/canvas.css">
+  :root{
+    /* ── Colors ──────────────────────────── */
+    --color-bg:#f0f0f0;
+    --color-fg:#1a1a1a;
+    --color-dim:#868e96;
 
-<!-- Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Sergio Forés",
-  "url": "https://sergiofores.es",
-  "image": "https://sergiofores.es/img/avatar.jpg",
-  "jobTitle": "Artista plástico",
-  "description": "Artista plástico, orquestador de agentes de IA y creador del Sistema 01234.",
-  "sameAs": [
-    "https://www.instagram.com/sergio.01234/",
-    "https://www.youtube.com/@0-1234",
-    "https://github.com/t0t"
-  ]
-}
-</script>
+    /* ── Typography ──────────────────────── */
+    --font-family:'Montserrat', sans-serif;
+    --font-weight-regular:500;
+    --font-weight-bold:700;
+    --font-size-h1:clamp(2.5rem, 7.5vw, 6.5rem);
+    --font-size-h2:clamp(1.55rem, 4.65vw, 4rem);
+    --font-size-h3:clamp(1.3rem, 2.5vw, 1.8rem);
+    --font-size-body:clamp(0.75rem, 1vw, 0.95rem);
+    --letter-spacing-tight:0.35em;
+    --letter-spacing-h2:0.385em;
+    --letter-spacing-normal:normal;
+
+    /* ── Media ───────────────────────────── */
+    --aspect-ratio-square:1 / 1;
+    --aspect-ratio-landscape:16 / 9;
+    --aspect-ratio-reel:9 / 16;
+    --object-fit-cover:cover;
+    --object-fit-contain:contain;
+
+    /* ── Spacing ─────────────────────────── */
+    --gap:clamp(1.5rem, 4vw, 3.5rem);
+    --pad:clamp(1.2rem, 3vw, 2.5rem);
+
+    /* ── Animation ───────────────────────── */
+    --ease:0s;
+  }
+
+  body{
+    font-family:var(--font-family);
+    background:var(--color-bg);
+    color:var(--color-fg);
+    overflow:hidden;
+    cursor:url('img/cursor-arrow.svg') 3 3, auto;
+  }
+
+  a, button, [role="button"], input[type="submit"], select, summary,
+  a:hover, button:hover{
+    cursor:url('img/cursor-arrow.svg') 3 3, auto;
+  }
+
+  /* ── HERO ─────────────────────────────── */
+
+  .c-hero{
+    position:relative;
+    width:100%;
+    height:auto;
+  }
+
+  /* ── NOMBRE — capa flotante centrada ──── */
+
+  .c-hero__name,
+  h2{
+    font-weight:var(--font-weight-bold);
+    letter-spacing:var(--letter-spacing-tight);
+    text-transform:uppercase;
+    line-height:1;
+    color:var(--color-fg);
+  }
+
+  .c-hero__name{
+    position:relative;
+    padding:1.5rem var(--pad);
+    font-size:clamp(1.8rem, 8vw, 3rem);
+    text-align:center;
+    z-index:10;
+    pointer-events:none;
+    overflow-wrap:break-word;
+    word-break:break-all;
+  }
+
+  h2{
+    font-size:var(--font-size-h2);
+    letter-spacing:var(--letter-spacing-h2);
+  }
+
+  /* ── GRID ─────────────────────────────── */
+
+  .c-hero__grid{
+    transition:var(--ease);
+  }
+
+  /* ── CELDAS ───────────────────────────── */
+
+  .c-hero__cell{
+    overflow:hidden;
+    cursor:url('img/cursor-arrow.svg') 3 3, auto;
+    transition:var(--ease);
+  }
+
+  /* ── CONTENIDO TEXTO ──────────────────── */
+
+  .c-hero__text{
+    padding:1.5rem var(--pad);
+    z-index:2;
+    transition:opacity var(--ease);
+  }
+
+  .c-hero__tagline,
+  .c-hero__desc{
+    color:var(--color-fg);
+    font-size:var(--font-size-h3);
+  }
+
+  .c-hero__tagline{
+    line-height:1.2;
+    text-transform:uppercase;
+  }
+
+  .c-hero__desc{
+    line-height:1.4;
+    margin-top:0.3em;
+  }
+
+  /* ── MEDIA ────────────────────────────── */
+
+  .c-hero__media{
+    display:none;
+    transition:opacity var(--ease);
+    pointer-events:none;
+  }
+
+  .c-hero__media[data-mobile]{
+    display:block;
+  }
+
+  .c-hero__media img,
+  .c-hero__media video{
+    width:100%;
+    display:block;
+    object-fit:cover;
+  }
+
+  /* ── PLACEHOLDER ──────────────────────── */
+
+  .c-hero__placeholder{
+    position:absolute;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    font-size:0.85rem;
+    color:var(--color-dim);
+    opacity:0.3;
+    text-transform:lowercase;
+    letter-spacing:0.1em;
+  }
+
+  /* ═══ ESTADOS DE HOVER ═══════════════════ */
+
+  /* Percibo: text TL, square TR, landscape BL, landscape BR */
+  .c-hero__grid[data-active="percibo"]{ }
+  .c-hero__grid[data-active="percibo"] .c-hero__cell:not([data-area="percibo"]) .c-hero__media[data-src="percibo"]{ opacity:1 }
+  .c-hero__grid[data-active="percibo"] .c-hero__cell:not([data-area="percibo"]) .c-hero__text{ opacity:0 }
+
+  /* Pinto: portrait TL, landscape TR, text BL, square BR */
+  .c-hero__grid[data-active="pinto"]{ }
+  .c-hero__grid[data-active="pinto"] .c-hero__cell:not([data-area="pinto"]) .c-hero__media[data-src="pinto"]{ opacity:1 }
+  .c-hero__grid[data-active="pinto"] .c-hero__cell:not([data-area="pinto"]) .c-hero__text{ opacity:0 }
+
+  /* Creo: reel TL, text TR, landscape BL, landscape BR */
+  .c-hero__grid[data-active="creo"]{ }
+  .c-hero__grid[data-active="creo"] .c-hero__cell:not([data-area="creo"]) .c-hero__media[data-src="creo"]{ opacity:1 }
+  .c-hero__grid[data-active="creo"] .c-hero__cell:not([data-area="creo"]) .c-hero__text{ opacity:0 }
+
+  /* Tambien: landscape TL, landscape TR, square BL, text BR */
+  .c-hero__grid[data-active="tambien"]{ }
+  .c-hero__grid[data-active="tambien"] .c-hero__cell:not([data-area="tambien"]) .c-hero__media[data-src="tambien"]{ opacity:1 }
+  .c-hero__grid[data-active="tambien"] .c-hero__cell:not([data-area="tambien"]) .c-hero__text{ opacity:0 }
+
+  /* ── THIN (≥ 30em / 480px) — medio izq + texto der ── */
+
+  @media (width >= 30em){
+    .c-hero__cell{
+      display:flex;
+      flex-direction:row;
+      align-items:center;
+    }
+    .c-hero__media[data-mobile]{
+      width:40%; flex-shrink:0;
+    }
+    .c-hero__text{
+      flex:1;
+      padding:var(--pad);
+    }
+  }
+
+  /* ── NORMAL (≥ 48em / 768px) — grid 2×2 con hover ── */
+
+  @media (width >= 48em){
+    body{ overflow:hidden }
+    .c-hero{ height:100vh }
+    .c-hero__name{
+      position:absolute;
+      top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      padding:0;
+      font-size:var(--font-size-h1);
+      white-space:nowrap;
+    }
+    .c-hero__grid{
+      display:grid;
+      grid-template-columns:var(--col1, 1.2fr) var(--col2, 1fr);
+      grid-template-rows:var(--row1, 1fr) var(--row2, 1fr);
+      height:100%;
+      gap:var(--gap);
+      padding:var(--pad);
+    }
+    .c-hero__cell{
+      display:block;
+      position:relative;
+    }
+    .c-hero__media,
+    .c-hero__media[data-mobile]{
+      display:block;
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      opacity:0;
+    }
+    .c-hero__media img,
+    .c-hero__media video{ width:100%; height:100%; max-width:none; object-fit:contain }
+    .c-hero__text{
+      position:absolute;
+      top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      width:clamp(260px, 25vw, 420px);
+      padding:var(--pad);
+      cursor:url('img/cursor-arrow.svg') 3 3, pointer;
+    }
+    .c-hero__placeholder{ display:flex }
+  }
+</style>
 </head>
 <body>
 
-<h1 class="sr-only">Sergio Forés — Estudio abierto</h1>
-<main id="universe" role="application" aria-label="Canvas interactivo"></main>
-<div id="zoom-level" aria-hidden="true"></div>
-<div id="hint" aria-hidden="true">scroll · arrastra · explora</div>
+<section class="c-hero" id="hero">
 
-<script src="data.js"></script>
-<script type="module" src="js/canvas.js"></script>
+  <!-- Nombre — capa flotante sobre el grid -->
+  <h1 class="c-hero__name">Sergiofores</h1>
+
+  <!-- Grid de 4 celdas -->
+  <div class="c-hero__grid" id="heroGrid">
+
+    <!-- Top-left: PERCIBO -->
+    <div class="c-hero__cell" data-area="percibo">
+      <div class="c-hero__media c-hero__media--reel" data-src="pinto" data-type="reel" data-ar="0.562">
+        <video src="img/obras/pinto-001-video.mp4" muted loop playsinline preload="auto"></video>
+      </div>
+      <div class="c-hero__media c-hero__media--reel" data-src="creo" data-type="reel" data-audio="true" data-ar="0.562">
+        <video src="img/dialogo_web.mp4" muted loop playsinline preload="auto"></video>
+      </div>
+      <div class="c-hero__media c-hero__media--landscape" data-src="tambien" data-type="image" data-ar="1.5" data-mobile>
+        <img src="img/obras/gesto-primordial.webp" alt="Gesto primordial" loading="lazy">
+      </div>
+      <div class="c-hero__text">
+        <h3 class="c-hero__tagline">Me doy cuenta de 01234</h3>
+        <p class="c-hero__desc">destilando mi propio<br>sistema cognitivo</p>
+      </div>
+    </div>
+
+    <!-- Top-right: CREO -->
+    <div class="c-hero__cell" data-area="creo">
+      <div class="c-hero__media c-hero__media--square" data-src="percibo" data-type="image" data-ar="1.105">
+        <img src="img/o1234/grafico-metamodelo-3.svg" alt="Metamodelo 01234" loading="lazy">
+      </div>
+      <div class="c-hero__media c-hero__media--landscape" data-src="pinto" data-type="image" data-ar="1.333">
+        <img src="img/obras/bolas-oleo-solido.webp" alt="Bolas de óleo sólido" loading="lazy">
+      </div>
+      <div class="c-hero__media c-hero__media--landscape" data-src="tambien" data-type="image" data-ar="1.798" data-mobile>
+        <img src="img/sergio-arte-plastica.webp" alt="Sergio y agentes IA" loading="lazy">
+      </div>
+      <div class="c-hero__text">
+        <h3 class="c-hero__tagline">Creo con la palabra</h3>
+        <p class="c-hero__desc">Orquestando y entrenando Agentes de IA</p>
+      </div>
+    </div>
+
+    <!-- Bottom-left: PINTO -->
+    <div class="c-hero__cell" data-area="pinto">
+      <div class="c-hero__media c-hero__media--landscape" data-src="percibo" data-type="video" data-ar="1.798">
+        <video src="img/proceso-cognitivo.webm" muted loop playsinline></video>
+      </div>
+      <div class="c-hero__media c-hero__media--landscape" data-src="creo" data-type="image" data-ar="1.798">
+        <img src="img/sergio-arte-plastica.webp" alt="Sergio Forés" loading="lazy">
+      </div>
+      <div class="c-hero__media c-hero__media--square" data-src="tambien" data-type="image" data-ar="0.976" data-mobile>
+        <img src="img/obras/pinto-002.webp" alt="Obra en espacio" loading="lazy">
+      </div>
+      <div class="c-hero__text">
+        <h3 class="c-hero__tagline">Pinto</h3>
+        <p class="c-hero__desc">Fabricando mis pinturas,</p>
+      </div>
+    </div>
+
+    <!-- Bottom-right: TAMBIEN -->
+    <div class="c-hero__cell" data-area="tambien">
+      <div class="c-hero__media c-hero__media--landscape" data-src="percibo" data-type="image" data-ar="1.5">
+        <img src="img/obras/gesto-primordial.webp" alt="Gesto primordial" loading="lazy">
+      </div>
+      <div class="c-hero__media c-hero__media--square" data-src="pinto" data-type="image" data-ar="0.976">
+        <img src="img/obras/pinto-002.webp" alt="Obra en espacio" loading="lazy">
+      </div>
+      <div class="c-hero__media c-hero__media--landscape" data-src="creo" data-type="image" data-ar="1.798" data-mobile>
+        <img src="img/sergio-arte-plastica.webp" alt="Sergio Forés" loading="lazy">
+      </div>
+      <div class="c-hero__text">
+        <h3 class="c-hero__tagline">Cuento chistes sin gracia</h3>
+        <p class="c-hero__desc">(pero eso es otra historia...)</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const grid = document.getElementById('heroGrid');
+  const areas = ['percibo', 'pinto', 'creo', 'tambien'];
+  let leaveTimer = null;
+
+  function activate(area) {
+    clearTimeout(leaveTimer);
+    grid.dataset.active = area;
+    grid.querySelectorAll('video').forEach(v => { v.pause(); v.muted = true; });
+    grid.querySelectorAll(`.c-hero__media[data-src="${area}"] video`).forEach(v => {
+      const hasAudio = v.closest('[data-audio="true"]');
+      v.muted = !hasAudio;
+      v.currentTime = 0;
+      v.play().catch(() => { v.muted = true; v.play(); });
+    });
+  }
+
+  function deactivate() {
+    leaveTimer = setTimeout(() => {
+      delete grid.dataset.active;
+      grid.querySelectorAll('video').forEach(v => { v.pause(); v.muted = true; });
+    }, 100);
+  }
+
+  grid.querySelectorAll('.c-hero__cell').forEach(cell => {
+    const area = cell.dataset.area;
+    if (!areas.includes(area)) return;
+    const text = cell.querySelector('.c-hero__text');
+    if (!text) return;
+
+    text.addEventListener('mouseenter', () => activate(area));
+    text.addEventListener('mouseleave', deactivate);
+  });
+
+  grid.addEventListener('mouseleave', () => {
+    clearTimeout(leaveTimer);
+    delete grid.dataset.active;
+    grid.querySelectorAll('video').forEach(v => { v.pause(); v.muted = true; });
+  });
+</script>
+
 </body>
 </html>
