@@ -1,0 +1,300 @@
+/**
+ * ============================================================
+ *   DESIGN TOKENS — Sergio Forés
+ * ============================================================
+ *
+ * FUENTE ÚNICA DE VERDAD para todas las variables del sistema.
+ * Consumido por: design-system, sergiofores.es, futuros proyectos.
+ *
+ * Cada proyecto copia este archivo a su css/ e importa antes
+ * de cualquier otro CSS. Sobreescribe en :root solo lo que
+ * necesita distinto. Todo lo demás viene de aquí.
+ *
+ * Regla dura: ningún otro archivo del sistema debe contener
+ * números mágicos (hex, px fijos en valores, etc). Todo
+ * referencia un token desde aquí vía var(--token-name).
+ *
+ * Organización del archivo (en este orden):
+ *
+ *   1. Tipografía      — familia, tamaños (3), pesos, spacing
+ *   2. Color de marca  — CMY puros, firma cromática
+ *   3. Color gris      — escala 50..900
+ *   4. Color de acento — funcionales (error, info, warning, success)
+ *   5. Color semántico — aliases orientados a uso (text, surface)
+ *   6. Espaciado       — escala áurea --space-1..24
+ *   7. Transforms      — lift, scale (animaciones)
+ *   8. Borders/radius  — grosor y radio
+ *   9. Shadows         — elevación xs..xl
+ *  10. Transitions     — duraciones y curvas
+ *  11. Breakpoints     — referencia (no usados en @media, ver nota)
+ *  12. Spacing fluido  — --gap, --pad (variantes de proyecto)
+ *  13. Media           — aspect-ratio, object-fit
+ *  14. Layout          — containers, grid system, navegación
+ *  15. Aliases         — tipográficos, de peso, cromáticos
+ *
+ * Documentación extensa: docs/audit-design-system-2026-04-07.md
+ * Auditoría de contraste: docs/audit-accessibility-2026-04-07.md
+ */
+
+:root {
+  /* ============================================================
+     1. TIPOGRAFÍA
+     ============================================================
+     Regla dura: solo 3 tamaños en todo el sistema.
+     H1 usa large, H2-H3/nav/blockquote usan medium, todo lo demás small.
+     Los tres usan clamp() con ratio áureo ~1.618 → escalan fluidamente
+     entre móvil y desktop sin media queries.
+  */
+  --font-primary: 'Futura', 'Avenir Next', 'Helvetica Neue', sans-serif;
+  --font-secondary: 'Montserrat', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  
+  /* 3 TAMAÑOS ÚNICOS — ratio ~1.618 */
+  --text-large: clamp(2.618rem, calc(2.4rem + 1.09vw), 3.236rem);   /* H1 */
+  --text-medium: clamp(1.618rem, calc(1.5rem + 0.59vw), 1.927rem);  /* H2-H3, nav, blockquote */
+  --text-small: clamp(0.875rem, calc(0.85rem + 0.3vw), 1.05rem);    /* Todo lo demás */
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Letter Spacing & Line Heights */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.02em;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+
+  /* ============================================================
+     2. COLOR DE MARCA — CMY puros + negro/blanco
+     ============================================================
+     Firma cromática del sistema. NO usar como texto pequeño sobre
+     fondo claro — fallan WCAG AA catastróficamente:
+       · yellow  sobre blanco: 1.07:1 (necesario 4.5:1) ❌
+       · cyan    sobre blanco: 1.25:1 ❌
+       · magenta sobre blanco: 3.14:1 ❌ (solo pasa como texto grande)
+     Uso permitido: fondos, fills, gestos decorativos, texto SOBRE FONDO OSCURO.
+     En Fase 2 se propondrá renombrar a --brand-* para que el nombre
+     prevenga el mal uso. Ver audit-accessibility-2026-04-07.md.
+  */
+  --color-yellow: #FFFF00;   /* Amarillo puro — solo decoración/fondos */
+  --color-cyan: #00FFFF;     /* Cyan puro — solo decoración/fondos */
+  --color-magenta: #FF00FF;  /* Magenta puro — solo decoración/fondos */
+  --color-black: #000000;    /* Negro puro */
+  --color-white: #FFFFFF;    /* Blanco puro */
+
+  /* Alias --brand-* — mismo valor, nombre que señala USO (decoración)
+     Código nuevo: usar --brand-yellow en vez de --color-yellow.
+     Los --color-* se mantienen por compatibilidad hacia atrás.
+     Estos alias existen para que, cuando leas el código, el nombre
+     te recuerde que NO son tokens de texto — son de marca/decoración. */
+  --brand-yellow:  var(--color-yellow);
+  --brand-cyan:    var(--color-cyan);
+  --brand-magenta: var(--color-magenta);
+
+  /* ============================================================
+     3. COLOR GRIS — escala 50..900
+     ============================================================ */
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e5e5e5;
+  --color-gray-300: #d4d4d4;
+  --color-gray-400: #a3a3a3;
+  --color-gray-500: #737373;
+  --color-gray-600: #525252;
+  --color-gray-700: #404040;
+  --color-gray-800: #262626;
+  --color-gray-900: #171717;
+
+  /* ============================================================
+     4. COLOR DE ACENTO — funcionales
+     ============================================================
+     Estados UI. AVISO de contraste sobre fondo blanco:
+       · accent-primary   (azul)     : 5.61:1 ✅  AA-safe como texto
+       · accent-secondary (turquesa) : 2.33:1 ❌  NI como borde
+       · accent-warning   (ámbar)    : 1.79:1 ❌  NI como borde
+       · accent-error     (rojo)     : 3.85:1 ❌  falla texto normal
+       · accent-info      (azul)     : 3.12:1 ❌  falla texto normal
+     Fase 2 propone añadir --accent-*-text versiones oscurecidas
+     AA-safe, dejando estas como "-bright" para fills sobre oscuro.
+  */
+  --accent-primary: #0055ff;      /* Azul vivo — AA-safe sobre blanco */
+  --accent-secondary: #00bfa6;    /* Turquesa — solo decoración/fills */
+  --accent-warning: #ffb300;      /* Ámbar — solo decoración/fills */
+  --accent-error: #ff1744;        /* Rojo vivo — solo fills/iconos grandes */
+  --accent-info: #2196f3;         /* Azul informativo — solo fills/iconos grandes */
+
+  /* Versiones AA-safe para TEXTO sobre fondo claro (ratio ≥6:1 sobre white)
+     ------------------------------------------------------------------------
+     Usar estos en mensajes de error, info, warning, etc. — cualquier
+     cosa donde el color deba ser legible como texto.
+     Los --accent-*-bright existen como alias hacia los actuales (arriba),
+     para cuando necesites la versión brillante en fills sobre fondo oscuro. */
+  --accent-error-text:     #c41134;  /* 6.04:1 sobre white */
+  --accent-info-text:      #1666a5;  /* 6.04:1 sobre white */
+  --accent-warning-text:   #825b00;  /* 6.09:1 sobre white */
+  --accent-secondary-text: #007061;  /* 6.02:1 sobre white */
+
+  --accent-error-bright:     var(--accent-error);
+  --accent-info-bright:      var(--accent-info);
+  --accent-warning-bright:   var(--accent-warning);
+  --accent-secondary-bright: var(--accent-secondary);
+
+  /* ============================================================
+     5. COLOR SEMÁNTICO — aliases orientados a uso
+     ============================================================
+     Esta capa es la que debería usar el 90% del CSS.
+     Apunta a tokens concretos arriba. Cambiar aquí = cambiar
+     el significado en todo el sistema sin tocar componentes.
+  */
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-muted: var(--color-gray-500);
+  --color-text-inverse: var(--color-white);
+  --color-surface-primary: var(--color-white);
+  --color-surface-secondary: var(--color-gray-50);
+  --color-surface-tertiary: var(--color-gray-100);
+  --color-surface-inverse: var(--color-gray-900);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-warning: var(--accent-warning);
+  --color-accent-error: var(--accent-error);
+  --color-accent-info: var(--accent-info);
+
+  /* ============================================================
+     6. ESPACIADO — escala áurea
+     ============================================================
+     Base 1rem = 16px. Cada paso multiplica ~φ (1.618).
+     Esta es la escala CANÓNICA — usarla siempre que sea posible.
+     Los tokens semánticos --space-card-padding/card-image/grid-min/container-max
+     extienden la escala para dimensiones específicas de componentes.
+  */
+  --space-1: 0.309rem;
+  --space-2: 0.5rem;
+  --space-3: 0.618rem;
+  --space-4: 1rem;
+  --space-5: 1.309rem;
+  --space-6: 1.618rem;
+  --space-8: 2rem;
+  --space-10: 2.618rem;
+  --space-12: 3rem;
+  --space-16: 4.236rem;
+  --space-20: 5rem;
+  --space-24: 6.854rem;
+
+  /* TOKENS SEMÁNTICOS DIMENSIONALES
+     ------------------------------------------------------------
+     Nombres que describen el significado, no la dimensión bruta.
+     Valores derivados de la escala áurea.
+  */
+  --space-card-padding: 3.618rem;     /* ~58px  = φ² + 1  — padding/height grande en cards */
+  --space-card-image: 13.708rem;      /* ~219px = φ⁵ × 2  — height de imágenes en cards */
+  --space-grid-min: 15.326rem;        /* ~245px = φ⁶      — minmax en grids responsive */
+  --space-container-max: 101.9rem;    /* ~1630px = φ⁸     — max-width de contenedor */
+
+  /* ESPACIADO SEMÁNTICO */
+  --space-xl: var(--space-12);
+  --space-2xl: var(--space-16);
+
+  /* OFFSET PROPORCIONAL — respiración asimétrica en grids editoriales
+     -----------------------------------------------------------------
+     Escala derivada de φ (inversos). Valores porcentuales porque el
+     offset es proporcional al contenedor, no absoluto como --space-*.
+     Misma lógica áurea, distinta unidad.
+  */
+  --offset-sm: 9%;       /* φ⁻⁵  — sutil, apenas rompe la alineación */
+  --offset-md: 14.6%;    /* φ⁻⁴  — suave, desplazamiento perceptible */
+  --offset-lg: 23.6%;    /* φ⁻³  — estándar, tensión asimétrica clara */
+  --offset-xl: 38.2%;    /* φ⁻²  — dramático, gesto editorial fuerte */
+
+  /* TRANSFORMS */
+  --transform-lift-strong: translateY(-0.309rem);
+  --transform-scale-gentle: scale(1.031);
+
+  /* ALIAS */
+  --color-surface: var(--color-surface-secondary);
+
+  /* BORDER & RADIUS */
+  --border-width-thin: 1px;
+  --border-width-base: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 4px;
+  --border-radius-none: 0;
+  --border-radius-sm: 0.125rem;
+  --border-radius-base: 0.25rem;
+  --border-radius-lg: 0.5rem;
+  --border-radius-full: 9999px;
+
+  /* SHADOWS */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-none: none;
+
+  /* TRANSITIONS */
+  --duration-fast: 0.15s;
+  --duration-base: 0.2s;
+  --duration-slow: 0.6s;
+  --ease-linear: linear;
+  --ease-out: ease-out;
+  --ease-custom: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* BREAKPOINTS */
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+
+  /* ── Spacing Fluido (variantes de proyecto) ─ */
+  --gap: clamp(1.5rem, 4vw, 3.5rem);
+  --pad: clamp(1.2rem, 3vw, 2.5rem);
+
+  /* ── Media ─────────────────────────────────── */
+  --aspect-ratio-square: 1 / 1;
+  --aspect-ratio-landscape: 16 / 9;
+  --aspect-ratio-reel: 9 / 16;
+  --object-fit-cover: cover;
+  --object-fit-contain: contain;
+
+  /* ── Letter Spacing — display y caps ─────────── */
+  --letter-spacing-display: 0.35em;
+  --letter-spacing-caps: 0.1em;    /* uppercase en nav/logo — entre wide y display */
+
+  /* ── Aliases tipográficos (semánticos) ──────── */
+  --font-size-display: var(--text-large);
+  --font-size-heading: var(--text-medium);
+  --font-size-body: var(--text-small);
+
+  /* ── Alias de peso (regular = normal = 400) ── */
+  --font-weight-regular: var(--font-weight-normal);
+
+  /* ── Layout — containers ───────────────────── */
+  --container-max-width: 1236px;
+  --container-max-width-narrow: 50rem;
+  --container-padding: var(--space-6);           /* default = standard */
+  --container-padding-compact: 0;
+  --container-padding-standard: var(--space-6);
+  --container-padding-wide: var(--space-2xl);
+
+  /* ── Layout — grid system ──────────────────── */
+  --project-grid-columns-mobile: repeat(auto-fit, minmax(300px, 1fr));
+  --project-grid-columns-tablet: repeat(auto-fit, minmax(350px, 1fr));
+  --project-grid-columns-desktop: repeat(auto-fit, minmax(400px, 1fr));
+  --project-grid-columns-ultra: repeat(auto-fit, minmax(420px, 1fr));
+  --project-grid-gap: var(--space-xl);
+
+  /* ── Navegación ────────────────────────────── */
+  --nav-height-offset: var(--space-2xl);
+  --nav-padding-h: var(--space-6);
+
+  /* ── Aliases cromáticos (directos) ─────────── */
+  --color-bg: var(--color-surface-primary);
+  --color-fg: var(--color-text-primary);
+  --color-dim: var(--color-text-muted);
+}
