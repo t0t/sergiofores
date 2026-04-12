@@ -39,6 +39,10 @@ function hideHint() {
 function isInteractive(target) {
   // Detail panel (y sus links): interactivo — no se arrastra
   if (target.closest('.obj__detail')) return true;
+  // Texto en edición: interactivo
+  if (target.closest('.obj--editing')) return true;
+  // Resize handle: se gestiona aparte
+  if (target.closest('.obj__resize-handle')) return true;
   // Links en general: interactivos, excepto los del CTA (se draggean; acción va por click)
   const link = target.closest('a');
   return !!(link && !link.closest('.obj--cta'));
@@ -63,13 +67,7 @@ function toggleExpanded(el) {
   }
 }
 
-// ── WHEEL ──
-
-window.addEventListener('wheel', e => {
-  e.preventDefault();
-  hideHint();
-  zoom(e.deltaY, e.clientX, e.clientY);
-}, { passive: false });
+// ── WHEEL (zoom desactivado — se controla desde sidebar) ──
 
 // ── MOUSE ──
 
@@ -147,7 +145,59 @@ dom.universe.addEventListener('dblclick', e => {
   if (e.target.closest('a')) { e.stopPropagation(); return; }
   if (state.hasMoved) return;
   const obj = getObjEl(e.target);
-  if (obj) toggleExpanded(obj);
+  if (!obj) return;
+
+  // Textos: edición inline
+  if (obj.classList.contains('obj--text')) {
+    startTextEdit(obj);
+    return;
+  }
+
+  toggleExpanded(obj);
+});
+
+// ── EDICIÓN INLINE DE TEXTO ──
+
+function startTextEdit(el) {
+  if (el.classList.contains('obj--editing')) return;
+  el.classList.add('obj--editing');
+  el.contentEditable = 'true';
+  el.focus();
+
+  // Seleccionar todo el contenido
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+}
+
+function stopTextEdit(el) {
+  if (!el?.classList.contains('obj--editing')) return;
+  el.classList.remove('obj--editing');
+  el.contentEditable = 'false';
+
+  // Sincronizar contenido editado con __DATA__
+  const i = parseInt(el.dataset.index, 10);
+  if (objects[i]) {
+    objects[i].content = el.innerHTML;
+    debounceSave();
+  }
+}
+
+// Salir de edición al clicar fuera o presionar Escape
+window.addEventListener('mousedown', e => {
+  const editing = document.querySelector('.obj--editing');
+  if (editing && !editing.contains(e.target)) {
+    stopTextEdit(editing);
+  }
+});
+
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    const editing = document.querySelector('.obj--editing');
+    if (editing) { stopTextEdit(editing); e.stopPropagation(); }
+  }
 });
 
 // ── TOUCH ──
@@ -185,36 +235,20 @@ window.addEventListener('touchstart', e => {
     }
   }
 
+  // Pinch-zoom desactivado — se controla desde sidebar
   if (e.touches.length === 2) {
     state.panning = false;
     touchTarget   = null;
-    const dx = e.touches[0].clientX - e.touches[1].clientX;
-    const dy = e.touches[0].clientY - e.touches[1].clientY;
-    state.pinchDist  = Math.sqrt(dx * dx + dy * dy);
-    state.pinchScale = state.scale;
   }
 }, { passive: true });
 
 window.addEventListener('touchmove', e => {
   if (e.touches.length === 2) {
-    e.preventDefault();
-    state.hasMoved = true;
-    const dx   = e.touches[0].clientX - e.touches[1].clientX;
-    const dy   = e.touches[0].clientY - e.touches[1].clientY;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    const cx   = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-    const cy   = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-    const newScale = Math.max(
-      state.minScale,
-      Math.min(state.maxScale, state.pinchScale * (dist / state.pinchDist))
-    );
-    const ratio = newScale / state.scale;
-    state.x     = cx - (cx - state.x) * ratio;
-    state.y     = cy - (cy - state.y) * ratio;
-    state.scale = newScale;
-    applyTransform();
+    // Pinch-zoom desactivado
+    return;
+  }
 
-  } else if (e.touches.length === 1) {
+  if (e.touches.length === 1) {
     const t  = e.touches[0];
     const dx = t.clientX - touchStartPos.x;
     const dy = t.clientY - touchStartPos.y;
@@ -258,6 +292,49 @@ window.addEventListener('touchend', e => {
   }
 });
 
+// ── RESIZE DESDE HANDLE ──
+
+let resizing = null;
+let resizeStart = { x: 0, y: 0, w: 0 };
+
+window.addEventListener('mousedown', e => {
+  const handle = e.target.closest('.obj__resize-handle');
+  if (!handle) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  const obj = handle.closest('.obj');
+  obj.classList.add('obj--resizing');
+  resizing = obj;
+  resizeStart.x = e.clientX;
+  resizeStart.y = e.clientY;
+  resizeStart.w = obj.offsetWidth;
+  document.body.style.cursor = 'nwse-resize';
+});
+
+window.addEventListener('mousemove', e => {
+  if (!resizing) return;
+  const dx = (e.clientX - resizeStart.x) / state.scale;
+  const newW = Math.max(60, resizeStart.w + dx);
+  resizing.style.width = newW + 'px';
+});
+
+window.addEventListener('mouseup', () => {
+  if (!resizing) return;
+
+  // Sincronizar ancho con __DATA__
+  const i = parseInt(resizing.dataset.index, 10);
+  if (objects[i]) {
+    objects[i].w = Math.round(parseFloat(resizing.style.width));
+    debounceSave();
+  }
+
+  resizing.classList.remove('obj--resizing');
+  resizing = null;
+  document.body.style.cursor = '';
+});
+
 // ── KEYBOARD ──
 //
 // Navegación estándar:
@@ -276,7 +353,61 @@ document.addEventListener('focusin', e => {
   centerOnObject(el);
 });
 
+// ── GUARDAR POSICIONES EN data.js (Cmd+S / Ctrl+S) ──
+
+export function exportDataJS() {
+  // Actualizar coordenadas en __DATA__ desde el DOM actual
+  const els = document.querySelectorAll('.obj[data-id]');
+  const posMap = {};
+  els.forEach(el => {
+    posMap[el.dataset.id] = {
+      x: Math.round(parseFloat(el.style.left)),
+      y: Math.round(parseFloat(el.style.top))
+    };
+  });
+
+  const updated = window.__DATA__.objects.map(obj => {
+    if (obj.id && posMap[obj.id]) {
+      return { ...obj, x: posMap[obj.id].x, y: posMap[obj.id].y };
+    }
+    return obj;
+  });
+
+  // Serializar con formato legible
+  const header = `/**
+ * data.js — Contenido del canvas de sergiofores.es
+ *
+ * FUENTE ÚNICA DE VERDAD para todo el contenido visible.
+ * Posiciones exportadas desde el canvas con Cmd+S.
+ */
+
+`;
+  const json = JSON.stringify({ objects: updated }, null, 2);
+  const content = header + 'window.__DATA__ = ' + json + ';\n';
+
+  // Descargar como archivo
+  const blob = new Blob([content], { type: 'text/javascript' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'data.js';
+  a.click();
+  URL.revokeObjectURL(a.href);
+
+  // Feedback visual
+  const el = document.getElementById('zoom-level');
+  el.textContent = 'posiciones guardadas ✓';
+  el.classList.add('visible');
+  setTimeout(() => el.classList.remove('visible'), 2000);
+}
+
 window.addEventListener('keydown', e => {
+  // Alt+S → exportar data.js con posiciones actuales
+  if (e.altKey && e.key === 's') {
+    e.preventDefault();
+    exportDataJS();
+    return;
+  }
+
   const step = 80;
   const focused = document.activeElement?.closest?.('.obj');
 
@@ -298,7 +429,6 @@ window.addEventListener('keydown', e => {
     case 'ArrowDown':  state.y -= step; applyTransform(); break;
     case 'ArrowLeft':  state.x += step; applyTransform(); break;
     case 'ArrowRight': state.x -= step; applyTransform(); break;
-    case '+': case '=': zoom( 1, innerWidth / 2, innerHeight / 2); break;
-    case '-':            zoom(-1, innerWidth / 2, innerHeight / 2); break;
+    // Zoom por teclado desactivado — se controla desde sidebar
   }
 });

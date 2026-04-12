@@ -10,8 +10,9 @@ export function applyTransform() {
   if (rafPending) return;
   rafPending = true;
   requestAnimationFrame(() => {
+    const sidebarOffset = state.sidebarOpen ? -140 : 0;
     dom.universe.style.transform =
-      `translate(${state.x}px,${state.y}px) scale(${state.scale})`;
+      `translate(${state.x + sidebarOffset}px,${state.y}px) scale(${state.scale})`;
     rafPending = false;
   });
 }
@@ -47,4 +48,7 @@ function showZoom() {
   dom.zoomEl.classList.add('visible');
   clearTimeout(zoomTimeout);
   zoomTimeout = setTimeout(() => dom.zoomEl.classList.remove('visible'), 1200);
+  // Sync sidebar zoom display
+  const sidebarVal = document.getElementById('sidebar-zoom-val');
+  if (sidebarVal) sidebarVal.textContent = Math.round(state.scale * 100) + '%';
 }

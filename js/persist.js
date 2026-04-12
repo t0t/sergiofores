@@ -9,7 +9,7 @@
 
 import { STORAGE_KEY, state, objects } from './state.js';
 
-const ENABLED = false; // ← cambiar a true para reactivar
+const ENABLED = true;
 
 export function loadPositions() {
   if (!ENABLED) return false;

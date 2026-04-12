@@ -244,6 +244,11 @@ export function render() {
     const build = builders[obj.type];
     if (build) build(el, obj);
 
+    // Handle de resize (esquina inferior-derecha)
+    const handle = document.createElement('div');
+    handle.className = 'obj__resize-handle';
+    el.appendChild(handle);
+
     if (obj.detail) {
       const detail = document.createElement('div');
       detail.className = 'obj__detail';

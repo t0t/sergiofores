@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Sergio Forés — Artista plástico · Orquestando Agentes · Percibiendo en 01234</title>
+<meta name="description" content="Estudio abierto de Sergio Forés. Artista plástico, orquestando agentes, percibiendo en 01234. Explora el canvas.">
+<meta name="author" content="Sergio Forés">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://sergiofores.es/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Sergio Forés — Artista plástico · Orquestando Agentes · Percibiendo en 01234">
+<meta property="og:description" content="Estudio abierto. Artista plástico, orquestando agentes, percibiendo en 01234.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sergiofores.es/">
+<meta property="og:image" content="https://sergiofores.es/img/avatar.jpg">
+<meta property="og:image:width" content="400">
+<meta property="og:image:height" content="400">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Sergio Forés">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sergio Forés — Artista plástico · Orquestando Agentes · Percibiendo en 01234">
+<meta name="twitter:description" content="Estudio abierto. Artista plástico, orquestando agentes, percibiendo en 01234.">
+<meta name="twitter:image" content="https://sergiofores.es/img/avatar.jpg">
+
+<!-- Favicon -->
+<link rel="icon" href="img/avatar.jpg" type="image/jpeg">
+<link rel="apple-touch-icon" href="img/avatar.jpg">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/canvas.css">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sergio Forés",
+  "url": "https://sergiofores.es",
+  "image": "https://sergiofores.es/img/avatar.jpg",
+  "jobTitle": "Artista plástico",
+  "description": "Artista plástico, orquestador de agentes de IA y creador del Sistema 01234.",
+  "sameAs": [
+    "https://www.instagram.com/sergio.01234/",
+    "https://www.youtube.com/@0-1234",
+    "https://github.com/t0t"
+  ]
+}
+</script>
+</head>
+<body>
+
+<h1 class="sr-only">Sergio Forés — Estudio abierto</h1>
+
+<main id="universe" role="application" aria-label="Canvas interactivo"></main>
+<div id="zoom-level" aria-hidden="true"></div>
+<div id="hint" aria-hidden="true">scroll · arrastra · explora</div>
+
+<!-- Sidebar de herramientas -->
+<button id="sidebar-toggle" type="button" aria-label="Herramientas" aria-expanded="false" aria-controls="sidebar">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+</button>
+
+<aside id="sidebar" class="sidebar" aria-hidden="true">
+  <button id="sidebar-close" type="button" class="sidebar__close" aria-label="Cerrar panel">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <section class="sidebar__section">
+    <span class="sidebar__label">Zoom</span>
+    <div class="sidebar__zoom">
+      <button type="button" data-zoom="out" aria-label="Alejar">−</button>
+      <span id="sidebar-zoom-val">100%</span>
+      <button type="button" data-zoom="in" aria-label="Acercar">+</button>
+      <button type="button" data-zoom="reset" aria-label="Resetear zoom">0</button>
+    </div>
+  </section>
+  <section class="sidebar__section">
+    <label class="sidebar__toggle-row">
+      <span>Dark mode</span>
+      <input type="checkbox" id="darkmode-toggle">
+    </label>
+  </section>
+  <section class="sidebar__section">
+    <label class="sidebar__toggle-row">
+      <span>Guías</span>
+      <input type="checkbox" id="guides-toggle" checked>
+    </label>
+  </section>
+  <section class="sidebar__section">
+    <button type="button" id="save-btn" class="sidebar__save-btn">Guardar posiciones</button>
+  </section>
+</aside>
+
+<script src="data.js?v=6"></script>
+<script type="module" src="js/canvas.js?v=6"></script>
+</body>
+</html>

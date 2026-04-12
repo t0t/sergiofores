@@ -1,388 +1,1217 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sergio Forés</title>
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
-<style>
-  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-  html,body{width:100%;height:100%;-webkit-text-size-adjust:100%}
-  html{-moz-tab-size:4;tab-size:4}
-  img,video,svg{display:block;max-width:100%;height:auto}
-  h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}
-  a{color:inherit;text-decoration:none}
-  button,input,select,textarea{font:inherit;color:inherit}
-  ul,ol{list-style:none}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sergio Forés</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
 
-  :root{
-    /* ── Colors ──────────────────────────── */
-    --color-bg:#f0f0f0;
-    --color-fg:#1a1a1a;
-    --color-dim:#868e96;
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      html {
+        -moz-tab-size: 4;
+        tab-size: 4;
+      }
+      img,
+      video,
+      svg {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: inherit;
+        font-weight: inherit;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+        color: inherit;
+      }
+      ul,
+      ol {
+        list-style: none;
+      }
 
-    /* ── Typography ──────────────────────── */
-    --font-family:'Montserrat', sans-serif;
-    --font-weight-regular:500;
-    --font-weight-bold:700;
-    --font-size-h1:clamp(2.5rem, 7.5vw, 6.5rem);
-    --font-size-h2:clamp(1.55rem, 4.65vw, 4rem);
-    --font-size-h3:clamp(1.3rem, 2.5vw, 1.8rem);
-    --font-size-body:clamp(0.75rem, 1vw, 0.95rem);
-    --letter-spacing-tight:0.35em;
-    --letter-spacing-h2:0.385em;
-    --letter-spacing-normal:normal;
+      :root {
+        /* ── Colors ──────────────────────────── */
+        --color-bg: #f0f0f0;
+        --color-fg: #1a1a1a;
+        --color-dim: #868e96;
 
-    /* ── Media ───────────────────────────── */
-    --aspect-ratio-square:1 / 1;
-    --aspect-ratio-landscape:16 / 9;
-    --aspect-ratio-reel:9 / 16;
-    --object-fit-cover:cover;
-    --object-fit-contain:contain;
+        /* ── Typography — 3 tamaños únicos ──── */
+        --font-family: "Montserrat", sans-serif;
+        --font-weight-regular: 500;
+        --font-weight-bold: 700;
+        --font-size-display: clamp(2.5rem, 7.5vw, 6.5rem); /* solo SERGIOFORES */
+        --font-size-heading: clamp(1.3rem, 2.2vw, 1.8rem); /* labels, headings, uppercase */
+        --font-size-body: clamp(0.75rem, 1vw, 0.95rem); /* descripciones, subtextos */
+        --letter-spacing-wide: 0.35em; /* único letter-spacing uppercase */
 
-    /* ── Spacing ─────────────────────────── */
-    --gap:clamp(1.5rem, 4vw, 3.5rem);
-    --pad:clamp(1.2rem, 3vw, 2.5rem);
+        /* ── Media ───────────────────────────── */
+        --aspect-ratio-square: 1 / 1;
+        --aspect-ratio-landscape: 16 / 9;
+        --aspect-ratio-reel: 9 / 16;
+        --object-fit-cover: cover;
+        --object-fit-contain: contain;
 
-    /* ── Animation ───────────────────────── */
-    --ease:0s;
-  }
+        /* ── Spacing ─────────────────────────── */
+        --gap: clamp(1.5rem, 4vw, 3.5rem);
+        --pad: clamp(1.2rem, 3vw, 2.5rem);
 
-  body{
-    font-family:var(--font-family);
-    background:var(--color-bg);
-    color:var(--color-fg);
-    overflow:hidden;
-    cursor:url('img/cursor-arrow.svg') 3 3, auto;
-  }
+        /* ── Animation ───────────────────────── */
+        --ease: 0s;
+      }
 
-  a, button, [role="button"], input[type="submit"], select, summary,
-  a:hover, button:hover{
-    cursor:url('img/cursor-arrow.svg') 3 3, auto;
-  }
+      body {
+        font-family: var(--font-family);
+        background: var(--color-bg);
+        color: var(--color-fg);
+        cursor:
+          url("img/cursor-arrow.svg") 3 3,
+          auto;
+      }
 
-  /* ── HERO ─────────────────────────────── */
+      a,
+      button,
+      [role="button"],
+      input[type="submit"],
+      select,
+      summary,
+      a:hover,
+      button:hover {
+        cursor:
+          url("img/cursor-arrow.svg") 3 3,
+          auto;
+      }
 
-  .c-hero{
-    position:relative;
-    width:100%;
-    height:auto;
-  }
+      /* ── HERO ─────────────────────────────── */
 
-  /* ── NOMBRE — capa flotante centrada ──── */
+      .c-hero {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
 
-  .c-hero__name,
-  h2{
-    font-weight:var(--font-weight-bold);
-    letter-spacing:var(--letter-spacing-tight);
-    text-transform:uppercase;
-    line-height:1;
-    color:var(--color-fg);
-  }
+      /* ── NOMBRE — capa flotante centrada ──── */
 
-  .c-hero__name{
-    position:relative;
-    padding:1.5rem var(--pad);
-    font-size:clamp(1.8rem, 8vw, 3rem);
-    text-align:center;
-    z-index:10;
-    pointer-events:none;
-    overflow-wrap:break-word;
-    word-break:break-all;
-  }
+      .c-hero__name,
+      h2 {
+        font-size: var(--font-size-heading);
+        font-weight: var(--font-weight-bold);
+        letter-spacing: var(--letter-spacing-wide);
+        text-transform: uppercase;
+        line-height: 1.1;
+        color: var(--color-fg);
+      }
 
-  h2{
-    font-size:var(--font-size-h2);
-    letter-spacing:var(--letter-spacing-h2);
-  }
+      h3 {
+        font-size: var(--font-size-heading);
+        font-weight: var(--font-weight-bold);
+        line-height: 1.3;
+        color: var(--color-fg);
+      }
 
-  /* ── GRID ─────────────────────────────── */
+      p,
+      .site-footer a {
+        font-size: clamp(1.1rem, 1vw, 0.95rem);
+        line-height: 1.6;
+        color: var(--color-fg);
+      }
 
-  .c-hero__grid{
-    transition:var(--ease);
-  }
+      .c-hero__name {
+        position: relative;
+        padding: 1.5rem var(--pad);
+        font-size: clamp(1.8rem, 8vw, 3rem); /* mobile: crece hasta desktop */
+        text-align: center;
+        z-index: 10;
+        pointer-events: none;
+        overflow-wrap: break-word;
+        word-break: break-all;
+      }
 
-  /* ── CELDAS ───────────────────────────── */
+      /* ── GRID ─────────────────────────────── */
 
-  .c-hero__cell{
-    overflow:hidden;
-    cursor:url('img/cursor-arrow.svg') 3 3, auto;
-    transition:var(--ease);
-  }
+      .c-hero__grid {
+        transition: var(--ease);
+      }
 
-  /* ── CONTENIDO TEXTO ──────────────────── */
+      /* ── CELDAS ───────────────────────────── */
 
-  .c-hero__text{
-    padding:1.5rem var(--pad);
-    z-index:2;
-    transition:opacity var(--ease);
-  }
+      .c-hero__cell {
+        overflow: hidden;
+        cursor:
+          url("img/cursor-arrow.svg") 3 3,
+          auto;
+        transition: var(--ease);
+      }
 
-  .c-hero__tagline,
-  .c-hero__desc{
-    color:var(--color-fg);
-    font-size:var(--font-size-h3);
-  }
+      /* ── CONTENIDO TEXTO ──────────────────── */
 
-  .c-hero__tagline{
-    line-height:1.2;
-    text-transform:uppercase;
-  }
+      .c-hero__text {
+        padding: 1.5rem var(--pad);
+        z-index: 2;
+        transition: opacity var(--ease);
+      }
 
-  .c-hero__desc{
-    line-height:1.4;
-    margin-top:0.3em;
-  }
+      .c-hero__desc {
+        line-height: 1.4;
+        margin-top: 0.3em;
+      }
 
-  /* ── MEDIA ────────────────────────────── */
+      /* ── MEDIA ────────────────────────────── */
 
-  .c-hero__media{
-    display:none;
-    transition:opacity var(--ease);
-    pointer-events:none;
-  }
+      .c-hero__media {
+        display: none;
+        transition: opacity var(--ease);
+        pointer-events: none;
+      }
 
-  .c-hero__media[data-mobile]{
-    display:block;
-  }
+      .c-hero__media[data-mobile] {
+        display: block;
+      }
 
-  .c-hero__media img,
-  .c-hero__media video{
-    width:100%;
-    display:block;
-    object-fit:cover;
-  }
+      .c-hero__media img,
+      .c-hero__media video {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+      }
 
-  /* ── PLACEHOLDER ──────────────────────── */
+      /* ── PLACEHOLDER ──────────────────────── */
 
-  .c-hero__placeholder{
-    position:absolute;
-    inset:0;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    font-size:0.85rem;
-    color:var(--color-dim);
-    opacity:0.3;
-    text-transform:lowercase;
-    letter-spacing:0.1em;
-  }
+      .c-hero__placeholder {
+        position: absolute;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        color: var(--color-dim);
+        opacity: 0.3;
+        text-transform: lowercase;
+        letter-spacing: 0.1em;
+      }
 
-  /* ═══ ESTADOS DE HOVER ═══════════════════ */
+      /* ═══ ESTADOS DE HOVER ═══════════════════ */
 
-  /* Percibo: text TL, square TR, landscape BL, landscape BR */
-  .c-hero__grid[data-active="percibo"]{ }
-  .c-hero__grid[data-active="percibo"] .c-hero__cell:not([data-area="percibo"]) .c-hero__media[data-src="percibo"]{ opacity:1 }
-  .c-hero__grid[data-active="percibo"] .c-hero__cell:not([data-area="percibo"]) .c-hero__text{ opacity:0 }
+      /* Percibo: text TL, square TR, landscape BL, landscape BR */
+      .c-hero__grid[data-active="percibo"] {
+      }
+      .c-hero__grid[data-active="percibo"] .c-hero__cell:not([data-area="percibo"]) .c-hero__media[data-src="percibo"] {
+        opacity: 1;
+      }
+      .c-hero__grid[data-active="percibo"] .c-hero__cell:not([data-area="percibo"]) .c-hero__text {
+        opacity: 0;
+      }
 
-  /* Pinto: portrait TL, landscape TR, text BL, square BR */
-  .c-hero__grid[data-active="pinto"]{ }
-  .c-hero__grid[data-active="pinto"] .c-hero__cell:not([data-area="pinto"]) .c-hero__media[data-src="pinto"]{ opacity:1 }
-  .c-hero__grid[data-active="pinto"] .c-hero__cell:not([data-area="pinto"]) .c-hero__text{ opacity:0 }
+      /* Pinto: portrait TL, landscape TR, text BL, square BR */
+      .c-hero__grid[data-active="pinto"] {
+      }
+      .c-hero__grid[data-active="pinto"] .c-hero__cell:not([data-area="pinto"]) .c-hero__media[data-src="pinto"] {
+        opacity: 1;
+      }
+      .c-hero__grid[data-active="pinto"] .c-hero__cell:not([data-area="pinto"]) .c-hero__text {
+        opacity: 0;
+      }
 
-  /* Creo: reel TL, text TR, landscape BL, landscape BR */
-  .c-hero__grid[data-active="creo"]{ }
-  .c-hero__grid[data-active="creo"] .c-hero__cell:not([data-area="creo"]) .c-hero__media[data-src="creo"]{ opacity:1 }
-  .c-hero__grid[data-active="creo"] .c-hero__cell:not([data-area="creo"]) .c-hero__text{ opacity:0 }
+      /* Creo: reel TL, text TR, landscape BL, landscape BR */
+      .c-hero__grid[data-active="creo"] {
+      }
+      .c-hero__grid[data-active="creo"] .c-hero__cell:not([data-area="creo"]) .c-hero__media[data-src="creo"] {
+        opacity: 1;
+      }
+      .c-hero__grid[data-active="creo"] .c-hero__cell:not([data-area="creo"]) .c-hero__text {
+        opacity: 0;
+      }
 
-  /* Tambien: landscape TL, landscape TR, square BL, text BR */
-  .c-hero__grid[data-active="tambien"]{ }
-  .c-hero__grid[data-active="tambien"] .c-hero__cell:not([data-area="tambien"]) .c-hero__media[data-src="tambien"]{ opacity:1 }
-  .c-hero__grid[data-active="tambien"] .c-hero__cell:not([data-area="tambien"]) .c-hero__text{ opacity:0 }
+      /* Tambien: landscape TL, landscape TR, square BL, text BR */
+      .c-hero__grid[data-active="tambien"] {
+      }
+      .c-hero__grid[data-active="tambien"] .c-hero__cell:not([data-area="tambien"]) .c-hero__media[data-src="tambien"] {
+        opacity: 1;
+      }
+      .c-hero__grid[data-active="tambien"] .c-hero__cell:not([data-area="tambien"]) .c-hero__text {
+        opacity: 0;
+      }
 
-  /* ── THIN (≥ 30em / 480px) — medio izq + texto der ── */
+      /* ── THIN (≥ 30em / 480px) — medio izq + texto der ── */
 
-  @media (width >= 30em){
-    .c-hero__cell{
-      display:flex;
-      flex-direction:row;
-      align-items:center;
-    }
-    .c-hero__media[data-mobile]{
-      width:40%; flex-shrink:0;
-    }
-    .c-hero__text{
-      flex:1;
-      padding:var(--pad);
-    }
-  }
+      @media (width >= 30em) {
+        .c-hero__cell {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+        .c-hero__media[data-mobile] {
+          width: 40%;
+          flex-shrink: 0;
+        }
+        .c-hero__text {
+          flex: 1;
+          padding: var(--pad);
+        }
+      }
 
-  /* ── NORMAL (≥ 48em / 768px) — grid 2×2 con hover ── */
+      /* ── NORMAL (≥ 48em / 768px) — grid 2×2 con hover ── */
 
-  @media (width >= 48em){
-    body{ overflow:hidden }
-    .c-hero{ height:100vh }
-    .c-hero__name{
-      position:absolute;
-      top:50%; left:50%;
-      transform:translate(-50%,-50%);
-      padding:0;
-      font-size:var(--font-size-h1);
-      white-space:nowrap;
-    }
-    .c-hero__grid{
-      display:grid;
-      grid-template-columns:var(--col1, 1.2fr) var(--col2, 1fr);
-      grid-template-rows:var(--row1, 1fr) var(--row2, 1fr);
-      height:100%;
-      gap:var(--gap);
-      padding:var(--pad);
-    }
-    .c-hero__cell{
-      display:block;
-      position:relative;
-    }
-    .c-hero__media,
-    .c-hero__media[data-mobile]{
-      display:block;
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      opacity:0;
-    }
-    .c-hero__media img,
-    .c-hero__media video{ width:100%; height:100%; max-width:none; object-fit:contain }
-    .c-hero__text{
-      position:absolute;
-      top:50%; left:50%;
-      transform:translate(-50%,-50%);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      width:clamp(260px, 25vw, 420px);
-      padding:var(--pad);
-      cursor:url('img/cursor-arrow.svg') 3 3, pointer;
-    }
-    .c-hero__placeholder{ display:flex }
-  }
-</style>
-</head>
-<body>
+      @media (width >= 48em) {
+        html {
+          overflow-y: scroll;
+        }
+        body {
+          overflow: visible;
+          height: auto;
+        }
+        .c-hero {
+          height: 100svh;
+        }
+        .c-hero__name {
+          /* display tier — único elemento en este tamaño */
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding: 0;
+          font-size: var(--font-size-display);
+          white-space: nowrap;
+        }
+        .c-hero__grid {
+          display: grid;
+          grid-template-columns: var(--col1, 1.2fr) var(--col2, 1fr);
+          grid-template-rows: var(--row1, 1fr) var(--row2, 1fr);
+          height: 100%;
+          gap: var(--gap);
+          padding: var(--pad);
+        }
+        .c-hero__cell {
+          display: block;
+          position: relative;
+        }
+        .c-hero__media,
+        .c-hero__media[data-mobile] {
+          display: block;
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+        }
+        .c-hero__media img,
+        .c-hero__media video {
+          width: 100%;
+          height: 100%;
+          max-width: none;
+          object-fit: contain;
+        }
+        .c-hero__text {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          width: clamp(300px, 25vw, 420px);
+          padding: var(--pad);
+          cursor:
+            url("img/cursor-arrow.svg") 3 3,
+            pointer;
+        }
+        .c-hero__placeholder {
+          display: flex;
+        }
+      }
 
-<section class="c-hero" id="hero">
+      /* ═══ CONTENT-PINTO ═══════════════════════ */
 
-  <!-- Nombre — capa flotante sobre el grid -->
-  <h1 class="c-hero__name">Sergiofores</h1>
+      .c-pinto {
+        width: 100%;
+        background: var(--color-bg);
+      }
 
-  <!-- Grid de 4 celdas -->
-  <div class="c-hero__grid" id="heroGrid">
+      .c-pinto__label {
+        /* body tier — etiqueta de sección */
+        font-size: var(--font-size-body);
+        color: var(--color-dim);
+        letter-spacing: var(--letter-spacing-wide);
+        text-transform: uppercase;
+      }
 
-    <!-- Top-left: PERCIBO -->
-    <div class="c-hero__cell" data-area="percibo">
-      <div class="c-hero__media c-hero__media--reel" data-src="pinto" data-type="reel" data-ar="0.562">
-        <video src="img/obras/pinto-001-video.mp4" muted loop playsinline preload="auto"></video>
+      .c-pinto__heading {
+        margin-top: 0.4em;
+      }
+
+      .c-pinto__grid > h3,
+      .c-pinto__grid > div:first-child {
+        padding-left: var(--gap);
+      }
+
+      /* Respiración lateral en móvil — textos no quedan pegados al borde */
+      @media (width < 48em) {
+        .c-pinto__text,
+        .c-pinto__text2,
+        .c-pinto__text3,
+        .c-pinto__grid > h3,
+        .c-pinto__grid > div:first-child {
+          padding-left: var(--gap);
+          padding-right: var(--gap);
+        }
+      }
+
+      .c-pinto__desc {
+        margin-top: 0.6em;
+      }
+
+      /* ── SLIDER ──────────────────────── */
+
+      .c-pinto__slider {
+        position: relative;
+        overflow: hidden;
+        background: var(--color-bg);
+        width: 100%;
+        height: 100%;
+      }
+
+      .c-pinto__track {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .c-pinto__slide {
+        min-width: 100%;
+        height: 100%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .c-pinto__slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .c-pinto__prev,
+      .c-pinto__next {
+        position: absolute;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        z-index: 2;
+      }
+
+      .c-pinto__prev {
+        left: 0;
+        cursor:
+          url("img/cursor-prev.svg") 8 16,
+          w-resize;
+      }
+
+      .c-pinto__next {
+        right: 0;
+        cursor:
+          url("img/cursor-next.svg") 24 16,
+          e-resize;
+      }
+
+      /* ── MOBILE ──────────────────────── */
+
+      .c-pinto__grid {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap);
+      }
+
+      .c-pinto__text {
+        padding: 0 var(--gap);
+      }
+
+      @media (width >= 48em) {
+        .c-pinto__text {
+          padding: 0;
+        }
+      }
+
+      /* Mobile: todas las imágenes en formato cine 16/9 */
+      .c-pinto__s1,
+      .c-pinto__s2,
+      .c-pinto__s3,
+      .c-pinto__s4,
+      .c-pinto__s5,
+      .c-pinto__s6,
+      .c-pinto__s7 {
+        aspect-ratio: 16/9;
+        height: auto;
+      }
+      .c-pinto__s1 {
+        overflow: hidden;
+      }
+      .c-pinto__s1 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* ═══ SCROLL TO TOP ════════════════════ */
+
+      .c-scroll-top {
+        position: fixed;
+        bottom: var(--gap);
+        right: var(--gap);
+        z-index: 50;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.3em;
+        background: none;
+        border: none;
+        padding: 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(var(--pad));
+        transition: all 0.3s ease;
+        color: var(--color-fg);
+        cursor: pointer;
+      }
+
+      .c-scroll-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .c-scroll-top.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .c-scroll-top__text {
+        font-size: 0.6em;
+        font-weight: var(--font-weight-bold);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+      }
+
+      .c-scroll-top__line {
+        width: 1px;
+        height: 1.5em;
+        background: currentColor;
+      }
+
+      .c-scroll-top__icon {
+        font-size: var(--font-size-body);
+        animation: bounce-up 1.5s ease-in-out infinite;
+      }
+
+      @keyframes bounce-up {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-0.3em); }
+      }
+
+      .c-scroll-top:hover {
+        color: var(--color-dim);
+      }
+
+      /* ═══ FOOTER ═══════════════════════════ */
+
+      .site-footer {
+        background: #e4e4e4;
+        padding: var(--gap);
+        font-size: var(--font-size-body);
+        color: var(--color-fg);
+      }
+      .site-footer__grid {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap);
+      }
+      .site-footer__block h3 {
+        font-size: var(--font-size-body);
+        font-weight: var(--font-weight-bold);
+        text-transform: uppercase;
+        margin-bottom: 0.8em;
+      }
+      .site-footer__links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+      }
+      .site-footer__links a {
+        font-size: var(--font-size-body);
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+      .site-footer__links a:hover {
+        opacity: 0.6;
+      }
+      .site-footer__social {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--gap);
+        align-items: center;
+      }
+      .site-footer__social a {
+        font-size: var(--font-size-body);
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        text-decoration: none;
+      }
+      .site-footer__social a:hover {
+        opacity: 0.6;
+      }
+      .site-footer__social svg {
+        width: 1.2em;
+        height: 1.2em;
+        fill: currentColor;
+      }
+      .site-footer__copy {
+        font-size: var(--font-size-body);
+        margin-top: var(--gap);
+      }
+
+      /* ── DESKTOP ─────────────────────── */
+
+      @media (width >= 48em) {
+        /* Grid fluye: columnas con minmax(0,fr) permiten ceder sin romper.
+       Filas auto-colocadas por el contenido — sin row numbers explícitos. */
+        .c-pinto__grid {
+          display: grid;
+          grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+          grid-auto-rows: auto;
+          gap: var(--gap);
+        }
+
+        /* S1: col izquierda, ocupa 2 filas en flujo — no forzamos row number */
+        .c-pinto__s1 {
+          grid-column: 1;
+          grid-row: span 2;
+          margin-top: 30%;
+          aspect-ratio: 1/1;
+        }
+
+        /* S2: col derecha, fluye al lado de S1 */
+        .c-pinto__s2 {
+          grid-column: 2;
+          aspect-ratio: 4/3;
+        }
+
+        /* Texto §2: col derecha, se auto-coloca bajo S2 */
+        .c-pinto__text {
+          grid-column: 2;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        /* Texto libre: col izquierda — fluye cuando S1 termina su span */
+        .c-pinto__text2 {
+          grid-column: 1;
+          padding: var(--gap);
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          gap: 1.4em;
+          max-width: 52ch;
+          line-height: 1.7;
+        }
+
+        /* S4: col derecha, fluye bajo el texto §2 */
+        .c-pinto__s4 {
+          grid-column: 2;
+          aspect-ratio: 4/5;
+        }
+
+        /* Band: rompe el flujo de 2 col — ancho total, sin gap interno */
+        .c-pinto__band {
+          grid-column: 1 / -1;
+          display: flex;
+          gap: 0;
+        }
+
+        .c-pinto__s5,
+        .c-pinto__s6,
+        .c-pinto__s7 {
+          flex: 1 1 0;
+          min-width: 0;
+          aspect-ratio: 4/3;
+        }
+
+        /* S3: asimétrico — solo col izquierda, col derecha respira vacía */
+        .c-pinto__s3 {
+          grid-column: 1;
+          aspect-ratio: 5/4;
+        }
+        .c-pinto__text3 {
+          grid-column: 2;
+          padding: var(--pad);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 1.4em;
+          line-height: 1.7;
+        }
+
+        /* Footer: dos columnas en desktop */
+        .site-footer__grid {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+        .site-footer {
+          min-height: 50vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+      }
+
+      /* Landscape: no aplicar 50vh */
+      @media (width >= 48em) and (max-height: 500px) {
+        .site-footer {
+          min-height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="c-hero" id="hero">
+      <!-- Nombre — capa flotante sobre el grid -->
+      <h1 class="c-hero__name">Sergiofores</h1>
+
+      <!-- Grid de 4 celdas -->
+      <div class="c-hero__grid" id="heroGrid">
+        <!-- Top-left: PERCIBO -->
+        <div class="c-hero__cell" data-area="percibo">
+          <div class="c-hero__media c-hero__media--reel" data-src="pinto" data-type="reel" data-ar="0.562">
+            <video src="img/obras/pinto-001-video.mp4" muted loop playsinline preload="auto"></video>
+          </div>
+          <div
+            class="c-hero__media c-hero__media--reel"
+            data-src="creo"
+            data-type="reel"
+            data-audio="true"
+            data-ar="0.562"
+          >
+            <video src="img/dialogo_web.mp4" muted loop playsinline preload="auto"></video>
+          </div>
+          <div
+            class="c-hero__media c-hero__media--landscape"
+            data-src="tambien"
+            data-type="image"
+            data-ar="1.5"
+            data-mobile
+          >
+            <img src="img/obras/gesto-primordial.webp" alt="Gesto primordial" loading="lazy" />
+          </div>
+          <div class="c-hero__text">
+            <h2>Me doy cuenta de 01234</h2>
+            <p class="c-hero__desc">destilando mi propio<br />sistema cognitivo</p>
+          </div>
+        </div>
+
+        <!-- Top-right: CREO -->
+        <div class="c-hero__cell" data-area="creo">
+          <div class="c-hero__media c-hero__media--square" data-src="percibo" data-type="image" data-ar="1.105">
+            <img src="img/o1234/grafico-metamodelo-3.svg" alt="Metamodelo 01234" loading="lazy" />
+          </div>
+          <div class="c-hero__media c-hero__media--landscape" data-src="pinto" data-type="image" data-ar="1.333">
+            <img src="img/obras/bolas-oleo-solido.webp" alt="Bolas de óleo sólido" loading="lazy" />
+          </div>
+          <div
+            class="c-hero__media c-hero__media--landscape"
+            data-src="tambien"
+            data-type="image"
+            data-ar="1.798"
+            data-mobile
+          >
+            <img src="img/sergio-arte-plastica.webp" alt="Sergio y agentes IA" loading="lazy" />
+          </div>
+          <div class="c-hero__text">
+            <h2>Creo con la palabra</h2>
+            <p class="c-hero__desc">Orquestando y entrenando Agentes de IA</p>
+          </div>
+        </div>
+
+        <!-- Bottom-left: PINTO -->
+        <div class="c-hero__cell" data-area="pinto">
+          <div class="c-hero__media c-hero__media--landscape" data-src="percibo" data-type="video" data-ar="1.798">
+            <video src="img/proceso-cognitivo.webm" muted loop playsinline></video>
+          </div>
+          <div class="c-hero__media c-hero__media--landscape" data-src="creo" data-type="image" data-ar="1.798">
+            <img src="img/sergio-arte-plastica.webp" alt="Sergio Forés" loading="lazy" />
+          </div>
+          <div
+            class="c-hero__media c-hero__media--square"
+            data-src="tambien"
+            data-type="image"
+            data-ar="0.976"
+            data-mobile
+          >
+            <img src="img/obras/pinto-002.webp" alt="Obra en espacio" loading="lazy" />
+          </div>
+          <a href="#content-pinto" class="c-hero__text">
+            <h2>Pinto</h2>
+            <p class="c-hero__desc">Fabricando mis pinturas,</p>
+          </a>
+        </div>
+
+        <!-- Bottom-right: TAMBIEN -->
+        <div class="c-hero__cell" data-area="tambien">
+          <div class="c-hero__media c-hero__media--landscape" data-src="percibo" data-type="image" data-ar="1.5">
+            <img src="img/obras/gesto-primordial.webp" alt="Gesto primordial" loading="lazy" />
+          </div>
+          <div class="c-hero__media c-hero__media--square" data-src="pinto" data-type="image" data-ar="0.976">
+            <img src="img/obras/pinto-002.webp" alt="Obra en espacio" loading="lazy" />
+          </div>
+          <div
+            class="c-hero__media c-hero__media--landscape"
+            data-src="creo"
+            data-type="image"
+            data-ar="1.798"
+            data-mobile
+          >
+            <img src="img/sergio-arte-plastica.webp" alt="Sergio Forés" loading="lazy" />
+          </div>
+          <div class="c-hero__text">
+            <h2>Cuento chistes sin gracia</h2>
+            <p class="c-hero__desc">(pero eso es otra historia...)</p>
+          </div>
+        </div>
       </div>
-      <div class="c-hero__media c-hero__media--reel" data-src="creo" data-type="reel" data-audio="true" data-ar="0.562">
-        <video src="img/dialogo_web.mp4" muted loop playsinline preload="auto"></video>
-      </div>
-      <div class="c-hero__media c-hero__media--landscape" data-src="tambien" data-type="image" data-ar="1.5" data-mobile>
-        <img src="img/obras/gesto-primordial.webp" alt="Gesto primordial" loading="lazy">
-      </div>
-      <div class="c-hero__text">
-        <h3 class="c-hero__tagline">Me doy cuenta de 01234</h3>
-        <p class="c-hero__desc">destilando mi propio<br>sistema cognitivo</p>
-      </div>
-    </div>
+    </section>
 
-    <!-- Top-right: CREO -->
-    <div class="c-hero__cell" data-area="creo">
-      <div class="c-hero__media c-hero__media--square" data-src="percibo" data-type="image" data-ar="1.105">
-        <img src="img/o1234/grafico-metamodelo-3.svg" alt="Metamodelo 01234" loading="lazy">
-      </div>
-      <div class="c-hero__media c-hero__media--landscape" data-src="pinto" data-type="image" data-ar="1.333">
-        <img src="img/obras/bolas-oleo-solido.webp" alt="Bolas de óleo sólido" loading="lazy">
-      </div>
-      <div class="c-hero__media c-hero__media--landscape" data-src="tambien" data-type="image" data-ar="1.798" data-mobile>
-        <img src="img/sergio-arte-plastica.webp" alt="Sergio y agentes IA" loading="lazy">
-      </div>
-      <div class="c-hero__text">
-        <h3 class="c-hero__tagline">Creo con la palabra</h3>
-        <p class="c-hero__desc">Orquestando y entrenando Agentes de IA</p>
-      </div>
-    </div>
+    <section class="c-pinto" id="content-pinto">
+      <div class="c-pinto__grid">
+        <div class="c-pinto__text2">
+          <h3>El color lo tengo en la palma</h3>
+          <!-- S1: imagen fija izquierda, span filas 1+2 -->
+          <p>lo peso con los dedos, lo siento en la piel</p>
+        </div>
+        <figure class="c-pinto__s1">
+          <img src="img/obras/pinto/s1-04.webp" alt="Composición amarillo azul" />
+        </figure>
 
-    <!-- Bottom-left: PINTO -->
-    <div class="c-hero__cell" data-area="pinto">
-      <div class="c-hero__media c-hero__media--landscape" data-src="percibo" data-type="video" data-ar="1.798">
-        <video src="img/proceso-cognitivo.webm" muted loop playsinline></video>
+        <!-- S2: slider derecha superior (45% ancho, 35% alto) -->
+        <div class="c-pinto__s2 c-pinto__slider" data-slider>
+          <div class="c-pinto__track" data-track>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s2-01.webp" alt="Impasto rojo azul" loading="lazy" />
+            </figure>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s2-02.webp" alt="Óleo rosa amarillo" loading="lazy" />
+            </figure>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s2-03.webp" alt="Composición rosa verde" loading="lazy" />
+            </figure>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s2-04.webp" alt="Impasto amarillo morado" loading="lazy" />
+            </figure>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s2-05.webp" alt="Pintura rosa naranja" loading="lazy" />
+            </figure>
+          </div>
+          <div class="c-pinto__prev" aria-label="Anterior"></div>
+          <div class="c-pinto__next" aria-label="Siguiente"></div>
+        </div>
+
+        <!-- Texto §2 — celda derecha media (45% ancho, 15% alto) -->
+        <div class="c-pinto__text">
+          <h3 class="c-pinto__heading">Óleo sólido</h3>
+          <p class="c-pinto__desc">Proceso físico — fuego, presión, resistencia.<br />Campos de color puros.</p>
+        </div>
+
+        <!-- Texto libre col izquierda row 3 — reseña proceso pictórico, fuente: speech-obra-plastica y corpus teórico 01234 -->
+        <div class="c-pinto__text2">
+          <h3>El color decide mientras se mueve.</h3>
+          <p>Lo que queda es lo que resistió.</p>
+
+          <p>
+            Fabrico las pinturas antes de pintarlas. Bolas de óleo sólido — cera, pigmentos, resina, aceite — hechas a
+            mano en el estudio. No hay pincel. El color lo tengo en la palma, lo peso con los dedos, lo siento en la
+            piel antes de que toque el lino.
+          </p>
+
+          <p>
+            Luego viene el calor. Pistola industrial, espátula de acero. La espátula no dibuja: transmuta. Funde capas,
+            sella y fija color y forma al mismo tiempo. Debajo de todo están los grises — ese es el secreto que no se
+            ve.
+          </p>
+
+          <p>No pinto. Orquesto tránsitos de fase.</p>
+        </div>
+
+        <!-- S4: slider inferior derecha (45% ancho, 50% alto) -->
+        <div class="c-pinto__s4 c-pinto__slider" data-slider>
+          <div class="c-pinto__track" data-track>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s4-01.webp" alt="Impasto beige azul" loading="lazy" />
+            </figure>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s4-02.webp" alt="Óleo azul amarillo" loading="lazy" />
+            </figure>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s4-03.webp" alt="Pintura amarillo azul" loading="lazy" />
+            </figure>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s4-04.webp" alt="Impasto beige morado" loading="lazy" />
+            </figure>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s4-05.webp" alt="Óleo beige azul" loading="lazy" />
+            </figure>
+          </div>
+          <div class="c-pinto__prev" aria-label="Anterior"></div>
+          <div class="c-pinto__next" aria-label="Siguiente"></div>
+        </div>
+
+        <!-- Banda de 3 sliders sin gap -->
+        <div class="c-pinto__band">
+          <div class="c-pinto__s5 c-pinto__slider" data-slider>
+            <div class="c-pinto__track" data-track>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s5-01.webp" alt="Óleo amarillo verde" loading="lazy" />
+              </figure>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s5-02.webp" alt="Tela gris morado" loading="lazy" />
+              </figure>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s5-03.webp" alt="Lienzo verde rojo" loading="lazy" />
+              </figure>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s5-04.webp" alt="Pintura beige naranja" loading="lazy" />
+              </figure>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s5-05.webp" alt="Óleo blanco multicolor" loading="lazy" />
+              </figure>
+            </div>
+            <div class="c-pinto__prev" aria-label="Anterior"></div>
+            <div class="c-pinto__next" aria-label="Siguiente"></div>
+          </div>
+
+          <div class="c-pinto__s6 c-pinto__slider" data-slider>
+            <div class="c-pinto__track" data-track>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s6-01.webp" alt="Composición pastel amarillo azul" loading="lazy" />
+              </figure>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s6-02.webp" alt="Tela azul verde" loading="lazy" />
+              </figure>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s6-03.webp" alt="Composición pastel azul" loading="lazy" />
+              </figure>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s6-04.webp" alt="Óleo textura multicolor" loading="lazy" />
+              </figure>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s6-05.webp" alt="Tela morado verde" loading="lazy" />
+              </figure>
+            </div>
+            <div class="c-pinto__prev" aria-label="Anterior"></div>
+            <div class="c-pinto__next" aria-label="Siguiente"></div>
+          </div>
+
+          <div class="c-pinto__s7 c-pinto__slider" data-slider>
+            <div class="c-pinto__track" data-track>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s7-01.webp" alt="Impasto verde rojo" loading="lazy" />
+              </figure>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s7-02.webp" alt="Lienzo rojo naranja" loading="lazy" />
+              </figure>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s7-03.webp" alt="Óleo detalle multicolor" loading="lazy" />
+              </figure>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s7-04.webp" alt="Pintura naranja amarillo" loading="lazy" />
+              </figure>
+              <figure class="c-pinto__slide">
+                <img src="img/obras/pinto/s7-05.webp" alt="Pintura pastel rosa amarillo" loading="lazy" />
+              </figure>
+            </div>
+            <div class="c-pinto__prev" aria-label="Anterior"></div>
+            <div class="c-pinto__next" aria-label="Siguiente"></div>
+          </div>
+        </div>
+
+        <!-- otro row, NO importa si queda asimetrico, se busca eso, que respire  asimetricamente tanto verticalmente como horizontalmente, ahora lo entiendes?-->
+        <div class="c-pinto__s3 c-pinto__slider" data-slider>
+          <div class="c-pinto__track" data-track>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s3-01.webp" alt="Composición amarillo azul" loading="lazy" />
+            </figure>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s3-02.webp" alt="Pintura naranja rojo" loading="lazy" />
+            </figure>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s3-03.webp" alt="Óleo rojo amarillo" loading="lazy" />
+            </figure>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s3-04.webp" alt="Óleo turquesa verde" loading="lazy" />
+            </figure>
+            <figure class="c-pinto__slide">
+              <img src="img/obras/pinto/s3-05.webp" alt="Composición beige rojo" loading="lazy" />
+            </figure>
+          </div>
+          <div class="c-pinto__prev" aria-label="Anterior"></div>
+          <div class="c-pinto__next" aria-label="Siguiente"></div>
+        </div>
+
+        <!-- mas texto — col 2, misma fila que S3 -->
+        <div class="c-pinto__text3">
+          <h3>No salgo a predicar</h3>
+          <p>
+            pero trabajo con la puerta abierta.
+          </p>
+        </div>
       </div>
-      <div class="c-hero__media c-hero__media--landscape" data-src="creo" data-type="image" data-ar="1.798">
-        <img src="img/sergio-arte-plastica.webp" alt="Sergio Forés" loading="lazy">
+    </section>
+
+    <footer class="site-footer">
+      <div class="site-footer__grid">
+        <div class="site-footer__block">
+          <h3>Webs</h3>
+          <div class="site-footer__links">
+            <a href="https://t0t.github.io/referencias-diseno/" target="_blank" rel="noopener">Referencias de diseño</a>
+            <a href="https://noeliarequena.com/" target="_blank" rel="noopener">Noelia Requena</a>
+          </div>
+        </div>
+
+        <div class="site-footer__block">
+          <h3>Redes</h3>
+          <div class="site-footer__social">
+            <a href="https://www.instagram.com/sergio.01234/" target="_blank" rel="noopener" aria-label="Instagram obra plástica">
+              <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+              <span>Obra</span>
+            </a>
+            <a href="https://www.instagram.com/cuenta.01234/" target="_blank" rel="noopener" aria-label="Instagram Sistema 01234">
+              <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+              <span>01234</span>
+            </a>
+            <a href="https://www.youtube.com/@0-1234" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+              <span>YouTube</span>
+            </a>
+            <a href="https://github.com/t0t" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+              <span>GitHub</span>
+            </a>
+            <a href="https://x.com/t0tinspire" target="_blank" rel="noopener" aria-label="X">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <span>X</span>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="c-hero__media c-hero__media--square" data-src="tambien" data-type="image" data-ar="0.976" data-mobile>
-        <img src="img/obras/pinto-002.webp" alt="Obra en espacio" loading="lazy">
-      </div>
-      <div class="c-hero__text">
-        <h3 class="c-hero__tagline">Pinto</h3>
-        <p class="c-hero__desc">Fabricando mis pinturas,</p>
-      </div>
-    </div>
+      <p class="site-footer__copy">Sergio Forés — <script>document.write(new Date().getFullYear())</script></p>
+    </footer>
 
-    <!-- Bottom-right: TAMBIEN -->
-    <div class="c-hero__cell" data-area="tambien">
-      <div class="c-hero__media c-hero__media--landscape" data-src="percibo" data-type="image" data-ar="1.5">
-        <img src="img/obras/gesto-primordial.webp" alt="Gesto primordial" loading="lazy">
-      </div>
-      <div class="c-hero__media c-hero__media--square" data-src="pinto" data-type="image" data-ar="0.976">
-        <img src="img/obras/pinto-002.webp" alt="Obra en espacio" loading="lazy">
-      </div>
-      <div class="c-hero__media c-hero__media--landscape" data-src="creo" data-type="image" data-ar="1.798" data-mobile>
-        <img src="img/sergio-arte-plastica.webp" alt="Sergio Forés" loading="lazy">
-      </div>
-      <div class="c-hero__text">
-        <h3 class="c-hero__tagline">Cuento chistes sin gracia</h3>
-        <p class="c-hero__desc">(pero eso es otra historia...)</p>
-      </div>
-    </div>
+    <!-- Scroll to Top Button -->
+    <button class="c-scroll-top hidden" aria-label="Volver al inicio" tabindex="-1">
+      <div class="c-scroll-top__text">Top</div>
+      <div class="c-scroll-top__line"></div>
+      <div class="c-scroll-top__icon">↑</div>
+    </button>
 
-  </div>
-</section>
+    <script>
+      // ── SCROLL TO TOP ────────────────────────────
+      class ScrollNavigation {
+        constructor() {
+          this.scrollToTop = document.querySelector('.c-scroll-top');
+          this.scrollToTopVisible = false;
+          this.showScrollToTopThreshold = 400;
+          this.init();
+        }
 
-<script>
-  const grid = document.getElementById('heroGrid');
-  const areas = ['percibo', 'pinto', 'creo', 'tambien'];
-  let leaveTimer = null;
+        init() {
+          if (!this.scrollToTop) return;
+          this.setupEventListeners();
+        }
 
-  function activate(area) {
-    clearTimeout(leaveTimer);
-    grid.dataset.active = area;
-    grid.querySelectorAll('video').forEach(v => { v.pause(); v.muted = true; });
-    grid.querySelectorAll(`.c-hero__media[data-src="${area}"] video`).forEach(v => {
-      const hasAudio = v.closest('[data-audio="true"]');
-      v.muted = !hasAudio;
-      v.currentTime = 0;
-      v.play().catch(() => { v.muted = true; v.play(); });
-    });
-  }
+        setupEventListeners() {
+          let scrollTimeout;
+          window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+              this.handleScroll();
+            }, 16);
+          }, { passive: true });
 
-  function deactivate() {
-    leaveTimer = setTimeout(() => {
-      delete grid.dataset.active;
-      grid.querySelectorAll('video').forEach(v => { v.pause(); v.muted = true; });
-    }, 100);
-  }
+          this.scrollToTop.addEventListener('click', () => {
+            this.scrollToTopAction();
+          });
+        }
 
-  grid.querySelectorAll('.c-hero__cell').forEach(cell => {
-    const area = cell.dataset.area;
-    if (!areas.includes(area)) return;
-    const text = cell.querySelector('.c-hero__text');
-    if (!text) return;
+        handleScroll() {
+          const currentScrollY = window.scrollY;
+          const windowHeight = window.innerHeight;
+          const documentHeight = document.documentElement.scrollHeight;
 
-    text.addEventListener('mouseenter', () => activate(area));
-    text.addEventListener('mouseleave', deactivate);
-  });
+          const shouldShowScrollToTop = currentScrollY > this.showScrollToTopThreshold &&
+                                       documentHeight > windowHeight + 200;
 
-  grid.addEventListener('mouseleave', () => {
-    clearTimeout(leaveTimer);
-    delete grid.dataset.active;
-    grid.querySelectorAll('video').forEach(v => { v.pause(); v.muted = true; });
-  });
-</script>
+          if (shouldShowScrollToTop && !this.scrollToTopVisible) {
+            this.showScrollToTop();
+          } else if (!shouldShowScrollToTop && this.scrollToTopVisible) {
+            this.hideScrollToTop();
+          }
+        }
 
-</body>
+        showScrollToTop() {
+          if (this.scrollToTopVisible) return;
+          this.scrollToTopVisible = true;
+          this.scrollToTop.classList.add('visible');
+          this.scrollToTop.classList.remove('hidden');
+          this.scrollToTop.setAttribute('aria-hidden', 'false');
+          this.scrollToTop.removeAttribute('tabindex');
+        }
+
+        hideScrollToTop() {
+          if (!this.scrollToTopVisible) return;
+          this.scrollToTopVisible = false;
+          this.scrollToTop.classList.remove('visible');
+          this.scrollToTop.classList.add('hidden');
+          this.scrollToTop.setAttribute('aria-hidden', 'true');
+          this.scrollToTop.setAttribute('tabindex', '-1');
+        }
+
+        scrollToTopAction() {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        new ScrollNavigation();
+
+        // ── FADE SCROLLING (Hero fade out) ────
+        const hero = document.querySelector('.c-hero');
+        const fadeStartThreshold = 100;
+        const fadeEndThreshold = 400;
+
+        window.addEventListener('scroll', () => {
+          const scrollY = window.scrollY;
+          let opacity = 1;
+
+          if (scrollY > fadeStartThreshold && scrollY < fadeEndThreshold) {
+            opacity = 1 - ((scrollY - fadeStartThreshold) / (fadeEndThreshold - fadeStartThreshold));
+          } else if (scrollY >= fadeEndThreshold) {
+            opacity = 0;
+          }
+
+          hero.style.opacity = opacity;
+        }, { passive: true });
+      });
+    </script>
+
+    <script>
+      // ── SLIDERS c-pinto ──────────────────────────
+      document.querySelectorAll("[data-slider]").forEach((slider) => {
+        const track = slider.querySelector("[data-track]");
+        const slides = track.querySelectorAll(".c-pinto__slide");
+        const total = slides.length;
+        let current = 0;
+
+        function goTo(n) {
+          current = (n + total) % total;
+          track.style.transform = `translateX(-${current * slider.offsetWidth}px)`;
+        }
+
+        slider.querySelector(".c-pinto__prev").addEventListener("click", () => goTo(current - 1));
+        slider.querySelector(".c-pinto__next").addEventListener("click", () => goTo(current + 1));
+      });
+    </script>
+
+    <script>
+      const grid = document.getElementById("heroGrid");
+      const areas = ["percibo", "pinto", "creo", "tambien"];
+      let leaveTimer = null;
+
+      function activate(area) {
+        clearTimeout(leaveTimer);
+        grid.dataset.active = area;
+        grid.querySelectorAll("video").forEach((v) => {
+          v.pause();
+          v.muted = true;
+        });
+        grid.querySelectorAll(`.c-hero__media[data-src="${area}"] video`).forEach((v) => {
+          const hasAudio = v.closest('[data-audio="true"]');
+          v.muted = !hasAudio;
+          v.currentTime = 0;
+          v.play().catch(() => {
+            v.muted = true;
+            v.play();
+          });
+        });
+      }
+
+      function deactivate() {
+        leaveTimer = setTimeout(() => {
+          delete grid.dataset.active;
+          grid.querySelectorAll("video").forEach((v) => {
+            v.pause();
+            v.muted = true;
+          });
+        }, 100);
+      }
+
+      grid.querySelectorAll(".c-hero__cell").forEach((cell) => {
+        const area = cell.dataset.area;
+        if (!areas.includes(area)) return;
+        const text = cell.querySelector(".c-hero__text");
+        if (!text) return;
+
+        text.addEventListener("mouseenter", () => activate(area));
+        text.addEventListener("mouseleave", deactivate);
+      });
+
+      grid.addEventListener("mouseleave", () => {
+        clearTimeout(leaveTimer);
+        delete grid.dataset.active;
+        grid.querySelectorAll("video").forEach((v) => {
+          v.pause();
+          v.muted = true;
+        });
+      });
+    </script>
+  </body>
 </html>
