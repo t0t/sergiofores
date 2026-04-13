@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/tokens.css" />
     <style>
       *,
       *::before,
@@ -63,32 +64,22 @@
       }
 
       :root {
-        /* ── Colors ──────────────────────────── */
+        /* ── OVERRIDES sergiofores ───────────────────────
+             Base: css/tokens.css (design system)
+             Aquí solo lo que este proyecto necesita distinto.
+        ────────────────────────────────────────────────── */
+
+        /* Colores proyecto — fondo más cálido, dim más azulado */
         --color-bg: #f0f0f0;
-        --color-fg: #1a1a1a;
         --color-dim: #868e96;
 
-        /* ── Typography — 3 tamaños únicos ──── */
-        --font-family: "Montserrat", sans-serif;
-        --font-weight-regular: 500;
-        --font-weight-bold: 700;
-        --font-size-display: clamp(2.5rem, 7.5vw, 6.5rem); /* solo SERGIOFORES */
-        --font-size-heading: clamp(1.3rem, 2.2vw, 1.8rem); /* labels, headings, uppercase */
-        --font-size-body: clamp(0.75rem, 1vw, 0.95rem); /* descripciones, subtextos */
-        --letter-spacing-wide: 0.35em; /* único letter-spacing uppercase */
+        /* Tipografía — misma Montserrat, tamaños más dramáticos (portfolio) */
+        --font-family: var(--font-secondary);
+        --font-size-display: clamp(2.5rem, 7.5vw, 6.5rem);
+        --font-size-heading: clamp(1.3rem, 2.2vw, 1.8rem);
+        --font-size-body: clamp(0.75rem, 1vw, 0.95rem);
 
-        /* ── Media ───────────────────────────── */
-        --aspect-ratio-square: 1 / 1;
-        --aspect-ratio-landscape: 16 / 9;
-        --aspect-ratio-reel: 9 / 16;
-        --object-fit-cover: cover;
-        --object-fit-contain: contain;
-
-        /* ── Spacing ─────────────────────────── */
-        --gap: clamp(1.5rem, 4vw, 3.5rem);
-        --pad: clamp(1.2rem, 3vw, 2.5rem);
-
-        /* ── Animation ───────────────────────── */
+        /* Animación — desactivada por defecto */
         --ease: 0s;
       }
 
@@ -128,7 +119,7 @@
       h2 {
         font-size: var(--font-size-heading);
         font-weight: var(--font-weight-bold);
-        letter-spacing: var(--letter-spacing-wide);
+        letter-spacing: var(--letter-spacing-display);
         text-transform: uppercase;
         line-height: 1.1;
         color: var(--color-fg);
@@ -364,7 +355,7 @@
         /* body tier — etiqueta de sección */
         font-size: var(--font-size-body);
         color: var(--color-dim);
-        letter-spacing: var(--letter-spacing-wide);
+        letter-spacing: var(--letter-spacing-display);
         text-transform: uppercase;
       }
 
@@ -554,7 +545,7 @@
       /* ═══ FOOTER ═══════════════════════════ */
 
       .site-footer {
-        background: #e4e4e4;
+        background: var(--color-gray-200);
         padding: var(--gap);
         font-size: var(--font-size-body);
         color: var(--color-fg);
@@ -1010,6 +1001,7 @@
           <h3>Webs</h3>
           <div class="site-footer__links">
             <a href="https://t0t.github.io/referencias-diseno/" target="_blank" rel="noopener">Referencias de diseño</a>
+            <a href="https://t0t.github.io/design-system/" target="_blank" rel="noopener">Design System</a>
             <a href="https://noeliarequena.com/" target="_blank" rel="noopener">Noelia Requena</a>
           </div>
         </div>
